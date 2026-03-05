@@ -66,51 +66,37 @@ Measured on OpenJDK 25 (build `25-internal-adhoc`). All times are wall-clock mil
 
 | Mode      | Time  |
 |-----------|-------|
-| default   | 98ms  |
-| no CDS    | 170ms |
-| AOT cache | **70ms** |
+| default   | 81ms  |
+| no CDS    | 168ms |
+| AOT cache | **67ms** |
 
 ### add
 
 | Mode      | Time  |
 |-----------|-------|
-| default   | **88ms**  |
-| no CDS    | 169ms |
-| AOT cache | 117ms |
+| default   | **91ms**  |
+| no CDS    | 171ms |
+| AOT cache | 115ms |
 
 ### mul
 
 | Mode      | Time  |
 |-----------|-------|
 | default   | **88ms**  |
-| no CDS    | 179ms |
-| AOT cache | 95ms  |
+| no CDS    | 200ms |
+| AOT cache | 103ms  |
 
 ### math
 
 | Mode      | Time   |
 |-----------|--------|
-| default   | **106ms** |
-| no CDS    | 211ms  |
-| AOT cache | 103ms  |
+| default   | **90ms** |
+| no CDS    | 179ms  |
+| AOT cache | 122ms  |
 
 ### Summary
 
-The AOT cache is the fastest only for `sub` — the base module whose cache was built from scratch. For `add`, `mul`, and `math`, the default mode is faster or on par.
+The AOT cache is the fastest only for `sub` — the base module whose cache was built from scratch. For `add`, `mul`, and `math`, the default mode is faster.
 
-The key reason is **heap and AOT code (ac) region retention**. When `sub.aot` is built fresh, the JVM captures `Archived Heap` and `AOT Code` region specifically for `sub`'s workload. Those regions are directly usable at startup.
-
-When caches are merged (`add.aot` ← `sub.aot`, `mul.aot` ← `add.aot`, etc.), each merge extends the cache with new class data but the hp and ac regions from earlier modules are not automatically retained in a form that benefits the new module's startup. The downstream merged caches end up providing less startup benefit per byte than a purpose-built cache would, while the JVM's built-in CDS (used by the default mode) remains well-tuned for general startup. This is why `default` wins for `add`, `mul`, and `math`.
-
-## Running Performance Checks
-
-```bash
-./performance-check.sh
-```
-
-This runs each JAR under three modes (default, no CDS, AOT cache) and prints labeled timings.
-
-## Requirements
-
-- OpenJDK 25+ (built with AOT support)
-- Maven (to build the JARs via `mvn package` in each module or from the root)
+The key reason is **archive heap (hp) and AOT code (ac) region retention**. When `sub.aot` is built fresh, the JVM captures `Archived Heap` and `AOT Code` region specifically for `sub`'s workload. Those regions are directly usable at startup.
+This is currently not implemented for merged caches.
