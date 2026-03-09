@@ -1,0 +1,124 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 364   24       3       java.util.BitSet::expandTo (23 bytes)
+ total in heap  [0x000078e667fff008,0x000078e667fff278] = 624
+ main code      [0x000078e667fff100,0x000078e667fff248] = 328
+ stub code      [0x000078e667fff248,0x000078e667fff278] = 48
+ mutable data [0x000078e61001ca00,0x000078e61001ca48] = 72
+ relocation     [0x000078e61001ca00,0x000078e61001ca38] = 56
+ metadata       [0x000078e61001ca38,0x000078e61001ca48] = 16
+ immutable data [0x000078e61001c900,0x000078e61001c9ec] = 236
+ dependencies   [0x000078e61001c900,0x000078e61001c908] = 8
+ scopes pcs     [0x000078e61001c908,0x000078e61001c9a8] = 160
+ scopes data    [0x000078e61001c9a8,0x000078e61001c9e8] = 64
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000078e667fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000078e667fff10b:   data16 data16 xchg %ax,%ax
+  0x000078e667fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000003c303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;
+  # this:     rsi:rsi   = &apos;java/util/BitSet&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000078e667fff112:   mov    0x8(%rsi),%r10d
+  0x000078e667fff116:   cmp    0x8(%rax),%r10d
+  0x000078e667fff11a:   jne    0x000078e66f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000078e667fff120:   mov    %eax,-0x14000(%rsp)
+  0x000078e667fff127:   push   %rbp
+  0x000078e667fff128:   sub    $0x30,%rsp
+  0x000078e667fff12c:   cmpl   $0x1,0x20(%r15)
+  0x000078e667fff134:   je     0x000078e667fff13b
+  0x000078e667fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000078e667fff13b:   movabs $0x78e6200b8380,%rdi         ;   {metadata(method data for {method} {0x000000003c303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x000078e667fff145:   mov    0x90(%rdi),%ebx
+  0x000078e667fff14b:   add    $0x2,%ebx
+  0x000078e667fff14e:   mov    %ebx,0x90(%rdi)
+  0x000078e667fff154:   and    $0x7fe,%ebx
+  0x000078e667fff15a:   test   %ebx,%ebx
+  0x000078e667fff15c:   je     0x000078e667fff1e8           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@0 (line 355)
+  0x000078e667fff162:   inc    %edx
+  0x000078e667fff164:   mov    0xc(%rsi),%edi               ;*getfield wordsInUse {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@5 (line 356)
+  0x000078e667fff167:   cmp    %edx,%edi
+  0x000078e667fff169:   movabs $0x78e6200b8380,%rdi         ;   {metadata(method data for {method} {0x000000003c303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x000078e667fff173:   mov    $0xd8,%ebx
+  0x000078e667fff178:   jge    0x000078e667fff17f
+  0x000078e667fff17a:   mov    $0xe8,%ebx
+  0x000078e667fff17f:   mov    (%rdi,%rbx,1),%rax
+  0x000078e667fff183:   lea    0x1(%rax),%rax
+  0x000078e667fff187:   mov    %rax,(%rdi,%rbx,1)
+  0x000078e667fff18b:   jge    0x000078e667fff1d8           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@9 (line 356)
+  0x000078e667fff191:   mov    %rsi,%rdi
+  0x000078e667fff194:   movabs $0x78e6200b8380,%rbx         ;   {metadata(method data for {method} {0x000000003c303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x000078e667fff19e:   addq   $0x1,0xf8(%rbx)
+  0x000078e667fff1a6:   mov    %rdx,%rdi
+  0x000078e667fff1a9:   mov    %rdi,%rdx
+  0x000078e667fff1ac:   mov    %rsi,%rbx
+  0x000078e667fff1af:   mov    %rbx,%rsi                    ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+  0x000078e667fff1b2:   mov    %edi,0x20(%rsp)
+  0x000078e667fff1b6:   mov    %rbx,0x18(%rsp)
+  0x000078e667fff1bb:   nopl   0x0(%rax)
+  0x000078e667fff1bf:   call   0x000078e66f4ad9e0           ; ImmutableOopMap {[24]=Oop }
+                                                            ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+                                                            ;   {optimized virtual_call}
+  0x000078e667fff1c4:   nopl   0x1bc(%rax,%rax,1)           ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+                                                            ;   {post_call_nop}
+  0x000078e667fff1cc:   mov    0x18(%rsp),%rsi
+  0x000078e667fff1d1:   mov    0x20(%rsp),%edx
+  0x000078e667fff1d5:   mov    %edx,0xc(%rsi)               ;*putfield wordsInUse {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@19 (line 358)
+  0x000078e667fff1d8:   add    $0x30,%rsp
+  0x000078e667fff1dc:   pop    %rbp
+  0x000078e667fff1dd:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078e667fff1e1:   ja     0x000078e667fff209
+  0x000078e667fff1e7:   ret    
+  0x000078e667fff1e8:   movabs $0x3c303360,%r10             ;   {metadata({method} {0x000000003c303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x000078e667fff1f2:   mov    %r10,0x8(%rsp)
+  0x000078e667fff1f7:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078e667fff1ff:   call   0x000078e66f581860           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.BitSet::expandTo@-1 (line 355)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078e667fff204:   jmp    0x000078e667fff162
+  0x000078e667fff209:   movabs $0x78e667fff1dd,%r10         ;   {internal_word}
+  0x000078e667fff213:   mov    %r10,0x510(%r15)
+  0x000078e667fff21a:   jmp    0x000078e66f4afb60           ;   {runtime_call SafepointBlob}
+  0x000078e667fff21f:   mov    0x5c0(%r15),%rax
+  0x000078e667fff226:   movq   $0x0,0x5c0(%r15)
+  0x000078e667fff231:   movq   $0x0,0x5c8(%r15)
+  0x000078e667fff23c:   add    $0x30,%rsp
+  0x000078e667fff240:   pop    %rbp
+  0x000078e667fff241:   jmp    0x000078e66f55cee0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000078e667fff246:   hlt    
+  0x000078e667fff247:   hlt    
+[Stub Code]
+  0x000078e667fff248:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000078e667fff252:   jmp    0x000078e667fff252           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000078e667fff257:   call   0x000078e66f57db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000078e667fff25c:   movabs $0x78e687f3aec4,%rdi         ;   {external_word}
+  0x000078e667fff266:   and    $0xfffffffffffffff0,%rsp
+  0x000078e667fff26a:   call   0x000078e687991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000078e667fff26f:   hlt    
+  0x000078e667fff270:   call   0x000078e66f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000078e667fff275:   jmp    0x000078e667fff270
+  0x000078e667fff277:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 434   41       1       jdk.internal.constant.PrimitiveClassDescImpl::descriptorString (5 bytes)
+ total in heap  [0x0000720423ba7808,0x0000720423ba79b0] = 424
+ main code      [0x0000720423ba7900,0x0000720423ba7990] = 144
+ stub code      [0x0000720423ba7990,0x0000720423ba79b0] = 32
+ mutable data [0x00007203c4014c70,0x00007203c4014c98] = 40
+ relocation     [0x00007203c4014c70,0x00007203c4014c90] = 32
+ metadata       [0x00007203c4014c90,0x00007203c4014c98] = 8
+ immutable data [0x00007203c4014c00,0x00007203c4014c5c] = 92
+ dependencies   [0x00007203c4014c00,0x00007203c4014c08] = 8
+ scopes pcs     [0x00007203c4014c08,0x00007203c4014c48] = 64
+ scopes data    [0x00007203c4014c48,0x00007203c4014c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000720423ba7900:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000720423ba790b:   data16 data16 xchg %ax,%ax
+  0x0000720423ba790f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000362b9498} &apos;descriptorString&apos; &apos;()Ljava/lang/String;&apos; in &apos;jdk/internal/constant/PrimitiveClassDescImpl&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000720423ba7912:   mov    0x8(%rsi),%r10d
+  0x0000720423ba7916:   cmp    0x8(%rax),%r10d
+  0x0000720423ba791a:   jne    0x00007204234ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000720423ba7920:   mov    %eax,-0x14000(%rsp)
+  0x0000720423ba7927:   push   %rbp
+  0x0000720423ba7928:   sub    $0x20,%rsp
+  0x0000720423ba792c:   cmpl   $0x1,0x20(%r15)
+  0x0000720423ba7934:   je     0x0000720423ba793b
+  0x0000720423ba7936:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.PrimitiveClassDescImpl::descriptorString@0 (line 125)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000720423ba793b:   mov    0x1c(%rsi),%eax
+  0x0000720423ba793e:   shl    $0x3,%rax                    ;*getfield descriptor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.PrimitiveClassDescImpl::descriptorString@1 (line 125)
+  0x0000720423ba7942:   add    $0x20,%rsp
+  0x0000720423ba7946:   pop    %rbp
+  0x0000720423ba7947:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000720423ba794b:   ja     0x0000720423ba7952
+  0x0000720423ba7951:   ret    
+  0x0000720423ba7952:   movabs $0x720423ba7947,%r10         ;   {internal_word}
+  0x0000720423ba795c:   mov    %r10,0x510(%r15)
+  0x0000720423ba7963:   jmp    0x00007204234afb60           ;   {runtime_call SafepointBlob}
+  0x0000720423ba7968:   mov    0x5c0(%r15),%rax
+  0x0000720423ba796f:   movq   $0x0,0x5c0(%r15)
+  0x0000720423ba797a:   movq   $0x0,0x5c8(%r15)
+  0x0000720423ba7985:   add    $0x20,%rsp
+  0x0000720423ba7989:   pop    %rbp
+  0x0000720423ba798a:   jmp    0x000072042357bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000720423ba798f:   hlt    
+[Exception Handler]
+  0x0000720423ba7990:   call   0x000072042357f760           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000720423ba7995:   movabs $0x72043bb3aec4,%rdi         ;   {external_word}
+  0x0000720423ba799f:   and    $0xfffffffffffffff0,%rsp
+  0x0000720423ba79a3:   call   0x000072043b591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000720423ba79a8:   hlt    
+  0x0000720423ba79a9:   call   0x00007204234afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000720423ba79ae:   jmp    0x0000720423ba79a9
+--------------------------------------------------------------------------------
+[/Disassembly]

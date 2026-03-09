@@ -1,0 +1,98 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 607   50       3       java.lang.CharacterDataLatin1::getProperties (11 bytes)
+ total in heap  [0x00007fb5a7fff008,0x00007fb5a7fff220] = 536
+ main code      [0x00007fb5a7fff100,0x00007fb5a7fff200] = 256
+ stub code      [0x00007fb5a7fff200,0x00007fb5a7fff220] = 32
+ mutable data [0x00007fb550024d20,0x00007fb550024d50] = 48
+ relocation     [0x00007fb550024d20,0x00007fb550024d48] = 40
+ metadata       [0x00007fb550024d48,0x00007fb550024d50] = 8
+ immutable data [0x00007fb550024c70,0x00007fb550024d0c] = 156
+ dependencies   [0x00007fb550024c70,0x00007fb550024c78] = 8
+ scopes pcs     [0x00007fb550024c78,0x00007fb550024cd8] = 96
+ scopes data    [0x00007fb550024cd8,0x00007fb550024d08] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007fb5a7fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007fb5a7fff10b:   data16 data16 xchg %ax,%ax
+  0x00007fb5a7fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000001318f428} &apos;getProperties&apos; &apos;(I)I&apos; in &apos;java/lang/CharacterDataLatin1&apos;
+  # this:     rsi:rsi   = &apos;java/lang/CharacterDataLatin1&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x00007fb5a7fff112:   mov    0x8(%rsi),%r10d
+  0x00007fb5a7fff116:   cmp    0x8(%rax),%r10d
+  0x00007fb5a7fff11a:   jne    0x00007fb5af4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007fb5a7fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007fb5a7fff127:   push   %rbp
+  0x00007fb5a7fff128:   sub    $0x20,%rsp
+  0x00007fb5a7fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007fb5a7fff134:   je     0x00007fb5a7fff13b
+  0x00007fb5a7fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007fb5a7fff13b:   movabs $0x7fb55c2c0468,%rax         ;   {metadata(method data for {method} {0x000000001318f428} &apos;getProperties&apos; &apos;(I)I&apos; in &apos;java/lang/CharacterDataLatin1&apos;)}
+  0x00007fb5a7fff145:   mov    0x90(%rax),%edi
+  0x00007fb5a7fff14b:   add    $0x2,%edi
+  0x00007fb5a7fff14e:   mov    %edi,0x90(%rax)
+  0x00007fb5a7fff154:   and    $0x7fe,%edi
+  0x00007fb5a7fff15a:   test   %edi,%edi
+  0x00007fb5a7fff15c:   je     0x00007fb5a7fff196           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.CharacterDataLatin1::getProperties@0 (line 74)
+  0x00007fb5a7fff162:   and    $0xffff,%edx
+  0x00007fb5a7fff168:   mov    $0x100,%eax
+  0x00007fb5a7fff16d:   movabs $0x420174a20,%rsi            ;   {oop([I{0x0000000420174a20})}
+  0x00007fb5a7fff177:   cmp    %edx,%eax
+  0x00007fb5a7fff179:   jbe    0x00007fb5a7fff1b4
+  0x00007fb5a7fff17f:   movslq %edx,%rdx
+  0x00007fb5a7fff182:   mov    0x10(%rsi,%rdx,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.CharacterDataLatin1::getProperties@7 (line 75)
+  0x00007fb5a7fff186:   add    $0x20,%rsp
+  0x00007fb5a7fff18a:   pop    %rbp
+  0x00007fb5a7fff18b:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007fb5a7fff18f:   ja     0x00007fb5a7fff1c2
+  0x00007fb5a7fff195:   ret    
+  0x00007fb5a7fff196:   movabs $0x1318f428,%r10             ;   {metadata({method} {0x000000001318f428} &apos;getProperties&apos; &apos;(I)I&apos; in &apos;java/lang/CharacterDataLatin1&apos;)}
+  0x00007fb5a7fff1a0:   mov    %r10,0x8(%rsp)
+  0x00007fb5a7fff1a5:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007fb5a7fff1ad:   call   0x00007fb5af583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.CharacterDataLatin1::getProperties@-1 (line 74)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007fb5a7fff1b2:   jmp    0x00007fb5a7fff162
+  0x00007fb5a7fff1b4:   mov    %rdx,(%rsp)
+  0x00007fb5a7fff1b8:   mov    %rsi,0x8(%rsp)
+  0x00007fb5a7fff1bd:   call   0x00007fb5af57c1e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.CharacterDataLatin1::getProperties@7 (line 75)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007fb5a7fff1c2:   movabs $0x7fb5a7fff18b,%r10         ;   {internal_word}
+  0x00007fb5a7fff1cc:   mov    %r10,0x510(%r15)
+  0x00007fb5a7fff1d3:   jmp    0x00007fb5af4afb60           ;   {runtime_call SafepointBlob}
+  0x00007fb5a7fff1d8:   mov    0x5c0(%r15),%rax
+  0x00007fb5a7fff1df:   movq   $0x0,0x5c0(%r15)
+  0x00007fb5a7fff1ea:   movq   $0x0,0x5c8(%r15)
+  0x00007fb5a7fff1f5:   add    $0x20,%rsp
+  0x00007fb5a7fff1f9:   pop    %rbp
+  0x00007fb5a7fff1fa:   jmp    0x00007fb5af57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007fb5a7fff1ff:   hlt    
+[Exception Handler]
+  0x00007fb5a7fff200:   call   0x00007fb5af57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007fb5a7fff205:   movabs $0x7fb5c893aec4,%rdi         ;   {external_word}
+  0x00007fb5a7fff20f:   and    $0xfffffffffffffff0,%rsp
+  0x00007fb5a7fff213:   call   0x00007fb5c8391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007fb5a7fff218:   hlt    
+  0x00007fb5a7fff219:   call   0x00007fb5af4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007fb5a7fff21e:   jmp    0x00007fb5a7fff219
+--------------------------------------------------------------------------------
+[/Disassembly]

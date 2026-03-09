@@ -1,0 +1,332 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 31260 1412       4       java.util.Arrays::copyOfRange (82 bytes)
+ total in heap  [0x000077b45fbdb188,0x000077b45fbdb698] = 1296
+ main code      [0x000077b45fbdb280,0x000077b45fbdb690] = 1040
+ stub code      [0x000077b45fbdb690,0x000077b45fbdb698] = 8
+ mutable data [0x000077b3d0017d40,0x000077b3d0017d90] = 80
+ relocation     [0x000077b3d0017d40,0x000077b3d0017d80] = 64
+ metadata       [0x000077b3d0017d80,0x000077b3d0017d90] = 16
+ immutable data [0x000077b3d0017a50,0x000077b3d0017d2c] = 732
+ dependencies   [0x000077b3d0017a50,0x000077b3d0017a58] = 8
+ nul chk table  [0x000077b3d0017a58,0x000077b3d0017a70] = 24
+ handler table  [0x000077b3d0017a70,0x000077b3d0017aa0] = 48
+ scopes pcs     [0x000077b3d0017aa0,0x000077b3d0017c80] = 480
+ scopes data    [0x000077b3d0017c80,0x000077b3d0017d28] = 168
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004648a668} &apos;copyOfRange&apos; &apos;([BII)[B&apos; in &apos;java/util/Arrays&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45fbdb280:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbdb287:   push   %rbp
+  0x000077b45fbdb288:   sub    $0x30,%rsp
+  0x000077b45fbdb28c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbdb294:   jne    0x000077b45fbdb682           ;*synchronization entry
+                                                            ; - java.util.Arrays::copyOfRange@-1 (line 3842)
+  0x000077b45fbdb29a:   mov    %rsi,(%rsp)
+  0x000077b45fbdb29e:   mov    %edx,%r10d
+  0x000077b45fbdb2a1:   test   %edx,%edx
+  0x000077b45fbdb2a3:   jne    0x000077b45fbdb2ba           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@1 (line 3842)
+  0x000077b45fbdb2a5:   mov    0xc(%rsi),%r10d              ; implicit exception: dispatches to 0x000077b45fbdb628
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@6 (line 3842)
+  0x000077b45fbdb2a9:   cmp    %r10d,%ecx
+  0x000077b45fbdb2ac:   je     0x000077b45fbdb3c8
+  0x000077b45fbdb2b2:   xor    %r10d,%r10d
+  0x000077b45fbdb2b5:   mov    %ecx,%r11d
+  0x000077b45fbdb2b8:   jmp    0x000077b45fbdb2c0
+  0x000077b45fbdb2ba:   mov    %ecx,%r11d
+  0x000077b45fbdb2bd:   sub    %edx,%r11d                   ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@7 (line 3842)
+  0x000077b45fbdb2c0:   test   %r11d,%r11d
+  0x000077b45fbdb2c3:   jl     0x000077b45fbdb5e4           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@23 (line 3846)
+  0x000077b45fbdb2c9:   mov    0xc(%rsi),%r9d               ; implicit exception: dispatches to 0x000077b45fbdb604
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@69 (line 3850)
+  0x000077b45fbdb2cd:   test   %r10d,%r10d
+  0x000077b45fbdb2d0:   jl     0x000077b45fbdb5c1           ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@76 (line 3850)
+  0x000077b45fbdb2d6:   mov    %r9d,%ebp
+  0x000077b45fbdb2d9:   sub    %r10d,%ebp
+  0x000077b45fbdb2dc:   cmp    %r11d,%ebp
+  0x000077b45fbdb2df:   cmovg  %r11d,%ebp                   ;*invokestatic min {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@73 (line 3851)
+  0x000077b45fbdb2e3:   lea    (%r10,%rbp,1),%ecx
+  0x000077b45fbdb2e7:   cmp    %ecx,%r9d
+  0x000077b45fbdb2ea:   jb     0x000077b45fbdb5c1
+  0x000077b45fbdb2f0:   cmp    %ebp,%r11d
+  0x000077b45fbdb2f3:   jb     0x000077b45fbdb5c1
+  0x000077b45fbdb2f9:   test   %ebp,%ebp
+  0x000077b45fbdb2fb:   jl     0x000077b45fbdb5c1           ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@76 (line 3850)
+  0x000077b45fbdb301:   mov    %r11d,%r8d
+  0x000077b45fbdb304:   movslq %r8d,%rcx
+  0x000077b45fbdb307:   add    $0x17,%rcx
+  0x000077b45fbdb30b:   cmp    $0x100000,%r11d
+  0x000077b45fbdb312:   ja     0x000077b45fbdb4e4
+  0x000077b45fbdb318:   mov    0x1b0(%r15),%rbx
+  0x000077b45fbdb31f:   mov    %rcx,%r8
+  0x000077b45fbdb322:   and    $0xfffffffffffffff8,%r8
+  0x000077b45fbdb326:   mov    %rbx,%r9
+  0x000077b45fbdb329:   add    %r8,%r9
+  0x000077b45fbdb32c:   cmp    0x1c0(%r15),%r9
+  0x000077b45fbdb333:   jae    0x000077b45fbdb4e4
+  0x000077b45fbdb339:   mov    %r9,0x1b0(%r15)
+  0x000077b45fbdb340:   prefetchw 0xc0(%r9)
+  0x000077b45fbdb348:   movq   $0x1,(%rbx)
+  0x000077b45fbdb34f:   prefetchw 0x100(%r9)
+  0x000077b45fbdb357:   movl   $0x175de8,0x8(%rbx)          ;   {metadata({type array byte})}
+  0x000077b45fbdb35e:   mov    %r11d,0xc(%rbx)
+  0x000077b45fbdb362:   prefetchw 0x140(%r9)
+  0x000077b45fbdb36a:   prefetchw 0x180(%r9)                ;*newarray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@59 (line 3849)
+  0x000077b45fbdb372:   mov    %rbx,%rsi
+  0x000077b45fbdb375:   add    $0x10,%rsi
+  0x000077b45fbdb379:   shr    $0x3,%rcx
+  0x000077b45fbdb37d:   test   %ebp,%ebp
+  0x000077b45fbdb37f:   je     0x000077b45fbdb558
+  0x000077b45fbdb385:   movslq %ebp,%rdx
+  0x000077b45fbdb388:   cmp    %r11d,%ebp
+  0x000077b45fbdb38b:   jl     0x000077b45fbdb46a
+  0x000077b45fbdb391:   mov    (%rsp),%r11
+  0x000077b45fbdb395:   lea    0x10(%r11,%r10,1),%rdi
+  0x000077b45fbdb39a:   vzeroupper 
+  0x000077b45fbdb39d:   movabs $0x77b45f4937a0,%r10         ;   {runtime_call Stub::jbyte_arraycopy_stub (stub gen)}
+  0x000077b45fbdb3a7:   call   *%r10
+  0x000077b45fbdb3aa:   nopl   0x0(%rax,%rax,1)             ;*synchronization entry
+                                                            ; - java.util.Arrays::copyOfRange@-1 (line 3842)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb3b2:   mov    %rbx,%rax
+  0x000077b45fbdb3b5:   vzeroupper 
+  0x000077b45fbdb3b8:   add    $0x30,%rsp
+  0x000077b45fbdb3bc:   pop    %rbp
+  0x000077b45fbdb3bd:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbdb3c1:   ja     0x000077b45fbdb66c
+  0x000077b45fbdb3c7:   ret    
+  0x000077b45fbdb3c8:   movslq %r10d,%rbp
+  0x000077b45fbdb3cb:   cmp    $0x100000,%r10d
+  0x000077b45fbdb3d2:   ja     0x000077b45fbdb533
+  0x000077b45fbdb3d8:   mov    0x1b0(%r15),%rbx
+  0x000077b45fbdb3df:   lea    0x17(%rbp),%r11
+  0x000077b45fbdb3e3:   and    $0xfffffffffffffff8,%r11
+  0x000077b45fbdb3e7:   mov    %rbx,%r8
+  0x000077b45fbdb3ea:   add    %r11,%r8
+  0x000077b45fbdb3ed:   cmp    0x1c0(%r15),%r8
+  0x000077b45fbdb3f4:   jae    0x000077b45fbdb533
+  0x000077b45fbdb3fa:   mov    %r8,0x1b0(%r15)
+  0x000077b45fbdb401:   prefetchw 0xc0(%r8)
+  0x000077b45fbdb409:   movq   $0x1,(%rbx)
+  0x000077b45fbdb410:   prefetchw 0x100(%r8)
+  0x000077b45fbdb418:   movl   $0x175de8,0x8(%rbx)          ;   {metadata({type array byte})}
+  0x000077b45fbdb41f:   mov    %r10d,0xc(%rbx)
+  0x000077b45fbdb423:   prefetchw 0x140(%r8)
+  0x000077b45fbdb42b:   prefetchw 0x180(%r8)
+  0x000077b45fbdb433:   mov    (%rsp),%rdi
+  0x000077b45fbdb437:   add    $0x10,%rdi
+  0x000077b45fbdb43b:   mov    %rbx,%rsi
+  0x000077b45fbdb43e:   add    $0x10,%rsi
+  0x000077b45fbdb442:   add    $0x7,%rbp
+  0x000077b45fbdb446:   shr    $0x3,%rbp
+  0x000077b45fbdb44a:   mov    %rbp,%rdx
+  0x000077b45fbdb44d:   vzeroupper 
+  0x000077b45fbdb450:   movabs $0x77b45f493b20,%r10         ;   {runtime_call Stub::jlong_disjoint_arraycopy_stub (stub gen)}
+  0x000077b45fbdb45a:   call   *%r10
+  0x000077b45fbdb45d:   nopl   0x0(%rax,%rax,1)             ;*invokevirtual clone {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb465:   jmp    0x000077b45fbdb3b2
+  0x000077b45fbdb46a:   lea    0x10(%rdx),%r11
+  0x000077b45fbdb46e:   mov    %r11,%r8
+  0x000077b45fbdb471:   and    $0xfffffffffffffff8,%r8
+  0x000077b45fbdb475:   mov    %rbx,%rdi
+  0x000077b45fbdb478:   add    %r8,%rdi
+  0x000077b45fbdb47b:   shr    $0x3,%r11
+  0x000077b45fbdb47f:   sub    %r11,%rcx
+  0x000077b45fbdb482:   xor    %rax,%rax
+  0x000077b45fbdb485:   cmp    $0x8,%rcx
+  0x000077b45fbdb489:   jg     0x000077b45fbdb49b
+  0x000077b45fbdb48b:   dec    %rcx
+  0x000077b45fbdb48e:   js     0x000077b45fbdb4df
+  0x000077b45fbdb490:   mov    %rax,(%rdi,%rcx,8)
+  0x000077b45fbdb494:   dec    %rcx
+  0x000077b45fbdb497:   jge    0x000077b45fbdb490
+  0x000077b45fbdb499:   jmp    0x000077b45fbdb4df
+  0x000077b45fbdb49b:   vpxor  %ymm0,%ymm0,%ymm0
+  0x000077b45fbdb49f:   jmp    0x000077b45fbdb4b1
+  0x000077b45fbdb4a4:   vmovdqu %ymm0,(%rdi)
+  0x000077b45fbdb4a8:   vmovdqu %ymm0,0x20(%rdi)
+  0x000077b45fbdb4ad:   add    $0x40,%rdi
+  0x000077b45fbdb4b1:   sub    $0x8,%rcx
+  0x000077b45fbdb4b5:   jge    0x000077b45fbdb4a4
+  0x000077b45fbdb4b7:   add    $0x4,%rcx
+  0x000077b45fbdb4bb:   jl     0x000077b45fbdb4c9
+  0x000077b45fbdb4bd:   vmovdqu %ymm0,(%rdi)
+  0x000077b45fbdb4c1:   add    $0x20,%rdi
+  0x000077b45fbdb4c5:   sub    $0x4,%rcx
+  0x000077b45fbdb4c9:   add    $0x4,%rcx
+  0x000077b45fbdb4cd:   jle    0x000077b45fbdb4df
+  0x000077b45fbdb4cf:   dec    %rcx
+  0x000077b45fbdb4d2:   vmovq  %xmm0,(%rdi)
+  0x000077b45fbdb4d6:   add    $0x8,%rdi
+  0x000077b45fbdb4da:   dec    %rcx
+  0x000077b45fbdb4dd:   jge    0x000077b45fbdb4d2
+  0x000077b45fbdb4df:   jmp    0x000077b45fbdb391
+  0x000077b45fbdb4e4:   mov    %rcx,0x18(%rsp)
+  0x000077b45fbdb4e9:   mov    %r11d,0x10(%rsp)
+  0x000077b45fbdb4ee:   mov    %rsi,0x8(%rsp)
+  0x000077b45fbdb4f3:   mov    %r10d,(%rsp)
+  0x000077b45fbdb4f7:   movabs $0x46175de8,%rsi             ;   {metadata({type array byte})}
+  0x000077b45fbdb501:   mov    %r11d,%edx
+  0x000077b45fbdb504:   vzeroupper 
+  0x000077b45fbdb507:   call   0x000077b45f585ce0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*newarray {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.util.Arrays::copyOfRange@59 (line 3849)
+                                                            ;   {runtime_call new_array_nozero_blob (C2 runtime)}
+  0x000077b45fbdb50c:   nopl   0x384(%rax,%rax,1)           ;*newarray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@59 (line 3849)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb514:   mov    (%rsp),%r10d
+  0x000077b45fbdb518:   rex.W push 0x8(%rsp)
+  0x000077b45fbdb51d:   rex.W pop (%rsp)
+  0x000077b45fbdb521:   mov    %rax,%rbx
+  0x000077b45fbdb524:   mov    0x10(%rsp),%r11d
+  0x000077b45fbdb529:   mov    0x18(%rsp),%rcx
+  0x000077b45fbdb52e:   jmp    0x000077b45fbdb372
+  0x000077b45fbdb533:   movabs $0x46175de8,%rsi             ;   {metadata({type array byte})}
+  0x000077b45fbdb53d:   mov    %r10d,%edx
+  0x000077b45fbdb540:   vzeroupper 
+  0x000077b45fbdb543:   call   0x000077b45f585ce0           ; ImmutableOopMap {[0]=Oop }
+                                                            ;*invokevirtual clone {reexecute=1 rethrow=0 return_oop=1}
+                                                            ; - (reexecute) java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {runtime_call new_array_nozero_blob (C2 runtime)}
+  0x000077b45fbdb548:   nopl   0x10003c0(%rax,%rax,1)       ;*invokevirtual clone {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb550:   mov    %rax,%rbx
+  0x000077b45fbdb553:   jmp    0x000077b45fbdb433
+  0x000077b45fbdb558:   add    $0xfffffffffffffffe,%rcx
+  0x000077b45fbdb55c:   mov    %rsi,%rdi
+  0x000077b45fbdb55f:   xor    %rax,%rax
+  0x000077b45fbdb562:   cmp    $0x8,%rcx
+  0x000077b45fbdb566:   jg     0x000077b45fbdb578
+  0x000077b45fbdb568:   dec    %rcx
+  0x000077b45fbdb56b:   js     0x000077b45fbdb5bc
+  0x000077b45fbdb56d:   mov    %rax,(%rdi,%rcx,8)
+  0x000077b45fbdb571:   dec    %rcx
+  0x000077b45fbdb574:   jge    0x000077b45fbdb56d
+  0x000077b45fbdb576:   jmp    0x000077b45fbdb5bc
+  0x000077b45fbdb578:   vpxor  %ymm0,%ymm0,%ymm0
+  0x000077b45fbdb57c:   jmp    0x000077b45fbdb58e
+  0x000077b45fbdb581:   vmovdqu %ymm0,(%rdi)
+  0x000077b45fbdb585:   vmovdqu %ymm0,0x20(%rdi)
+  0x000077b45fbdb58a:   add    $0x40,%rdi
+  0x000077b45fbdb58e:   sub    $0x8,%rcx
+  0x000077b45fbdb592:   jge    0x000077b45fbdb581
+  0x000077b45fbdb594:   add    $0x4,%rcx
+  0x000077b45fbdb598:   jl     0x000077b45fbdb5a6
+  0x000077b45fbdb59a:   vmovdqu %ymm0,(%rdi)
+  0x000077b45fbdb59e:   add    $0x20,%rdi
+  0x000077b45fbdb5a2:   sub    $0x4,%rcx
+  0x000077b45fbdb5a6:   add    $0x4,%rcx
+  0x000077b45fbdb5aa:   jle    0x000077b45fbdb5bc
+  0x000077b45fbdb5ac:   dec    %rcx
+  0x000077b45fbdb5af:   vmovq  %xmm0,(%rdi)
+  0x000077b45fbdb5b3:   add    $0x8,%rdi
+  0x000077b45fbdb5b7:   dec    %rcx
+  0x000077b45fbdb5ba:   jge    0x000077b45fbdb5af
+  0x000077b45fbdb5bc:   jmp    0x000077b45fbdb3b2           ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@76 (line 3850)
+  0x000077b45fbdb5c1:   mov    $0xffffffcc,%esi
+  0x000077b45fbdb5c6:   mov    (%rsp),%rbp
+  0x000077b45fbdb5ca:   mov    %r10d,(%rsp)
+  0x000077b45fbdb5ce:   mov    %r11d,0x8(%rsp)
+  0x000077b45fbdb5d3:   nop
+  0x000077b45fbdb5d4:   vzeroupper 
+  0x000077b45fbdb5d7:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*newarray {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Arrays::copyOfRange@59 (line 3849)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdb5dc:   nopl   0x2000454(%rax,%rax,1)       ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@76 (line 3850)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb5e4:   mov    $0xffffff45,%esi
+  0x000077b45fbdb5e9:   mov    %r10d,%ebp
+  0x000077b45fbdb5ec:   mov    %ecx,(%rsp)
+  0x000077b45fbdb5ef:   mov    %r11d,0x4(%rsp)
+  0x000077b45fbdb5f4:   vzeroupper 
+  0x000077b45fbdb5f7:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*ifge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Arrays::copyOfRange@23 (line 3846)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdb5fc:   nopl   0x3000474(%rax,%rax,1)       ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@23 (line 3846)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb604:   mov    $0xfffffff6,%esi
+  0x000077b45fbdb609:   mov    (%rsp),%rbp
+  0x000077b45fbdb60d:   mov    %r10d,(%rsp)
+  0x000077b45fbdb611:   mov    %r11d,0x8(%rsp)
+  0x000077b45fbdb616:   xchg   %ax,%ax
+  0x000077b45fbdb618:   vzeroupper 
+  0x000077b45fbdb61b:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*newarray {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Arrays::copyOfRange@59 (line 3849)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdb620:   nopl   0x4000498(%rax,%rax,1)       ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@76 (line 3850)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb628:   mov    $0xfffffff6,%esi
+  0x000077b45fbdb62d:   data16 xchg %ax,%ax
+  0x000077b45fbdb630:   vzeroupper 
+  0x000077b45fbdb633:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@6 (line 3842)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdb638:   nopl   0x50004b0(%rax,%rax,1)       ;*synchronization entry
+                                                            ; - java.util.Arrays::copyOfRange@-1 (line 3842)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb640:   mov    %rax,%rsi
+  0x000077b45fbdb643:   vzeroupper 
+  0x000077b45fbdb646:   add    $0x30,%rsp
+  0x000077b45fbdb64a:   pop    %rbp
+  0x000077b45fbdb64b:   jmp    0x000077b45f58b8e0           ;*invokevirtual clone {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x000077b45fbdb650:   mov    $0xffffff8f,%esi
+  0x000077b45fbdb655:   mov    (%rsp),%rbp
+  0x000077b45fbdb659:   data16 xchg %ax,%ax
+  0x000077b45fbdb65c:   vzeroupper 
+  0x000077b45fbdb65f:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*invokevirtual clone {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdb664:   nopl   0x60004dc(%rax,%rax,1)       ;*invokevirtual clone {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::copyOfRange@11 (line 3843)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdb66c:   movabs $0x77b45fbdb3bd,%r10         ;   {internal_word}
+  0x000077b45fbdb676:   mov    %r10,0x510(%r15)
+  0x000077b45fbdb67d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbdb682:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbdb687:   jmp    0x000077b45fbdb29a
+  0x000077b45fbdb68c:   hlt    
+  0x000077b45fbdb68d:   hlt    
+  0x000077b45fbdb68e:   hlt    
+  0x000077b45fbdb68f:   hlt    
+[Stub Code]
+  0x000077b45fbdb690:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbdb695:   jmp    0x000077b45fbdb690
+  0x000077b45fbdb697:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,178 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 73    3       4       java.lang.StringCoding::countPositives (33 bytes)
+ total in heap  [0x0000788017ba0608,0x0000788017ba0898] = 656
+ main code      [0x0000788017ba0700,0x0000788017ba0890] = 400
+ stub code      [0x0000788017ba0890,0x0000788017ba0898] = 8
+ mutable data [0x0000787fbc0c1a90,0x0000787fbc0c1ab0] = 32
+ relocation     [0x0000787fbc0c1a90,0x0000787fbc0c1aa8] = 24
+ metadata       [0x0000787fbc0c1aa8,0x0000787fbc0c1ab0] = 8
+ immutable data [0x0000787fbc0c17d0,0x0000787fbc0c1a84] = 692
+ dependencies   [0x0000787fbc0c17d0,0x0000787fbc0c17d8] = 8
+ nul chk table  [0x0000787fbc0c17d8,0x0000787fbc0c17e8] = 16
+ scopes pcs     [0x0000787fbc0c17e8,0x0000787fbc0c1a08] = 544
+ scopes data    [0x0000787fbc0c1a08,0x0000787fbc0c1a80] = 120
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000006d1d8c70} &apos;countPositives&apos; &apos;([BII)I&apos; in &apos;java/lang/StringCoding&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x0000788017ba0700:   mov    %eax,-0x14000(%rsp)
+  0x0000788017ba0707:   push   %rbp
+  0x0000788017ba0708:   sub    $0x30,%rsp
+  0x0000788017ba070c:   cmpl   $0x1,0x20(%r15)
+  0x0000788017ba0714:   jne    0x0000788017ba0886           ;*synchronization entry
+                                                            ; - java.lang.StringCoding::countPositives@-1 (line 91)
+  0x0000788017ba071a:   lea    (%rdx,%rcx,1),%r10d
+  0x0000788017ba071e:   cmp    %r10d,%edx
+  0x0000788017ba0721:   jge    0x0000788017ba080a           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@10 (line 92)
+  0x0000788017ba0727:   mov    0xc(%rsi),%r11d              ; implicit exception: dispatches to 0x0000788017ba0848
+                                                            ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba072b:   cmp    %r11d,%edx
+  0x0000788017ba072e:   jae    0x0000788017ba0848
+  0x0000788017ba0734:   movslq %r11d,%r11
+  0x0000788017ba0737:   movslq %r10d,%r8
+  0x0000788017ba073a:   lea    -0x1(%r8),%r9
+  0x0000788017ba073e:   cmp    %r11,%r9
+  0x0000788017ba0741:   jae    0x0000788017ba0848
+  0x0000788017ba0747:   lea    0x1(%rdx),%r11d
+  0x0000788017ba074b:   mov    %edx,%r9d                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@13 (line 93)
+  0x0000788017ba074e:   movsbl 0x10(%rsi,%r9,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba0754:   test   %edi,%edi
+  0x0000788017ba0756:   jl     0x0000788017ba082b           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba075c:   inc    %r9d                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@25 (line 92)
+  0x0000788017ba075f:   cmp    %r11d,%r9d
+  0x0000788017ba0762:   jl     0x0000788017ba074e           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@10 (line 92)
+  0x0000788017ba0764:   add    $0xfffffffffffffffd,%r8
+  0x0000788017ba0768:   mov    $0xffffffff80000000,%r11
+  0x0000788017ba076f:   cmp    $0xffffffff80000000,%r8
+  0x0000788017ba0776:   cmovl  %r11,%r8
+  0x0000788017ba077a:   mov    %r8d,%eax
+  0x0000788017ba077d:   cmp    %eax,%r9d
+  0x0000788017ba0780:   jge    0x0000788017ba07f0
+  0x0000788017ba0782:   mov    $0xfa0,%ebx                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@28 (line 92)
+  0x0000788017ba0787:   xor    %r13d,%r13d
+  0x0000788017ba078a:   mov    %eax,%r11d
+  0x0000788017ba078d:   sub    %r9d,%r11d
+  0x0000788017ba0790:   cmp    %r9d,%eax
+  0x0000788017ba0793:   cmovl  %r13d,%r11d
+  0x0000788017ba0797:   cmp    $0xfa0,%r11d
+  0x0000788017ba079e:   cmova  %ebx,%r11d
+  0x0000788017ba07a2:   add    %r9d,%r11d
+  0x0000788017ba07a5:   data16 data16 nopw 0x0(%rax,%rax,1) ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@13 (line 93)
+  0x0000788017ba07b0:   movsbl 0x10(%rsi,%r9,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba07b6:   test   %edi,%edi
+  0x0000788017ba07b8:   jl     0x0000788017ba082b           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba07ba:   movslq %r9d,%r8
+  0x0000788017ba07bd:   movsbl 0x11(%rsi,%r8,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba07c3:   test   %edi,%edi
+  0x0000788017ba07c5:   jl     0x0000788017ba081c           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba07c7:   movsbl 0x12(%rsi,%r8,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba07cd:   test   %edi,%edi
+  0x0000788017ba07cf:   jl     0x0000788017ba0821           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba07d1:   movsbl 0x13(%rsi,%r8,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba07d7:   test   %edi,%edi
+  0x0000788017ba07d9:   jl     0x0000788017ba0827           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba07db:   add    $0x4,%r9d                    ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@25 (line 92)
+  0x0000788017ba07df:   cmp    %r11d,%r9d
+  0x0000788017ba07e2:   jl     0x0000788017ba07b0           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@10 (line 92)
+  0x0000788017ba07e4:   mov    0x30(%r15),%r11              ; ImmutableOopMap {rsi=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringCoding::countPositives@28 (line 92)
+  0x0000788017ba07e8:   test   %eax,(%r11)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@28 (line 92)
+                                                            ;   {poll}
+  0x0000788017ba07eb:   cmp    %eax,%r9d
+  0x0000788017ba07ee:   jl     0x0000788017ba078a
+  0x0000788017ba07f0:   cmp    %r10d,%r9d
+  0x0000788017ba07f3:   jge    0x0000788017ba080a
+  0x0000788017ba07f5:   data16 xchg %ax,%ax                 ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@13 (line 93)
+  0x0000788017ba07f8:   movsbl 0x10(%rsi,%r9,1),%edi        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@16 (line 93)
+  0x0000788017ba07fe:   test   %edi,%edi
+  0x0000788017ba0800:   jl     0x0000788017ba082b           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba0802:   inc    %r9d                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@25 (line 92)
+  0x0000788017ba0805:   cmp    %r10d,%r9d
+  0x0000788017ba0808:   jl     0x0000788017ba07f8           ;*iload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@31 (line 97)
+  0x0000788017ba080a:   mov    %ecx,%eax
+  0x0000788017ba080c:   add    $0x30,%rsp
+  0x0000788017ba0810:   pop    %rbp
+  0x0000788017ba0811:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000788017ba0815:   ja     0x0000788017ba0870
+  0x0000788017ba081b:   ret    
+  0x0000788017ba081c:   inc    %r9d
+  0x0000788017ba081f:   jmp    0x0000788017ba082b
+  0x0000788017ba0821:   add    $0x2,%r9d
+  0x0000788017ba0825:   jmp    0x0000788017ba082b
+  0x0000788017ba0827:   add    $0x3,%r9d                    ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+  0x0000788017ba082b:   mov    $0xffffff45,%esi
+  0x0000788017ba0830:   mov    %edx,%ebp
+  0x0000788017ba0832:   mov    %r9d,(%rsp)
+  0x0000788017ba0836:   mov    %edi,0x4(%rsp)
+  0x0000788017ba083a:   nop
+  0x0000788017ba083b:   call   0x0000788017585ce0           ; ImmutableOopMap {}
+                                                            ;*ifge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringCoding::countPositives@17 (line 93)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000788017ba0840:   nopl   0x1000238(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@10 (line 92)
+                                                            ;   {post_call_nop}
+  0x0000788017ba0848:   mov    %rsi,%rbp
+  0x0000788017ba084b:   mov    %ecx,0x4(%rsp)
+  0x0000788017ba084f:   mov    %edx,0xc(%rsp)
+  0x0000788017ba0853:   mov    %edx,0x10(%rsp)
+  0x0000788017ba0857:   mov    %r10d,0x14(%rsp)
+  0x0000788017ba085c:   mov    $0xffffff6e,%esi
+  0x0000788017ba0861:   xchg   %ax,%ax
+  0x0000788017ba0863:   call   0x0000788017585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringCoding::countPositives@10 (line 92)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000788017ba0868:   nopl   0x2000260(%rax,%rax,1)       ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringCoding::countPositives@17 (line 93)
+                                                            ;   {post_call_nop}
+  0x0000788017ba0870:   movabs $0x788017ba0811,%r10         ;   {internal_word}
+  0x0000788017ba087a:   mov    %r10,0x510(%r15)
+  0x0000788017ba0881:   jmp    0x00007880174afb60           ;   {runtime_call SafepointBlob}
+  0x0000788017ba0886:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000788017ba088b:   jmp    0x0000788017ba071a
+[Stub Code]
+  0x0000788017ba0890:   call   0x00007880174afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000788017ba0895:   jmp    0x0000788017ba0890
+  0x0000788017ba0897:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

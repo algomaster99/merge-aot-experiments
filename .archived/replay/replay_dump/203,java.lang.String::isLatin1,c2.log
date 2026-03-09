@@ -1,0 +1,69 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 3925  203       4       java.lang.String::isLatin1 (19 bytes)
+ total in heap  [0x000077b45fbad308,0x000077b45fbad488] = 384
+ main code      [0x000077b45fbad400,0x000077b45fbad480] = 128
+ stub code      [0x000077b45fbad480,0x000077b45fbad488] = 8
+ mutable data [0x000077b4080b1b70,0x000077b4080b1b90] = 32
+ relocation     [0x000077b4080b1b70,0x000077b4080b1b88] = 24
+ metadata       [0x000077b4080b1b88,0x000077b4080b1b90] = 8
+ immutable data [0x000077b4080b1ac0,0x000077b4080b1b5c] = 156
+ dependencies   [0x000077b4080b1ac0,0x000077b4080b1ac8] = 8
+ scopes pcs     [0x000077b4080b1ac8,0x000077b4080b1b38] = 112
+ scopes data    [0x000077b4080b1b38,0x000077b4080b1b58] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbad400:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000464a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbad402:   mov    0x8(%rsi),%r10d
+  0x000077b45fbad406:   cmp    0x8(%rax),%r10d
+  0x000077b45fbad40a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbad410:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbad417:   push   %rbp
+  0x000077b45fbad418:   sub    $0x10,%rsp
+  0x000077b45fbad41c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbad424:   jne    0x000077b45fbad476           ;*synchronization entry
+                                                            ; - java.lang.String::isLatin1@-1 (line 5187)
+  0x000077b45fbad42a:   movsbl 0x10(%rsi),%r11d             ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@7 (line 5187)
+  0x000077b45fbad42f:   test   %r11d,%r11d
+  0x000077b45fbad432:   jne    0x000077b45fbad449           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+  0x000077b45fbad434:   mov    $0x1,%eax
+  0x000077b45fbad439:   add    $0x10,%rsp
+  0x000077b45fbad43d:   pop    %rbp
+  0x000077b45fbad43e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbad442:   ja     0x000077b45fbad460
+  0x000077b45fbad448:   ret    
+  0x000077b45fbad449:   mov    $0xffffff45,%esi
+  0x000077b45fbad44e:   mov    %r11d,%ebp
+  0x000077b45fbad451:   xchg   %ax,%ax
+  0x000077b45fbad453:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*ifne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::isLatin1@10 (line 5187)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbad458:   nopl   0x150(%rax,%rax,1)           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+                                                            ;   {post_call_nop}
+  0x000077b45fbad460:   movabs $0x77b45fbad43e,%r10         ;   {internal_word}
+  0x000077b45fbad46a:   mov    %r10,0x510(%r15)
+  0x000077b45fbad471:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbad476:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbad47b:   jmp    0x000077b45fbad42a
+[Stub Code]
+  0x000077b45fbad480:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbad485:   jmp    0x000077b45fbad480
+  0x000077b45fbad487:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

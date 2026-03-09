@@ -1,0 +1,216 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 9428  459       3       java.util.LinkedHashMap::get (29 bytes)
+ total in heap  [0x000077b458053588,0x000077b458053938] = 944
+ main code      [0x000077b458053680,0x000077b4580538f0] = 624
+ stub code      [0x000077b4580538f0,0x000077b458053938] = 72
+ mutable data [0x000077b3e808cd90,0x000077b3e808cdf8] = 104
+ relocation     [0x000077b3e808cd90,0x000077b3e808cde8] = 88
+ metadata       [0x000077b3e808cde8,0x000077b3e808cdf8] = 16
+ immutable data [0x000077b3e80887e0,0x000077b3e8088964] = 388
+ dependencies   [0x000077b3e80887e0,0x000077b3e80887e8] = 8
+ nul chk table  [0x000077b3e80887e8,0x000077b3e80887f8] = 16
+ scopes pcs     [0x000077b3e80887f8,0x000077b3e80888f8] = 256
+ scopes data    [0x000077b3e80888f8,0x000077b3e8088960] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458053680:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45805368b:   data16 data16 xchg %ax,%ax
+  0x000077b45805368f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/LinkedHashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b458053692:   mov    0x8(%rsi),%r10d
+  0x000077b458053696:   cmp    0x8(%rax),%r10d
+  0x000077b45805369a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580536a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580536a7:   push   %rbp
+  0x000077b4580536a8:   sub    $0x30,%rsp
+  0x000077b4580536ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580536b4:   je     0x000077b4580536bb
+  0x000077b4580536b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580536bb:   movabs $0x77b414115780,%rdi         ;   {metadata(method data for {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b4580536c5:   mov    0x90(%rdi),%ebx
+  0x000077b4580536cb:   add    $0x2,%ebx
+  0x000077b4580536ce:   mov    %ebx,0x90(%rdi)
+  0x000077b4580536d4:   and    $0x7fe,%ebx
+  0x000077b4580536da:   test   %ebx,%ebx
+  0x000077b4580536dc:   je     0x000077b458053872           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@0 (line 537)
+  0x000077b4580536e2:   mov    %rsi,%rdi
+  0x000077b4580536e5:   movabs $0x77b414115780,%rbx         ;   {metadata(method data for {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b4580536ef:   mov    0x8(%rdi),%edi
+  0x000077b4580536f2:   mov    $0x46000000,%r10d
+  0x000077b4580536f8:   add    %r10,%rdi
+  0x000077b4580536fb:   mov    $0x1c,%r10d
+  0x000077b458053701:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458053705:   je     0x000077b45805373e
+  0x000077b458053707:   add    $0x2,%r10
+  0x000077b45805370b:   cmp    $0x20,%r10
+  0x000077b45805370f:   jne    0x000077b458053701
+  0x000077b458053711:   mov    $0x1c,%r10d
+  0x000077b458053717:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b45805371c:   je     0x000077b45805372a
+  0x000077b45805371e:   add    $0x2,%r10
+  0x000077b458053722:   cmp    $0x20,%r10
+  0x000077b458053726:   jne    0x000077b458053717
+  0x000077b458053728:   jmp    0x000077b458053736
+  0x000077b45805372a:   push   %rax
+  0x000077b45805372b:   xor    %rax,%rax
+  0x000077b45805372e:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b458053733:   pop    %rax
+  0x000077b458053734:   jmp    0x000077b4580536fb
+  0x000077b458053736:   mov    $0x1b,%r10d
+  0x000077b45805373c:   jmp    0x000077b458053742
+  0x000077b45805373e:   add    $0x1,%r10
+  0x000077b458053742:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458053747:   mov    %rsi,%rdi
+  0x000077b45805374a:   mov    %rdi,%rsi                    ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x000077b45805374d:   mov    %rdi,0x18(%rsp)
+  0x000077b458053752:   nopl   0x0(%rax,%rax,1)
+  0x000077b458053757:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[24]=Oop }
+                                                            ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {optimized virtual_call}
+  0x000077b45805375c:   nopl   0x1d4(%rax,%rax,1)           ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x000077b458053764:   test   %rax,%rax
+  0x000077b458053767:   movabs $0x77b414115780,%rdx         ;   {metadata(method data for {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b458053771:   mov    $0x118,%esi
+  0x000077b458053776:   je     0x000077b45805377d
+  0x000077b458053778:   mov    $0x108,%esi
+  0x000077b45805377d:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b458053781:   lea    0x1(%rdi),%rdi
+  0x000077b458053785:   mov    %rdi,(%rdx,%rsi,1)
+  0x000077b458053789:   je     0x000077b458053858           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@7 (line 537)
+  0x000077b45805378f:   mov    0x18(%rsp),%rsi
+  0x000077b458053794:   movsbl 0x30(%rsi),%edx              ;*getfield accessOrder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@13 (line 539)
+  0x000077b458053798:   test   %edx,%edx
+  0x000077b45805379a:   movabs $0x77b414115780,%rdx         ;   {metadata(method data for {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b4580537a4:   mov    $0x128,%edi
+  0x000077b4580537a9:   je     0x000077b4580537b0
+  0x000077b4580537ab:   mov    $0x138,%edi
+  0x000077b4580537b0:   mov    (%rdx,%rdi,1),%rbx
+  0x000077b4580537b4:   lea    0x1(%rbx),%rbx
+  0x000077b4580537b8:   mov    %rbx,(%rdx,%rdi,1)
+  0x000077b4580537bc:   je     0x000077b458053841           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@16 (line 539)
+  0x000077b4580537c2:   mov    %rsi,%rdx
+  0x000077b4580537c5:   movabs $0x77b414115780,%rdi         ;   {metadata(method data for {method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b4580537cf:   movabs $0x46249388,%rdx             ;   {metadata(&apos;java/util/LinkedHashMap&apos;)}
+  0x000077b4580537d9:   mov    $0x2a,%r10d
+  0x000077b4580537df:   cmp    (%rdi,%r10,8),%rdx
+  0x000077b4580537e3:   je     0x000077b45805381c
+  0x000077b4580537e5:   add    $0x2,%r10
+  0x000077b4580537e9:   cmp    $0x2e,%r10
+  0x000077b4580537ed:   jne    0x000077b4580537df
+  0x000077b4580537ef:   mov    $0x2a,%r10d
+  0x000077b4580537f5:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b4580537fa:   je     0x000077b458053808
+  0x000077b4580537fc:   add    $0x2,%r10
+  0x000077b458053800:   cmp    $0x2e,%r10
+  0x000077b458053804:   jne    0x000077b4580537f5
+  0x000077b458053806:   jmp    0x000077b458053814
+  0x000077b458053808:   push   %rax
+  0x000077b458053809:   xor    %rax,%rax
+  0x000077b45805380c:   cmpxchg %rdx,(%rdi,%r10,8)
+  0x000077b458053811:   pop    %rax
+  0x000077b458053812:   jmp    0x000077b4580537d9
+  0x000077b458053814:   mov    $0x29,%r10d
+  0x000077b45805381a:   jmp    0x000077b458053820
+  0x000077b45805381c:   add    $0x1,%r10
+  0x000077b458053820:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b458053825:   mov    %rax,%rdx                    ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+  0x000077b458053828:   mov    %rax,0x20(%rsp)
+  0x000077b45805382d:   xchg   %ax,%ax
+  0x000077b45805382f:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[32]=Oop }
+                                                            ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+                                                            ;   {optimized virtual_call}
+  0x000077b458053834:   nopl   0x10002ac(%rax,%rax,1)       ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+                                                            ;   {post_call_nop}
+  0x000077b45805383c:   mov    0x20(%rsp),%rax
+  0x000077b458053841:   mov    0x14(%rax),%eax              ; implicit exception: dispatches to 0x000077b458053893
+  0x000077b458053844:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@25 (line 541)
+  0x000077b458053848:   add    $0x30,%rsp
+  0x000077b45805384c:   pop    %rbp
+  0x000077b45805384d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458053851:   ja     0x000077b458053898
+  0x000077b458053857:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@28 (line 541)
+  0x000077b458053858:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x000077b458053862:   add    $0x30,%rsp
+  0x000077b458053866:   pop    %rbp
+  0x000077b458053867:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45805386b:   ja     0x000077b4580538ae
+  0x000077b458053871:   ret    
+  0x000077b458053872:   movabs $0x4624a890,%r10             ;   {metadata({method} {0x000000004624a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;)}
+  0x000077b45805387c:   mov    %r10,0x8(%rsp)
+  0x000077b458053881:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458053889:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap::get@-1 (line 537)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45805388e:   jmp    0x000077b4580536e2
+  0x000077b458053893:   call   0x000077b45f57c660           ; ImmutableOopMap {}
+                                                            ;*getfield value {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.LinkedHashMap::get@25 (line 541)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458053898:   movabs $0x77b45805384d,%r10         ;   {internal_word}
+  0x000077b4580538a2:   mov    %r10,0x510(%r15)
+  0x000077b4580538a9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580538ae:   movabs $0x77b458053867,%r10         ;   {internal_word}
+  0x000077b4580538b8:   mov    %r10,0x510(%r15)
+  0x000077b4580538bf:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580538c4:   mov    0x5c0(%r15),%rax
+  0x000077b4580538cb:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580538d6:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580538e1:   add    $0x30,%rsp
+  0x000077b4580538e5:   pop    %rbp
+  0x000077b4580538e6:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580538eb:   hlt    
+  0x000077b4580538ec:   hlt    
+  0x000077b4580538ed:   hlt    
+  0x000077b4580538ee:   hlt    
+  0x000077b4580538ef:   hlt    
+[Stub Code]
+  0x000077b4580538f0:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b4580538f5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580538ff:   jmp    0x000077b4580538ff           ;   {runtime_call nmethod}
+  0x000077b458053904:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45805390e:   jmp    0x000077b45805390e           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b458053913:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458053918:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458053922:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458053926:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45805392b:   hlt    
+  0x000077b45805392c:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458053931:   jmp    0x000077b45805392c
+  0x000077b458053933:   hlt    
+  0x000077b458053934:   hlt    
+  0x000077b458053935:   hlt    
+  0x000077b458053936:   hlt    
+  0x000077b458053937:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

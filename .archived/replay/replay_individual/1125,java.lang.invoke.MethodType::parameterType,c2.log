@@ -1,0 +1,86 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 516   45       4       java.lang.invoke.MethodType::parameterType (7 bytes)
+ total in heap  [0x00007434f7ba8408,0x00007434f7ba85b0] = 424
+ main code      [0x00007434f7ba8500,0x00007434f7ba85a8] = 168
+ stub code      [0x00007434f7ba85a8,0x00007434f7ba85b0] = 8
+ mutable data [0x00007434a0099c60,0x00007434a0099c80] = 32
+ relocation     [0x00007434a0099c60,0x00007434a0099c78] = 24
+ metadata       [0x00007434a0099c78,0x00007434a0099c80] = 8
+ immutable data [0x00007434a0099b90,0x00007434a0099c4c] = 188
+ dependencies   [0x00007434a0099b90,0x00007434a0099b98] = 8
+ nul chk table  [0x00007434a0099b98,0x00007434a0099ba8] = 16
+ scopes pcs     [0x00007434a0099ba8,0x00007434a0099c18] = 112
+ scopes data    [0x00007434a0099c18,0x00007434a0099c48] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007434f7ba8500:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x0000000092480210} &apos;parameterType&apos; &apos;(I)Ljava/lang/Class;&apos; in &apos;java/lang/invoke/MethodType&apos;
+  # this:     rsi:rsi   = &apos;java/lang/invoke/MethodType&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x00007434f7ba8502:   mov    0x8(%rsi),%r10d
+  0x00007434f7ba8506:   cmp    0x8(%rax),%r10d
+  0x00007434f7ba850a:   jne    0x00007434f74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007434f7ba8510:   mov    %eax,-0x14000(%rsp)
+  0x00007434f7ba8517:   push   %rbp
+  0x00007434f7ba8518:   sub    $0x20,%rsp
+  0x00007434f7ba851c:   cmpl   $0x1,0x20(%r15)
+  0x00007434f7ba8524:   jne    0x00007434f7ba859a           ;*synchronization entry
+                                                            ; - java.lang.invoke.MethodType::parameterType@-1 (line 826)
+  0x00007434f7ba852a:   mov    0x10(%rsi),%r10d             ;*getfield ptypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterType@1 (line 826)
+  0x00007434f7ba852e:   mov    0xc(%r12,%r10,8),%r8d        ; implicit exception: dispatches to 0x00007434f7ba8570
+  0x00007434f7ba8533:   cmp    %r8d,%edx
+  0x00007434f7ba8536:   jae    0x00007434f7ba8558
+  0x00007434f7ba8538:   shl    $0x3,%r10
+  0x00007434f7ba853c:   mov    0x10(%r10,%rdx,4),%r10d
+  0x00007434f7ba8541:   mov    %r10,%rax
+  0x00007434f7ba8544:   shl    $0x3,%rax
+  0x00007434f7ba8548:   add    $0x20,%rsp
+  0x00007434f7ba854c:   pop    %rbp
+  0x00007434f7ba854d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007434f7ba8551:   ja     0x00007434f7ba8584
+  0x00007434f7ba8557:   ret    
+  0x00007434f7ba8558:   mov    $0xffffffe4,%esi
+  0x00007434f7ba855d:   mov    %r10d,%ebp
+  0x00007434f7ba8560:   mov    %edx,(%rsp)
+  0x00007434f7ba8563:   call   0x00007434f7585ce0           ; ImmutableOopMap {rbp=NarrowOop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterType@5 (line 826)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007434f7ba8568:   nopl   0x160(%rax,%rax,1)           ;   {post_call_nop}
+  0x00007434f7ba8570:   mov    $0xfffffff6,%esi
+  0x00007434f7ba8575:   mov    %edx,%ebp
+  0x00007434f7ba8577:   call   0x00007434f7585ce0           ; ImmutableOopMap {}
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterType@5 (line 826)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007434f7ba857c:   nopl   0x1000174(%rax,%rax,1)       ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterType@5 (line 826)
+                                                            ;   {post_call_nop}
+  0x00007434f7ba8584:   movabs $0x7434f7ba854d,%r10         ;   {internal_word}
+  0x00007434f7ba858e:   mov    %r10,0x510(%r15)
+  0x00007434f7ba8595:   jmp    0x00007434f74afb60           ;   {runtime_call SafepointBlob}
+  0x00007434f7ba859a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007434f7ba859f:   jmp    0x00007434f7ba852a
+  0x00007434f7ba85a4:   hlt    
+  0x00007434f7ba85a5:   hlt    
+  0x00007434f7ba85a6:   hlt    
+  0x00007434f7ba85a7:   hlt    
+[Stub Code]
+  0x00007434f7ba85a8:   call   0x00007434f74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007434f7ba85ad:   jmp    0x00007434f7ba85a8
+  0x00007434f7ba85af:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

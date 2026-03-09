@@ -1,0 +1,102 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 570   52       3       java.nio.ByteBuffer::wrap (8 bytes)
+ total in heap  [0x00007f36d7fff008,0x00007f36d7fff210] = 520
+ main code      [0x00007f36d7fff100,0x00007f36d7fff1e0] = 224
+ stub code      [0x00007f36d7fff1e0,0x00007f36d7fff210] = 48
+ mutable data [0x00007f3680024e20,0x00007f3680024e60] = 64
+ relocation     [0x00007f3680024e20,0x00007f3680024e58] = 56
+ metadata       [0x00007f3680024e58,0x00007f3680024e60] = 8
+ immutable data [0x00007f3680024d30,0x00007f3680024e0c] = 220
+ dependencies   [0x00007f3680024d30,0x00007f3680024d38] = 8
+ nul chk table  [0x00007f3680024d38,0x00007f3680024d48] = 16
+ scopes pcs     [0x00007f3680024d48,0x00007f3680024dd8] = 144
+ scopes data    [0x00007f3680024dd8,0x00007f3680024e08] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000372230e0} &apos;wrap&apos; &apos;([B)Ljava/nio/ByteBuffer;&apos; in &apos;java/nio/ByteBuffer&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007f36d7fff100:   mov    %eax,-0x14000(%rsp)
+  0x00007f36d7fff107:   push   %rbp
+  0x00007f36d7fff108:   sub    $0x30,%rsp
+  0x00007f36d7fff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007f36d7fff114:   je     0x00007f36d7fff11b
+  0x00007f36d7fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007f36d7fff11b:   movabs $0x7f368c3166f0,%rdx         ;   {metadata(method data for {method} {0x00000000372230e0} &apos;wrap&apos; &apos;([B)Ljava/nio/ByteBuffer;&apos; in &apos;java/nio/ByteBuffer&apos;)}
+  0x00007f36d7fff125:   mov    0x90(%rdx),%ecx
+  0x00007f36d7fff12b:   add    $0x2,%ecx
+  0x00007f36d7fff12e:   mov    %ecx,0x90(%rdx)
+  0x00007f36d7fff134:   and    $0x7fe,%ecx
+  0x00007f36d7fff13a:   test   %ecx,%ecx
+  0x00007f36d7fff13c:   je     0x00007f36d7fff17c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@0 (line 472)
+  0x00007f36d7fff142:   mov    0xc(%rsi),%ecx               ; implicit exception: dispatches to 0x00007f36d7fff19a
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@3 (line 472)
+  0x00007f36d7fff145:   movabs $0x7f368c3166f0,%rdx         ;   {metadata(method data for {method} {0x00000000372230e0} &apos;wrap&apos; &apos;([B)Ljava/nio/ByteBuffer;&apos; in &apos;java/nio/ByteBuffer&apos;)}
+  0x00007f36d7fff14f:   addq   $0x1,0xd8(%rdx)
+  0x00007f36d7fff157:   mov    $0x0,%edx                    ;*invokestatic wrap {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@4 (line 472)
+  0x00007f36d7fff15c:   data16 xchg %ax,%ax
+  0x00007f36d7fff15f:   call   0x00007f36df4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic wrap {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@4 (line 472)
+                                                            ;   {static_call}
+  0x00007f36d7fff164:   nopl   0x15c(%rax,%rax,1)           ;*invokestatic wrap {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@4 (line 472)
+                                                            ;   {post_call_nop}
+  0x00007f36d7fff16c:   add    $0x30,%rsp
+  0x00007f36d7fff170:   pop    %rbp
+  0x00007f36d7fff171:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007f36d7fff175:   ja     0x00007f36d7fff19f
+  0x00007f36d7fff17b:   ret    
+  0x00007f36d7fff17c:   movabs $0x372230e0,%r10             ;   {metadata({method} {0x00000000372230e0} &apos;wrap&apos; &apos;([B)Ljava/nio/ByteBuffer;&apos; in &apos;java/nio/ByteBuffer&apos;)}
+  0x00007f36d7fff186:   mov    %r10,0x8(%rsp)
+  0x00007f36d7fff18b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007f36d7fff193:   call   0x00007f36df582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.ByteBuffer::wrap@-1 (line 472)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007f36d7fff198:   jmp    0x00007f36d7fff142
+  0x00007f36d7fff19a:   call   0x00007f36df57c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteBuffer::wrap@3 (line 472)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007f36d7fff19f:   movabs $0x7f36d7fff171,%r10         ;   {internal_word}
+  0x00007f36d7fff1a9:   mov    %r10,0x510(%r15)
+  0x00007f36d7fff1b0:   jmp    0x00007f36df4afb60           ;   {runtime_call SafepointBlob}
+  0x00007f36d7fff1b5:   mov    0x5c0(%r15),%rax
+  0x00007f36d7fff1bc:   movq   $0x0,0x5c0(%r15)
+  0x00007f36d7fff1c7:   movq   $0x0,0x5c8(%r15)
+  0x00007f36d7fff1d2:   add    $0x30,%rsp
+  0x00007f36d7fff1d6:   pop    %rbp
+  0x00007f36d7fff1d7:   jmp    0x00007f36df57b2e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007f36d7fff1dc:   hlt    
+  0x00007f36d7fff1dd:   hlt    
+  0x00007f36d7fff1de:   hlt    
+  0x00007f36d7fff1df:   hlt    
+[Stub Code]
+  0x00007f36d7fff1e0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007f36d7fff1ea:   jmp    0x00007f36d7fff1ea           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007f36d7fff1ef:   call   0x00007f36df57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007f36d7fff1f4:   movabs $0x7f36f933aec4,%rdi         ;   {external_word}
+  0x00007f36d7fff1fe:   and    $0xfffffffffffffff0,%rsp
+  0x00007f36d7fff202:   call   0x00007f36f8d91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007f36d7fff207:   hlt    
+  0x00007f36d7fff208:   call   0x00007f36df4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007f36d7fff20d:   jmp    0x00007f36d7fff208
+  0x00007f36d7fff20f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 644   47       1       java.lang.constant.ClassDesc::isPrimitive (2 bytes)
+ total in heap  [0x000079fa07ba8a08,0x000079fa07ba8bb0] = 424
+ main code      [0x000079fa07ba8b00,0x000079fa07ba8b90] = 144
+ stub code      [0x000079fa07ba8b90,0x000079fa07ba8bb0] = 32
+ mutable data [0x000079f9a801cc50,0x000079f9a801cc78] = 40
+ relocation     [0x000079f9a801cc50,0x000079f9a801cc70] = 32
+ metadata       [0x000079f9a801cc70,0x000079f9a801cc78] = 8
+ immutable data [0x000079f9a801cc00,0x000079f9a801cc44] = 68
+ dependencies   [0x000079f9a801cc00,0x000079f9a801cc08] = 8
+ scopes pcs     [0x000079f9a801cc08,0x000079f9a801cc38] = 48
+ scopes data    [0x000079f9a801cc38,0x000079f9a801cc40] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000079fa07ba8b00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000079fa07ba8b0b:   data16 data16 xchg %ax,%ax
+  0x000079fa07ba8b0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000003923d5b0} &apos;isPrimitive&apos; &apos;()Z&apos; in &apos;java/lang/constant/ClassDesc&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000079fa07ba8b12:   mov    0x8(%rsi),%r10d
+  0x000079fa07ba8b16:   cmp    0x8(%rax),%r10d
+  0x000079fa07ba8b1a:   jne    0x000079fa074ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000079fa07ba8b20:   mov    %eax,-0x14000(%rsp)
+  0x000079fa07ba8b27:   push   %rbp
+  0x000079fa07ba8b28:   sub    $0x20,%rsp
+  0x000079fa07ba8b2c:   cmpl   $0x1,0x20(%r15)
+  0x000079fa07ba8b34:   je     0x000079fa07ba8b3b
+  0x000079fa07ba8b36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*iconst_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.constant.ClassDesc::isPrimitive@0 (line 243)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000079fa07ba8b3b:   mov    $0x0,%eax
+  0x000079fa07ba8b40:   add    $0x20,%rsp
+  0x000079fa07ba8b44:   pop    %rbp
+  0x000079fa07ba8b45:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000079fa07ba8b49:   ja     0x000079fa07ba8b50
+  0x000079fa07ba8b4f:   ret    
+  0x000079fa07ba8b50:   movabs $0x79fa07ba8b45,%r10         ;   {internal_word}
+  0x000079fa07ba8b5a:   mov    %r10,0x510(%r15)
+  0x000079fa07ba8b61:   jmp    0x000079fa074afb60           ;   {runtime_call SafepointBlob}
+  0x000079fa07ba8b66:   mov    0x5c0(%r15),%rax
+  0x000079fa07ba8b6d:   movq   $0x0,0x5c0(%r15)
+  0x000079fa07ba8b78:   movq   $0x0,0x5c8(%r15)
+  0x000079fa07ba8b83:   add    $0x20,%rsp
+  0x000079fa07ba8b87:   pop    %rbp
+  0x000079fa07ba8b88:   jmp    0x000079fa0757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000079fa07ba8b8d:   hlt    
+  0x000079fa07ba8b8e:   hlt    
+  0x000079fa07ba8b8f:   hlt    
+[Exception Handler]
+  0x000079fa07ba8b90:   call   0x000079fa0757ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000079fa07ba8b95:   movabs $0x79fa2133aec4,%rdi         ;   {external_word}
+  0x000079fa07ba8b9f:   and    $0xfffffffffffffff0,%rsp
+  0x000079fa07ba8ba3:   call   0x000079fa20d91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000079fa07ba8ba8:   hlt    
+  0x000079fa07ba8ba9:   call   0x000079fa074afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000079fa07ba8bae:   jmp    0x000079fa07ba8ba9
+--------------------------------------------------------------------------------
+[/Disassembly]

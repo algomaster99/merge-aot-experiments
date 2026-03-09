@@ -1,0 +1,115 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 10605  606       3       java.lang.StringUTF16::putChar (54 bytes)
+ total in heap  [0x000077b45805ce88,0x000077b45805d0b0] = 552
+ main code      [0x000077b45805cf80,0x000077b45805d090] = 272
+ stub code      [0x000077b45805d090,0x000077b45805d0b0] = 32
+ mutable data [0x000077b3f00327e0,0x000077b3f0032818] = 56
+ relocation     [0x000077b3f00327e0,0x000077b3f0032810] = 48
+ metadata       [0x000077b3f0032810,0x000077b3f0032818] = 8
+ immutable data [0x000077b3f0032e40,0x000077b3f0032f54] = 276
+ dependencies   [0x000077b3f0032e40,0x000077b3f0032e48] = 8
+ nul chk table  [0x000077b3f0032e48,0x000077b3f0032e60] = 24
+ scopes pcs     [0x000077b3f0032e60,0x000077b3f0032f10] = 176
+ scopes data    [0x000077b3f0032f10,0x000077b3f0032f50] = 64
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046191cb8} &apos;putChar&apos; &apos;([BII)V&apos; in &apos;java/lang/StringUTF16&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45805cf80:   mov    %eax,-0x14000(%rsp)
+  0x000077b45805cf87:   push   %rbp
+  0x000077b45805cf88:   sub    $0x30,%rsp
+  0x000077b45805cf8c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45805cf94:   je     0x000077b45805cf9b
+  0x000077b45805cf96:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45805cf9b:   movabs $0x77b41412f1c0,%rdi         ;   {metadata(method data for {method} {0x0000000046191cb8} &apos;putChar&apos; &apos;([BII)V&apos; in &apos;java/lang/StringUTF16&apos;)}
+  0x000077b45805cfa5:   mov    0x90(%rdi),%ebx
+  0x000077b45805cfab:   add    $0x2,%ebx
+  0x000077b45805cfae:   mov    %ebx,0x90(%rdi)
+  0x000077b45805cfb4:   and    $0x7fe,%ebx
+  0x000077b45805cfba:   test   %ebx,%ebx
+  0x000077b45805cfbc:   je     0x000077b45805d00f           ;*getstatic $assertionsDisabled {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@0 (line 78)
+  0x000077b45805cfc2:   movabs $0x77b41412f1c0,%rdi         ;   {metadata(method data for {method} {0x0000000046191cb8} &apos;putChar&apos; &apos;([BII)V&apos; in &apos;java/lang/StringUTF16&apos;)}
+  0x000077b45805cfcc:   incl   0xd8(%rdi)                   ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@3 (line 78)
+  0x000077b45805cfd2:   shl    %edx
+  0x000077b45805cfd4:   mov    %rdx,%rdi
+  0x000077b45805cfd7:   inc    %edi
+  0x000077b45805cfd9:   mov    %rcx,%rbx
+  0x000077b45805cfdc:   cmp    0xc(%rsi),%edx               ; implicit exception: dispatches to 0x000077b45805d02d
+  0x000077b45805cfdf:   jae    0x000077b45805d037
+  0x000077b45805cfe5:   movslq %edx,%rdx
+  0x000077b45805cfe8:   mov    %bl,0x10(%rsi,%rdx,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@43 (line 80)
+  0x000077b45805cfec:   sar    $0x8,%ecx
+  0x000077b45805cfef:   cmp    0xc(%rsi),%edi
+  0x000077b45805cff2:   jae    0x000077b45805d045
+  0x000077b45805cff8:   movslq %edi,%rdi
+  0x000077b45805cffb:   mov    %cl,0x10(%rsi,%rdi,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@52 (line 81)
+  0x000077b45805cfff:   add    $0x30,%rsp
+  0x000077b45805d003:   pop    %rbp
+  0x000077b45805d004:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45805d008:   ja     0x000077b45805d053
+  0x000077b45805d00e:   ret    
+  0x000077b45805d00f:   movabs $0x46191cb8,%r10             ;   {metadata({method} {0x0000000046191cb8} &apos;putChar&apos; &apos;([BII)V&apos; in &apos;java/lang/StringUTF16&apos;)}
+  0x000077b45805d019:   mov    %r10,0x8(%rsp)
+  0x000077b45805d01e:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45805d026:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringUTF16::putChar@-1 (line 78)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45805d02b:   jmp    0x000077b45805cfc2
+  0x000077b45805d02d:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@43 (line 80)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45805d032:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@43 (line 80)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45805d037:   mov    %rdx,(%rsp)
+  0x000077b45805d03b:   mov    %rsi,0x8(%rsp)
+  0x000077b45805d040:   call   0x000077b45f57bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@43 (line 80)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x000077b45805d045:   mov    %rdi,(%rsp)
+  0x000077b45805d049:   mov    %rsi,0x8(%rsp)
+  0x000077b45805d04e:   call   0x000077b45f57bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringUTF16::putChar@52 (line 81)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x000077b45805d053:   movabs $0x77b45805d004,%r10         ;   {internal_word}
+  0x000077b45805d05d:   mov    %r10,0x510(%r15)
+  0x000077b45805d064:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45805d069:   mov    0x5c0(%r15),%rax
+  0x000077b45805d070:   movq   $0x0,0x5c0(%r15)
+  0x000077b45805d07b:   movq   $0x0,0x5c8(%r15)
+  0x000077b45805d086:   add    $0x30,%rsp
+  0x000077b45805d08a:   pop    %rbp
+  0x000077b45805d08b:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x000077b45805d090:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45805d095:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45805d09f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45805d0a3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45805d0a8:   hlt    
+  0x000077b45805d0a9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45805d0ae:   jmp    0x000077b45805d0a9
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,95 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 623   52       4       java.util.HashMap::hash (20 bytes)
+ total in heap  [0x000075d86fba9908,0x000075d86fba9ad8] = 464
+ main code      [0x000075d86fba9a00,0x000075d86fba9ad0] = 208
+ stub code      [0x000075d86fba9ad0,0x000075d86fba9ad8] = 8
+ mutable data [0x000075d8080aa070,0x000075d8080aa090] = 32
+ relocation     [0x000075d8080aa070,0x000075d8080aa088] = 24
+ metadata       [0x000075d8080aa088,0x000075d8080aa090] = 8
+ immutable data [0x000075d8080a9f90,0x000075d8080aa05c] = 204
+ dependencies   [0x000075d8080a9f90,0x000075d8080a9f98] = 8
+ handler table  [0x000075d8080a9f98,0x000075d8080a9fb0] = 24
+ scopes pcs     [0x000075d8080a9fb0,0x000075d8080aa030] = 128
+ scopes data    [0x000075d8080aa030,0x000075d8080aa058] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000914797f8} &apos;hash&apos; &apos;(Ljava/lang/Object;)I&apos; in &apos;java/util/HashMap&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000075d86fba9a00:   mov    %eax,-0x14000(%rsp)
+  0x000075d86fba9a07:   push   %rbp
+  0x000075d86fba9a08:   sub    $0x10,%rsp
+  0x000075d86fba9a0c:   cmpl   $0x1,0x20(%r15)
+  0x000075d86fba9a14:   jne    0x000075d86fba9ac0           ;*synchronization entry
+                                                            ; - java.util.HashMap::hash@-1 (line 338)
+  0x000075d86fba9a1a:   test   %rsi,%rsi
+  0x000075d86fba9a1d:   je     0x000075d86fba9a99           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@1 (line 338)
+  0x000075d86fba9a1f:   mov    0x8(%rsi),%r11d
+  0x000075d86fba9a23:   movabs $0x91174c88,%r10             ;   {metadata({method} {0x0000000091174c88} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/Object&apos;)}
+  0x000075d86fba9a2d:   mov    $0x91000000,%r8d
+  0x000075d86fba9a33:   add    %r11,%r8
+  0x000075d86fba9a36:   mov    0x1f0(%r8),%r11
+  0x000075d86fba9a3d:   cmp    %r10,%r11
+  0x000075d86fba9a40:   jne    0x000075d86fba9a7b
+  0x000075d86fba9a42:   mov    (%rsi),%r10
+  0x000075d86fba9a45:   mov    %r10,%r11
+  0x000075d86fba9a48:   and    $0x3,%r11
+  0x000075d86fba9a4c:   cmp    $0x2,%r11
+  0x000075d86fba9a50:   je     0x000075d86fba9a7b
+  0x000075d86fba9a52:   shr    $0xb,%r10
+  0x000075d86fba9a56:   mov    %r10d,%r11d
+  0x000075d86fba9a59:   and    $0x7fffffff,%r11d
+  0x000075d86fba9a60:   je     0x000075d86fba9a7b           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+  0x000075d86fba9a62:   mov    %r11d,%eax
+  0x000075d86fba9a65:   shr    $0x10,%eax
+  0x000075d86fba9a68:   xor    %r11d,%eax                   ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@19 (line 338)
+  0x000075d86fba9a6b:   add    $0x10,%rsp
+  0x000075d86fba9a6f:   pop    %rbp
+  0x000075d86fba9a70:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000075d86fba9a74:   ja     0x000075d86fba9aaa
+  0x000075d86fba9a7a:   ret    
+  0x000075d86fba9a7b:   xchg   %ax,%ax
+  0x000075d86fba9a7d:   movabs $0x75d8080aa100,%rax
+  0x000075d86fba9a87:   call   0x000075d86f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+                                                            ;   {virtual_call}
+  0x000075d86fba9a8c:   nopl   0x184(%rax,%rax,1)           ;   {post_call_nop}
+  0x000075d86fba9a94:   mov    %eax,%r11d
+  0x000075d86fba9a97:   jmp    0x000075d86fba9a62
+  0x000075d86fba9a99:   xor    %eax,%eax
+  0x000075d86fba9a9b:   jmp    0x000075d86fba9a6b           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+  0x000075d86fba9a9d:   mov    %rax,%rsi
+  0x000075d86fba9aa0:   add    $0x10,%rsp
+  0x000075d86fba9aa4:   pop    %rbp
+  0x000075d86fba9aa5:   jmp    0x000075d86f58cf60           ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x000075d86fba9aaa:   movabs $0x75d86fba9a70,%r10         ;   {internal_word}
+  0x000075d86fba9ab4:   mov    %r10,0x510(%r15)
+  0x000075d86fba9abb:   jmp    0x000075d86f4afb60           ;   {runtime_call SafepointBlob}
+  0x000075d86fba9ac0:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000075d86fba9ac5:   jmp    0x000075d86fba9a1a
+  0x000075d86fba9aca:   hlt    
+  0x000075d86fba9acb:   hlt    
+  0x000075d86fba9acc:   hlt    
+  0x000075d86fba9acd:   hlt    
+  0x000075d86fba9ace:   hlt    
+  0x000075d86fba9acf:   hlt    
+[Stub Code]
+  0x000075d86fba9ad0:   call   0x000075d86f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000075d86fba9ad5:   jmp    0x000075d86fba9ad0
+  0x000075d86fba9ad7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

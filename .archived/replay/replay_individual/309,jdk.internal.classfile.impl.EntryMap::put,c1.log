@@ -1,0 +1,488 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 345   24       3       jdk.internal.classfile.impl.EntryMap::put (186 bytes)
+ total in heap  [0x00007642cbfff008,0x00007642cbfff7a0] = 1944
+ main code      [0x00007642cbfff100,0x00007642cbfff760] = 1632
+ stub code      [0x00007642cbfff760,0x00007642cbfff7a0] = 64
+ mutable data [0x0000764270015320,0x00007642700153e8] = 200
+ relocation     [0x0000764270015320,0x00007642700153e0] = 192
+ metadata       [0x00007642700153e0,0x00007642700153e8] = 8
+ immutable data [0x0000764270014d90,0x0000764270015314] = 1412
+ dependencies   [0x0000764270014d90,0x0000764270014d98] = 8
+ nul chk table  [0x0000764270014d98,0x0000764270014db0] = 24
+ scopes pcs     [0x0000764270014db0,0x0000764270015190] = 992
+ scopes data    [0x0000764270015190,0x0000764270015310] = 384
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007642cbfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007642cbfff10b:   data16 data16 xchg %ax,%ax
+  0x00007642cbfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/EntryMap&apos;
+  # parm0:    rdx       = int
+  # parm1:    rcx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x00007642cbfff112:   mov    0x8(%rsi),%r10d
+  0x00007642cbfff116:   cmp    0x8(%rax),%r10d
+  0x00007642cbfff11a:   jne    0x00007642d34ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007642cbfff120:   mov    %eax,-0x14000(%rsp)
+  0x00007642cbfff127:   push   %rbp
+  0x00007642cbfff128:   sub    $0x30,%rsp
+  0x00007642cbfff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007642cbfff134:   je     0x00007642cbfff13b
+  0x00007642cbfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007642cbfff13b:   movabs $0x76427c0abd30,%rdi         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff145:   mov    0x90(%rdi),%ebx
+  0x00007642cbfff14b:   add    $0x2,%ebx
+  0x00007642cbfff14e:   mov    %ebx,0x90(%rdi)
+  0x00007642cbfff154:   and    $0x7fe,%ebx
+  0x00007642cbfff15a:   test   %ebx,%ebx
+  0x00007642cbfff15c:   je     0x00007642cbfff5b6           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@0 (line 112)
+  0x00007642cbfff162:   test   %edx,%edx
+  0x00007642cbfff164:   movabs $0x76427c0abd30,%rdi         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff16e:   mov    $0xe8,%ebx
+  0x00007642cbfff173:   je     0x00007642cbfff17a
+  0x00007642cbfff175:   mov    $0xd8,%ebx
+  0x00007642cbfff17a:   mov    (%rdi,%rbx,1),%rax
+  0x00007642cbfff17e:   lea    0x1(%rax),%rax
+  0x00007642cbfff182:   mov    %rax,(%rdi,%rbx,1)
+  0x00007642cbfff186:   je     0x00007642cbfff519           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@1 (line 112)
+  0x00007642cbfff18c:   mov    0x18(%rsi),%edi              ;*getfield mask1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@16 (line 115)
+  0x00007642cbfff18f:   and    %rdx,%rdi
+  0x00007642cbfff192:   shl    %edi
+  0x00007642cbfff194:   mov    0x20(%rsi),%ebx
+  0x00007642cbfff197:   shl    $0x3,%rbx                    ;*getfield data {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@24 (line 116)
+  0x00007642cbfff19b:   cmp    0xc(%rbx),%edi               ; implicit exception: dispatches to 0x00007642cbfff5d7
+  0x00007642cbfff19e:   jae    0x00007642cbfff5e1
+  0x00007642cbfff1a4:   movslq %edi,%rax
+  0x00007642cbfff1a7:   mov    0x10(%rbx,%rax,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@32 (line 117)
+  0x00007642cbfff1ab:   test   %eax,%eax
+  0x00007642cbfff1ad:   movabs $0x76427c0abd30,%r8          ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff1b7:   mov    $0x108,%r9d
+  0x00007642cbfff1bd:   jne    0x00007642cbfff1c5
+  0x00007642cbfff1bf:   mov    $0x118,%r9d
+  0x00007642cbfff1c5:   mov    (%r8,%r9,1),%r11
+  0x00007642cbfff1c9:   lea    0x1(%r11),%r11
+  0x00007642cbfff1cd:   mov    %r11,(%r8,%r9,1)
+  0x00007642cbfff1d1:   jne    0x00007642cbfff225           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@37 (line 118)
+  0x00007642cbfff1d7:   movslq %edi,%rax
+  0x00007642cbfff1da:   mov    %edx,0x10(%rbx,%rax,4)       ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@44 (line 119)
+  0x00007642cbfff1de:   inc    %edi
+  0x00007642cbfff1e0:   cmp    0xc(%rbx),%edi
+  0x00007642cbfff1e3:   jae    0x00007642cbfff5ef
+  0x00007642cbfff1e9:   movslq %edi,%rdi
+  0x00007642cbfff1ec:   mov    %ecx,0x10(%rbx,%rdi,4)       ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@51 (line 120)
+  0x00007642cbfff1f0:   mov    0x14(%rsi),%edi              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@53 (line 121)
+  0x00007642cbfff1f3:   mov    0x10(%rsi),%edx              ;*getfield resizeThreshold {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@57 (line 121)
+  0x00007642cbfff1f6:   cmp    %edx,%edi
+  0x00007642cbfff1f8:   movabs $0x76427c0abd30,%rdx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff202:   mov    $0x128,%eax
+  0x00007642cbfff207:   jl     0x00007642cbfff20e
+  0x00007642cbfff209:   mov    $0x138,%eax
+  0x00007642cbfff20e:   mov    (%rdx,%rax,1),%rcx
+  0x00007642cbfff212:   lea    0x1(%rcx),%rcx
+  0x00007642cbfff216:   mov    %rcx,(%rdx,%rax,1)
+  0x00007642cbfff21a:   jl     0x00007642cbfff504
+  0x00007642cbfff220:   jmp    0x00007642cbfff4b9           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@60 (line 121)
+  0x00007642cbfff225:   cmp    %edx,%eax
+  0x00007642cbfff227:   movabs $0x76427c0abd30,%rax         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff231:   mov    $0x190,%r8d
+  0x00007642cbfff237:   jne    0x00007642cbfff23f
+  0x00007642cbfff239:   mov    $0x1a0,%r8d
+  0x00007642cbfff23f:   mov    (%rax,%r8,1),%r9
+  0x00007642cbfff243:   lea    0x1(%r9),%r9
+  0x00007642cbfff247:   mov    %r9,(%rax,%r8,1)
+  0x00007642cbfff24b:   jne    0x00007642cbfff3af           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@89 (line 127)
+  0x00007642cbfff251:   mov    %rdi,%rax
+  0x00007642cbfff254:   inc    %eax
+  0x00007642cbfff256:   cmp    0xc(%rbx),%eax
+  0x00007642cbfff259:   jae    0x00007642cbfff5fd
+  0x00007642cbfff25f:   movslq %eax,%rax
+  0x00007642cbfff262:   mov    0x10(%rbx,%rax,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@97 (line 127)
+  0x00007642cbfff266:   cmp    %ecx,%eax
+  0x00007642cbfff268:   movabs $0x76427c0abd30,%rax         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff272:   mov    $0x1b0,%r8d
+  0x00007642cbfff278:   jne    0x00007642cbfff280
+  0x00007642cbfff27a:   mov    $0x1c0,%r8d
+  0x00007642cbfff280:   mov    (%rax,%r8,1),%r9
+  0x00007642cbfff284:   lea    0x1(%r9),%r9
+  0x00007642cbfff288:   mov    %r9,(%rax,%r8,1)
+  0x00007642cbfff28c:   jne    0x00007642cbfff3af           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@99 (line 127)
+  0x00007642cbfff292:   add    $0x30,%rsp
+  0x00007642cbfff296:   pop    %rbp
+  0x00007642cbfff297:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff29b:   ja     0x00007642cbfff60b
+  0x00007642cbfff2a1:   ret    
+  0x00007642cbfff2a2:   nopw   0x0(%rax,%rax,1)
+  0x00007642cbfff2a8:   cmp    %edx,%eax
+  0x00007642cbfff2aa:   mov    $0x2,%r8d
+  0x00007642cbfff2b0:   jne    0x00007642cbfff2b8
+  0x00007642cbfff2b2:   mov    $0x0,%r8d
+  0x00007642cbfff2b8:   movabs $0x76427c0abd30,%r9          ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff2c2:   mov    0x94(%r9),%r11d
+  0x00007642cbfff2c9:   add    %r8d,%r11d
+  0x00007642cbfff2cc:   mov    %r11d,0x94(%r9)
+  0x00007642cbfff2d3:   test   %r8d,%r8d
+  0x00007642cbfff2d6:   jne    0x00007642cbfff2de
+  0x00007642cbfff2d8:   mov    $0x2,%r11d
+  0x00007642cbfff2de:   and    $0x3ffe,%r11d
+  0x00007642cbfff2e5:   test   %r11d,%r11d
+  0x00007642cbfff2e8:   je     0x00007642cbfff621           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@172 (line 143)
+  0x00007642cbfff2ee:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.EntryMap::put@172 (line 143)
+  0x00007642cbfff2f2:   test   %eax,(%r10)                  ;   {poll}
+  0x00007642cbfff2f5:   cmp    %edx,%eax
+  0x00007642cbfff2f7:   movabs $0x76427c0abd30,%rax         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff301:   mov    $0x258,%r8d
+  0x00007642cbfff307:   jne    0x00007642cbfff30f
+  0x00007642cbfff309:   mov    $0x268,%r8d
+  0x00007642cbfff30f:   mov    (%rax,%r8,1),%r9
+  0x00007642cbfff313:   lea    0x1(%r9),%r9
+  0x00007642cbfff317:   mov    %r9,(%rax,%r8,1)
+  0x00007642cbfff31b:   jne    0x00007642cbfff3af           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@172 (line 143)
+  0x00007642cbfff321:   mov    %rdi,%rax
+  0x00007642cbfff324:   inc    %eax
+  0x00007642cbfff326:   cmp    0xc(%rbx),%eax
+  0x00007642cbfff329:   jae    0x00007642cbfff642
+  0x00007642cbfff32f:   movslq %eax,%rax
+  0x00007642cbfff332:   mov    0x10(%rbx,%rax,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@180 (line 143)
+  0x00007642cbfff336:   cmp    %ecx,%eax
+  0x00007642cbfff338:   mov    $0x2,%r8d
+  0x00007642cbfff33e:   jne    0x00007642cbfff346
+  0x00007642cbfff340:   mov    $0x0,%r8d
+  0x00007642cbfff346:   movabs $0x76427c0abd30,%r9          ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff350:   mov    0x94(%r9),%r11d
+  0x00007642cbfff357:   add    %r8d,%r11d
+  0x00007642cbfff35a:   mov    %r11d,0x94(%r9)
+  0x00007642cbfff361:   test   %r8d,%r8d
+  0x00007642cbfff364:   jne    0x00007642cbfff36c
+  0x00007642cbfff366:   mov    $0x2,%r11d
+  0x00007642cbfff36c:   and    $0x3ffe,%r11d
+  0x00007642cbfff373:   test   %r11d,%r11d
+  0x00007642cbfff376:   je     0x00007642cbfff650           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@182 (line 143)
+  0x00007642cbfff37c:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.EntryMap::put@182 (line 143)
+  0x00007642cbfff380:   test   %eax,(%r10)                  ;   {poll}
+  0x00007642cbfff383:   cmp    %ecx,%eax
+  0x00007642cbfff385:   movabs $0x76427c0abd30,%rax         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff38f:   mov    $0x288,%r8d
+  0x00007642cbfff395:   je     0x00007642cbfff39d
+  0x00007642cbfff397:   mov    $0x278,%r8d
+  0x00007642cbfff39d:   mov    (%rax,%r8,1),%r9
+  0x00007642cbfff3a1:   lea    0x1(%r9),%r9
+  0x00007642cbfff3a5:   mov    %r9,(%rax,%r8,1)
+  0x00007642cbfff3a9:   je     0x00007642cbfff499           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@182 (line 143)
+  0x00007642cbfff3af:   mov    0x1c(%rsi),%eax              ;*getfield mask2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@107 (line 132)
+  0x00007642cbfff3b2:   add    $0x2,%edi
+  0x00007642cbfff3b5:   and    %rax,%rdi
+  0x00007642cbfff3b8:   cmp    0xc(%rbx),%edi
+  0x00007642cbfff3bb:   jae    0x00007642cbfff671
+  0x00007642cbfff3c1:   movslq %edi,%rax
+  0x00007642cbfff3c4:   mov    0x10(%rbx,%rax,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@115 (line 133)
+  0x00007642cbfff3c8:   test   %eax,%eax
+  0x00007642cbfff3ca:   movabs $0x76427c0abd30,%r8          ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff3d4:   mov    $0x1d0,%r9d
+  0x00007642cbfff3da:   jne    0x00007642cbfff3e2
+  0x00007642cbfff3dc:   mov    $0x1e0,%r9d
+  0x00007642cbfff3e2:   mov    (%r8,%r9,1),%r11
+  0x00007642cbfff3e6:   lea    0x1(%r11),%r11
+  0x00007642cbfff3ea:   mov    %r11,(%r8,%r9,1)
+  0x00007642cbfff3ee:   jne    0x00007642cbfff2a8           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@120 (line 134)
+  0x00007642cbfff3f4:   movslq %edi,%rax
+  0x00007642cbfff3f7:   mov    %edx,0x10(%rbx,%rax,4)       ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@127 (line 135)
+  0x00007642cbfff3fb:   inc    %edi
+  0x00007642cbfff3fd:   cmp    0xc(%rbx),%edi
+  0x00007642cbfff400:   jae    0x00007642cbfff67f
+  0x00007642cbfff406:   movslq %edi,%rdi
+  0x00007642cbfff409:   mov    %ecx,0x10(%rbx,%rdi,4)       ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@134 (line 136)
+  0x00007642cbfff40d:   mov    0x14(%rsi),%edi              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@136 (line 137)
+  0x00007642cbfff410:   mov    0x10(%rsi),%edx              ;*getfield resizeThreshold {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@140 (line 137)
+  0x00007642cbfff413:   cmp    %edx,%edi
+  0x00007642cbfff415:   movabs $0x76427c0abd30,%rdx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff41f:   mov    $0x1f0,%eax
+  0x00007642cbfff424:   jl     0x00007642cbfff42b
+  0x00007642cbfff426:   mov    $0x200,%eax
+  0x00007642cbfff42b:   mov    (%rdx,%rax,1),%rcx
+  0x00007642cbfff42f:   lea    0x1(%rcx),%rcx
+  0x00007642cbfff433:   mov    %rcx,(%rdx,%rax,1)
+  0x00007642cbfff437:   jl     0x00007642cbfff484           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@143 (line 137)
+  0x00007642cbfff43d:   mov    0xc(%rbx),%edx               ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@149 (line 138)
+  0x00007642cbfff440:   mov    %rsi,%rdi
+  0x00007642cbfff443:   movabs $0x76427c0abd30,%rbx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff44d:   addq   $0x1,0x210(%rbx)
+  0x00007642cbfff455:   shl    %edx
+  0x00007642cbfff457:   call   0x00007642d34ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual rehash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@152 (line 138)
+                                                            ;   {optimized virtual_call}
+  0x00007642cbfff45c:   nopl   0x2000454(%rax,%rax,1)       ;*invokevirtual rehash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@152 (line 138)
+                                                            ;   {post_call_nop}
+  0x00007642cbfff464:   movabs $0x76427c0abd30,%rdx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff46e:   incl   0x240(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@155 (line 138)
+  0x00007642cbfff474:   add    $0x30,%rsp
+  0x00007642cbfff478:   pop    %rbp
+  0x00007642cbfff479:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff47d:   ja     0x00007642cbfff68d
+  0x00007642cbfff483:   ret    
+  0x00007642cbfff484:   inc    %edi
+  0x00007642cbfff486:   mov    %edi,0x14(%rsi)              ;*putfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@165 (line 140)
+  0x00007642cbfff489:   add    $0x30,%rsp
+  0x00007642cbfff48d:   pop    %rbp
+  0x00007642cbfff48e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff492:   ja     0x00007642cbfff6a3
+  0x00007642cbfff498:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@168 (line 141)
+  0x00007642cbfff499:   add    $0x30,%rsp
+  0x00007642cbfff49d:   pop    %rbp
+  0x00007642cbfff49e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff4a2:   ja     0x00007642cbfff6b9
+  0x00007642cbfff4a8:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@185 (line 144)
+  0x00007642cbfff4a9:   add    $0x30,%rsp
+  0x00007642cbfff4ad:   pop    %rbp
+  0x00007642cbfff4ae:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff4b2:   ja     0x00007642cbfff6cf
+  0x00007642cbfff4b8:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@102 (line 128)
+  0x00007642cbfff4b9:   mov    0xc(%rbx),%edx               ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@66 (line 122)
+  0x00007642cbfff4bc:   mov    %rsi,%rdi
+  0x00007642cbfff4bf:   movabs $0x76427c0abd30,%rbx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff4c9:   addq   $0x1,0x148(%rbx)
+  0x00007642cbfff4d1:   shl    %edx
+  0x00007642cbfff4d3:   nopl   0x0(%rax)
+  0x00007642cbfff4d7:   call   0x00007642d34ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual rehash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@69 (line 122)
+                                                            ;   {optimized virtual_call}
+  0x00007642cbfff4dc:   nopl   0x30004d4(%rax,%rax,1)       ;*invokevirtual rehash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@69 (line 122)
+                                                            ;   {post_call_nop}
+  0x00007642cbfff4e4:   movabs $0x76427c0abd30,%rdx         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff4ee:   incl   0x178(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@72 (line 122)
+  0x00007642cbfff4f4:   add    $0x30,%rsp
+  0x00007642cbfff4f8:   pop    %rbp
+  0x00007642cbfff4f9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff4fd:   ja     0x00007642cbfff6e5
+  0x00007642cbfff503:   ret    
+  0x00007642cbfff504:   inc    %edi
+  0x00007642cbfff506:   mov    %edi,0x14(%rsi)              ;*putfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@82 (line 124)
+  0x00007642cbfff509:   add    $0x30,%rsp
+  0x00007642cbfff50d:   pop    %rbp
+  0x00007642cbfff50e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007642cbfff512:   ja     0x00007642cbfff6fb
+  0x00007642cbfff518:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@85 (line 125)
+  0x00007642cbfff519:   nopl   0x0(%rax)
+  0x00007642cbfff520:   jmp    0x00007642cbfff720           ;   {other}
+  0x00007642cbfff525:   add    %al,(%rax)
+  0x00007642cbfff527:   add    %al,(%rax)
+  0x00007642cbfff529:   add    %cl,-0x75(%rcx)
+  0x00007642cbfff52c:   xchg   %esi,0x48000001(%rax)
+  0x00007642cbfff532:   lea    0x28(%rax),%edi
+  0x00007642cbfff535:   cmp    0x1c0(%r15),%rdi
+  0x00007642cbfff53c:   ja     0x00007642cbfff72a
+  0x00007642cbfff542:   mov    %rdi,0x1b0(%r15)
+  0x00007642cbfff549:   movq   $0x1,(%rax)
+  0x00007642cbfff550:   mov    %rdx,%rcx
+  0x00007642cbfff553:   mov    $0x73000000,%r10d
+  0x00007642cbfff559:   sub    %r10,%rcx
+  0x00007642cbfff55c:   mov    %ecx,0x8(%rax)
+  0x00007642cbfff55f:   xor    %rcx,%rcx
+  0x00007642cbfff562:   mov    %ecx,0xc(%rax)
+  0x00007642cbfff565:   xor    %rcx,%rcx
+  0x00007642cbfff568:   mov    %rcx,0x10(%rax)
+  0x00007642cbfff56c:   mov    %rcx,0x18(%rax)
+  0x00007642cbfff570:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@4 (line 113)
+  0x00007642cbfff574:   mov    %rax,%rdx
+  0x00007642cbfff577:   movabs $0x76427c0abd30,%rsi         ;   {metadata(method data for {method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff581:   addq   $0x1,0xf8(%rsi)
+  0x00007642cbfff589:   movabs $0x7ff859ce8,%rdx            ;   {oop(&quot;hash must be nonzero&quot;{0x00000007ff859ce8})}
+  0x00007642cbfff593:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@10 (line 113)
+  0x00007642cbfff596:   mov    %rax,0x20(%rsp)
+  0x00007642cbfff59b:   nopl   0x0(%rax)
+  0x00007642cbfff59f:   call   0x00007642d34ad9e0           ; ImmutableOopMap {[32]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@10 (line 113)
+                                                            ;   {optimized virtual_call}
+  0x00007642cbfff5a4:   nopl   0x400059c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@10 (line 113)
+                                                            ;   {post_call_nop}
+  0x00007642cbfff5ac:   mov    0x20(%rsp),%rax
+  0x00007642cbfff5b1:   jmp    0x00007642cbfff754
+  0x00007642cbfff5b6:   movabs $0x7345cd88,%r10             ;   {metadata({method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff5c0:   mov    %r10,0x8(%rsp)
+  0x00007642cbfff5c5:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007642cbfff5cd:   call   0x00007642d35821e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@-1 (line 112)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007642cbfff5d2:   jmp    0x00007642cbfff162
+  0x00007642cbfff5d7:   call   0x00007642d357c660           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@32 (line 117)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007642cbfff5dc:   call   0x00007642d357c660           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@32 (line 117)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007642cbfff5e1:   mov    %rdi,(%rsp)
+  0x00007642cbfff5e5:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff5ea:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@32 (line 117)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff5ef:   mov    %rdi,(%rsp)
+  0x00007642cbfff5f3:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff5f8:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@51 (line 120)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff5fd:   mov    %rax,(%rsp)
+  0x00007642cbfff601:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff606:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@97 (line 127)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff60b:   movabs $0x7642cbfff297,%r10         ;   {internal_word}
+  0x00007642cbfff615:   mov    %r10,0x510(%r15)
+  0x00007642cbfff61c:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff621:   movabs $0x7345cd88,%r10             ;   {metadata({method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff62b:   mov    %r10,0x8(%rsp)
+  0x00007642cbfff630:   movq   $0xac,(%rsp)
+  0x00007642cbfff638:   call   0x00007642d35821e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.EntryMap::put@172 (line 143)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007642cbfff63d:   jmp    0x00007642cbfff2ee
+  0x00007642cbfff642:   mov    %rax,(%rsp)
+  0x00007642cbfff646:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff64b:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@180 (line 143)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff650:   movabs $0x7345cd88,%r10             ;   {metadata({method} {0x000000007345cd88} &apos;put&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x00007642cbfff65a:   mov    %r10,0x8(%rsp)
+  0x00007642cbfff65f:   movq   $0xb6,(%rsp)
+  0x00007642cbfff667:   call   0x00007642d35821e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.EntryMap::put@182 (line 143)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007642cbfff66c:   jmp    0x00007642cbfff37c
+  0x00007642cbfff671:   mov    %rdi,(%rsp)
+  0x00007642cbfff675:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff67a:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@115 (line 133)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff67f:   mov    %rdi,(%rsp)
+  0x00007642cbfff683:   mov    %rbx,0x8(%rsp)
+  0x00007642cbfff688:   call   0x00007642d357b8e0           ; ImmutableOopMap {rsi=Oop rbx=Oop }
+                                                            ;*iastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@134 (line 136)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007642cbfff68d:   movabs $0x7642cbfff479,%r10         ;   {internal_word}
+  0x00007642cbfff697:   mov    %r10,0x510(%r15)
+  0x00007642cbfff69e:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff6a3:   movabs $0x7642cbfff48e,%r10         ;   {internal_word}
+  0x00007642cbfff6ad:   mov    %r10,0x510(%r15)
+  0x00007642cbfff6b4:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff6b9:   movabs $0x7642cbfff49e,%r10         ;   {internal_word}
+  0x00007642cbfff6c3:   mov    %r10,0x510(%r15)
+  0x00007642cbfff6ca:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff6cf:   movabs $0x7642cbfff4ae,%r10         ;   {internal_word}
+  0x00007642cbfff6d9:   mov    %r10,0x510(%r15)
+  0x00007642cbfff6e0:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff6e5:   movabs $0x7642cbfff4f9,%r10         ;   {internal_word}
+  0x00007642cbfff6ef:   mov    %r10,0x510(%r15)
+  0x00007642cbfff6f6:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff6fb:   movabs $0x7642cbfff50e,%r10         ;   {internal_word}
+  0x00007642cbfff705:   mov    %r10,0x510(%r15)
+  0x00007642cbfff70c:   jmp    0x00007642d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007642cbfff711:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007642cbfff71b:   mov    $0xa050f00,%eax
+  0x00007642cbfff720:   call   0x00007642d3580de0           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.EntryMap::put@4 (line 113)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007642cbfff725:   jmp    0x00007642cbfff520
+  0x00007642cbfff72a:   mov    %rdx,%rdx
+  0x00007642cbfff72d:   call   0x00007642d357cf60           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::put@4 (line 113)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007642cbfff732:   jmp    0x00007642cbfff574
+  0x00007642cbfff737:   mov    0x5c0(%r15),%rax
+  0x00007642cbfff73e:   movq   $0x0,0x5c0(%r15)
+  0x00007642cbfff749:   movq   $0x0,0x5c8(%r15)
+  0x00007642cbfff754:   add    $0x30,%rsp
+  0x00007642cbfff758:   pop    %rbp
+  0x00007642cbfff759:   jmp    0x00007642d357ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007642cbfff75e:   hlt    
+  0x00007642cbfff75f:   hlt    
+[Stub Code]
+  0x00007642cbfff760:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007642cbfff76a:   jmp    0x00007642cbfff76a           ;   {runtime_call nmethod}
+  0x00007642cbfff76f:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007642cbfff779:   jmp    0x00007642cbfff779           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007642cbfff77e:   call   0x00007642d357e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007642cbfff783:   movabs $0x7642eab3aec4,%rdi         ;   {external_word}
+  0x00007642cbfff78d:   and    $0xfffffffffffffff0,%rsp
+  0x00007642cbfff791:   call   0x00007642ea591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007642cbfff796:   hlt    
+  0x00007642cbfff797:   call   0x00007642d34afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007642cbfff79c:   jmp    0x00007642cbfff797
+  0x00007642cbfff79e:   hlt    
+  0x00007642cbfff79f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

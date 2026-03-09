@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 5303  264       1       java.net.URL::getPort (5 bytes)
+ total in heap  [0x000077b45fbb0a88,0x000077b45fbb0c30] = 424
+ main code      [0x000077b45fbb0b80,0x000077b45fbb0c10] = 144
+ stub code      [0x000077b45fbb0c10,0x000077b45fbb0c30] = 32
+ mutable data [0x000077b3fc05dba0,0x000077b3fc05dbc8] = 40
+ relocation     [0x000077b3fc05dba0,0x000077b3fc05dbc0] = 32
+ metadata       [0x000077b3fc05dbc0,0x000077b3fc05dbc8] = 8
+ immutable data [0x000077b3fc05d2e0,0x000077b3fc05d33c] = 92
+ dependencies   [0x000077b3fc05d2e0,0x000077b3fc05d2e8] = 8
+ scopes pcs     [0x000077b3fc05d2e8,0x000077b3fc05d328] = 64
+ scopes data    [0x000077b3fc05d328,0x000077b3fc05d338] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb0b80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb0b8b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb0b8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461be5a8} &apos;getPort&apos; &apos;()I&apos; in &apos;java/net/URL&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb0b92:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb0b96:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb0b9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb0ba0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb0ba7:   push   %rbp
+  0x000077b45fbb0ba8:   sub    $0x20,%rsp
+  0x000077b45fbb0bac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb0bb4:   je     0x000077b45fbb0bbb
+  0x000077b45fbb0bb6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::getPort@0 (line 1003)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb0bbb:   mov    0xc(%rsi),%eax               ;*getfield port {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::getPort@1 (line 1003)
+  0x000077b45fbb0bbe:   add    $0x20,%rsp
+  0x000077b45fbb0bc2:   pop    %rbp
+  0x000077b45fbb0bc3:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb0bc7:   ja     0x000077b45fbb0bce
+  0x000077b45fbb0bcd:   ret    
+  0x000077b45fbb0bce:   movabs $0x77b45fbb0bc3,%r10         ;   {internal_word}
+  0x000077b45fbb0bd8:   mov    %r10,0x510(%r15)
+  0x000077b45fbb0bdf:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb0be4:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb0beb:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb0bf6:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb0c01:   add    $0x20,%rsp
+  0x000077b45fbb0c05:   pop    %rbp
+  0x000077b45fbb0c06:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb0c0b:   hlt    
+  0x000077b45fbb0c0c:   hlt    
+  0x000077b45fbb0c0d:   hlt    
+  0x000077b45fbb0c0e:   hlt    
+  0x000077b45fbb0c0f:   hlt    
+[Exception Handler]
+  0x000077b45fbb0c10:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb0c15:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb0c1f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb0c23:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb0c28:   hlt    
+  0x000077b45fbb0c29:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb0c2e:   jmp    0x000077b45fbb0c29
+--------------------------------------------------------------------------------
+[/Disassembly]

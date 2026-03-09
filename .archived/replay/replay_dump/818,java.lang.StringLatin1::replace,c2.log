@@ -1,0 +1,527 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 13966  818       4       java.lang.StringLatin1::replace (197 bytes)
+ total in heap  [0x000077b45fbc3588,0x000077b45fbc3c30] = 1704
+ main code      [0x000077b45fbc3680,0x000077b45fbc3c28] = 1448
+ stub code      [0x000077b45fbc3c28,0x000077b45fbc3c30] = 8
+ mutable data [0x000077b408111070,0x000077b408111100] = 144
+ relocation     [0x000077b408111070,0x000077b4081110b8] = 72
+ metadata       [0x000077b4081110b8,0x000077b408111100] = 72
+ immutable data [0x000077b408110840,0x000077b408111064] = 2084
+ dependencies   [0x000077b408110840,0x000077b408110850] = 16
+ nul chk table  [0x000077b408110850,0x000077b408110860] = 16
+ handler table  [0x000077b408110860,0x000077b408110890] = 48
+ scopes pcs     [0x000077b408110890,0x000077b408110e50] = 1472
+ scopes data    [0x000077b408110e50,0x000077b408111060] = 528
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046190880} &apos;replace&apos; &apos;([BCC)Ljava/lang/String;&apos; in &apos;java/lang/StringLatin1&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = char
+  # parm2:    rcx       = char
+  #           [sp+0x50]  (sp of caller)
+  0x000077b45fbc3680:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbc3687:   push   %rbp
+  0x000077b45fbc3688:   sub    $0x40,%rsp
+  0x000077b45fbc368c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbc3694:   jne    0x000077b45fbc3c1c           ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::replace@-1 (line 405)
+  0x000077b45fbc369a:   mov    %rsi,%r10
+  0x000077b45fbc369d:   mov    %edx,%r8d
+  0x000077b45fbc36a0:   cmp    $0xff,%edx
+  0x000077b45fbc36a6:   jg     0x000077b45fbc3b9c           ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@1 (line 405)
+  0x000077b45fbc36ac:   mov    %rsi,%r9
+  0x000077b45fbc36af:   mov    0xc(%rsi),%edi               ; implicit exception: dispatches to 0x000077b45fbc3be0
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@8 (line 406)
+  0x000077b45fbc36b2:   test   %edi,%edi
+  0x000077b45fbc36b4:   jbe    0x000077b45fbc3a91           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@19 (line 408)
+  0x000077b45fbc36ba:   lea    -0x1(%rdi),%r11d
+  0x000077b45fbc36be:   cmp    %edi,%r11d
+  0x000077b45fbc36c1:   jae    0x000077b45fbc3b24
+  0x000077b45fbc36c7:   movsbl 0x10(%rsi),%r10d
+  0x000077b45fbc36cc:   movsbl %dl,%eax                     ;*i2b {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@27 (line 409)
+  0x000077b45fbc36cf:   cmp    %eax,%r10d
+  0x000077b45fbc36d2:   je     0x000077b45fbc3a6a           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc36d8:   lea    -0x3(%rdi),%r10d
+  0x000077b45fbc36dc:   mov    $0x1,%ebx
+  0x000077b45fbc36e1:   cmp    $0x1,%r10d
+  0x000077b45fbc36e5:   jle    0x000077b45fbc3a71
+  0x000077b45fbc36eb:   mov    %ebx,%ebp
+  0x000077b45fbc36ed:   data16 xchg %ax,%ax                 ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@22 (line 409)
+  0x000077b45fbc36f0:   movslq %ebp,%rdx
+  0x000077b45fbc36f3:   movsbl 0x10(%r9,%rdx,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@25 (line 409)
+  0x000077b45fbc36f9:   cmp    %eax,%r11d
+  0x000077b45fbc36fc:   je     0x000077b45fbc375e           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc36fe:   movsbl 0x11(%r9,%rdx,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@25 (line 409)
+  0x000077b45fbc3704:   cmp    %eax,%r11d
+  0x000077b45fbc3707:   je     0x000077b45fbc375c           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3709:   movsbl 0x12(%r9,%rdx,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@25 (line 409)
+  0x000077b45fbc370f:   cmp    %eax,%r11d
+  0x000077b45fbc3712:   je     0x000077b45fbc3a5a           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3718:   movsbl 0x13(%r9,%rdx,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@25 (line 409)
+  0x000077b45fbc371e:   cmp    %eax,%r11d
+  0x000077b45fbc3721:   je     0x000077b45fbc3759           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3723:   mov    %edi,%r13d
+  0x000077b45fbc3726:   sub    %ebx,%r13d
+  0x000077b45fbc3729:   add    $0xfffffffd,%r13d
+  0x000077b45fbc372d:   xor    %esi,%esi
+  0x000077b45fbc372f:   cmp    %ebx,%r10d
+  0x000077b45fbc3732:   cmovl  %esi,%r13d
+  0x000077b45fbc3736:   cmp    $0xfa0,%r13d
+  0x000077b45fbc373d:   mov    $0xfa0,%edx
+  0x000077b45fbc3742:   cmova  %edx,%r13d
+  0x000077b45fbc3746:   add    %ebx,%r13d
+  0x000077b45fbc3749:   lea    0x4(%rbp),%edx
+  0x000077b45fbc374c:   cmp    %r13d,%edx
+  0x000077b45fbc374f:   jge    0x000077b45fbc3a9d           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@19 (line 408)
+  0x000077b45fbc3755:   mov    %edx,%ebp
+  0x000077b45fbc3757:   jmp    0x000077b45fbc36f0
+  0x000077b45fbc3759:   add    $0x2,%ebp
+  0x000077b45fbc375c:   inc    %ebp                         ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc375e:   cmp    %edi,%ebp
+  0x000077b45fbc3760:   jge    0x000077b45fbc3a91           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@37 (line 413)
+  0x000077b45fbc3766:   cmp    $0xff,%ecx
+  0x000077b45fbc376c:   jg     0x000077b45fbc3bbc           ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@41 (line 414)
+  0x000077b45fbc3772:   cmp    $0x100000,%edi
+  0x000077b45fbc3778:   ja     0x000077b45fbc3ab2
+  0x000077b45fbc377e:   mov    0x1b0(%r15),%rbx             ;   {other}
+  0x000077b45fbc3785:   movslq %edi,%r10
+  0x000077b45fbc3788:   add    $0x17,%r10
+  0x000077b45fbc378c:   and    $0xfffffffffffffff8,%r10
+  0x000077b45fbc3790:   mov    %rbx,%r11
+  0x000077b45fbc3793:   add    %r10,%r11
+  0x000077b45fbc3796:   cmp    0x1c0(%r15),%r11
+  0x000077b45fbc379d:   jae    0x000077b45fbc3ab2           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc37a3:   mov    %r11,0x1b0(%r15)
+  0x000077b45fbc37aa:   prefetchw 0xc0(%r11)
+  0x000077b45fbc37b2:   movq   $0x1,(%rbx)
+  0x000077b45fbc37b9:   prefetchw 0x100(%r11)
+  0x000077b45fbc37c1:   movl   $0x175de8,0x8(%rbx)          ;   {metadata({type array byte})}
+  0x000077b45fbc37c8:   mov    %edi,0xc(%rbx)
+  0x000077b45fbc37cb:   prefetchw 0x140(%r11)
+  0x000077b45fbc37d3:   prefetchw 0x180(%r11)               ;*invokevirtual allocateUninitializedArray0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::allocateUninitializedArray@51 (line 1422)
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringLatin1::replace@48 (line 415)
+  0x000077b45fbc37db:   mov    %rbx,0x18(%rsp)
+  0x000077b45fbc37e0:   mov    %edi,%ebx                    ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@71 (line 417)
+  0x000077b45fbc37e2:   test   %ebp,%ebp
+  0x000077b45fbc37e4:   jle    0x000077b45fbc38b8           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@60 (line 416)
+  0x000077b45fbc37ea:   lea    -0x1(%rbp),%r10d
+  0x000077b45fbc37ee:   cmp    %edi,%r10d
+  0x000077b45fbc37f1:   jae    0x000077b45fbc3b70
+  0x000077b45fbc37f7:   test   %ebx,%ebx
+  0x000077b45fbc37f9:   je     0x000077b45fbc3b70
+  0x000077b45fbc37ff:   cmp    %ebx,%r10d
+  0x000077b45fbc3802:   jae    0x000077b45fbc3b70
+  0x000077b45fbc3808:   movslq %ebp,%r10
+  0x000077b45fbc380b:   mov    $0x4,%r11d
+  0x000077b45fbc3811:   cmp    $0x4,%ebp
+  0x000077b45fbc3814:   cmovg  %r11,%r10
+  0x000077b45fbc3818:   mov    %r10d,%r11d
+  0x000077b45fbc381b:   xor    %r10d,%r10d                  ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@63 (line 417)
+  0x000077b45fbc381e:   movsbl 0x10(%r9,%r10,1),%edx
+  0x000077b45fbc3824:   mov    0x18(%rsp),%rsi
+  0x000077b45fbc3829:   mov    %dl,0x10(%rsi,%r10,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@71 (line 417)
+  0x000077b45fbc382e:   lea    0x1(%r10),%esi
+  0x000077b45fbc3832:   cmp    %r11d,%esi
+  0x000077b45fbc3835:   jge    0x000077b45fbc383c           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@60 (line 416)
+  0x000077b45fbc3837:   mov    %esi,%r10d
+  0x000077b45fbc383a:   jmp    0x000077b45fbc381e
+  0x000077b45fbc383c:   lea    -0x3(%rbp),%r11d
+  0x000077b45fbc3840:   cmp    %r11d,%esi
+  0x000077b45fbc3843:   jge    0x000077b45fbc3b94
+  0x000077b45fbc3849:   inc    %r10d
+  0x000077b45fbc384c:   mov    %ebp,%r13d
+  0x000077b45fbc384f:   sub    %r10d,%r13d
+  0x000077b45fbc3852:   add    $0xfffffffd,%r13d
+  0x000077b45fbc3856:   xor    %edx,%edx
+  0x000077b45fbc3858:   cmp    %r10d,%r11d
+  0x000077b45fbc385b:   cmovl  %edx,%r13d
+  0x000077b45fbc385f:   cmp    $0xfa0,%r13d
+  0x000077b45fbc3866:   mov    $0xfa0,%edx
+  0x000077b45fbc386b:   cmova  %edx,%r13d
+  0x000077b45fbc386f:   add    %r10d,%r13d                  ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@63 (line 417)
+  0x000077b45fbc3872:   vmovd  0x10(%r9,%r10,1),%xmm0
+  0x000077b45fbc3879:   mov    0x18(%rsp),%rdx
+  0x000077b45fbc387e:   vmovd  %xmm0,0x10(%rdx,%r10,1)
+  0x000077b45fbc3885:   add    $0x4,%r10d                   ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@72 (line 416)
+  0x000077b45fbc3889:   cmp    %r13d,%r10d
+  0x000077b45fbc388c:   jl     0x000077b45fbc3872           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc388e:   mov    0x30(%r15),%rdx              ; ImmutableOopMap {r9=Oop [24]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@75 (line 416)
+  0x000077b45fbc3892:   test   %eax,(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@75 (line 416)
+                                                            ;   {poll}
+  0x000077b45fbc3894:   cmp    %r11d,%r10d
+  0x000077b45fbc3897:   jl     0x000077b45fbc384c
+  0x000077b45fbc3899:   cmp    %ebp,%r10d
+  0x000077b45fbc389c:   jge    0x000077b45fbc38b8
+  0x000077b45fbc389e:   xchg   %ax,%ax                      ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@63 (line 417)
+  0x000077b45fbc38a0:   movsbl 0x10(%r9,%r10,1),%r11d
+  0x000077b45fbc38a6:   mov    0x18(%rsp),%rdx
+  0x000077b45fbc38ab:   mov    %r11b,0x10(%rdx,%r10,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@71 (line 417)
+  0x000077b45fbc38b0:   inc    %r10d                        ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@72 (line 416)
+  0x000077b45fbc38b3:   cmp    %ebp,%r10d
+  0x000077b45fbc38b6:   jl     0x000077b45fbc38a0           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@60 (line 416)
+  0x000077b45fbc38b8:   cmp    %ebx,%ebp
+  0x000077b45fbc38ba:   jge    0x000077b45fbc39fb           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+  0x000077b45fbc38c0:   cmp    %edi,%ebp
+  0x000077b45fbc38c2:   jae    0x000077b45fbc3b44
+  0x000077b45fbc38c8:   lea    -0x1(%rbx),%r11d
+  0x000077b45fbc38cc:   cmp    %edi,%r11d
+  0x000077b45fbc38cf:   jae    0x000077b45fbc3b44
+  0x000077b45fbc38d5:   cmp    %ebx,%ebp
+  0x000077b45fbc38d7:   jae    0x000077b45fbc3b44
+  0x000077b45fbc38dd:   cmp    %ebx,%r11d
+  0x000077b45fbc38e0:   jae    0x000077b45fbc3b44
+  0x000077b45fbc38e6:   lea    0x1(%rbp),%edi
+  0x000077b45fbc38e9:   movsbl %cl,%edx                     ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@84 (line 420)
+  0x000077b45fbc38ec:   movsbl 0x10(%r9,%rbp,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc38f2:   cmp    %eax,%r11d
+  0x000077b45fbc38f5:   je     0x000077b45fbc3a62
+  0x000077b45fbc38fb:   mov    0x18(%rsp),%r10
+  0x000077b45fbc3900:   mov    %r11b,0x10(%r10,%rbp,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc3905:   lea    0x1(%rbp),%r10d
+  0x000077b45fbc3909:   cmp    %edi,%r10d
+  0x000077b45fbc390c:   jge    0x000077b45fbc3913           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+  0x000077b45fbc390e:   mov    %r10d,%ebp
+  0x000077b45fbc3911:   jmp    0x000077b45fbc38ec
+  0x000077b45fbc3913:   lea    -0x3(%rbx),%edi
+  0x000077b45fbc3916:   cmp    %edi,%r10d
+  0x000077b45fbc3919:   jge    0x000077b45fbc3b68
+  0x000077b45fbc391f:   inc    %ebp
+  0x000077b45fbc3921:   jmp    0x000077b45fbc39ab
+  0x000077b45fbc3926:   mov    %edx,%r10d
+  0x000077b45fbc3929:   nopl   0x0(%rax)
+  0x000077b45fbc3930:   mov    %r10b,0x13(%r11,%r13,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc3935:   add    $0x4,%ebp                    ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@109 (line 422)
+  0x000077b45fbc3938:   cmp    %esi,%ebp
+  0x000077b45fbc393a:   jge    0x000077b45fbc399d           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@84 (line 420)
+  0x000077b45fbc393c:   movslq %ebp,%rax
+  0x000077b45fbc393f:   movsbl 0x10(%r9,%rax,1),%r10d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc3945:   cmp    %r14d,%r10d
+  0x000077b45fbc3948:   je     0x000077b45fbc398e
+  0x000077b45fbc394a:   movslq %ebp,%r13
+  0x000077b45fbc394d:   mov    0x18(%rsp),%r11
+  0x000077b45fbc3952:   mov    %r10b,0x10(%r11,%r13,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc3957:   movsbl 0x11(%r9,%rax,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc395d:   cmp    %r14d,%r11d
+  0x000077b45fbc3960:   je     0x000077b45fbc3993
+  0x000077b45fbc3962:   mov    0x18(%rsp),%r10
+  0x000077b45fbc3967:   mov    %r11b,0x11(%r10,%r13,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc396c:   movsbl 0x12(%r9,%rax,1),%r10d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc3972:   cmp    %r14d,%r10d
+  0x000077b45fbc3975:   je     0x000077b45fbc3998
+  0x000077b45fbc3977:   mov    0x18(%rsp),%r11
+  0x000077b45fbc397c:   mov    %r10b,0x12(%r11,%r13,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc3981:   movsbl 0x13(%r9,%rax,1),%r10d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc3987:   cmp    %r14d,%r10d
+  0x000077b45fbc398a:   jne    0x000077b45fbc3930           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@98 (line 421)
+  0x000077b45fbc398c:   jmp    0x000077b45fbc3926
+  0x000077b45fbc398e:   mov    %edx,%r10d
+  0x000077b45fbc3991:   jmp    0x000077b45fbc394a           ;   {other}
+  0x000077b45fbc3993:   mov    %edx,%r11d
+  0x000077b45fbc3996:   jmp    0x000077b45fbc3962
+  0x000077b45fbc3998:   mov    %edx,%r10d
+  0x000077b45fbc399b:   jmp    0x000077b45fbc3977           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc399d:   mov    0x30(%r15),%r10              ; ImmutableOopMap {r9=Oop [24]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@112 (line 423)
+  0x000077b45fbc39a1:   test   %eax,(%r10)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@112 (line 423)
+                                                            ;   {poll}
+  0x000077b45fbc39a4:   cmp    %edi,%ebp
+  0x000077b45fbc39a6:   jge    0x000077b45fbc39d5
+  0x000077b45fbc39a8:   mov    %r14d,%eax
+  0x000077b45fbc39ab:   mov    %ebx,%esi
+  0x000077b45fbc39ad:   sub    %ebp,%esi
+  0x000077b45fbc39af:   add    $0xfffffffd,%esi
+  0x000077b45fbc39b2:   xor    %r11d,%r11d
+  0x000077b45fbc39b5:   cmp    %ebp,%edi
+  0x000077b45fbc39b7:   cmovl  %r11d,%esi
+  0x000077b45fbc39bb:   cmp    $0xfa0,%esi
+  0x000077b45fbc39c1:   mov    $0xfa0,%r11d
+  0x000077b45fbc39c7:   cmova  %r11d,%esi
+  0x000077b45fbc39cb:   add    %ebp,%esi
+  0x000077b45fbc39cd:   mov    %eax,%r14d
+  0x000077b45fbc39d0:   jmp    0x000077b45fbc393c
+  0x000077b45fbc39d5:   mov    %r14d,%eax
+  0x000077b45fbc39d8:   cmp    %ebx,%ebp
+  0x000077b45fbc39da:   jge    0x000077b45fbc39fb           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@84 (line 420)
+  0x000077b45fbc39dc:   movsbl 0x10(%r9,%rbp,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@87 (line 420)
+  0x000077b45fbc39e2:   cmp    %eax,%r11d
+  0x000077b45fbc39e5:   je     0x000077b45fbc3a95
+  0x000077b45fbc39eb:   mov    0x18(%rsp),%r10
+  0x000077b45fbc39f0:   mov    %r11b,0x10(%r10,%rbp,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@108 (line 421)
+  0x000077b45fbc39f5:   inc    %ebp                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@109 (line 422)
+  0x000077b45fbc39f7:   cmp    %ebx,%ebp
+  0x000077b45fbc39f9:   jl     0x000077b45fbc39dc
+  0x000077b45fbc39fb:   mov    0x1b0(%r15),%rax
+  0x000077b45fbc3a02:   mov    %rax,%r10
+  0x000077b45fbc3a05:   add    $0x18,%r10
+  0x000077b45fbc3a09:   cmp    0x1c0(%r15),%r10
+  0x000077b45fbc3a10:   jae    0x000077b45fbc3b00           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3a16:   mov    %r10,0x1b0(%r15)
+  0x000077b45fbc3a1d:   prefetchw 0xd8(%rax)
+  0x000077b45fbc3a24:   movq   $0x1,(%rax)
+  0x000077b45fbc3a2b:   movl   $0x178db8,0x8(%rax)          ;   {metadata(&apos;java/lang/String&apos;)}
+  0x000077b45fbc3a32:   mov    %r12d,0xc(%rax)
+  0x000077b45fbc3a36:   mov    %r12,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@115 (line 424)
+  0x000077b45fbc3a3a:   mov    0x18(%rsp),%r10
+  0x000077b45fbc3a3f:   mov    %r10,%r11
+  0x000077b45fbc3a42:   shr    $0x3,%r11
+  0x000077b45fbc3a46:   mov    %r11d,0x14(%rax)             ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::replace@-1 (line 405)
+  0x000077b45fbc3a4a:   add    $0x40,%rsp
+  0x000077b45fbc3a4e:   pop    %rbp
+  0x000077b45fbc3a4f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbc3a53:   ja     0x000077b45fbc3c06
+  0x000077b45fbc3a59:   ret    
+  0x000077b45fbc3a5a:   add    $0x2,%ebp                    ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@13 (line 408)
+  0x000077b45fbc3a5d:   jmp    0x000077b45fbc375e
+  0x000077b45fbc3a62:   mov    %edx,%r11d
+  0x000077b45fbc3a65:   jmp    0x000077b45fbc38fb
+  0x000077b45fbc3a6a:   xor    %ebp,%ebp
+  0x000077b45fbc3a6c:   jmp    0x000077b45fbc375e
+  0x000077b45fbc3a71:   mov    $0x1,%edx
+  0x000077b45fbc3a76:   cmp    %edi,%edx
+  0x000077b45fbc3a78:   jge    0x000077b45fbc3a91
+  0x000077b45fbc3a7a:   xchg   %ax,%ax                      ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@22 (line 409)
+  0x000077b45fbc3a7c:   movsbl 0x10(%r9,%rdx,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@25 (line 409)
+  0x000077b45fbc3a82:   cmp    %eax,%r11d
+  0x000077b45fbc3a85:   je     0x000077b45fbc3b1d           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3a8b:   inc    %edx                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@13 (line 408)
+  0x000077b45fbc3a8d:   cmp    %edi,%edx
+  0x000077b45fbc3a8f:   jl     0x000077b45fbc3a7c           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@37 (line 413)
+  0x000077b45fbc3a91:   xor    %eax,%eax
+  0x000077b45fbc3a93:   jmp    0x000077b45fbc3a4a
+  0x000077b45fbc3a95:   mov    %edx,%r11d
+  0x000077b45fbc3a98:   jmp    0x000077b45fbc39eb           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3a9d:   mov    0x30(%r15),%rbx
+  0x000077b45fbc3aa1:   add    $0x3,%ebp                    ; ImmutableOopMap {r9=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@28 (line 409)
+  0x000077b45fbc3aa4:   test   %eax,(%rbx)                  ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@28 (line 409)
+                                                            ;   {poll}
+  0x000077b45fbc3aa6:   cmp    %r10d,%edx
+  0x000077b45fbc3aa9:   jge    0x000077b45fbc3a76
+  0x000077b45fbc3aab:   mov    %edx,%ebx
+  0x000077b45fbc3aad:   jmp    0x000077b45fbc36eb
+  0x000077b45fbc3ab2:   mov    %eax,0x14(%rsp)
+  0x000077b45fbc3ab6:   mov    %edi,0x10(%rsp)
+  0x000077b45fbc3aba:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbc3abe:   mov    %r9,0x8(%rsp)
+  0x000077b45fbc3ac3:   mov    %r8d,(%rsp)
+  0x000077b45fbc3ac7:   movabs $0x46175de8,%rsi             ;   {metadata({type array byte})}
+  0x000077b45fbc3ad1:   mov    %edi,%edx
+  0x000077b45fbc3ad3:   call   0x000077b45f585fe0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*invokevirtual allocateUninitializedArray0 {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - jdk.internal.misc.Unsafe::allocateUninitializedArray@51 (line 1422)
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringLatin1::replace@48 (line 415)
+                                                            ;   {runtime_call new_array_blob (C2 runtime)}
+  0x000077b45fbc3ad8:   nopl   0x3000550(%rax,%rax,1)       ;*invokevirtual allocateUninitializedArray0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::allocateUninitializedArray@51 (line 1422)
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringLatin1::replace@48 (line 415)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3ae0:   mov    (%rsp),%r8d
+  0x000077b45fbc3ae4:   mov    0x8(%rsp),%r9
+  0x000077b45fbc3ae9:   mov    0x4(%rsp),%ecx
+  0x000077b45fbc3aed:   mov    0x10(%rsp),%edi
+  0x000077b45fbc3af1:   mov    %rax,%r10
+  0x000077b45fbc3af4:   mov    0x14(%rsp),%eax
+  0x000077b45fbc3af8:   mov    %r10,%rbx
+  0x000077b45fbc3afb:   jmp    0x000077b45fbc37db           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+  0x000077b45fbc3b00:   movabs $0x46178db8,%rsi             ;   {metadata(&apos;java/lang/String&apos;)}
+  0x000077b45fbc3b0a:   nop
+  0x000077b45fbc3b0b:   call   0x000077b45f5862e0           ; ImmutableOopMap {[24]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.StringLatin1::replace@115 (line 424)
+                                                            ;   {runtime_call new_instance_blob (C2 runtime)}
+  0x000077b45fbc3b10:   nopl   0x4000588(%rax,%rax,1)       ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@115 (line 424)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3b18:   jmp    0x000077b45fbc3a3a
+  0x000077b45fbc3b1d:   mov    %edx,%ebp
+  0x000077b45fbc3b1f:   jmp    0x000077b45fbc375e
+  0x000077b45fbc3b24:   mov    $0xffffff6e,%esi
+  0x000077b45fbc3b29:   mov    %r10,%rbp
+  0x000077b45fbc3b2c:   mov    %edx,(%rsp)
+  0x000077b45fbc3b2f:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbc3b33:   mov    %edi,0xc(%rsp)
+  0x000077b45fbc3b37:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@19 (line 408)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3b3c:   nopl   0x50005b4(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3b44:   mov    $0xffffff6e,%esi
+  0x000077b45fbc3b49:   mov    %r9,(%rsp)
+  0x000077b45fbc3b4d:   mov    %r8d,0x8(%rsp)
+  0x000077b45fbc3b52:   mov    %ecx,0xc(%rsp)
+  0x000077b45fbc3b56:   mov    %ebx,0x20(%rsp)
+  0x000077b45fbc3b5a:   nop
+  0x000077b45fbc3b5b:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop [24]=Oop }
+                                                            ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@81 (line 419)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3b60:   nopl   0x60005d8(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3b68:   mov    %r10d,%ebp
+  0x000077b45fbc3b6b:   jmp    0x000077b45fbc39d8           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@60 (line 416)
+  0x000077b45fbc3b70:   mov    $0xffffff6e,%esi
+  0x000077b45fbc3b75:   mov    %r9,(%rsp)
+  0x000077b45fbc3b79:   mov    %r8d,0x8(%rsp)
+  0x000077b45fbc3b7e:   mov    %ecx,0xc(%rsp)
+  0x000077b45fbc3b82:   mov    %ebx,0x10(%rsp)
+  0x000077b45fbc3b86:   nop
+  0x000077b45fbc3b87:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop [24]=Oop }
+                                                            ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::replace@60 (line 416)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3b8c:   nopl   0x7000604(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@60 (line 416)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3b94:   mov    %esi,%r10d
+  0x000077b45fbc3b97:   jmp    0x000077b45fbc3899
+  0x000077b45fbc3b9c:   mov    $0xffffff45,%esi
+  0x000077b45fbc3ba1:   mov    %r10,%rbp
+  0x000077b45fbc3ba4:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbc3ba8:   mov    %edx,0x8(%rsp)
+  0x000077b45fbc3bac:   data16 xchg %ax,%ax
+  0x000077b45fbc3baf:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*if_icmpgt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@1 (line 405)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3bb4:   nopl   0x800062c(%rax,%rax,1)       ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@1 (line 405)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3bbc:   mov    $0xffffff45,%esi
+  0x000077b45fbc3bc1:   mov    %r9,(%rsp)
+  0x000077b45fbc3bc5:   mov    %r8d,0x8(%rsp)
+  0x000077b45fbc3bca:   mov    %edi,0x10(%rsp)
+  0x000077b45fbc3bce:   mov    %ecx,0x14(%rsp)
+  0x000077b45fbc3bd2:   nop
+  0x000077b45fbc3bd3:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop }
+                                                            ;*if_icmpgt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@41 (line 414)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3bd8:   nopl   0x9000650(%rax,%rax,1)       ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@4 (line 52)
+                                                            ; - java.lang.StringLatin1::replace@41 (line 414)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3be0:   mov    $0xfffffff6,%esi
+  0x000077b45fbc3be5:   xchg   %ax,%ax
+  0x000077b45fbc3be7:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@8 (line 406)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3bec:   nopl   0xa000664(%rax,%rax,1)       ;*invokevirtual allocateUninitializedArray0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::allocateUninitializedArray@51 (line 1422)
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringLatin1::replace@48 (line 415)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3bf4:   mov    %rax,%rsi
+  0x000077b45fbc3bf7:   jmp    0x000077b45fbc3bfc
+  0x000077b45fbc3bf9:   mov    %rax,%rsi                    ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::replace@-1 (line 405)
+  0x000077b45fbc3bfc:   add    $0x40,%rsp
+  0x000077b45fbc3c00:   pop    %rbp
+  0x000077b45fbc3c01:   jmp    0x000077b45f58b8e0           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::replace@81 (line 419)
+                                                            ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x000077b45fbc3c06:   movabs $0x77b45fbc3a4f,%r10         ;   {internal_word}
+  0x000077b45fbc3c10:   mov    %r10,0x510(%r15)
+  0x000077b45fbc3c17:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbc3c1c:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbc3c21:   jmp    0x000077b45fbc369a
+  0x000077b45fbc3c26:   hlt    
+  0x000077b45fbc3c27:   hlt    
+[Stub Code]
+  0x000077b45fbc3c28:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbc3c2d:   jmp    0x000077b45fbc3c28
+  0x000077b45fbc3c2f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

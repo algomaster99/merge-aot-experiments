@@ -1,0 +1,78 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 708   53       3       sun.awt.X11.XToolkit::getDisplay (20 bytes)
+ total in heap  [0x0000791107fff008,0x0000791107fff1e8] = 480
+ main code      [0x0000791107fff100,0x0000791107fff1c8] = 200
+ stub code      [0x0000791107fff1c8,0x0000791107fff1e8] = 32
+ mutable data [0x00007910a801ccf0,0x00007910a801cd20] = 48
+ relocation     [0x00007910a801ccf0,0x00007910a801cd18] = 40
+ metadata       [0x00007910a801cd18,0x00007910a801cd20] = 8
+ immutable data [0x00007910a801cc70,0x00007910a801cce4] = 116
+ dependencies   [0x00007910a801cc70,0x00007910a801cc78] = 8
+ scopes pcs     [0x00007910a801cc78,0x00007910a801ccc8] = 80
+ scopes data    [0x00007910a801ccc8,0x00007910a801cce0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00007910c00137a8} &apos;getDisplay&apos; &apos;()J&apos; in &apos;sun/awt/X11/XToolkit&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x0000791107fff100:   mov    %eax,-0x14000(%rsp)
+  0x0000791107fff107:   push   %rbp
+  0x0000791107fff108:   sub    $0x30,%rsp
+  0x0000791107fff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000791107fff114:   je     0x0000791107fff11b
+  0x0000791107fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000791107fff11b:   movabs $0x7910c03d40d8,%rax         ;   {metadata(method data for {method} {0x00007910c00137a8} &apos;getDisplay&apos; &apos;()J&apos; in &apos;sun/awt/X11/XToolkit&apos;)}
+  0x0000791107fff125:   mov    0x90(%rax),%esi
+  0x0000791107fff12b:   add    $0x2,%esi
+  0x0000791107fff12e:   mov    %esi,0x90(%rax)
+  0x0000791107fff134:   and    $0x7fe,%esi
+  0x0000791107fff13a:   test   %esi,%esi
+  0x0000791107fff13c:   je     0x0000791107fff16c           ;*getstatic localEnv {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.awt.X11.XToolkit::getDisplay@0 (line 288)
+  0x0000791107fff142:   movabs $0x7910c03d40d8,%rax         ;   {metadata(method data for {method} {0x00007910c00137a8} &apos;getDisplay&apos; &apos;()J&apos; in &apos;sun/awt/X11/XToolkit&apos;)}
+  0x0000791107fff14c:   incl   0xd8(%rax)                   ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.awt.X11.XToolkit::getDisplay@3 (line 288)
+  0x0000791107fff152:   movabs $0x7911202206f0,%rax
+  0x0000791107fff15c:   add    $0x30,%rsp
+  0x0000791107fff160:   pop    %rbp
+  0x0000791107fff161:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000791107fff165:   ja     0x0000791107fff18a
+  0x0000791107fff16b:   ret    
+  0x0000791107fff16c:   movabs $0x7910c00137a8,%r10         ;   {metadata({method} {0x00007910c00137a8} &apos;getDisplay&apos; &apos;()J&apos; in &apos;sun/awt/X11/XToolkit&apos;)}
+  0x0000791107fff176:   mov    %r10,0x8(%rsp)
+  0x0000791107fff17b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000791107fff183:   call   0x000079110f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - sun.awt.X11.XToolkit::getDisplay@-1 (line 288)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000791107fff188:   jmp    0x0000791107fff142
+  0x0000791107fff18a:   movabs $0x791107fff161,%r10         ;   {internal_word}
+  0x0000791107fff194:   mov    %r10,0x510(%r15)
+  0x0000791107fff19b:   jmp    0x000079110f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000791107fff1a0:   mov    0x5c0(%r15),%rax
+  0x0000791107fff1a7:   movq   $0x0,0x5c0(%r15)
+  0x0000791107fff1b2:   movq   $0x0,0x5c8(%r15)
+  0x0000791107fff1bd:   add    $0x30,%rsp
+  0x0000791107fff1c1:   pop    %rbp
+  0x0000791107fff1c2:   jmp    0x000079110f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000791107fff1c7:   hlt    
+[Exception Handler]
+  0x0000791107fff1c8:   call   0x000079110f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000791107fff1cd:   movabs $0x791126b3aec4,%rdi         ;   {external_word}
+  0x0000791107fff1d7:   and    $0xfffffffffffffff0,%rsp
+  0x0000791107fff1db:   call   0x0000791126591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000791107fff1e0:   hlt    
+  0x0000791107fff1e1:   call   0x000079110f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000791107fff1e6:   jmp    0x0000791107fff1e1
+--------------------------------------------------------------------------------
+[/Disassembly]

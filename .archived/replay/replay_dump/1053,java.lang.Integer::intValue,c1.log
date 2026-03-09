@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 18755 1053       1       java.lang.Integer::intValue (5 bytes)
+ total in heap  [0x000077b45fbc8c08,0x000077b45fbc8db0] = 424
+ main code      [0x000077b45fbc8d00,0x000077b45fbc8d90] = 144
+ stub code      [0x000077b45fbc8d90,0x000077b45fbc8db0] = 32
+ mutable data [0x000077b3f0101b10,0x000077b3f0101b38] = 40
+ relocation     [0x000077b3f0101b10,0x000077b3f0101b30] = 32
+ metadata       [0x000077b3f0101b30,0x000077b3f0101b38] = 8
+ immutable data [0x000077b3f0103a60,0x000077b3f0103abc] = 92
+ dependencies   [0x000077b3f0103a60,0x000077b3f0103a68] = 8
+ scopes pcs     [0x000077b3f0103a68,0x000077b3f0103aa8] = 64
+ scopes data    [0x000077b3f0103aa8,0x000077b3f0103ab8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbc8d00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbc8d0b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbc8d0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461a1950} &apos;intValue&apos; &apos;()I&apos; in &apos;java/lang/Integer&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbc8d12:   mov    0x8(%rsi),%r10d
+  0x000077b45fbc8d16:   cmp    0x8(%rax),%r10d
+  0x000077b45fbc8d1a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbc8d20:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbc8d27:   push   %rbp
+  0x000077b45fbc8d28:   sub    $0x20,%rsp
+  0x000077b45fbc8d2c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbc8d34:   je     0x000077b45fbc8d3b
+  0x000077b45fbc8d36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Integer::intValue@0 (line 1064)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbc8d3b:   mov    0xc(%rsi),%eax               ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Integer::intValue@1 (line 1064)
+  0x000077b45fbc8d3e:   add    $0x20,%rsp
+  0x000077b45fbc8d42:   pop    %rbp
+  0x000077b45fbc8d43:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbc8d47:   ja     0x000077b45fbc8d4e
+  0x000077b45fbc8d4d:   ret    
+  0x000077b45fbc8d4e:   movabs $0x77b45fbc8d43,%r10         ;   {internal_word}
+  0x000077b45fbc8d58:   mov    %r10,0x510(%r15)
+  0x000077b45fbc8d5f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbc8d64:   mov    0x5c0(%r15),%rax
+  0x000077b45fbc8d6b:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbc8d76:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbc8d81:   add    $0x20,%rsp
+  0x000077b45fbc8d85:   pop    %rbp
+  0x000077b45fbc8d86:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbc8d8b:   hlt    
+  0x000077b45fbc8d8c:   hlt    
+  0x000077b45fbc8d8d:   hlt    
+  0x000077b45fbc8d8e:   hlt    
+  0x000077b45fbc8d8f:   hlt    
+[Exception Handler]
+  0x000077b45fbc8d90:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbc8d95:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbc8d9f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbc8da3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbc8da8:   hlt    
+  0x000077b45fbc8da9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbc8dae:   jmp    0x000077b45fbc8da9
+--------------------------------------------------------------------------------
+[/Disassembly]

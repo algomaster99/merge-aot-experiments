@@ -1,0 +1,162 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 240    3       3       java.lang.String::checkBoundsBeginEnd (11 bytes)
+ total in heap  [0x0000711b5bfff008,0x0000711b5bfff310] = 776
+ main code      [0x0000711b5bfff100,0x0000711b5bfff2d8] = 472
+ stub code      [0x0000711b5bfff2d8,0x0000711b5bfff308] = 48
+ oops           [0x0000711b5bfff308,0x0000711b5bfff310] = 8
+ mutable data [0x0000711afc014f30,0x0000711afc014f88] = 88
+ relocation     [0x0000711afc014f30,0x0000711afc014f78] = 72
+ metadata       [0x0000711afc014f78,0x0000711afc014f88] = 16
+ immutable data [0x0000711afc014dc0,0x0000711afc014f1c] = 348
+ dependencies   [0x0000711afc014dc0,0x0000711afc014dc8] = 8
+ nul chk table  [0x0000711afc014dc8,0x0000711afc014dd8] = 16
+ scopes pcs     [0x0000711afc014dd8,0x0000711afc014ea8] = 208
+ scopes data    [0x0000711afc014ea8,0x0000711afc014f18] = 112
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000001f4a0550} &apos;checkBoundsBeginEnd&apos; &apos;(III)V&apos; in &apos;java/lang/String&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x70]  (sp of caller)
+  0x0000711b5bfff100:   mov    %eax,-0x14000(%rsp)
+  0x0000711b5bfff107:   push   %rbp
+  0x0000711b5bfff108:   sub    $0x60,%rsp
+  0x0000711b5bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000711b5bfff114:   je     0x0000711b5bfff11b
+  0x0000711b5bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000711b5bfff11b:   mov    %rsi,%r8
+  0x0000711b5bfff11e:   mov    %rdx,%rdi
+  0x0000711b5bfff121:   mov    %rcx,%rbx
+  0x0000711b5bfff124:   movabs $0x711b1401b7a0,%rsi         ;   {metadata(method data for {method} {0x000000001f4a0550} &apos;checkBoundsBeginEnd&apos; &apos;(III)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000711b5bfff12e:   mov    0x90(%rsi),%edx
+  0x0000711b5bfff134:   add    $0x2,%edx
+  0x0000711b5bfff137:   mov    %edx,0x90(%rsi)
+  0x0000711b5bfff13d:   and    $0x7fe,%edx
+  0x0000711b5bfff143:   test   %edx,%edx
+  0x0000711b5bfff145:   je     0x0000711b5bfff254           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkBoundsBeginEnd@0 (line 5231)
+  0x0000711b5bfff14b:   movabs $0x711b1401b7a0,%rsi         ;   {metadata(method data for {method} {0x000000001f4a0550} &apos;checkBoundsBeginEnd&apos; &apos;(III)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000711b5bfff155:   addq   $0x1,0xd8(%rsi)
+  0x0000711b5bfff15d:   movabs $0x711b1401b8d8,%rsi         ;   {metadata(method data for {method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff167:   mov    0x90(%rsi),%edx
+  0x0000711b5bfff16d:   add    $0x2,%edx
+  0x0000711b5bfff170:   mov    %edx,0x90(%rsi)
+  0x0000711b5bfff176:   and    $0x1ffffe,%edx
+  0x0000711b5bfff17c:   test   %edx,%edx
+  0x0000711b5bfff17e:   je     0x0000711b5bfff275
+  0x0000711b5bfff184:   test   %r8d,%r8d
+  0x0000711b5bfff187:   movabs $0x711b1401b8d8,%rsi         ;   {metadata(method data for {method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff191:   mov    $0xd8,%edx
+  0x0000711b5bfff196:   jl     0x0000711b5bfff19d
+  0x0000711b5bfff198:   mov    $0xe8,%edx
+  0x0000711b5bfff19d:   mov    (%rsi,%rdx,1),%rcx
+  0x0000711b5bfff1a1:   lea    0x1(%rcx),%rcx
+  0x0000711b5bfff1a5:   mov    %rcx,(%rsi,%rdx,1)
+  0x0000711b5bfff1a9:   jl     0x0000711b5bfff214           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@1 (line 348)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+  0x0000711b5bfff1af:   cmp    %edi,%r8d
+  0x0000711b5bfff1b2:   movabs $0x711b1401b8d8,%rsi         ;   {metadata(method data for {method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff1bc:   mov    $0xf8,%edx
+  0x0000711b5bfff1c1:   jg     0x0000711b5bfff1c8
+  0x0000711b5bfff1c3:   mov    $0x108,%edx
+  0x0000711b5bfff1c8:   mov    (%rsi,%rdx,1),%rcx
+  0x0000711b5bfff1cc:   lea    0x1(%rcx),%rcx
+  0x0000711b5bfff1d0:   mov    %rcx,(%rsi,%rdx,1)
+  0x0000711b5bfff1d4:   jg     0x0000711b5bfff214           ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@6 (line 348)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+  0x0000711b5bfff1da:   cmp    %ebx,%edi
+  0x0000711b5bfff1dc:   movabs $0x711b1401b8d8,%rsi         ;   {metadata(method data for {method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff1e6:   mov    $0x128,%edx
+  0x0000711b5bfff1eb:   jg     0x0000711b5bfff1f2
+  0x0000711b5bfff1ed:   mov    $0x118,%edx
+  0x0000711b5bfff1f2:   mov    (%rsi,%rdx,1),%rcx
+  0x0000711b5bfff1f6:   lea    0x1(%rcx),%rcx
+  0x0000711b5bfff1fa:   mov    %rcx,(%rsi,%rdx,1)
+  0x0000711b5bfff1fe:   jg     0x0000711b5bfff214           ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@11 (line 348)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+  0x0000711b5bfff204:   add    $0x60,%rsp
+  0x0000711b5bfff208:   pop    %rbp
+  0x0000711b5bfff209:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000711b5bfff20d:   ja     0x0000711b5bfff296
+  0x0000711b5bfff213:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkBoundsBeginEnd@10 (line 5232)
+  0x0000711b5bfff214:   movabs $0x711b1401b8d8,%rsi         ;   {metadata(method data for {method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff21e:   addq   $0x1,0x138(%rsi)
+  0x0000711b5bfff226:   movabs $0x41f803c78,%rsi            ;   {oop(a &apos;jdk/internal/util/Preconditions$4&apos;{0x000000041f803c78})}
+  0x0000711b5bfff230:   mov    %r8,%rdx
+  0x0000711b5bfff233:   mov    %rdi,%rcx
+  0x0000711b5bfff236:   mov    %rbx,%r8                     ;*invokestatic outOfBoundsCheckFromToIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@18 (line 349)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+  0x0000711b5bfff239:   nopw   0x0(%rax,%rax,1)
+  0x0000711b5bfff23f:   call   0x0000711b634adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic outOfBoundsCheckFromToIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@18 (line 349)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+                                                            ;   {static_call}
+  0x0000711b5bfff244:   nopl   0x23c(%rax,%rax,1)           ;*invokestatic outOfBoundsCheckFromToIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@18 (line 349)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+                                                            ;   {post_call_nop}
+  0x0000711b5bfff24c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000711b5bfff2ac
+  0x0000711b5bfff24f:   jmp    0x0000711b5bfff2ce
+  0x0000711b5bfff254:   movabs $0x1f4a0550,%r10             ;   {metadata({method} {0x000000001f4a0550} &apos;checkBoundsBeginEnd&apos; &apos;(III)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000711b5bfff25e:   mov    %r10,0x8(%rsp)
+  0x0000711b5bfff263:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000711b5bfff26b:   call   0x0000711b63582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::checkBoundsBeginEnd@-1 (line 5231)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000711b5bfff270:   jmp    0x0000711b5bfff14b
+  0x0000711b5bfff275:   movabs $0x1f1c31b8,%r10             ;   {metadata({method} {0x000000001f1c31b8} &apos;checkFromToIndex&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x0000711b5bfff27f:   mov    %r10,0x8(%rsp)
+  0x0000711b5bfff284:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000711b5bfff28c:   call   0x0000711b63582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.Preconditions::checkFromToIndex@-1 (line 348)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000711b5bfff291:   jmp    0x0000711b5bfff184
+  0x0000711b5bfff296:   movabs $0x711b5bfff209,%r10         ;   {internal_word}
+  0x0000711b5bfff2a0:   mov    %r10,0x510(%r15)
+  0x0000711b5bfff2a7:   jmp    0x0000711b634afb60           ;   {runtime_call SafepointBlob}
+  0x0000711b5bfff2ac:   call   0x0000711b6357c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.Preconditions::checkFromToIndex@21 (line 349)
+                                                            ; - java.lang.String::checkBoundsBeginEnd@6 (line 5231)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000711b5bfff2b1:   mov    0x5c0(%r15),%rax
+  0x0000711b5bfff2b8:   movq   $0x0,0x5c0(%r15)
+  0x0000711b5bfff2c3:   movq   $0x0,0x5c8(%r15)
+  0x0000711b5bfff2ce:   add    $0x60,%rsp
+  0x0000711b5bfff2d2:   pop    %rbp
+  0x0000711b5bfff2d3:   jmp    0x0000711b6357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x0000711b5bfff2d8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000711b5bfff2e2:   jmp    0x0000711b5bfff2e2           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000711b5bfff2e7:   call   0x0000711b6357e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000711b5bfff2ec:   movabs $0x711b7a13aec4,%rdi         ;   {external_word}
+  0x0000711b5bfff2f6:   and    $0xfffffffffffffff0,%rsp
+  0x0000711b5bfff2fa:   call   0x0000711b79b91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000711b5bfff2ff:   hlt    
+  0x0000711b5bfff300:   call   0x0000711b634afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000711b5bfff305:   jmp    0x0000711b5bfff300
+  0x0000711b5bfff307:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

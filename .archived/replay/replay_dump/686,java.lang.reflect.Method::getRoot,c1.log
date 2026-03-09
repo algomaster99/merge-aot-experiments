@@ -1,0 +1,120 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 11689  686       3       java.lang.reflect.Method::getRoot (5 bytes)
+ total in heap  [0x000077b458067088,0x000077b4580672e8] = 608
+ main code      [0x000077b458067180,0x000077b4580672c8] = 328
+ stub code      [0x000077b4580672c8,0x000077b4580672e8] = 32
+ mutable data [0x000077b3e80948a0,0x000077b3e80948d8] = 56
+ relocation     [0x000077b3e80948a0,0x000077b3e80948c8] = 40
+ metadata       [0x000077b3e80948c8,0x000077b3e80948d8] = 16
+ immutable data [0x000077b3e80950b0,0x000077b3e809512c] = 124
+ dependencies   [0x000077b3e80950b0,0x000077b3e80950b8] = 8
+ scopes pcs     [0x000077b3e80950b8,0x000077b3e8095108] = 80
+ scopes data    [0x000077b3e8095108,0x000077b3e8095128] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458067180:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45806718b:   data16 data16 xchg %ax,%ax
+  0x000077b45806718f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461ae068} &apos;getRoot&apos; &apos;()Ljava/lang/reflect/AccessibleObject;&apos; in &apos;java/lang/reflect/Method&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b458067192:   mov    0x8(%rsi),%r10d
+  0x000077b458067196:   cmp    0x8(%rax),%r10d
+  0x000077b45806719a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580671a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580671a7:   push   %rbp
+  0x000077b4580671a8:   sub    $0x30,%rsp
+  0x000077b4580671ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580671b4:   je     0x000077b4580671bb
+  0x000077b4580671b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580671bb:   movabs $0x77b4141e4e58,%rax         ;   {metadata(method data for {method} {0x00000000461ae068} &apos;getRoot&apos; &apos;()Ljava/lang/reflect/AccessibleObject;&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4580671c5:   mov    0x90(%rax),%edi
+  0x000077b4580671cb:   add    $0x2,%edi
+  0x000077b4580671ce:   mov    %edi,0x90(%rax)
+  0x000077b4580671d4:   and    $0x7fe,%edi
+  0x000077b4580671da:   test   %edi,%edi
+  0x000077b4580671dc:   je     0x000077b458067264           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getRoot@0 (line 72)
+  0x000077b4580671e2:   mov    %rsi,%rax
+  0x000077b4580671e5:   movabs $0x77b4141e4e58,%rdi         ;   {metadata(method data for {method} {0x00000000461ae068} &apos;getRoot&apos; &apos;()Ljava/lang/reflect/AccessibleObject;&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4580671ef:   mov    0x8(%rax),%eax
+  0x000077b4580671f2:   mov    $0x46000000,%r10d
+  0x000077b4580671f8:   add    %r10,%rax
+  0x000077b4580671fb:   mov    $0x1c,%r10d
+  0x000077b458067201:   cmp    (%rdi,%r10,8),%rax
+  0x000077b458067205:   je     0x000077b458067244
+  0x000077b458067207:   add    $0x2,%r10
+  0x000077b45806720b:   cmp    $0x20,%r10
+  0x000077b45806720f:   jne    0x000077b458067201
+  0x000077b458067211:   mov    $0x1c,%r10d
+  0x000077b458067217:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b45806721c:   je     0x000077b45806722a
+  0x000077b45806721e:   add    $0x2,%r10
+  0x000077b458067222:   cmp    $0x20,%r10
+  0x000077b458067226:   jne    0x000077b458067217
+  0x000077b458067228:   jmp    0x000077b45806723c
+  0x000077b45806722a:   push   %rbx
+  0x000077b45806722b:   mov    %rax,%rbx
+  0x000077b45806722e:   xor    %rax,%rax
+  0x000077b458067231:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x000077b458067236:   mov    %rbx,%rax
+  0x000077b458067239:   pop    %rbx
+  0x000077b45806723a:   jmp    0x000077b4580671fb
+  0x000077b45806723c:   mov    $0x1b,%r10d
+  0x000077b458067242:   jmp    0x000077b458067248
+  0x000077b458067244:   add    $0x1,%r10
+  0x000077b458067248:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b45806724d:   mov    0x40(%rsi),%eax
+  0x000077b458067250:   shl    $0x3,%rax                    ;*getfield root {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 187)
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 72)
+  0x000077b458067254:   add    $0x30,%rsp
+  0x000077b458067258:   pop    %rbp
+  0x000077b458067259:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45806725d:   ja     0x000077b458067285
+  0x000077b458067263:   ret    
+  0x000077b458067264:   movabs $0x461ae068,%r10             ;   {metadata({method} {0x00000000461ae068} &apos;getRoot&apos; &apos;()Ljava/lang/reflect/AccessibleObject;&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45806726e:   mov    %r10,0x8(%rsp)
+  0x000077b458067273:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45806727b:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.Method::getRoot@-1 (line 72)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458067280:   jmp    0x000077b4580671e2
+  0x000077b458067285:   movabs $0x77b458067259,%r10         ;   {internal_word}
+  0x000077b45806728f:   mov    %r10,0x510(%r15)
+  0x000077b458067296:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45806729b:   mov    0x5c0(%r15),%rax
+  0x000077b4580672a2:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580672ad:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580672b8:   add    $0x30,%rsp
+  0x000077b4580672bc:   pop    %rbp
+  0x000077b4580672bd:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580672c2:   hlt    
+  0x000077b4580672c3:   hlt    
+  0x000077b4580672c4:   hlt    
+  0x000077b4580672c5:   hlt    
+  0x000077b4580672c6:   hlt    
+  0x000077b4580672c7:   hlt    
+[Exception Handler]
+  0x000077b4580672c8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580672cd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580672d7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580672db:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580672e0:   hlt    
+  0x000077b4580672e1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580672e6:   jmp    0x000077b4580672e1
+--------------------------------------------------------------------------------
+[/Disassembly]

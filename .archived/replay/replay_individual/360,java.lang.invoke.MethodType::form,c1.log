@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 348   24       1       java.lang.invoke.MethodType::form (5 bytes)
+ total in heap  [0x0000713e6fba4508,0x0000713e6fba46b0] = 424
+ main code      [0x0000713e6fba4600,0x0000713e6fba4690] = 144
+ stub code      [0x0000713e6fba4690,0x0000713e6fba46b0] = 32
+ mutable data [0x0000713e080144f0,0x0000713e08014518] = 40
+ relocation     [0x0000713e080144f0,0x0000713e08014510] = 32
+ metadata       [0x0000713e08014510,0x0000713e08014518] = 8
+ immutable data [0x0000713e08014c30,0x0000713e08014c8c] = 92
+ dependencies   [0x0000713e08014c30,0x0000713e08014c38] = 8
+ scopes pcs     [0x0000713e08014c38,0x0000713e08014c78] = 64
+ scopes data    [0x0000713e08014c78,0x0000713e08014c88] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000713e6fba4600:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000713e6fba460b:   data16 data16 xchg %ax,%ax
+  0x0000713e6fba460f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000394800b0} &apos;form&apos; &apos;()Ljava/lang/invoke/MethodTypeForm;&apos; in &apos;java/lang/invoke/MethodType&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000713e6fba4612:   mov    0x8(%rsi),%r10d
+  0x0000713e6fba4616:   cmp    0x8(%rax),%r10d
+  0x0000713e6fba461a:   jne    0x0000713e6f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000713e6fba4620:   mov    %eax,-0x14000(%rsp)
+  0x0000713e6fba4627:   push   %rbp
+  0x0000713e6fba4628:   sub    $0x20,%rsp
+  0x0000713e6fba462c:   cmpl   $0x1,0x20(%r15)
+  0x0000713e6fba4634:   je     0x0000713e6fba463b
+  0x0000713e6fba4636:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::form@0 (line 159)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000713e6fba463b:   mov    0x14(%rsi),%eax
+  0x0000713e6fba463e:   shl    $0x3,%rax                    ;*getfield form {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::form@1 (line 159)
+  0x0000713e6fba4642:   add    $0x20,%rsp
+  0x0000713e6fba4646:   pop    %rbp
+  0x0000713e6fba4647:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000713e6fba464b:   ja     0x0000713e6fba4652
+  0x0000713e6fba4651:   ret    
+  0x0000713e6fba4652:   movabs $0x713e6fba4647,%r10         ;   {internal_word}
+  0x0000713e6fba465c:   mov    %r10,0x510(%r15)
+  0x0000713e6fba4663:   jmp    0x0000713e6f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000713e6fba4668:   mov    0x5c0(%r15),%rax
+  0x0000713e6fba466f:   movq   $0x0,0x5c0(%r15)
+  0x0000713e6fba467a:   movq   $0x0,0x5c8(%r15)
+  0x0000713e6fba4685:   add    $0x20,%rsp
+  0x0000713e6fba4689:   pop    %rbp
+  0x0000713e6fba468a:   jmp    0x0000713e6f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000713e6fba468f:   hlt    
+[Exception Handler]
+  0x0000713e6fba4690:   call   0x0000713e6f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000713e6fba4695:   movabs $0x713e8673aec4,%rdi         ;   {external_word}
+  0x0000713e6fba469f:   and    $0xfffffffffffffff0,%rsp
+  0x0000713e6fba46a3:   call   0x0000713e86191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000713e6fba46a8:   hlt    
+  0x0000713e6fba46a9:   call   0x0000713e6f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000713e6fba46ae:   jmp    0x0000713e6fba46a9
+--------------------------------------------------------------------------------
+[/Disassembly]

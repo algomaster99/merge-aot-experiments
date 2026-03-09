@@ -1,0 +1,93 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 623   53       3       java.lang.String::encodeUTF8 (7 bytes)
+ total in heap  [0x0000718d37fff008,0x0000718d37fff208] = 512
+ main code      [0x0000718d37fff100,0x0000718d37fff1d8] = 216
+ stub code      [0x0000718d37fff1d8,0x0000718d37fff208] = 48
+ mutable data [0x0000718cd8024db0,0x0000718cd8024df0] = 64
+ relocation     [0x0000718cd8024db0,0x0000718cd8024de8] = 56
+ metadata       [0x0000718cd8024de8,0x0000718cd8024df0] = 8
+ immutable data [0x0000718cd8024d00,0x0000718cd8024da4] = 164
+ dependencies   [0x0000718cd8024d00,0x0000718cd8024d08] = 8
+ scopes pcs     [0x0000718cd8024d08,0x0000718cd8024d78] = 112
+ scopes data    [0x0000718cd8024d78,0x0000718cd8024da0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000224a0ff8} &apos;encodeUTF8&apos; &apos;(B[B)[B&apos; in &apos;java/lang/String&apos;
+  # parm0:    rsi       = byte
+  # parm1:    rdx:rdx   = &apos;[B&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x0000718d37fff100:   mov    %eax,-0x14000(%rsp)
+  0x0000718d37fff107:   push   %rbp
+  0x0000718d37fff108:   sub    $0x30,%rsp
+  0x0000718d37fff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000718d37fff114:   je     0x0000718d37fff11b
+  0x0000718d37fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000718d37fff11b:   movabs $0x718cf032f038,%rcx         ;   {metadata(method data for {method} {0x00000000224a0ff8} &apos;encodeUTF8&apos; &apos;(B[B)[B&apos; in &apos;java/lang/String&apos;)}
+  0x0000718d37fff125:   mov    0x90(%rcx),%edi
+  0x0000718d37fff12b:   add    $0x2,%edi
+  0x0000718d37fff12e:   mov    %edi,0x90(%rcx)
+  0x0000718d37fff134:   and    $0x7fe,%edi
+  0x0000718d37fff13a:   test   %edi,%edi
+  0x0000718d37fff13c:   je     0x0000718d37fff17c           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::encodeUTF8@0 (line 1421)
+  0x0000718d37fff142:   movabs $0x718cf032f038,%rcx         ;   {metadata(method data for {method} {0x00000000224a0ff8} &apos;encodeUTF8&apos; &apos;(B[B)[B&apos; in &apos;java/lang/String&apos;)}
+  0x0000718d37fff14c:   addq   $0x1,0xd8(%rcx)
+  0x0000718d37fff154:   movabs $0x0,%rcx                    ;*invokestatic encodeUTF8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::encodeUTF8@3 (line 1421)
+                                                            ;   {oop(nullptr)}
+  0x0000718d37fff15e:   nop
+  0x0000718d37fff15f:   call   0x0000718d3f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic encodeUTF8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::encodeUTF8@3 (line 1421)
+                                                            ;   {static_call}
+  0x0000718d37fff164:   nopl   0x15c(%rax,%rax,1)           ;*invokestatic encodeUTF8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::encodeUTF8@3 (line 1421)
+                                                            ;   {post_call_nop}
+  0x0000718d37fff16c:   add    $0x30,%rsp
+  0x0000718d37fff170:   pop    %rbp
+  0x0000718d37fff171:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000718d37fff175:   ja     0x0000718d37fff19a
+  0x0000718d37fff17b:   ret    
+  0x0000718d37fff17c:   movabs $0x224a0ff8,%r10             ;   {metadata({method} {0x00000000224a0ff8} &apos;encodeUTF8&apos; &apos;(B[B)[B&apos; in &apos;java/lang/String&apos;)}
+  0x0000718d37fff186:   mov    %r10,0x8(%rsp)
+  0x0000718d37fff18b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000718d37fff193:   call   0x0000718d3f583460           ; ImmutableOopMap {rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::encodeUTF8@-1 (line 1421)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000718d37fff198:   jmp    0x0000718d37fff142
+  0x0000718d37fff19a:   movabs $0x718d37fff171,%r10         ;   {internal_word}
+  0x0000718d37fff1a4:   mov    %r10,0x510(%r15)
+  0x0000718d37fff1ab:   jmp    0x0000718d3f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000718d37fff1b0:   mov    0x5c0(%r15),%rax
+  0x0000718d37fff1b7:   movq   $0x0,0x5c0(%r15)
+  0x0000718d37fff1c2:   movq   $0x0,0x5c8(%r15)
+  0x0000718d37fff1cd:   add    $0x30,%rsp
+  0x0000718d37fff1d1:   pop    %rbp
+  0x0000718d37fff1d2:   jmp    0x0000718d3f57c0e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000718d37fff1d7:   hlt    
+[Stub Code]
+  0x0000718d37fff1d8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000718d37fff1e2:   jmp    0x0000718d37fff1e2           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000718d37fff1e7:   call   0x0000718d3f580060           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000718d37fff1ec:   movabs $0x718d5653aec4,%rdi         ;   {external_word}
+  0x0000718d37fff1f6:   and    $0xfffffffffffffff0,%rsp
+  0x0000718d37fff1fa:   call   0x0000718d55f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000718d37fff1ff:   hlt    
+  0x0000718d37fff200:   call   0x0000718d3f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000718d37fff205:   jmp    0x0000718d37fff200
+  0x0000718d37fff207:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

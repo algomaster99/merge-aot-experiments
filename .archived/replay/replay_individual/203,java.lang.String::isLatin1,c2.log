@@ -1,0 +1,69 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 279   15       4       java.lang.String::isLatin1 (19 bytes)
+ total in heap  [0x0000737c6bba2a08,0x0000737c6bba2b88] = 384
+ main code      [0x0000737c6bba2b00,0x0000737c6bba2b80] = 128
+ stub code      [0x0000737c6bba2b80,0x0000737c6bba2b88] = 8
+ mutable data [0x0000737c10071c40,0x0000737c10071c60] = 32
+ relocation     [0x0000737c10071c40,0x0000737c10071c58] = 24
+ metadata       [0x0000737c10071c58,0x0000737c10071c60] = 8
+ immutable data [0x0000737c10071b90,0x0000737c10071c2c] = 156
+ dependencies   [0x0000737c10071b90,0x0000737c10071b98] = 8
+ scopes pcs     [0x0000737c10071b98,0x0000737c10071c08] = 112
+ scopes data    [0x0000737c10071c08,0x0000737c10071c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000737c6bba2b00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000134a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x0000737c6bba2b02:   mov    0x8(%rsi),%r10d
+  0x0000737c6bba2b06:   cmp    0x8(%rax),%r10d
+  0x0000737c6bba2b0a:   jne    0x0000737c6b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000737c6bba2b10:   mov    %eax,-0x14000(%rsp)
+  0x0000737c6bba2b17:   push   %rbp
+  0x0000737c6bba2b18:   sub    $0x10,%rsp
+  0x0000737c6bba2b1c:   cmpl   $0x1,0x20(%r15)
+  0x0000737c6bba2b24:   jne    0x0000737c6bba2b76           ;*synchronization entry
+                                                            ; - java.lang.String::isLatin1@-1 (line 5187)
+  0x0000737c6bba2b2a:   movsbl 0x10(%rsi),%r11d             ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@7 (line 5187)
+  0x0000737c6bba2b2f:   test   %r11d,%r11d
+  0x0000737c6bba2b32:   jne    0x0000737c6bba2b49           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+  0x0000737c6bba2b34:   mov    $0x1,%eax
+  0x0000737c6bba2b39:   add    $0x10,%rsp
+  0x0000737c6bba2b3d:   pop    %rbp
+  0x0000737c6bba2b3e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000737c6bba2b42:   ja     0x0000737c6bba2b60
+  0x0000737c6bba2b48:   ret    
+  0x0000737c6bba2b49:   mov    $0xffffff45,%esi
+  0x0000737c6bba2b4e:   mov    %r11d,%ebp
+  0x0000737c6bba2b51:   xchg   %ax,%ax
+  0x0000737c6bba2b53:   call   0x0000737c6b585860           ; ImmutableOopMap {}
+                                                            ;*ifne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::isLatin1@10 (line 5187)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000737c6bba2b58:   nopl   0x150(%rax,%rax,1)           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+                                                            ;   {post_call_nop}
+  0x0000737c6bba2b60:   movabs $0x737c6bba2b3e,%r10         ;   {internal_word}
+  0x0000737c6bba2b6a:   mov    %r10,0x510(%r15)
+  0x0000737c6bba2b71:   jmp    0x0000737c6b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000737c6bba2b76:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000737c6bba2b7b:   jmp    0x0000737c6bba2b2a
+[Stub Code]
+  0x0000737c6bba2b80:   call   0x0000737c6b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000737c6bba2b85:   jmp    0x0000737c6bba2b80
+  0x0000737c6bba2b87:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

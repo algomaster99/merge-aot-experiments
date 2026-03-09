@@ -1,0 +1,62 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 36787 1557       4       java.lang.Class::isArray (13 bytes)
+ total in heap  [0x000077b45fbe1a08,0x000077b45fbe1b70] = 360
+ main code      [0x000077b45fbe1b00,0x000077b45fbe1b68] = 104
+ stub code      [0x000077b45fbe1b68,0x000077b45fbe1b70] = 8
+ mutable data [0x000077b3c00023c0,0x000077b3c00023d8] = 24
+ relocation     [0x000077b3c00023c0,0x000077b3c00023d0] = 16
+ metadata       [0x000077b3c00023d0,0x000077b3c00023d8] = 8
+ immutable data [0x000077b3c004a5e0,0x000077b3c004a63c] = 92
+ dependencies   [0x000077b3c004a5e0,0x000077b3c004a5e8] = 8
+ scopes pcs     [0x000077b3c004a5e8,0x000077b3c004a628] = 64
+ scopes data    [0x000077b3c004a628,0x000077b3c004a638] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbe1b00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046188ed8} &apos;isArray&apos; &apos;()Z&apos; in &apos;java/lang/Class&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbe1b02:   mov    0x8(%rsi),%r10d
+  0x000077b45fbe1b06:   cmp    0x8(%rax),%r10d
+  0x000077b45fbe1b0a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbe1b10:   sub    $0x18,%rsp
+  0x000077b45fbe1b14:   mov    %rbp,0x10(%rsp)
+  0x000077b45fbe1b19:   data16 xchg %ax,%ax
+  0x000077b45fbe1b1c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbe1b24:   jne    0x000077b45fbe1b59           ;*synchronization entry
+                                                            ; - java.lang.Class::isArray@-1 (line 817)
+  0x000077b45fbe1b2a:   xor    %eax,%eax
+  0x000077b45fbe1b2c:   cmp    0x4c(%rsi),%r12d
+  0x000077b45fbe1b30:   setne  %al                          ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isArray@12 (line 817)
+  0x000077b45fbe1b33:   add    $0x10,%rsp
+  0x000077b45fbe1b37:   pop    %rbp
+  0x000077b45fbe1b38:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbe1b3c:   ja     0x000077b45fbe1b43
+  0x000077b45fbe1b42:   ret    
+  0x000077b45fbe1b43:   movabs $0x77b45fbe1b38,%r10         ;   {internal_word}
+  0x000077b45fbe1b4d:   mov    %r10,0x510(%r15)
+  0x000077b45fbe1b54:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbe1b59:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbe1b5e:   jmp    0x000077b45fbe1b2a
+  0x000077b45fbe1b63:   hlt    
+  0x000077b45fbe1b64:   hlt    
+  0x000077b45fbe1b65:   hlt    
+  0x000077b45fbe1b66:   hlt    
+  0x000077b45fbe1b67:   hlt    
+[Stub Code]
+  0x000077b45fbe1b68:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbe1b6d:   jmp    0x000077b45fbe1b68
+  0x000077b45fbe1b6f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,99 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 269    8       3       java.lang.StringBuilder::&lt;init&gt; (7 bytes)
+ total in heap  [0x0000799267fff008,0x0000799267fff228] = 544
+ main code      [0x0000799267fff100,0x0000799267fff1f8] = 248
+ stub code      [0x0000799267fff1f8,0x0000799267fff228] = 48
+ mutable data [0x0000799208014db0,0x0000799208014df0] = 64
+ relocation     [0x0000799208014db0,0x0000799208014de8] = 56
+ metadata       [0x0000799208014de8,0x0000799208014df0] = 8
+ immutable data [0x0000799208014d00,0x0000799208014d9c] = 156
+ dependencies   [0x0000799208014d00,0x0000799208014d08] = 8
+ scopes pcs     [0x0000799208014d08,0x0000799208014d78] = 112
+ scopes data    [0x0000799208014d78,0x0000799208014d98] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000799267fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000799267fff10b:   data16 data16 xchg %ax,%ax
+  0x0000799267fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000131ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000799267fff112:   mov    0x8(%rsi),%r10d
+  0x0000799267fff116:   cmp    0x8(%rax),%r10d
+  0x0000799267fff11a:   jne    0x000079926f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000799267fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000799267fff127:   push   %rbp
+  0x0000799267fff128:   sub    $0x20,%rsp
+  0x0000799267fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000799267fff134:   je     0x0000799267fff13b
+  0x0000799267fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000799267fff13b:   movabs $0x79922004a778,%rdx         ;   {metadata(method data for {method} {0x00000000131ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x0000799267fff145:   mov    0x90(%rdx),%edi
+  0x0000799267fff14b:   add    $0x2,%edi
+  0x0000799267fff14e:   mov    %edi,0x90(%rdx)
+  0x0000799267fff154:   and    $0x7fe,%edi
+  0x0000799267fff15a:   test   %edi,%edi
+  0x0000799267fff15c:   je     0x0000799267fff19c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@0 (line 106)
+  0x0000799267fff162:   mov    %rsi,%rdx
+  0x0000799267fff165:   movabs $0x79922004a778,%rdi         ;   {metadata(method data for {method} {0x00000000131ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x0000799267fff16f:   addq   $0x1,0xd8(%rdi)
+  0x0000799267fff177:   mov    $0x10,%edx                   ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+  0x0000799267fff17c:   data16 xchg %ax,%ax
+  0x0000799267fff17f:   call   0x000079926f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+                                                            ;   {optimized virtual_call}
+  0x0000799267fff184:   nopl   0x17c(%rax,%rax,1)           ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+                                                            ;   {post_call_nop}
+  0x0000799267fff18c:   add    $0x20,%rsp
+  0x0000799267fff190:   pop    %rbp
+  0x0000799267fff191:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000799267fff195:   ja     0x0000799267fff1ba
+  0x0000799267fff19b:   ret    
+  0x0000799267fff19c:   movabs $0x131ba900,%r10             ;   {metadata({method} {0x00000000131ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x0000799267fff1a6:   mov    %r10,0x8(%rsp)
+  0x0000799267fff1ab:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000799267fff1b3:   call   0x000079926f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@-1 (line 106)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000799267fff1b8:   jmp    0x0000799267fff162
+  0x0000799267fff1ba:   movabs $0x799267fff191,%r10         ;   {internal_word}
+  0x0000799267fff1c4:   mov    %r10,0x510(%r15)
+  0x0000799267fff1cb:   jmp    0x000079926f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000799267fff1d0:   mov    0x5c0(%r15),%rax
+  0x0000799267fff1d7:   movq   $0x0,0x5c0(%r15)
+  0x0000799267fff1e2:   movq   $0x0,0x5c8(%r15)
+  0x0000799267fff1ed:   add    $0x20,%rsp
+  0x0000799267fff1f1:   pop    %rbp
+  0x0000799267fff1f2:   jmp    0x000079926f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000799267fff1f7:   hlt    
+[Stub Code]
+  0x0000799267fff1f8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000799267fff202:   jmp    0x0000799267fff202           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000799267fff207:   call   0x000079926f57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000799267fff20c:   movabs $0x79928693aec4,%rdi         ;   {external_word}
+  0x0000799267fff216:   and    $0xfffffffffffffff0,%rsp
+  0x0000799267fff21a:   call   0x0000799286391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000799267fff21f:   hlt    
+  0x0000799267fff220:   call   0x000079926f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000799267fff225:   jmp    0x0000799267fff220
+  0x0000799267fff227:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

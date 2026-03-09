@@ -1,0 +1,61 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 8611  409       4       java.util.Objects::requireNonNull (14 bytes)
+ total in heap  [0x000077b45fbb9108,0x000077b45fbb9270] = 360
+ main code      [0x000077b45fbb9200,0x000077b45fbb9268] = 104
+ stub code      [0x000077b45fbb9268,0x000077b45fbb9270] = 8
+ mutable data [0x000077b40809f010,0x000077b40809f030] = 32
+ relocation     [0x000077b40809f010,0x000077b40809f028] = 24
+ metadata       [0x000077b40809f028,0x000077b40809f030] = 8
+ immutable data [0x000077b40809d4c0,0x000077b40809d544] = 132
+ dependencies   [0x000077b40809d4c0,0x000077b40809d4c8] = 8
+ scopes pcs     [0x000077b40809d4c8,0x000077b40809d528] = 96
+ scopes data    [0x000077b40809d528,0x000077b40809d540] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004621efa0} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb9200:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb9207:   push   %rbp
+  0x000077b45fbb9208:   sub    $0x20,%rsp
+  0x000077b45fbb920c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb9214:   jne    0x000077b45fbb925e           ;*synchronization entry
+                                                            ; - java.util.Objects::requireNonNull@-1 (line 219)
+  0x000077b45fbb921a:   mov    %rsi,%rax
+  0x000077b45fbb921d:   test   %rsi,%rsi
+  0x000077b45fbb9220:   je     0x000077b45fbb9232           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@1 (line 219)
+  0x000077b45fbb9222:   add    $0x20,%rsp
+  0x000077b45fbb9226:   pop    %rbp
+  0x000077b45fbb9227:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb922b:   ja     0x000077b45fbb9248
+  0x000077b45fbb9231:   ret    
+  0x000077b45fbb9232:   mov    $0xffffff45,%esi
+  0x000077b45fbb9237:   mov    %rax,(%rsp)
+  0x000077b45fbb923b:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Objects::requireNonNull@1 (line 219)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbb9240:   nopl   0x138(%rax,%rax,1)           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@1 (line 219)
+                                                            ;   {post_call_nop}
+  0x000077b45fbb9248:   movabs $0x77b45fbb9227,%r10         ;   {internal_word}
+  0x000077b45fbb9252:   mov    %r10,0x510(%r15)
+  0x000077b45fbb9259:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb925e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb9263:   jmp    0x000077b45fbb921a
+[Stub Code]
+  0x000077b45fbb9268:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb926d:   jmp    0x000077b45fbb9268
+  0x000077b45fbb926f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 238    3       1       java.lang.AbstractStringBuilder::getValue (5 bytes)
+ total in heap  [0x000077a287ba0608,0x000077a287ba07b0] = 424
+ main code      [0x000077a287ba0700,0x000077a287ba0790] = 144
+ stub code      [0x000077a287ba0790,0x000077a287ba07b0] = 32
+ mutable data [0x000077a224014c70,0x000077a224014c98] = 40
+ relocation     [0x000077a224014c70,0x000077a224014c90] = 32
+ metadata       [0x000077a224014c90,0x000077a224014c98] = 8
+ immutable data [0x000077a224014c00,0x000077a224014c5c] = 92
+ dependencies   [0x000077a224014c00,0x000077a224014c08] = 8
+ scopes pcs     [0x000077a224014c08,0x000077a224014c48] = 64
+ scopes data    [0x000077a224014c48,0x000077a224014c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077a287ba0700:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077a287ba070b:   data16 data16 xchg %ax,%ax
+  0x000077a287ba070f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000261b6588} &apos;getValue&apos; &apos;()[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077a287ba0712:   mov    0x8(%rsi),%r10d
+  0x000077a287ba0716:   cmp    0x8(%rax),%r10d
+  0x000077a287ba071a:   jne    0x000077a2874ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077a287ba0720:   mov    %eax,-0x14000(%rsp)
+  0x000077a287ba0727:   push   %rbp
+  0x000077a287ba0728:   sub    $0x20,%rsp
+  0x000077a287ba072c:   cmpl   $0x1,0x20(%r15)
+  0x000077a287ba0734:   je     0x000077a287ba073b
+  0x000077a287ba0736:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::getValue@0 (line 1799)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077a287ba073b:   mov    0x14(%rsi),%eax
+  0x000077a287ba073e:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::getValue@1 (line 1799)
+  0x000077a287ba0742:   add    $0x20,%rsp
+  0x000077a287ba0746:   pop    %rbp
+  0x000077a287ba0747:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077a287ba074b:   ja     0x000077a287ba0752
+  0x000077a287ba0751:   ret    
+  0x000077a287ba0752:   movabs $0x77a287ba0747,%r10         ;   {internal_word}
+  0x000077a287ba075c:   mov    %r10,0x510(%r15)
+  0x000077a287ba0763:   jmp    0x000077a2874afb60           ;   {runtime_call SafepointBlob}
+  0x000077a287ba0768:   mov    0x5c0(%r15),%rax
+  0x000077a287ba076f:   movq   $0x0,0x5c0(%r15)
+  0x000077a287ba077a:   movq   $0x0,0x5c8(%r15)
+  0x000077a287ba0785:   add    $0x20,%rsp
+  0x000077a287ba0789:   pop    %rbp
+  0x000077a287ba078a:   jmp    0x000077a28757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077a287ba078f:   hlt    
+[Exception Handler]
+  0x000077a287ba0790:   call   0x000077a28757e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077a287ba0795:   movabs $0x77a2a0b3aec4,%rdi         ;   {external_word}
+  0x000077a287ba079f:   and    $0xfffffffffffffff0,%rsp
+  0x000077a287ba07a3:   call   0x000077a2a0591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077a287ba07a8:   hlt    
+  0x000077a287ba07a9:   call   0x000077a2874afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077a287ba07ae:   jmp    0x000077a287ba07a9
+--------------------------------------------------------------------------------
+[/Disassembly]

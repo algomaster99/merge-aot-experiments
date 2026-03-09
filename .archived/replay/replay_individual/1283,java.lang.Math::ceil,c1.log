@@ -1,0 +1,89 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 554   50       3       java.lang.Math::ceil (5 bytes)
+ total in heap  [0x00007a6157fff008,0x00007a6157fff200] = 504
+ main code      [0x00007a6157fff100,0x00007a6157fff1d0] = 208
+ stub code      [0x00007a6157fff1d0,0x00007a6157fff200] = 48
+ mutable data [0x00007a60fc01cd00,0x00007a60fc01cd40] = 64
+ relocation     [0x00007a60fc01cd00,0x00007a60fc01cd38] = 56
+ metadata       [0x00007a60fc01cd38,0x00007a60fc01cd40] = 8
+ immutable data [0x00007a60fc000ba0,0x00007a60fc000c34] = 148
+ dependencies   [0x00007a60fc000ba0,0x00007a60fc000ba8] = 8
+ scopes pcs     [0x00007a60fc000ba8,0x00007a60fc000c08] = 96
+ scopes data    [0x00007a60fc000c08,0x00007a60fc000c30] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000067490770} &apos;ceil&apos; &apos;(D)D&apos; in &apos;java/lang/Math&apos;
+  # parm0:    xmm0:xmm0   = double
+  #           [sp+0x30]  (sp of caller)
+  0x00007a6157fff100:   mov    %eax,-0x14000(%rsp)
+  0x00007a6157fff107:   push   %rbp
+  0x00007a6157fff108:   sub    $0x20,%rsp
+  0x00007a6157fff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007a6157fff114:   je     0x00007a6157fff11b
+  0x00007a6157fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007a6157fff11b:   movabs $0x7a61142afc90,%rsi         ;   {metadata(method data for {method} {0x0000000067490770} &apos;ceil&apos; &apos;(D)D&apos; in &apos;java/lang/Math&apos;)}
+  0x00007a6157fff125:   mov    0x90(%rsi),%edi
+  0x00007a6157fff12b:   add    $0x2,%edi
+  0x00007a6157fff12e:   mov    %edi,0x90(%rsi)
+  0x00007a6157fff134:   and    $0x7fe,%edi
+  0x00007a6157fff13a:   test   %edi,%edi
+  0x00007a6157fff13c:   je     0x00007a6157fff174           ;*dload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::ceil@0 (line 503)
+  0x00007a6157fff142:   movabs $0x7a61142afc90,%rsi         ;   {metadata(method data for {method} {0x0000000067490770} &apos;ceil&apos; &apos;(D)D&apos; in &apos;java/lang/Math&apos;)}
+  0x00007a6157fff14c:   addq   $0x1,0xd8(%rsi)
+  0x00007a6157fff154:   data16 xchg %ax,%ax
+  0x00007a6157fff157:   call   0x00007a615f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic ceil {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::ceil@1 (line 503)
+                                                            ;   {static_call}
+  0x00007a6157fff15c:   nopl   0x154(%rax,%rax,1)           ;*invokestatic ceil {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::ceil@1 (line 503)
+                                                            ;   {post_call_nop}
+  0x00007a6157fff164:   add    $0x20,%rsp
+  0x00007a6157fff168:   pop    %rbp
+  0x00007a6157fff169:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007a6157fff16d:   ja     0x00007a6157fff192
+  0x00007a6157fff173:   ret    
+  0x00007a6157fff174:   movabs $0x67490770,%r10             ;   {metadata({method} {0x0000000067490770} &apos;ceil&apos; &apos;(D)D&apos; in &apos;java/lang/Math&apos;)}
+  0x00007a6157fff17e:   mov    %r10,0x8(%rsp)
+  0x00007a6157fff183:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007a6157fff18b:   call   0x00007a615f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Math::ceil@-1 (line 503)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007a6157fff190:   jmp    0x00007a6157fff142
+  0x00007a6157fff192:   movabs $0x7a6157fff169,%r10         ;   {internal_word}
+  0x00007a6157fff19c:   mov    %r10,0x510(%r15)
+  0x00007a6157fff1a3:   jmp    0x00007a615f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007a6157fff1a8:   mov    0x5c0(%r15),%rax
+  0x00007a6157fff1af:   movq   $0x0,0x5c0(%r15)
+  0x00007a6157fff1ba:   movq   $0x0,0x5c8(%r15)
+  0x00007a6157fff1c5:   add    $0x20,%rsp
+  0x00007a6157fff1c9:   pop    %rbp
+  0x00007a6157fff1ca:   jmp    0x00007a615f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007a6157fff1cf:   hlt    
+[Stub Code]
+  0x00007a6157fff1d0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007a6157fff1da:   jmp    0x00007a6157fff1da           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007a6157fff1df:   call   0x00007a615f57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007a6157fff1e4:   movabs $0x7a6178b3aec4,%rdi         ;   {external_word}
+  0x00007a6157fff1ee:   and    $0xfffffffffffffff0,%rsp
+  0x00007a6157fff1f2:   call   0x00007a6178591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007a6157fff1f7:   hlt    
+  0x00007a6157fff1f8:   call   0x00007a615f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007a6157fff1fd:   jmp    0x00007a6157fff1f8
+  0x00007a6157fff1ff:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

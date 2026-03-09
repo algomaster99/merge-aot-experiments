@@ -1,0 +1,234 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 7351  335       4       jdk.internal.util.ArraysSupport::vectorizedHashCode (158 bytes)
+ total in heap  [0x000077b45fbb3d88,0x000077b45fbb40a0] = 792
+ main code      [0x000077b45fbb3e80,0x000077b45fbb4098] = 536
+ stub code      [0x000077b45fbb4098,0x000077b45fbb40a0] = 8
+ mutable data [0x000077b40807ebb0,0x000077b40807ebf8] = 72
+ relocation     [0x000077b40807ebb0,0x000077b40807ebd8] = 40
+ metadata       [0x000077b40807ebd8,0x000077b40807ebf8] = 32
+ immutable data [0x000077b40809a1c0,0x000077b40809a454] = 660
+ dependencies   [0x000077b40809a1c0,0x000077b40809a1c8] = 8
+ nul chk table  [0x000077b40809a1c8,0x000077b40809a1d8] = 16
+ scopes pcs     [0x000077b40809a1d8,0x000077b40809a398] = 448
+ scopes data    [0x000077b40809a398,0x000077b40809a450] = 184
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004648e460} &apos;vectorizedHashCode&apos; &apos;(Ljava/lang/Object;IIII)I&apos; in &apos;jdk/internal/util/ArraysSupport&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  # parm3:    r8        = int
+  # parm4:    r9        = int
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45fbb3e80:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb3e87:   push   %rbp
+  0x000077b45fbb3e88:   sub    $0x30,%rsp
+  0x000077b45fbb3e8c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb3e94:   jne    0x000077b45fbb408a           ;*synchronization entry
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@-1 (line 364)
+  0x000077b45fbb3e9a:   cmp    $0x4,%r9d
+  0x000077b45fbb3e9e:   jne    0x000077b45fbb3fe8           ;*tableswitch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@2 (line 364)
+  0x000077b45fbb3ea4:   mov    0x8(%rsi),%r11d              ; implicit exception: dispatches to 0x000077b45fbb4058
+  0x000077b45fbb3ea8:   cmp    $0x175de8,%r11d              ;   {metadata({type array byte})}
+  0x000077b45fbb3eaf:   jne    0x000077b45fbb4034
+  0x000077b45fbb3eb5:   lea    (%rdx,%rcx,1),%r14d
+  0x000077b45fbb3eb9:   cmp    %r14d,%edx
+  0x000077b45fbb3ebc:   jge    0x000077b45fbb3fe3           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@46 (line 365)
+  0x000077b45fbb3ec2:   mov    0xc(%rsi),%r11d              ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@22 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3ec6:   cmp    %r11d,%edx
+  0x000077b45fbb3ec9:   jae    0x000077b45fbb4010
+  0x000077b45fbb3ecf:   movslq %r14d,%rcx
+  0x000077b45fbb3ed2:   movslq %r11d,%r10
+  0x000077b45fbb3ed5:   lea    -0x1(%rcx),%r11
+  0x000077b45fbb3ed9:   cmp    %r10,%r11
+  0x000077b45fbb3edc:   jae    0x000077b45fbb4010
+  0x000077b45fbb3ee2:   lea    0x1(%rdx),%r11d              ;*bipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@15 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3ee6:   movzbl 0x10(%rsi,%rdx,1),%r9d
+  0x000077b45fbb3eec:   mov    %r8d,%ebp
+  0x000077b45fbb3eef:   shl    $0x5,%ebp
+  0x000077b45fbb3ef2:   sub    %r8d,%ebp
+  0x000077b45fbb3ef5:   add    %r9d,%ebp                    ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@26 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3ef8:   inc    %edx                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@28 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3efa:   cmp    %r11d,%edx
+  0x000077b45fbb3efd:   jge    0x000077b45fbb3f04           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3eff:   mov    %ebp,%r8d
+  0x000077b45fbb3f02:   jmp    0x000077b45fbb3ee6
+  0x000077b45fbb3f04:   add    $0xfffffffffffffffd,%rcx
+  0x000077b45fbb3f08:   mov    $0xffffffff80000000,%r10
+  0x000077b45fbb3f0f:   cmp    $0xffffffff80000000,%rcx
+  0x000077b45fbb3f16:   cmovl  %r10,%rcx
+  0x000077b45fbb3f1a:   mov    %ecx,%ebx
+  0x000077b45fbb3f1c:   cmp    %ebx,%edx
+  0x000077b45fbb3f1e:   jge    0x000077b45fbb3faf
+  0x000077b45fbb3f24:   mov    $0xfa0,%ecx                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@31 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3f29:   xor    %edi,%edi
+  0x000077b45fbb3f2b:   mov    %ebx,%r13d
+  0x000077b45fbb3f2e:   sub    %edx,%r13d
+  0x000077b45fbb3f31:   cmp    %edx,%ebx
+  0x000077b45fbb3f33:   cmovl  %edi,%r13d
+  0x000077b45fbb3f37:   cmp    $0xfa0,%r13d
+  0x000077b45fbb3f3e:   cmova  %ecx,%r13d
+  0x000077b45fbb3f42:   add    %edx,%r13d
+  0x000077b45fbb3f45:   data16 data16 nopw 0x0(%rax,%rax,1) ;*bipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@15 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3f50:   movzbl 0x10(%rsi,%rdx,1),%r10d
+  0x000077b45fbb3f56:   movslq %edx,%r8
+  0x000077b45fbb3f59:   movzbl 0x11(%rsi,%r8,1),%r11d
+  0x000077b45fbb3f5f:   movzbl 0x13(%rsi,%r8,1),%r9d
+  0x000077b45fbb3f65:   movzbl 0x12(%rsi,%r8,1),%r8d
+  0x000077b45fbb3f6b:   mov    %ebp,%eax
+  0x000077b45fbb3f6d:   shl    $0x5,%eax
+  0x000077b45fbb3f70:   sub    %ebp,%eax
+  0x000077b45fbb3f72:   add    %r10d,%eax
+  0x000077b45fbb3f75:   mov    %eax,%ebp
+  0x000077b45fbb3f77:   shl    $0x5,%ebp
+  0x000077b45fbb3f7a:   sub    %eax,%ebp
+  0x000077b45fbb3f7c:   add    %r11d,%ebp
+  0x000077b45fbb3f7f:   mov    %ebp,%r10d
+  0x000077b45fbb3f82:   shl    $0x5,%r10d
+  0x000077b45fbb3f86:   sub    %ebp,%r10d
+  0x000077b45fbb3f89:   add    %r8d,%r10d
+  0x000077b45fbb3f8c:   mov    %r10d,%ebp
+  0x000077b45fbb3f8f:   shl    $0x5,%ebp
+  0x000077b45fbb3f92:   sub    %r10d,%ebp
+  0x000077b45fbb3f95:   add    %r9d,%ebp                    ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@26 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3f98:   add    $0x4,%edx                    ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@28 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3f9b:   cmp    %r13d,%edx
+  0x000077b45fbb3f9e:   jl     0x000077b45fbb3f50           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fa0:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rsi=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ArraysSupport::unsignedHashCode@31 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fa4:   test   %eax,(%r10)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@31 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+                                                            ;   {poll}
+  0x000077b45fbb3fa7:   cmp    %ebx,%edx
+  0x000077b45fbb3fa9:   jl     0x000077b45fbb3f2b
+  0x000077b45fbb3faf:   cmp    %r14d,%edx
+  0x000077b45fbb3fb2:   jge    0x000077b45fbb3fdf           ;*bipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@15 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fb4:   movzbl 0x10(%rsi,%rdx,1),%r10d
+  0x000077b45fbb3fba:   mov    %ebp,%eax
+  0x000077b45fbb3fbc:   shl    $0x5,%eax
+  0x000077b45fbb3fbf:   sub    %ebp,%eax
+  0x000077b45fbb3fc1:   add    %r10d,%eax                   ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@26 (line 379)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fc4:   inc    %edx                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@28 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fc6:   cmp    %r14d,%edx
+  0x000077b45fbb3fc9:   jge    0x000077b45fbb3fcf
+  0x000077b45fbb3fcb:   mov    %eax,%ebp
+  0x000077b45fbb3fcd:   jmp    0x000077b45fbb3fb4           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+  0x000077b45fbb3fcf:   add    $0x30,%rsp
+  0x000077b45fbb3fd3:   pop    %rbp
+  0x000077b45fbb3fd4:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb3fd8:   ja     0x000077b45fbb4074
+  0x000077b45fbb3fde:   ret    
+  0x000077b45fbb3fdf:   mov    %ebp,%eax
+  0x000077b45fbb3fe1:   jmp    0x000077b45fbb3fcf
+  0x000077b45fbb3fe3:   mov    %r8d,%eax
+  0x000077b45fbb3fe6:   jmp    0x000077b45fbb3fcf
+  0x000077b45fbb3fe8:   mov    %rsi,%rbp
+  0x000077b45fbb3feb:   mov    %edx,(%rsp)
+  0x000077b45fbb3fee:   mov    %r8d,0x4(%rsp)
+  0x000077b45fbb3ff3:   mov    %ecx,0x8(%rsp)
+  0x000077b45fbb3ff7:   mov    %r9d,0x10(%rsp)
+  0x000077b45fbb3ffc:   mov    $0xffffff45,%esi
+  0x000077b45fbb4001:   xchg   %ax,%ax
+  0x000077b45fbb4003:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*tableswitch {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ArraysSupport::vectorizedHashCode@2 (line 364)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbb4008:   nopl   0x1000280(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+                                                            ;   {post_call_nop}
+  0x000077b45fbb4010:   mov    %r8d,%ebp
+  0x000077b45fbb4013:   mov    %rsi,(%rsp)
+  0x000077b45fbb4017:   mov    %edx,0x10(%rsp)
+  0x000077b45fbb401b:   mov    %r14d,0x14(%rsp)
+  0x000077b45fbb4020:   mov    $0xffffff6e,%esi
+  0x000077b45fbb4025:   xchg   %ax,%ax
+  0x000077b45fbb4027:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop }
+                                                            ;*if_icmpge {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbb402c:   nopl   0x20002a4(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+                                                            ;   {post_call_nop}
+  0x000077b45fbb4034:   mov    %edx,%ebp
+  0x000077b45fbb4036:   mov    %r8d,(%rsp)
+  0x000077b45fbb403a:   mov    %rsi,0x8(%rsp)
+  0x000077b45fbb403f:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbb4043:   mov    $0xffffffde,%esi
+  0x000077b45fbb4048:   data16 xchg %ax,%ax
+  0x000077b45fbb404b:   call   0x000077b45f5865e0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@46 (line 365)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbb4050:   nopl   0x30002c8(%rax,%rax,1)       ;   {post_call_nop}
+  0x000077b45fbb4058:   mov    $0xfffffff4,%esi
+  0x000077b45fbb405d:   mov    %edx,%ebp
+  0x000077b45fbb405f:   mov    %r8d,(%rsp)
+  0x000077b45fbb4063:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbb4067:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@46 (line 365)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbb406c:   nopl   0x40002e4(%rax,%rax,1)       ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::unsignedHashCode@12 (line 378)
+                                                            ; - jdk.internal.util.ArraysSupport::vectorizedHashCode@51 (line 365)
+                                                            ;   {post_call_nop}
+  0x000077b45fbb4074:   movabs $0x77b45fbb3fd4,%r10         ;   {internal_word}
+  0x000077b45fbb407e:   mov    %r10,0x510(%r15)
+  0x000077b45fbb4085:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb408a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb408f:   jmp    0x000077b45fbb3e9a
+  0x000077b45fbb4094:   hlt    
+  0x000077b45fbb4095:   hlt    
+  0x000077b45fbb4096:   hlt    
+  0x000077b45fbb4097:   hlt    
+[Stub Code]
+  0x000077b45fbb4098:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb409d:   jmp    0x000077b45fbb4098
+  0x000077b45fbb409f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

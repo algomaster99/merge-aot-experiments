@@ -1,0 +1,738 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 731   52       3       java.util.Collections::unmodifiableList (51 bytes)
+ total in heap  [0x00007c7157fff008,0x00007c7157fffb50] = 2888
+ main code      [0x00007c7157fff100,0x00007c7157fffb10] = 2576
+ stub code      [0x00007c7157fffb10,0x00007c7157fffb50] = 64
+ mutable data [0x00007c70f8045480,0x00007c70f8045588] = 264
+ relocation     [0x00007c70f8045480,0x00007c70f8045560] = 224
+ metadata       [0x00007c70f8045560,0x00007c70f8045588] = 40
+ immutable data [0x00007c70f8044f70,0x00007c70f804546c] = 1276
+ dependencies   [0x00007c70f8044f70,0x00007c70f8044f80] = 16
+ nul chk table  [0x00007c70f8044f80,0x00007c70f8044f90] = 16
+ scopes pcs     [0x00007c70f8044f90,0x00007c70f80452a0] = 784
+ scopes data    [0x00007c70f80452a0,0x00007c70f8045468] = 456
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;
+  # parm0:    rsi:rsi   = &apos;java/util/List&apos;
+  #           [sp+0xb0]  (sp of caller)
+  0x00007c7157fff100:   mov    %eax,-0x14000(%rsp)
+  0x00007c7157fff107:   push   %rbp
+  0x00007c7157fff108:   sub    $0xa0,%rsp
+  0x00007c7157fff10f:   nop
+  0x00007c7157fff110:   cmpl   $0x1,0x20(%r15)
+  0x00007c7157fff118:   je     0x00007c7157fff11f
+  0x00007c7157fff11a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007c7157fff11f:   mov    %rsi,0x70(%rsp)
+  0x00007c7157fff124:   movabs $0x7c71103168e8,%rdi         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff12e:   mov    0x90(%rdi),%ebx
+  0x00007c7157fff134:   add    $0x2,%ebx
+  0x00007c7157fff137:   mov    %ebx,0x90(%rdi)
+  0x00007c7157fff13d:   and    $0x7fe,%ebx
+  0x00007c7157fff143:   test   %ebx,%ebx
+  0x00007c7157fff145:   je     0x00007c7157fff8b9           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@0 (line 1478)
+  0x00007c7157fff14b:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007c7157fff8da
+  0x00007c7157fff14e:   mov    %rsi,%rdi
+  0x00007c7157fff151:   movabs $0x7c71103168e8,%rbx         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff15b:   mov    0x8(%rdi),%edi
+  0x00007c7157fff15e:   mov    $0x17000000,%r10d
+  0x00007c7157fff164:   add    %r10,%rdi
+  0x00007c7157fff167:   mov    $0x1c,%r10d
+  0x00007c7157fff16d:   cmp    (%rbx,%r10,8),%rdi
+  0x00007c7157fff171:   je     0x00007c7157fff1aa
+  0x00007c7157fff173:   add    $0x2,%r10
+  0x00007c7157fff177:   cmp    $0x20,%r10
+  0x00007c7157fff17b:   jne    0x00007c7157fff16d
+  0x00007c7157fff17d:   mov    $0x1c,%r10d
+  0x00007c7157fff183:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007c7157fff188:   je     0x00007c7157fff196
+  0x00007c7157fff18a:   add    $0x2,%r10
+  0x00007c7157fff18e:   cmp    $0x20,%r10
+  0x00007c7157fff192:   jne    0x00007c7157fff183
+  0x00007c7157fff194:   jmp    0x00007c7157fff1a2
+  0x00007c7157fff196:   push   %rax
+  0x00007c7157fff197:   xor    %rax,%rax
+  0x00007c7157fff19a:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007c7157fff19f:   pop    %rax
+  0x00007c7157fff1a0:   jmp    0x00007c7157fff167
+  0x00007c7157fff1a2:   mov    $0x1b,%r10d
+  0x00007c7157fff1a8:   jmp    0x00007c7157fff1ae
+  0x00007c7157fff1aa:   add    $0x1,%r10
+  0x00007c7157fff1ae:   addq   $0x1,(%rbx,%r10,8)
+  0x00007c7157fff1b3:   mov    %rsi,%rdi
+  0x00007c7157fff1b6:   mov    %rdi,%rsi                    ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@1 (line 1478)
+  0x00007c7157fff1b9:   nopw   0x0(%rax,%rax,1)
+  0x00007c7157fff1bf:   call   0x00007c715f4ad9e0           ; ImmutableOopMap {[112]=Oop }
+                                                            ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@1 (line 1478)
+                                                            ;   {optimized virtual_call}
+  0x00007c7157fff1c4:   nopl   0x1bc(%rax,%rax,1)           ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@1 (line 1478)
+                                                            ;   {post_call_nop}
+  0x00007c7157fff1cc:   movabs $0x7ff883670,%r10            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff883670} = &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff1d6:   cmp    %r10,%rax
+  0x00007c7157fff1d9:   movabs $0x7c71103168e8,%rsi         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff1e3:   mov    $0x108,%edi
+  0x00007c7157fff1e8:   je     0x00007c7157fff1ef
+  0x00007c7157fff1ea:   mov    $0x118,%edi
+  0x00007c7157fff1ef:   mov    (%rsi,%rdi,1),%rbx
+  0x00007c7157fff1f3:   lea    0x1(%rbx),%rbx
+  0x00007c7157fff1f7:   mov    %rbx,(%rsi,%rdi,1)
+  0x00007c7157fff1fb:   je     0x00007c7157fff765           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@8 (line 1478)
+  0x00007c7157fff201:   mov    0x70(%rsp),%rsi
+  0x00007c7157fff206:   movabs $0x7c71103168e8,%rdi         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff210:   mov    0x8(%rsi),%esi
+  0x00007c7157fff213:   mov    $0x17000000,%r10d
+  0x00007c7157fff219:   add    %r10,%rsi
+  0x00007c7157fff21c:   mov    $0x26,%r10d
+  0x00007c7157fff222:   cmp    (%rdi,%r10,8),%rsi
+  0x00007c7157fff226:   je     0x00007c7157fff25f
+  0x00007c7157fff228:   add    $0x2,%r10
+  0x00007c7157fff22c:   cmp    $0x2a,%r10
+  0x00007c7157fff230:   jne    0x00007c7157fff222
+  0x00007c7157fff232:   mov    $0x26,%r10d
+  0x00007c7157fff238:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007c7157fff23d:   je     0x00007c7157fff24b
+  0x00007c7157fff23f:   add    $0x2,%r10
+  0x00007c7157fff243:   cmp    $0x2a,%r10
+  0x00007c7157fff247:   jne    0x00007c7157fff238
+  0x00007c7157fff249:   jmp    0x00007c7157fff257
+  0x00007c7157fff24b:   push   %rax
+  0x00007c7157fff24c:   xor    %rax,%rax
+  0x00007c7157fff24f:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x00007c7157fff254:   pop    %rax
+  0x00007c7157fff255:   jmp    0x00007c7157fff21c
+  0x00007c7157fff257:   mov    $0x25,%r10d
+  0x00007c7157fff25d:   jmp    0x00007c7157fff263
+  0x00007c7157fff25f:   add    $0x1,%r10
+  0x00007c7157fff263:   addq   $0x1,(%rdi,%r10,8)
+  0x00007c7157fff268:   mov    0x70(%rsp),%rsi              ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@12 (line 1478)
+  0x00007c7157fff26d:   xchg   %ax,%ax
+  0x00007c7157fff26f:   call   0x00007c715f4ad9e0           ; ImmutableOopMap {[112]=Oop }
+                                                            ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@12 (line 1478)
+                                                            ;   {optimized virtual_call}
+  0x00007c7157fff274:   nopl   0x100026c(%rax,%rax,1)       ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@12 (line 1478)
+                                                            ;   {post_call_nop}
+  0x00007c7157fff27c:   movabs $0x7ff8836f0,%r10            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff8836f0} = &apos;java/util/Collections$UnmodifiableRandomAccessList&apos;)}
+  0x00007c7157fff286:   cmp    %r10,%rax
+  0x00007c7157fff289:   movabs $0x7c71103168e8,%rdx         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff293:   mov    $0x168,%esi
+  0x00007c7157fff298:   je     0x00007c7157fff29f
+  0x00007c7157fff29a:   mov    $0x158,%esi
+  0x00007c7157fff29f:   mov    (%rdx,%rsi,1),%rdi
+  0x00007c7157fff2a3:   lea    0x1(%rdi),%rdi
+  0x00007c7157fff2a7:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007c7157fff2ab:   je     0x00007c7157fff765           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@19 (line 1478)
+  0x00007c7157fff2b1:   mov    0x70(%rsp),%rsi
+  0x00007c7157fff2b6:   test   %rsi,%rsi
+  0x00007c7157fff2b9:   movabs $0x7c71103168e8,%rax         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff2c3:   jne    0x00007c7157fff2d1
+  0x00007c7157fff2c5:   orb    $0x1,0x171(%rax)
+  0x00007c7157fff2cc:   jmp    0x00007c7157fff36e
+  0x00007c7157fff2d1:   mov    0x8(%rsi),%ecx
+  0x00007c7157fff2d4:   mov    $0x17000000,%r10d
+  0x00007c7157fff2da:   add    %r10,%rcx
+  0x00007c7157fff2dd:   mov    $0x30,%r10d
+  0x00007c7157fff2e3:   cmp    (%rax,%r10,8),%rcx
+  0x00007c7157fff2e7:   je     0x00007c7157fff326
+  0x00007c7157fff2e9:   add    $0x2,%r10
+  0x00007c7157fff2ed:   cmp    $0x34,%r10
+  0x00007c7157fff2f1:   jne    0x00007c7157fff2e3
+  0x00007c7157fff2f3:   mov    $0x30,%r10d
+  0x00007c7157fff2f9:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007c7157fff2fe:   je     0x00007c7157fff30c
+  0x00007c7157fff300:   add    $0x2,%r10
+  0x00007c7157fff304:   cmp    $0x34,%r10
+  0x00007c7157fff308:   jne    0x00007c7157fff2f9
+  0x00007c7157fff30a:   jmp    0x00007c7157fff31e
+  0x00007c7157fff30c:   push   %rbx
+  0x00007c7157fff30d:   mov    %rax,%rbx
+  0x00007c7157fff310:   xor    %rax,%rax
+  0x00007c7157fff313:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x00007c7157fff318:   mov    %rbx,%rax
+  0x00007c7157fff31b:   pop    %rbx
+  0x00007c7157fff31c:   jmp    0x00007c7157fff2dd
+  0x00007c7157fff31e:   mov    $0x2f,%r10d
+  0x00007c7157fff324:   jmp    0x00007c7157fff32a
+  0x00007c7157fff326:   add    $0x1,%r10
+  0x00007c7157fff32a:   addq   $0x1,(%rax,%r10,8)
+  0x00007c7157fff32f:   movabs $0x1721b738,%rcx             ;   {metadata(&apos;java/util/RandomAccess&apos;)}
+  0x00007c7157fff339:   mov    0x8(%rsi),%eax
+  0x00007c7157fff33c:   mov    $0x17000000,%r10d
+  0x00007c7157fff342:   add    %r10,%rax
+  0x00007c7157fff345:   cmp    0x20(%rax),%rcx
+  0x00007c7157fff349:   je     0x00007c7157fff373
+  0x00007c7157fff34f:   cmp    %rcx,%rax
+  0x00007c7157fff352:   je     0x00007c7157fff373
+  0x00007c7157fff358:   push   %rax
+  0x00007c7157fff359:   push   %rcx
+  0x00007c7157fff35a:   call   0x00007c715f57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x00007c7157fff35f:   pop    %rax
+  0x00007c7157fff360:   pop    %rax
+  0x00007c7157fff361:   test   %eax,%eax
+  0x00007c7157fff363:   je     0x00007c7157fff36e
+  0x00007c7157fff369:   jmp    0x00007c7157fff373
+  0x00007c7157fff36e:   xor    %rdx,%rdx
+  0x00007c7157fff371:   jmp    0x00007c7157fff378
+  0x00007c7157fff373:   mov    $0x1,%edx                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@25 (line 1482)
+  0x00007c7157fff378:   test   %edx,%edx
+  0x00007c7157fff37a:   movabs $0x7c71103168e8,%rdx         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff384:   mov    $0x1a8,%edi
+  0x00007c7157fff389:   je     0x00007c7157fff390
+  0x00007c7157fff38b:   mov    $0x1b8,%edi
+  0x00007c7157fff390:   mov    (%rdx,%rdi,1),%rax
+  0x00007c7157fff394:   lea    0x1(%rax),%rax
+  0x00007c7157fff398:   mov    %rax,(%rdx,%rdi,1)
+  0x00007c7157fff39c:   je     0x00007c7157fff589           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@28 (line 1482)
+  0x00007c7157fff3a2:   movabs $0x172ecce0,%rdx             ;   {metadata(&apos;java/util/Collections$UnmodifiableRandomAccessList&apos;)}
+  0x00007c7157fff3ac:   mov    %rsi,%rbx
+  0x00007c7157fff3af:   mov    0x1b0(%r15),%rax
+  0x00007c7157fff3b6:   lea    0x18(%rax),%rdi
+  0x00007c7157fff3ba:   cmp    0x1c0(%r15),%rdi
+  0x00007c7157fff3c1:   ja     0x00007c7157fff8df
+  0x00007c7157fff3c7:   mov    %rdi,0x1b0(%r15)
+  0x00007c7157fff3ce:   movq   $0x1,(%rax)
+  0x00007c7157fff3d5:   mov    %rdx,%rcx
+  0x00007c7157fff3d8:   mov    $0x17000000,%r10d
+  0x00007c7157fff3de:   sub    %r10,%rcx
+  0x00007c7157fff3e1:   mov    %ecx,0x8(%rax)
+  0x00007c7157fff3e4:   xor    %rcx,%rcx
+  0x00007c7157fff3e7:   mov    %ecx,0xc(%rax)
+  0x00007c7157fff3ea:   xor    %rcx,%rcx
+  0x00007c7157fff3ed:   mov    %rcx,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@31 (line 1483)
+  0x00007c7157fff3f1:   mov    %rax,%rdx
+  0x00007c7157fff3f4:   movabs $0x7c71103168e8,%rsi         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff3fe:   addq   $0x1,0x1c8(%rsi)
+  0x00007c7157fff406:   movabs $0x7c7110316b28,%rdx         ;   {metadata(method data for {method} {0x00000000172ed380} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableRandomAccessList&apos;)}
+  0x00007c7157fff410:   mov    0x90(%rdx),%esi
+  0x00007c7157fff416:   add    $0x2,%esi
+  0x00007c7157fff419:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff41f:   and    $0x1ffffe,%esi
+  0x00007c7157fff425:   test   %esi,%esi
+  0x00007c7157fff427:   je     0x00007c7157fff8ec
+  0x00007c7157fff42d:   mov    %rax,%rdx
+  0x00007c7157fff430:   movabs $0x7c7110316b28,%rsi         ;   {metadata(method data for {method} {0x00000000172ed380} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableRandomAccessList&apos;)}
+  0x00007c7157fff43a:   addq   $0x1,0xd8(%rsi)
+  0x00007c7157fff442:   movabs $0x7c7110316c38,%rdx         ;   {metadata(method data for {method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff44c:   mov    0x90(%rdx),%esi
+  0x00007c7157fff452:   add    $0x2,%esi
+  0x00007c7157fff455:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff45b:   and    $0x1ffffe,%esi
+  0x00007c7157fff461:   test   %esi,%esi
+  0x00007c7157fff463:   je     0x00007c7157fff90d
+  0x00007c7157fff469:   mov    %rax,%rdx
+  0x00007c7157fff46c:   movabs $0x7c7110316c38,%rsi         ;   {metadata(method data for {method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff476:   addq   $0x1,0xd8(%rsi)
+  0x00007c7157fff47e:   movabs $0x7c7110316d58,%rdx         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff488:   mov    0x90(%rdx),%esi
+  0x00007c7157fff48e:   add    $0x2,%esi
+  0x00007c7157fff491:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff497:   and    $0x1ffffe,%esi
+  0x00007c7157fff49d:   test   %esi,%esi
+  0x00007c7157fff49f:   je     0x00007c7157fff92e
+  0x00007c7157fff4a5:   mov    %rax,%rdx
+  0x00007c7157fff4a8:   movabs $0x7c7110316d58,%rsi         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff4b2:   addq   $0x1,0xd8(%rsi)
+  0x00007c7157fff4ba:   movabs $0x7c71103166f0,%rdx         ;   {metadata(method data for {method} {0x00000000174a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007c7157fff4c4:   mov    0x90(%rdx),%esi
+  0x00007c7157fff4ca:   add    $0x2,%esi
+  0x00007c7157fff4cd:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff4d3:   and    $0x1ffffe,%esi
+  0x00007c7157fff4d9:   test   %esi,%esi
+  0x00007c7157fff4db:   je     0x00007c7157fff94f
+  0x00007c7157fff4e1:   test   %rbx,%rbx
+  0x00007c7157fff4e4:   movabs $0x7c7110316d58,%rdx         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff4ee:   mov    $0xf8,%esi
+  0x00007c7157fff4f3:   je     0x00007c7157fff4fa
+  0x00007c7157fff4f5:   mov    $0xe8,%esi
+  0x00007c7157fff4fa:   mov    (%rdx,%rsi,1),%rdi
+  0x00007c7157fff4fe:   lea    0x1(%rdi),%rdi
+  0x00007c7157fff502:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007c7157fff506:   je     0x00007c7157fff816           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@5 (line 1064)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff50c:   movsbl 0x48(%r15),%edx
+  0x00007c7157fff511:   test   %edx,%edx
+  0x00007c7157fff513:   jne    0x00007c7157fff970
+  0x00007c7157fff519:   mov    %rbx,%r10
+  0x00007c7157fff51c:   shr    $0x3,%r10
+  0x00007c7157fff520:   mov    %r10d,0xc(%rax)
+  0x00007c7157fff524:   mov    %rax,%rsi
+  0x00007c7157fff527:   xor    %rbx,%rsi
+  0x00007c7157fff52a:   shr    $0x17,%rsi
+  0x00007c7157fff52e:   je     0x00007c7157fff548
+  0x00007c7157fff530:   test   %rbx,%rbx
+  0x00007c7157fff533:   je     0x00007c7157fff548
+  0x00007c7157fff535:   mov    %rax,%rsi
+  0x00007c7157fff538:   shr    $0x9,%rsi
+  0x00007c7157fff53c:   add    0x50(%r15),%rsi
+  0x00007c7157fff540:   cmpb   $0xff,(%rsi)
+  0x00007c7157fff543:   jne    0x00007c7157fff548
+  0x00007c7157fff545:   movb   $0x0,(%rsi)                  ;*putfield c {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@18 (line 1066)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff548:   movsbl 0x48(%r15),%edx
+  0x00007c7157fff54d:   test   %edx,%edx
+  0x00007c7157fff54f:   jne    0x00007c7157fff98e
+  0x00007c7157fff555:   mov    %rbx,%r10
+  0x00007c7157fff558:   shr    $0x3,%r10
+  0x00007c7157fff55c:   mov    %r10d,0x10(%rax)
+  0x00007c7157fff560:   mov    %rax,%rsi
+  0x00007c7157fff563:   xor    %rbx,%rsi
+  0x00007c7157fff566:   shr    $0x17,%rsi
+  0x00007c7157fff56a:   je     0x00007c7157fff584
+  0x00007c7157fff56c:   test   %rbx,%rbx
+  0x00007c7157fff56f:   je     0x00007c7157fff584
+  0x00007c7157fff571:   mov    %rax,%rsi
+  0x00007c7157fff574:   shr    $0x9,%rsi
+  0x00007c7157fff578:   add    0x50(%r15),%rsi
+  0x00007c7157fff57c:   cmpb   $0xff,(%rsi)
+  0x00007c7157fff57f:   jne    0x00007c7157fff584
+  0x00007c7157fff581:   movb   $0x0,(%rsi)                  ;*putfield list {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@7 (line 1501)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff584:   jmp    0x00007c7157fff742           ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@5 (line 1595)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff589:   mov    %rsi,%rbx
+  0x00007c7157fff58c:   movabs $0x172ec110,%rdx             ;   {metadata(&apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff596:   mov    0x1b0(%r15),%rax
+  0x00007c7157fff59d:   lea    0x18(%rax),%rdi
+  0x00007c7157fff5a1:   cmp    0x1c0(%r15),%rdi
+  0x00007c7157fff5a8:   ja     0x00007c7157fff9ac
+  0x00007c7157fff5ae:   mov    %rdi,0x1b0(%r15)
+  0x00007c7157fff5b5:   movq   $0x1,(%rax)
+  0x00007c7157fff5bc:   mov    %rdx,%rcx
+  0x00007c7157fff5bf:   mov    $0x17000000,%r10d
+  0x00007c7157fff5c5:   sub    %r10,%rcx
+  0x00007c7157fff5c8:   mov    %ecx,0x8(%rax)
+  0x00007c7157fff5cb:   xor    %rcx,%rcx
+  0x00007c7157fff5ce:   mov    %ecx,0xc(%rax)
+  0x00007c7157fff5d1:   xor    %rcx,%rcx
+  0x00007c7157fff5d4:   mov    %rcx,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@42 (line 1484)
+  0x00007c7157fff5d8:   mov    %rax,%rdx
+  0x00007c7157fff5db:   movabs $0x7c71103168e8,%rsi         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff5e5:   addq   $0x1,0x1f0(%rsi)
+  0x00007c7157fff5ed:   movabs $0x7c7110316c38,%rdx         ;   {metadata(method data for {method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff5f7:   mov    0x90(%rdx),%esi
+  0x00007c7157fff5fd:   add    $0x2,%esi
+  0x00007c7157fff600:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff606:   and    $0x1ffffe,%esi
+  0x00007c7157fff60c:   test   %esi,%esi
+  0x00007c7157fff60e:   je     0x00007c7157fff9b9
+  0x00007c7157fff614:   mov    %rax,%rdx
+  0x00007c7157fff617:   movabs $0x7c7110316c38,%rsi         ;   {metadata(method data for {method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff621:   addq   $0x1,0xd8(%rsi)
+  0x00007c7157fff629:   movabs $0x7c7110316d58,%rdx         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff633:   mov    0x90(%rdx),%esi
+  0x00007c7157fff639:   add    $0x2,%esi
+  0x00007c7157fff63c:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff642:   and    $0x1ffffe,%esi
+  0x00007c7157fff648:   test   %esi,%esi
+  0x00007c7157fff64a:   je     0x00007c7157fff9da
+  0x00007c7157fff650:   mov    %rax,%rdx
+  0x00007c7157fff653:   movabs $0x7c7110316d58,%rsi         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff65d:   addq   $0x1,0xd8(%rsi)
+  0x00007c7157fff665:   movabs $0x7c71103166f0,%rdx         ;   {metadata(method data for {method} {0x00000000174a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007c7157fff66f:   mov    0x90(%rdx),%esi
+  0x00007c7157fff675:   add    $0x2,%esi
+  0x00007c7157fff678:   mov    %esi,0x90(%rdx)
+  0x00007c7157fff67e:   and    $0x1ffffe,%esi
+  0x00007c7157fff684:   test   %esi,%esi
+  0x00007c7157fff686:   je     0x00007c7157fff9fb
+  0x00007c7157fff68c:   test   %rbx,%rbx
+  0x00007c7157fff68f:   movabs $0x7c7110316d58,%rdx         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff699:   mov    $0xf8,%esi
+  0x00007c7157fff69e:   je     0x00007c7157fff6a5
+  0x00007c7157fff6a0:   mov    $0xe8,%esi
+  0x00007c7157fff6a5:   mov    (%rdx,%rsi,1),%rdi
+  0x00007c7157fff6a9:   lea    0x1(%rdi),%rdi
+  0x00007c7157fff6ad:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007c7157fff6b1:   je     0x00007c7157fff780           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@5 (line 1064)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff6b7:   movsbl 0x48(%r15),%edx
+  0x00007c7157fff6bc:   test   %edx,%edx
+  0x00007c7157fff6be:   jne    0x00007c7157fffa1c
+  0x00007c7157fff6c4:   mov    %rbx,%r10
+  0x00007c7157fff6c7:   shr    $0x3,%r10
+  0x00007c7157fff6cb:   mov    %r10d,0xc(%rax)
+  0x00007c7157fff6cf:   mov    %rax,%rsi
+  0x00007c7157fff6d2:   xor    %rbx,%rsi
+  0x00007c7157fff6d5:   shr    $0x17,%rsi
+  0x00007c7157fff6d9:   je     0x00007c7157fff6f3
+  0x00007c7157fff6db:   test   %rbx,%rbx
+  0x00007c7157fff6de:   je     0x00007c7157fff6f3
+  0x00007c7157fff6e0:   mov    %rax,%rsi
+  0x00007c7157fff6e3:   shr    $0x9,%rsi
+  0x00007c7157fff6e7:   add    0x50(%r15),%rsi
+  0x00007c7157fff6eb:   cmpb   $0xff,(%rsi)
+  0x00007c7157fff6ee:   jne    0x00007c7157fff6f3
+  0x00007c7157fff6f0:   movb   $0x0,(%rsi)                  ;*putfield c {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@18 (line 1066)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff6f3:   movsbl 0x48(%r15),%edx
+  0x00007c7157fff6f8:   test   %edx,%edx
+  0x00007c7157fff6fa:   jne    0x00007c7157fffa3a
+  0x00007c7157fff700:   mov    %rbx,%r10
+  0x00007c7157fff703:   shr    $0x3,%r10
+  0x00007c7157fff707:   mov    %r10d,0x10(%rax)
+  0x00007c7157fff70b:   mov    %rax,%rsi
+  0x00007c7157fff70e:   xor    %rbx,%rsi
+  0x00007c7157fff711:   shr    $0x17,%rsi
+  0x00007c7157fff715:   je     0x00007c7157fff72f
+  0x00007c7157fff717:   test   %rbx,%rbx
+  0x00007c7157fff71a:   je     0x00007c7157fff72f
+  0x00007c7157fff71c:   mov    %rax,%rsi
+  0x00007c7157fff71f:   shr    $0x9,%rsi
+  0x00007c7157fff723:   add    0x50(%r15),%rsi
+  0x00007c7157fff727:   cmpb   $0xff,(%rsi)
+  0x00007c7157fff72a:   jne    0x00007c7157fff72f
+  0x00007c7157fff72c:   movb   $0x0,(%rsi)                  ;*putfield list {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@7 (line 1501)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff72f:   add    $0xa0,%rsp
+  0x00007c7157fff736:   pop    %rbp
+  0x00007c7157fff737:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c7157fff73b:   ja     0x00007c7157fffa58
+  0x00007c7157fff741:   ret    
+  0x00007c7157fff742:   movabs $0x7c71103168e8,%rdx         ;   {metadata(method data for {method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff74c:   incl   0x1d8(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@39 (line 1483)
+  0x00007c7157fff752:   add    $0xa0,%rsp
+  0x00007c7157fff759:   pop    %rbp
+  0x00007c7157fff75a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c7157fff75e:   ja     0x00007c7157fffa6e
+  0x00007c7157fff764:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@50 (line 1482)
+  0x00007c7157fff765:   mov    0x70(%rsp),%rbx
+  0x00007c7157fff76a:   mov    %rbx,%rax
+  0x00007c7157fff76d:   add    $0xa0,%rsp
+  0x00007c7157fff774:   pop    %rbp
+  0x00007c7157fff775:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c7157fff779:   ja     0x00007c7157fffa84
+  0x00007c7157fff77f:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@23 (line 1479)
+  0x00007c7157fff780:   mov    %rax,0x80(%rsp)
+  0x00007c7157fff788:   jmp    0x00007c7157fffaa9           ;   {other}
+  0x00007c7157fff78d:   add    %al,(%rax)
+  0x00007c7157fff78f:   add    %al,(%rax)
+  0x00007c7157fff791:   add    %cl,-0x75(%rcx)
+  0x00007c7157fff794:   xchg   %esi,0x48000001(%rax)
+  0x00007c7157fff79a:   lea    0x30(%rax),%edi
+  0x00007c7157fff79d:   cmp    0x1c0(%r15),%rdi
+  0x00007c7157fff7a4:   ja     0x00007c7157fffab3
+  0x00007c7157fff7aa:   mov    %rdi,0x1b0(%r15)
+  0x00007c7157fff7b1:   movq   $0x1,(%rax)
+  0x00007c7157fff7b8:   mov    %rdx,%rcx
+  0x00007c7157fff7bb:   mov    $0x17000000,%r10d
+  0x00007c7157fff7c1:   sub    %r10,%rcx
+  0x00007c7157fff7c4:   mov    %ecx,0x8(%rax)
+  0x00007c7157fff7c7:   xor    %rcx,%rcx
+  0x00007c7157fff7ca:   mov    %ecx,0xc(%rax)
+  0x00007c7157fff7cd:   xor    %rcx,%rcx
+  0x00007c7157fff7d0:   mov    %rcx,0x10(%rax)
+  0x00007c7157fff7d4:   mov    %rcx,0x18(%rax)
+  0x00007c7157fff7d8:   mov    %rcx,0x20(%rax)
+  0x00007c7157fff7dc:   mov    %rcx,0x28(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff7e0:   mov    %rax,%rsi
+  0x00007c7157fff7e3:   movabs $0x7c7110316d58,%rdi         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff7ed:   addq   $0x1,0x108(%rdi)
+  0x00007c7157fff7f5:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff7f8:   mov    %rax,0x78(%rsp)
+  0x00007c7157fff7fd:   xchg   %ax,%ax
+  0x00007c7157fff7ff:   call   0x00007c715f4ad9e0           ; ImmutableOopMap {[112]=Oop [120]=Oop [128]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {optimized virtual_call}
+  0x00007c7157fff804:   nopl   0x20007fc(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {post_call_nop}
+  0x00007c7157fff80c:   mov    0x78(%rsp),%rax
+  0x00007c7157fff811:   jmp    0x00007c7157fffb03           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@15 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+  0x00007c7157fff816:   mov    %rax,0x90(%rsp)
+  0x00007c7157fff81e:   xchg   %ax,%ax
+  0x00007c7157fff820:   jmp    0x00007c7157fffacf           ;   {other}
+  0x00007c7157fff825:   add    %al,(%rax)
+  0x00007c7157fff827:   add    %al,(%rax)
+  0x00007c7157fff829:   add    %cl,-0x75(%rcx)
+  0x00007c7157fff82c:   xchg   %esi,0x48000001(%rax)
+  0x00007c7157fff832:   lea    0x30(%rax),%edi
+  0x00007c7157fff835:   cmp    0x1c0(%r15),%rdi
+  0x00007c7157fff83c:   ja     0x00007c7157fffad9
+  0x00007c7157fff842:   mov    %rdi,0x1b0(%r15)
+  0x00007c7157fff849:   movq   $0x1,(%rax)
+  0x00007c7157fff850:   mov    %rdx,%rcx
+  0x00007c7157fff853:   mov    $0x17000000,%r10d
+  0x00007c7157fff859:   sub    %r10,%rcx
+  0x00007c7157fff85c:   mov    %ecx,0x8(%rax)
+  0x00007c7157fff85f:   xor    %rcx,%rcx
+  0x00007c7157fff862:   mov    %ecx,0xc(%rax)
+  0x00007c7157fff865:   xor    %rcx,%rcx
+  0x00007c7157fff868:   mov    %rcx,0x10(%rax)
+  0x00007c7157fff86c:   mov    %rcx,0x18(%rax)
+  0x00007c7157fff870:   mov    %rcx,0x20(%rax)
+  0x00007c7157fff874:   mov    %rcx,0x28(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff878:   mov    %rax,%rsi
+  0x00007c7157fff87b:   movabs $0x7c7110316d58,%rdi         ;   {metadata(method data for {method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff885:   addq   $0x1,0x108(%rdi)
+  0x00007c7157fff88d:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+  0x00007c7157fff890:   mov    %rax,0x88(%rsp)
+  0x00007c7157fff898:   nopl   0x0(%rax)
+  0x00007c7157fff89f:   call   0x00007c715f4ad9e0           ; ImmutableOopMap {[112]=Oop [136]=Oop [144]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {optimized virtual_call}
+  0x00007c7157fff8a4:   nopl   0x300089c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@12 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {post_call_nop}
+  0x00007c7157fff8ac:   mov    0x88(%rsp),%rax
+  0x00007c7157fff8b4:   jmp    0x00007c7157fffb03
+  0x00007c7157fff8b9:   movabs $0x1746c998,%r10             ;   {metadata({method} {0x000000001746c998} &apos;unmodifiableList&apos; &apos;(Ljava/util/List;)Ljava/util/List;&apos; in &apos;java/util/Collections&apos;)}
+  0x00007c7157fff8c3:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff8c8:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff8d0:   call   0x00007c715f583460           ; ImmutableOopMap {rsi=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections::unmodifiableList@-1 (line 1478)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff8d5:   jmp    0x00007c7157fff14b
+  0x00007c7157fff8da:   call   0x00007c715f57c660           ; ImmutableOopMap {rsi=Oop [112]=Oop }
+                                                            ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@1 (line 1478)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c7157fff8df:   mov    %rdx,%rdx
+  0x00007c7157fff8e2:   call   0x00007c715f57d3e0           ; ImmutableOopMap {rbx=Oop [112]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@31 (line 1483)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007c7157fff8e7:   jmp    0x00007c7157fff3f1
+  0x00007c7157fff8ec:   movabs $0x172ed380,%r10             ;   {metadata({method} {0x00000000172ed380} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableRandomAccessList&apos;)}
+  0x00007c7157fff8f6:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff8fb:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff903:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@-1 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff908:   jmp    0x00007c7157fff42d
+  0x00007c7157fff90d:   movabs $0x172ecc28,%r10             ;   {metadata({method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff917:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff91c:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff924:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@-1 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff929:   jmp    0x00007c7157fff469
+  0x00007c7157fff92e:   movabs $0x172ea050,%r10             ;   {metadata({method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff938:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff93d:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff945:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@-1 (line 1063)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff94a:   jmp    0x00007c7157fff4a5
+  0x00007c7157fff94f:   movabs $0x174a6d78,%r10             ;   {metadata({method} {0x00000000174a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007c7157fff959:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff95e:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff966:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@1 (line 1063)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff96b:   jmp    0x00007c7157fff4e1
+  0x00007c7157fff970:   mov    0xc(%rax),%edx
+  0x00007c7157fff973:   shl    $0x3,%rdx
+  0x00007c7157fff977:   test   %rdx,%rdx
+  0x00007c7157fff97a:   je     0x00007c7157fff519
+  0x00007c7157fff980:   mov    %rdx,(%rsp)
+  0x00007c7157fff984:   call   0x00007c715f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007c7157fff989:   jmp    0x00007c7157fff519
+  0x00007c7157fff98e:   mov    0x10(%rax),%edx
+  0x00007c7157fff991:   shl    $0x3,%rdx
+  0x00007c7157fff995:   test   %rdx,%rdx
+  0x00007c7157fff998:   je     0x00007c7157fff555
+  0x00007c7157fff99e:   mov    %rdx,(%rsp)
+  0x00007c7157fff9a2:   call   0x00007c715f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007c7157fff9a7:   jmp    0x00007c7157fff555
+  0x00007c7157fff9ac:   mov    %rdx,%rdx
+  0x00007c7157fff9af:   call   0x00007c715f57d3e0           ; ImmutableOopMap {rbx=Oop [112]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections::unmodifiableList@42 (line 1484)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007c7157fff9b4:   jmp    0x00007c7157fff5d8
+  0x00007c7157fff9b9:   movabs $0x172ecc28,%r10             ;   {metadata({method} {0x00000000172ecc28} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/List;)V&apos; in &apos;java/util/Collections$UnmodifiableList&apos;)}
+  0x00007c7157fff9c3:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff9c8:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff9d0:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@-1 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff9d5:   jmp    0x00007c7157fff614
+  0x00007c7157fff9da:   movabs $0x172ea050,%r10             ;   {metadata({method} {0x00000000172ea050} &apos;&lt;init&gt;&apos; &apos;(Ljava/util/Collection;)V&apos; in &apos;java/util/Collections$UnmodifiableCollection&apos;)}
+  0x00007c7157fff9e4:   mov    %r10,0x8(%rsp)
+  0x00007c7157fff9e9:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fff9f1:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@-1 (line 1063)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fff9f6:   jmp    0x00007c7157fff650
+  0x00007c7157fff9fb:   movabs $0x174a6d78,%r10             ;   {metadata({method} {0x00000000174a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007c7157fffa05:   mov    %r10,0x8(%rsp)
+  0x00007c7157fffa0a:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c7157fffa12:   call   0x00007c715f583460           ; ImmutableOopMap {rbx=Oop rax=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@1 (line 1063)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c7157fffa17:   jmp    0x00007c7157fff68c
+  0x00007c7157fffa1c:   mov    0xc(%rax),%edx
+  0x00007c7157fffa1f:   shl    $0x3,%rdx
+  0x00007c7157fffa23:   test   %rdx,%rdx
+  0x00007c7157fffa26:   je     0x00007c7157fff6c4
+  0x00007c7157fffa2c:   mov    %rdx,(%rsp)
+  0x00007c7157fffa30:   call   0x00007c715f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007c7157fffa35:   jmp    0x00007c7157fff6c4
+  0x00007c7157fffa3a:   mov    0x10(%rax),%edx
+  0x00007c7157fffa3d:   shl    $0x3,%rdx
+  0x00007c7157fffa41:   test   %rdx,%rdx
+  0x00007c7157fffa44:   je     0x00007c7157fff700
+  0x00007c7157fffa4a:   mov    %rdx,(%rsp)
+  0x00007c7157fffa4e:   call   0x00007c715f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007c7157fffa53:   jmp    0x00007c7157fff700
+  0x00007c7157fffa58:   movabs $0x7c7157fff737,%r10         ;   {internal_word}
+  0x00007c7157fffa62:   mov    %r10,0x510(%r15)
+  0x00007c7157fffa69:   jmp    0x00007c715f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007c7157fffa6e:   movabs $0x7c7157fff75a,%r10         ;   {internal_word}
+  0x00007c7157fffa78:   mov    %r10,0x510(%r15)
+  0x00007c7157fffa7f:   jmp    0x00007c715f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007c7157fffa84:   movabs $0x7c7157fff775,%r10         ;   {internal_word}
+  0x00007c7157fffa8e:   mov    %r10,0x510(%r15)
+  0x00007c7157fffa95:   jmp    0x00007c715f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007c7157fffa9a:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007c7157fffaa4:   mov    $0xa050f00,%eax
+  0x00007c7157fffaa9:   call   0x00007c715f5820e0           ; ImmutableOopMap {[112]=Oop [128]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007c7157fffaae:   jmp    0x00007c7157fff788
+  0x00007c7157fffab3:   mov    %rdx,%rdx
+  0x00007c7157fffab6:   call   0x00007c715f57d3e0           ; ImmutableOopMap {[112]=Oop [128]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections::unmodifiableList@47 (line 1484)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007c7157fffabb:   jmp    0x00007c7157fff7e0
+  0x00007c7157fffac0:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007c7157fffaca:   mov    $0xa050f00,%eax
+  0x00007c7157fffacf:   call   0x00007c715f5820e0           ; ImmutableOopMap {[112]=Oop [144]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007c7157fffad4:   jmp    0x00007c7157fff820
+  0x00007c7157fffad9:   mov    %rdx,%rdx
+  0x00007c7157fffadc:   call   0x00007c715f57d3e0           ; ImmutableOopMap {[112]=Oop [144]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$UnmodifiableCollection::&lt;init&gt;@8 (line 1065)
+                                                            ; - java.util.Collections$UnmodifiableList::&lt;init&gt;@2 (line 1500)
+                                                            ; - java.util.Collections$UnmodifiableRandomAccessList::&lt;init&gt;@2 (line 1594)
+                                                            ; - java.util.Collections::unmodifiableList@36 (line 1483)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007c7157fffae1:   jmp    0x00007c7157fff878
+  0x00007c7157fffae6:   mov    0x5c0(%r15),%rax
+  0x00007c7157fffaed:   movq   $0x0,0x5c0(%r15)
+  0x00007c7157fffaf8:   movq   $0x0,0x5c8(%r15)
+  0x00007c7157fffb03:   add    $0xa0,%rsp
+  0x00007c7157fffb0a:   pop    %rbp
+  0x00007c7157fffb0b:   jmp    0x00007c715f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x00007c7157fffb10:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007c7157fffb1a:   jmp    0x00007c7157fffb1a           ;   {runtime_call nmethod}
+  0x00007c7157fffb1f:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007c7157fffb29:   jmp    0x00007c7157fffb29           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007c7157fffb2e:   call   0x00007c715f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007c7157fffb33:   movabs $0x7c717693aec4,%rdi         ;   {external_word}
+  0x00007c7157fffb3d:   and    $0xfffffffffffffff0,%rsp
+  0x00007c7157fffb41:   call   0x00007c7176391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007c7157fffb46:   hlt    
+  0x00007c7157fffb47:   call   0x00007c715f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007c7157fffb4c:   jmp    0x00007c7157fffb47
+  0x00007c7157fffb4e:   hlt    
+  0x00007c7157fffb4f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

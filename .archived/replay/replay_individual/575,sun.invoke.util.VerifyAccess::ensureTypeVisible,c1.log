@@ -1,0 +1,596 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 373   29   !   3       sun.invoke.util.VerifyAccess::ensureTypeVisible (99 bytes)
+ total in heap  [0x000078837ffff008,0x000078837ffff980] = 2424
+ main code      [0x000078837ffff100,0x000078837ffff930] = 2096
+ stub code      [0x000078837ffff930,0x000078837ffff980] = 80
+ mutable data [0x000078832801d460,0x000078832801d558] = 248
+ relocation     [0x000078832801d460,0x000078832801d520] = 192
+ metadata       [0x000078832801d520,0x000078832801d558] = 56
+ immutable data [0x000078832801cf00,0x000078832801d44c] = 1356
+ dependencies   [0x000078832801cf00,0x000078832801cf10] = 16
+ nul chk table  [0x000078832801cf10,0x000078832801cf28] = 24
+ handler table  [0x000078832801cf28,0x000078832801cf58] = 48
+ scopes pcs     [0x000078832801cf58,0x000078832801d278] = 800
+ scopes data    [0x000078832801d278,0x000078832801d448] = 464
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Class&apos;
+  # parm1:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x70]  (sp of caller)
+  0x000078837ffff100:   mov    %eax,-0x14000(%rsp)
+  0x000078837ffff107:   push   %rbp
+  0x000078837ffff108:   sub    $0x60,%rsp
+  0x000078837ffff10c:   cmpl   $0x1,0x20(%r15)
+  0x000078837ffff114:   je     0x000078837ffff11b
+  0x000078837ffff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000078837ffff11b:   movabs $0x7883380ba0f8,%rdi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff125:   mov    0x90(%rdi),%ebx
+  0x000078837ffff12b:   add    $0x2,%ebx
+  0x000078837ffff12e:   mov    %ebx,0x90(%rdi)
+  0x000078837ffff134:   and    $0x7fe,%ebx
+  0x000078837ffff13a:   test   %ebx,%ebx
+  0x000078837ffff13c:   je     0x000078837ffff7ec           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@0 (line 272)
+  0x000078837ffff142:   cmp    %rdx,%rsi
+  0x000078837ffff145:   movabs $0x7883380ba0f8,%rdi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff14f:   mov    $0xe8,%ebx
+  0x000078837ffff154:   je     0x000078837ffff15b
+  0x000078837ffff156:   mov    $0xd8,%ebx
+  0x000078837ffff15b:   mov    (%rdi,%rbx,1),%rax
+  0x000078837ffff15f:   lea    0x1(%rax),%rax
+  0x000078837ffff163:   mov    %rax,(%rdi,%rbx,1)
+  0x000078837ffff167:   je     0x000078837ffff7d7           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@2 (line 272)
+  0x000078837ffff16d:   data16 xchg %ax,%ax
+  0x000078837ffff170:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000078837ffff80d
+                                                            ;*invokevirtual isArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+  0x000078837ffff173:   mov    %rsi,%rdi
+  0x000078837ffff176:   movabs $0x7883380ba0f8,%rbx         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff180:   mov    0x8(%rdi),%edi
+  0x000078837ffff183:   mov    $0x54000000,%r10d
+  0x000078837ffff189:   add    %r10,%rdi
+  0x000078837ffff18c:   mov    $0x20,%r10d
+  0x000078837ffff192:   cmp    (%rbx,%r10,8),%rdi
+  0x000078837ffff196:   je     0x000078837ffff1cf
+  0x000078837ffff198:   add    $0x2,%r10
+  0x000078837ffff19c:   cmp    $0x24,%r10
+  0x000078837ffff1a0:   jne    0x000078837ffff192
+  0x000078837ffff1a2:   mov    $0x20,%r10d
+  0x000078837ffff1a8:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000078837ffff1ad:   je     0x000078837ffff1bb
+  0x000078837ffff1af:   add    $0x2,%r10
+  0x000078837ffff1b3:   cmp    $0x24,%r10
+  0x000078837ffff1b7:   jne    0x000078837ffff1a8
+  0x000078837ffff1b9:   jmp    0x000078837ffff1c7
+  0x000078837ffff1bb:   push   %rax
+  0x000078837ffff1bc:   xor    %rax,%rax
+  0x000078837ffff1bf:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000078837ffff1c4:   pop    %rax
+  0x000078837ffff1c5:   jmp    0x000078837ffff18c
+  0x000078837ffff1c7:   mov    $0x1f,%r10d
+  0x000078837ffff1cd:   jmp    0x000078837ffff1d3
+  0x000078837ffff1cf:   add    $0x1,%r10
+  0x000078837ffff1d3:   addq   $0x1,(%rbx,%r10,8)
+  0x000078837ffff1d8:   movabs $0x7883380b9e28,%rdi         ;   {metadata(method data for {method} {0x0000000054188ed8} &apos;isArray&apos; &apos;()Z&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff1e2:   mov    0x90(%rdi),%ebx
+  0x000078837ffff1e8:   add    $0x2,%ebx
+  0x000078837ffff1eb:   mov    %ebx,0x90(%rdi)
+  0x000078837ffff1f1:   and    $0x1ffffe,%ebx
+  0x000078837ffff1f7:   test   %ebx,%ebx
+  0x000078837ffff1f9:   je     0x000078837ffff812
+  0x000078837ffff1ff:   mov    0x4c(%rsi),%edi
+  0x000078837ffff202:   shl    $0x3,%rdi                    ;*getfield componentType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isArray@1 (line 817)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+  0x000078837ffff206:   test   %rdi,%rdi
+  0x000078837ffff209:   movabs $0x7883380b9e28,%rbx         ;   {metadata(method data for {method} {0x0000000054188ed8} &apos;isArray&apos; &apos;()Z&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff213:   mov    $0xd8,%eax
+  0x000078837ffff218:   je     0x000078837ffff21f
+  0x000078837ffff21a:   mov    $0xe8,%eax
+  0x000078837ffff21f:   mov    (%rbx,%rax,1),%rcx
+  0x000078837ffff223:   lea    0x1(%rcx),%rcx
+  0x000078837ffff227:   mov    %rcx,(%rbx,%rax,1)
+  0x000078837ffff22b:   je     0x000078837ffff24b           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isArray@4 (line 817)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+  0x000078837ffff231:   movabs $0x7883380b9e28,%rbx         ;   {metadata(method data for {method} {0x0000000054188ed8} &apos;isArray&apos; &apos;()Z&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff23b:   incl   0xf8(%rbx)
+  0x000078837ffff241:   mov    $0x1,%ebx
+  0x000078837ffff246:   jmp    0x000078837ffff250           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isArray@8 (line 817)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+  0x000078837ffff24b:   mov    $0x0,%ebx                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isArray@12 (line 817)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+  0x000078837ffff250:   and    $0x1,%ebx
+  0x000078837ffff253:   test   %ebx,%ebx
+  0x000078837ffff255:   movabs $0x7883380ba0f8,%rbx         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff25f:   mov    $0x128,%eax
+  0x000078837ffff264:   je     0x000078837ffff26b
+  0x000078837ffff266:   mov    $0x138,%eax
+  0x000078837ffff26b:   mov    (%rbx,%rax,1),%rcx
+  0x000078837ffff26f:   lea    0x1(%rcx),%rcx
+  0x000078837ffff273:   mov    %rcx,(%rbx,%rax,1)
+  0x000078837ffff277:   je     0x000078837ffff325           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@11 (line 275)
+  0x000078837ffff27d:   movabs $0x7883380ba0f8,%rbx         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff287:   mov    0x8(%rsi),%esi
+  0x000078837ffff28a:   mov    $0x54000000,%r10d
+  0x000078837ffff290:   add    %r10,%rsi
+  0x000078837ffff293:   mov    $0x2a,%r10d
+  0x000078837ffff299:   cmp    (%rbx,%r10,8),%rsi
+  0x000078837ffff29d:   je     0x000078837ffff2d6
+  0x000078837ffff29f:   add    $0x2,%r10
+  0x000078837ffff2a3:   cmp    $0x2e,%r10
+  0x000078837ffff2a7:   jne    0x000078837ffff299
+  0x000078837ffff2a9:   mov    $0x2a,%r10d
+  0x000078837ffff2af:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000078837ffff2b4:   je     0x000078837ffff2c2
+  0x000078837ffff2b6:   add    $0x2,%r10
+  0x000078837ffff2ba:   cmp    $0x2e,%r10
+  0x000078837ffff2be:   jne    0x000078837ffff2af
+  0x000078837ffff2c0:   jmp    0x000078837ffff2ce
+  0x000078837ffff2c2:   push   %rax
+  0x000078837ffff2c3:   xor    %rax,%rax
+  0x000078837ffff2c6:   cmpxchg %rsi,(%rbx,%r10,8)
+  0x000078837ffff2cb:   pop    %rax
+  0x000078837ffff2cc:   jmp    0x000078837ffff293
+  0x000078837ffff2ce:   mov    $0x29,%r10d
+  0x000078837ffff2d4:   jmp    0x000078837ffff2da
+  0x000078837ffff2d6:   add    $0x1,%r10
+  0x000078837ffff2da:   addq   $0x1,(%rbx,%r10,8)
+  0x000078837ffff2df:   movabs $0x7883380ba0f8,%rsi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff2e9:   mov    0x94(%rsi),%ebx
+  0x000078837ffff2ef:   add    $0x2,%ebx
+  0x000078837ffff2f2:   mov    %ebx,0x94(%rsi)
+  0x000078837ffff2f8:   and    $0x3ffe,%ebx
+  0x000078837ffff2fe:   test   %ebx,%ebx
+  0x000078837ffff300:   je     0x000078837ffff833           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@19 (line 275)
+  0x000078837ffff306:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rdx=Oop rdi=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) sun.invoke.util.VerifyAccess::ensureTypeVisible@19 (line 275)
+  0x000078837ffff30a:   test   %eax,(%r10)                  ;   {poll}
+  0x000078837ffff30d:   movabs $0x7883380ba0f8,%rsi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff317:   incl   0x178(%rsi)
+  0x000078837ffff31d:   mov    %rdi,%rsi
+  0x000078837ffff320:   jmp    0x000078837ffff170           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@19 (line 275)
+  0x000078837ffff325:   mov    %rsi,%rdi
+  0x000078837ffff328:   movabs $0x7883380ba0f8,%rbx         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff332:   mov    0x8(%rdi),%edi
+  0x000078837ffff335:   mov    $0x54000000,%r10d
+  0x000078837ffff33b:   add    %r10,%rdi
+  0x000078837ffff33e:   mov    $0x33,%r10d
+  0x000078837ffff344:   cmp    (%rbx,%r10,8),%rdi
+  0x000078837ffff348:   je     0x000078837ffff381
+  0x000078837ffff34a:   add    $0x2,%r10
+  0x000078837ffff34e:   cmp    $0x37,%r10
+  0x000078837ffff352:   jne    0x000078837ffff344
+  0x000078837ffff354:   mov    $0x33,%r10d
+  0x000078837ffff35a:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000078837ffff35f:   je     0x000078837ffff36d
+  0x000078837ffff361:   add    $0x2,%r10
+  0x000078837ffff365:   cmp    $0x37,%r10
+  0x000078837ffff369:   jne    0x000078837ffff35a
+  0x000078837ffff36b:   jmp    0x000078837ffff379
+  0x000078837ffff36d:   push   %rax
+  0x000078837ffff36e:   xor    %rax,%rax
+  0x000078837ffff371:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000078837ffff376:   pop    %rax
+  0x000078837ffff377:   jmp    0x000078837ffff33e
+  0x000078837ffff379:   mov    $0x32,%r10d
+  0x000078837ffff37f:   jmp    0x000078837ffff385
+  0x000078837ffff381:   add    $0x1,%r10
+  0x000078837ffff385:   addq   $0x1,(%rbx,%r10,8)
+  0x000078837ffff38a:   movsbl 0x2c(%rsi),%edi              ;*getfield primitive {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isPrimitive@1 (line 860)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@23 (line 276)
+  0x000078837ffff38e:   and    $0x1,%edi
+  0x000078837ffff391:   test   %edi,%edi
+  0x000078837ffff393:   movabs $0x7883380ba0f8,%rdi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff39d:   mov    $0x1c0,%ebx
+  0x000078837ffff3a2:   jne    0x000078837ffff3a9
+  0x000078837ffff3a4:   mov    $0x1d0,%ebx
+  0x000078837ffff3a9:   mov    (%rdi,%rbx,1),%rax
+  0x000078837ffff3ad:   lea    0x1(%rax),%rax
+  0x000078837ffff3b1:   mov    %rax,(%rdi,%rbx,1)
+  0x000078837ffff3b5:   jne    0x000078837ffff7c2           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@26 (line 276)
+  0x000078837ffff3bb:   movabs $0x7ff83ab28,%r10            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff83ab28} = &apos;java/lang/Object&apos;)}
+  0x000078837ffff3c5:   cmp    %r10,%rsi
+  0x000078837ffff3c8:   movabs $0x7883380ba0f8,%rdi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff3d2:   mov    $0x1f0,%ebx
+  0x000078837ffff3d7:   je     0x000078837ffff3de
+  0x000078837ffff3d9:   mov    $0x1e0,%ebx
+  0x000078837ffff3de:   mov    (%rdi,%rbx,1),%rax
+  0x000078837ffff3e2:   lea    0x1(%rax),%rax
+  0x000078837ffff3e6:   mov    %rax,(%rdi,%rbx,1)
+  0x000078837ffff3ea:   je     0x000078837ffff7c2           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@32 (line 276)
+  0x000078837ffff3f0:   mov    %rsi,%rdi
+  0x000078837ffff3f3:   movabs $0x7883380ba0f8,%rbx         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff3fd:   mov    0x8(%rdi),%edi
+  0x000078837ffff400:   mov    $0x54000000,%r10d
+  0x000078837ffff406:   add    %r10,%rdi
+  0x000078837ffff409:   mov    $0x41,%r10d
+  0x000078837ffff40f:   cmp    (%rbx,%r10,8),%rdi
+  0x000078837ffff413:   je     0x000078837ffff44c
+  0x000078837ffff415:   add    $0x2,%r10
+  0x000078837ffff419:   cmp    $0x45,%r10
+  0x000078837ffff41d:   jne    0x000078837ffff40f
+  0x000078837ffff41f:   mov    $0x41,%r10d
+  0x000078837ffff425:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000078837ffff42a:   je     0x000078837ffff438
+  0x000078837ffff42c:   add    $0x2,%r10
+  0x000078837ffff430:   cmp    $0x45,%r10
+  0x000078837ffff434:   jne    0x000078837ffff425
+  0x000078837ffff436:   jmp    0x000078837ffff444
+  0x000078837ffff438:   push   %rax
+  0x000078837ffff439:   xor    %rax,%rax
+  0x000078837ffff43c:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000078837ffff441:   pop    %rax
+  0x000078837ffff442:   jmp    0x000078837ffff409
+  0x000078837ffff444:   mov    $0x40,%r10d
+  0x000078837ffff44a:   jmp    0x000078837ffff450
+  0x000078837ffff44c:   add    $0x1,%r10
+  0x000078837ffff450:   addq   $0x1,(%rbx,%r10,8)
+  0x000078837ffff455:   mov    0x3c(%rsi),%edi
+  0x000078837ffff458:   shl    $0x3,%rdi                    ;*getfield classLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getClassLoader@1 (line 982)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@38 (line 279)
+  0x000078837ffff45c:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x000078837ffff854
+                                                            ;*invokevirtual getClassLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@43 (line 280)
+  0x000078837ffff45f:   mov    %rdx,%rbx
+  0x000078837ffff462:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff46c:   mov    0x8(%rbx),%ebx
+  0x000078837ffff46f:   mov    $0x54000000,%r10d
+  0x000078837ffff475:   add    %r10,%rbx
+  0x000078837ffff478:   mov    $0x47,%r10d
+  0x000078837ffff47e:   cmp    (%rax,%r10,8),%rbx
+  0x000078837ffff482:   je     0x000078837ffff4c1
+  0x000078837ffff484:   add    $0x2,%r10
+  0x000078837ffff488:   cmp    $0x4b,%r10
+  0x000078837ffff48c:   jne    0x000078837ffff47e
+  0x000078837ffff48e:   mov    $0x47,%r10d
+  0x000078837ffff494:   cmpq   $0x0,(%rax,%r10,8)
+  0x000078837ffff499:   je     0x000078837ffff4a7
+  0x000078837ffff49b:   add    $0x2,%r10
+  0x000078837ffff49f:   cmp    $0x4b,%r10
+  0x000078837ffff4a3:   jne    0x000078837ffff494
+  0x000078837ffff4a5:   jmp    0x000078837ffff4b9
+  0x000078837ffff4a7:   push   %rcx
+  0x000078837ffff4a8:   mov    %rax,%rcx
+  0x000078837ffff4ab:   xor    %rax,%rax
+  0x000078837ffff4ae:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000078837ffff4b3:   mov    %rcx,%rax
+  0x000078837ffff4b6:   pop    %rcx
+  0x000078837ffff4b7:   jmp    0x000078837ffff478
+  0x000078837ffff4b9:   mov    $0x46,%r10d
+  0x000078837ffff4bf:   jmp    0x000078837ffff4c5
+  0x000078837ffff4c1:   add    $0x1,%r10
+  0x000078837ffff4c5:   addq   $0x1,(%rax,%r10,8)
+  0x000078837ffff4ca:   mov    0x3c(%rdx),%ebx
+  0x000078837ffff4cd:   shl    $0x3,%rbx                    ;*getfield classLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getClassLoader@1 (line 982)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@43 (line 280)
+  0x000078837ffff4d1:   mov    %rbx,0x40(%rsp)
+  0x000078837ffff4d6:   cmp    %rbx,%rdi
+  0x000078837ffff4d9:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff4e3:   mov    $0x270,%edx
+  0x000078837ffff4e8:   je     0x000078837ffff4ef
+  0x000078837ffff4ea:   mov    $0x260,%edx
+  0x000078837ffff4ef:   mov    (%rax,%rdx,1),%rcx
+  0x000078837ffff4f3:   lea    0x1(%rcx),%rcx
+  0x000078837ffff4f7:   mov    %rcx,(%rax,%rdx,1)
+  0x000078837ffff4fb:   je     0x000078837ffff7ad           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@49 (line 281)
+  0x000078837ffff501:   test   %rbx,%rbx
+  0x000078837ffff504:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff50e:   mov    $0x280,%edx
+  0x000078837ffff513:   jne    0x000078837ffff51a
+  0x000078837ffff515:   mov    $0x290,%edx
+  0x000078837ffff51a:   mov    (%rax,%rdx,1),%rcx
+  0x000078837ffff51e:   lea    0x1(%rcx),%rcx
+  0x000078837ffff522:   mov    %rcx,(%rax,%rdx,1)
+  0x000078837ffff526:   jne    0x000078837ffff557           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@55 (line 284)
+  0x000078837ffff52c:   test   %rdi,%rdi
+  0x000078837ffff52f:   movabs $0x7883380ba0f8,%rdi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff539:   mov    $0x2b0,%eax
+  0x000078837ffff53e:   jne    0x000078837ffff545
+  0x000078837ffff540:   mov    $0x2a0,%eax
+  0x000078837ffff545:   mov    (%rdi,%rax,1),%rdx
+  0x000078837ffff549:   lea    0x1(%rdx),%rdx
+  0x000078837ffff54d:   mov    %rdx,(%rdi,%rax,1)
+  0x000078837ffff551:   jne    0x000078837ffff798           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@59 (line 284)
+  0x000078837ffff557:   mov    %rsi,%rdi
+  0x000078837ffff55a:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff564:   mov    0x8(%rdi),%edi
+  0x000078837ffff567:   mov    $0x54000000,%r10d
+  0x000078837ffff56d:   add    %r10,%rdi
+  0x000078837ffff570:   mov    $0x59,%r10d
+  0x000078837ffff576:   cmp    (%rax,%r10,8),%rdi
+  0x000078837ffff57a:   je     0x000078837ffff5b9
+  0x000078837ffff57c:   add    $0x2,%r10
+  0x000078837ffff580:   cmp    $0x5d,%r10
+  0x000078837ffff584:   jne    0x000078837ffff576
+  0x000078837ffff586:   mov    $0x59,%r10d
+  0x000078837ffff58c:   cmpq   $0x0,(%rax,%r10,8)
+  0x000078837ffff591:   je     0x000078837ffff59f
+  0x000078837ffff593:   add    $0x2,%r10
+  0x000078837ffff597:   cmp    $0x5d,%r10
+  0x000078837ffff59b:   jne    0x000078837ffff58c
+  0x000078837ffff59d:   jmp    0x000078837ffff5b1
+  0x000078837ffff59f:   push   %rbx
+  0x000078837ffff5a0:   mov    %rax,%rbx
+  0x000078837ffff5a3:   xor    %rax,%rax
+  0x000078837ffff5a6:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000078837ffff5ab:   mov    %rbx,%rax
+  0x000078837ffff5ae:   pop    %rbx
+  0x000078837ffff5af:   jmp    0x000078837ffff570
+  0x000078837ffff5b1:   mov    $0x58,%r10d
+  0x000078837ffff5b7:   jmp    0x000078837ffff5bd
+  0x000078837ffff5b9:   add    $0x1,%r10
+  0x000078837ffff5bd:   addq   $0x1,(%rax,%r10,8)
+  0x000078837ffff5c2:   movabs $0x7883380b9f78,%rdi         ;   {metadata(method data for {method} {0x00000000541886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff5cc:   mov    0x90(%rdi),%eax
+  0x000078837ffff5d2:   add    $0x2,%eax
+  0x000078837ffff5d5:   mov    %eax,0x90(%rdi)
+  0x000078837ffff5db:   and    $0x1ffffe,%eax
+  0x000078837ffff5e0:   test   %eax,%eax
+  0x000078837ffff5e2:   je     0x000078837ffff859
+  0x000078837ffff5e8:   mov    0x34(%rsi),%edi
+  0x000078837ffff5eb:   shl    $0x3,%rdi                    ;*getfield name {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@1 (line 959)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+  0x000078837ffff5ef:   test   %rdi,%rdi
+  0x000078837ffff5f2:   movabs $0x7883380b9f78,%rax         ;   {metadata(method data for {method} {0x00000000541886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff5fc:   mov    $0xd8,%edx
+  0x000078837ffff601:   je     0x000078837ffff608
+  0x000078837ffff603:   mov    $0xe8,%edx
+  0x000078837ffff608:   mov    (%rax,%rdx,1),%rcx
+  0x000078837ffff60c:   lea    0x1(%rcx),%rcx
+  0x000078837ffff610:   mov    %rcx,(%rax,%rdx,1)
+  0x000078837ffff614:   je     0x000078837ffff634           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@6 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+  0x000078837ffff61a:   movabs $0x7883380b9f78,%rax         ;   {metadata(method data for {method} {0x00000000541886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff624:   incl   0xf8(%rax)
+  0x000078837ffff62a:   mov    %rsi,0x48(%rsp)
+  0x000078837ffff62f:   jmp    0x000078837ffff667           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@10 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+  0x000078837ffff634:   mov    %rsi,%rdi
+  0x000078837ffff637:   movabs $0x7883380b9f78,%rax         ;   {metadata(method data for {method} {0x00000000541886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff641:   addq   $0x1,0x110(%rax)
+  0x000078837ffff649:   mov    %rsi,%rdi
+  0x000078837ffff64c:   mov    %rdi,%rsi                    ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+  0x000078837ffff64f:   mov    %rdi,0x48(%rsp)
+  0x000078837ffff654:   data16 xchg %ax,%ax
+  0x000078837ffff657:   call   0x00007883874ad9e0           ; ImmutableOopMap {[64]=Oop [72]=Oop }
+                                                            ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+                                                            ;   {optimized virtual_call}
+  0x000078837ffff65c:   nopl   0x1000654(%rax,%rax,1)       ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+                                                            ;   {post_call_nop}
+  0x000078837ffff664:   mov    %rax,%rdi                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@17 (line 960)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+  0x000078837ffff667:   movabs $0x7883380ba0f8,%rsi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff671:   addq   $0x1,0x2f0(%rsi)
+  0x000078837ffff679:   movabs $0x7883380ba4a0,%rsi         ;   {metadata(method data for {method} {0x00000000541888f8} &apos;forName&apos; &apos;(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff683:   mov    0x90(%rsi),%eax
+  0x000078837ffff689:   add    $0x2,%eax
+  0x000078837ffff68c:   mov    %eax,0x90(%rsi)
+  0x000078837ffff692:   and    $0x1ffffe,%eax
+  0x000078837ffff697:   test   %eax,%eax
+  0x000078837ffff699:   je     0x000078837ffff87a
+  0x000078837ffff69f:   movabs $0x7883380ba4a0,%rsi         ;   {metadata(method data for {method} {0x00000000541888f8} &apos;forName&apos; &apos;(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff6a9:   addq   $0x1,0xd8(%rsi)
+  0x000078837ffff6b1:   mov    %rdi,%rsi                    ;*invokestatic validateClassNameLength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@1 (line 559)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+  0x000078837ffff6b4:   mov    %rdi,0x50(%rsp)
+  0x000078837ffff6b9:   nopw   0x0(%rax,%rax,1)
+  0x000078837ffff6bf:   call   0x00007883874adfe0           ; ImmutableOopMap {[64]=Oop [72]=Oop [80]=Oop }
+                                                            ;*invokestatic validateClassNameLength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@1 (line 559)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+                                                            ;   {static_call}
+  0x000078837ffff6c4:   nopl   0x20006bc(%rax,%rax,1)       ;*invokestatic validateClassNameLength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@1 (line 559)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+                                                            ;   {post_call_nop}
+  0x000078837ffff6cc:   movabs $0x7883380ba4a0,%rsi         ;   {metadata(method data for {method} {0x00000000541888f8} &apos;forName&apos; &apos;(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff6d6:   addq   $0x1,0xe8(%rsi)
+  0x000078837ffff6de:   mov    0x50(%rsp),%rsi
+  0x000078837ffff6e3:   mov    $0x0,%edx
+  0x000078837ffff6e8:   mov    0x40(%rsp),%rcx              ;*invokestatic forName0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@7 (line 560)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+  0x000078837ffff6ed:   xchg   %ax,%ax
+  0x000078837ffff6ef:   call   0x00007883874adfe0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokestatic forName0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@7 (line 560)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+                                                            ;   {static_call}
+  0x000078837ffff6f4:   nopl   0x30006ec(%rax,%rax,1)       ;*invokestatic forName0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::forName@7 (line 560)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+                                                            ;   {post_call_nop}
+  0x000078837ffff6fc:   movabs $0x7883380ba0f8,%rsi         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff706:   incl   0x300(%rsi)
+  0x000078837ffff70c:   jmp    0x000078837ffff736           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@82 (line 326)
+  0x000078837ffff711:   mov    0x5c0(%r15),%rax
+  0x000078837ffff718:   xor    %r10,%r10
+  0x000078837ffff71b:   mov    %r10,0x5c0(%r15)
+  0x000078837ffff722:   xor    %r10,%r10
+  0x000078837ffff725:   mov    %r10,0x5c8(%r15)
+  0x000078837ffff72c:   movabs $0x0,%rax                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@87 (line 327)
+                                                            ;   {oop(nullptr)}
+  0x000078837ffff736:   mov    0x48(%rsp),%rsi
+  0x000078837ffff73b:   cmp    %rax,%rsi
+  0x000078837ffff73e:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff748:   mov    $0x318,%esi
+  0x000078837ffff74d:   jne    0x000078837ffff754
+  0x000078837ffff74f:   mov    $0x328,%esi
+  0x000078837ffff754:   mov    (%rax,%rsi,1),%rdi
+  0x000078837ffff758:   lea    0x1(%rdi),%rdi
+  0x000078837ffff75c:   mov    %rdi,(%rax,%rsi,1)
+  0x000078837ffff760:   jne    0x000078837ffff780           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@90 (line 327)
+  0x000078837ffff766:   movabs $0x7883380ba0f8,%rax         ;   {metadata(method data for {method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff770:   incl   0x338(%rax)
+  0x000078837ffff776:   mov    $0x1,%eax
+  0x000078837ffff77b:   jmp    0x000078837ffff785           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@94 (line 327)
+  0x000078837ffff780:   mov    $0x0,%eax
+  0x000078837ffff785:   and    $0x1,%eax
+  0x000078837ffff788:   add    $0x60,%rsp
+  0x000078837ffff78c:   pop    %rbp
+  0x000078837ffff78d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078837ffff791:   ja     0x000078837ffff89b
+  0x000078837ffff797:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@98 (line 327)
+  0x000078837ffff798:   mov    $0x0,%eax
+  0x000078837ffff79d:   add    $0x60,%rsp
+  0x000078837ffff7a1:   pop    %rbp
+  0x000078837ffff7a2:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078837ffff7a6:   ja     0x000078837ffff8b1
+  0x000078837ffff7ac:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@63 (line 285)
+  0x000078837ffff7ad:   mov    $0x1,%eax
+  0x000078837ffff7b2:   add    $0x60,%rsp
+  0x000078837ffff7b6:   pop    %rbp
+  0x000078837ffff7b7:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078837ffff7bb:   ja     0x000078837ffff8c7
+  0x000078837ffff7c1:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@53 (line 282)
+  0x000078837ffff7c2:   mov    $0x1,%eax
+  0x000078837ffff7c7:   add    $0x60,%rsp
+  0x000078837ffff7cb:   pop    %rbp
+  0x000078837ffff7cc:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078837ffff7d0:   ja     0x000078837ffff8dd
+  0x000078837ffff7d6:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@36 (line 277)
+  0x000078837ffff7d7:   mov    $0x1,%eax
+  0x000078837ffff7dc:   add    $0x60,%rsp
+  0x000078837ffff7e0:   pop    %rbp
+  0x000078837ffff7e1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078837ffff7e5:   ja     0x000078837ffff8f3
+  0x000078837ffff7eb:   ret    
+  0x000078837ffff7ec:   movabs $0x54285330,%r10             ;   {metadata({method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff7f6:   mov    %r10,0x8(%rsp)
+  0x000078837ffff7fb:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078837ffff803:   call   0x0000788387583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@-1 (line 272)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078837ffff808:   jmp    0x000078837ffff142
+  0x000078837ffff80d:   call   0x000078838757cae0           ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                                                            ;*invokevirtual isArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000078837ffff812:   movabs $0x54188ed8,%r10             ;   {metadata({method} {0x0000000054188ed8} &apos;isArray&apos; &apos;()Z&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff81c:   mov    %r10,0x8(%rsp)
+  0x000078837ffff821:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078837ffff829:   call   0x0000788387583460           ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::isArray@-1 (line 817)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@8 (line 275)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078837ffff82e:   jmp    0x000078837ffff1ff
+  0x000078837ffff833:   movabs $0x54285330,%r10             ;   {metadata({method} {0x0000000054285330} &apos;ensureTypeVisible&apos; &apos;(Ljava/lang/Class;Ljava/lang/Class;)Z&apos; in &apos;sun/invoke/util/VerifyAccess&apos;)}
+  0x000078837ffff83d:   mov    %r10,0x8(%rsp)
+  0x000078837ffff842:   movq   $0x13,(%rsp)
+  0x000078837ffff84a:   call   0x0000788387583460           ; ImmutableOopMap {rdx=Oop rdi=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) sun.invoke.util.VerifyAccess::ensureTypeVisible@19 (line 275)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078837ffff84f:   jmp    0x000078837ffff306
+  0x000078837ffff854:   call   0x000078838757cae0           ; ImmutableOopMap {rsi=Oop rdx=Oop rdi=Oop }
+                                                            ;*invokevirtual getClassLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@43 (line 280)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000078837ffff859:   movabs $0x541886e8,%r10             ;   {metadata({method} {0x00000000541886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff863:   mov    %r10,0x8(%rsp)
+  0x000078837ffff868:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078837ffff870:   call   0x0000788387583460           ; ImmutableOopMap {rsi=Oop rbx=Oop [64]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::getName@-1 (line 959)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@65 (line 320)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078837ffff875:   jmp    0x000078837ffff5e8
+  0x000078837ffff87a:   movabs $0x541888f8,%r10             ;   {metadata({method} {0x00000000541888f8} &apos;forName&apos; &apos;(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;&apos; in &apos;java/lang/Class&apos;)}
+  0x000078837ffff884:   mov    %r10,0x8(%rsp)
+  0x000078837ffff889:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078837ffff891:   call   0x0000788387583460           ; ImmutableOopMap {rdi=Oop [64]=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::forName@-1 (line 559)
+                                                            ; - sun.invoke.util.VerifyAccess::ensureTypeVisible@77 (line 323)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078837ffff896:   jmp    0x000078837ffff69f
+  0x000078837ffff89b:   movabs $0x78837ffff78d,%r10         ;   {internal_word}
+  0x000078837ffff8a5:   mov    %r10,0x510(%r15)
+  0x000078837ffff8ac:   jmp    0x00007883874afb60           ;   {runtime_call SafepointBlob}
+  0x000078837ffff8b1:   movabs $0x78837ffff7a2,%r10         ;   {internal_word}
+  0x000078837ffff8bb:   mov    %r10,0x510(%r15)
+  0x000078837ffff8c2:   jmp    0x00007883874afb60           ;   {runtime_call SafepointBlob}
+  0x000078837ffff8c7:   movabs $0x78837ffff7b7,%r10         ;   {internal_word}
+  0x000078837ffff8d1:   mov    %r10,0x510(%r15)
+  0x000078837ffff8d8:   jmp    0x00007883874afb60           ;   {runtime_call SafepointBlob}
+  0x000078837ffff8dd:   movabs $0x78837ffff7cc,%r10         ;   {internal_word}
+  0x000078837ffff8e7:   mov    %r10,0x510(%r15)
+  0x000078837ffff8ee:   jmp    0x00007883874afb60           ;   {runtime_call SafepointBlob}
+  0x000078837ffff8f3:   movabs $0x78837ffff7e1,%r10         ;   {internal_word}
+  0x000078837ffff8fd:   mov    %r10,0x510(%r15)
+  0x000078837ffff904:   jmp    0x00007883874afb60           ;   {runtime_call SafepointBlob}
+  0x000078837ffff909:   mov    0x5c0(%r15),%rax
+  0x000078837ffff910:   movq   $0x0,0x5c0(%r15)
+  0x000078837ffff91b:   movq   $0x0,0x5c8(%r15)
+  0x000078837ffff926:   add    $0x60,%rsp
+  0x000078837ffff92a:   pop    %rbp
+  0x000078837ffff92b:   jmp    0x000078838757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x000078837ffff930:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000078837ffff93a:   jmp    0x000078837ffff93a           ;   {runtime_call nmethod}
+  0x000078837ffff93f:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000078837ffff949:   jmp    0x000078837ffff949           ;   {runtime_call nmethod}
+  0x000078837ffff94e:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000078837ffff958:   jmp    0x000078837ffff958           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000078837ffff95d:   call   0x000078838757fbe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000078837ffff962:   movabs $0x78839fb3aec4,%rdi         ;   {external_word}
+  0x000078837ffff96c:   and    $0xfffffffffffffff0,%rsp
+  0x000078837ffff970:   call   0x000078839f591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000078837ffff975:   hlt    
+  0x000078837ffff976:   call   0x00007883874afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000078837ffff97b:   jmp    0x000078837ffff976
+  0x000078837ffff97d:   hlt    
+  0x000078837ffff97e:   hlt    
+  0x000078837ffff97f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

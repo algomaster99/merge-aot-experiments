@@ -1,0 +1,227 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 434   41       3       java.lang.invoke.MethodTypeForm::cachedLambdaForm (23 bytes)
+ total in heap  [0x00007b66e7fff008,0x00007b66e7fff3c8] = 960
+ main code      [0x00007b66e7fff100,0x00007b66e7fff390] = 656
+ stub code      [0x00007b66e7fff390,0x00007b66e7fff3c8] = 56
+ mutable data [0x00007b6688014d30,0x00007b6688014da0] = 112
+ relocation     [0x00007b6688014d30,0x00007b6688014d80] = 80
+ metadata       [0x00007b6688014d80,0x00007b6688014da0] = 32
+ immutable data [0x00007b66880011f0,0x00007b6688001384] = 404
+ dependencies   [0x00007b66880011f0,0x00007b6688001200] = 16
+ nul chk table  [0x00007b6688001200,0x00007b6688001218] = 24
+ scopes pcs     [0x00007b6688001218,0x00007b6688001328] = 272
+ scopes data    [0x00007b6688001328,0x00007b6688001380] = 88
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007b66e7fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007b66e7fff10b:   data16 data16 xchg %ax,%ax
+  0x00007b66e7fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;
+  # this:     rsi:rsi   = &apos;java/lang/invoke/MethodTypeForm&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x00007b66e7fff112:   mov    0x8(%rsi),%r10d
+  0x00007b66e7fff116:   cmp    0x8(%rax),%r10d
+  0x00007b66e7fff11a:   jne    0x00007b66ef4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007b66e7fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007b66e7fff127:   push   %rbp
+  0x00007b66e7fff128:   sub    $0x20,%rsp
+  0x00007b66e7fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007b66e7fff134:   je     0x00007b66e7fff13b
+  0x00007b66e7fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007b66e7fff13b:   movabs $0x7b66a01cda50,%rdi         ;   {metadata(method data for {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff145:   mov    0x90(%rdi),%ebx
+  0x00007b66e7fff14b:   add    $0x2,%ebx
+  0x00007b66e7fff14e:   mov    %ebx,0x90(%rdi)
+  0x00007b66e7fff154:   and    $0x7fe,%ebx
+  0x00007b66e7fff15a:   test   %ebx,%ebx
+  0x00007b66e7fff15c:   je     0x00007b66e7fff2f5           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@0 (line 129)
+  0x00007b66e7fff162:   mov    0x1c(%rsi),%esi
+  0x00007b66e7fff165:   shl    $0x3,%rsi                    ;*getfield lambdaForms {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@1 (line 129)
+  0x00007b66e7fff169:   mov    0xc(%rsi),%edi               ; implicit exception: dispatches to 0x00007b66e7fff316
+  0x00007b66e7fff16c:   cmp    %edx,%edi
+  0x00007b66e7fff16e:   jbe    0x00007b66e7fff31b
+  0x00007b66e7fff174:   movslq %edx,%rdx
+  0x00007b66e7fff177:   mov    0x10(%rsi,%rdx,4),%esi
+  0x00007b66e7fff17b:   shl    $0x3,%rsi                    ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@5 (line 129)
+  0x00007b66e7fff17f:   test   %rsi,%rsi
+  0x00007b66e7fff182:   movabs $0x7b66a01cda50,%rdi         ;   {metadata(method data for {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff18c:   mov    $0xd8,%ebx
+  0x00007b66e7fff191:   je     0x00007b66e7fff198
+  0x00007b66e7fff193:   mov    $0xe8,%ebx
+  0x00007b66e7fff198:   mov    (%rdi,%rbx,1),%rax
+  0x00007b66e7fff19c:   lea    0x1(%rax),%rax
+  0x00007b66e7fff1a0:   mov    %rax,(%rdi,%rbx,1)
+  0x00007b66e7fff1a4:   je     0x00007b66e7fff2db           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@8 (line 130)
+  0x00007b66e7fff1aa:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007b66e7fff329
+                                                            ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@12 (line 130)
+  0x00007b66e7fff1ad:   mov    %rsi,%rdi
+  0x00007b66e7fff1b0:   movabs $0x7b66a01cda50,%rbx         ;   {metadata(method data for {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff1ba:   mov    0x8(%rdi),%edi
+  0x00007b66e7fff1bd:   mov    $0x71000000,%r10d
+  0x00007b66e7fff1c3:   add    %r10,%rdi
+  0x00007b66e7fff1c6:   mov    $0x20,%r10d
+  0x00007b66e7fff1cc:   cmp    (%rbx,%r10,8),%rdi
+  0x00007b66e7fff1d0:   je     0x00007b66e7fff209
+  0x00007b66e7fff1d2:   add    $0x2,%r10
+  0x00007b66e7fff1d6:   cmp    $0x24,%r10
+  0x00007b66e7fff1da:   jne    0x00007b66e7fff1cc
+  0x00007b66e7fff1dc:   mov    $0x20,%r10d
+  0x00007b66e7fff1e2:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007b66e7fff1e7:   je     0x00007b66e7fff1f5
+  0x00007b66e7fff1e9:   add    $0x2,%r10
+  0x00007b66e7fff1ed:   cmp    $0x24,%r10
+  0x00007b66e7fff1f1:   jne    0x00007b66e7fff1e2
+  0x00007b66e7fff1f3:   jmp    0x00007b66e7fff201
+  0x00007b66e7fff1f5:   push   %rax
+  0x00007b66e7fff1f6:   xor    %rax,%rax
+  0x00007b66e7fff1f9:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007b66e7fff1fe:   pop    %rax
+  0x00007b66e7fff1ff:   jmp    0x00007b66e7fff1c6
+  0x00007b66e7fff201:   mov    $0x1f,%r10d
+  0x00007b66e7fff207:   jmp    0x00007b66e7fff20d
+  0x00007b66e7fff209:   add    $0x1,%r10
+  0x00007b66e7fff20d:   addq   $0x1,(%rbx,%r10,8)
+  0x00007b66e7fff212:   nopl   0x0(%rax,%rax,1)
+  0x00007b66e7fff217:   call   0x00007b66ef4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@12 (line 130)
+                                                            ;   {optimized virtual_call}
+  0x00007b66e7fff21c:   nopl   0x214(%rax,%rax,1)           ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@12 (line 130)
+                                                            ;   {post_call_nop}
+  0x00007b66e7fff224:   test   %rax,%rax
+  0x00007b66e7fff227:   movabs $0x7b66a01cda50,%rdi         ;   {metadata(method data for {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff231:   jne    0x00007b66e7fff23f
+  0x00007b66e7fff233:   orb    $0x1,0x121(%rdi)
+  0x00007b66e7fff23a:   jmp    0x00007b66e7fff2bb
+  0x00007b66e7fff23f:   mov    0x8(%rax),%ebx
+  0x00007b66e7fff242:   mov    $0x71000000,%r10d
+  0x00007b66e7fff248:   add    %r10,%rbx
+  0x00007b66e7fff24b:   mov    $0x26,%r10d
+  0x00007b66e7fff251:   cmp    (%rdi,%r10,8),%rbx
+  0x00007b66e7fff255:   je     0x00007b66e7fff28e
+  0x00007b66e7fff257:   add    $0x2,%r10
+  0x00007b66e7fff25b:   cmp    $0x2a,%r10
+  0x00007b66e7fff25f:   jne    0x00007b66e7fff251
+  0x00007b66e7fff261:   mov    $0x26,%r10d
+  0x00007b66e7fff267:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007b66e7fff26c:   je     0x00007b66e7fff27a
+  0x00007b66e7fff26e:   add    $0x2,%r10
+  0x00007b66e7fff272:   cmp    $0x2a,%r10
+  0x00007b66e7fff276:   jne    0x00007b66e7fff267
+  0x00007b66e7fff278:   jmp    0x00007b66e7fff286
+  0x00007b66e7fff27a:   push   %rax
+  0x00007b66e7fff27b:   xor    %rax,%rax
+  0x00007b66e7fff27e:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007b66e7fff283:   pop    %rax
+  0x00007b66e7fff284:   jmp    0x00007b66e7fff24b
+  0x00007b66e7fff286:   mov    $0x25,%r10d
+  0x00007b66e7fff28c:   jmp    0x00007b66e7fff292
+  0x00007b66e7fff28e:   add    $0x1,%r10
+  0x00007b66e7fff292:   addq   $0x1,(%rdi,%r10,8)
+  0x00007b66e7fff297:   movabs $0x711f6c68,%rbx             ;   {metadata(&apos;java/lang/invoke/LambdaForm&apos;)}
+  0x00007b66e7fff2a1:   mov    0x8(%rax),%esi
+  0x00007b66e7fff2a4:   mov    $0x71000000,%r10d
+  0x00007b66e7fff2aa:   add    %r10,%rsi
+  0x00007b66e7fff2ad:   cmp    %rsi,%rbx
+  0x00007b66e7fff2b0:   jne    0x00007b66e7fff32e
+  0x00007b66e7fff2b6:   jmp    0x00007b66e7fff2bb           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@15 (line 130)
+  0x00007b66e7fff2bb:   movabs $0x7b66a01cda50,%rsi         ;   {metadata(method data for {method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff2c5:   incl   0x158(%rsi)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@18 (line 130)
+  0x00007b66e7fff2cb:   add    $0x20,%rsp
+  0x00007b66e7fff2cf:   pop    %rbp
+  0x00007b66e7fff2d0:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007b66e7fff2d4:   ja     0x00007b66e7fff337
+  0x00007b66e7fff2da:   ret    
+  0x00007b66e7fff2db:   movabs $0x0,%rax                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@22 (line 130)
+                                                            ;   {oop(nullptr)}
+  0x00007b66e7fff2e5:   add    $0x20,%rsp
+  0x00007b66e7fff2e9:   pop    %rbp
+  0x00007b66e7fff2ea:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007b66e7fff2ee:   ja     0x00007b66e7fff34d
+  0x00007b66e7fff2f4:   ret    
+  0x00007b66e7fff2f5:   movabs $0x71281830,%r10             ;   {metadata({method} {0x0000000071281830} &apos;cachedLambdaForm&apos; &apos;(I)Ljava/lang/invoke/LambdaForm;&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;)}
+  0x00007b66e7fff2ff:   mov    %r10,0x8(%rsp)
+  0x00007b66e7fff304:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007b66e7fff30c:   call   0x00007b66ef581ce0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@-1 (line 129)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007b66e7fff311:   jmp    0x00007b66e7fff162
+  0x00007b66e7fff316:   call   0x00007b66ef57bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@5 (line 129)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007b66e7fff31b:   mov    %rdx,(%rsp)
+  0x00007b66e7fff31f:   mov    %rsi,0x8(%rsp)
+  0x00007b66e7fff324:   call   0x00007b66ef57b460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@5 (line 129)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007b66e7fff329:   call   0x00007b66ef57bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@12 (line 130)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007b66e7fff32e:   mov    %rax,(%rsp)
+  0x00007b66e7fff332:   call   0x00007b66ef57ea60           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::cachedLambdaForm@15 (line 130)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007b66e7fff337:   movabs $0x7b66e7fff2d0,%r10         ;   {internal_word}
+  0x00007b66e7fff341:   mov    %r10,0x510(%r15)
+  0x00007b66e7fff348:   jmp    0x00007b66ef4afb60           ;   {runtime_call SafepointBlob}
+  0x00007b66e7fff34d:   movabs $0x7b66e7fff2ea,%r10         ;   {internal_word}
+  0x00007b66e7fff357:   mov    %r10,0x510(%r15)
+  0x00007b66e7fff35e:   jmp    0x00007b66ef4afb60           ;   {runtime_call SafepointBlob}
+  0x00007b66e7fff363:   mov    0x5c0(%r15),%rax
+  0x00007b66e7fff36a:   movq   $0x0,0x5c0(%r15)
+  0x00007b66e7fff375:   movq   $0x0,0x5c8(%r15)
+  0x00007b66e7fff380:   add    $0x20,%rsp
+  0x00007b66e7fff384:   pop    %rbp
+  0x00007b66e7fff385:   jmp    0x00007b66ef57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007b66e7fff38a:   hlt    
+  0x00007b66e7fff38b:   hlt    
+  0x00007b66e7fff38c:   hlt    
+  0x00007b66e7fff38d:   hlt    
+  0x00007b66e7fff38e:   hlt    
+  0x00007b66e7fff38f:   hlt    
+[Stub Code]
+  0x00007b66e7fff390:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007b66e7fff395:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007b66e7fff39f:   jmp    0x00007b66e7fff39f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007b66e7fff3a4:   call   0x00007b66ef57dfe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007b66e7fff3a9:   movabs $0x7b670693aec4,%rdi         ;   {external_word}
+  0x00007b66e7fff3b3:   and    $0xfffffffffffffff0,%rsp
+  0x00007b66e7fff3b7:   call   0x00007b6706391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007b66e7fff3bc:   hlt    
+  0x00007b66e7fff3bd:   call   0x00007b66ef4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007b66e7fff3c2:   jmp    0x00007b66e7fff3bd
+  0x00007b66e7fff3c4:   hlt    
+  0x00007b66e7fff3c5:   hlt    
+  0x00007b66e7fff3c6:   hlt    
+  0x00007b66e7fff3c7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

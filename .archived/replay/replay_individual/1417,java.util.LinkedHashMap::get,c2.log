@@ -1,0 +1,450 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 661   52       4       java.util.LinkedHashMap::get (29 bytes)
+ total in heap  [0x00007462bbba9908,0x00007462bbba9e10] = 1288
+ main code      [0x00007462bbba9a00,0x00007462bbba9df8] = 1016
+ stub code      [0x00007462bbba9df8,0x00007462bbba9e10] = 24
+ mutable data [0x0000746260127ca0,0x0000746260127d48] = 168
+ relocation     [0x0000746260127ca0,0x0000746260127d08] = 104
+ metadata       [0x0000746260127d08,0x0000746260127d48] = 64
+ immutable data [0x0000746260127540,0x0000746260127c8c] = 1868
+ dependencies   [0x0000746260127540,0x0000746260127550] = 16
+ nul chk table  [0x0000746260127550,0x0000746260127568] = 24
+ handler table  [0x0000746260127568,0x00007462601275b0] = 72
+ scopes pcs     [0x00007462601275b0,0x0000746260127a20] = 1136
+ scopes data    [0x0000746260127a20,0x0000746260127c88] = 616
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007462bbba9a00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x000000006b24a890} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/LinkedHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/LinkedHashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007462bbba9a02:   mov    0x8(%rsi),%r10d
+  0x00007462bbba9a06:   cmp    0x8(%rax),%r10d
+  0x00007462bbba9a0a:   jne    0x00007462bb4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007462bbba9a10:   mov    %eax,-0x14000(%rsp)
+  0x00007462bbba9a17:   push   %rbp
+  0x00007462bbba9a18:   sub    $0x30,%rsp
+  0x00007462bbba9a1c:   cmpl   $0x1,0x20(%r15)
+  0x00007462bbba9a24:   jne    0x00007462bbba9dea           ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap::get@-1 (line 537)
+  0x00007462bbba9a2a:   mov    %rsi,%r10
+  0x00007462bbba9a2d:   mov    0x14(%rsi),%r11d             ;*getfield table {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@1 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a31:   test   %r11d,%r11d
+  0x00007462bbba9a34:   je     0x00007462bbba9afb           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@6 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a3a:   mov    0xc(%r12,%r11,8),%r9d        ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@10 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a3f:   test   %r9d,%r9d
+  0x00007462bbba9a42:   jbe    0x00007462bbba9cb9           ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@14 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a48:   lea    (%r12,%r11,8),%rdi           ;*getfield table {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@1 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a4c:   mov    %rdx,%rcx
+  0x00007462bbba9a4f:   test   %rdx,%rdx
+  0x00007462bbba9a52:   je     0x00007462bbba9cae           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@1 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a58:   mov    0x8(%rdx),%r8d
+  0x00007462bbba9a5c:   dec    %r9d                         ;*isub {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@21 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9a5f:   movabs $0x6b174c88,%r11             ;   {metadata({method} {0x000000006b174c88} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/Object&apos;)}
+  0x00007462bbba9a69:   mov    $0x6b000000,%ebx
+  0x00007462bbba9a6e:   add    %r8,%rbx
+  0x00007462bbba9a71:   mov    0x1f0(%rbx),%r8
+  0x00007462bbba9a78:   cmp    %r11,%r8
+  0x00007462bbba9a7b:   jne    0x00007462bbba9c2e
+  0x00007462bbba9a81:   mov    (%rdx),%r11
+  0x00007462bbba9a84:   mov    %r11,%r8
+  0x00007462bbba9a87:   and    $0x3,%r8
+  0x00007462bbba9a8b:   cmp    $0x2,%r8
+  0x00007462bbba9a8f:   je     0x00007462bbba9c2e
+  0x00007462bbba9a95:   shr    $0xb,%r11
+  0x00007462bbba9a99:   mov    %r11d,%eax
+  0x00007462bbba9a9c:   and    $0x7fffffff,%eax
+  0x00007462bbba9aa1:   je     0x00007462bbba9c2e           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9aa7:   mov    %eax,%r11d
+  0x00007462bbba9aaa:   shr    $0x10,%r11d
+  0x00007462bbba9aae:   xor    %eax,%r11d                   ;*ixor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@18 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ab1:   and    %r11d,%r9d                   ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@19 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ab4:   mov    0x10(%rdi,%r9,4),%ebp        ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@30 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ab9:   test   %ebp,%ebp
+  0x00007462bbba9abb:   je     0x00007462bbba9afb           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@33 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9abd:   mov    0xc(%r12,%rbp,8),%r8d
+  0x00007462bbba9ac2:   cmp    %r11d,%r8d
+  0x00007462bbba9ac5:   jne    0x00007462bbba9b0d           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@42 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ac7:   mov    0x10(%r12,%rbp,8),%r8d       ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@46 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9acc:   lea    (%r12,%rbp,8),%r9            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@30 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ad0:   mov    %r8,%rdx
+  0x00007462bbba9ad3:   shl    $0x3,%rdx                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@46 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ad7:   cmp    %rcx,%rdx
+  0x00007462bbba9ada:   jne    0x00007462bbba9be0           ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ae0:   movzbl 0x30(%r10),%r11d             ;*getfield accessOrder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@13 (line 539)
+  0x00007462bbba9ae5:   test   %r11d,%r11d
+  0x00007462bbba9ae8:   jne    0x00007462bbba9cd4           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@16 (line 539)
+  0x00007462bbba9aee:   mov    0x14(%r9),%r10d
+  0x00007462bbba9af2:   mov    %r10,%rax
+  0x00007462bbba9af5:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@25 (line 541)
+  0x00007462bbba9af9:   jmp    0x00007462bbba9afd           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@33 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9afb:   xor    %eax,%eax                    ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap::get@-1 (line 537)
+  0x00007462bbba9afd:   add    $0x30,%rsp
+  0x00007462bbba9b01:   pop    %rbp
+  0x00007462bbba9b02:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007462bbba9b06:   ja     0x00007462bbba9dd4
+  0x00007462bbba9b0c:   ret    
+  0x00007462bbba9b0d:   mov    0x18(%r12,%rbp,8),%r8d       ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@72 (line 581)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b12:   test   %r8d,%r8d
+  0x00007462bbba9b15:   je     0x00007462bbba9afb           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@78 (line 581)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b17:   mov    0x8(%r12,%rbp,8),%r9d
+  0x00007462bbba9b1c:   cmp    $0x2d3670,%r9d               ;   {metadata(&apos;java/util/HashMap$TreeNode&apos;)}
+  0x00007462bbba9b23:   je     0x00007462bbba9cf4
+  0x00007462bbba9b29:   lea    (%r12,%r8,8),%r9             ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@72 (line 581)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b2d:   xor    %ebx,%ebx                    ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@85 (line 582)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b2f:   mov    0xc(%r9),%edx
+  0x00007462bbba9b33:   cmp    %r11d,%edx
+  0x00007462bbba9b36:   je     0x00007462bbba9b4d           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@106 (line 585)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b38:   mov    0x18(%r9),%r8d               ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@145 (line 588)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b3c:   mov    0x30(%r15),%rdx              ; ImmutableOopMap {r10=Oop r8=NarrowOop rcx=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@145 (line 588)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b40:   test   %eax,(%rdx)                  ;   {poll}
+  0x00007462bbba9b42:   test   %r8d,%r8d
+  0x00007462bbba9b45:   je     0x00007462bbba9afb           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@145 (line 588)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b47:   lea    (%r12,%r8,8),%r9             ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@139 (line 588)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b4b:   jmp    0x00007462bbba9b2f
+  0x00007462bbba9b4d:   mov    0x10(%r9),%r8d
+  0x00007462bbba9b51:   mov    %r8,%rdx
+  0x00007462bbba9b54:   shl    $0x3,%rdx                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@111 (line 585)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b58:   cmp    %rcx,%rdx
+  0x00007462bbba9b5b:   je     0x00007462bbba9ae0           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@118 (line 585)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9b61:   mov    0x8(%rcx),%edi               ; implicit exception: dispatches to 0x00007462bbba9d8f
+  0x00007462bbba9b64:   cmp    $0x178db8,%edi               ;   {metadata(&apos;java/lang/String&apos;)}
+  0x00007462bbba9b6a:   jne    0x00007462bbba9c72
+  0x00007462bbba9b70:   mov    %r9,0x10(%rsp)
+  0x00007462bbba9b75:   mov    %r11d,0x8(%rsp)
+  0x00007462bbba9b7a:   mov    %r10,%rbp
+  0x00007462bbba9b7d:   mov    %rcx,(%rsp)
+  0x00007462bbba9b81:   mov    %rcx,%r10
+  0x00007462bbba9b84:   mov    %r10,%rsi
+  0x00007462bbba9b87:   mov    %r10,0x18(%rsp)
+  0x00007462bbba9b8c:   data16 xchg %ax,%ax
+  0x00007462bbba9b8f:   call   0x00007462bb4ad9e0           ; ImmutableOopMap {rbp=Oop [0]=Oop [16]=Oop [24]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {optimized virtual_call}
+  0x00007462bbba9b94:   nopl   0x100028c(%rax,%rax,1)       ;   {post_call_nop}
+  0x00007462bbba9b9c:   mov    %rbp,%r10
+  0x00007462bbba9b9f:   mov    (%rsp),%rcx
+  0x00007462bbba9ba3:   mov    %eax,%ebx
+  0x00007462bbba9ba5:   mov    0x8(%rsp),%r11d
+  0x00007462bbba9baa:   mov    0x10(%rsp),%r9               ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9baf:   test   %ebx,%ebx
+  0x00007462bbba9bb1:   jne    0x00007462bbba9ae0           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@131 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9bb7:   mov    %rcx,%rbp                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9bba:   mov    $0xffffff45,%esi
+  0x00007462bbba9bbf:   mov    %r10,(%rsp)
+  0x00007462bbba9bc3:   mov    %r9,0x8(%rsp)
+  0x00007462bbba9bc8:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9bcd:   mov    %ebx,0x14(%rsp)
+  0x00007462bbba9bd1:   xchg   %ax,%ax
+  0x00007462bbba9bd3:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop [8]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@131 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9bd8:   nopl   0x20002d0(%rax,%rax,1)       ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@131 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9be0:   test   %rcx,%rcx
+  0x00007462bbba9be3:   je     0x00007462bbba9d14           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@57 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9be9:   mov    %r9,0x18(%rsp)
+  0x00007462bbba9bee:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9bf3:   mov    %rcx,0x8(%rsp)
+  0x00007462bbba9bf8:   mov    %r10,(%rsp)
+  0x00007462bbba9bfc:   mov    %rcx,%rsi
+  0x00007462bbba9bff:   xchg   %ax,%ax
+  0x00007462bbba9c01:   movabs $0x746260127d50,%rax
+  0x00007462bbba9c0b:   call   0x00007462bb4adce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [8]=Oop [24]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@63 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {virtual_call}
+  0x00007462bbba9c10:   nopl   0x3000308(%rax,%rax,1)       ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@63 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9c18:   test   %eax,%eax
+  0x00007462bbba9c1a:   je     0x00007462bbba9d34           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@66 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9c20:   mov    (%rsp),%r10
+  0x00007462bbba9c24:   mov    0x18(%rsp),%r9
+  0x00007462bbba9c29:   jmp    0x00007462bbba9ae0
+  0x00007462bbba9c2e:   mov    %rdi,0x10(%rsp)
+  0x00007462bbba9c33:   mov    %r9d,0x8(%rsp)
+  0x00007462bbba9c38:   mov    %rdx,(%rsp)
+  0x00007462bbba9c3c:   mov    %rsi,%rbp
+  0x00007462bbba9c3f:   mov    %rdx,%rsi
+  0x00007462bbba9c42:   data16 xchg %ax,%ax
+  0x00007462bbba9c45:   movabs $0x746260127d78,%rax
+  0x00007462bbba9c4f:   call   0x00007462bb4adce0           ; ImmutableOopMap {rbp=Oop [0]=Oop [16]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {virtual_call}
+  0x00007462bbba9c54:   nopl   0x400034c(%rax,%rax,1)       ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9c5c:   mov    %rbp,%r10
+  0x00007462bbba9c5f:   mov    (%rsp),%rcx
+  0x00007462bbba9c63:   mov    0x8(%rsp),%r9d
+  0x00007462bbba9c68:   mov    0x10(%rsp),%rdi
+  0x00007462bbba9c6d:   jmp    0x00007462bbba9aa7
+  0x00007462bbba9c72:   cmp    $0x1a3508,%edi               ;   {metadata(&apos;java/lang/Long&apos;)}
+  0x00007462bbba9c78:   jne    0x00007462bbba9d4c
+  0x00007462bbba9c7e:   mov    %rcx,%rbp                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9c81:   mov    0x8(%r12,%r8,8),%edx         ; implicit exception: dispatches to 0x00007462bbba9db4
+  0x00007462bbba9c86:   cmp    $0x1a3508,%edx               ;   {metadata(&apos;java/lang/Long&apos;)}
+  0x00007462bbba9c8c:   jne    0x00007462bbba9baf
+  0x00007462bbba9c92:   mov    0x10(%rbp),%rdi              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Long::equals@13 (line 1212)
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9c96:   shl    $0x3,%r8                     ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Long::equals@4 (line 1211)
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9c9a:   cmp    0x10(%r8),%rdi
+  0x00007462bbba9c9e:   jne    0x00007462bbba9baf           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Long::equals@21 (line 1212)
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9ca4:   mov    $0x1,%ebx
+  0x00007462bbba9ca9:   jmp    0x00007462bbba9baf
+  0x00007462bbba9cae:   xor    %r9d,%r9d
+  0x00007462bbba9cb1:   xor    %r11d,%r11d
+  0x00007462bbba9cb4:   jmp    0x00007462bbba9ab4
+  0x00007462bbba9cb9:   mov    $0xffffff45,%esi
+  0x00007462bbba9cbe:   mov    %r10,%rbp
+  0x00007462bbba9cc1:   mov    %r9d,(%rsp)
+  0x00007462bbba9cc5:   xchg   %ax,%ax
+  0x00007462bbba9cc7:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*ifle {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@14 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9ccc:   nopl   0x50003c4(%rax,%rax,1)       ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@14 (line 576)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9cd4:   mov    $0xffffff45,%esi
+  0x00007462bbba9cd9:   mov    %r10,%rbp
+  0x00007462bbba9cdc:   mov    %r9,(%rsp)
+  0x00007462bbba9ce0:   mov    %r11d,0x8(%rsp)
+  0x00007462bbba9ce5:   xchg   %ax,%ax
+  0x00007462bbba9ce7:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.LinkedHashMap::get@16 (line 539)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9cec:   nopl   0x60003e4(%rax,%rax,1)       ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@16 (line 539)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9cf4:   mov    $0xffffff45,%esi
+  0x00007462bbba9cf9:   mov    %r10,(%rsp)
+  0x00007462bbba9cfd:   mov    %rcx,0x8(%rsp)
+  0x00007462bbba9d02:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9d07:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [8]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@85 (line 582)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9d0c:   nopl   0x7000404(%rax,%rax,1)       ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@85 (line 582)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9d14:   mov    $0xffffff45,%esi
+  0x00007462bbba9d19:   mov    %r10,(%rsp)
+  0x00007462bbba9d1d:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9d22:   mov    %rcx,0x18(%rsp)
+  0x00007462bbba9d27:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [24]=Oop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@57 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9d2c:   nopl   0x8000424(%rax,%rax,1)       ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@57 (line 578)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9d34:   mov    $0xffffff45,%esi
+  0x00007462bbba9d39:   mov    %eax,0x14(%rsp)
+  0x00007462bbba9d3d:   xchg   %ax,%ax
+  0x00007462bbba9d3f:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [8]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@66 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9d44:   nopl   0x900043c(%rax,%rax,1)       ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@66 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9d4c:   mov    $0xffffffc6,%esi
+  0x00007462bbba9d51:   mov    %r10,%rbp
+  0x00007462bbba9d54:   mov    %r9,0x8(%rsp)
+  0x00007462bbba9d59:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9d5e:   mov    %rcx,0x18(%rsp)
+  0x00007462bbba9d63:   mov    %r8d,0x14(%rsp)
+  0x00007462bbba9d68:   data16 xchg %ax,%ax
+  0x00007462bbba9d6b:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop [8]=Oop [20]=NarrowOop [24]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9d70:   nopl   0xa000468(%rax,%rax,1)       ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::hash@9 (line 338)
+                                                            ; - java.util.HashMap::getNode@23 (line 577)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9d78:   mov    %rax,%rsi
+  0x00007462bbba9d7b:   jmp    0x00007462bbba9d85           ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@63 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9d7d:   mov    %rax,%rsi
+  0x00007462bbba9d80:   jmp    0x00007462bbba9d85           ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9d82:   mov    %rax,%rsi                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@63 (line 579)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+  0x00007462bbba9d85:   add    $0x30,%rsp
+  0x00007462bbba9d89:   pop    %rbp
+  0x00007462bbba9d8a:   jmp    0x00007462bb58cf60           ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x00007462bbba9d8f:   mov    $0xffffff45,%esi
+  0x00007462bbba9d94:   mov    %r10,%rbp
+  0x00007462bbba9d97:   mov    %r9,0x8(%rsp)
+  0x00007462bbba9d9c:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9da1:   mov    %rcx,0x18(%rsp)
+  0x00007462bbba9da6:   nop
+  0x00007462bbba9da7:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop [8]=Oop [24]=Oop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::getNode@122 (line 585)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9dac:   nopl   0xb0004a4(%rax,%rax,1)       ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@122 (line 585)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9db4:   mov    $0xfffffff4,%esi
+  0x00007462bbba9db9:   mov    %r10,(%rsp)
+  0x00007462bbba9dbd:   mov    %r9,0x8(%rsp)
+  0x00007462bbba9dc2:   mov    %r11d,0x10(%rsp)
+  0x00007462bbba9dc7:   call   0x00007462bb585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop [8]=Oop }
+                                                            ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Long::equals@1 (line 1211)
+                                                            ; - java.util.HashMap::getNode@128 (line 586)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007462bbba9dcc:   nopl   0xc0004c4(%rax,%rax,1)       ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::getNode@134 (line 587)
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ;   {post_call_nop}
+  0x00007462bbba9dd4:   movabs $0x7462bbba9b02,%r10         ;   {internal_word}
+  0x00007462bbba9dde:   mov    %r10,0x510(%r15)
+  0x00007462bbba9de5:   jmp    0x00007462bb4afb60           ;   {runtime_call SafepointBlob}
+  0x00007462bbba9dea:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007462bbba9def:   jmp    0x00007462bbba9a2a
+  0x00007462bbba9df4:   hlt    
+  0x00007462bbba9df5:   hlt    
+  0x00007462bbba9df6:   hlt    
+  0x00007462bbba9df7:   hlt    
+[Stub Code]
+  0x00007462bbba9df8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007462bbba9e02:   jmp    0x00007462bbba9e02           ;   {runtime_call nmethod}
+  0x00007462bbba9e07:   call   0x00007462bb4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007462bbba9e0c:   jmp    0x00007462bbba9e07
+  0x00007462bbba9e0e:   hlt    
+  0x00007462bbba9e0f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

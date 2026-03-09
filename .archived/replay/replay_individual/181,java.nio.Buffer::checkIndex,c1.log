@@ -1,0 +1,108 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 291   13       3       java.nio.Buffer::checkIndex (12 bytes)
+ total in heap  [0x000071156bfff008,0x000071156bfff248] = 576
+ main code      [0x000071156bfff100,0x000071156bfff220] = 288
+ stub code      [0x000071156bfff220,0x000071156bfff240] = 32
+ oops           [0x000071156bfff240,0x000071156bfff248] = 8
+ mutable data [0x0000711514014dd0,0x0000711514014e10] = 64
+ relocation     [0x0000711514014dd0,0x0000711514014e00] = 48
+ metadata       [0x0000711514014e00,0x0000711514014e10] = 16
+ immutable data [0x0000711514014d00,0x0000711514014dc4] = 196
+ dependencies   [0x0000711514014d00,0x0000711514014d08] = 8
+ scopes pcs     [0x0000711514014d08,0x0000711514014d88] = 128
+ scopes data    [0x0000711514014d88,0x0000711514014dc0] = 56
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000071156bfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000071156bfff10b:   data16 data16 xchg %ax,%ax
+  0x000071156bfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000611c0dd0} &apos;checkIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;
+  # this:     rsi:rsi   = &apos;java/nio/Buffer&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000071156bfff112:   mov    0x8(%rsi),%r10d
+  0x000071156bfff116:   cmp    0x8(%rax),%r10d
+  0x000071156bfff11a:   jne    0x00007115734ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000071156bfff120:   mov    %eax,-0x14000(%rsp)
+  0x000071156bfff127:   push   %rbp
+  0x000071156bfff128:   sub    $0x30,%rsp
+  0x000071156bfff12c:   cmpl   $0x1,0x20(%r15)
+  0x000071156bfff134:   je     0x000071156bfff13b
+  0x000071156bfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000071156bfff13b:   movabs $0x7115280549a0,%rax         ;   {metadata(method data for {method} {0x00000000611c0dd0} &apos;checkIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x000071156bfff145:   mov    0x90(%rax),%edi
+  0x000071156bfff14b:   add    $0x2,%edi
+  0x000071156bfff14e:   mov    %edi,0x90(%rax)
+  0x000071156bfff154:   and    $0x7fe,%edi
+  0x000071156bfff15a:   test   %edi,%edi
+  0x000071156bfff15c:   je     0x000071156bfff1a9           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::checkIndex@0 (line 767)
+  0x000071156bfff162:   mov    0x1c(%rsi),%eax              ;*getfield limit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::checkIndex@2 (line 767)
+  0x000071156bfff165:   movabs $0x7115280549a0,%rsi         ;   {metadata(method data for {method} {0x00000000611c0dd0} &apos;checkIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x000071156bfff16f:   addq   $0x1,0xd8(%rsi)
+  0x000071156bfff177:   movabs $0x41f803cc8,%rsi            ;   {oop(a &apos;jdk/internal/util/Preconditions$4&apos;{0x000000041f803cc8})}
+  0x000071156bfff181:   mov    $0x0,%esi
+  0x000071156bfff186:   cmp    %esi,%edx
+  0x000071156bfff188:   jl     0x000071156bfff1c7
+  0x000071156bfff18e:   cmp    %eax,%edx
+  0x000071156bfff190:   jge    0x000071156bfff1d4           ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::checkIndex@8 (line 767)
+  0x000071156bfff196:   mov    %rdx,%rax
+  0x000071156bfff199:   add    $0x30,%rsp
+  0x000071156bfff19d:   pop    %rbp
+  0x000071156bfff19e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000071156bfff1a2:   ja     0x000071156bfff1e1
+  0x000071156bfff1a8:   ret    
+  0x000071156bfff1a9:   movabs $0x611c0dd0,%r10             ;   {metadata({method} {0x00000000611c0dd0} &apos;checkIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x000071156bfff1b3:   mov    %r10,0x8(%rsp)
+  0x000071156bfff1b8:   movq   $0xffffffffffffffff,(%rsp)
+  0x000071156bfff1c0:   call   0x0000711573583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::checkIndex@-1 (line 767)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000071156bfff1c5:   jmp    0x000071156bfff162
+  0x000071156bfff1c7:   movq   $0xffffffffffffffe4,(%rsp)
+  0x000071156bfff1cf:   call   0x00007115735819e0           ; ImmutableOopMap {}
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::checkIndex@8 (line 767)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x000071156bfff1d4:   movq   $0xffffffffffffffe4,(%rsp)
+  0x000071156bfff1dc:   call   0x00007115735819e0           ; ImmutableOopMap {}
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::checkIndex@8 (line 767)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x000071156bfff1e1:   movabs $0x71156bfff19e,%r10         ;   {internal_word}
+  0x000071156bfff1eb:   mov    %r10,0x510(%r15)
+  0x000071156bfff1f2:   jmp    0x00007115734afb60           ;   {runtime_call SafepointBlob}
+  0x000071156bfff1f7:   mov    0x5c0(%r15),%rax
+  0x000071156bfff1fe:   movq   $0x0,0x5c0(%r15)
+  0x000071156bfff209:   movq   $0x0,0x5c8(%r15)
+  0x000071156bfff214:   add    $0x30,%rsp
+  0x000071156bfff218:   pop    %rbp
+  0x000071156bfff219:   jmp    0x000071157357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000071156bfff21e:   hlt    
+  0x000071156bfff21f:   hlt    
+[Exception Handler]
+  0x000071156bfff220:   call   0x000071157357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000071156bfff225:   movabs $0x71158b73aec4,%rdi         ;   {external_word}
+  0x000071156bfff22f:   and    $0xfffffffffffffff0,%rsp
+  0x000071156bfff233:   call   0x000071158b191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000071156bfff238:   hlt    
+  0x000071156bfff239:   call   0x00007115734afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000071156bfff23e:   jmp    0x000071156bfff239
+--------------------------------------------------------------------------------
+[/Disassembly]

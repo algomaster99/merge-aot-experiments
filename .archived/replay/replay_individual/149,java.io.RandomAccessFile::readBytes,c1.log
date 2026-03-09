@@ -1,0 +1,173 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 254    3       3       java.io.RandomAccessFile::readBytes (28 bytes)
+ total in heap  [0x00007512cffff008,0x00007512cffff350] = 840
+ main code      [0x00007512cffff100,0x00007512cffff2f8] = 504
+ stub code      [0x00007512cffff2f8,0x00007512cffff350] = 88
+ mutable data [0x0000751270014e80,0x0000751270014ef0] = 112
+ relocation     [0x0000751270014e80,0x0000751270014ee0] = 96
+ metadata       [0x0000751270014ee0,0x0000751270014ef0] = 16
+ immutable data [0x0000751270014d20,0x0000751270014e74] = 340
+ dependencies   [0x0000751270014d20,0x0000751270014d28] = 8
+ scopes pcs     [0x0000751270014d28,0x0000751270014e08] = 224
+ scopes data    [0x0000751270014e08,0x0000751270014e70] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007512cffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007512cffff10b:   data16 data16 xchg %ax,%ax
+  0x00007512cffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;
+  # this:     rsi:rsi   = &apos;java/io/RandomAccessFile&apos;
+  # parm0:    rdx:rdx   = &apos;[B&apos;
+  # parm1:    rcx       = int
+  # parm2:    r8        = int
+  #           [sp+0x60]  (sp of caller)
+  0x00007512cffff112:   mov    0x8(%rsi),%r10d
+  0x00007512cffff116:   cmp    0x8(%rax),%r10d
+  0x00007512cffff11a:   jne    0x00007512d74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007512cffff120:   mov    %eax,-0x14000(%rsp)
+  0x00007512cffff127:   push   %rbp
+  0x00007512cffff128:   sub    $0x50,%rsp
+  0x00007512cffff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007512cffff134:   je     0x00007512cffff13b
+  0x00007512cffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007512cffff13b:   movabs $0x7512880342f0,%rdi         ;   {metadata(method data for {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff145:   mov    0x90(%rdi),%ebx
+  0x00007512cffff14b:   add    $0x2,%ebx
+  0x00007512cffff14e:   mov    %ebx,0x90(%rdi)
+  0x00007512cffff154:   and    $0x7fe,%ebx
+  0x00007512cffff15a:   test   %ebx,%ebx
+  0x00007512cffff15c:   je     0x00007512cffff284
+  0x00007512cffff162:   movabs $0x7ff89df30,%rdi            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff89df30} = &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff16c:   movsbl 0x8c(%rdi),%edi              ;*getstatic jfrTracing {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@0 (line 392)
+  0x00007512cffff173:   test   %edi,%edi
+  0x00007512cffff175:   movabs $0x7512880342f0,%rdi         ;   {metadata(method data for {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff17f:   mov    $0xd8,%ebx
+  0x00007512cffff184:   je     0x00007512cffff18b
+  0x00007512cffff186:   mov    $0xe8,%ebx
+  0x00007512cffff18b:   mov    (%rdi,%rbx,1),%rax
+  0x00007512cffff18f:   lea    0x1(%rax),%rax
+  0x00007512cffff193:   mov    %rax,(%rdi,%rbx,1)
+  0x00007512cffff197:   mov    %r8d,0x3c(%rsp)
+  0x00007512cffff19c:   mov    %ecx,0x38(%rsp)
+  0x00007512cffff1a0:   mov    %rdx,0x30(%rsp)
+  0x00007512cffff1a5:   mov    %rsi,0x28(%rsp)
+  0x00007512cffff1aa:   je     0x00007512cffff1ee           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@3 (line 392)
+  0x00007512cffff1b0:   nopl   0x0(%rax)
+  0x00007512cffff1b7:   call   0x00007512d74adfe0           ; ImmutableOopMap {[40]=Oop [48]=Oop }
+                                                            ;*invokestatic enabled {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@6 (line 392)
+                                                            ;   {static_call}
+  0x00007512cffff1bc:   nopl   0x1b4(%rax,%rax,1)           ;*invokestatic enabled {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@6 (line 392)
+                                                            ;   {post_call_nop}
+  0x00007512cffff1c4:   test   %eax,%eax
+  0x00007512cffff1c6:   movabs $0x7512880342f0,%rdx         ;   {metadata(method data for {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff1d0:   mov    $0x118,%ecx
+  0x00007512cffff1d5:   jne    0x00007512cffff1dc
+  0x00007512cffff1d7:   mov    $0x108,%ecx
+  0x00007512cffff1dc:   mov    (%rdx,%rcx,1),%r8
+  0x00007512cffff1e0:   lea    0x1(%r8),%r8
+  0x00007512cffff1e4:   mov    %r8,(%rdx,%rcx,1)
+  0x00007512cffff1e8:   jne    0x00007512cffff23c           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@9 (line 392)
+  0x00007512cffff1ee:   mov    0x28(%rsp),%rsi
+  0x00007512cffff1f3:   movabs $0x7512880342f0,%rdx         ;   {metadata(method data for {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff1fd:   addq   $0x1,0x158(%rdx)
+  0x00007512cffff205:   mov    0x30(%rsp),%rdx
+  0x00007512cffff20a:   mov    0x38(%rsp),%ecx
+  0x00007512cffff20e:   mov    0x3c(%rsp),%r8d
+  0x00007512cffff213:   mov    0x28(%rsp),%rsi              ;*invokevirtual readBytes0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@24 (line 395)
+  0x00007512cffff218:   nopl   0x0(%rax)
+  0x00007512cffff21f:   call   0x00007512d74ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual readBytes0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@24 (line 395)
+                                                            ;   {optimized virtual_call}
+  0x00007512cffff224:   nopl   0x100021c(%rax,%rax,1)       ;*invokevirtual readBytes0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@24 (line 395)
+                                                            ;   {post_call_nop}
+  0x00007512cffff22c:   add    $0x50,%rsp
+  0x00007512cffff230:   pop    %rbp
+  0x00007512cffff231:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007512cffff235:   ja     0x00007512cffff2a5
+  0x00007512cffff23b:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@27 (line 395)
+  0x00007512cffff23c:   mov    0x3c(%rsp),%r8d
+  0x00007512cffff241:   mov    0x38(%rsp),%ecx
+  0x00007512cffff245:   mov    0x30(%rsp),%rdx
+  0x00007512cffff24a:   mov    0x28(%rsp),%rsi
+  0x00007512cffff24f:   mov    %rsi,%rdi
+  0x00007512cffff252:   movabs $0x7512880342f0,%rbx         ;   {metadata(method data for {method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff25c:   addq   $0x1,0x128(%rbx)
+  0x00007512cffff264:   data16 xchg %ax,%ax
+  0x00007512cffff267:   call   0x00007512d74ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual traceReadBytes0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@16 (line 393)
+                                                            ;   {optimized virtual_call}
+  0x00007512cffff26c:   nopl   0x2000264(%rax,%rax,1)       ;*invokevirtual traceReadBytes0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.io.RandomAccessFile::readBytes@16 (line 393)
+                                                            ;   {post_call_nop}
+  0x00007512cffff274:   add    $0x50,%rsp
+  0x00007512cffff278:   pop    %rbp
+  0x00007512cffff279:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007512cffff27d:   ja     0x00007512cffff2bb
+  0x00007512cffff283:   ret    
+  0x00007512cffff284:   movabs $0x5f2c1f20,%r10             ;   {metadata({method} {0x000000005f2c1f20} &apos;readBytes&apos; &apos;([BII)I&apos; in &apos;java/io/RandomAccessFile&apos;)}
+  0x00007512cffff28e:   mov    %r10,0x8(%rsp)
+  0x00007512cffff293:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007512cffff29b:   call   0x00007512d7581860           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.io.RandomAccessFile::readBytes@-1 (line 392)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007512cffff2a0:   jmp    0x00007512cffff162
+  0x00007512cffff2a5:   movabs $0x7512cffff231,%r10         ;   {internal_word}
+  0x00007512cffff2af:   mov    %r10,0x510(%r15)
+  0x00007512cffff2b6:   jmp    0x00007512d74afb60           ;   {runtime_call SafepointBlob}
+  0x00007512cffff2bb:   movabs $0x7512cffff279,%r10         ;   {internal_word}
+  0x00007512cffff2c5:   mov    %r10,0x510(%r15)
+  0x00007512cffff2cc:   jmp    0x00007512d74afb60           ;   {runtime_call SafepointBlob}
+  0x00007512cffff2d1:   mov    0x5c0(%r15),%rax
+  0x00007512cffff2d8:   movq   $0x0,0x5c0(%r15)
+  0x00007512cffff2e3:   movq   $0x0,0x5c8(%r15)
+  0x00007512cffff2ee:   add    $0x50,%rsp
+  0x00007512cffff2f2:   pop    %rbp
+  0x00007512cffff2f3:   jmp    0x00007512d757a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x00007512cffff2f8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007512cffff2fd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007512cffff307:   jmp    0x00007512cffff307           ;   {runtime_call nmethod}
+  0x00007512cffff30c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007512cffff316:   jmp    0x00007512cffff316           ;   {runtime_call nmethod}
+  0x00007512cffff31b:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007512cffff325:   jmp    0x00007512cffff325           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007512cffff32a:   call   0x00007512d757db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007512cffff32f:   movabs $0x7512ee13aec4,%rdi         ;   {external_word}
+  0x00007512cffff339:   and    $0xfffffffffffffff0,%rsp
+  0x00007512cffff33d:   call   0x00007512edb91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007512cffff342:   hlt    
+  0x00007512cffff343:   call   0x00007512d74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007512cffff348:   jmp    0x00007512cffff343
+  0x00007512cffff34a:   hlt    
+  0x00007512cffff34b:   hlt    
+  0x00007512cffff34c:   hlt    
+  0x00007512cffff34d:   hlt    
+  0x00007512cffff34e:   hlt    
+  0x00007512cffff34f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

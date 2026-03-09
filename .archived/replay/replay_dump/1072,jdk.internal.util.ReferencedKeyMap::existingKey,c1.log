@@ -1,0 +1,1023 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 19393 1072       3       jdk.internal.util.ReferencedKeyMap::existingKey (32 bytes)
+ total in heap  [0x000077b4580ad988,0x000077b4580ae858] = 3792
+ main code      [0x000077b4580ada80,0x000077b4580ae7c8] = 3400
+ stub code      [0x000077b4580ae7c8,0x000077b4580ae850] = 136
+ oops           [0x000077b4580ae850,0x000077b4580ae858] = 8
+ mutable data [0x000077b3f0022850,0x000077b3f00229d0] = 384
+ relocation     [0x000077b3f0022850,0x000077b3f0022980] = 304
+ metadata       [0x000077b3f0022980,0x000077b3f00229d0] = 80
+ immutable data [0x000077b3f010cbc0,0x000077b3f010d324] = 1892
+ dependencies   [0x000077b3f010cbc0,0x000077b3f010cbd8] = 24
+ nul chk table  [0x000077b3f010cbd8,0x000077b3f010cc18] = 64
+ scopes pcs     [0x000077b3f010cc18,0x000077b3f010d098] = 1152
+ scopes data    [0x000077b3f010d098,0x000077b3f010d320] = 648
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;
+  # parm0:    rsi:rsi   = &apos;jdk/internal/util/ReferencedKeyMap&apos;
+  # parm1:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0xd0]  (sp of caller)
+  0x000077b4580ada80:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580ada87:   push   %rbp
+  0x000077b4580ada88:   sub    $0xc0,%rsp
+  0x000077b4580ada8f:   nop
+  0x000077b4580ada90:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580ada98:   je     0x000077b4580ada9f
+  0x000077b4580ada9a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580ada9f:   mov    %rsi,0x98(%rsp)
+  0x000077b4580adaa7:   mov    %rdx,0xa0(%rsp)
+  0x000077b4580adaaf:   movabs $0x77b4140fc520,%rdi         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adab9:   mov    0x90(%rdi),%ebx
+  0x000077b4580adabf:   add    $0x2,%ebx
+  0x000077b4580adac2:   mov    %ebx,0x90(%rdi)
+  0x000077b4580adac8:   and    $0x7fe,%ebx
+  0x000077b4580adace:   test   %ebx,%ebx
+  0x000077b4580adad0:   je     0x000077b4580ae51c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@0 (line 440)
+  0x000077b4580adad6:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae53d
+                                                            ;*invokevirtual removeStaleReferences {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adad9:   mov    %rsi,%rdi
+  0x000077b4580adadc:   movabs $0x77b4140fc520,%rbx         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adae6:   mov    0x8(%rdi),%edi
+  0x000077b4580adae9:   mov    $0x46000000,%r10d
+  0x000077b4580adaef:   add    %r10,%rdi
+  0x000077b4580adaf2:   mov    $0x1c,%r10d
+  0x000077b4580adaf8:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b4580adafc:   je     0x000077b4580adb35
+  0x000077b4580adafe:   add    $0x2,%r10
+  0x000077b4580adb02:   cmp    $0x20,%r10
+  0x000077b4580adb06:   jne    0x000077b4580adaf8
+  0x000077b4580adb08:   mov    $0x1c,%r10d
+  0x000077b4580adb0e:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580adb13:   je     0x000077b4580adb21
+  0x000077b4580adb15:   add    $0x2,%r10
+  0x000077b4580adb19:   cmp    $0x20,%r10
+  0x000077b4580adb1d:   jne    0x000077b4580adb0e
+  0x000077b4580adb1f:   jmp    0x000077b4580adb2d
+  0x000077b4580adb21:   push   %rax
+  0x000077b4580adb22:   xor    %rax,%rax
+  0x000077b4580adb25:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b4580adb2a:   pop    %rax
+  0x000077b4580adb2b:   jmp    0x000077b4580adaf2
+  0x000077b4580adb2d:   mov    $0x1b,%r10d
+  0x000077b4580adb33:   jmp    0x000077b4580adb39
+  0x000077b4580adb35:   add    $0x1,%r10
+  0x000077b4580adb39:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580adb3e:   movabs $0x77b4140a12f8,%rdi         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adb48:   mov    0x90(%rdi),%ebx
+  0x000077b4580adb4e:   add    $0x2,%ebx
+  0x000077b4580adb51:   mov    %ebx,0x90(%rdi)
+  0x000077b4580adb57:   and    $0x1ffffe,%ebx
+  0x000077b4580adb5d:   test   %ebx,%ebx
+  0x000077b4580adb5f:   je     0x000077b4580ae542
+  0x000077b4580adb65:   jmp    0x000077b4580adc4a           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@0 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adb6a:   nopw   0x0(%rax,%rax,1)
+  0x000077b4580adb70:   mov    0x98(%rsp),%rsi
+  0x000077b4580adb78:   mov    0x10(%rsi),%edi
+  0x000077b4580adb7b:   shl    $0x3,%rdi                    ;*getfield map {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@16 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adb7f:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae563
+  0x000077b4580adb82:   mov    %rdi,%rdx
+  0x000077b4580adb85:   movabs $0x77b4140a12f8,%rbx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adb8f:   mov    0x8(%rdx),%edx
+  0x000077b4580adb92:   mov    $0x46000000,%r10d
+  0x000077b4580adb98:   add    %r10,%rdx
+  0x000077b4580adb9b:   mov    $0x29,%r10d
+  0x000077b4580adba1:   cmp    (%rbx,%r10,8),%rdx
+  0x000077b4580adba5:   je     0x000077b4580adbde
+  0x000077b4580adba7:   add    $0x2,%r10
+  0x000077b4580adbab:   cmp    $0x2d,%r10
+  0x000077b4580adbaf:   jne    0x000077b4580adba1
+  0x000077b4580adbb1:   mov    $0x29,%r10d
+  0x000077b4580adbb7:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580adbbc:   je     0x000077b4580adbca
+  0x000077b4580adbbe:   add    $0x2,%r10
+  0x000077b4580adbc2:   cmp    $0x2d,%r10
+  0x000077b4580adbc6:   jne    0x000077b4580adbb7
+  0x000077b4580adbc8:   jmp    0x000077b4580adbd6
+  0x000077b4580adbca:   push   %rax
+  0x000077b4580adbcb:   xor    %rax,%rax
+  0x000077b4580adbce:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x000077b4580adbd3:   pop    %rax
+  0x000077b4580adbd4:   jmp    0x000077b4580adb9b
+  0x000077b4580adbd6:   mov    $0x28,%r10d
+  0x000077b4580adbdc:   jmp    0x000077b4580adbe2
+  0x000077b4580adbde:   add    $0x1,%r10
+  0x000077b4580adbe2:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580adbe7:   mov    %rax,%rdx
+  0x000077b4580adbea:   mov    %rdi,%rsi                    ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adbed:   movabs $0x77b3f010d600,%rax
+  0x000077b4580adbf7:   call   0x000077b45f4adce0           ; ImmutableOopMap {[152]=Oop [160]=Oop }
+                                                            ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {virtual_call}
+  0x000077b4580adbfc:   nopl   0x274(%rax,%rax,1)           ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {post_call_nop}
+  0x000077b4580adc04:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adc0e:   mov    0x94(%rdx),%esi
+  0x000077b4580adc14:   add    $0x2,%esi
+  0x000077b4580adc17:   mov    %esi,0x94(%rdx)
+  0x000077b4580adc1d:   and    $0x3ffe,%esi
+  0x000077b4580adc23:   test   %esi,%esi
+  0x000077b4580adc25:   je     0x000077b4580ae568           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adc2b:   mov    0x30(%r15),%r10              ; ImmutableOopMap {[152]=Oop [160]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adc2f:   test   %eax,(%r10)                  ;   {poll}
+  0x000077b4580adc32:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adc3c:   incl   0x170(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adc42:   mov    0x98(%rsp),%rsi
+  0x000077b4580adc4a:   mov    0x14(%rsi),%edi
+  0x000077b4580adc4d:   shl    $0x3,%rdi                    ;*getfield stale {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@1 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adc51:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae589
+  0x000077b4580adc54:   mov    %rdi,%rbx
+  0x000077b4580adc57:   movabs $0x77b4140a12f8,%rax         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adc61:   mov    0x8(%rbx),%ebx
+  0x000077b4580adc64:   mov    $0x46000000,%r10d
+  0x000077b4580adc6a:   add    %r10,%rbx
+  0x000077b4580adc6d:   mov    $0x1c,%r10d
+  0x000077b4580adc73:   cmp    (%rax,%r10,8),%rbx
+  0x000077b4580adc77:   je     0x000077b4580adcb6
+  0x000077b4580adc79:   add    $0x2,%r10
+  0x000077b4580adc7d:   cmp    $0x20,%r10
+  0x000077b4580adc81:   jne    0x000077b4580adc73
+  0x000077b4580adc83:   mov    $0x1c,%r10d
+  0x000077b4580adc89:   cmpq   $0x0,(%rax,%r10,8)
+  0x000077b4580adc8e:   je     0x000077b4580adc9c
+  0x000077b4580adc90:   add    $0x2,%r10
+  0x000077b4580adc94:   cmp    $0x20,%r10
+  0x000077b4580adc98:   jne    0x000077b4580adc89
+  0x000077b4580adc9a:   jmp    0x000077b4580adcae
+  0x000077b4580adc9c:   push   %rcx
+  0x000077b4580adc9d:   mov    %rax,%rcx
+  0x000077b4580adca0:   xor    %rax,%rax
+  0x000077b4580adca3:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000077b4580adca8:   mov    %rcx,%rax
+  0x000077b4580adcab:   pop    %rcx
+  0x000077b4580adcac:   jmp    0x000077b4580adc6d
+  0x000077b4580adcae:   mov    $0x1b,%r10d
+  0x000077b4580adcb4:   jmp    0x000077b4580adcba
+  0x000077b4580adcb6:   add    $0x1,%r10
+  0x000077b4580adcba:   addq   $0x1,(%rax,%r10,8)
+  0x000077b4580adcbf:   mov    %rdi,%rsi                    ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adcc2:   nopl   0x0(%rax,%rax,1)
+  0x000077b4580adcc7:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[152]=Oop [160]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {optimized virtual_call}
+  0x000077b4580adccc:   nopl   0x2000344(%rax,%rax,1)       ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {post_call_nop}
+  0x000077b4580adcd4:   test   %rax,%rax
+  0x000077b4580adcd7:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adce1:   mov    $0x108,%esi
+  0x000077b4580adce6:   jne    0x000077b4580adced
+  0x000077b4580adce8:   mov    $0x118,%esi
+  0x000077b4580adced:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b4580adcf1:   lea    0x1(%rdi),%rdi
+  0x000077b4580adcf5:   mov    %rdi,(%rdx,%rsi,1)
+  0x000077b4580adcf9:   jne    0x000077b4580adb70           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@9 (line 333)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580adcff:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580add09:   incl   0x128(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@12 (line 334)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+  0x000077b4580add0f:   mov    0xa0(%rsp),%rbx
+  0x000077b4580add17:   mov    0x98(%rsp),%rsi
+  0x000077b4580add1f:   movabs $0x77b4140fc520,%rdx         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580add29:   addq   $0x1,0x108(%rdx)
+  0x000077b4580add31:   movabs $0x77b4140a5708,%rdx         ;   {metadata(method data for {method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580add3b:   mov    0x90(%rdx),%esi
+  0x000077b4580add41:   add    $0x2,%esi
+  0x000077b4580add44:   mov    %esi,0x90(%rdx)
+  0x000077b4580add4a:   and    $0x1ffffe,%esi
+  0x000077b4580add50:   test   %esi,%esi
+  0x000077b4580add52:   je     0x000077b4580ae58e
+  0x000077b4580add58:   movabs $0x4632feb0,%rdx             ;   {metadata(&apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580add62:   mov    0x1b0(%r15),%rax
+  0x000077b4580add69:   lea    0x10(%rax),%rdi
+  0x000077b4580add6d:   cmp    0x1c0(%r15),%rdi
+  0x000077b4580add74:   ja     0x000077b4580ae5af
+  0x000077b4580add7a:   mov    %rdi,0x1b0(%r15)
+  0x000077b4580add81:   movq   $0x1,(%rax)
+  0x000077b4580add88:   mov    %rdx,%rcx
+  0x000077b4580add8b:   mov    $0x46000000,%r10d
+  0x000077b4580add91:   sub    %r10,%rcx
+  0x000077b4580add94:   mov    %ecx,0x8(%rax)
+  0x000077b4580add97:   xor    %rcx,%rcx
+  0x000077b4580add9a:   mov    %ecx,0xc(%rax)
+  0x000077b4580add9d:   xor    %rcx,%rcx                    ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@0 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+  0x000077b4580adda0:   mov    %rax,0xa8(%rsp)
+  0x000077b4580adda8:   mov    %rax,%rsi
+  0x000077b4580addab:   movabs $0x77b4140a5708,%rdi         ;   {metadata(method data for {method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580addb5:   addq   $0x1,0xd8(%rdi)
+  0x000077b4580addbd:   movabs $0x77b4140a5818,%rsi         ;   {metadata(method data for {method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580addc7:   mov    0x90(%rsi),%edi
+  0x000077b4580addcd:   add    $0x2,%edi
+  0x000077b4580addd0:   mov    %edi,0x90(%rsi)
+  0x000077b4580addd6:   and    $0x1ffffe,%edi
+  0x000077b4580adddc:   test   %edi,%edi
+  0x000077b4580addde:   je     0x000077b4580ae5bc
+  0x000077b4580adde4:   mov    %rax,%rsi
+  0x000077b4580adde7:   movabs $0x77b4140a5818,%rdi         ;   {metadata(method data for {method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580addf1:   addq   $0x1,0xd8(%rdi)
+  0x000077b4580addf9:   movabs $0x77b414010cd0,%rsi         ;   {metadata(method data for {method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4580ade03:   mov    0x90(%rsi),%edi
+  0x000077b4580ade09:   add    $0x2,%edi
+  0x000077b4580ade0c:   mov    %edi,0x90(%rsi)
+  0x000077b4580ade12:   and    $0x1ffffe,%edi
+  0x000077b4580ade18:   test   %edi,%edi
+  0x000077b4580ade1a:   je     0x000077b4580ae5dd
+  0x000077b4580ade20:   movsbl 0x48(%r15),%esi
+  0x000077b4580ade25:   test   %esi,%esi
+  0x000077b4580ade27:   jne    0x000077b4580ae5fe
+  0x000077b4580ade2d:   mov    %rbx,%r10
+  0x000077b4580ade30:   shr    $0x3,%r10
+  0x000077b4580ade34:   mov    %r10d,0xc(%rax)
+  0x000077b4580ade38:   mov    %rax,%rdi
+  0x000077b4580ade3b:   xor    %rbx,%rdi
+  0x000077b4580ade3e:   shr    $0x17,%rdi
+  0x000077b4580ade42:   je     0x000077b4580ade5c
+  0x000077b4580ade44:   test   %rbx,%rbx
+  0x000077b4580ade47:   je     0x000077b4580ade5c
+  0x000077b4580ade49:   mov    %rax,%rdi
+  0x000077b4580ade4c:   shr    $0x9,%rdi
+  0x000077b4580ade50:   add    0x50(%r15),%rdi
+  0x000077b4580ade54:   cmpb   $0xff,(%rdi)
+  0x000077b4580ade57:   jne    0x000077b4580ade5c
+  0x000077b4580ade59:   movb   $0x0,(%rdi)                  ;*putfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@6 (line 47)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+  0x000077b4580ade5c:   mov    0x98(%rsp),%rsi
+  0x000077b4580ade64:   movabs $0x77b4140fc520,%rdi         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ade6e:   mov    0x8(%rsi),%esi
+  0x000077b4580ade71:   mov    $0x46000000,%r10d
+  0x000077b4580ade77:   add    %r10,%rsi
+  0x000077b4580ade7a:   mov    $0x28,%r10d
+  0x000077b4580ade80:   cmp    (%rdi,%r10,8),%rsi
+  0x000077b4580ade84:   je     0x000077b4580adebd
+  0x000077b4580ade86:   add    $0x2,%r10
+  0x000077b4580ade8a:   cmp    $0x2c,%r10
+  0x000077b4580ade8e:   jne    0x000077b4580ade80
+  0x000077b4580ade90:   mov    $0x28,%r10d
+  0x000077b4580ade96:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b4580ade9b:   je     0x000077b4580adea9
+  0x000077b4580ade9d:   add    $0x2,%r10
+  0x000077b4580adea1:   cmp    $0x2c,%r10
+  0x000077b4580adea5:   jne    0x000077b4580ade96
+  0x000077b4580adea7:   jmp    0x000077b4580adeb5
+  0x000077b4580adea9:   push   %rax
+  0x000077b4580adeaa:   xor    %rax,%rax
+  0x000077b4580adead:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000077b4580adeb2:   pop    %rax
+  0x000077b4580adeb3:   jmp    0x000077b4580ade7a
+  0x000077b4580adeb5:   mov    $0x27,%r10d
+  0x000077b4580adebb:   jmp    0x000077b4580adec1
+  0x000077b4580adebd:   add    $0x1,%r10
+  0x000077b4580adec1:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b4580adec6:   movabs $0x77b4140aa290,%rsi         ;   {metadata(method data for {method} {0x000000004632e758} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580aded0:   mov    0x90(%rsi),%edi
+  0x000077b4580aded6:   add    $0x2,%edi
+  0x000077b4580aded9:   mov    %edi,0x90(%rsi)
+  0x000077b4580adedf:   and    $0x1ffffe,%edi
+  0x000077b4580adee5:   test   %edi,%edi
+  0x000077b4580adee7:   je     0x000077b4580ae61c
+  0x000077b4580adeed:   mov    0x98(%rsp),%rsi
+  0x000077b4580adef5:   movabs $0x77b4140aa290,%rdi         ;   {metadata(method data for {method} {0x000000004632e758} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adeff:   mov    0x8(%rsi),%esi
+  0x000077b4580adf02:   mov    $0x46000000,%r10d
+  0x000077b4580adf08:   add    %r10,%rsi
+  0x000077b4580adf0b:   mov    $0x1c,%r10d
+  0x000077b4580adf11:   cmp    (%rdi,%r10,8),%rsi
+  0x000077b4580adf15:   je     0x000077b4580adf4e
+  0x000077b4580adf17:   add    $0x2,%r10
+  0x000077b4580adf1b:   cmp    $0x20,%r10
+  0x000077b4580adf1f:   jne    0x000077b4580adf11
+  0x000077b4580adf21:   mov    $0x1c,%r10d
+  0x000077b4580adf27:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b4580adf2c:   je     0x000077b4580adf3a
+  0x000077b4580adf2e:   add    $0x2,%r10
+  0x000077b4580adf32:   cmp    $0x20,%r10
+  0x000077b4580adf36:   jne    0x000077b4580adf27
+  0x000077b4580adf38:   jmp    0x000077b4580adf46
+  0x000077b4580adf3a:   push   %rax
+  0x000077b4580adf3b:   xor    %rax,%rax
+  0x000077b4580adf3e:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000077b4580adf43:   pop    %rax
+  0x000077b4580adf44:   jmp    0x000077b4580adf0b
+  0x000077b4580adf46:   mov    $0x1b,%r10d
+  0x000077b4580adf4c:   jmp    0x000077b4580adf52
+  0x000077b4580adf4e:   add    $0x1,%r10
+  0x000077b4580adf52:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b4580adf57:   movabs $0x77b4140a12f8,%rsi         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adf61:   mov    0x90(%rsi),%edi
+  0x000077b4580adf67:   add    $0x2,%edi
+  0x000077b4580adf6a:   mov    %edi,0x90(%rsi)
+  0x000077b4580adf70:   and    $0x1ffffe,%edi
+  0x000077b4580adf76:   test   %edi,%edi
+  0x000077b4580adf78:   je     0x000077b4580ae63d
+  0x000077b4580adf7e:   jmp    0x000077b4580ae05a           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@0 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580adf83:   nopl   0x0(%rax,%rax,1)
+  0x000077b4580adf88:   mov    0x98(%rsp),%rsi
+  0x000077b4580adf90:   mov    0x10(%rsi),%edi
+  0x000077b4580adf93:   shl    $0x3,%rdi                    ;*getfield map {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@16 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580adf97:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae65e
+  0x000077b4580adf9a:   mov    %rdi,%rdx
+  0x000077b4580adf9d:   movabs $0x77b4140a12f8,%rbx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580adfa7:   mov    0x8(%rdx),%edx
+  0x000077b4580adfaa:   mov    $0x46000000,%r10d
+  0x000077b4580adfb0:   add    %r10,%rdx
+  0x000077b4580adfb3:   mov    $0x29,%r10d
+  0x000077b4580adfb9:   cmp    (%rbx,%r10,8),%rdx
+  0x000077b4580adfbd:   je     0x000077b4580adff6
+  0x000077b4580adfbf:   add    $0x2,%r10
+  0x000077b4580adfc3:   cmp    $0x2d,%r10
+  0x000077b4580adfc7:   jne    0x000077b4580adfb9
+  0x000077b4580adfc9:   mov    $0x29,%r10d
+  0x000077b4580adfcf:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580adfd4:   je     0x000077b4580adfe2
+  0x000077b4580adfd6:   add    $0x2,%r10
+  0x000077b4580adfda:   cmp    $0x2d,%r10
+  0x000077b4580adfde:   jne    0x000077b4580adfcf
+  0x000077b4580adfe0:   jmp    0x000077b4580adfee
+  0x000077b4580adfe2:   push   %rax
+  0x000077b4580adfe3:   xor    %rax,%rax
+  0x000077b4580adfe6:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x000077b4580adfeb:   pop    %rax
+  0x000077b4580adfec:   jmp    0x000077b4580adfb3
+  0x000077b4580adfee:   mov    $0x28,%r10d
+  0x000077b4580adff4:   jmp    0x000077b4580adffa
+  0x000077b4580adff6:   add    $0x1,%r10
+  0x000077b4580adffa:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580adfff:   mov    %rax,%rdx
+  0x000077b4580ae002:   mov    %rdi,%rsi                    ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae005:   movabs $0x77b3f010d628,%rax
+  0x000077b4580ae00f:   call   0x000077b45f4adce0           ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {virtual_call}
+  0x000077b4580ae014:   nopl   0x300068c(%rax,%rax,1)       ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {post_call_nop}
+  0x000077b4580ae01c:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae026:   mov    0x94(%rdx),%esi
+  0x000077b4580ae02c:   add    $0x2,%esi
+  0x000077b4580ae02f:   mov    %esi,0x94(%rdx)
+  0x000077b4580ae035:   and    $0x3ffe,%esi
+  0x000077b4580ae03b:   test   %esi,%esi
+  0x000077b4580ae03d:   je     0x000077b4580ae663           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae043:   mov    0x30(%r15),%r10              ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae047:   test   %eax,(%r10)                  ;   {poll}
+  0x000077b4580ae04a:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae054:   incl   0x170(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae05a:   mov    0x98(%rsp),%rsi
+  0x000077b4580ae062:   mov    0x14(%rsi),%edi
+  0x000077b4580ae065:   shl    $0x3,%rdi                    ;*getfield stale {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@1 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae069:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae684
+  0x000077b4580ae06c:   mov    %rdi,%rbx
+  0x000077b4580ae06f:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae079:   mov    0x8(%rbx),%ebx
+  0x000077b4580ae07c:   mov    $0x46000000,%r10d
+  0x000077b4580ae082:   add    %r10,%rbx
+  0x000077b4580ae085:   mov    $0x1c,%r10d
+  0x000077b4580ae08b:   cmp    (%rdx,%r10,8),%rbx
+  0x000077b4580ae08f:   je     0x000077b4580ae0c8
+  0x000077b4580ae091:   add    $0x2,%r10
+  0x000077b4580ae095:   cmp    $0x20,%r10
+  0x000077b4580ae099:   jne    0x000077b4580ae08b
+  0x000077b4580ae09b:   mov    $0x1c,%r10d
+  0x000077b4580ae0a1:   cmpq   $0x0,(%rdx,%r10,8)
+  0x000077b4580ae0a6:   je     0x000077b4580ae0b4
+  0x000077b4580ae0a8:   add    $0x2,%r10
+  0x000077b4580ae0ac:   cmp    $0x20,%r10
+  0x000077b4580ae0b0:   jne    0x000077b4580ae0a1
+  0x000077b4580ae0b2:   jmp    0x000077b4580ae0c0
+  0x000077b4580ae0b4:   push   %rax
+  0x000077b4580ae0b5:   xor    %rax,%rax
+  0x000077b4580ae0b8:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x000077b4580ae0bd:   pop    %rax
+  0x000077b4580ae0be:   jmp    0x000077b4580ae085
+  0x000077b4580ae0c0:   mov    $0x1b,%r10d
+  0x000077b4580ae0c6:   jmp    0x000077b4580ae0cc
+  0x000077b4580ae0c8:   add    $0x1,%r10
+  0x000077b4580ae0cc:   addq   $0x1,(%rdx,%r10,8)
+  0x000077b4580ae0d1:   mov    %rdi,%rsi                    ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae0d4:   data16 xchg %ax,%ax
+  0x000077b4580ae0d7:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {optimized virtual_call}
+  0x000077b4580ae0dc:   nopl   0x5000754(%rax,%rax,1)       ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {post_call_nop}
+  0x000077b4580ae0e4:   test   %rax,%rax
+  0x000077b4580ae0e7:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae0f1:   mov    $0x108,%esi
+  0x000077b4580ae0f6:   jne    0x000077b4580ae0fd
+  0x000077b4580ae0f8:   mov    $0x118,%esi
+  0x000077b4580ae0fd:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b4580ae101:   lea    0x1(%rdi),%rdi
+  0x000077b4580ae105:   mov    %rdi,(%rdx,%rsi,1)
+  0x000077b4580ae109:   jne    0x000077b4580adf88           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@9 (line 333)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae10f:   movabs $0x77b4140a12f8,%rdx         ;   {metadata(method data for {method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae119:   incl   0x128(%rdx)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@12 (line 334)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae11f:   mov    0x98(%rsp),%rsi
+  0x000077b4580ae127:   movabs $0x77b4140aa290,%rdx         ;   {metadata(method data for {method} {0x000000004632e758} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae131:   addq   $0x1,0x108(%rdx)
+  0x000077b4580ae139:   movabs $0x77b4140aa490,%rdx         ;   {metadata(method data for {method} {0x000000004632ecd8} &apos;getNoCheckStale&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae143:   mov    0x90(%rdx),%esi
+  0x000077b4580ae149:   add    $0x2,%esi
+  0x000077b4580ae14c:   mov    %esi,0x90(%rdx)
+  0x000077b4580ae152:   and    $0x1ffffe,%esi
+  0x000077b4580ae158:   test   %esi,%esi
+  0x000077b4580ae15a:   je     0x000077b4580ae689
+  0x000077b4580ae160:   movabs $0x77b4140aa490,%rdx         ;   {metadata(method data for {method} {0x000000004632ecd8} &apos;getNoCheckStale&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae16a:   addq   $0x1,0xd8(%rdx)
+  0x000077b4580ae172:   movabs $0x77b414029290,%rdx         ;   {metadata(method data for {method} {0x000000004621ef48} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b4580ae17c:   mov    0x90(%rdx),%esi
+  0x000077b4580ae182:   add    $0x2,%esi
+  0x000077b4580ae185:   mov    %esi,0x90(%rdx)
+  0x000077b4580ae18b:   and    $0x1ffffe,%esi
+  0x000077b4580ae191:   test   %esi,%esi
+  0x000077b4580ae193:   je     0x000077b4580ae6aa
+  0x000077b4580ae199:   movabs $0x77b414029290,%rdx         ;   {metadata(method data for {method} {0x000000004621ef48} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b4580ae1a3:   incl   0xd8(%rdx)                   ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@1 (line 245)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@3 (line 208)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae1a9:   mov    0xa8(%rsp),%rbx
+  0x000077b4580ae1b1:   mov    0x98(%rsp),%rsi
+  0x000077b4580ae1b9:   mov    0x10(%rsi),%r8d
+  0x000077b4580ae1bd:   shl    $0x3,%r8                     ;*getfield map {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@8 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae1c1:   movabs $0x77b4140aa490,%rdx         ;   {metadata(method data for {method} {0x000000004632ecd8} &apos;getNoCheckStale&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae1cb:   addq   $0x1,0xe8(%rdx)
+  0x000077b4580ae1d3:   movabs $0x77b4140a5708,%rdx         ;   {metadata(method data for {method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae1dd:   mov    0x90(%rdx),%esi
+  0x000077b4580ae1e3:   add    $0x2,%esi
+  0x000077b4580ae1e6:   mov    %esi,0x90(%rdx)
+  0x000077b4580ae1ec:   and    $0x1ffffe,%esi
+  0x000077b4580ae1f2:   test   %esi,%esi
+  0x000077b4580ae1f4:   je     0x000077b4580ae6cb
+  0x000077b4580ae1fa:   movabs $0x4632feb0,%rdx             ;   {metadata(&apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580ae204:   mov    0x1b0(%r15),%rax
+  0x000077b4580ae20b:   lea    0x10(%rax),%rdi
+  0x000077b4580ae20f:   cmp    0x1c0(%r15),%rdi
+  0x000077b4580ae216:   ja     0x000077b4580ae6ec
+  0x000077b4580ae21c:   mov    %rdi,0x1b0(%r15)
+  0x000077b4580ae223:   movq   $0x1,(%rax)
+  0x000077b4580ae22a:   mov    %rdx,%rcx
+  0x000077b4580ae22d:   mov    $0x46000000,%r10d
+  0x000077b4580ae233:   sub    %r10,%rcx
+  0x000077b4580ae236:   mov    %ecx,0x8(%rax)
+  0x000077b4580ae239:   xor    %rcx,%rcx
+  0x000077b4580ae23c:   mov    %ecx,0xc(%rax)
+  0x000077b4580ae23f:   xor    %rcx,%rcx                    ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@0 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae242:   mov    %rax,%rdx
+  0x000077b4580ae245:   movabs $0x77b4140a5708,%rsi         ;   {metadata(method data for {method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae24f:   addq   $0x1,0xd8(%rsi)
+  0x000077b4580ae257:   movabs $0x77b4140a5818,%rdx         ;   {metadata(method data for {method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580ae261:   mov    0x90(%rdx),%esi
+  0x000077b4580ae267:   add    $0x2,%esi
+  0x000077b4580ae26a:   mov    %esi,0x90(%rdx)
+  0x000077b4580ae270:   and    $0x1ffffe,%esi
+  0x000077b4580ae276:   test   %esi,%esi
+  0x000077b4580ae278:   je     0x000077b4580ae6f9
+  0x000077b4580ae27e:   mov    %rax,%rdx
+  0x000077b4580ae281:   movabs $0x77b4140a5818,%rsi         ;   {metadata(method data for {method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580ae28b:   addq   $0x1,0xd8(%rsi)
+  0x000077b4580ae293:   movabs $0x77b414010cd0,%rdx         ;   {metadata(method data for {method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4580ae29d:   mov    0x90(%rdx),%esi
+  0x000077b4580ae2a3:   add    $0x2,%esi
+  0x000077b4580ae2a6:   mov    %esi,0x90(%rdx)
+  0x000077b4580ae2ac:   and    $0x1ffffe,%esi
+  0x000077b4580ae2b2:   test   %esi,%esi
+  0x000077b4580ae2b4:   je     0x000077b4580ae71a
+  0x000077b4580ae2ba:   movsbl 0x48(%r15),%edx
+  0x000077b4580ae2bf:   test   %edx,%edx
+  0x000077b4580ae2c1:   jne    0x000077b4580ae73b
+  0x000077b4580ae2c7:   mov    %rbx,%r10
+  0x000077b4580ae2ca:   shr    $0x3,%r10
+  0x000077b4580ae2ce:   mov    %r10d,0xc(%rax)
+  0x000077b4580ae2d2:   mov    %rax,%rsi
+  0x000077b4580ae2d5:   xor    %rbx,%rsi
+  0x000077b4580ae2d8:   shr    $0x17,%rsi
+  0x000077b4580ae2dc:   je     0x000077b4580ae2f6
+  0x000077b4580ae2de:   test   %rbx,%rbx
+  0x000077b4580ae2e1:   je     0x000077b4580ae2f6
+  0x000077b4580ae2e3:   mov    %rax,%rsi
+  0x000077b4580ae2e6:   shr    $0x9,%rsi
+  0x000077b4580ae2ea:   add    0x50(%r15),%rsi
+  0x000077b4580ae2ee:   cmpb   $0xff,(%rsi)
+  0x000077b4580ae2f1:   jne    0x000077b4580ae2f6
+  0x000077b4580ae2f3:   movb   $0x0,(%rsi)                  ;*putfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@6 (line 47)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae2f6:   cmp    (%r8),%rax                   ; implicit exception: dispatches to 0x000077b4580ae759
+  0x000077b4580ae2f9:   mov    %r8,%rdx
+  0x000077b4580ae2fc:   movabs $0x77b4140aa490,%rsi         ;   {metadata(method data for {method} {0x000000004632ecd8} &apos;getNoCheckStale&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae306:   mov    0x8(%rdx),%edx
+  0x000077b4580ae309:   mov    $0x46000000,%r10d
+  0x000077b4580ae30f:   add    %r10,%rdx
+  0x000077b4580ae312:   mov    $0x24,%r10d
+  0x000077b4580ae318:   cmp    (%rsi,%r10,8),%rdx
+  0x000077b4580ae31c:   je     0x000077b4580ae355
+  0x000077b4580ae31e:   add    $0x2,%r10
+  0x000077b4580ae322:   cmp    $0x28,%r10
+  0x000077b4580ae326:   jne    0x000077b4580ae318
+  0x000077b4580ae328:   mov    $0x24,%r10d
+  0x000077b4580ae32e:   cmpq   $0x0,(%rsi,%r10,8)
+  0x000077b4580ae333:   je     0x000077b4580ae341
+  0x000077b4580ae335:   add    $0x2,%r10
+  0x000077b4580ae339:   cmp    $0x28,%r10
+  0x000077b4580ae33d:   jne    0x000077b4580ae32e
+  0x000077b4580ae33f:   jmp    0x000077b4580ae34d
+  0x000077b4580ae341:   push   %rax
+  0x000077b4580ae342:   xor    %rax,%rax
+  0x000077b4580ae345:   cmpxchg %rdx,(%rsi,%r10,8)
+  0x000077b4580ae34a:   pop    %rax
+  0x000077b4580ae34b:   jmp    0x000077b4580ae312
+  0x000077b4580ae34d:   mov    $0x23,%r10d
+  0x000077b4580ae353:   jmp    0x000077b4580ae359
+  0x000077b4580ae355:   add    $0x1,%r10
+  0x000077b4580ae359:   addq   $0x1,(%rsi,%r10,8)
+  0x000077b4580ae35e:   mov    %rax,%rdx
+  0x000077b4580ae361:   mov    %r8,%rsi                     ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@16 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+  0x000077b4580ae364:   nop
+  0x000077b4580ae365:   movabs $0x77b3f010d650,%rax
+  0x000077b4580ae36f:   call   0x000077b45f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@16 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {virtual_call}
+  0x000077b4580ae374:   nopl   0x60009ec(%rax,%rax,1)       ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@16 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {post_call_nop}
+  0x000077b4580ae37c:   test   %rax,%rax
+  0x000077b4580ae37f:   movabs $0x77b4140fc520,%rbx         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae389:   jne    0x000077b4580ae397
+  0x000077b4580ae38b:   orb    $0x1,0x161(%rbx)
+  0x000077b4580ae392:   jmp    0x000077b4580ae42e
+  0x000077b4580ae397:   mov    0x8(%rax),%esi
+  0x000077b4580ae39a:   mov    $0x46000000,%r10d
+  0x000077b4580ae3a0:   add    %r10,%rsi
+  0x000077b4580ae3a3:   mov    $0x2e,%r10d
+  0x000077b4580ae3a9:   cmp    (%rbx,%r10,8),%rsi
+  0x000077b4580ae3ad:   je     0x000077b4580ae3e6
+  0x000077b4580ae3af:   add    $0x2,%r10
+  0x000077b4580ae3b3:   cmp    $0x32,%r10
+  0x000077b4580ae3b7:   jne    0x000077b4580ae3a9
+  0x000077b4580ae3b9:   mov    $0x2e,%r10d
+  0x000077b4580ae3bf:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580ae3c4:   je     0x000077b4580ae3d2
+  0x000077b4580ae3c6:   add    $0x2,%r10
+  0x000077b4580ae3ca:   cmp    $0x32,%r10
+  0x000077b4580ae3ce:   jne    0x000077b4580ae3bf
+  0x000077b4580ae3d0:   jmp    0x000077b4580ae3de
+  0x000077b4580ae3d2:   push   %rax
+  0x000077b4580ae3d3:   xor    %rax,%rax
+  0x000077b4580ae3d6:   cmpxchg %rsi,(%rbx,%r10,8)
+  0x000077b4580ae3db:   pop    %rax
+  0x000077b4580ae3dc:   jmp    0x000077b4580ae3a3
+  0x000077b4580ae3de:   mov    $0x2d,%r10d
+  0x000077b4580ae3e4:   jmp    0x000077b4580ae3ea
+  0x000077b4580ae3e6:   add    $0x1,%r10
+  0x000077b4580ae3ea:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580ae3ef:   movabs $0x4632eef0,%rsi             ;   {metadata(&apos;jdk/internal/util/ReferenceKey&apos;)}
+  0x000077b4580ae3f9:   mov    0x8(%rax),%ebx
+  0x000077b4580ae3fc:   mov    $0x46000000,%r10d
+  0x000077b4580ae402:   add    %r10,%rbx
+  0x000077b4580ae405:   cmp    0x20(%rbx),%rsi
+  0x000077b4580ae409:   je     0x000077b4580ae42e
+  0x000077b4580ae40f:   cmp    %rsi,%rbx
+  0x000077b4580ae412:   je     0x000077b4580ae42e
+  0x000077b4580ae418:   push   %rbx
+  0x000077b4580ae419:   push   %rsi
+  0x000077b4580ae41a:   call   0x000077b45f57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x000077b4580ae41f:   pop    %rbx
+  0x000077b4580ae420:   pop    %rbx
+  0x000077b4580ae421:   test   %ebx,%ebx
+  0x000077b4580ae423:   je     0x000077b4580ae75e
+  0x000077b4580ae429:   jmp    0x000077b4580ae42e
+  0x000077b4580ae42e:   mov    %rax,%rsi                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@13 (line 441)
+  0x000077b4580ae431:   test   %rsi,%rsi
+  0x000077b4580ae434:   movabs $0x77b4140fc520,%rdi         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae43e:   mov    $0x198,%ebx
+  0x000077b4580ae443:   je     0x000077b4580ae44a
+  0x000077b4580ae445:   mov    $0x1a8,%ebx
+  0x000077b4580ae44a:   mov    (%rdi,%rbx,1),%rax
+  0x000077b4580ae44e:   lea    0x1(%rax),%rax
+  0x000077b4580ae452:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b4580ae456:   je     0x000077b4580ae4ff           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@18 (line 442)
+  0x000077b4580ae45c:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000077b4580ae767
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@22 (line 442)
+  0x000077b4580ae45f:   mov    %rsi,%rdi
+  0x000077b4580ae462:   movabs $0x77b4140fc520,%rbx         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae46c:   mov    0x8(%rdi),%edi
+  0x000077b4580ae46f:   mov    $0x46000000,%r10d
+  0x000077b4580ae475:   add    %r10,%rdi
+  0x000077b4580ae478:   mov    $0x38,%r10d
+  0x000077b4580ae47e:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b4580ae482:   je     0x000077b4580ae4bb
+  0x000077b4580ae484:   add    $0x2,%r10
+  0x000077b4580ae488:   cmp    $0x3c,%r10
+  0x000077b4580ae48c:   jne    0x000077b4580ae47e
+  0x000077b4580ae48e:   mov    $0x38,%r10d
+  0x000077b4580ae494:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580ae499:   je     0x000077b4580ae4a7
+  0x000077b4580ae49b:   add    $0x2,%r10
+  0x000077b4580ae49f:   cmp    $0x3c,%r10
+  0x000077b4580ae4a3:   jne    0x000077b4580ae494
+  0x000077b4580ae4a5:   jmp    0x000077b4580ae4b3
+  0x000077b4580ae4a7:   push   %rax
+  0x000077b4580ae4a8:   xor    %rax,%rax
+  0x000077b4580ae4ab:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b4580ae4b0:   pop    %rax
+  0x000077b4580ae4b1:   jmp    0x000077b4580ae478
+  0x000077b4580ae4b3:   mov    $0x37,%r10d
+  0x000077b4580ae4b9:   jmp    0x000077b4580ae4bf
+  0x000077b4580ae4bb:   add    $0x1,%r10
+  0x000077b4580ae4bf:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580ae4c4:   nop
+  0x000077b4580ae4c5:   movabs $0x77b3f010d678,%rax
+  0x000077b4580ae4cf:   call   0x000077b45f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@22 (line 442)
+                                                            ;   {virtual_call}
+  0x000077b4580ae4d4:   nopl   0x7000b4c(%rax,%rax,1)       ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@22 (line 442)
+                                                            ;   {post_call_nop}
+  0x000077b4580ae4dc:   movabs $0x77b4140fc520,%rsi         ;   {metadata(method data for {method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae4e6:   incl   0x1e8(%rsi)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@27 (line 442)
+  0x000077b4580ae4ec:   add    $0xc0,%rsp
+  0x000077b4580ae4f3:   pop    %rbp
+  0x000077b4580ae4f4:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580ae4f8:   ja     0x000077b4580ae76c
+  0x000077b4580ae4fe:   ret    
+  0x000077b4580ae4ff:   movabs $0x0,%rax                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@31 (line 442)
+                                                            ;   {oop(nullptr)}
+  0x000077b4580ae509:   add    $0xc0,%rsp
+  0x000077b4580ae510:   pop    %rbp
+  0x000077b4580ae511:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580ae515:   ja     0x000077b4580ae782
+  0x000077b4580ae51b:   ret    
+  0x000077b4580ae51c:   movabs $0x4632ede0,%r10             ;   {metadata({method} {0x000000004632ede0} &apos;existingKey&apos; &apos;(Ljdk/internal/util/ReferencedKeyMap;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae526:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae52b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae533:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop [152]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@-1 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae538:   jmp    0x000077b4580adad6
+  0x000077b4580ae53d:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [152]=Oop [160]=Oop }
+                                                            ;*invokevirtual removeStaleReferences {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae542:   movabs $0x4632ebd0,%r10             ;   {metadata({method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae54c:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae551:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae559:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop [152]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@-1 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae55e:   jmp    0x000077b4580adb65
+  0x000077b4580ae563:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [152]=Oop [160]=Oop }
+                                                            ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae568:   movabs $0x4632ebd0,%r10             ;   {metadata({method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae572:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae577:   movq   $0x1a,(%rsp)
+  0x000077b4580ae57f:   call   0x000077b45f582fe0           ; ImmutableOopMap {[152]=Oop [160]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae584:   jmp    0x000077b4580adc2b
+  0x000077b4580ae589:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop [152]=Oop [160]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@1 (line 440)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae58e:   movabs $0x4632ec80,%r10             ;   {metadata({method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae598:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae59d:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae5a5:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop [152]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@-1 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae5aa:   jmp    0x000077b4580add58
+  0x000077b4580ae5af:   mov    %rdx,%rdx
+  0x000077b4580ae5b2:   call   0x000077b45f57d3e0           ; ImmutableOopMap {rbx=Oop [152]=Oop [160]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@0 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x000077b4580ae5b7:   jmp    0x000077b4580adda0
+  0x000077b4580ae5bc:   movabs $0x46330270,%r10             ;   {metadata({method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580ae5c6:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae5cb:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae5d3:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop rax=Oop [152]=Oop [160]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@-1 (line 46)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae5d8:   jmp    0x000077b4580adde4
+  0x000077b4580ae5dd:   movabs $0x464a6d78,%r10             ;   {metadata({method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4580ae5e7:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae5ec:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae5f4:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop rax=Oop [152]=Oop [160]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@1 (line 46)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@7 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae5f9:   jmp    0x000077b4580ade20
+  0x000077b4580ae5fe:   mov    0xc(%rax),%esi
+  0x000077b4580ae601:   shl    $0x3,%rsi
+  0x000077b4580ae605:   test   %rsi,%rsi
+  0x000077b4580ae608:   je     0x000077b4580ade2d
+  0x000077b4580ae60e:   mov    %rsi,(%rsp)
+  0x000077b4580ae612:   call   0x000077b45f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x000077b4580ae617:   jmp    0x000077b4580ade2d
+  0x000077b4580ae61c:   movabs $0x4632e758,%r10             ;   {metadata({method} {0x000000004632e758} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae626:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae62b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae633:   call   0x000077b45f582fe0           ; ImmutableOopMap {rax=Oop [152]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@-1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae638:   jmp    0x000077b4580adeed
+  0x000077b4580ae63d:   movabs $0x4632ebd0,%r10             ;   {metadata({method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae647:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae64c:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae654:   call   0x000077b45f582fe0           ; ImmutableOopMap {rax=Oop [152]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@-1 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae659:   jmp    0x000077b4580adf7e
+  0x000077b4580ae65e:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [152]=Oop [168]=Oop }
+                                                            ;*invokeinterface remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@20 (line 336)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae663:   movabs $0x4632ebd0,%r10             ;   {metadata({method} {0x000000004632ebd0} &apos;removeStaleReferences&apos; &apos;()V&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae66d:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae672:   movq   $0x1a,(%rsp)
+  0x000077b4580ae67a:   call   0x000077b45f582fe0           ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ReferencedKeyMap::removeStaleReferences@26 (line 337)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae67f:   jmp    0x000077b4580ae043
+  0x000077b4580ae684:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop [152]=Oop [168]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::removeStaleReferences@4 (line 332)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@1 (line 201)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae689:   movabs $0x4632ecd8,%r10             ;   {metadata({method} {0x000000004632ecd8} &apos;getNoCheckStale&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae693:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae698:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae6a0:   call   0x000077b45f582fe0           ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@-1 (line 208)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae6a5:   jmp    0x000077b4580ae160
+  0x000077b4580ae6aa:   movabs $0x4621ef48,%r10             ;   {metadata({method} {0x000000004621ef48} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b4580ae6b4:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae6b9:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae6c1:   call   0x000077b45f582fe0           ; ImmutableOopMap {[152]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Objects::requireNonNull@-1 (line 245)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@3 (line 208)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae6c6:   jmp    0x000077b4580ae199
+  0x000077b4580ae6cb:   movabs $0x4632ec80,%r10             ;   {metadata({method} {0x000000004632ec80} &apos;lookupKey&apos; &apos;(Ljava/lang/Object;)Ljdk/internal/util/ReferenceKey;&apos; in &apos;jdk/internal/util/ReferencedKeyMap&apos;)}
+  0x000077b4580ae6d5:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae6da:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae6e2:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop r8=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@-1 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae6e7:   jmp    0x000077b4580ae1fa
+  0x000077b4580ae6ec:   mov    %rdx,%rdx
+  0x000077b4580ae6ef:   call   0x000077b45f57d3e0           ; ImmutableOopMap {rbx=Oop r8=Oop [168]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@0 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x000077b4580ae6f4:   jmp    0x000077b4580ae242
+  0x000077b4580ae6f9:   movabs $0x46330270,%r10             ;   {metadata({method} {0x0000000046330270} &apos;&lt;init&gt;&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b4580ae703:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae708:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae710:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop r8=Oop rax=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@-1 (line 46)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae715:   jmp    0x000077b4580ae27e
+  0x000077b4580ae71a:   movabs $0x464a6d78,%r10             ;   {metadata({method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4580ae724:   mov    %r10,0x8(%rsp)
+  0x000077b4580ae729:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ae731:   call   0x000077b45f582fe0           ; ImmutableOopMap {rbx=Oop r8=Oop rax=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - jdk.internal.util.StrongReferenceKey::&lt;init&gt;@1 (line 46)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::lookupKey@5 (line 170)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@13 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ae736:   jmp    0x000077b4580ae2ba
+  0x000077b4580ae73b:   mov    0xc(%rax),%edx
+  0x000077b4580ae73e:   shl    $0x3,%rdx
+  0x000077b4580ae742:   test   %rdx,%rdx
+  0x000077b4580ae745:   je     0x000077b4580ae2c7
+  0x000077b4580ae74b:   mov    %rdx,(%rsp)
+  0x000077b4580ae74f:   call   0x000077b45f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x000077b4580ae754:   jmp    0x000077b4580ae2c7
+  0x000077b4580ae759:   call   0x000077b45f57c660           ; ImmutableOopMap {r8=Oop rax=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::getNoCheckStale@16 (line 209)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::get@6 (line 202)
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@10 (line 441)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae75e:   mov    %rax,(%rsp)
+  0x000077b4580ae762:   call   0x000077b45f57f3e0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@13 (line 441)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x000077b4580ae767:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ReferencedKeyMap::existingKey@22 (line 442)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b4580ae76c:   movabs $0x77b4580ae4f4,%r10         ;   {internal_word}
+  0x000077b4580ae776:   mov    %r10,0x510(%r15)
+  0x000077b4580ae77d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580ae782:   movabs $0x77b4580ae511,%r10         ;   {internal_word}
+  0x000077b4580ae78c:   mov    %r10,0x510(%r15)
+  0x000077b4580ae793:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580ae798:   mov    0x5c0(%r15),%rax
+  0x000077b4580ae79f:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580ae7aa:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580ae7b5:   add    $0xc0,%rsp
+  0x000077b4580ae7bc:   pop    %rbp
+  0x000077b4580ae7bd:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580ae7c2:   hlt    
+  0x000077b4580ae7c3:   hlt    
+  0x000077b4580ae7c4:   hlt    
+  0x000077b4580ae7c5:   hlt    
+  0x000077b4580ae7c6:   hlt    
+  0x000077b4580ae7c7:   hlt    
+[Stub Code]
+  0x000077b4580ae7c8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b4580ae7cd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae7d7:   jmp    0x000077b4580ae7d7           ;   {runtime_call nmethod}
+  0x000077b4580ae7dc:   nop
+  0x000077b4580ae7dd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae7e7:   jmp    0x000077b4580ae7e7           ;   {runtime_call nmethod}
+  0x000077b4580ae7ec:   nop
+  0x000077b4580ae7ed:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae7f7:   jmp    0x000077b4580ae7f7           ;   {runtime_call nmethod}
+  0x000077b4580ae7fc:   nop
+  0x000077b4580ae7fd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae807:   jmp    0x000077b4580ae807           ;   {runtime_call nmethod}
+  0x000077b4580ae80c:   nop
+  0x000077b4580ae80d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae817:   jmp    0x000077b4580ae817           ;   {runtime_call nmethod}
+  0x000077b4580ae81c:   nop
+  0x000077b4580ae81d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580ae827:   jmp    0x000077b4580ae827           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b4580ae82c:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580ae831:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580ae83b:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580ae83f:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580ae844:   hlt    
+  0x000077b4580ae845:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580ae84a:   jmp    0x000077b4580ae845
+  0x000077b4580ae84c:   hlt    
+  0x000077b4580ae84d:   hlt    
+  0x000077b4580ae84e:   hlt    
+  0x000077b4580ae84f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

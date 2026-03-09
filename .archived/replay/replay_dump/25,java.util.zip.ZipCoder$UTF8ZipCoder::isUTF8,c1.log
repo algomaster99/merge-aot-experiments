@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 622   25       1       java.util.zip.ZipCoder$UTF8ZipCoder::isUTF8 (2 bytes)
+ total in heap  [0x000077b45fba2988,0x000077b45fba2b30] = 424
+ main code      [0x000077b45fba2a80,0x000077b45fba2b10] = 144
+ stub code      [0x000077b45fba2b10,0x000077b45fba2b30] = 32
+ mutable data [0x000077b3f0003bc0,0x000077b3f0003be8] = 40
+ relocation     [0x000077b3f0003bc0,0x000077b3f0003be0] = 32
+ metadata       [0x000077b3f0003be0,0x000077b3f0003be8] = 8
+ immutable data [0x000077b3f0003420,0x000077b3f0003464] = 68
+ dependencies   [0x000077b3f0003420,0x000077b3f0003428] = 8
+ scopes pcs     [0x000077b3f0003428,0x000077b3f0003458] = 48
+ scopes data    [0x000077b3f0003458,0x000077b3f0003460] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fba2a80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fba2a8b:   data16 data16 xchg %ax,%ax
+  0x000077b45fba2a8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000463ff4e8} &apos;isUTF8&apos; &apos;()Z&apos; in &apos;java/util/zip/ZipCoder$UTF8ZipCoder&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fba2a92:   mov    0x8(%rsi),%r10d
+  0x000077b45fba2a96:   cmp    0x8(%rax),%r10d
+  0x000077b45fba2a9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fba2aa0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fba2aa7:   push   %rbp
+  0x000077b45fba2aa8:   sub    $0x20,%rsp
+  0x000077b45fba2aac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fba2ab4:   je     0x000077b45fba2abb
+  0x000077b45fba2ab6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*iconst_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipCoder$UTF8ZipCoder::isUTF8@0 (line 251)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fba2abb:   mov    $0x1,%eax
+  0x000077b45fba2ac0:   add    $0x20,%rsp
+  0x000077b45fba2ac4:   pop    %rbp
+  0x000077b45fba2ac5:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fba2ac9:   ja     0x000077b45fba2ad0
+  0x000077b45fba2acf:   ret    
+  0x000077b45fba2ad0:   movabs $0x77b45fba2ac5,%r10         ;   {internal_word}
+  0x000077b45fba2ada:   mov    %r10,0x510(%r15)
+  0x000077b45fba2ae1:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fba2ae6:   mov    0x5c0(%r15),%rax
+  0x000077b45fba2aed:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fba2af8:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fba2b03:   add    $0x20,%rsp
+  0x000077b45fba2b07:   pop    %rbp
+  0x000077b45fba2b08:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fba2b0d:   hlt    
+  0x000077b45fba2b0e:   hlt    
+  0x000077b45fba2b0f:   hlt    
+[Exception Handler]
+  0x000077b45fba2b10:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fba2b15:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fba2b1f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fba2b23:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fba2b28:   hlt    
+  0x000077b45fba2b29:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fba2b2e:   jmp    0x000077b45fba2b29
+--------------------------------------------------------------------------------
+[/Disassembly]

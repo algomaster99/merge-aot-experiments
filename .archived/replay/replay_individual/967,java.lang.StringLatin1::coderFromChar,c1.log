@@ -1,0 +1,80 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 433   29       3       java.lang.StringLatin1::coderFromChar (10 bytes)
+ total in heap  [0x000076384bfff008,0x000076384bfff1e0] = 472
+ main code      [0x000076384bfff100,0x000076384bfff1c0] = 192
+ stub code      [0x000076384bfff1c0,0x000076384bfff1e0] = 32
+ mutable data [0x00007637f4014ce0,0x00007637f4014d10] = 48
+ relocation     [0x00007637f4014ce0,0x00007637f4014d08] = 40
+ metadata       [0x00007637f4014d08,0x00007637f4014d10] = 8
+ immutable data [0x00007637f4014c70,0x00007637f4014cd4] = 100
+ dependencies   [0x00007637f4014c70,0x00007637f4014c78] = 8
+ scopes pcs     [0x00007637f4014c78,0x00007637f4014cb8] = 64
+ scopes data    [0x00007637f4014cb8,0x00007637f4014cd0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000040190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;
+  # parm0:    rsi       = char
+  #           [sp+0x30]  (sp of caller)
+  0x000076384bfff100:   mov    %eax,-0x14000(%rsp)
+  0x000076384bfff107:   push   %rbp
+  0x000076384bfff108:   sub    $0x20,%rsp
+  0x000076384bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x000076384bfff114:   je     0x000076384bfff11b
+  0x000076384bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000076384bfff11b:   movabs $0x76380414a770,%rax         ;   {metadata(method data for {method} {0x0000000040190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x000076384bfff125:   mov    0x90(%rax),%edi
+  0x000076384bfff12b:   add    $0x2,%edi
+  0x000076384bfff12e:   mov    %edi,0x90(%rax)
+  0x000076384bfff134:   and    $0x7fe,%edi
+  0x000076384bfff13a:   test   %edi,%edi
+  0x000076384bfff13c:   je     0x000076384bfff165           ;*sipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::coderFromChar@0 (line 60)
+  0x000076384bfff142:   mov    $0xff,%eax
+  0x000076384bfff147:   sub    %esi,%eax
+  0x000076384bfff149:   shr    $0x1f,%eax
+  0x000076384bfff14c:   movsbl %al,%eax
+  0x000076384bfff14f:   shl    $0x18,%eax
+  0x000076384bfff152:   sar    $0x18,%eax
+  0x000076384bfff155:   add    $0x20,%rsp
+  0x000076384bfff159:   pop    %rbp
+  0x000076384bfff15a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000076384bfff15e:   ja     0x000076384bfff183
+  0x000076384bfff164:   ret    
+  0x000076384bfff165:   movabs $0x40190cf8,%r10             ;   {metadata({method} {0x0000000040190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x000076384bfff16f:   mov    %r10,0x8(%rsp)
+  0x000076384bfff174:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076384bfff17c:   call   0x0000763853583460           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::coderFromChar@-1 (line 60)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076384bfff181:   jmp    0x000076384bfff142
+  0x000076384bfff183:   movabs $0x76384bfff15a,%r10         ;   {internal_word}
+  0x000076384bfff18d:   mov    %r10,0x510(%r15)
+  0x000076384bfff194:   jmp    0x00007638534afb60           ;   {runtime_call SafepointBlob}
+  0x000076384bfff199:   mov    0x5c0(%r15),%rax
+  0x000076384bfff1a0:   movq   $0x0,0x5c0(%r15)
+  0x000076384bfff1ab:   movq   $0x0,0x5c8(%r15)
+  0x000076384bfff1b6:   add    $0x20,%rsp
+  0x000076384bfff1ba:   pop    %rbp
+  0x000076384bfff1bb:   jmp    0x000076385357bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x000076384bfff1c0:   call   0x000076385357f760           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000076384bfff1c5:   movabs $0x76386c33aec4,%rdi         ;   {external_word}
+  0x000076384bfff1cf:   and    $0xfffffffffffffff0,%rsp
+  0x000076384bfff1d3:   call   0x000076386bd91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000076384bfff1d8:   hlt    
+  0x000076384bfff1d9:   call   0x00007638534afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000076384bfff1de:   jmp    0x000076384bfff1d9
+--------------------------------------------------------------------------------
+[/Disassembly]

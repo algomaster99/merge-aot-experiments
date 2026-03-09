@@ -1,0 +1,109 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 393   29       3       jdk.internal.classfile.impl.EntryMap::getIndexByToken (9 bytes)
+ total in heap  [0x000075ec5ffff008,0x000075ec5ffff220] = 536
+ main code      [0x000075ec5ffff100,0x000075ec5ffff200] = 256
+ stub code      [0x000075ec5ffff200,0x000075ec5ffff220] = 32
+ mutable data [0x000075ec08014d60,0x000075ec08014d98] = 56
+ relocation     [0x000075ec08014d60,0x000075ec08014d90] = 48
+ metadata       [0x000075ec08014d90,0x000075ec08014d98] = 8
+ immutable data [0x000075ec08014c70,0x000075ec08014d54] = 228
+ dependencies   [0x000075ec08014c70,0x000075ec08014c78] = 8
+ nul chk table  [0x000075ec08014c78,0x000075ec08014c90] = 24
+ scopes pcs     [0x000075ec08014c90,0x000075ec08014d20] = 144
+ scopes data    [0x000075ec08014d20,0x000075ec08014d50] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000075ec5ffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000075ec5ffff10b:   data16 data16 xchg %ax,%ax
+  0x000075ec5ffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000005a45cc28} &apos;getIndexByToken&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/EntryMap&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000075ec5ffff112:   mov    0x8(%rsi),%r10d
+  0x000075ec5ffff116:   cmp    0x8(%rax),%r10d
+  0x000075ec5ffff11a:   jne    0x000075ec674ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000075ec5ffff120:   mov    %eax,-0x14000(%rsp)
+  0x000075ec5ffff127:   push   %rbp
+  0x000075ec5ffff128:   sub    $0x30,%rsp
+  0x000075ec5ffff12c:   cmpl   $0x1,0x20(%r15)
+  0x000075ec5ffff134:   je     0x000075ec5ffff13b
+  0x000075ec5ffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000075ec5ffff13b:   movabs $0x75ec14132730,%rax         ;   {metadata(method data for {method} {0x000000005a45cc28} &apos;getIndexByToken&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x000075ec5ffff145:   mov    0x90(%rax),%edi
+  0x000075ec5ffff14b:   add    $0x2,%edi
+  0x000075ec5ffff14e:   mov    %edi,0x90(%rax)
+  0x000075ec5ffff154:   and    $0x7fe,%edi
+  0x000075ec5ffff15a:   test   %edi,%edi
+  0x000075ec5ffff15c:   je     0x000075ec5ffff18b           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@0 (line 108)
+  0x000075ec5ffff162:   mov    0x20(%rsi),%eax
+  0x000075ec5ffff165:   shl    $0x3,%rax                    ;*getfield data {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@1 (line 108)
+  0x000075ec5ffff169:   inc    %edx
+  0x000075ec5ffff16b:   cmp    0xc(%rax),%edx               ; implicit exception: dispatches to 0x000075ec5ffff1a9
+  0x000075ec5ffff16e:   jae    0x000075ec5ffff1b3
+  0x000075ec5ffff174:   movslq %edx,%rdx
+  0x000075ec5ffff177:   mov    0x10(%rax,%rdx,4),%eax       ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@7 (line 108)
+  0x000075ec5ffff17b:   add    $0x30,%rsp
+  0x000075ec5ffff17f:   pop    %rbp
+  0x000075ec5ffff180:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000075ec5ffff184:   ja     0x000075ec5ffff1c1
+  0x000075ec5ffff18a:   ret    
+  0x000075ec5ffff18b:   movabs $0x5a45cc28,%r10             ;   {metadata({method} {0x000000005a45cc28} &apos;getIndexByToken&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/EntryMap&apos;)}
+  0x000075ec5ffff195:   mov    %r10,0x8(%rsp)
+  0x000075ec5ffff19a:   movq   $0xffffffffffffffff,(%rsp)
+  0x000075ec5ffff1a2:   call   0x000075ec67582b60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@-1 (line 108)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000075ec5ffff1a7:   jmp    0x000075ec5ffff162
+  0x000075ec5ffff1a9:   call   0x000075ec6757c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@7 (line 108)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000075ec5ffff1ae:   call   0x000075ec6757c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@7 (line 108)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000075ec5ffff1b3:   mov    %rdx,(%rsp)
+  0x000075ec5ffff1b7:   mov    %rax,0x8(%rsp)
+  0x000075ec5ffff1bc:   call   0x000075ec6757bd60           ; ImmutableOopMap {rax=Oop }
+                                                            ;*iaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.EntryMap::getIndexByToken@7 (line 108)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x000075ec5ffff1c1:   movabs $0x75ec5ffff180,%r10         ;   {internal_word}
+  0x000075ec5ffff1cb:   mov    %r10,0x510(%r15)
+  0x000075ec5ffff1d2:   jmp    0x000075ec674afb60           ;   {runtime_call SafepointBlob}
+  0x000075ec5ffff1d7:   mov    0x5c0(%r15),%rax
+  0x000075ec5ffff1de:   movq   $0x0,0x5c0(%r15)
+  0x000075ec5ffff1e9:   movq   $0x0,0x5c8(%r15)
+  0x000075ec5ffff1f4:   add    $0x30,%rsp
+  0x000075ec5ffff1f8:   pop    %rbp
+  0x000075ec5ffff1f9:   jmp    0x000075ec6757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000075ec5ffff1fe:   hlt    
+  0x000075ec5ffff1ff:   hlt    
+[Exception Handler]
+  0x000075ec5ffff200:   call   0x000075ec6757e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000075ec5ffff205:   movabs $0x75ec7f13aec4,%rdi         ;   {external_word}
+  0x000075ec5ffff20f:   and    $0xfffffffffffffff0,%rsp
+  0x000075ec5ffff213:   call   0x000075ec7eb91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000075ec5ffff218:   hlt    
+  0x000075ec5ffff219:   call   0x000075ec674afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000075ec5ffff21e:   jmp    0x000075ec5ffff219
+--------------------------------------------------------------------------------
+[/Disassembly]

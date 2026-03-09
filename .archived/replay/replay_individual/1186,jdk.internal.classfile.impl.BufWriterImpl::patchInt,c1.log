@@ -1,0 +1,157 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 549   47       3       jdk.internal.classfile.impl.BufWriterImpl::patchInt (41 bytes)
+ total in heap  [0x00007994fffff008,0x00007994fffff2a0] = 664
+ main code      [0x00007994fffff100,0x00007994fffff280] = 384
+ stub code      [0x00007994fffff280,0x00007994fffff2a0] = 32
+ mutable data [0x00007994a401cdf0,0x00007994a401ce28] = 56
+ relocation     [0x00007994a401cdf0,0x00007994a401ce20] = 48
+ metadata       [0x00007994a401ce20,0x00007994a401ce28] = 8
+ immutable data [0x00007994a401cc70,0x00007994a401cddc] = 364
+ dependencies   [0x00007994a401cc70,0x00007994a401cc78] = 8
+ nul chk table  [0x00007994a401cc78,0x00007994a401cc90] = 24
+ scopes pcs     [0x00007994a401cc90,0x00007994a401cd80] = 240
+ scopes data    [0x00007994a401cd80,0x00007994a401cdd8] = 88
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007994fffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007994fffff10b:   data16 data16 xchg %ax,%ax
+  0x00007994fffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000009a45db00} &apos;patchInt&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # parm0:    rdx       = int
+  # parm1:    rcx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x00007994fffff112:   mov    0x8(%rsi),%r10d
+  0x00007994fffff116:   cmp    0x8(%rax),%r10d
+  0x00007994fffff11a:   jne    0x00007995074ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007994fffff120:   mov    %eax,-0x14000(%rsp)
+  0x00007994fffff127:   push   %rbp
+  0x00007994fffff128:   sub    $0x30,%rsp
+  0x00007994fffff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007994fffff134:   je     0x00007994fffff13b
+  0x00007994fffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007994fffff13b:   movabs $0x7994b029bf70,%rdi         ;   {metadata(method data for {method} {0x000000009a45db00} &apos;patchInt&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007994fffff145:   mov    0x90(%rdi),%ebx
+  0x00007994fffff14b:   add    $0x2,%ebx
+  0x00007994fffff14e:   mov    %ebx,0x90(%rdi)
+  0x00007994fffff154:   and    $0x7fe,%ebx
+  0x00007994fffff15a:   test   %ebx,%ebx
+  0x00007994fffff15c:   je     0x00007994fffff1da           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@0 (line 325)
+  0x00007994fffff162:   mov    0x28(%rsi),%esi
+  0x00007994fffff165:   shl    $0x3,%rsi                    ;*getfield elems {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@1 (line 325)
+  0x00007994fffff169:   mov    %rcx,%rdi
+  0x00007994fffff16c:   sar    $0x18,%edi
+  0x00007994fffff16f:   cmp    0xc(%rsi),%edx               ; implicit exception: dispatches to 0x00007994fffff1fb
+  0x00007994fffff172:   jae    0x00007994fffff205
+  0x00007994fffff178:   movslq %edx,%rbx
+  0x00007994fffff17b:   mov    %dil,0x10(%rsi,%rbx,1)       ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@12 (line 326)
+  0x00007994fffff180:   mov    %rdx,%rdi
+  0x00007994fffff183:   inc    %edi
+  0x00007994fffff185:   mov    %rcx,%rbx
+  0x00007994fffff188:   sar    $0x10,%ebx
+  0x00007994fffff18b:   cmp    0xc(%rsi),%edi
+  0x00007994fffff18e:   jae    0x00007994fffff213
+  0x00007994fffff194:   movslq %edi,%rdi
+  0x00007994fffff197:   mov    %bl,0x10(%rsi,%rdi,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@22 (line 327)
+  0x00007994fffff19b:   mov    %rdx,%rdi
+  0x00007994fffff19e:   add    $0x2,%edi
+  0x00007994fffff1a1:   mov    %rcx,%rbx
+  0x00007994fffff1a4:   sar    $0x8,%ebx
+  0x00007994fffff1a7:   cmp    0xc(%rsi),%edi
+  0x00007994fffff1aa:   jae    0x00007994fffff221
+  0x00007994fffff1b0:   movslq %edi,%rdi
+  0x00007994fffff1b3:   mov    %bl,0x10(%rsi,%rdi,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@32 (line 328)
+  0x00007994fffff1b7:   add    $0x3,%edx
+  0x00007994fffff1ba:   cmp    0xc(%rsi),%edx
+  0x00007994fffff1bd:   jae    0x00007994fffff22f
+  0x00007994fffff1c3:   movslq %edx,%rdx
+  0x00007994fffff1c6:   mov    %cl,0x10(%rsi,%rdx,1)        ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@39 (line 329)
+  0x00007994fffff1ca:   add    $0x30,%rsp
+  0x00007994fffff1ce:   pop    %rbp
+  0x00007994fffff1cf:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007994fffff1d3:   ja     0x00007994fffff23d
+  0x00007994fffff1d9:   ret    
+  0x00007994fffff1da:   movabs $0x9a45db00,%r10             ;   {metadata({method} {0x000000009a45db00} &apos;patchInt&apos; &apos;(II)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007994fffff1e4:   mov    %r10,0x8(%rsp)
+  0x00007994fffff1e9:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007994fffff1f1:   call   0x0000799507583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@-1 (line 325)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007994fffff1f6:   jmp    0x00007994fffff162
+  0x00007994fffff1fb:   call   0x000079950757cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007994fffff200:   call   0x000079950757cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007994fffff205:   mov    %rdx,(%rsp)
+  0x00007994fffff209:   mov    %rsi,0x8(%rsp)
+  0x00007994fffff20e:   call   0x000079950757bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@12 (line 326)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007994fffff213:   mov    %rdi,(%rsp)
+  0x00007994fffff217:   mov    %rsi,0x8(%rsp)
+  0x00007994fffff21c:   call   0x000079950757bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@22 (line 327)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007994fffff221:   mov    %rdi,(%rsp)
+  0x00007994fffff225:   mov    %rsi,0x8(%rsp)
+  0x00007994fffff22a:   call   0x000079950757bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@32 (line 328)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007994fffff22f:   mov    %rdx,(%rsp)
+  0x00007994fffff233:   mov    %rsi,0x8(%rsp)
+  0x00007994fffff238:   call   0x000079950757bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::patchInt@39 (line 329)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007994fffff23d:   movabs $0x7994fffff1cf,%r10         ;   {internal_word}
+  0x00007994fffff247:   mov    %r10,0x510(%r15)
+  0x00007994fffff24e:   jmp    0x00007995074afb60           ;   {runtime_call SafepointBlob}
+  0x00007994fffff253:   mov    0x5c0(%r15),%rax
+  0x00007994fffff25a:   movq   $0x0,0x5c0(%r15)
+  0x00007994fffff265:   movq   $0x0,0x5c8(%r15)
+  0x00007994fffff270:   add    $0x30,%rsp
+  0x00007994fffff274:   pop    %rbp
+  0x00007994fffff275:   jmp    0x000079950757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007994fffff27a:   hlt    
+  0x00007994fffff27b:   hlt    
+  0x00007994fffff27c:   hlt    
+  0x00007994fffff27d:   hlt    
+  0x00007994fffff27e:   hlt    
+  0x00007994fffff27f:   hlt    
+[Exception Handler]
+  0x00007994fffff280:   call   0x000079950757ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007994fffff285:   movabs $0x79951d73aec4,%rdi         ;   {external_word}
+  0x00007994fffff28f:   and    $0xfffffffffffffff0,%rsp
+  0x00007994fffff293:   call   0x000079951d191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007994fffff298:   hlt    
+  0x00007994fffff299:   call   0x00007995074afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007994fffff29e:   jmp    0x00007994fffff299
+--------------------------------------------------------------------------------
+[/Disassembly]

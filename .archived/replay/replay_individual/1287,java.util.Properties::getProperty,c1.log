@@ -1,0 +1,321 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 554   50       3       java.util.Properties::getProperty (50 bytes)
+ total in heap  [0x00007ba853fff008,0x00007ba853fff540] = 1336
+ main code      [0x00007ba853fff100,0x00007ba853fff4f8] = 1016
+ stub code      [0x00007ba853fff4f8,0x00007ba853fff540] = 72
+ mutable data [0x00007ba7fc02cf70,0x00007ba7fc02cff8] = 136
+ relocation     [0x00007ba7fc02cf70,0x00007ba7fc02cfd8] = 104
+ metadata       [0x00007ba7fc02cfd8,0x00007ba7fc02cff8] = 32
+ immutable data [0x00007ba7fc02cd30,0x00007ba7fc02cf64] = 564
+ dependencies   [0x00007ba7fc02cd30,0x00007ba7fc02cd40] = 16
+ nul chk table  [0x00007ba7fc02cd40,0x00007ba7fc02cd58] = 24
+ scopes pcs     [0x00007ba7fc02cd58,0x00007ba7fc02cec8] = 368
+ scopes data    [0x00007ba7fc02cec8,0x00007ba7fc02cf60] = 152
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007ba853fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007ba853fff10b:   data16 data16 xchg %ax,%ax
+  0x00007ba853fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;
+  # this:     rsi:rsi   = &apos;java/util/Properties&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007ba853fff112:   mov    0x8(%rsi),%r10d
+  0x00007ba853fff116:   cmp    0x8(%rax),%r10d
+  0x00007ba853fff11a:   jne    0x00007ba85b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007ba853fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007ba853fff127:   push   %rbp
+  0x00007ba853fff128:   sub    $0x30,%rsp
+  0x00007ba853fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007ba853fff134:   je     0x00007ba853fff13b
+  0x00007ba853fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ba853fff13b:   movabs $0x7ba8082befd8,%rdi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff145:   mov    0x90(%rdi),%ebx
+  0x00007ba853fff14b:   add    $0x2,%ebx
+  0x00007ba853fff14e:   mov    %ebx,0x90(%rdi)
+  0x00007ba853fff154:   and    $0x7fe,%ebx
+  0x00007ba853fff15a:   test   %ebx,%ebx
+  0x00007ba853fff15c:   je     0x00007ba853fff482           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@0 (line 1145)
+  0x00007ba853fff162:   mov    0x30(%rsi),%edi
+  0x00007ba853fff165:   shl    $0x3,%rdi                    ;*getfield map {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@1 (line 1145)
+  0x00007ba853fff169:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x00007ba853fff4a3
+  0x00007ba853fff16c:   mov    %rdi,%rbx
+  0x00007ba853fff16f:   movabs $0x7ba8082befd8,%rax         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff179:   movabs $0x2a1c6700,%rbx             ;   {metadata(&apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x00007ba853fff183:   mov    $0x1c,%r10d
+  0x00007ba853fff189:   cmp    (%rax,%r10,8),%rbx
+  0x00007ba853fff18d:   je     0x00007ba853fff1cc
+  0x00007ba853fff18f:   add    $0x2,%r10
+  0x00007ba853fff193:   cmp    $0x20,%r10
+  0x00007ba853fff197:   jne    0x00007ba853fff189
+  0x00007ba853fff199:   mov    $0x1c,%r10d
+  0x00007ba853fff19f:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007ba853fff1a4:   je     0x00007ba853fff1b2
+  0x00007ba853fff1a6:   add    $0x2,%r10
+  0x00007ba853fff1aa:   cmp    $0x20,%r10
+  0x00007ba853fff1ae:   jne    0x00007ba853fff19f
+  0x00007ba853fff1b0:   jmp    0x00007ba853fff1c4
+  0x00007ba853fff1b2:   push   %rcx
+  0x00007ba853fff1b3:   mov    %rax,%rcx
+  0x00007ba853fff1b6:   xor    %rax,%rax
+  0x00007ba853fff1b9:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007ba853fff1be:   mov    %rcx,%rax
+  0x00007ba853fff1c1:   pop    %rcx
+  0x00007ba853fff1c2:   jmp    0x00007ba853fff183
+  0x00007ba853fff1c4:   mov    $0x1b,%r10d
+  0x00007ba853fff1ca:   jmp    0x00007ba853fff1d0
+  0x00007ba853fff1cc:   add    $0x1,%r10
+  0x00007ba853fff1d0:   addq   $0x1,(%rax,%r10,8)
+  0x00007ba853fff1d5:   mov    %rdx,%rbx
+  0x00007ba853fff1d8:   mov    %rbx,%rdx
+  0x00007ba853fff1db:   mov    %rsi,0x18(%rsp)
+  0x00007ba853fff1e0:   mov    %rdi,%rsi                    ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@5 (line 1145)
+  0x00007ba853fff1e3:   mov    %rbx,0x20(%rsp)
+  0x00007ba853fff1e8:   nopl   0x0(%rax)
+  0x00007ba853fff1ef:   call   0x00007ba85b4ad9e0           ; ImmutableOopMap {[24]=Oop [32]=Oop }
+                                                            ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@5 (line 1145)
+                                                            ;   {optimized virtual_call}
+  0x00007ba853fff1f4:   nopl   0x1ec(%rax,%rax,1)           ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@5 (line 1145)
+                                                            ;   {post_call_nop}
+  0x00007ba853fff1fc:   test   %rax,%rax
+  0x00007ba853fff1ff:   movabs $0x7ba8082befd8,%rdi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff209:   jne    0x00007ba853fff217
+  0x00007ba853fff20b:   orb    $0x1,0x101(%rdi)
+  0x00007ba853fff212:   jmp    0x00007ba853fff293
+  0x00007ba853fff217:   mov    0x8(%rax),%ebx
+  0x00007ba853fff21a:   mov    $0x2a000000,%r10d
+  0x00007ba853fff220:   add    %r10,%rbx
+  0x00007ba853fff223:   mov    $0x22,%r10d
+  0x00007ba853fff229:   cmp    (%rdi,%r10,8),%rbx
+  0x00007ba853fff22d:   je     0x00007ba853fff266
+  0x00007ba853fff22f:   add    $0x2,%r10
+  0x00007ba853fff233:   cmp    $0x26,%r10
+  0x00007ba853fff237:   jne    0x00007ba853fff229
+  0x00007ba853fff239:   mov    $0x22,%r10d
+  0x00007ba853fff23f:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007ba853fff244:   je     0x00007ba853fff252
+  0x00007ba853fff246:   add    $0x2,%r10
+  0x00007ba853fff24a:   cmp    $0x26,%r10
+  0x00007ba853fff24e:   jne    0x00007ba853fff23f
+  0x00007ba853fff250:   jmp    0x00007ba853fff25e
+  0x00007ba853fff252:   push   %rax
+  0x00007ba853fff253:   xor    %rax,%rax
+  0x00007ba853fff256:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007ba853fff25b:   pop    %rax
+  0x00007ba853fff25c:   jmp    0x00007ba853fff223
+  0x00007ba853fff25e:   mov    $0x21,%r10d
+  0x00007ba853fff264:   jmp    0x00007ba853fff26a
+  0x00007ba853fff266:   add    $0x1,%r10
+  0x00007ba853fff26a:   addq   $0x1,(%rdi,%r10,8)
+  0x00007ba853fff26f:   movabs $0x2a178db8,%rbx             ;   {metadata(&apos;java/lang/String&apos;)}
+  0x00007ba853fff279:   mov    0x8(%rax),%esi
+  0x00007ba853fff27c:   mov    $0x2a000000,%r10d
+  0x00007ba853fff282:   add    %r10,%rsi
+  0x00007ba853fff285:   cmp    %rsi,%rbx
+  0x00007ba853fff288:   jne    0x00007ba853fff293
+  0x00007ba853fff28e:   jmp    0x00007ba853fff298
+  0x00007ba853fff293:   xor    %rdx,%rdx
+  0x00007ba853fff296:   jmp    0x00007ba853fff29d
+  0x00007ba853fff298:   mov    $0x1,%edx                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@10 (line 1146)
+  0x00007ba853fff29d:   test   %edx,%edx
+  0x00007ba853fff29f:   movabs $0x7ba8082befd8,%rdx         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff2a9:   mov    $0x138,%esi
+  0x00007ba853fff2ae:   je     0x00007ba853fff2b5
+  0x00007ba853fff2b0:   mov    $0x148,%esi
+  0x00007ba853fff2b5:   mov    (%rdx,%rsi,1),%rdi
+  0x00007ba853fff2b9:   lea    0x1(%rdi),%rdi
+  0x00007ba853fff2bd:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007ba853fff2c1:   je     0x00007ba853fff376           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@13 (line 1146)
+  0x00007ba853fff2c7:   test   %rax,%rax
+  0x00007ba853fff2ca:   movabs $0x7ba8082befd8,%rdi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff2d4:   jne    0x00007ba853fff2e2
+  0x00007ba853fff2d6:   orb    $0x1,0x151(%rdi)
+  0x00007ba853fff2dd:   jmp    0x00007ba853fff35e
+  0x00007ba853fff2e2:   mov    0x8(%rax),%ebx
+  0x00007ba853fff2e5:   mov    $0x2a000000,%r10d
+  0x00007ba853fff2eb:   add    %r10,%rbx
+  0x00007ba853fff2ee:   mov    $0x2c,%r10d
+  0x00007ba853fff2f4:   cmp    (%rdi,%r10,8),%rbx
+  0x00007ba853fff2f8:   je     0x00007ba853fff331
+  0x00007ba853fff2fa:   add    $0x2,%r10
+  0x00007ba853fff2fe:   cmp    $0x30,%r10
+  0x00007ba853fff302:   jne    0x00007ba853fff2f4
+  0x00007ba853fff304:   mov    $0x2c,%r10d
+  0x00007ba853fff30a:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007ba853fff30f:   je     0x00007ba853fff31d
+  0x00007ba853fff311:   add    $0x2,%r10
+  0x00007ba853fff315:   cmp    $0x30,%r10
+  0x00007ba853fff319:   jne    0x00007ba853fff30a
+  0x00007ba853fff31b:   jmp    0x00007ba853fff329
+  0x00007ba853fff31d:   push   %rax
+  0x00007ba853fff31e:   xor    %rax,%rax
+  0x00007ba853fff321:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007ba853fff326:   pop    %rax
+  0x00007ba853fff327:   jmp    0x00007ba853fff2ee
+  0x00007ba853fff329:   mov    $0x2b,%r10d
+  0x00007ba853fff32f:   jmp    0x00007ba853fff335
+  0x00007ba853fff331:   add    $0x1,%r10
+  0x00007ba853fff335:   addq   $0x1,(%rdi,%r10,8)
+  0x00007ba853fff33a:   movabs $0x2a178db8,%rbx             ;   {metadata(&apos;java/lang/String&apos;)}
+  0x00007ba853fff344:   mov    0x8(%rax),%esi
+  0x00007ba853fff347:   mov    $0x2a000000,%r10d
+  0x00007ba853fff34d:   add    %r10,%rsi
+  0x00007ba853fff350:   cmp    %rsi,%rbx
+  0x00007ba853fff353:   jne    0x00007ba853fff4a8
+  0x00007ba853fff359:   jmp    0x00007ba853fff35e
+  0x00007ba853fff35e:   mov    %rax,%rdx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@17 (line 1146)
+  0x00007ba853fff361:   movabs $0x7ba8082befd8,%rsi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff36b:   incl   0x188(%rsi)
+  0x00007ba853fff371:   jmp    0x00007ba853fff380           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@20 (line 1146)
+  0x00007ba853fff376:   movabs $0x0,%rdx                    ;*astore_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@24 (line 1146)
+                                                            ;   {oop(nullptr)}
+  0x00007ba853fff380:   test   %rdx,%rdx
+  0x00007ba853fff383:   movabs $0x7ba8082befd8,%rsi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff38d:   mov    $0x1a0,%edi
+  0x00007ba853fff392:   jne    0x00007ba853fff399
+  0x00007ba853fff394:   mov    $0x1b0,%edi
+  0x00007ba853fff399:   mov    (%rsi,%rdi,1),%rbx
+  0x00007ba853fff39d:   lea    0x1(%rbx),%rbx
+  0x00007ba853fff3a1:   mov    %rbx,(%rsi,%rdi,1)
+  0x00007ba853fff3a5:   jne    0x00007ba853fff46f           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@26 (line 1148)
+  0x00007ba853fff3ab:   mov    0x18(%rsp),%rsi
+  0x00007ba853fff3b0:   mov    0x2c(%rsi),%esi
+  0x00007ba853fff3b3:   shl    $0x3,%rsi                    ;*getfield defaults {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@30 (line 1148)
+  0x00007ba853fff3b7:   test   %rsi,%rsi
+  0x00007ba853fff3ba:   movabs $0x7ba8082befd8,%rdi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff3c4:   mov    $0x1c0,%ebx
+  0x00007ba853fff3c9:   je     0x00007ba853fff3d0
+  0x00007ba853fff3cb:   mov    $0x1d0,%ebx
+  0x00007ba853fff3d0:   mov    (%rdi,%rbx,1),%rax
+  0x00007ba853fff3d4:   lea    0x1(%rax),%rax
+  0x00007ba853fff3d8:   mov    %rax,(%rdi,%rbx,1)
+  0x00007ba853fff3dc:   je     0x00007ba853fff46f           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@36 (line 1148)
+  0x00007ba853fff3e2:   mov    0x20(%rsp),%rdx
+  0x00007ba853fff3e7:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007ba853fff4b1
+                                                            ;*invokevirtual getProperty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@42 (line 1148)
+  0x00007ba853fff3ea:   mov    %rsi,%rdi
+  0x00007ba853fff3ed:   movabs $0x7ba8082befd8,%rbx         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff3f7:   movabs $0x2a177030,%rdi             ;   {metadata(&apos;java/util/Properties&apos;)}
+  0x00007ba853fff401:   mov    $0x3d,%r10d
+  0x00007ba853fff407:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ba853fff40b:   je     0x00007ba853fff444
+  0x00007ba853fff40d:   add    $0x2,%r10
+  0x00007ba853fff411:   cmp    $0x41,%r10
+  0x00007ba853fff415:   jne    0x00007ba853fff407
+  0x00007ba853fff417:   mov    $0x3d,%r10d
+  0x00007ba853fff41d:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ba853fff422:   je     0x00007ba853fff430
+  0x00007ba853fff424:   add    $0x2,%r10
+  0x00007ba853fff428:   cmp    $0x41,%r10
+  0x00007ba853fff42c:   jne    0x00007ba853fff41d
+  0x00007ba853fff42e:   jmp    0x00007ba853fff43c
+  0x00007ba853fff430:   push   %rax
+  0x00007ba853fff431:   xor    %rax,%rax
+  0x00007ba853fff434:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ba853fff439:   pop    %rax
+  0x00007ba853fff43a:   jmp    0x00007ba853fff401
+  0x00007ba853fff43c:   mov    $0x3c,%r10d
+  0x00007ba853fff442:   jmp    0x00007ba853fff448
+  0x00007ba853fff444:   add    $0x1,%r10
+  0x00007ba853fff448:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ba853fff44d:   xchg   %ax,%ax
+  0x00007ba853fff44f:   call   0x00007ba85b4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual getProperty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@42 (line 1148)
+                                                            ;   {optimized virtual_call}
+  0x00007ba853fff454:   nopl   0x100044c(%rax,%rax,1)       ;*invokevirtual getProperty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@42 (line 1148)
+                                                            ;   {post_call_nop}
+  0x00007ba853fff45c:   movabs $0x7ba8082befd8,%rsi         ;   {metadata(method data for {method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff466:   incl   0x210(%rsi)
+  0x00007ba853fff46c:   mov    %rax,%rdx                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@45 (line 1148)
+  0x00007ba853fff46f:   mov    %rdx,%rax
+  0x00007ba853fff472:   add    $0x30,%rsp
+  0x00007ba853fff476:   pop    %rbp
+  0x00007ba853fff477:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ba853fff47b:   ja     0x00007ba853fff4b6
+  0x00007ba853fff481:   ret    
+  0x00007ba853fff482:   movabs $0x2a178678,%r10             ;   {metadata({method} {0x000000002a178678} &apos;getProperty&apos; &apos;(Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/util/Properties&apos;)}
+  0x00007ba853fff48c:   mov    %r10,0x8(%rsp)
+  0x00007ba853fff491:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ba853fff499:   call   0x00007ba85b583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Properties::getProperty@-1 (line 1145)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ba853fff49e:   jmp    0x00007ba853fff162
+  0x00007ba853fff4a3:   call   0x00007ba85b57cae0           ; ImmutableOopMap {rsi=Oop rdx=Oop rdi=Oop }
+                                                            ;*invokevirtual get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@5 (line 1145)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ba853fff4a8:   mov    %rax,(%rsp)
+  0x00007ba853fff4ac:   call   0x00007ba85b57f8e0           ; ImmutableOopMap {[24]=Oop [32]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@17 (line 1146)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007ba853fff4b1:   call   0x00007ba85b57cae0           ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                                                            ;*invokevirtual getProperty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Properties::getProperty@42 (line 1148)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ba853fff4b6:   movabs $0x7ba853fff477,%r10         ;   {internal_word}
+  0x00007ba853fff4c0:   mov    %r10,0x510(%r15)
+  0x00007ba853fff4c7:   jmp    0x00007ba85b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ba853fff4cc:   mov    0x5c0(%r15),%rax
+  0x00007ba853fff4d3:   movq   $0x0,0x5c0(%r15)
+  0x00007ba853fff4de:   movq   $0x0,0x5c8(%r15)
+  0x00007ba853fff4e9:   add    $0x30,%rsp
+  0x00007ba853fff4ed:   pop    %rbp
+  0x00007ba853fff4ee:   jmp    0x00007ba85b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ba853fff4f3:   hlt    
+  0x00007ba853fff4f4:   hlt    
+  0x00007ba853fff4f5:   hlt    
+  0x00007ba853fff4f6:   hlt    
+  0x00007ba853fff4f7:   hlt    
+[Stub Code]
+  0x00007ba853fff4f8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007ba853fff4fd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ba853fff507:   jmp    0x00007ba853fff507           ;   {runtime_call nmethod}
+  0x00007ba853fff50c:   nop
+  0x00007ba853fff50d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ba853fff517:   jmp    0x00007ba853fff517           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ba853fff51c:   call   0x00007ba85b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ba853fff521:   movabs $0x7ba87353aec4,%rdi         ;   {external_word}
+  0x00007ba853fff52b:   and    $0xfffffffffffffff0,%rsp
+  0x00007ba853fff52f:   call   0x00007ba872f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ba853fff534:   hlt    
+  0x00007ba853fff535:   call   0x00007ba85b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ba853fff53a:   jmp    0x00007ba853fff535
+  0x00007ba853fff53c:   hlt    
+  0x00007ba853fff53d:   hlt    
+  0x00007ba853fff53e:   hlt    
+  0x00007ba853fff53f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

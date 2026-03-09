@@ -1,0 +1,105 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 10519  605       4       jdk.internal.misc.Unsafe::putReferenceRelease (9 bytes)
+ total in heap  [0x000077b45fbbe008,0x000077b45fbbe200] = 504
+ main code      [0x000077b45fbbe100,0x000077b45fbbe1f8] = 248
+ stub code      [0x000077b45fbbe1f8,0x000077b45fbbe200] = 8
+ mutable data [0x000077b4080995a0,0x000077b4080995c0] = 32
+ relocation     [0x000077b4080995a0,0x000077b4080995b8] = 24
+ metadata       [0x000077b4080995b8,0x000077b4080995c0] = 8
+ immutable data [0x000077b408095980,0x000077b4080959c4] = 68
+ dependencies   [0x000077b408095980,0x000077b408095988] = 8
+ scopes pcs     [0x000077b408095988,0x000077b4080959b8] = 48
+ scopes data    [0x000077b4080959b8,0x000077b4080959c0] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbe100:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461e1278} &apos;putReferenceRelease&apos; &apos;(Ljava/lang/Object;JLjava/lang/Object;)V&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = long
+  # parm2:    r8:r8     = &apos;java/lang/Object&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbbe102:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbe106:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbe10a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbe110:   sub    $0x18,%rsp
+  0x000077b45fbbe114:   mov    %rbp,0x10(%rsp)
+  0x000077b45fbbe119:   data16 xchg %ax,%ax
+  0x000077b45fbbe11c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbe124:   jne    0x000077b45fbbe1e8
+  0x000077b45fbbe12a:   lea    (%rdx,%rcx,1),%r11
+  0x000077b45fbbe12e:   cmpb   $0x0,0x48(%r15)
+  0x000077b45fbbe133:   jne    0x000077b45fbbe17f
+  0x000077b45fbbe139:   mov    %r8,%r9
+  0x000077b45fbbe13c:   shr    $0x3,%r9
+  0x000077b45fbbe140:   mov    %r9d,(%r11)
+  0x000077b45fbbe143:   mov    %r11,%r10
+  0x000077b45fbbe146:   xor    %r8,%r10
+  0x000077b45fbbe149:   shr    $0x17,%r10
+  0x000077b45fbbe14d:   je     0x000077b45fbbe169
+  0x000077b45fbbe14f:   test   %r8,%r8
+  0x000077b45fbbe152:   je     0x000077b45fbbe169
+  0x000077b45fbbe154:   mov    %r11,%r10
+  0x000077b45fbbe157:   shr    $0x9,%r10
+  0x000077b45fbbe15b:   add    0x50(%r15),%r10
+  0x000077b45fbbe15f:   cmpb   $0xff,(%r10)
+  0x000077b45fbbe163:   jne    0x000077b45fbbe169
+  0x000077b45fbbe165:   movb   $0x0,(%r10)
+  0x000077b45fbbe169:   lock addl $0x0,-0x40(%rsp)          ;*invokevirtual putReferenceVolatile {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::putReferenceRelease@5 (line 2259)
+  0x000077b45fbbe16f:   add    $0x10,%rsp
+  0x000077b45fbbe173:   pop    %rbp
+  0x000077b45fbbe174:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbe178:   ja     0x000077b45fbbe1d2
+  0x000077b45fbbe17e:   ret    
+  0x000077b45fbbe17f:   mov    (%r11),%r9d
+  0x000077b45fbbe182:   shl    $0x3,%r9
+  0x000077b45fbbe186:   test   %r9,%r9
+  0x000077b45fbbe189:   je     0x000077b45fbbe139
+  0x000077b45fbbe18b:   mov    0x40(%r15),%r10
+  0x000077b45fbbe18f:   test   %r10,%r10
+  0x000077b45fbbe192:   je     0x000077b45fbbe1a5
+  0x000077b45fbbe194:   sub    $0x8,%r10
+  0x000077b45fbbe198:   mov    %r10,0x40(%r15)
+  0x000077b45fbbe19c:   add    0x38(%r15),%r10
+  0x000077b45fbbe1a0:   mov    %r9,(%r10)
+  0x000077b45fbbe1a3:   jmp    0x000077b45fbbe139
+  0x000077b45fbbe1a5:   sub    $0x10,%rsp
+  0x000077b45fbbe1a9:   mov    %r11,0x8(%rsp)
+  0x000077b45fbbe1ae:   mov    %r8,(%rsp)
+  0x000077b45fbbe1b2:   mov    %r9,%rdi
+  0x000077b45fbbe1b5:   mov    %r15,%rsi
+  0x000077b45fbbe1b8:   call   0x000077b478309bd0           ;   {runtime_call G1BarrierSetRuntime::write_ref_field_pre_entry(oopDesc*, JavaThread*)}
+  0x000077b45fbbe1bd:   mov    (%rsp),%r8
+  0x000077b45fbbe1c1:   mov    0x8(%rsp),%r11
+  0x000077b45fbbe1c6:   vzeroupper 
+  0x000077b45fbbe1c9:   add    $0x10,%rsp
+  0x000077b45fbbe1cd:   jmp    0x000077b45fbbe139
+  0x000077b45fbbe1d2:   movabs $0x77b45fbbe174,%r10         ;   {internal_word}
+  0x000077b45fbbe1dc:   mov    %r10,0x510(%r15)
+  0x000077b45fbbe1e3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbe1e8:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbe1ed:   jmp    0x000077b45fbbe12a
+  0x000077b45fbbe1f2:   hlt    
+  0x000077b45fbbe1f3:   hlt    
+  0x000077b45fbbe1f4:   hlt    
+  0x000077b45fbbe1f5:   hlt    
+  0x000077b45fbbe1f6:   hlt    
+  0x000077b45fbbe1f7:   hlt    
+[Stub Code]
+  0x000077b45fbbe1f8:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbe1fd:   jmp    0x000077b45fbbe1f8
+  0x000077b45fbbe1ff:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

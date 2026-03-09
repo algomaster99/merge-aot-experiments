@@ -1,0 +1,50 @@
+--- /tmp/tmpqqw0gd4y.dump	2026-01-30 18:10:22.009282484 +0100
++++ /tmp/tmpf86a6cv4.ind	2026-01-30 18:10:22.009282484 +0100
+@@ -113,7 +113,6 @@
+   0x0:   prefetchw 0x0(%r11)
+   0x0:   movl   $0x0,0x0(%rbx)          ;   {metadata({type array byte})}
+   0x0:   mov    %edi,0x0(%rbx)
+-  0x0:   prefetchw 0x0(%r11)
+   0x0:   prefetchw 0x0(%r11)               ;*invokevirtual allocateUninitializedArray0 {reexecute=0 rethrow=0 return_oop=0}
+                                                             ; - jdk.internal.misc.Unsafe::allocateUninitializedArray@51 (line 1422)
+                                                             ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+@@ -161,7 +160,8 @@
+   0x0:   cmp    $0x0,%r13d
+   0x0:   mov    $0x0,%edx
+   0x0:   cmova  %edx,%r13d
+-  0x0:   add    %r10d,%r13d                  ;*aload {reexecute=0 rethrow=0 return_oop=0}
++  0x0:   add    %r10d,%r13d
++  0x0:   nopw   0x0(%rax,%rax,1)             ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                             ; - java.lang.StringLatin1::replace@63 (line 417)
+   0x0:   vmovd  0x0(%r9,%r10,1),%xmm0
+   0x0:   mov    0x0(%rsp),%rdx
+@@ -180,8 +180,7 @@
+   0x0:   cmp    %r11d,%r10d
+   0x0:   jl     0x0
+   0x0:   cmp    %ebp,%r10d
+-  0x0:   jge    0x0
+-  0x0:   xchg   %ax,%ax                      ;*aload {reexecute=0 rethrow=0 return_oop=0}
++  0x0:   jge    0x0           ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                             ; - java.lang.StringLatin1::replace@63 (line 417)
+   0x0:   movsbl 0x0(%r9,%r10,1),%r11d
+   0x0:   mov    0x0(%rsp),%rdx
+@@ -226,7 +225,7 @@
+   0x0:   inc    %ebp
+   0x0:   jmp    0x0
+   0x0:   mov    %edx,%r10d
+-  0x0:   nopl   0x0(%rax)
++  0x0:   data16 data16 nopw 0x0(%rax,%rax,1)
+   0x0:   mov    %r10b,0x0(%r11,%r13,1)      ;*bastore {reexecute=0 rethrow=0 return_oop=0}
+                                                             ; - java.lang.StringLatin1::replace@108 (line 421)
+   0x0:   add    $0x0,%ebp                    ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+@@ -263,8 +262,8 @@
+   0x0:   jne    0x0           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                             ; - java.lang.StringLatin1::replace@98 (line 421)
+   0x0:   jmp    0x0
+-  0x0:   mov    %edx,%r10d
+-  0x0:   jmp    0x0           ;   {other}
++  0x0:   mov    %edx,%r10d                   ;   {other}
++  0x0:   jmp    0x0
+   0x0:   mov    %edx,%r11d
+   0x0:   jmp    0x0
+   0x0:   mov    %edx,%r10d

@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 5325  265       1       java.net.URLStreamHandler::getDefaultPort (2 bytes)
+ total in heap  [0x000077b45fbb0d88,0x000077b45fbb0f30] = 424
+ main code      [0x000077b45fbb0e80,0x000077b45fbb0f10] = 144
+ stub code      [0x000077b45fbb0f10,0x000077b45fbb0f30] = 32
+ mutable data [0x000077b3e801e4a0,0x000077b3e801e4c8] = 40
+ relocation     [0x000077b3e801e4a0,0x000077b3e801e4c0] = 32
+ metadata       [0x000077b3e801e4c0,0x000077b3e801e4c8] = 8
+ immutable data [0x000077b3e801b9d0,0x000077b3e801ba14] = 68
+ dependencies   [0x000077b3e801b9d0,0x000077b3e801b9d8] = 8
+ scopes pcs     [0x000077b3e801b9d8,0x000077b3e801ba08] = 48
+ scopes data    [0x000077b3e801ba08,0x000077b3e801ba10] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb0e80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb0e8b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb0e8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004629f8c8} &apos;getDefaultPort&apos; &apos;()I&apos; in &apos;java/net/URLStreamHandler&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb0e92:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb0e96:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb0e9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb0ea0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb0ea7:   push   %rbp
+  0x000077b45fbb0ea8:   sub    $0x20,%rsp
+  0x000077b45fbb0eac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb0eb4:   je     0x000077b45fbb0ebb
+  0x000077b45fbb0eb6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*iconst_m1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URLStreamHandler::getDefaultPort@0 (line 341)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb0ebb:   mov    $0xffffffff,%eax
+  0x000077b45fbb0ec0:   add    $0x20,%rsp
+  0x000077b45fbb0ec4:   pop    %rbp
+  0x000077b45fbb0ec5:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb0ec9:   ja     0x000077b45fbb0ed0
+  0x000077b45fbb0ecf:   ret    
+  0x000077b45fbb0ed0:   movabs $0x77b45fbb0ec5,%r10         ;   {internal_word}
+  0x000077b45fbb0eda:   mov    %r10,0x510(%r15)
+  0x000077b45fbb0ee1:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb0ee6:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb0eed:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb0ef8:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb0f03:   add    $0x20,%rsp
+  0x000077b45fbb0f07:   pop    %rbp
+  0x000077b45fbb0f08:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb0f0d:   hlt    
+  0x000077b45fbb0f0e:   hlt    
+  0x000077b45fbb0f0f:   hlt    
+[Exception Handler]
+  0x000077b45fbb0f10:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb0f15:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb0f1f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb0f23:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb0f28:   hlt    
+  0x000077b45fbb0f29:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb0f2e:   jmp    0x000077b45fbb0f29
+--------------------------------------------------------------------------------
+[/Disassembly]

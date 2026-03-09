@@ -1,0 +1,165 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 272   19       3       jdk.internal.util.StrongReferenceKey::hashCode (8 bytes)
+ total in heap  [0x00007ca507fff008,0x00007ca507fff300] = 760
+ main code      [0x00007ca507fff100,0x00007ca507fff2c8] = 456
+ stub code      [0x00007ca507fff2c8,0x00007ca507fff300] = 56
+ mutable data [0x00007ca4ac014d80,0x00007ca4ac014dd0] = 80
+ relocation     [0x00007ca4ac014d80,0x00007ca4ac014dc0] = 64
+ metadata       [0x00007ca4ac014dc0,0x00007ca4ac014dd0] = 16
+ immutable data [0x00007ca4ac014c90,0x00007ca4ac014d6c] = 220
+ dependencies   [0x00007ca4ac014c90,0x00007ca4ac014c98] = 8
+ nul chk table  [0x00007ca4ac014c98,0x00007ca4ac014ca8] = 16
+ scopes pcs     [0x00007ca4ac014ca8,0x00007ca4ac014d38] = 144
+ scopes data    [0x00007ca4ac014d38,0x00007ca4ac014d68] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007ca507fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007ca507fff10b:   data16 data16 xchg %ax,%ax
+  0x00007ca507fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000054330218} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007ca507fff112:   mov    0x8(%rsi),%r10d
+  0x00007ca507fff116:   cmp    0x8(%rax),%r10d
+  0x00007ca507fff11a:   jne    0x00007ca50f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007ca507fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007ca507fff127:   push   %rbp
+  0x00007ca507fff128:   sub    $0x30,%rsp
+  0x00007ca507fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007ca507fff134:   je     0x00007ca507fff13b
+  0x00007ca507fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ca507fff13b:   movabs $0x7ca4b807f228,%rdi         ;   {metadata(method data for {method} {0x0000000054330218} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x00007ca507fff145:   mov    0x90(%rdi),%ebx
+  0x00007ca507fff14b:   add    $0x2,%ebx
+  0x00007ca507fff14e:   mov    %ebx,0x90(%rdi)
+  0x00007ca507fff154:   and    $0x7fe,%ebx
+  0x00007ca507fff15a:   test   %ebx,%ebx
+  0x00007ca507fff15c:   je     0x00007ca507fff264           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@0 (line 75)
+  0x00007ca507fff162:   mov    %rsi,%rdi
+  0x00007ca507fff165:   movabs $0x7ca4b807f228,%rbx         ;   {metadata(method data for {method} {0x0000000054330218} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x00007ca507fff16f:   mov    0x8(%rdi),%edi
+  0x00007ca507fff172:   mov    $0x54000000,%r10d
+  0x00007ca507fff178:   add    %r10,%rdi
+  0x00007ca507fff17b:   mov    $0x1c,%r10d
+  0x00007ca507fff181:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ca507fff185:   je     0x00007ca507fff1be
+  0x00007ca507fff187:   add    $0x2,%r10
+  0x00007ca507fff18b:   cmp    $0x20,%r10
+  0x00007ca507fff18f:   jne    0x00007ca507fff181
+  0x00007ca507fff191:   mov    $0x1c,%r10d
+  0x00007ca507fff197:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ca507fff19c:   je     0x00007ca507fff1aa
+  0x00007ca507fff19e:   add    $0x2,%r10
+  0x00007ca507fff1a2:   cmp    $0x20,%r10
+  0x00007ca507fff1a6:   jne    0x00007ca507fff197
+  0x00007ca507fff1a8:   jmp    0x00007ca507fff1b6
+  0x00007ca507fff1aa:   push   %rax
+  0x00007ca507fff1ab:   xor    %rax,%rax
+  0x00007ca507fff1ae:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ca507fff1b3:   pop    %rax
+  0x00007ca507fff1b4:   jmp    0x00007ca507fff17b
+  0x00007ca507fff1b6:   mov    $0x1b,%r10d
+  0x00007ca507fff1bc:   jmp    0x00007ca507fff1c2
+  0x00007ca507fff1be:   add    $0x1,%r10
+  0x00007ca507fff1c2:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ca507fff1c7:   mov    0xc(%rsi),%esi
+  0x00007ca507fff1ca:   shl    $0x3,%rsi                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::get@1 (line 55)
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@1 (line 75)
+  0x00007ca507fff1ce:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007ca507fff285
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@4 (line 75)
+  0x00007ca507fff1d1:   mov    %rsi,%rdi
+  0x00007ca507fff1d4:   movabs $0x7ca4b807f228,%rbx         ;   {metadata(method data for {method} {0x0000000054330218} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x00007ca507fff1de:   mov    0x8(%rdi),%edi
+  0x00007ca507fff1e1:   mov    $0x54000000,%r10d
+  0x00007ca507fff1e7:   add    %r10,%rdi
+  0x00007ca507fff1ea:   mov    $0x22,%r10d
+  0x00007ca507fff1f0:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ca507fff1f4:   je     0x00007ca507fff22d
+  0x00007ca507fff1f6:   add    $0x2,%r10
+  0x00007ca507fff1fa:   cmp    $0x26,%r10
+  0x00007ca507fff1fe:   jne    0x00007ca507fff1f0
+  0x00007ca507fff200:   mov    $0x22,%r10d
+  0x00007ca507fff206:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ca507fff20b:   je     0x00007ca507fff219
+  0x00007ca507fff20d:   add    $0x2,%r10
+  0x00007ca507fff211:   cmp    $0x26,%r10
+  0x00007ca507fff215:   jne    0x00007ca507fff206
+  0x00007ca507fff217:   jmp    0x00007ca507fff225
+  0x00007ca507fff219:   push   %rax
+  0x00007ca507fff21a:   xor    %rax,%rax
+  0x00007ca507fff21d:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ca507fff222:   pop    %rax
+  0x00007ca507fff223:   jmp    0x00007ca507fff1ea
+  0x00007ca507fff225:   mov    $0x21,%r10d
+  0x00007ca507fff22b:   jmp    0x00007ca507fff231
+  0x00007ca507fff22d:   add    $0x1,%r10
+  0x00007ca507fff231:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ca507fff236:   nopl   0x0(%rax)
+  0x00007ca507fff23d:   movabs $0x7ca4ac014e60,%rax
+  0x00007ca507fff247:   call   0x00007ca50f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@4 (line 75)
+                                                            ;   {virtual_call}
+  0x00007ca507fff24c:   nopl   0x244(%rax,%rax,1)           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@4 (line 75)
+                                                            ;   {post_call_nop}
+  0x00007ca507fff254:   add    $0x30,%rsp
+  0x00007ca507fff258:   pop    %rbp
+  0x00007ca507fff259:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ca507fff25d:   ja     0x00007ca507fff28a
+  0x00007ca507fff263:   ret    
+  0x00007ca507fff264:   movabs $0x54330218,%r10             ;   {metadata({method} {0x0000000054330218} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x00007ca507fff26e:   mov    %r10,0x8(%rsp)
+  0x00007ca507fff273:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ca507fff27b:   call   0x00007ca50f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@-1 (line 75)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ca507fff280:   jmp    0x00007ca507fff162
+  0x00007ca507fff285:   call   0x00007ca50f57cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::hashCode@4 (line 75)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ca507fff28a:   movabs $0x7ca507fff259,%r10         ;   {internal_word}
+  0x00007ca507fff294:   mov    %r10,0x510(%r15)
+  0x00007ca507fff29b:   jmp    0x00007ca50f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ca507fff2a0:   mov    0x5c0(%r15),%rax
+  0x00007ca507fff2a7:   movq   $0x0,0x5c0(%r15)
+  0x00007ca507fff2b2:   movq   $0x0,0x5c8(%r15)
+  0x00007ca507fff2bd:   add    $0x30,%rsp
+  0x00007ca507fff2c1:   pop    %rbp
+  0x00007ca507fff2c2:   jmp    0x00007ca50f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ca507fff2c7:   hlt    
+[Stub Code]
+  0x00007ca507fff2c8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007ca507fff2cd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ca507fff2d7:   jmp    0x00007ca507fff2d7           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ca507fff2dc:   call   0x00007ca50f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ca507fff2e1:   movabs $0x7ca525d3aec4,%rdi         ;   {external_word}
+  0x00007ca507fff2eb:   and    $0xfffffffffffffff0,%rsp
+  0x00007ca507fff2ef:   call   0x00007ca525791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ca507fff2f4:   hlt    
+  0x00007ca507fff2f5:   call   0x00007ca50f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ca507fff2fa:   jmp    0x00007ca507fff2f5
+  0x00007ca507fff2fc:   hlt    
+  0x00007ca507fff2fd:   hlt    
+  0x00007ca507fff2fe:   hlt    
+  0x00007ca507fff2ff:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

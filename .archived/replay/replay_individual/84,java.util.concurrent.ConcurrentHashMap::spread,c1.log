@@ -1,0 +1,83 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 228    3       3       java.util.concurrent.ConcurrentHashMap::spread (10 bytes)
+ total in heap  [0x0000726eaffff008,0x0000726eaffff1e0] = 472
+ main code      [0x0000726eaffff100,0x0000726eaffff1c0] = 192
+ stub code      [0x0000726eaffff1c0,0x0000726eaffff1e0] = 32
+ mutable data [0x0000726e54014ce0,0x0000726e54014d10] = 48
+ relocation     [0x0000726e54014ce0,0x0000726e54014d08] = 40
+ metadata       [0x0000726e54014d08,0x0000726e54014d10] = 8
+ immutable data [0x0000726e54014c70,0x0000726e54014cd4] = 100
+ dependencies   [0x0000726e54014c70,0x0000726e54014c78] = 8
+ scopes pcs     [0x0000726e54014c78,0x0000726e54014cb8] = 64
+ scopes data    [0x0000726e54014cb8,0x0000726e54014cd0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000041484e90} &apos;spread&apos; &apos;(I)I&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # parm0:    rsi       = int
+  #           [sp+0x40]  (sp of caller)
+  0x0000726eaffff100:   mov    %eax,-0x14000(%rsp)
+  0x0000726eaffff107:   push   %rbp
+  0x0000726eaffff108:   sub    $0x30,%rsp
+  0x0000726eaffff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000726eaffff114:   je     0x0000726eaffff11b
+  0x0000726eaffff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000726eaffff11b:   movabs $0x726e6001a9f0,%rax         ;   {metadata(method data for {method} {0x0000000041484e90} &apos;spread&apos; &apos;(I)I&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x0000726eaffff125:   mov    0x90(%rax),%edi
+  0x0000726eaffff12b:   add    $0x2,%edi
+  0x0000726eaffff12e:   mov    %edi,0x90(%rax)
+  0x0000726eaffff134:   and    $0x7fe,%edi
+  0x0000726eaffff13a:   test   %edi,%edi
+  0x0000726eaffff13c:   je     0x0000726eaffff160           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::spread@0 (line 711)
+  0x0000726eaffff142:   mov    %rsi,%rax
+  0x0000726eaffff145:   shr    $0x10,%eax
+  0x0000726eaffff148:   xor    %rsi,%rax
+  0x0000726eaffff14b:   and    $0x7fffffff,%eax
+  0x0000726eaffff150:   add    $0x30,%rsp
+  0x0000726eaffff154:   pop    %rbp
+  0x0000726eaffff155:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000726eaffff159:   ja     0x0000726eaffff17e
+  0x0000726eaffff15f:   ret    
+  0x0000726eaffff160:   movabs $0x41484e90,%r10             ;   {metadata({method} {0x0000000041484e90} &apos;spread&apos; &apos;(I)I&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x0000726eaffff16a:   mov    %r10,0x8(%rsp)
+  0x0000726eaffff16f:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000726eaffff177:   call   0x0000726eb7581860           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.util.concurrent.ConcurrentHashMap::spread@-1 (line 711)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000726eaffff17c:   jmp    0x0000726eaffff142
+  0x0000726eaffff17e:   movabs $0x726eaffff155,%r10         ;   {internal_word}
+  0x0000726eaffff188:   mov    %r10,0x510(%r15)
+  0x0000726eaffff18f:   jmp    0x0000726eb74afb60           ;   {runtime_call SafepointBlob}
+  0x0000726eaffff194:   mov    0x5c0(%r15),%rax
+  0x0000726eaffff19b:   movq   $0x0,0x5c0(%r15)
+  0x0000726eaffff1a6:   movq   $0x0,0x5c8(%r15)
+  0x0000726eaffff1b1:   add    $0x30,%rsp
+  0x0000726eaffff1b5:   pop    %rbp
+  0x0000726eaffff1b6:   jmp    0x0000726eb757a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000726eaffff1bb:   hlt    
+  0x0000726eaffff1bc:   hlt    
+  0x0000726eaffff1bd:   hlt    
+  0x0000726eaffff1be:   hlt    
+  0x0000726eaffff1bf:   hlt    
+[Exception Handler]
+  0x0000726eaffff1c0:   call   0x0000726eb757db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000726eaffff1c5:   movabs $0x726ecdf3aec4,%rdi         ;   {external_word}
+  0x0000726eaffff1cf:   and    $0xfffffffffffffff0,%rsp
+  0x0000726eaffff1d3:   call   0x0000726ecd991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000726eaffff1d8:   hlt    
+  0x0000726eaffff1d9:   call   0x0000726eb74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000726eaffff1de:   jmp    0x0000726eaffff1d9
+--------------------------------------------------------------------------------
+[/Disassembly]

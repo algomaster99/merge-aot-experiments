@@ -1,0 +1,253 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 675   53       3       java.lang.Boolean::equals (31 bytes)
+ total in heap  [0x00007cec6ffff008,0x00007cec6ffff458] = 1104
+ main code      [0x00007cec6ffff100,0x00007cec6ffff438] = 824
+ stub code      [0x00007cec6ffff438,0x00007cec6ffff458] = 32
+ mutable data [0x00007cec1802ce10,0x00007cec1802ce60] = 80
+ relocation     [0x00007cec1802ce10,0x00007cec1802ce50] = 64
+ metadata       [0x00007cec1802ce50,0x00007cec1802ce60] = 16
+ immutable data [0x00007cec1802cc90,0x00007cec1802cdfc] = 364
+ dependencies   [0x00007cec1802cc90,0x00007cec1802cc98] = 8
+ nul chk table  [0x00007cec1802cc98,0x00007cec1802cca8] = 16
+ scopes pcs     [0x00007cec1802cca8,0x00007cec1802cd98] = 240
+ scopes data    [0x00007cec1802cd98,0x00007cec1802cdf8] = 96
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007cec6ffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007cec6ffff10b:   data16 data16 xchg %ax,%ax
+  0x00007cec6ffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;
+  # this:     rsi:rsi   = &apos;java/lang/Boolean&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007cec6ffff112:   mov    0x8(%rsi),%r10d
+  0x00007cec6ffff116:   cmp    0x8(%rax),%r10d
+  0x00007cec6ffff11a:   jne    0x00007cec774ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007cec6ffff120:   mov    %eax,-0x14000(%rsp)
+  0x00007cec6ffff127:   push   %rbp
+  0x00007cec6ffff128:   sub    $0x30,%rsp
+  0x00007cec6ffff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007cec6ffff134:   je     0x00007cec6ffff13b
+  0x00007cec6ffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007cec6ffff13b:   movabs $0x7cec24318d48,%rax         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff145:   mov    0x90(%rax),%edi
+  0x00007cec6ffff14b:   add    $0x2,%edi
+  0x00007cec6ffff14e:   mov    %edi,0x90(%rax)
+  0x00007cec6ffff154:   and    $0x7fe,%edi
+  0x00007cec6ffff15a:   test   %edi,%edi
+  0x00007cec6ffff15c:   je     0x00007cec6ffff3b1           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@0 (line 257)
+  0x00007cec6ffff162:   test   %rdx,%rdx
+  0x00007cec6ffff165:   movabs $0x7cec24318d48,%rbx         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff16f:   jne    0x00007cec6ffff17d
+  0x00007cec6ffff171:   orb    $0x1,0xd1(%rbx)
+  0x00007cec6ffff178:   jmp    0x00007cec6ffff1f9
+  0x00007cec6ffff17d:   mov    0x8(%rdx),%ecx
+  0x00007cec6ffff180:   mov    $0x77000000,%r10d
+  0x00007cec6ffff186:   add    %r10,%rcx
+  0x00007cec6ffff189:   mov    $0x1c,%r10d
+  0x00007cec6ffff18f:   cmp    (%rbx,%r10,8),%rcx
+  0x00007cec6ffff193:   je     0x00007cec6ffff1cc
+  0x00007cec6ffff195:   add    $0x2,%r10
+  0x00007cec6ffff199:   cmp    $0x20,%r10
+  0x00007cec6ffff19d:   jne    0x00007cec6ffff18f
+  0x00007cec6ffff19f:   mov    $0x1c,%r10d
+  0x00007cec6ffff1a5:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007cec6ffff1aa:   je     0x00007cec6ffff1b8
+  0x00007cec6ffff1ac:   add    $0x2,%r10
+  0x00007cec6ffff1b0:   cmp    $0x20,%r10
+  0x00007cec6ffff1b4:   jne    0x00007cec6ffff1a5
+  0x00007cec6ffff1b6:   jmp    0x00007cec6ffff1c4
+  0x00007cec6ffff1b8:   push   %rax
+  0x00007cec6ffff1b9:   xor    %rax,%rax
+  0x00007cec6ffff1bc:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x00007cec6ffff1c1:   pop    %rax
+  0x00007cec6ffff1c2:   jmp    0x00007cec6ffff189
+  0x00007cec6ffff1c4:   mov    $0x1b,%r10d
+  0x00007cec6ffff1ca:   jmp    0x00007cec6ffff1d0
+  0x00007cec6ffff1cc:   add    $0x1,%r10
+  0x00007cec6ffff1d0:   addq   $0x1,(%rbx,%r10,8)
+  0x00007cec6ffff1d5:   movabs $0x77198e88,%rcx             ;   {metadata(&apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff1df:   mov    0x8(%rdx),%edi
+  0x00007cec6ffff1e2:   mov    $0x77000000,%r10d
+  0x00007cec6ffff1e8:   add    %r10,%rdi
+  0x00007cec6ffff1eb:   cmp    %rdi,%rcx
+  0x00007cec6ffff1ee:   jne    0x00007cec6ffff1f9
+  0x00007cec6ffff1f4:   jmp    0x00007cec6ffff1fe
+  0x00007cec6ffff1f9:   xor    %rax,%rax
+  0x00007cec6ffff1fc:   jmp    0x00007cec6ffff203
+  0x00007cec6ffff1fe:   mov    $0x1,%eax                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@1 (line 257)
+  0x00007cec6ffff203:   test   %eax,%eax
+  0x00007cec6ffff205:   movabs $0x7cec24318d48,%rax         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff20f:   mov    $0x108,%edi
+  0x00007cec6ffff214:   je     0x00007cec6ffff21b
+  0x00007cec6ffff216:   mov    $0x118,%edi
+  0x00007cec6ffff21b:   mov    (%rax,%rdi,1),%rbx
+  0x00007cec6ffff21f:   lea    0x1(%rbx),%rbx
+  0x00007cec6ffff223:   mov    %rbx,(%rax,%rdi,1)
+  0x00007cec6ffff227:   je     0x00007cec6ffff39c           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@4 (line 257)
+  0x00007cec6ffff22d:   test   %rdx,%rdx
+  0x00007cec6ffff230:   movabs $0x7cec24318d48,%rbx         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff23a:   jne    0x00007cec6ffff248
+  0x00007cec6ffff23c:   orb    $0x1,0x121(%rbx)
+  0x00007cec6ffff243:   jmp    0x00007cec6ffff2ca
+  0x00007cec6ffff248:   mov    0x8(%rdx),%eax
+  0x00007cec6ffff24b:   mov    $0x77000000,%r10d
+  0x00007cec6ffff251:   add    %r10,%rax
+  0x00007cec6ffff254:   mov    $0x26,%r10d
+  0x00007cec6ffff25a:   cmp    (%rbx,%r10,8),%rax
+  0x00007cec6ffff25e:   je     0x00007cec6ffff29d
+  0x00007cec6ffff260:   add    $0x2,%r10
+  0x00007cec6ffff264:   cmp    $0x2a,%r10
+  0x00007cec6ffff268:   jne    0x00007cec6ffff25a
+  0x00007cec6ffff26a:   mov    $0x26,%r10d
+  0x00007cec6ffff270:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007cec6ffff275:   je     0x00007cec6ffff283
+  0x00007cec6ffff277:   add    $0x2,%r10
+  0x00007cec6ffff27b:   cmp    $0x2a,%r10
+  0x00007cec6ffff27f:   jne    0x00007cec6ffff270
+  0x00007cec6ffff281:   jmp    0x00007cec6ffff295
+  0x00007cec6ffff283:   push   %rcx
+  0x00007cec6ffff284:   mov    %rax,%rcx
+  0x00007cec6ffff287:   xor    %rax,%rax
+  0x00007cec6ffff28a:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x00007cec6ffff28f:   mov    %rcx,%rax
+  0x00007cec6ffff292:   pop    %rcx
+  0x00007cec6ffff293:   jmp    0x00007cec6ffff254
+  0x00007cec6ffff295:   mov    $0x25,%r10d
+  0x00007cec6ffff29b:   jmp    0x00007cec6ffff2a1
+  0x00007cec6ffff29d:   add    $0x1,%r10
+  0x00007cec6ffff2a1:   addq   $0x1,(%rbx,%r10,8)
+  0x00007cec6ffff2a6:   movabs $0x77198e88,%rax             ;   {metadata(&apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff2b0:   mov    0x8(%rdx),%edi
+  0x00007cec6ffff2b3:   mov    $0x77000000,%r10d
+  0x00007cec6ffff2b9:   add    %r10,%rdi
+  0x00007cec6ffff2bc:   cmp    %rdi,%rax
+  0x00007cec6ffff2bf:   jne    0x00007cec6ffff3d2
+  0x00007cec6ffff2c5:   jmp    0x00007cec6ffff2ca
+  0x00007cec6ffff2ca:   mov    %rdx,%rax                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@8 (line 257)
+  0x00007cec6ffff2cd:   movsbl 0xc(%rsi),%esi               ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@13 (line 258)
+  0x00007cec6ffff2d1:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x00007cec6ffff3db
+                                                            ;*invokevirtual booleanValue {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@17 (line 258)
+  0x00007cec6ffff2d4:   mov    %rax,%rdi
+  0x00007cec6ffff2d7:   movabs $0x7cec24318d48,%rbx         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff2e1:   mov    0x8(%rdi),%edi
+  0x00007cec6ffff2e4:   mov    $0x77000000,%r10d
+  0x00007cec6ffff2ea:   add    %r10,%rdi
+  0x00007cec6ffff2ed:   mov    $0x2c,%r10d
+  0x00007cec6ffff2f3:   cmp    (%rbx,%r10,8),%rdi
+  0x00007cec6ffff2f7:   je     0x00007cec6ffff330
+  0x00007cec6ffff2f9:   add    $0x2,%r10
+  0x00007cec6ffff2fd:   cmp    $0x30,%r10
+  0x00007cec6ffff301:   jne    0x00007cec6ffff2f3
+  0x00007cec6ffff303:   mov    $0x2c,%r10d
+  0x00007cec6ffff309:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007cec6ffff30e:   je     0x00007cec6ffff31c
+  0x00007cec6ffff310:   add    $0x2,%r10
+  0x00007cec6ffff314:   cmp    $0x30,%r10
+  0x00007cec6ffff318:   jne    0x00007cec6ffff309
+  0x00007cec6ffff31a:   jmp    0x00007cec6ffff328
+  0x00007cec6ffff31c:   push   %rax
+  0x00007cec6ffff31d:   xor    %rax,%rax
+  0x00007cec6ffff320:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007cec6ffff325:   pop    %rax
+  0x00007cec6ffff326:   jmp    0x00007cec6ffff2ed
+  0x00007cec6ffff328:   mov    $0x2b,%r10d
+  0x00007cec6ffff32e:   jmp    0x00007cec6ffff334
+  0x00007cec6ffff330:   add    $0x1,%r10
+  0x00007cec6ffff334:   addq   $0x1,(%rbx,%r10,8)
+  0x00007cec6ffff339:   movsbl 0xc(%rax),%eax               ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::booleanValue@1 (line 159)
+                                                            ; - java.lang.Boolean::equals@17 (line 258)
+  0x00007cec6ffff33d:   and    $0x1,%eax
+  0x00007cec6ffff340:   cmp    %eax,%esi
+  0x00007cec6ffff342:   movabs $0x7cec24318d48,%rax         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff34c:   mov    $0x188,%esi
+  0x00007cec6ffff351:   jne    0x00007cec6ffff358
+  0x00007cec6ffff353:   mov    $0x198,%esi
+  0x00007cec6ffff358:   mov    (%rax,%rsi,1),%rdi
+  0x00007cec6ffff35c:   lea    0x1(%rdi),%rdi
+  0x00007cec6ffff360:   mov    %rdi,(%rax,%rsi,1)
+  0x00007cec6ffff364:   jne    0x00007cec6ffff384           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@20 (line 258)
+  0x00007cec6ffff36a:   movabs $0x7cec24318d48,%rax         ;   {metadata(method data for {method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff374:   incl   0x1a8(%rax)
+  0x00007cec6ffff37a:   mov    $0x1,%eax
+  0x00007cec6ffff37f:   jmp    0x00007cec6ffff389           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@24 (line 258)
+  0x00007cec6ffff384:   mov    $0x0,%eax
+  0x00007cec6ffff389:   and    $0x1,%eax
+  0x00007cec6ffff38c:   add    $0x30,%rsp
+  0x00007cec6ffff390:   pop    %rbp
+  0x00007cec6ffff391:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007cec6ffff395:   ja     0x00007cec6ffff3e0
+  0x00007cec6ffff39b:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@28 (line 258)
+  0x00007cec6ffff39c:   mov    $0x0,%eax
+  0x00007cec6ffff3a1:   add    $0x30,%rsp
+  0x00007cec6ffff3a5:   pop    %rbp
+  0x00007cec6ffff3a6:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007cec6ffff3aa:   ja     0x00007cec6ffff3f6
+  0x00007cec6ffff3b0:   ret    
+  0x00007cec6ffff3b1:   movabs $0x771990c8,%r10             ;   {metadata({method} {0x00000000771990c8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Boolean&apos;)}
+  0x00007cec6ffff3bb:   mov    %r10,0x8(%rsp)
+  0x00007cec6ffff3c0:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007cec6ffff3c8:   call   0x00007cec77583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Boolean::equals@-1 (line 257)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007cec6ffff3cd:   jmp    0x00007cec6ffff162
+  0x00007cec6ffff3d2:   mov    %rdx,(%rsp)
+  0x00007cec6ffff3d6:   call   0x00007cec775801e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@8 (line 257)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007cec6ffff3db:   call   0x00007cec7757cae0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*invokevirtual booleanValue {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Boolean::equals@17 (line 258)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cec6ffff3e0:   movabs $0x7cec6ffff391,%r10         ;   {internal_word}
+  0x00007cec6ffff3ea:   mov    %r10,0x510(%r15)
+  0x00007cec6ffff3f1:   jmp    0x00007cec774afb60           ;   {runtime_call SafepointBlob}
+  0x00007cec6ffff3f6:   movabs $0x7cec6ffff3a6,%r10         ;   {internal_word}
+  0x00007cec6ffff400:   mov    %r10,0x510(%r15)
+  0x00007cec6ffff407:   jmp    0x00007cec774afb60           ;   {runtime_call SafepointBlob}
+  0x00007cec6ffff40c:   mov    0x5c0(%r15),%rax
+  0x00007cec6ffff413:   movq   $0x0,0x5c0(%r15)
+  0x00007cec6ffff41e:   movq   $0x0,0x5c8(%r15)
+  0x00007cec6ffff429:   add    $0x30,%rsp
+  0x00007cec6ffff42d:   pop    %rbp
+  0x00007cec6ffff42e:   jmp    0x00007cec7757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007cec6ffff433:   hlt    
+  0x00007cec6ffff434:   hlt    
+  0x00007cec6ffff435:   hlt    
+  0x00007cec6ffff436:   hlt    
+  0x00007cec6ffff437:   hlt    
+[Exception Handler]
+  0x00007cec6ffff438:   call   0x00007cec7757fbe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007cec6ffff43d:   movabs $0x7cec8f53aec4,%rdi         ;   {external_word}
+  0x00007cec6ffff447:   and    $0xfffffffffffffff0,%rsp
+  0x00007cec6ffff44b:   call   0x00007cec8ef91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007cec6ffff450:   hlt    
+  0x00007cec6ffff451:   call   0x00007cec774afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007cec6ffff456:   jmp    0x00007cec6ffff451
+--------------------------------------------------------------------------------
+[/Disassembly]

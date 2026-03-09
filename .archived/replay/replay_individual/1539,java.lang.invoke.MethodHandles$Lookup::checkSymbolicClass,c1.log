@@ -1,0 +1,239 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 615   53       3       java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass (25 bytes)
+ total in heap  [0x0000759027fff008,0x0000759027fff410] = 1032
+ main code      [0x0000759027fff100,0x0000759027fff3c0] = 704
+ stub code      [0x0000759027fff3c0,0x0000759027fff410] = 80
+ mutable data [0x0000758fd0024fe0,0x0000758fd0025048] = 104
+ relocation     [0x0000758fd0024fe0,0x0000758fd0025040] = 96
+ metadata       [0x0000758fd0025040,0x0000758fd0025048] = 8
+ immutable data [0x0000758fd0024e20,0x0000758fd0024fd4] = 436
+ dependencies   [0x0000758fd0024e20,0x0000758fd0024e28] = 8
+ nul chk table  [0x0000758fd0024e28,0x0000758fd0024e38] = 16
+ scopes pcs     [0x0000758fd0024e38,0x0000758fd0024f58] = 288
+ scopes data    [0x0000758fd0024f58,0x0000758fd0024fd0] = 120
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000759027fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000759027fff10b:   data16 data16 xchg %ax,%ax
+  0x0000759027fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;
+  # this:     rsi:rsi   = &apos;java/lang/invoke/MethodHandles$Lookup&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x0000759027fff112:   mov    0x8(%rsi),%r10d
+  0x0000759027fff116:   cmp    0x8(%rax),%r10d
+  0x0000759027fff11a:   jne    0x000075902f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000759027fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000759027fff127:   push   %rbp
+  0x0000759027fff128:   sub    $0x40,%rsp
+  0x0000759027fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000759027fff134:   je     0x0000759027fff13b
+  0x0000759027fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000759027fff13b:   mov    %rsi,0x28(%rsp)
+  0x0000759027fff140:   movabs $0x758fdc319828,%rdi         ;   {metadata(method data for {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff14a:   mov    0x90(%rdi),%ebx
+  0x0000759027fff150:   add    $0x2,%ebx
+  0x0000759027fff153:   mov    %ebx,0x90(%rdi)
+  0x0000759027fff159:   and    $0x7fe,%ebx
+  0x0000759027fff15f:   test   %ebx,%ebx
+  0x0000759027fff161:   je     0x0000759027fff34c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@0 (line 3635)
+  0x0000759027fff167:   mov    %rsi,%rdi
+  0x0000759027fff16a:   movabs $0x758fdc319828,%rbx         ;   {metadata(method data for {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff174:   mov    0x8(%rdi),%edi
+  0x0000759027fff177:   mov    $0x90000000,%r10d
+  0x0000759027fff17d:   add    %r10,%rdi
+  0x0000759027fff180:   mov    $0x1c,%r10d
+  0x0000759027fff186:   cmp    (%rbx,%r10,8),%rdi
+  0x0000759027fff18a:   je     0x0000759027fff1c3
+  0x0000759027fff18c:   add    $0x2,%r10
+  0x0000759027fff190:   cmp    $0x20,%r10
+  0x0000759027fff194:   jne    0x0000759027fff186
+  0x0000759027fff196:   mov    $0x1c,%r10d
+  0x0000759027fff19c:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000759027fff1a1:   je     0x0000759027fff1af
+  0x0000759027fff1a3:   add    $0x2,%r10
+  0x0000759027fff1a7:   cmp    $0x20,%r10
+  0x0000759027fff1ab:   jne    0x0000759027fff19c
+  0x0000759027fff1ad:   jmp    0x0000759027fff1bb
+  0x0000759027fff1af:   push   %rax
+  0x0000759027fff1b0:   xor    %rax,%rax
+  0x0000759027fff1b3:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000759027fff1b8:   pop    %rax
+  0x0000759027fff1b9:   jmp    0x0000759027fff180
+  0x0000759027fff1bb:   mov    $0x1b,%r10d
+  0x0000759027fff1c1:   jmp    0x0000759027fff1c7
+  0x0000759027fff1c3:   add    $0x1,%r10
+  0x0000759027fff1c7:   addq   $0x1,(%rbx,%r10,8)
+  0x0000759027fff1cc:   mov    %rdx,%rdi
+  0x0000759027fff1cf:   mov    %rdi,%rdx
+  0x0000759027fff1d2:   mov    %rsi,%rbx
+  0x0000759027fff1d5:   mov    %rbx,%rsi                    ;*invokevirtual isClassAccessible {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@2 (line 3635)
+  0x0000759027fff1d8:   mov    %rdi,0x20(%rsp)
+  0x0000759027fff1dd:   xchg   %ax,%ax
+  0x0000759027fff1df:   call   0x000075902f4ad9e0           ; ImmutableOopMap {[32]=Oop [40]=Oop }
+                                                            ;*invokevirtual isClassAccessible {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@2 (line 3635)
+                                                            ;   {optimized virtual_call}
+  0x0000759027fff1e4:   nopl   0x1dc(%rax,%rax,1)           ;*invokevirtual isClassAccessible {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@2 (line 3635)
+                                                            ;   {post_call_nop}
+  0x0000759027fff1ec:   test   %eax,%eax
+  0x0000759027fff1ee:   movabs $0x758fdc319828,%rdx         ;   {metadata(method data for {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff1f8:   mov    $0x118,%esi
+  0x0000759027fff1fd:   je     0x0000759027fff204
+  0x0000759027fff1ff:   mov    $0x108,%esi
+  0x0000759027fff204:   mov    (%rdx,%rsi,1),%rdi
+  0x0000759027fff208:   lea    0x1(%rdi),%rdi
+  0x0000759027fff20c:   mov    %rdi,(%rdx,%rsi,1)
+  0x0000759027fff210:   je     0x0000759027fff226           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@5 (line 3635)
+  0x0000759027fff216:   add    $0x40,%rsp
+  0x0000759027fff21a:   pop    %rbp
+  0x0000759027fff21b:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000759027fff21f:   ja     0x0000759027fff36d
+  0x0000759027fff225:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@24 (line 3638)
+  0x0000759027fff226:   mov    0x20(%rsp),%rbx
+  0x0000759027fff22b:   movabs $0x902041e8,%rdx             ;   {metadata(&apos;java/lang/invoke/MemberName&apos;)}
+  0x0000759027fff235:   mov    0x1b0(%r15),%rax
+  0x0000759027fff23c:   lea    0x30(%rax),%rdi
+  0x0000759027fff240:   cmp    0x1c0(%r15),%rdi
+  0x0000759027fff247:   ja     0x0000759027fff383
+  0x0000759027fff24d:   mov    %rdi,0x1b0(%r15)
+  0x0000759027fff254:   movq   $0x1,(%rax)
+  0x0000759027fff25b:   mov    %rdx,%rcx
+  0x0000759027fff25e:   mov    $0x90000000,%r10d
+  0x0000759027fff264:   sub    %r10,%rcx
+  0x0000759027fff267:   mov    %ecx,0x8(%rax)
+  0x0000759027fff26a:   xor    %rcx,%rcx
+  0x0000759027fff26d:   mov    %ecx,0xc(%rax)
+  0x0000759027fff270:   xor    %rcx,%rcx
+  0x0000759027fff273:   mov    %rcx,0x10(%rax)
+  0x0000759027fff277:   mov    %rcx,0x18(%rax)
+  0x0000759027fff27b:   mov    %rcx,0x20(%rax)
+  0x0000759027fff27f:   mov    %rcx,0x28(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@8 (line 3636)
+  0x0000759027fff283:   mov    %rax,%rdx
+  0x0000759027fff286:   movabs $0x758fdc319828,%rsi         ;   {metadata(method data for {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff290:   addq   $0x1,0x128(%rsi)
+  0x0000759027fff298:   mov    %rbx,%rdx
+  0x0000759027fff29b:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@13 (line 3636)
+  0x0000759027fff29e:   mov    %rax,0x30(%rsp)
+  0x0000759027fff2a3:   nopl   0x0(%rax)
+  0x0000759027fff2a7:   call   0x000075902f4ad9e0           ; ImmutableOopMap {[40]=Oop [48]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@13 (line 3636)
+                                                            ;   {optimized virtual_call}
+  0x0000759027fff2ac:   nopl   0x10002a4(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@13 (line 3636)
+                                                            ;   {post_call_nop}
+  0x0000759027fff2b4:   mov    0x30(%rsp),%rax
+  0x0000759027fff2b9:   movabs $0x758fdc319828,%rdx         ;   {metadata(method data for {method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff2c3:   mov    0x8(%rax),%eax
+  0x0000759027fff2c6:   mov    $0x90000000,%r10d
+  0x0000759027fff2cc:   add    %r10,%rax
+  0x0000759027fff2cf:   mov    $0x28,%r10d
+  0x0000759027fff2d5:   cmp    (%rdx,%r10,8),%rax
+  0x0000759027fff2d9:   je     0x0000759027fff318
+  0x0000759027fff2db:   add    $0x2,%r10
+  0x0000759027fff2df:   cmp    $0x2c,%r10
+  0x0000759027fff2e3:   jne    0x0000759027fff2d5
+  0x0000759027fff2e5:   mov    $0x28,%r10d
+  0x0000759027fff2eb:   cmpq   $0x0,(%rdx,%r10,8)
+  0x0000759027fff2f0:   je     0x0000759027fff2fe
+  0x0000759027fff2f2:   add    $0x2,%r10
+  0x0000759027fff2f6:   cmp    $0x2c,%r10
+  0x0000759027fff2fa:   jne    0x0000759027fff2eb
+  0x0000759027fff2fc:   jmp    0x0000759027fff310
+  0x0000759027fff2fe:   push   %rbx
+  0x0000759027fff2ff:   mov    %rax,%rbx
+  0x0000759027fff302:   xor    %rax,%rax
+  0x0000759027fff305:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x0000759027fff30a:   mov    %rbx,%rax
+  0x0000759027fff30d:   pop    %rbx
+  0x0000759027fff30e:   jmp    0x0000759027fff2cf
+  0x0000759027fff310:   mov    $0x27,%r10d
+  0x0000759027fff316:   jmp    0x0000759027fff31c
+  0x0000759027fff318:   add    $0x1,%r10
+  0x0000759027fff31c:   addq   $0x1,(%rdx,%r10,8)
+  0x0000759027fff321:   movabs $0x7ff880d50,%rdx            ;   {oop(&quot;symbolic reference class is not accessible&quot;{0x00000007ff880d50})}
+  0x0000759027fff32b:   mov    0x28(%rsp),%rcx
+  0x0000759027fff330:   mov    0x30(%rsp),%rsi              ;*invokevirtual makeAccessException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@20 (line 3636)
+  0x0000759027fff335:   xchg   %ax,%ax
+  0x0000759027fff337:   call   0x000075902f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual makeAccessException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@20 (line 3636)
+                                                            ;   {optimized virtual_call}
+  0x0000759027fff33c:   nopl   0x2000334(%rax,%rax,1)       ;*invokevirtual makeAccessException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@20 (line 3636)
+                                                            ;   {post_call_nop}
+  0x0000759027fff344:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000759027fff390
+  0x0000759027fff347:   jmp    0x0000759027fff3b2
+  0x0000759027fff34c:   movabs $0x90477090,%r10             ;   {metadata({method} {0x0000000090477090} &apos;checkSymbolicClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;)}
+  0x0000759027fff356:   mov    %r10,0x8(%rsp)
+  0x0000759027fff35b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000759027fff363:   call   0x000075902f5826e0           ; ImmutableOopMap {rsi=Oop rdx=Oop [40]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@-1 (line 3635)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000759027fff368:   jmp    0x0000759027fff167
+  0x0000759027fff36d:   movabs $0x759027fff21b,%r10         ;   {internal_word}
+  0x0000759027fff377:   mov    %r10,0x510(%r15)
+  0x0000759027fff37e:   jmp    0x000075902f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000759027fff383:   mov    %rdx,%rdx
+  0x0000759027fff386:   call   0x000075902f57cae0           ; ImmutableOopMap {rbx=Oop [40]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@8 (line 3636)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000759027fff38b:   jmp    0x0000759027fff283
+  0x0000759027fff390:   call   0x000075902f57bd60           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.invoke.MethodHandles$Lookup::checkSymbolicClass@23 (line 3636)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000759027fff395:   mov    0x5c0(%r15),%rax
+  0x0000759027fff39c:   movq   $0x0,0x5c0(%r15)
+  0x0000759027fff3a7:   movq   $0x0,0x5c8(%r15)
+  0x0000759027fff3b2:   add    $0x40,%rsp
+  0x0000759027fff3b6:   pop    %rbp
+  0x0000759027fff3b7:   jmp    0x000075902f57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000759027fff3bc:   hlt    
+  0x0000759027fff3bd:   hlt    
+  0x0000759027fff3be:   hlt    
+  0x0000759027fff3bf:   hlt    
+[Stub Code]
+  0x0000759027fff3c0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000759027fff3ca:   jmp    0x0000759027fff3ca           ;   {runtime_call nmethod}
+  0x0000759027fff3cf:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000759027fff3d9:   jmp    0x0000759027fff3d9           ;   {runtime_call nmethod}
+  0x0000759027fff3de:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000759027fff3e8:   jmp    0x0000759027fff3e8           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000759027fff3ed:   call   0x000075902f57e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000759027fff3f2:   movabs $0x75904713aec4,%rdi         ;   {external_word}
+  0x0000759027fff3fc:   and    $0xfffffffffffffff0,%rsp
+  0x0000759027fff400:   call   0x0000759046b91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000759027fff405:   hlt    
+  0x0000759027fff406:   call   0x000075902f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000759027fff40b:   jmp    0x0000759027fff406
+  0x0000759027fff40d:   hlt    
+  0x0000759027fff40e:   hlt    
+  0x0000759027fff40f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

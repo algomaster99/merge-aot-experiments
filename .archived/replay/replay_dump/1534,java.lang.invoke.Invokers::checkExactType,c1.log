@@ -1,0 +1,149 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 35168 1534       3       java.lang.invoke.Invokers::checkExactType (17 bytes)
+ total in heap  [0x000077b458129c88,0x000077b458129f30] = 680
+ main code      [0x000077b458129d80,0x000077b458129f00] = 384
+ stub code      [0x000077b458129f00,0x000077b458129f30] = 48
+ mutable data [0x000077b3e8633ee0,0x000077b3e8633f38] = 88
+ relocation     [0x000077b3e8633ee0,0x000077b3e8633f20] = 64
+ metadata       [0x000077b3e8633f20,0x000077b3e8633f38] = 24
+ immutable data [0x000077b3e85fb810,0x000077b3e85fb94c] = 316
+ dependencies   [0x000077b3e85fb810,0x000077b3e85fb820] = 16
+ nul chk table  [0x000077b3e85fb820,0x000077b3e85fb838] = 24
+ scopes pcs     [0x000077b3e85fb838,0x000077b3e85fb8f8] = 192
+ scopes data    [0x000077b3e85fb8f8,0x000077b3e85fb948] = 80
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/invoke/MethodHandle&apos;
+  # parm1:    rdx:rdx   = &apos;java/lang/invoke/MethodType&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b458129d80:   mov    %eax,-0x14000(%rsp)
+  0x000077b458129d87:   push   %rbp
+  0x000077b458129d88:   sub    $0x30,%rsp
+  0x000077b458129d8c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458129d94:   je     0x000077b458129d9b
+  0x000077b458129d96:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b458129d9b:   movabs $0x77b4146c12b0,%rdi         ;   {metadata(method data for {method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x000077b458129da5:   mov    0x90(%rdi),%ebx
+  0x000077b458129dab:   add    $0x2,%ebx
+  0x000077b458129dae:   mov    %ebx,0x90(%rdi)
+  0x000077b458129db4:   and    $0x7fe,%ebx
+  0x000077b458129dba:   test   %ebx,%ebx
+  0x000077b458129dbc:   je     0x000077b458129e94           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@0 (line 531)
+  0x000077b458129dc2:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000077b458129eb5
+                                                            ;*invokevirtual type {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@1 (line 531)
+  0x000077b458129dc5:   mov    %rsi,%rdi
+  0x000077b458129dc8:   movabs $0x77b4146c12b0,%rbx         ;   {metadata(method data for {method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x000077b458129dd2:   mov    0x8(%rdi),%edi
+  0x000077b458129dd5:   mov    $0x46000000,%r10d
+  0x000077b458129ddb:   add    %r10,%rdi
+  0x000077b458129dde:   mov    $0x1c,%r10d
+  0x000077b458129de4:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458129de8:   je     0x000077b458129e21
+  0x000077b458129dea:   add    $0x2,%r10
+  0x000077b458129dee:   cmp    $0x20,%r10
+  0x000077b458129df2:   jne    0x000077b458129de4
+  0x000077b458129df4:   mov    $0x1c,%r10d
+  0x000077b458129dfa:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b458129dff:   je     0x000077b458129e0d
+  0x000077b458129e01:   add    $0x2,%r10
+  0x000077b458129e05:   cmp    $0x20,%r10
+  0x000077b458129e09:   jne    0x000077b458129dfa
+  0x000077b458129e0b:   jmp    0x000077b458129e19
+  0x000077b458129e0d:   push   %rax
+  0x000077b458129e0e:   xor    %rax,%rax
+  0x000077b458129e11:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b458129e16:   pop    %rax
+  0x000077b458129e17:   jmp    0x000077b458129dde
+  0x000077b458129e19:   mov    $0x1b,%r10d
+  0x000077b458129e1f:   jmp    0x000077b458129e25
+  0x000077b458129e21:   add    $0x1,%r10
+  0x000077b458129e25:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458129e2a:   mov    0x10(%rsi),%esi
+  0x000077b458129e2d:   shl    $0x3,%rsi                    ;*getfield type {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandle::type@1 (line 472)
+                                                            ; - java.lang.invoke.Invokers::checkExactType@1 (line 531)
+  0x000077b458129e31:   cmp    %rdx,%rsi
+  0x000077b458129e34:   movabs $0x77b4146c12b0,%rdi         ;   {metadata(method data for {method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x000077b458129e3e:   mov    $0x118,%ebx
+  0x000077b458129e43:   jne    0x000077b458129e4a
+  0x000077b458129e45:   mov    $0x108,%ebx
+  0x000077b458129e4a:   mov    (%rdi,%rbx,1),%rax
+  0x000077b458129e4e:   lea    0x1(%rax),%rax
+  0x000077b458129e52:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b458129e56:   jne    0x000077b458129e6c           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@7 (line 532)
+  0x000077b458129e5c:   add    $0x30,%rsp
+  0x000077b458129e60:   pop    %rbp
+  0x000077b458129e61:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458129e65:   ja     0x000077b458129eba
+  0x000077b458129e6b:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@16 (line 534)
+  0x000077b458129e6c:   movabs $0x77b4146c12b0,%rdi         ;   {metadata(method data for {method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x000077b458129e76:   addq   $0x1,0x128(%rdi)
+  0x000077b458129e7e:   nop
+  0x000077b458129e7f:   call   0x000077b45f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic newWrongMethodTypeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@12 (line 533)
+                                                            ;   {static_call}
+  0x000077b458129e84:   nopl   0x1fc(%rax,%rax,1)           ;*invokestatic newWrongMethodTypeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@12 (line 533)
+                                                            ;   {post_call_nop}
+  0x000077b458129e8c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x000077b458129ed0
+  0x000077b458129e8f:   jmp    0x000077b458129ef2
+  0x000077b458129e94:   movabs $0x464786f0,%r10             ;   {metadata({method} {0x00000000464786f0} &apos;checkExactType&apos; &apos;(Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x000077b458129e9e:   mov    %r10,0x8(%rsp)
+  0x000077b458129ea3:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458129eab:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.Invokers::checkExactType@-1 (line 531)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458129eb0:   jmp    0x000077b458129dc2
+  0x000077b458129eb5:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*invokevirtual type {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::checkExactType@1 (line 531)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458129eba:   movabs $0x77b458129e61,%r10         ;   {internal_word}
+  0x000077b458129ec4:   mov    %r10,0x510(%r15)
+  0x000077b458129ecb:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458129ed0:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.invoke.Invokers::checkExactType@15 (line 533)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458129ed5:   mov    0x5c0(%r15),%rax
+  0x000077b458129edc:   movq   $0x0,0x5c0(%r15)
+  0x000077b458129ee7:   movq   $0x0,0x5c8(%r15)
+  0x000077b458129ef2:   add    $0x30,%rsp
+  0x000077b458129ef6:   pop    %rbp
+  0x000077b458129ef7:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b458129efc:   hlt    
+  0x000077b458129efd:   hlt    
+  0x000077b458129efe:   hlt    
+  0x000077b458129eff:   hlt    
+[Stub Code]
+  0x000077b458129f00:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458129f0a:   jmp    0x000077b458129f0a           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b458129f0f:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458129f14:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458129f1e:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458129f22:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458129f27:   hlt    
+  0x000077b458129f28:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458129f2d:   jmp    0x000077b458129f28
+  0x000077b458129f2f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,486 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 422   29       3       java.lang.reflect.Executable::getAnnotation (23 bytes)
+ total in heap  [0x0000754157fff008,0x0000754157fff790] = 1928
+ main code      [0x0000754157fff100,0x0000754157fff720] = 1568
+ stub code      [0x0000754157fff720,0x0000754157fff790] = 112
+ mutable data [0x00007540f80153c0,0x00007540f8015490] = 208
+ relocation     [0x00007540f80153c0,0x00007540f8015470] = 176
+ metadata       [0x00007540f8015470,0x00007540f8015490] = 32
+ immutable data [0x00007540f8015010,0x00007540f80153ac] = 924
+ dependencies   [0x00007540f8015010,0x00007540f8015020] = 16
+ nul chk table  [0x00007540f8015020,0x00007540f8015038] = 24
+ scopes pcs     [0x00007540f8015038,0x00007540f8015298] = 608
+ scopes data    [0x00007540f8015298,0x00007540f80153a8] = 272
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000754157fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000754157fff10b:   data16 data16 xchg %ax,%ax
+  0x0000754157fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;
+  # this:     rsi:rsi   = &apos;java/lang/reflect/Executable&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x90]  (sp of caller)
+  0x0000754157fff112:   mov    0x8(%rsi),%r10d
+  0x0000754157fff116:   cmp    0x8(%rax),%r10d
+  0x0000754157fff11a:   jne    0x000075415f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000754157fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000754157fff127:   push   %rbp
+  0x0000754157fff128:   sub    $0x80,%rsp
+  0x0000754157fff12f:   nop
+  0x0000754157fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000754157fff138:   je     0x0000754157fff13f
+  0x0000754157fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000754157fff13f:   mov    %rdx,0x48(%rsp)
+  0x0000754157fff144:   movabs $0x75411012b698,%rdi         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff14e:   mov    0x90(%rdi),%ebx
+  0x0000754157fff154:   add    $0x2,%ebx
+  0x0000754157fff157:   mov    %ebx,0x90(%rdi)
+  0x0000754157fff15d:   and    $0x7fe,%ebx
+  0x0000754157fff163:   test   %ebx,%ebx
+  0x0000754157fff165:   je     0x0000754157fff61e           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@0 (line 637)
+  0x0000754157fff16b:   movabs $0x75411012b698,%rdi         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff175:   addq   $0x1,0xd8(%rdi)
+  0x0000754157fff17d:   movabs $0x75411012ab90,%rdi         ;   {metadata(method data for {method} {0x000000002021efa0} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x0000754157fff187:   mov    0x90(%rdi),%ebx
+  0x0000754157fff18d:   add    $0x2,%ebx
+  0x0000754157fff190:   mov    %ebx,0x90(%rdi)
+  0x0000754157fff196:   and    $0x1ffffe,%ebx
+  0x0000754157fff19c:   test   %ebx,%ebx
+  0x0000754157fff19e:   je     0x0000754157fff63f
+  0x0000754157fff1a4:   test   %rdx,%rdx
+  0x0000754157fff1a7:   movabs $0x75411012ab90,%rdi         ;   {metadata(method data for {method} {0x000000002021efa0} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x0000754157fff1b1:   mov    $0xe8,%ebx
+  0x0000754157fff1b6:   je     0x0000754157fff1bd
+  0x0000754157fff1b8:   mov    $0xd8,%ebx
+  0x0000754157fff1bd:   mov    (%rdi,%rbx,1),%rax
+  0x0000754157fff1c1:   lea    0x1(%rax),%rax
+  0x0000754157fff1c5:   mov    %rax,(%rdi,%rbx,1)
+  0x0000754157fff1c9:   je     0x0000754157fff586           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@1 (line 219)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+  0x0000754157fff1cf:   mov    %rsi,%rdi
+  0x0000754157fff1d2:   movabs $0x75411012b698,%rbx         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff1dc:   addq   $0x1,0xe8(%rbx)
+  0x0000754157fff1e4:   data16 xchg %ax,%ax
+  0x0000754157fff1e7:   call   0x000075415f4ad9e0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ;   {optimized virtual_call}
+  0x0000754157fff1ec:   nopl   0x1e4(%rax,%rax,1)           ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ;   {post_call_nop}
+  0x0000754157fff1f4:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000754157fff660
+  0x0000754157fff1f7:   mov    %rax,%rdx
+  0x0000754157fff1fa:   movabs $0x75411012b698,%rsi         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff204:   mov    0x8(%rdx),%edx
+  0x0000754157fff207:   mov    $0x20000000,%r10d
+  0x0000754157fff20d:   add    %r10,%rdx
+  0x0000754157fff210:   mov    $0x24,%r10d
+  0x0000754157fff216:   cmp    (%rsi,%r10,8),%rdx
+  0x0000754157fff21a:   je     0x0000754157fff253
+  0x0000754157fff21c:   add    $0x2,%r10
+  0x0000754157fff220:   cmp    $0x28,%r10
+  0x0000754157fff224:   jne    0x0000754157fff216
+  0x0000754157fff226:   mov    $0x24,%r10d
+  0x0000754157fff22c:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000754157fff231:   je     0x0000754157fff23f
+  0x0000754157fff233:   add    $0x2,%r10
+  0x0000754157fff237:   cmp    $0x28,%r10
+  0x0000754157fff23b:   jne    0x0000754157fff22c
+  0x0000754157fff23d:   jmp    0x0000754157fff24b
+  0x0000754157fff23f:   push   %rax
+  0x0000754157fff240:   xor    %rax,%rax
+  0x0000754157fff243:   cmpxchg %rdx,(%rsi,%r10,8)
+  0x0000754157fff248:   pop    %rax
+  0x0000754157fff249:   jmp    0x0000754157fff210
+  0x0000754157fff24b:   mov    $0x23,%r10d
+  0x0000754157fff251:   jmp    0x0000754157fff257
+  0x0000754157fff253:   add    $0x1,%r10
+  0x0000754157fff257:   addq   $0x1,(%rsi,%r10,8)
+  0x0000754157fff25c:   mov    0x48(%rsp),%rdx
+  0x0000754157fff261:   mov    %rax,%rsi                    ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+  0x0000754157fff264:   nop
+  0x0000754157fff265:   movabs $0x7540f8015600,%rax
+  0x0000754157fff26f:   call   0x000075415f4adce0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ;   {virtual_call}
+  0x0000754157fff274:   nopl   0x100026c(%rax,%rax,1)       ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ;   {post_call_nop}
+  0x0000754157fff27c:   mov    0x48(%rsp),%rdx
+  0x0000754157fff281:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x0000754157fff665
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff284:   mov    %rdx,%rdi
+  0x0000754157fff287:   movabs $0x75411012b698,%rsi         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff291:   mov    0x8(%rdi),%edi
+  0x0000754157fff294:   mov    $0x20000000,%r10d
+  0x0000754157fff29a:   add    %r10,%rdi
+  0x0000754157fff29d:   mov    $0x2a,%r10d
+  0x0000754157fff2a3:   cmp    (%rsi,%r10,8),%rdi
+  0x0000754157fff2a7:   je     0x0000754157fff2e0
+  0x0000754157fff2a9:   add    $0x2,%r10
+  0x0000754157fff2ad:   cmp    $0x2e,%r10
+  0x0000754157fff2b1:   jne    0x0000754157fff2a3
+  0x0000754157fff2b3:   mov    $0x2a,%r10d
+  0x0000754157fff2b9:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000754157fff2be:   je     0x0000754157fff2cc
+  0x0000754157fff2c0:   add    $0x2,%r10
+  0x0000754157fff2c4:   cmp    $0x2e,%r10
+  0x0000754157fff2c8:   jne    0x0000754157fff2b9
+  0x0000754157fff2ca:   jmp    0x0000754157fff2d8
+  0x0000754157fff2cc:   push   %rax
+  0x0000754157fff2cd:   xor    %rax,%rax
+  0x0000754157fff2d0:   cmpxchg %rdi,(%rsi,%r10,8)
+  0x0000754157fff2d5:   pop    %rax
+  0x0000754157fff2d6:   jmp    0x0000754157fff29d
+  0x0000754157fff2d8:   mov    $0x29,%r10d
+  0x0000754157fff2de:   jmp    0x0000754157fff2e4
+  0x0000754157fff2e0:   add    $0x1,%r10
+  0x0000754157fff2e4:   addq   $0x1,(%rsi,%r10,8)
+  0x0000754157fff2e9:   movabs $0x75411012ade0,%rdi         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff2f3:   mov    0x90(%rdi),%esi
+  0x0000754157fff2f9:   add    $0x2,%esi
+  0x0000754157fff2fc:   mov    %esi,0x90(%rdi)
+  0x0000754157fff302:   and    $0x1ffffe,%esi
+  0x0000754157fff308:   test   %esi,%esi
+  0x0000754157fff30a:   je     0x0000754157fff66a
+  0x0000754157fff310:   test   %rax,%rax
+  0x0000754157fff313:   movabs $0x75411012ade0,%rdi         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff31d:   mov    $0xe8,%esi
+  0x0000754157fff322:   jne    0x0000754157fff329
+  0x0000754157fff324:   mov    $0xd8,%esi
+  0x0000754157fff329:   mov    (%rdi,%rsi,1),%rbx
+  0x0000754157fff32d:   lea    0x1(%rbx),%rbx
+  0x0000754157fff331:   mov    %rbx,(%rdi,%rsi,1)
+  0x0000754157fff335:   jne    0x0000754157fff345           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@1 (line 3492)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff33b:   mov    %rax,0x50(%rsp)
+  0x0000754157fff340:   jmp    0x0000754157fff3ec           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@25 (line 3494)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff345:   mov    %rdx,%rdi
+  0x0000754157fff348:   movabs $0x75411012ade0,%rsi         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff352:   mov    0x8(%rdi),%edi
+  0x0000754157fff355:   mov    $0x20000000,%r10d
+  0x0000754157fff35b:   add    %r10,%rdi
+  0x0000754157fff35e:   mov    $0x20,%r10d
+  0x0000754157fff364:   cmp    (%rsi,%r10,8),%rdi
+  0x0000754157fff368:   je     0x0000754157fff3a1
+  0x0000754157fff36a:   add    $0x2,%r10
+  0x0000754157fff36e:   cmp    $0x24,%r10
+  0x0000754157fff372:   jne    0x0000754157fff364
+  0x0000754157fff374:   mov    $0x20,%r10d
+  0x0000754157fff37a:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000754157fff37f:   je     0x0000754157fff38d
+  0x0000754157fff381:   add    $0x2,%r10
+  0x0000754157fff385:   cmp    $0x24,%r10
+  0x0000754157fff389:   jne    0x0000754157fff37a
+  0x0000754157fff38b:   jmp    0x0000754157fff399
+  0x0000754157fff38d:   push   %rax
+  0x0000754157fff38e:   xor    %rax,%rax
+  0x0000754157fff391:   cmpxchg %rdi,(%rsi,%r10,8)
+  0x0000754157fff396:   pop    %rax
+  0x0000754157fff397:   jmp    0x0000754157fff35e
+  0x0000754157fff399:   mov    $0x1f,%r10d
+  0x0000754157fff39f:   jmp    0x0000754157fff3a5
+  0x0000754157fff3a1:   add    $0x1,%r10
+  0x0000754157fff3a5:   addq   $0x1,(%rsi,%r10,8)
+  0x0000754157fff3aa:   mov    %rdx,%rdi
+  0x0000754157fff3ad:   mov    %rax,%rsi
+  0x0000754157fff3b0:   mov    %rax,0x50(%rsp)
+  0x0000754157fff3b5:   call   0x000075415f57f7e0           ;   {runtime_call is_instance_of_blob (C1 runtime)}
+  0x0000754157fff3ba:   nopl   0x0(%rax,%rax,1)             ;*invokevirtual isInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@6 (line 3492)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {post_call_nop}
+  0x0000754157fff3c2:   test   %eax,%eax
+  0x0000754157fff3c4:   movabs $0x75411012ade0,%rax         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff3ce:   mov    $0x138,%edx
+  0x0000754157fff3d3:   je     0x0000754157fff3da
+  0x0000754157fff3d5:   mov    $0x128,%edx
+  0x0000754157fff3da:   mov    (%rax,%rdx,1),%rsi
+  0x0000754157fff3de:   lea    0x1(%rsi),%rsi
+  0x0000754157fff3e2:   mov    %rsi,(%rax,%rdx,1)
+  0x0000754157fff3e6:   je     0x0000754157fff4b9           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@9 (line 3492)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff3ec:   mov    0x50(%rsp),%rbx
+  0x0000754157fff3f1:   test   %rbx,%rbx
+  0x0000754157fff3f4:   movabs $0x75411012b698,%rsi         ;   {metadata(method data for {method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff3fe:   jne    0x0000754157fff40c
+  0x0000754157fff400:   orb    $0x1,0x171(%rsi)
+  0x0000754157fff407:   jmp    0x0000754157fff4a3
+  0x0000754157fff40c:   mov    0x8(%rbx),%edi
+  0x0000754157fff40f:   mov    $0x20000000,%r10d
+  0x0000754157fff415:   add    %r10,%rdi
+  0x0000754157fff418:   mov    $0x30,%r10d
+  0x0000754157fff41e:   cmp    (%rsi,%r10,8),%rdi
+  0x0000754157fff422:   je     0x0000754157fff45b
+  0x0000754157fff424:   add    $0x2,%r10
+  0x0000754157fff428:   cmp    $0x34,%r10
+  0x0000754157fff42c:   jne    0x0000754157fff41e
+  0x0000754157fff42e:   mov    $0x30,%r10d
+  0x0000754157fff434:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000754157fff439:   je     0x0000754157fff447
+  0x0000754157fff43b:   add    $0x2,%r10
+  0x0000754157fff43f:   cmp    $0x34,%r10
+  0x0000754157fff443:   jne    0x0000754157fff434
+  0x0000754157fff445:   jmp    0x0000754157fff453
+  0x0000754157fff447:   push   %rax
+  0x0000754157fff448:   xor    %rax,%rax
+  0x0000754157fff44b:   cmpxchg %rdi,(%rsi,%r10,8)
+  0x0000754157fff450:   pop    %rax
+  0x0000754157fff451:   jmp    0x0000754157fff418
+  0x0000754157fff453:   mov    $0x2f,%r10d
+  0x0000754157fff459:   jmp    0x0000754157fff45f
+  0x0000754157fff45b:   add    $0x1,%r10
+  0x0000754157fff45f:   addq   $0x1,(%rsi,%r10,8)
+  0x0000754157fff464:   movabs $0x20247978,%rdi             ;   {metadata(&apos;java/lang/annotation/Annotation&apos;)}
+  0x0000754157fff46e:   mov    0x8(%rbx),%esi
+  0x0000754157fff471:   mov    $0x20000000,%r10d
+  0x0000754157fff477:   add    %r10,%rsi
+  0x0000754157fff47a:   cmp    0x20(%rsi),%rdi
+  0x0000754157fff47e:   je     0x0000754157fff4a3
+  0x0000754157fff484:   cmp    %rdi,%rsi
+  0x0000754157fff487:   je     0x0000754157fff4a3
+  0x0000754157fff48d:   push   %rsi
+  0x0000754157fff48e:   push   %rdi
+  0x0000754157fff48f:   call   0x000075415f57f4e0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x0000754157fff494:   pop    %rsi
+  0x0000754157fff495:   pop    %rsi
+  0x0000754157fff496:   test   %esi,%esi
+  0x0000754157fff498:   je     0x0000754157fff68b
+  0x0000754157fff49e:   jmp    0x0000754157fff4a3
+  0x0000754157fff4a3:   mov    %rbx,%rax                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@19 (line 638)
+  0x0000754157fff4a6:   add    $0x80,%rsp
+  0x0000754157fff4ad:   pop    %rbp
+  0x0000754157fff4ae:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000754157fff4b2:   ja     0x0000754157fff694
+  0x0000754157fff4b8:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@22 (line 638)
+  0x0000754157fff4b9:   mov    0x50(%rsp),%rbx
+  0x0000754157fff4be:   xchg   %ax,%ax
+  0x0000754157fff4c0:   jmp    0x0000754157fff6b9           ;   {other}
+  0x0000754157fff4c5:   add    %al,(%rax)
+  0x0000754157fff4c7:   add    %al,(%rax)
+  0x0000754157fff4c9:   add    %cl,-0x75(%rcx)
+  0x0000754157fff4cc:   xchg   %esi,0x48000001(%rax)
+  0x0000754157fff4d2:   lea    0x28(%rax),%edi
+  0x0000754157fff4d5:   cmp    0x1c0(%r15),%rdi
+  0x0000754157fff4dc:   ja     0x0000754157fff6c3
+  0x0000754157fff4e2:   mov    %rdi,0x1b0(%r15)
+  0x0000754157fff4e9:   movq   $0x1,(%rax)
+  0x0000754157fff4f0:   mov    %rdx,%rcx
+  0x0000754157fff4f3:   mov    $0x20000000,%r10d
+  0x0000754157fff4f9:   sub    %r10,%rcx
+  0x0000754157fff4fc:   mov    %ecx,0x8(%rax)
+  0x0000754157fff4ff:   xor    %rcx,%rcx
+  0x0000754157fff502:   mov    %ecx,0xc(%rax)
+  0x0000754157fff505:   xor    %rcx,%rcx
+  0x0000754157fff508:   mov    %rcx,0x10(%rax)
+  0x0000754157fff50c:   mov    %rcx,0x18(%rax)
+  0x0000754157fff510:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@12 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff514:   mov    0x48(%rsp),%rdx
+  0x0000754157fff519:   movabs $0x75411012ade0,%rsi         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff523:   addq   $0x1,0x148(%rsi)
+  0x0000754157fff52b:   mov    %rbx,%rdx
+  0x0000754157fff52e:   mov    0x48(%rsp),%rsi              ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff533:   mov    %rax,0x58(%rsp)
+  0x0000754157fff538:   nopl   0x0(%rax)
+  0x0000754157fff53f:   call   0x000075415f4ad9e0           ; ImmutableOopMap {[88]=Oop }
+                                                            ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {optimized virtual_call}
+  0x0000754157fff544:   nopl   0x200053c(%rax,%rax,1)       ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {post_call_nop}
+  0x0000754157fff54c:   mov    0x58(%rsp),%rdx
+  0x0000754157fff551:   movabs $0x75411012ade0,%rsi         ;   {metadata(method data for {method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff55b:   addq   $0x1,0x178(%rsi)
+  0x0000754157fff563:   mov    %rax,%rdx
+  0x0000754157fff566:   mov    0x58(%rsp),%rsi              ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff56b:   nopl   0x0(%rax)
+  0x0000754157fff56f:   call   0x000075415f4ad9e0           ; ImmutableOopMap {[88]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {optimized virtual_call}
+  0x0000754157fff574:   nopl   0x300056c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {post_call_nop}
+  0x0000754157fff57c:   mov    0x58(%rsp),%rax
+  0x0000754157fff581:   jmp    0x0000754157fff713           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@24 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+  0x0000754157fff586:   mov    %rsi,0x68(%rsp)
+  0x0000754157fff58b:   nopl   0x0(%rax,%rax,1)
+  0x0000754157fff590:   jmp    0x0000754157fff6df           ;   {other}
+  0x0000754157fff595:   add    %al,(%rax)
+  0x0000754157fff597:   add    %al,(%rax)
+  0x0000754157fff599:   add    %cl,-0x75(%rcx)
+  0x0000754157fff59c:   xchg   %esi,0x48000001(%rax)
+  0x0000754157fff5a2:   lea    0x30(%rax),%edi
+  0x0000754157fff5a5:   cmp    0x1c0(%r15),%rdi
+  0x0000754157fff5ac:   ja     0x0000754157fff6e9
+  0x0000754157fff5b2:   mov    %rdi,0x1b0(%r15)
+  0x0000754157fff5b9:   movq   $0x1,(%rax)
+  0x0000754157fff5c0:   mov    %rdx,%rcx
+  0x0000754157fff5c3:   mov    $0x20000000,%r10d
+  0x0000754157fff5c9:   sub    %r10,%rcx
+  0x0000754157fff5cc:   mov    %ecx,0x8(%rax)
+  0x0000754157fff5cf:   xor    %rcx,%rcx
+  0x0000754157fff5d2:   mov    %ecx,0xc(%rax)
+  0x0000754157fff5d5:   xor    %rcx,%rcx
+  0x0000754157fff5d8:   mov    %rcx,0x10(%rax)
+  0x0000754157fff5dc:   mov    %rcx,0x18(%rax)
+  0x0000754157fff5e0:   mov    %rcx,0x20(%rax)
+  0x0000754157fff5e4:   mov    %rcx,0x28(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@4 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+  0x0000754157fff5e8:   mov    %rax,%rsi
+  0x0000754157fff5eb:   movabs $0x75411012ab90,%rdi         ;   {metadata(method data for {method} {0x000000002021efa0} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x0000754157fff5f5:   addq   $0x1,0xf8(%rdi)
+  0x0000754157fff5fd:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@8 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+  0x0000754157fff600:   mov    %rax,0x60(%rsp)
+  0x0000754157fff605:   xchg   %ax,%ax
+  0x0000754157fff607:   call   0x000075415f4ad9e0           ; ImmutableOopMap {[72]=Oop [96]=Oop [104]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@8 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ;   {optimized virtual_call}
+  0x0000754157fff60c:   nopl   0x4000604(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@8 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ;   {post_call_nop}
+  0x0000754157fff614:   mov    0x60(%rsp),%rax
+  0x0000754157fff619:   jmp    0x0000754157fff713
+  0x0000754157fff61e:   movabs $0x201ac970,%r10             ;   {metadata({method} {0x00000000201ac970} &apos;getAnnotation&apos; &apos;(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;&apos; in &apos;java/lang/reflect/Executable&apos;)}
+  0x0000754157fff628:   mov    %r10,0x8(%rsp)
+  0x0000754157fff62d:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000754157fff635:   call   0x000075415f5826e0           ; ImmutableOopMap {rsi=Oop rdx=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.Executable::getAnnotation@-1 (line 637)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000754157fff63a:   jmp    0x0000754157fff16b
+  0x0000754157fff63f:   movabs $0x2021efa0,%r10             ;   {metadata({method} {0x000000002021efa0} &apos;requireNonNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Objects&apos;)}
+  0x0000754157fff649:   mov    %r10,0x8(%rsp)
+  0x0000754157fff64e:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000754157fff656:   call   0x000075415f5826e0           ; ImmutableOopMap {rsi=Oop rdx=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Objects::requireNonNull@-1 (line 219)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000754157fff65b:   jmp    0x0000754157fff1a4
+  0x0000754157fff660:   call   0x000075415f57c660           ; ImmutableOopMap {rax=Oop [72]=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000754157fff665:   call   0x000075415f57c660           ; ImmutableOopMap {rax=Oop rdx=Oop [72]=Oop }
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000754157fff66a:   movabs $0x20188c08,%r10             ;   {metadata({method} {0x0000000020188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000754157fff674:   mov    %r10,0x8(%rsp)
+  0x0000754157fff679:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000754157fff681:   call   0x000075415f5826e0           ; ImmutableOopMap {rax=Oop rdx=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::cast@-1 (line 3492)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000754157fff686:   jmp    0x0000754157fff310
+  0x0000754157fff68b:   mov    %rbx,(%rsp)
+  0x0000754157fff68f:   call   0x000075415f57eee0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@19 (line 638)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000754157fff694:   movabs $0x754157fff4ae,%r10         ;   {internal_word}
+  0x0000754157fff69e:   mov    %r10,0x510(%r15)
+  0x0000754157fff6a5:   jmp    0x000075415f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000754157fff6aa:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x0000754157fff6b4:   mov    $0xa050f00,%eax
+  0x0000754157fff6b9:   call   0x000075415f5817e0           ; ImmutableOopMap {rbx=Oop [72]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.Class::cast@12 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x0000754157fff6be:   jmp    0x0000754157fff4c0
+  0x0000754157fff6c3:   mov    %rdx,%rdx
+  0x0000754157fff6c6:   call   0x000075415f57cf60           ; ImmutableOopMap {rbx=Oop [72]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@12 (line 3493)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000754157fff6cb:   jmp    0x0000754157fff514
+  0x0000754157fff6d0:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x0000754157fff6da:   mov    $0xa050f00,%eax
+  0x0000754157fff6df:   call   0x000075415f5817e0           ; ImmutableOopMap {[72]=Oop [104]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Objects::requireNonNull@4 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x0000754157fff6e4:   jmp    0x0000754157fff590
+  0x0000754157fff6e9:   mov    %rdx,%rdx
+  0x0000754157fff6ec:   call   0x000075415f57cf60           ; ImmutableOopMap {[72]=Oop [104]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@4 (line 220)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000754157fff6f1:   jmp    0x0000754157fff5e8
+  0x0000754157fff6f6:   mov    0x5c0(%r15),%rax
+  0x0000754157fff6fd:   movq   $0x0,0x5c0(%r15)
+  0x0000754157fff708:   movq   $0x0,0x5c8(%r15)
+  0x0000754157fff713:   add    $0x80,%rsp
+  0x0000754157fff71a:   pop    %rbp
+  0x0000754157fff71b:   jmp    0x000075415f57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x0000754157fff720:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000754157fff725:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000754157fff72f:   jmp    0x0000754157fff72f           ;   {runtime_call nmethod}
+  0x0000754157fff734:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000754157fff73e:   jmp    0x0000754157fff73e           ;   {runtime_call nmethod}
+  0x0000754157fff743:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000754157fff74d:   jmp    0x0000754157fff74d           ;   {runtime_call nmethod}
+  0x0000754157fff752:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000754157fff75c:   jmp    0x0000754157fff75c           ;   {runtime_call nmethod}
+  0x0000754157fff761:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000754157fff76b:   jmp    0x0000754157fff76b           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000754157fff770:   call   0x000075415f57e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000754157fff775:   movabs $0x75417633aec4,%rdi         ;   {external_word}
+  0x0000754157fff77f:   and    $0xfffffffffffffff0,%rsp
+  0x0000754157fff783:   call   0x0000754175d91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000754157fff788:   hlt    
+  0x0000754157fff789:   call   0x000075415f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000754157fff78e:   jmp    0x0000754157fff789
+--------------------------------------------------------------------------------
+[/Disassembly]

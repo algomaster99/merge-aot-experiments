@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 8280  385       1       java.lang.reflect.Method::getSharedParameterTypes (5 bytes)
+ total in heap  [0x000077b45fbb8008,0x000077b45fbb81b0] = 424
+ main code      [0x000077b45fbb8100,0x000077b45fbb8190] = 144
+ stub code      [0x000077b45fbb8190,0x000077b45fbb81b0] = 32
+ mutable data [0x000077b3e8082200,0x000077b3e8082228] = 40
+ relocation     [0x000077b3e8082200,0x000077b3e8082220] = 32
+ metadata       [0x000077b3e8082220,0x000077b3e8082228] = 8
+ immutable data [0x000077b3e8084d10,0x000077b3e8084d6c] = 92
+ dependencies   [0x000077b3e8084d10,0x000077b3e8084d18] = 8
+ scopes pcs     [0x000077b3e8084d18,0x000077b3e8084d58] = 64
+ scopes data    [0x000077b3e8084d58,0x000077b3e8084d68] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb8100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb810b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb810f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461ae380} &apos;getSharedParameterTypes&apos; &apos;()[Ljava/lang/Class;&apos; in &apos;java/lang/reflect/Method&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb8112:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb8116:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb811a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb8120:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb8127:   push   %rbp
+  0x000077b45fbb8128:   sub    $0x20,%rsp
+  0x000077b45fbb812c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb8134:   je     0x000077b45fbb813b
+  0x000077b45fbb8136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getSharedParameterTypes@0 (line 284)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb813b:   mov    0x28(%rsi),%eax
+  0x000077b45fbb813e:   shl    $0x3,%rax                    ;*getfield parameterTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getSharedParameterTypes@1 (line 284)
+  0x000077b45fbb8142:   add    $0x20,%rsp
+  0x000077b45fbb8146:   pop    %rbp
+  0x000077b45fbb8147:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb814b:   ja     0x000077b45fbb8152
+  0x000077b45fbb8151:   ret    
+  0x000077b45fbb8152:   movabs $0x77b45fbb8147,%r10         ;   {internal_word}
+  0x000077b45fbb815c:   mov    %r10,0x510(%r15)
+  0x000077b45fbb8163:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb8168:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb816f:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb817a:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb8185:   add    $0x20,%rsp
+  0x000077b45fbb8189:   pop    %rbp
+  0x000077b45fbb818a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb818f:   hlt    
+[Exception Handler]
+  0x000077b45fbb8190:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb8195:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb819f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb81a3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb81a8:   hlt    
+  0x000077b45fbb81a9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb81ae:   jmp    0x000077b45fbb81a9
+--------------------------------------------------------------------------------
+[/Disassembly]

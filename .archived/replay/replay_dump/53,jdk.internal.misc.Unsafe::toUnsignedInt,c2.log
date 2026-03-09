@@ -1,0 +1,52 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 592   53       4       jdk.internal.misc.Unsafe::toUnsignedInt (6 bytes)
+ total in heap  [0x000077b45fba2688,0x000077b45fba27d8] = 336
+ main code      [0x000077b45fba2780,0x000077b45fba27d0] = 80
+ stub code      [0x000077b45fba27d0,0x000077b45fba27d8] = 8
+ mutable data [0x000077b470135860,0x000077b470135878] = 24
+ relocation     [0x000077b470135860,0x000077b470135870] = 16
+ metadata       [0x000077b470135870,0x000077b470135878] = 8
+ immutable data [0x000077b4080b0860,0x000077b4080b08bc] = 92
+ dependencies   [0x000077b4080b0860,0x000077b4080b0868] = 8
+ scopes pcs     [0x000077b4080b0868,0x000077b4080b08a8] = 64
+ scopes data    [0x000077b4080b08a8,0x000077b4080b08b8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000461e5700} &apos;toUnsignedInt&apos; &apos;(B)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rsi       = byte
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fba2780:   sub    $0x18,%rsp
+  0x000077b45fba2784:   mov    %rbp,0x10(%rsp)
+  0x000077b45fba2789:   data16 xchg %ax,%ax
+  0x000077b45fba278c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fba2794:   jne    0x000077b45fba27c4           ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::toUnsignedInt@-1 (line 3851)
+  0x000077b45fba279a:   movzbl %sil,%eax                    ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::toUnsignedInt@4 (line 3851)
+  0x000077b45fba279e:   add    $0x10,%rsp
+  0x000077b45fba27a2:   pop    %rbp
+  0x000077b45fba27a3:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fba27a7:   ja     0x000077b45fba27ae
+  0x000077b45fba27ad:   ret    
+  0x000077b45fba27ae:   movabs $0x77b45fba27a3,%r10         ;   {internal_word}
+  0x000077b45fba27b8:   mov    %r10,0x510(%r15)
+  0x000077b45fba27bf:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fba27c4:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fba27c9:   jmp    0x000077b45fba279a
+  0x000077b45fba27ce:   hlt    
+  0x000077b45fba27cf:   hlt    
+[Stub Code]
+  0x000077b45fba27d0:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fba27d5:   jmp    0x000077b45fba27d0
+  0x000077b45fba27d7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

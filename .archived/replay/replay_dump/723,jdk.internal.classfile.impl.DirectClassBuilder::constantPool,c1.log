@@ -1,0 +1,95 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 12378  723       3       jdk.internal.classfile.impl.DirectClassBuilder::constantPool (5 bytes)
+ total in heap  [0x000077b45806c988,0x000077b45806cb90] = 520
+ main code      [0x000077b45806ca80,0x000077b45806cb70] = 240
+ stub code      [0x000077b45806cb70,0x000077b45806cb90] = 32
+ mutable data [0x000077b3f001af90,0x000077b3f001afc8] = 56
+ relocation     [0x000077b3f001af90,0x000077b3f001afb8] = 40
+ metadata       [0x000077b3f001afb8,0x000077b3f001afc8] = 16
+ immutable data [0x000077b3f0053460,0x000077b3f00534dc] = 124
+ dependencies   [0x000077b3f0053460,0x000077b3f0053468] = 8
+ scopes pcs     [0x000077b3f0053468,0x000077b3f00534b8] = 80
+ scopes data    [0x000077b3f00534b8,0x000077b3f00534d8] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45806ca80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45806ca8b:   data16 data16 xchg %ax,%ax
+  0x000077b45806ca8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046357d40} &apos;constantPool&apos; &apos;()Ljava/lang/classfile/constantpool/ConstantPoolBuilder;&apos; in &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45806ca92:   mov    0x8(%rsi),%r10d
+  0x000077b45806ca96:   cmp    0x8(%rax),%r10d
+  0x000077b45806ca9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45806caa0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45806caa7:   push   %rbp
+  0x000077b45806caa8:   sub    $0x30,%rsp
+  0x000077b45806caac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45806cab4:   je     0x000077b45806cabb
+  0x000077b45806cab6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45806cabb:   movabs $0x77b414208098,%rax         ;   {metadata(method data for {method} {0x0000000046357d40} &apos;constantPool&apos; &apos;()Ljava/lang/classfile/constantpool/ConstantPoolBuilder;&apos; in &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;)}
+  0x000077b45806cac5:   mov    0x90(%rax),%edi
+  0x000077b45806cacb:   add    $0x2,%edi
+  0x000077b45806cace:   mov    %edi,0x90(%rax)
+  0x000077b45806cad4:   and    $0x7fe,%edi
+  0x000077b45806cada:   test   %edi,%edi
+  0x000077b45806cadc:   je     0x000077b45806cb0e           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectClassBuilder::constantPool@0 (line 40)
+  0x000077b45806cae2:   mov    %rsi,%rax
+  0x000077b45806cae5:   movabs $0x77b414208098,%rdi         ;   {metadata(method data for {method} {0x0000000046357d40} &apos;constantPool&apos; &apos;()Ljava/lang/classfile/constantpool/ConstantPoolBuilder;&apos; in &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;)}
+  0x000077b45806caef:   addq   $0x1,0xd8(%rdi)
+  0x000077b45806caf7:   mov    0xc(%rsi),%eax
+  0x000077b45806cafa:   shl    $0x3,%rax                    ;*getfield constantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractDirectBuilder::constantPool@1 (line 42)
+                                                            ; - jdk.internal.classfile.impl.DirectClassBuilder::constantPool@1 (line 40)
+  0x000077b45806cafe:   add    $0x30,%rsp
+  0x000077b45806cb02:   pop    %rbp
+  0x000077b45806cb03:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45806cb07:   ja     0x000077b45806cb2c
+  0x000077b45806cb0d:   ret    
+  0x000077b45806cb0e:   movabs $0x46357d40,%r10             ;   {metadata({method} {0x0000000046357d40} &apos;constantPool&apos; &apos;()Ljava/lang/classfile/constantpool/ConstantPoolBuilder;&apos; in &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;)}
+  0x000077b45806cb18:   mov    %r10,0x8(%rsp)
+  0x000077b45806cb1d:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45806cb25:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.DirectClassBuilder::constantPool@-1 (line 40)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45806cb2a:   jmp    0x000077b45806cae2
+  0x000077b45806cb2c:   movabs $0x77b45806cb03,%r10         ;   {internal_word}
+  0x000077b45806cb36:   mov    %r10,0x510(%r15)
+  0x000077b45806cb3d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45806cb42:   mov    0x5c0(%r15),%rax
+  0x000077b45806cb49:   movq   $0x0,0x5c0(%r15)
+  0x000077b45806cb54:   movq   $0x0,0x5c8(%r15)
+  0x000077b45806cb5f:   add    $0x30,%rsp
+  0x000077b45806cb63:   pop    %rbp
+  0x000077b45806cb64:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45806cb69:   hlt    
+  0x000077b45806cb6a:   hlt    
+  0x000077b45806cb6b:   hlt    
+  0x000077b45806cb6c:   hlt    
+  0x000077b45806cb6d:   hlt    
+  0x000077b45806cb6e:   hlt    
+  0x000077b45806cb6f:   hlt    
+[Exception Handler]
+  0x000077b45806cb70:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45806cb75:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45806cb7f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45806cb83:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45806cb88:   hlt    
+  0x000077b45806cb89:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45806cb8e:   jmp    0x000077b45806cb89
+--------------------------------------------------------------------------------
+[/Disassembly]

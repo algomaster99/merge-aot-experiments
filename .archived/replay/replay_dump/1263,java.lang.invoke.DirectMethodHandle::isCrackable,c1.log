@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 25880 1263       1       java.lang.invoke.DirectMethodHandle::isCrackable (5 bytes)
+ total in heap  [0x000077b45fbd2988,0x000077b45fbd2b30] = 424
+ main code      [0x000077b45fbd2a80,0x000077b45fbd2b10] = 144
+ stub code      [0x000077b45fbd2b10,0x000077b45fbd2b30] = 32
+ mutable data [0x000077b3e8069cb0,0x000077b3e8069cd8] = 40
+ relocation     [0x000077b3e8069cb0,0x000077b3e8069cd0] = 32
+ metadata       [0x000077b3e8069cd0,0x000077b3e8069cd8] = 8
+ immutable data [0x000077b3e8596470,0x000077b3e85964cc] = 92
+ dependencies   [0x000077b3e8596470,0x000077b3e8596478] = 8
+ scopes pcs     [0x000077b3e8596478,0x000077b3e85964b8] = 64
+ scopes data    [0x000077b3e85964b8,0x000077b3e85964c8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbd2a80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbd2a8b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbd2a8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046201288} &apos;isCrackable&apos; &apos;()Z&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbd2a92:   mov    0x8(%rsi),%r10d
+  0x000077b45fbd2a96:   cmp    0x8(%rax),%r10d
+  0x000077b45fbd2a9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbd2aa0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbd2aa7:   push   %rbp
+  0x000077b45fbd2aa8:   sub    $0x20,%rsp
+  0x000077b45fbd2aac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbd2ab4:   je     0x000077b45fbd2abb
+  0x000077b45fbd2ab6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::isCrackable@0 (line 171)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbd2abb:   movsbl 0xe(%rsi),%eax               ;*getfield crackable {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::isCrackable@1 (line 171)
+  0x000077b45fbd2abf:   and    $0x1,%eax
+  0x000077b45fbd2ac2:   add    $0x20,%rsp
+  0x000077b45fbd2ac6:   pop    %rbp
+  0x000077b45fbd2ac7:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbd2acb:   ja     0x000077b45fbd2ad2
+  0x000077b45fbd2ad1:   ret    
+  0x000077b45fbd2ad2:   movabs $0x77b45fbd2ac7,%r10         ;   {internal_word}
+  0x000077b45fbd2adc:   mov    %r10,0x510(%r15)
+  0x000077b45fbd2ae3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbd2ae8:   mov    0x5c0(%r15),%rax
+  0x000077b45fbd2aef:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbd2afa:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbd2b05:   add    $0x20,%rsp
+  0x000077b45fbd2b09:   pop    %rbp
+  0x000077b45fbd2b0a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbd2b0f:   hlt    
+[Exception Handler]
+  0x000077b45fbd2b10:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbd2b15:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbd2b1f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbd2b23:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbd2b28:   hlt    
+  0x000077b45fbd2b29:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbd2b2e:   jmp    0x000077b45fbd2b29
+--------------------------------------------------------------------------------
+[/Disassembly]

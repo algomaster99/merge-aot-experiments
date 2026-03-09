@@ -1,0 +1,455 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 413   24       3       jdk.internal.classfile.impl.SplitConstantPool::utf8Entry (45 bytes)
+ total in heap  [0x0000724783fff008,0x0000724783fff798] = 1936
+ main code      [0x0000724783fff100,0x0000724783fff728] = 1576
+ stub code      [0x0000724783fff728,0x0000724783fff798] = 112
+ mutable data [0x00007247240155a0,0x0000724724015678] = 216
+ relocation     [0x00007247240155a0,0x0000724724015650] = 176
+ metadata       [0x0000724724015650,0x0000724724015678] = 40
+ immutable data [0x00007247240151e0,0x000072472401558c] = 940
+ dependencies   [0x00007247240151e0,0x00007247240151f0] = 16
+ nul chk table  [0x00007247240151f0,0x0000724724015200] = 16
+ scopes pcs     [0x0000724724015200,0x0000724724015430] = 560
+ scopes data    [0x0000724724015430,0x0000724724015588] = 344
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000724783fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000724783fff10b:   data16 data16 xchg %ax,%ax
+  0x0000724783fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0xc0]  (sp of caller)
+  0x0000724783fff112:   mov    0x8(%rsi),%r10d
+  0x0000724783fff116:   cmp    0x8(%rax),%r10d
+  0x0000724783fff11a:   jne    0x000072478b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000724783fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000724783fff127:   push   %rbp
+  0x0000724783fff128:   sub    $0xb0,%rsp
+  0x0000724783fff12f:   nop
+  0x0000724783fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000724783fff138:   je     0x0000724783fff13f
+  0x0000724783fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000724783fff13f:   mov    %rsi,0x88(%rsp)
+  0x0000724783fff147:   movabs $0x72473c0b35c0,%rdi         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff151:   mov    0x90(%rdi),%ebx
+  0x0000724783fff157:   add    $0x2,%ebx
+  0x0000724783fff15a:   mov    %ebx,0x90(%rdi)
+  0x0000724783fff160:   and    $0x7fe,%ebx
+  0x0000724783fff166:   test   %ebx,%ebx
+  0x0000724783fff168:   je     0x0000724783fff606           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@0 (line 485)
+  0x0000724783fff16e:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x0000724783fff627
+  0x0000724783fff171:   mov    %rdx,%rdi
+  0x0000724783fff174:   movabs $0x72473c0b35c0,%rbx         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff17e:   mov    0x8(%rdi),%edi
+  0x0000724783fff181:   mov    $0x33000000,%r10d
+  0x0000724783fff187:   add    %r10,%rdi
+  0x0000724783fff18a:   mov    $0x1c,%r10d
+  0x0000724783fff190:   cmp    (%rbx,%r10,8),%rdi
+  0x0000724783fff194:   je     0x0000724783fff1cd
+  0x0000724783fff196:   add    $0x2,%r10
+  0x0000724783fff19a:   cmp    $0x20,%r10
+  0x0000724783fff19e:   jne    0x0000724783fff190
+  0x0000724783fff1a0:   mov    $0x1c,%r10d
+  0x0000724783fff1a6:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000724783fff1ab:   je     0x0000724783fff1b9
+  0x0000724783fff1ad:   add    $0x2,%r10
+  0x0000724783fff1b1:   cmp    $0x20,%r10
+  0x0000724783fff1b5:   jne    0x0000724783fff1a6
+  0x0000724783fff1b7:   jmp    0x0000724783fff1c5
+  0x0000724783fff1b9:   push   %rax
+  0x0000724783fff1ba:   xor    %rax,%rax
+  0x0000724783fff1bd:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000724783fff1c2:   pop    %rax
+  0x0000724783fff1c3:   jmp    0x0000724783fff18a
+  0x0000724783fff1c5:   mov    $0x1b,%r10d
+  0x0000724783fff1cb:   jmp    0x0000724783fff1d1
+  0x0000724783fff1cd:   add    $0x1,%r10
+  0x0000724783fff1d1:   addq   $0x1,(%rbx,%r10,8)
+  0x0000724783fff1d6:   mov    %rdx,%rsi                    ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@1 (line 485)
+  0x0000724783fff1d9:   mov    %rdx,0x90(%rsp)
+  0x0000724783fff1e1:   nopw   0x0(%rax,%rax,1)
+  0x0000724783fff1e7:   call   0x000072478b4ad9e0           ; ImmutableOopMap {[136]=Oop [144]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@1 (line 485)
+                                                            ;   {optimized virtual_call}
+  0x0000724783fff1ec:   nopl   0x1e4(%rax,%rax,1)           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@1 (line 485)
+                                                            ;   {post_call_nop}
+  0x0000724783fff1f4:   movabs $0x72473c0b35c0,%rdx         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff1fe:   addq   $0x1,0x108(%rdx)
+  0x0000724783fff206:   movabs $0x72473c0b25c0,%rdx         ;   {metadata(method data for {method} {0x000000003333fb20} &apos;hashString&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x0000724783fff210:   mov    0x90(%rdx),%ecx
+  0x0000724783fff216:   add    $0x2,%ecx
+  0x0000724783fff219:   mov    %ecx,0x90(%rdx)
+  0x0000724783fff21f:   and    $0x1ffffe,%ecx
+  0x0000724783fff225:   test   %ecx,%ecx
+  0x0000724783fff227:   je     0x0000724783fff62c
+  0x0000724783fff22d:   mov    0x88(%rsp),%rsi
+  0x0000724783fff235:   movabs $0x72473c0b35c0,%rdx         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff23f:   addq   $0x1,0x118(%rdx)
+  0x0000724783fff247:   mov    %rax,%rdx
+  0x0000724783fff24a:   or     $0x40000000,%edx
+  0x0000724783fff250:   mov    0x90(%rsp),%rcx
+  0x0000724783fff258:   mov    0x88(%rsp),%rsi              ;*invokevirtual tryFindUtf8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@11 (line 486)
+  0x0000724783fff260:   mov    %eax,0x98(%rsp)
+  0x0000724783fff267:   call   0x000072478b4ad9e0           ; ImmutableOopMap {[136]=Oop [144]=Oop }
+                                                            ;*invokevirtual tryFindUtf8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@11 (line 486)
+                                                            ;   {optimized virtual_call}
+  0x0000724783fff26c:   nopl   0x1000264(%rax,%rax,1)       ;*invokevirtual tryFindUtf8 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@11 (line 486)
+                                                            ;   {post_call_nop}
+  0x0000724783fff274:   test   %rax,%rax
+  0x0000724783fff277:   movabs $0x72473c0b35c0,%rdx         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff281:   mov    $0x148,%esi
+  0x0000724783fff286:   jne    0x0000724783fff28d
+  0x0000724783fff288:   mov    $0x158,%esi
+  0x0000724783fff28d:   mov    (%rdx,%rsi,1),%rdi
+  0x0000724783fff291:   lea    0x1(%rdi),%rdi
+  0x0000724783fff295:   mov    %rdi,(%rdx,%rsi,1)
+  0x0000724783fff299:   jne    0x0000724783fff5f3           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@16 (line 487)
+  0x0000724783fff29f:   mov    0x98(%rsp),%r9d
+  0x0000724783fff2a7:   mov    0x90(%rsp),%r8
+  0x0000724783fff2af:   mov    0x88(%rsp),%rsi
+  0x0000724783fff2b7:   movabs $0x3333e8d8,%rdx             ;   {metadata(&apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff2c1:   mov    %rsi,%rbx
+  0x0000724783fff2c4:   mov    0x1b0(%r15),%rax
+  0x0000724783fff2cb:   lea    0x40(%rax),%rdi
+  0x0000724783fff2cf:   cmp    0x1c0(%r15),%rdi
+  0x0000724783fff2d6:   ja     0x0000724783fff64d
+  0x0000724783fff2dc:   mov    %rdi,0x1b0(%r15)
+  0x0000724783fff2e3:   movq   $0x1,(%rax)
+  0x0000724783fff2ea:   mov    %rdx,%rcx
+  0x0000724783fff2ed:   mov    $0x33000000,%r10d
+  0x0000724783fff2f3:   sub    %r10,%rcx
+  0x0000724783fff2f6:   mov    %ecx,0x8(%rax)
+  0x0000724783fff2f9:   xor    %rcx,%rcx
+  0x0000724783fff2fc:   mov    %ecx,0xc(%rax)
+  0x0000724783fff2ff:   xor    %rcx,%rcx
+  0x0000724783fff302:   mov    $0x6,%edi
+  0x0000724783fff307:   mov    %rcx,0x8(%rax,%rdi,8)
+  0x0000724783fff30c:   dec    %rdi
+  0x0000724783fff30f:   jne    0x0000724783fff307           ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@20 (line 487)
+  0x0000724783fff311:   mov    %rax,0xa0(%rsp)
+  0x0000724783fff319:   mov    0x14(%rbx),%ecx              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@26 (line 487)
+  0x0000724783fff31c:   mov    %rax,%rdx
+  0x0000724783fff31f:   movabs $0x72473c0b35c0,%rsi         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff329:   addq   $0x1,0x168(%rsi)
+  0x0000724783fff331:   mov    %rbx,%rdx
+  0x0000724783fff334:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@31 (line 487)
+  0x0000724783fff337:   call   0x000072478b4ad9e0           ; ImmutableOopMap {[136]=Oop [160]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@31 (line 487)
+                                                            ;   {optimized virtual_call}
+  0x0000724783fff33c:   nopl   0x2000334(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@31 (line 487)
+                                                            ;   {post_call_nop}
+  0x0000724783fff344:   mov    0x88(%rsp),%rsi
+  0x0000724783fff34c:   movabs $0x72473c0b35c0,%rdi         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff356:   addq   $0x1,0x178(%rdi)
+  0x0000724783fff35e:   movabs $0x72473c0b26b8,%rsi         ;   {metadata(method data for {method} {0x00000000333489c8} &apos;internalAdd&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff368:   mov    0x90(%rsi),%edi
+  0x0000724783fff36e:   add    $0x2,%edi
+  0x0000724783fff371:   mov    %edi,0x90(%rsi)
+  0x0000724783fff377:   and    $0x1ffffe,%edi
+  0x0000724783fff37d:   test   %edi,%edi
+  0x0000724783fff37f:   je     0x0000724783fff65a
+  0x0000724783fff385:   mov    0xa0(%rsp),%rax
+  0x0000724783fff38d:   movabs $0x72473c0b26b8,%rsi         ;   {metadata(method data for {method} {0x00000000333489c8} &apos;internalAdd&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff397:   addq   $0x1,0xf8(%rsi)
+  0x0000724783fff39f:   movabs $0x72473c0b3200,%rsi         ;   {metadata(method data for {method} {0x000000003333ff18} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff3a9:   mov    0x90(%rsi),%edi
+  0x0000724783fff3af:   add    $0x2,%edi
+  0x0000724783fff3b2:   mov    %edi,0x90(%rsi)
+  0x0000724783fff3b8:   and    $0x1ffffe,%edi
+  0x0000724783fff3be:   test   %edi,%edi
+  0x0000724783fff3c0:   je     0x0000724783fff67b
+  0x0000724783fff3c6:   mov    0xa0(%rsp),%rax
+  0x0000724783fff3ce:   movabs $0x72473c0b3200,%rsi         ;   {metadata(method data for {method} {0x000000003333ff18} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff3d8:   mov    0x8(%rax),%eax
+  0x0000724783fff3db:   mov    $0x33000000,%r10d
+  0x0000724783fff3e1:   add    %r10,%rax
+  0x0000724783fff3e4:   mov    $0x1c,%r10d
+  0x0000724783fff3ea:   cmp    (%rsi,%r10,8),%rax
+  0x0000724783fff3ee:   je     0x0000724783fff42d
+  0x0000724783fff3f0:   add    $0x2,%r10
+  0x0000724783fff3f4:   cmp    $0x20,%r10
+  0x0000724783fff3f8:   jne    0x0000724783fff3ea
+  0x0000724783fff3fa:   mov    $0x1c,%r10d
+  0x0000724783fff400:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000724783fff405:   je     0x0000724783fff413
+  0x0000724783fff407:   add    $0x2,%r10
+  0x0000724783fff40b:   cmp    $0x20,%r10
+  0x0000724783fff40f:   jne    0x0000724783fff400
+  0x0000724783fff411:   jmp    0x0000724783fff425
+  0x0000724783fff413:   push   %rbx
+  0x0000724783fff414:   mov    %rax,%rbx
+  0x0000724783fff417:   xor    %rax,%rax
+  0x0000724783fff41a:   cmpxchg %rbx,(%rsi,%r10,8)
+  0x0000724783fff41f:   mov    %rbx,%rax
+  0x0000724783fff422:   pop    %rbx
+  0x0000724783fff423:   jmp    0x0000724783fff3e4
+  0x0000724783fff425:   mov    $0x1b,%r10d
+  0x0000724783fff42b:   jmp    0x0000724783fff431
+  0x0000724783fff42d:   add    $0x1,%r10
+  0x0000724783fff431:   addq   $0x1,(%rsi,%r10,8)
+  0x0000724783fff436:   movabs $0x72473c0b2ed0,%rsi         ;   {metadata(method data for {method} {0x0000000033340498} &apos;contentHash&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff440:   mov    0x90(%rsi),%edi
+  0x0000724783fff446:   add    $0x2,%edi
+  0x0000724783fff449:   mov    %edi,0x90(%rsi)
+  0x0000724783fff44f:   and    $0x1ffffe,%edi
+  0x0000724783fff455:   test   %edi,%edi
+  0x0000724783fff457:   je     0x0000724783fff69c
+  0x0000724783fff45d:   mov    0xa0(%rsp),%rax
+  0x0000724783fff465:   mov    0x18(%rax),%esi
+  0x0000724783fff468:   shl    $0x3,%rsi                    ;*getfield state {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@1 (line 318)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+  0x0000724783fff46c:   movabs $0x41f815510,%r10            ;   {oop(a &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl$State&apos;{0x000000041f815510})}
+  0x0000724783fff476:   cmp    %r10,%rsi
+  0x0000724783fff479:   movabs $0x72473c0b2ed0,%rsi         ;   {metadata(method data for {method} {0x0000000033340498} &apos;contentHash&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff483:   mov    $0xd8,%edi
+  0x0000724783fff488:   jne    0x0000724783fff48f
+  0x0000724783fff48a:   mov    $0xe8,%edi
+  0x0000724783fff48f:   mov    (%rsi,%rdi,1),%rbx
+  0x0000724783fff493:   lea    0x1(%rbx),%rbx
+  0x0000724783fff497:   mov    %rbx,(%rsi,%rdi,1)
+  0x0000724783fff49b:   jne    0x0000724783fff4d4           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@7 (line 318)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+  0x0000724783fff4a1:   mov    %rax,%rsi
+  0x0000724783fff4a4:   movabs $0x72473c0b2ed0,%rdi         ;   {metadata(method data for {method} {0x0000000033340498} &apos;contentHash&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff4ae:   addq   $0x1,0xf8(%rdi)
+  0x0000724783fff4b6:   mov    %rax,%rsi                    ;*invokevirtual inflate {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@11 (line 319)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+  0x0000724783fff4b9:   nopw   0x0(%rax,%rax,1)
+  0x0000724783fff4bf:   call   0x000072478b4ad9e0           ; ImmutableOopMap {[136]=Oop [160]=Oop }
+                                                            ;*invokevirtual inflate {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@11 (line 319)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {optimized virtual_call}
+  0x0000724783fff4c4:   nopl   0x30004bc(%rax,%rax,1)       ;*invokevirtual inflate {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@11 (line 319)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {post_call_nop}
+  0x0000724783fff4cc:   mov    0xa0(%rsp),%rax
+  0x0000724783fff4d4:   mov    0x34(%rax),%edx              ;*getfield contentHash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@15 (line 320)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+  0x0000724783fff4d7:   movabs $0x72473c0b3200,%rcx         ;   {metadata(method data for {method} {0x000000003333ff18} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff4e1:   addq   $0x1,0x108(%rcx)
+  0x0000724783fff4e9:   movabs $0x72473c0b25c0,%rcx         ;   {metadata(method data for {method} {0x000000003333fb20} &apos;hashString&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x0000724783fff4f3:   mov    0x90(%rcx),%esi
+  0x0000724783fff4f9:   add    $0x2,%esi
+  0x0000724783fff4fc:   mov    %esi,0x90(%rcx)
+  0x0000724783fff502:   and    $0x1ffffe,%esi
+  0x0000724783fff508:   test   %esi,%esi
+  0x0000724783fff50a:   je     0x0000724783fff6bd
+  0x0000724783fff510:   mov    %rdx,%rcx
+  0x0000724783fff513:   or     $0x40000000,%ecx
+  0x0000724783fff519:   mov    0x88(%rsp),%rsi
+  0x0000724783fff521:   mov    %rsi,%rdx
+  0x0000724783fff524:   movabs $0x72473c0b26b8,%rdi         ;   {metadata(method data for {method} {0x00000000333489c8} &apos;internalAdd&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff52e:   addq   $0x1,0x108(%rdi)
+  0x0000724783fff536:   mov    %rax,%rdx                    ;*invokevirtual internalAdd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@8 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+  0x0000724783fff539:   nopw   0x0(%rax,%rax,1)
+  0x0000724783fff53f:   call   0x000072478b4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual internalAdd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@8 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {optimized virtual_call}
+  0x0000724783fff544:   nopl   0x400053c(%rax,%rax,1)       ;*invokevirtual internalAdd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@8 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {post_call_nop}
+  0x0000724783fff54c:   test   %rax,%rax
+  0x0000724783fff54f:   movabs $0x72473c0b35c0,%rdi         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff559:   jne    0x0000724783fff567
+  0x0000724783fff55b:   orb    $0x1,0x1a1(%rdi)
+  0x0000724783fff562:   jmp    0x0000724783fff5e3
+  0x0000724783fff567:   mov    0x8(%rax),%ebx
+  0x0000724783fff56a:   mov    $0x33000000,%r10d
+  0x0000724783fff570:   add    %r10,%rbx
+  0x0000724783fff573:   mov    $0x36,%r10d
+  0x0000724783fff579:   cmp    (%rdi,%r10,8),%rbx
+  0x0000724783fff57d:   je     0x0000724783fff5b6
+  0x0000724783fff57f:   add    $0x2,%r10
+  0x0000724783fff583:   cmp    $0x3a,%r10
+  0x0000724783fff587:   jne    0x0000724783fff579
+  0x0000724783fff589:   mov    $0x36,%r10d
+  0x0000724783fff58f:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000724783fff594:   je     0x0000724783fff5a2
+  0x0000724783fff596:   add    $0x2,%r10
+  0x0000724783fff59a:   cmp    $0x3a,%r10
+  0x0000724783fff59e:   jne    0x0000724783fff58f
+  0x0000724783fff5a0:   jmp    0x0000724783fff5ae
+  0x0000724783fff5a2:   push   %rax
+  0x0000724783fff5a3:   xor    %rax,%rax
+  0x0000724783fff5a6:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x0000724783fff5ab:   pop    %rax
+  0x0000724783fff5ac:   jmp    0x0000724783fff573
+  0x0000724783fff5ae:   mov    $0x35,%r10d
+  0x0000724783fff5b4:   jmp    0x0000724783fff5ba
+  0x0000724783fff5b6:   add    $0x1,%r10
+  0x0000724783fff5ba:   addq   $0x1,(%rdi,%r10,8)
+  0x0000724783fff5bf:   movabs $0x3333e8d8,%rbx             ;   {metadata(&apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff5c9:   mov    0x8(%rax),%esi
+  0x0000724783fff5cc:   mov    $0x33000000,%r10d
+  0x0000724783fff5d2:   add    %r10,%rsi
+  0x0000724783fff5d5:   cmp    %rsi,%rbx
+  0x0000724783fff5d8:   jne    0x0000724783fff6de
+  0x0000724783fff5de:   jmp    0x0000724783fff5e3           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@37 (line 487)
+  0x0000724783fff5e3:   movabs $0x72473c0b35c0,%rsi         ;   {metadata(method data for {method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff5ed:   incl   0x1d8(%rsi)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@40 (line 487)
+  0x0000724783fff5f3:   add    $0xb0,%rsp
+  0x0000724783fff5fa:   pop    %rbp
+  0x0000724783fff5fb:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000724783fff5ff:   ja     0x0000724783fff6e7
+  0x0000724783fff605:   ret    
+  0x0000724783fff606:   movabs $0x33347e70,%r10             ;   {metadata({method} {0x0000000033347e70} &apos;utf8Entry&apos; &apos;(Ljava/lang/String;)Ljdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff610:   mov    %r10,0x8(%rsp)
+  0x0000724783fff615:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff61d:   call   0x000072478b581860           ; ImmutableOopMap {rsi=Oop rdx=Oop [136]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@-1 (line 485)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff622:   jmp    0x0000724783fff16e
+  0x0000724783fff627:   call   0x000072478b57bd60           ; ImmutableOopMap {rdx=Oop [136]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@1 (line 485)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000724783fff62c:   movabs $0x3333fb20,%r10             ;   {metadata({method} {0x000000003333fb20} &apos;hashString&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x0000724783fff636:   mov    %r10,0x8(%rsp)
+  0x0000724783fff63b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff643:   call   0x000072478b581860           ; ImmutableOopMap {[136]=Oop [144]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry::hashString@-1 (line 67)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@7 (line 486)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff648:   jmp    0x0000724783fff22d
+  0x0000724783fff64d:   mov    %rdx,%rdx
+  0x0000724783fff650:   call   0x000072478b57c660           ; ImmutableOopMap {r8=Oop rbx=Oop [136]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@20 (line 487)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000724783fff655:   jmp    0x0000724783fff311
+  0x0000724783fff65a:   movabs $0x333489c8,%r10             ;   {metadata({method} {0x00000000333489c8} &apos;internalAdd&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000724783fff664:   mov    %r10,0x8(%rsp)
+  0x0000724783fff669:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff671:   call   0x000072478b581860           ; ImmutableOopMap {[136]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@-1 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff676:   jmp    0x0000724783fff385
+  0x0000724783fff67b:   movabs $0x3333ff18,%r10             ;   {metadata({method} {0x000000003333ff18} &apos;hashCode&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff685:   mov    %r10,0x8(%rsp)
+  0x0000724783fff68a:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff692:   call   0x000072478b581860           ; ImmutableOopMap {[136]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@-1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff697:   jmp    0x0000724783fff3c6
+  0x0000724783fff69c:   movabs $0x33340498,%r10             ;   {metadata({method} {0x0000000033340498} &apos;contentHash&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$Utf8EntryImpl&apos;)}
+  0x0000724783fff6a6:   mov    %r10,0x8(%rsp)
+  0x0000724783fff6ab:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff6b3:   call   0x000072478b581860           ; ImmutableOopMap {[136]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::contentHash@-1 (line 318)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@1 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff6b8:   jmp    0x0000724783fff45d
+  0x0000724783fff6bd:   movabs $0x3333fb20,%r10             ;   {metadata({method} {0x000000003333fb20} &apos;hashString&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x0000724783fff6c7:   mov    %r10,0x8(%rsp)
+  0x0000724783fff6cc:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000724783fff6d4:   call   0x000072478b581860           ; ImmutableOopMap {rax=Oop [136]=Oop [160]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry::hashString@-1 (line 67)
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$Utf8EntryImpl::hashCode@4 (line 314)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::internalAdd@3 (line 236)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@34 (line 487)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000724783fff6d9:   jmp    0x0000724783fff510
+  0x0000724783fff6de:   mov    %rax,(%rsp)
+  0x0000724783fff6e2:   call   0x000072478b57e5e0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::utf8Entry@37 (line 487)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000724783fff6e7:   movabs $0x724783fff5fb,%r10         ;   {internal_word}
+  0x0000724783fff6f1:   mov    %r10,0x510(%r15)
+  0x0000724783fff6f8:   jmp    0x000072478b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000724783fff6fd:   mov    0x5c0(%r15),%rax
+  0x0000724783fff704:   movq   $0x0,0x5c0(%r15)
+  0x0000724783fff70f:   movq   $0x0,0x5c8(%r15)
+  0x0000724783fff71a:   add    $0xb0,%rsp
+  0x0000724783fff721:   pop    %rbp
+  0x0000724783fff722:   jmp    0x000072478b57a9e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000724783fff727:   hlt    
+[Stub Code]
+  0x0000724783fff728:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000724783fff732:   jmp    0x0000724783fff732           ;   {runtime_call nmethod}
+  0x0000724783fff737:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000724783fff741:   jmp    0x0000724783fff741           ;   {runtime_call nmethod}
+  0x0000724783fff746:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000724783fff750:   jmp    0x0000724783fff750           ;   {runtime_call nmethod}
+  0x0000724783fff755:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000724783fff75f:   jmp    0x0000724783fff75f           ;   {runtime_call nmethod}
+  0x0000724783fff764:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000724783fff76e:   jmp    0x0000724783fff76e           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000724783fff773:   call   0x000072478b57db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000724783fff778:   movabs $0x7247a1f3aec4,%rdi         ;   {external_word}
+  0x0000724783fff782:   and    $0xfffffffffffffff0,%rsp
+  0x0000724783fff786:   call   0x00007247a1991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000724783fff78b:   hlt    
+  0x0000724783fff78c:   call   0x000072478b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000724783fff791:   jmp    0x0000724783fff78c
+  0x0000724783fff793:   hlt    
+  0x0000724783fff794:   hlt    
+  0x0000724783fff795:   hlt    
+  0x0000724783fff796:   hlt    
+  0x0000724783fff797:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

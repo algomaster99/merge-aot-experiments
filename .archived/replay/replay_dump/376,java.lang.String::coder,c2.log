@@ -1,0 +1,57 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 8137  376       4       java.lang.String::coder (15 bytes)
+ total in heap  [0x000077b45fbb7708,0x000077b45fbb7868] = 352
+ main code      [0x000077b45fbb7800,0x000077b45fbb7860] = 96
+ stub code      [0x000077b45fbb7860,0x000077b45fbb7868] = 8
+ mutable data [0x000077b4701455a0,0x000077b4701455b8] = 24
+ relocation     [0x000077b4701455a0,0x000077b4701455b0] = 16
+ metadata       [0x000077b4701455b0,0x000077b4701455b8] = 8
+ immutable data [0x000077b40809d0e0,0x000077b40809d13c] = 92
+ dependencies   [0x000077b40809d0e0,0x000077b40809d0e8] = 8
+ scopes pcs     [0x000077b40809d0e8,0x000077b40809d128] = 64
+ scopes data    [0x000077b40809d128,0x000077b40809d138] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb7800:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000464a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbb7802:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb7806:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb780a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb7810:   sub    $0x18,%rsp
+  0x000077b45fbb7814:   mov    %rbp,0x10(%rsp)
+  0x000077b45fbb7819:   data16 xchg %ax,%ax
+  0x000077b45fbb781c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb7824:   jne    0x000077b45fbb7854           ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+  0x000077b45fbb782a:   movsbl 0x10(%rsi),%eax              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+  0x000077b45fbb782e:   add    $0x10,%rsp
+  0x000077b45fbb7832:   pop    %rbp
+  0x000077b45fbb7833:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb7837:   ja     0x000077b45fbb783e
+  0x000077b45fbb783d:   ret    
+  0x000077b45fbb783e:   movabs $0x77b45fbb7833,%r10         ;   {internal_word}
+  0x000077b45fbb7848:   mov    %r10,0x510(%r15)
+  0x000077b45fbb784f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb7854:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb7859:   jmp    0x000077b45fbb782a
+  0x000077b45fbb785e:   hlt    
+  0x000077b45fbb785f:   hlt    
+[Stub Code]
+  0x000077b45fbb7860:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb7865:   jmp    0x000077b45fbb7860
+  0x000077b45fbb7867:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

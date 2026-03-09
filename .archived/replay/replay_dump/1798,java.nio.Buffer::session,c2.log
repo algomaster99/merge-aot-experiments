@@ -1,0 +1,69 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 41324 1798       4       java.nio.Buffer::session (20 bytes)
+ total in heap  [0x000077b45fbe6d88,0x000077b45fbe6f08] = 384
+ main code      [0x000077b45fbe6e80,0x000077b45fbe6f00] = 128
+ stub code      [0x000077b45fbe6f00,0x000077b45fbe6f08] = 8
+ mutable data [0x000077b40823f8f0,0x000077b40823f910] = 32
+ relocation     [0x000077b40823f8f0,0x000077b40823f908] = 24
+ metadata       [0x000077b40823f908,0x000077b40823f910] = 8
+ immutable data [0x000077b40823f850,0x000077b40823f8dc] = 140
+ dependencies   [0x000077b40823f850,0x000077b40823f858] = 8
+ scopes pcs     [0x000077b40823f858,0x000077b40823f8b8] = 96
+ scopes data    [0x000077b40823f8b8,0x000077b40823f8d8] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbe6e80:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbe6e82:   mov    0x8(%rsi),%r10d
+  0x000077b45fbe6e86:   cmp    0x8(%rax),%r10d
+  0x000077b45fbe6e8a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbe6e90:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbe6e97:   push   %rbp
+  0x000077b45fbe6e98:   sub    $0x20,%rsp
+  0x000077b45fbe6e9c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbe6ea4:   jne    0x000077b45fbe6ef6           ;*synchronization entry
+                                                            ; - java.nio.Buffer::session@-1 (line 808)
+  0x000077b45fbe6eaa:   mov    0x24(%rsi),%r11d
+  0x000077b45fbe6eae:   test   %r11d,%r11d
+  0x000077b45fbe6eb1:   jne    0x000077b45fbe6ec5           ;*getfield segment {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@1 (line 808)
+  0x000077b45fbe6eb3:   xor    %eax,%eax
+  0x000077b45fbe6eb5:   add    $0x20,%rsp
+  0x000077b45fbe6eb9:   pop    %rbp
+  0x000077b45fbe6eba:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbe6ebe:   ja     0x000077b45fbe6ee0
+  0x000077b45fbe6ec4:   ret    
+  0x000077b45fbe6ec5:   mov    %rsi,%rbp
+  0x000077b45fbe6ec8:   mov    %r11d,(%rsp)
+  0x000077b45fbe6ecc:   mov    $0xffffffec,%esi
+  0x000077b45fbe6ed1:   xchg   %ax,%ax
+  0x000077b45fbe6ed3:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop [0]=NarrowOop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.nio.Buffer::session@4 (line 808)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbe6ed8:   nopl   0x150(%rax,%rax,1)           ;*getfield segment {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@1 (line 808)
+                                                            ;   {post_call_nop}
+  0x000077b45fbe6ee0:   movabs $0x77b45fbe6eba,%r10         ;   {internal_word}
+  0x000077b45fbe6eea:   mov    %r10,0x510(%r15)
+  0x000077b45fbe6ef1:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbe6ef6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbe6efb:   jmp    0x000077b45fbe6eaa
+[Stub Code]
+  0x000077b45fbe6f00:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbe6f05:   jmp    0x000077b45fbe6f00
+  0x000077b45fbe6f07:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

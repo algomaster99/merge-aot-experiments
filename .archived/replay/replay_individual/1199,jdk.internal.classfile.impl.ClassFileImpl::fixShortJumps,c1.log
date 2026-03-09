@@ -1,0 +1,152 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 497   47       3       jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps (23 bytes)
+ total in heap  [0x00007fda03fff008,0x00007fda03fff2d8] = 720
+ main code      [0x00007fda03fff100,0x00007fda03fff2b8] = 440
+ stub code      [0x00007fda03fff2b8,0x00007fda03fff2d8] = 32
+ mutable data [0x00007fd9ac024db0,0x00007fd9ac024df0] = 64
+ relocation     [0x00007fd9ac024db0,0x00007fd9ac024de8] = 56
+ metadata       [0x00007fd9ac024de8,0x00007fd9ac024df0] = 8
+ immutable data [0x00007fd9ac024c70,0x00007fd9ac024da4] = 308
+ dependencies   [0x00007fd9ac024c70,0x00007fd9ac024c78] = 8
+ nul chk table  [0x00007fd9ac024c78,0x00007fd9ac024c88] = 16
+ scopes pcs     [0x00007fd9ac024c88,0x00007fd9ac024d58] = 208
+ scopes data    [0x00007fd9ac024d58,0x00007fd9ac024da0] = 72
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007fda03fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007fda03fff10b:   data16 data16 xchg %ax,%ax
+  0x00007fda03fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007fda03fff112:   mov    0x8(%rsi),%r10d
+  0x00007fda03fff116:   cmp    0x8(%rax),%r10d
+  0x00007fda03fff11a:   jne    0x00007fda0b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007fda03fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007fda03fff127:   push   %rbp
+  0x00007fda03fff128:   sub    $0x20,%rsp
+  0x00007fda03fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007fda03fff134:   je     0x00007fda03fff13b
+  0x00007fda03fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007fda03fff13b:   movabs $0x7fd9b82a0fd8,%rax         ;   {metadata(method data for {method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;)}
+  0x00007fda03fff145:   mov    0x90(%rax),%edi
+  0x00007fda03fff14b:   add    $0x2,%edi
+  0x00007fda03fff14e:   mov    %edi,0x90(%rax)
+  0x00007fda03fff154:   and    $0x7fe,%edi
+  0x00007fda03fff15a:   test   %edi,%edi
+  0x00007fda03fff15c:   je     0x00007fda03fff20f           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@0 (line 218)
+  0x00007fda03fff162:   mov    0x20(%rsi),%eax
+  0x00007fda03fff165:   shl    $0x3,%rax                    ;*getfield shortJumpsOption {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@1 (line 218)
+  0x00007fda03fff169:   test   %rax,%rax
+  0x00007fda03fff16c:   movabs $0x7fd9b82a0fd8,%rsi         ;   {metadata(method data for {method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;)}
+  0x00007fda03fff176:   mov    $0xd8,%edi
+  0x00007fda03fff17b:   je     0x00007fda03fff182
+  0x00007fda03fff17d:   mov    $0xe8,%edi
+  0x00007fda03fff182:   mov    (%rsi,%rdi,1),%rbx
+  0x00007fda03fff186:   lea    0x1(%rbx),%rbx
+  0x00007fda03fff18a:   mov    %rbx,(%rsi,%rdi,1)
+  0x00007fda03fff18e:   je     0x00007fda03fff1dd           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@4 (line 218)
+  0x00007fda03fff194:   nopl   0x0(%rax)
+  0x00007fda03fff198:   jmp    0x00007fda03fff253           ;   {other}
+  0x00007fda03fff19d:   add    %al,(%rax)
+  0x00007fda03fff19f:   add    %al,(%rax)
+  0x00007fda03fff1a1:   add    %ah,0xf(%rsi)
+  0x00007fda03fff1a4:   (bad)  
+  0x00007fda03fff1a5:   add    %r8b,(%rax)
+  0x00007fda03fff1a8:   jmp    0x00007fda03fff26d           ; implicit exception: dispatches to 0x00007fda03fff25d
+  0x00007fda03fff1ad:   nop
+  0x00007fda03fff1ae:   shl    $0x3,%rsi                    ;*getstatic FIX_SHORT_JUMPS {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@11 (line 218)
+  0x00007fda03fff1b2:   cmp    %rsi,%rax
+  0x00007fda03fff1b5:   movabs $0x7fd9b82a0fd8,%rax         ;   {metadata(method data for {method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;)}
+  0x00007fda03fff1bf:   mov    $0xf8,%esi
+  0x00007fda03fff1c4:   jne    0x00007fda03fff1cb
+  0x00007fda03fff1c6:   mov    $0x108,%esi
+  0x00007fda03fff1cb:   mov    (%rax,%rsi,1),%rdi
+  0x00007fda03fff1cf:   lea    0x1(%rdi),%rdi
+  0x00007fda03fff1d3:   mov    %rdi,(%rax,%rsi,1)
+  0x00007fda03fff1d7:   jne    0x00007fda03fff1f7           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@14 (line 218)
+  0x00007fda03fff1dd:   movabs $0x7fd9b82a0fd8,%rax         ;   {metadata(method data for {method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;)}
+  0x00007fda03fff1e7:   incl   0x118(%rax)
+  0x00007fda03fff1ed:   mov    $0x1,%eax
+  0x00007fda03fff1f2:   jmp    0x00007fda03fff1fc           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@18 (line 218)
+  0x00007fda03fff1f7:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@22 (line 218)
+  0x00007fda03fff1fc:   and    $0x1,%eax
+  0x00007fda03fff1ff:   add    $0x20,%rsp
+  0x00007fda03fff203:   pop    %rbp
+  0x00007fda03fff204:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007fda03fff208:   ja     0x00007fda03fff277
+  0x00007fda03fff20e:   ret    
+  0x00007fda03fff20f:   movabs $0x4a468cb8,%r10             ;   {metadata({method} {0x000000004a468cb8} &apos;fixShortJumps&apos; &apos;()Z&apos; in &apos;jdk/internal/classfile/impl/ClassFileImpl&apos;)}
+  0x00007fda03fff219:   mov    %r10,0x8(%rsp)
+  0x00007fda03fff21e:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007fda03fff226:   call   0x00007fda0b583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@-1 (line 218)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007fda03fff22b:   jmp    0x00007fda03fff162
+  0x00007fda03fff230:   movabs $0x0,%rsi                    ;   {oop(nullptr)}
+  0x00007fda03fff23a:   push   %rax
+  0x00007fda03fff23b:   mov    0x10(%rsi),%rax
+  0x00007fda03fff23f:   cmp    0x138(%rax),%r15
+  0x00007fda03fff246:   pop    %rax
+  0x00007fda03fff247:   jne    0x00007fda03fff253
+  0x00007fda03fff249:   jmp    0x00007fda03fff1a2
+  0x00007fda03fff24e:   mov    $0xa192300,%eax
+  0x00007fda03fff253:   call   0x00007fda0b5824e0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*getstatic FIX_SHORT_JUMPS {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@11 (line 218)
+                                                            ;   {runtime_call load_mirror_patching_blob (C1 runtime)}
+  0x00007fda03fff258:   jmp    0x00007fda03fff198
+  0x00007fda03fff25d:   call   0x00007fda0b57cae0           ; ImmutableOopMap {rax=Oop rsi=Oop }
+                                                            ;*getstatic FIX_SHORT_JUMPS {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@11 (line 218)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007fda03fff262:   mov    0x0(%rsi),%esi
+  0x00007fda03fff268:   mov    $0x6050b00,%eax
+  0x00007fda03fff26d:   call   0x00007fda0b581860           ; ImmutableOopMap {rax=Oop rsi=Oop }
+                                                            ;*getstatic FIX_SHORT_JUMPS {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.ClassFileImpl::fixShortJumps@11 (line 218)
+                                                            ;   {runtime_call access_field_patching_blob (C1 runtime)}
+  0x00007fda03fff272:   jmp    0x00007fda03fff1a8
+  0x00007fda03fff277:   movabs $0x7fda03fff204,%r10         ;   {internal_word}
+  0x00007fda03fff281:   mov    %r10,0x510(%r15)
+  0x00007fda03fff288:   jmp    0x00007fda0b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007fda03fff28d:   mov    0x5c0(%r15),%rax
+  0x00007fda03fff294:   movq   $0x0,0x5c0(%r15)
+  0x00007fda03fff29f:   movq   $0x0,0x5c8(%r15)
+  0x00007fda03fff2aa:   add    $0x20,%rsp
+  0x00007fda03fff2ae:   pop    %rbp
+  0x00007fda03fff2af:   jmp    0x00007fda0b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007fda03fff2b4:   hlt    
+  0x00007fda03fff2b5:   hlt    
+  0x00007fda03fff2b6:   hlt    
+  0x00007fda03fff2b7:   hlt    
+[Exception Handler]
+  0x00007fda03fff2b8:   call   0x00007fda0b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007fda03fff2bd:   movabs $0x7fda2353aec4,%rdi         ;   {external_word}
+  0x00007fda03fff2c7:   and    $0xfffffffffffffff0,%rsp
+  0x00007fda03fff2cb:   call   0x00007fda22f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007fda03fff2d0:   hlt    
+  0x00007fda03fff2d1:   call   0x00007fda0b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007fda03fff2d6:   jmp    0x00007fda03fff2d1
+--------------------------------------------------------------------------------
+[/Disassembly]

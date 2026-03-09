@@ -1,0 +1,214 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 371   24       3       jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull (10 bytes)
+ total in heap  [0x000075e58ffff008,0x000075e58ffff3b0] = 936
+ main code      [0x000075e58ffff100,0x000075e58ffff370] = 624
+ stub code      [0x000075e58ffff370,0x000075e58ffff3b0] = 64
+ mutable data [0x000075e530015000,0x000075e530015080] = 128
+ relocation     [0x000075e530015000,0x000075e530015060] = 96
+ metadata       [0x000075e530015060,0x000075e530015080] = 32
+ immutable data [0x000075e530014e70,0x000075e530014fec] = 380
+ dependencies   [0x000075e530014e70,0x000075e530014e80] = 16
+ scopes pcs     [0x000075e530014e80,0x000075e530014f70] = 240
+ scopes data    [0x000075e530014f70,0x000075e530014fe8] = 120
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000075e58ffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000075e58ffff10b:   data16 data16 xchg %ax,%ax
+  0x000075e58ffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000172193f0} &apos;loadClassOrNull&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/ClassLoaders$BootClassLoader&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/loader/ClassLoaders$BootClassLoader&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  # parm1:    rcx       = boolean
+  #           [sp+0x60]  (sp of caller)
+  0x000075e58ffff112:   mov    0x8(%rsi),%r10d
+  0x000075e58ffff116:   cmp    0x8(%rax),%r10d
+  0x000075e58ffff11a:   jne    0x000075e5974ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000075e58ffff120:   mov    %eax,-0x14000(%rsp)
+  0x000075e58ffff127:   push   %rbp
+  0x000075e58ffff128:   sub    $0x50,%rsp
+  0x000075e58ffff12c:   cmpl   $0x1,0x20(%r15)
+  0x000075e58ffff134:   je     0x000075e58ffff13b
+  0x000075e58ffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000075e58ffff13b:   movabs $0x75e5480b8830,%rdi         ;   {metadata(method data for {method} {0x00000000172193f0} &apos;loadClassOrNull&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/ClassLoaders$BootClassLoader&apos;)}
+  0x000075e58ffff145:   mov    0x90(%rdi),%ebx
+  0x000075e58ffff14b:   add    $0x2,%ebx
+  0x000075e58ffff14e:   mov    %ebx,0x90(%rdi)
+  0x000075e58ffff154:   and    $0x7fe,%ebx
+  0x000075e58ffff15a:   test   %ebx,%ebx
+  0x000075e58ffff15c:   je     0x000075e58ffff2ca           ;*getstatic JLA {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@0 (line 138)
+  0x000075e58ffff162:   movabs $0x41f801548,%rsi            ;   {oop(a &apos;java/lang/System$1&apos;{0x000000041f801548})}
+  0x000075e58ffff16c:   movabs $0x75e5480b8830,%rdi         ;   {metadata(method data for {method} {0x00000000172193f0} &apos;loadClassOrNull&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/ClassLoaders$BootClassLoader&apos;)}
+  0x000075e58ffff176:   movabs $0x17182758,%rsi             ;   {metadata(&apos;java/lang/System$1&apos;)}
+  0x000075e58ffff180:   mov    $0x1c,%r10d
+  0x000075e58ffff186:   cmp    (%rdi,%r10,8),%rsi
+  0x000075e58ffff18a:   je     0x000075e58ffff1c3
+  0x000075e58ffff18c:   add    $0x2,%r10
+  0x000075e58ffff190:   cmp    $0x20,%r10
+  0x000075e58ffff194:   jne    0x000075e58ffff186
+  0x000075e58ffff196:   mov    $0x1c,%r10d
+  0x000075e58ffff19c:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000075e58ffff1a1:   je     0x000075e58ffff1af
+  0x000075e58ffff1a3:   add    $0x2,%r10
+  0x000075e58ffff1a7:   cmp    $0x20,%r10
+  0x000075e58ffff1ab:   jne    0x000075e58ffff19c
+  0x000075e58ffff1ad:   jmp    0x000075e58ffff1bb
+  0x000075e58ffff1af:   push   %rax
+  0x000075e58ffff1b0:   xor    %rax,%rax
+  0x000075e58ffff1b3:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000075e58ffff1b8:   pop    %rax
+  0x000075e58ffff1b9:   jmp    0x000075e58ffff180
+  0x000075e58ffff1bb:   mov    $0x1b,%r10d
+  0x000075e58ffff1c1:   jmp    0x000075e58ffff1c7
+  0x000075e58ffff1c3:   add    $0x1,%r10
+  0x000075e58ffff1c7:   addq   $0x1,(%rdi,%r10,8)
+  0x000075e58ffff1cc:   movabs $0x75e5480b8700,%rsi         ;   {metadata(method data for {method} {0x0000000017183818} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075e58ffff1d6:   mov    0x90(%rsi),%edi
+  0x000075e58ffff1dc:   add    $0x2,%edi
+  0x000075e58ffff1df:   mov    %edi,0x90(%rsi)
+  0x000075e58ffff1e5:   and    $0x1ffffe,%edi
+  0x000075e58ffff1eb:   test   %edi,%edi
+  0x000075e58ffff1ed:   je     0x000075e58ffff2eb
+  0x000075e58ffff1f3:   movabs $0x75e5480b8700,%rsi         ;   {metadata(method data for {method} {0x0000000017183818} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075e58ffff1fd:   addq   $0x1,0xd8(%rsi)
+  0x000075e58ffff205:   movabs $0x75e5480b85a8,%rsi         ;   {metadata(method data for {method} {0x0000000017495e78} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x000075e58ffff20f:   mov    0x90(%rsi),%edi
+  0x000075e58ffff215:   add    $0x2,%edi
+  0x000075e58ffff218:   mov    %edi,0x90(%rsi)
+  0x000075e58ffff21e:   and    $0x1ffffe,%edi
+  0x000075e58ffff224:   test   %edi,%edi
+  0x000075e58ffff226:   je     0x000075e58ffff30c
+  0x000075e58ffff22c:   movabs $0x75e5480b85a8,%rsi         ;   {metadata(method data for {method} {0x0000000017495e78} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x000075e58ffff236:   addq   $0x1,0xd8(%rsi)
+  0x000075e58ffff23e:   mov    %rdx,%rsi                    ;*invokestatic checkName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@1 (line 1242)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+  0x000075e58ffff241:   mov    %rdx,0x38(%rsp)
+  0x000075e58ffff246:   nop
+  0x000075e58ffff247:   call   0x000075e5974adfe0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokestatic checkName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@1 (line 1242)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {static_call}
+  0x000075e58ffff24c:   nopl   0x244(%rax,%rax,1)           ;*invokestatic checkName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@1 (line 1242)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {post_call_nop}
+  0x000075e58ffff254:   test   %eax,%eax
+  0x000075e58ffff256:   movabs $0x75e5480b85a8,%rsi         ;   {metadata(method data for {method} {0x0000000017495e78} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x000075e58ffff260:   mov    $0xe8,%edi
+  0x000075e58ffff265:   jne    0x000075e58ffff26c
+  0x000075e58ffff267:   mov    $0xf8,%edi
+  0x000075e58ffff26c:   mov    (%rsi,%rdi,1),%rbx
+  0x000075e58ffff270:   lea    0x1(%rbx),%rbx
+  0x000075e58ffff274:   mov    %rbx,(%rsi,%rdi,1)
+  0x000075e58ffff278:   jne    0x000075e58ffff28d           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@4 (line 1242)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+  0x000075e58ffff27e:   movabs $0x0,%rsi                    ;   {oop(nullptr)}
+  0x000075e58ffff288:   jmp    0x000075e58ffff2b7           ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@4 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+  0x000075e58ffff28d:   mov    0x38(%rsp),%rdx
+  0x000075e58ffff292:   movabs $0x75e5480b85a8,%rsi         ;   {metadata(method data for {method} {0x0000000017495e78} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x000075e58ffff29c:   addq   $0x1,0x108(%rsi)
+  0x000075e58ffff2a4:   mov    %rdx,%rsi                    ;*invokestatic findBootstrapClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@10 (line 1244)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+  0x000075e58ffff2a7:   call   0x000075e5974adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic findBootstrapClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@10 (line 1244)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {static_call}
+  0x000075e58ffff2ac:   nopl   0x10002a4(%rax,%rax,1)       ;*invokestatic findBootstrapClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@10 (line 1244)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {post_call_nop}
+  0x000075e58ffff2b4:   mov    %rax,%rsi                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@4 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+  0x000075e58ffff2b7:   mov    %rsi,%rax
+  0x000075e58ffff2ba:   add    $0x50,%rsp
+  0x000075e58ffff2be:   pop    %rbp
+  0x000075e58ffff2bf:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000075e58ffff2c3:   ja     0x000075e58ffff32d
+  0x000075e58ffff2c9:   ret    
+  0x000075e58ffff2ca:   movabs $0x172193f0,%r10             ;   {metadata({method} {0x00000000172193f0} &apos;loadClassOrNull&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/ClassLoaders$BootClassLoader&apos;)}
+  0x000075e58ffff2d4:   mov    %r10,0x8(%rsp)
+  0x000075e58ffff2d9:   movq   $0xffffffffffffffff,(%rsp)
+  0x000075e58ffff2e1:   call   0x000075e597583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@-1 (line 138)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000075e58ffff2e6:   jmp    0x000075e58ffff162
+  0x000075e58ffff2eb:   movabs $0x17183818,%r10             ;   {metadata({method} {0x0000000017183818} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075e58ffff2f5:   mov    %r10,0x8(%rsp)
+  0x000075e58ffff2fa:   movq   $0xffffffffffffffff,(%rsp)
+  0x000075e58ffff302:   call   0x000075e597583460           ; ImmutableOopMap {rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@-1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000075e58ffff307:   jmp    0x000075e58ffff1f3
+  0x000075e58ffff30c:   movabs $0x17495e78,%r10             ;   {metadata({method} {0x0000000017495e78} &apos;findBootstrapClassOrNull&apos; &apos;(Ljava/lang/String;)Ljava/lang/Class;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x000075e58ffff316:   mov    %r10,0x8(%rsp)
+  0x000075e58ffff31b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000075e58ffff323:   call   0x000075e597583460           ; ImmutableOopMap {rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ClassLoader::findBootstrapClassOrNull@-1 (line 1242)
+                                                            ; - java.lang.System$1::findBootstrapClassOrNull@1 (line 2057)
+                                                            ; - jdk.internal.loader.ClassLoaders$BootClassLoader::loadClassOrNull@4 (line 138)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000075e58ffff328:   jmp    0x000075e58ffff22c
+  0x000075e58ffff32d:   movabs $0x75e58ffff2bf,%r10         ;   {internal_word}
+  0x000075e58ffff337:   mov    %r10,0x510(%r15)
+  0x000075e58ffff33e:   jmp    0x000075e5974afb60           ;   {runtime_call SafepointBlob}
+  0x000075e58ffff343:   mov    0x5c0(%r15),%rax
+  0x000075e58ffff34a:   movq   $0x0,0x5c0(%r15)
+  0x000075e58ffff355:   movq   $0x0,0x5c8(%r15)
+  0x000075e58ffff360:   add    $0x50,%rsp
+  0x000075e58ffff364:   pop    %rbp
+  0x000075e58ffff365:   jmp    0x000075e59757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000075e58ffff36a:   hlt    
+  0x000075e58ffff36b:   hlt    
+  0x000075e58ffff36c:   hlt    
+  0x000075e58ffff36d:   hlt    
+  0x000075e58ffff36e:   hlt    
+  0x000075e58ffff36f:   hlt    
+[Stub Code]
+  0x000075e58ffff370:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000075e58ffff37a:   jmp    0x000075e58ffff37a           ;   {runtime_call nmethod}
+  0x000075e58ffff37f:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000075e58ffff389:   jmp    0x000075e58ffff389           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000075e58ffff38e:   call   0x000075e59757f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000075e58ffff393:   movabs $0x75e5ae33aec4,%rdi         ;   {external_word}
+  0x000075e58ffff39d:   and    $0xfffffffffffffff0,%rsp
+  0x000075e58ffff3a1:   call   0x000075e5add91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000075e58ffff3a6:   hlt    
+  0x000075e58ffff3a7:   call   0x000075e5974afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000075e58ffff3ac:   jmp    0x000075e58ffff3a7
+  0x000075e58ffff3ae:   hlt    
+  0x000075e58ffff3af:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

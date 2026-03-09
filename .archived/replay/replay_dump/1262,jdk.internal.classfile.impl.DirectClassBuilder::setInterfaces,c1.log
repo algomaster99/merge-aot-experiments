@@ -1,0 +1,100 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 25876 1262       1       jdk.internal.classfile.impl.DirectClassBuilder::setInterfaces (6 bytes)
+ total in heap  [0x000077b45fbd2688,0x000077b45fbd2880] = 504
+ main code      [0x000077b45fbd2780,0x000077b45fbd2860] = 224
+ stub code      [0x000077b45fbd2860,0x000077b45fbd2880] = 32
+ mutable data [0x000077b3dc05bfd0,0x000077b3dc05bff8] = 40
+ relocation     [0x000077b3dc05bfd0,0x000077b3dc05bff0] = 32
+ metadata       [0x000077b3dc05bff0,0x000077b3dc05bff8] = 8
+ immutable data [0x000077b3dc053e60,0x000077b3dc053ebc] = 92
+ dependencies   [0x000077b3dc053e60,0x000077b3dc053e68] = 8
+ scopes pcs     [0x000077b3dc053e68,0x000077b3dc053ea8] = 64
+ scopes data    [0x000077b3dc053ea8,0x000077b3dc053eb8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbd2780:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbd278b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbd278f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046358058} &apos;setInterfaces&apos; &apos;(Ljava/util/List;)V&apos; in &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/DirectClassBuilder&apos;
+  # parm0:    rdx:rdx   = &apos;java/util/List&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbd2792:   mov    0x8(%rsi),%r10d
+  0x000077b45fbd2796:   cmp    0x8(%rax),%r10d
+  0x000077b45fbd279a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbd27a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbd27a7:   push   %rbp
+  0x000077b45fbd27a8:   sub    $0x20,%rsp
+  0x000077b45fbd27ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbd27b4:   je     0x000077b45fbd27bb
+  0x000077b45fbd27b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectClassBuilder::setInterfaces@0 (line 155)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbd27bb:   movsbl 0x48(%r15),%edi
+  0x000077b45fbd27c0:   test   %edi,%edi
+  0x000077b45fbd27c2:   jne    0x000077b45fbd2807
+  0x000077b45fbd27c8:   mov    %rdx,%r10
+  0x000077b45fbd27cb:   shr    $0x3,%r10
+  0x000077b45fbd27cf:   mov    %r10d,0x2c(%rsi)
+  0x000077b45fbd27d3:   mov    %rsi,%rbx
+  0x000077b45fbd27d6:   xor    %rdx,%rbx
+  0x000077b45fbd27d9:   shr    $0x17,%rbx
+  0x000077b45fbd27dd:   je     0x000077b45fbd27f7
+  0x000077b45fbd27df:   test   %rdx,%rdx
+  0x000077b45fbd27e2:   je     0x000077b45fbd27f7
+  0x000077b45fbd27e4:   mov    %rsi,%rbx
+  0x000077b45fbd27e7:   shr    $0x9,%rbx
+  0x000077b45fbd27eb:   add    0x50(%r15),%rbx
+  0x000077b45fbd27ef:   cmpb   $0xff,(%rbx)
+  0x000077b45fbd27f2:   jne    0x000077b45fbd27f7
+  0x000077b45fbd27f4:   movb   $0x0,(%rbx)                  ;*putfield interfaceEntries {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectClassBuilder::setInterfaces@2 (line 155)
+  0x000077b45fbd27f7:   add    $0x20,%rsp
+  0x000077b45fbd27fb:   pop    %rbp
+  0x000077b45fbd27fc:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbd2800:   ja     0x000077b45fbd281e
+  0x000077b45fbd2806:   ret    
+  0x000077b45fbd2807:   mov    0x2c(%rsi),%edi
+  0x000077b45fbd280a:   shl    $0x3,%rdi
+  0x000077b45fbd280e:   test   %rdi,%rdi
+  0x000077b45fbd2811:   je     0x000077b45fbd27c8
+  0x000077b45fbd2813:   mov    %rdi,(%rsp)
+  0x000077b45fbd2817:   call   0x000077b45f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x000077b45fbd281c:   jmp    0x000077b45fbd27c8
+  0x000077b45fbd281e:   movabs $0x77b45fbd27fc,%r10         ;   {internal_word}
+  0x000077b45fbd2828:   mov    %r10,0x510(%r15)
+  0x000077b45fbd282f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbd2834:   mov    0x5c0(%r15),%rax
+  0x000077b45fbd283b:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbd2846:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbd2851:   add    $0x20,%rsp
+  0x000077b45fbd2855:   pop    %rbp
+  0x000077b45fbd2856:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbd285b:   hlt    
+  0x000077b45fbd285c:   hlt    
+  0x000077b45fbd285d:   hlt    
+  0x000077b45fbd285e:   hlt    
+  0x000077b45fbd285f:   hlt    
+[Exception Handler]
+  0x000077b45fbd2860:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbd2865:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbd286f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbd2873:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbd2878:   hlt    
+  0x000077b45fbd2879:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbd287e:   jmp    0x000077b45fbd2879
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,90 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 23030 1181       3       java.lang.invoke.MemberName::flagsMods (45 bytes)
+ total in heap  [0x000077b4580cca88,0x000077b4580ccc70] = 488
+ main code      [0x000077b4580ccb80,0x000077b4580ccc50] = 208
+ stub code      [0x000077b4580ccc50,0x000077b4580ccc70] = 32
+ mutable data [0x000077b3e803b840,0x000077b3e803b870] = 48
+ relocation     [0x000077b3e803b840,0x000077b3e803b868] = 40
+ metadata       [0x000077b3e803b868,0x000077b3e803b870] = 8
+ immutable data [0x000077b3e803b7b0,0x000077b3e803b82c] = 124
+ dependencies   [0x000077b3e803b7b0,0x000077b3e803b7b8] = 8
+ scopes pcs     [0x000077b3e803b7b8,0x000077b3e803b808] = 80
+ scopes data    [0x000077b3e803b808,0x000077b3e803b828] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046205ba0} &apos;flagsMods&apos; &apos;(IIB)I&apos; in &apos;java/lang/invoke/MemberName&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  # parm2:    rcx       = byte
+  #           [sp+0x40]  (sp of caller)
+  0x000077b4580ccb80:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580ccb87:   push   %rbp
+  0x000077b4580ccb88:   sub    $0x30,%rsp
+  0x000077b4580ccb8c:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580ccb94:   je     0x000077b4580ccb9b
+  0x000077b4580ccb96:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580ccb9b:   movabs $0x77b41461f590,%rax         ;   {metadata(method data for {method} {0x0000000046205ba0} &apos;flagsMods&apos; &apos;(IIB)I&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b4580ccba5:   mov    0x90(%rax),%edi
+  0x000077b4580ccbab:   add    $0x2,%edi
+  0x000077b4580ccbae:   mov    %edi,0x90(%rax)
+  0x000077b4580ccbb4:   and    $0x7fe,%edi
+  0x000077b4580ccbba:   test   %edi,%edi
+  0x000077b4580ccbbc:   je     0x000077b4580ccbee           ;*getstatic $assertionsDisabled {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::flagsMods@0 (line 517)
+  0x000077b4580ccbc2:   movabs $0x77b41461f590,%rax         ;   {metadata(method data for {method} {0x0000000046205ba0} &apos;flagsMods&apos; &apos;(IIB)I&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b4580ccbcc:   incl   0xd8(%rax)                   ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::flagsMods@3 (line 517)
+  0x000077b4580ccbd2:   or     %rdx,%rsi
+  0x000077b4580ccbd5:   shl    $0x18,%ecx
+  0x000077b4580ccbd8:   or     %rcx,%rsi
+  0x000077b4580ccbdb:   mov    %rsi,%rax
+  0x000077b4580ccbde:   add    $0x30,%rsp
+  0x000077b4580ccbe2:   pop    %rbp
+  0x000077b4580ccbe3:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580ccbe7:   ja     0x000077b4580ccc0c
+  0x000077b4580ccbed:   ret    
+  0x000077b4580ccbee:   movabs $0x46205ba0,%r10             ;   {metadata({method} {0x0000000046205ba0} &apos;flagsMods&apos; &apos;(IIB)I&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b4580ccbf8:   mov    %r10,0x8(%rsp)
+  0x000077b4580ccbfd:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ccc05:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.MemberName::flagsMods@-1 (line 517)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ccc0a:   jmp    0x000077b4580ccbc2
+  0x000077b4580ccc0c:   movabs $0x77b4580ccbe3,%r10         ;   {internal_word}
+  0x000077b4580ccc16:   mov    %r10,0x510(%r15)
+  0x000077b4580ccc1d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580ccc22:   mov    0x5c0(%r15),%rax
+  0x000077b4580ccc29:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580ccc34:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580ccc3f:   add    $0x30,%rsp
+  0x000077b4580ccc43:   pop    %rbp
+  0x000077b4580ccc44:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580ccc49:   hlt    
+  0x000077b4580ccc4a:   hlt    
+  0x000077b4580ccc4b:   hlt    
+  0x000077b4580ccc4c:   hlt    
+  0x000077b4580ccc4d:   hlt    
+  0x000077b4580ccc4e:   hlt    
+  0x000077b4580ccc4f:   hlt    
+[Exception Handler]
+  0x000077b4580ccc50:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580ccc55:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580ccc5f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580ccc63:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580ccc68:   hlt    
+  0x000077b4580ccc69:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580ccc6e:   jmp    0x000077b4580ccc69
+--------------------------------------------------------------------------------
+[/Disassembly]

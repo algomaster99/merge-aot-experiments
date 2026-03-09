@@ -1,0 +1,66 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 656   52       4       java.lang.Character::charCount (12 bytes)
+ total in heap  [0x000070cd6bba9908,0x000070cd6bba9a78] = 368
+ main code      [0x000070cd6bba9a00,0x000070cd6bba9a70] = 112
+ stub code      [0x000070cd6bba9a70,0x000070cd6bba9a78] = 8
+ mutable data [0x000070cd080a1f90,0x000070cd080a1fb0] = 32
+ relocation     [0x000070cd080a1f90,0x000070cd080a1fa8] = 24
+ metadata       [0x000070cd080a1fa8,0x000070cd080a1fb0] = 8
+ immutable data [0x000070cd08000ba0,0x000070cd08000c2c] = 140
+ dependencies   [0x000070cd08000ba0,0x000070cd08000ba8] = 8
+ scopes pcs     [0x000070cd08000ba8,0x000070cd08000c08] = 96
+ scopes data    [0x000070cd08000c08,0x000070cd08000c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000008519c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;
+  # parm0:    rsi       = int
+  #           [sp+0x20]  (sp of caller)
+  0x000070cd6bba9a00:   mov    %eax,-0x14000(%rsp)
+  0x000070cd6bba9a07:   push   %rbp
+  0x000070cd6bba9a08:   sub    $0x10,%rsp
+  0x000070cd6bba9a0c:   cmpl   $0x1,0x20(%r15)
+  0x000070cd6bba9a14:   jne    0x000070cd6bba9a62           ;*synchronization entry
+                                                            ; - java.lang.Character::charCount@-1 (line 9697)
+  0x000070cd6bba9a1a:   cmp    $0x10000,%esi
+  0x000070cd6bba9a20:   jge    0x000070cd6bba9a37           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@3 (line 9697)
+  0x000070cd6bba9a22:   mov    $0x1,%eax
+  0x000070cd6bba9a27:   add    $0x10,%rsp
+  0x000070cd6bba9a2b:   pop    %rbp
+  0x000070cd6bba9a2c:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000070cd6bba9a30:   ja     0x000070cd6bba9a4c
+  0x000070cd6bba9a36:   ret    
+  0x000070cd6bba9a37:   mov    %esi,%ebp
+  0x000070cd6bba9a39:   mov    $0xffffff45,%esi
+  0x000070cd6bba9a3e:   nop
+  0x000070cd6bba9a3f:   call   0x000070cd6b585ce0           ; ImmutableOopMap {}
+                                                            ;*if_icmplt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.Character::charCount@3 (line 9697)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000070cd6bba9a44:   nopl   0x13c(%rax,%rax,1)           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@3 (line 9697)
+                                                            ;   {post_call_nop}
+  0x000070cd6bba9a4c:   movabs $0x70cd6bba9a2c,%r10         ;   {internal_word}
+  0x000070cd6bba9a56:   mov    %r10,0x510(%r15)
+  0x000070cd6bba9a5d:   jmp    0x000070cd6b4afb60           ;   {runtime_call SafepointBlob}
+  0x000070cd6bba9a62:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000070cd6bba9a67:   jmp    0x000070cd6bba9a1a
+  0x000070cd6bba9a6c:   hlt    
+  0x000070cd6bba9a6d:   hlt    
+  0x000070cd6bba9a6e:   hlt    
+  0x000070cd6bba9a6f:   hlt    
+[Stub Code]
+  0x000070cd6bba9a70:   call   0x000070cd6b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000070cd6bba9a75:   jmp    0x000070cd6bba9a70
+  0x000070cd6bba9a77:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

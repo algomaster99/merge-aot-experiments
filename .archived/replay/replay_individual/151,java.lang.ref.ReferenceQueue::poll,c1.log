@@ -1,0 +1,392 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 258    3   !   3       java.lang.ref.ReferenceQueue::poll (44 bytes)
+ total in heap  [0x0000779017fff008,0x0000779017fff720] = 1816
+ main code      [0x0000779017fff100,0x0000779017fff6d0] = 1488
+ stub code      [0x0000779017fff6d0,0x0000779017fff720] = 80
+ mutable data [0x0000778fb8015300,0x0000778fb80153d8] = 216
+ relocation     [0x0000778fb8015300,0x0000778fb80153b8] = 184
+ metadata       [0x0000778fb80153b8,0x0000778fb80153d8] = 32
+ immutable data [0x0000778fb8014f00,0x0000778fb80152f4] = 1012
+ dependencies   [0x0000778fb8014f00,0x0000778fb8014f10] = 16
+ nul chk table  [0x0000778fb8014f10,0x0000778fb8014f20] = 16
+ handler table  [0x0000778fb8014f20,0x0000778fb8014f68] = 72
+ scopes pcs     [0x0000778fb8014f68,0x0000778fb8015178] = 528
+ scopes data    [0x0000778fb8015178,0x0000778fb80152f0] = 376
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000779017fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000779017fff10b:   data16 data16 xchg %ax,%ax
+  0x0000779017fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;
+  #           [sp+0x80]  (sp of caller)
+  0x0000779017fff112:   mov    0x8(%rsi),%r10d
+  0x0000779017fff116:   cmp    0x8(%rax),%r10d
+  0x0000779017fff11a:   jne    0x000077901f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000779017fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000779017fff127:   push   %rbp
+  0x0000779017fff128:   sub    $0x70,%rsp
+  0x0000779017fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000779017fff134:   je     0x0000779017fff13b
+  0x0000779017fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000779017fff13b:   movabs $0x778fd003ccc8,%rdi         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff145:   mov    0x90(%rdi),%ebx
+  0x0000779017fff14b:   add    $0x2,%ebx
+  0x0000779017fff14e:   mov    %ebx,0x90(%rdi)
+  0x0000779017fff154:   and    $0x7fe,%ebx
+  0x0000779017fff15a:   test   %ebx,%ebx
+  0x0000779017fff15c:   je     0x0000779017fff556           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@0 (line 157)
+  0x0000779017fff162:   mov    0xc(%rsi),%edi
+  0x0000779017fff165:   shl    $0x3,%rdi                    ;*getfield head {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@1 (line 157)
+  0x0000779017fff169:   test   %rdi,%rdi
+  0x0000779017fff16c:   movabs $0x778fd003ccc8,%rdi         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff176:   mov    $0xe8,%ebx
+  0x0000779017fff17b:   je     0x0000779017fff182
+  0x0000779017fff17d:   mov    $0xd8,%ebx
+  0x0000779017fff182:   mov    (%rdi,%rbx,1),%rax
+  0x0000779017fff186:   lea    0x1(%rax),%rax
+  0x0000779017fff18a:   mov    %rax,(%rdi,%rbx,1)
+  0x0000779017fff18e:   je     0x0000779017fff3e1           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@4 (line 157)
+  0x0000779017fff194:   movabs $0x778fd003ccc8,%rdi         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff19e:   addq   $0x1,0xf8(%rdi)
+  0x0000779017fff1a6:   movabs $0x778fd003ce80,%rdi         ;   {metadata(method data for {method} {0x000000004e280e40} &apos;pinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff1b0:   mov    0x90(%rdi),%ebx
+  0x0000779017fff1b6:   add    $0x2,%ebx
+  0x0000779017fff1b9:   mov    %ebx,0x90(%rdi)
+  0x0000779017fff1bf:   and    $0x1ffffe,%ebx
+  0x0000779017fff1c5:   test   %ebx,%ebx
+  0x0000779017fff1c7:   je     0x0000779017fff577
+  0x0000779017fff1cd:   movabs $0x778fd003ce80,%rdi         ;   {metadata(method data for {method} {0x000000004e280e40} &apos;pinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff1d7:   addq   $0x1,0xd8(%rdi)
+  0x0000779017fff1df:   movabs $0x778fd003cfd0,%rdi         ;   {metadata(method data for {method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff1e9:   mov    0x90(%rdi),%ebx
+  0x0000779017fff1ef:   add    $0x2,%ebx
+  0x0000779017fff1f2:   mov    %ebx,0x90(%rdi)
+  0x0000779017fff1f8:   and    $0x1ffffe,%ebx
+  0x0000779017fff1fe:   test   %ebx,%ebx
+  0x0000779017fff200:   je     0x0000779017fff598
+  0x0000779017fff206:   movabs $0x778fd003ce80,%rdi         ;   {metadata(method data for {method} {0x000000004e280e40} &apos;pinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff210:   incl   0xf8(%rdi)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::pinIfSupported@3 (line 57)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@9 (line 162)
+  0x0000779017fff216:   mov    %rsi,0x38(%rsp)
+  0x0000779017fff21b:   movabs $0x778fd003ce80,%rdi         ;   {metadata(method data for {method} {0x000000004e280e40} &apos;pinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff225:   addq   $0x1,0x108(%rdi)
+  0x0000779017fff22d:   xchg   %ax,%ax
+  0x0000779017fff22f:   call   0x000077901f4adfe0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokestatic pin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::pinIfSupported@6 (line 58)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@9 (line 162)
+                                                            ;   {static_call}
+  0x0000779017fff234:   nopl   0x22c(%rax,%rax,1)           ;*invokestatic pin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::pinIfSupported@6 (line 58)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@9 (line 162)
+                                                            ;   {post_call_nop}
+  0x0000779017fff23c:   mov    0x38(%rsp),%rsi
+  0x0000779017fff241:   mov    0x18(%rsi),%edi
+  0x0000779017fff244:   shl    $0x3,%rdi                    ;*getfield lock {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@13 (line 164)
+  0x0000779017fff248:   lea    0x58(%rsp),%rbx
+  0x0000779017fff24d:   mov    %rdi,0x8(%rbx)
+  0x0000779017fff251:   mov    (%rdi),%rax                  ; implicit exception: dispatches to 0x0000779017fff5b9
+  0x0000779017fff254:   mov    0x7c0(%r15),%edx
+  0x0000779017fff25b:   cmp    $0x810,%edx
+  0x0000779017fff261:   jge    0x0000779017fff5be
+  0x0000779017fff267:   cmp    -0x8(%r15,%rdx,1),%rdi
+  0x0000779017fff26c:   je     0x0000779017fff297
+  0x0000779017fff272:   test   $0x2,%al
+  0x0000779017fff274:   jne    0x0000779017fff5be
+  0x0000779017fff27a:   mov    %rax,%rdx
+  0x0000779017fff27d:   and    $0xfffffffffffffffe,%rdx
+  0x0000779017fff281:   or     $0x1,%rax
+  0x0000779017fff285:   lock cmpxchg %rdx,(%rdi)
+  0x0000779017fff28a:   jne    0x0000779017fff5be
+  0x0000779017fff290:   mov    0x7c0(%r15),%edx
+  0x0000779017fff297:   mov    %rdi,(%r15,%rdx,1)
+  0x0000779017fff29b:   add    $0x8,%edx
+  0x0000779017fff29e:   mov    %edx,0x7c0(%r15)             ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@18 (line 164)
+  0x0000779017fff2a5:   mov    %rdi,0x40(%rsp)
+  0x0000779017fff2aa:   mov    %rsi,%rbx
+  0x0000779017fff2ad:   movabs $0x778fd003ccc8,%rax         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff2b7:   addq   $0x1,0x108(%rax)
+  0x0000779017fff2bf:   call   0x000077901f4ad9e0           ; ImmutableOopMap {[64]=Oop [96]=Oop }
+                                                            ;*invokevirtual poll0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@20 (line 165)
+                                                            ;   {optimized virtual_call}
+  0x0000779017fff2c4:   nopl   0x10002bc(%rax,%rax,1)       ;*invokevirtual poll0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@20 (line 165)
+                                                            ;   {post_call_nop}
+  0x0000779017fff2cc:   mov    %rax,0x48(%rsp)
+  0x0000779017fff2d1:   lea    0x58(%rsp),%rax
+  0x0000779017fff2d6:   mov    0x8(%rax),%rbx
+  0x0000779017fff2da:   mov    0x7c0(%r15),%edi
+  0x0000779017fff2e1:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x0000779017fff2e6:   jne    0x0000779017fff5d1
+  0x0000779017fff2ec:   subl   $0x8,0x7c0(%r15)
+  0x0000779017fff2f4:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x0000779017fff2f9:   je     0x0000779017fff329
+  0x0000779017fff2ff:   mov    (%rbx),%rax
+  0x0000779017fff302:   test   $0x2,%al
+  0x0000779017fff304:   jne    0x0000779017fff31c
+  0x0000779017fff30a:   mov    %rax,%rdi
+  0x0000779017fff30d:   or     $0x1,%rdi
+  0x0000779017fff311:   lock cmpxchg %rdi,(%rbx)
+  0x0000779017fff316:   je     0x0000779017fff329
+  0x0000779017fff31c:   addl   $0x8,0x7c0(%r15)
+  0x0000779017fff324:   jmp    0x0000779017fff5d1           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@25 (line 165)
+  0x0000779017fff329:   movabs $0x778fd003ccc8,%rdi         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff333:   addq   $0x1,0x138(%rdi)
+  0x0000779017fff33b:   movabs $0x778fd003d290,%rdi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff345:   mov    0x90(%rdi),%ebx
+  0x0000779017fff34b:   add    $0x2,%ebx
+  0x0000779017fff34e:   mov    %ebx,0x90(%rdi)
+  0x0000779017fff354:   and    $0x1ffffe,%ebx
+  0x0000779017fff35a:   test   %ebx,%ebx
+  0x0000779017fff35c:   je     0x0000779017fff5e4
+  0x0000779017fff362:   movabs $0x778fd003d290,%rdi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff36c:   addq   $0x1,0xd8(%rdi)
+  0x0000779017fff374:   movabs $0x778fd003cfd0,%rdi         ;   {metadata(method data for {method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff37e:   mov    0x90(%rdi),%ebx
+  0x0000779017fff384:   add    $0x2,%ebx
+  0x0000779017fff387:   mov    %ebx,0x90(%rdi)
+  0x0000779017fff38d:   and    $0x1ffffe,%ebx
+  0x0000779017fff393:   test   %ebx,%ebx
+  0x0000779017fff395:   je     0x0000779017fff605
+  0x0000779017fff39b:   movabs $0x778fd003d290,%rdi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff3a5:   incl   0xf8(%rdi)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@3 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@26 (line 168)
+  0x0000779017fff3ab:   movabs $0x778fd003d290,%rsi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff3b5:   addq   $0x1,0x108(%rsi)
+  0x0000779017fff3bd:   xchg   %ax,%ax
+  0x0000779017fff3bf:   call   0x000077901f4adfe0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokestatic unpin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@6 (line 67)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@26 (line 168)
+                                                            ;   {static_call}
+  0x0000779017fff3c4:   nopl   0x20003bc(%rax,%rax,1)       ;*invokestatic unpin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@6 (line 67)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@26 (line 168)
+                                                            ;   {post_call_nop}
+  0x0000779017fff3cc:   mov    0x48(%rsp),%rax
+  0x0000779017fff3d1:   add    $0x70,%rsp
+  0x0000779017fff3d5:   pop    %rbp
+  0x0000779017fff3d6:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000779017fff3da:   ja     0x0000779017fff626
+  0x0000779017fff3e0:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@30 (line 165)
+  0x0000779017fff3e1:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x0000779017fff3eb:   add    $0x70,%rsp
+  0x0000779017fff3ef:   pop    %rbp
+  0x0000779017fff3f0:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000779017fff3f4:   ja     0x0000779017fff63c
+  0x0000779017fff3fa:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@8 (line 158)
+  0x0000779017fff3fb:   mov    0x5c0(%r15),%rax
+  0x0000779017fff402:   xor    %r10,%r10
+  0x0000779017fff405:   mov    %r10,0x5c0(%r15)
+  0x0000779017fff40c:   xor    %r10,%r10
+  0x0000779017fff40f:   mov    %r10,0x5c8(%r15)
+  0x0000779017fff416:   mov    %rax,%rdx
+  0x0000779017fff419:   lea    0x58(%rsp),%rax
+  0x0000779017fff41e:   mov    0x8(%rax),%rdi
+  0x0000779017fff422:   mov    0x7c0(%r15),%esi
+  0x0000779017fff429:   cmp    -0x8(%r15,%rsi,1),%rdi
+  0x0000779017fff42e:   jne    0x0000779017fff652
+  0x0000779017fff434:   subl   $0x8,0x7c0(%r15)
+  0x0000779017fff43c:   cmp    -0x10(%r15,%rsi,1),%rdi
+  0x0000779017fff441:   je     0x0000779017fff471
+  0x0000779017fff447:   mov    (%rdi),%rax
+  0x0000779017fff44a:   test   $0x2,%al
+  0x0000779017fff44c:   jne    0x0000779017fff464
+  0x0000779017fff452:   mov    %rax,%rsi
+  0x0000779017fff455:   or     $0x1,%rsi
+  0x0000779017fff459:   lock cmpxchg %rsi,(%rdi)
+  0x0000779017fff45e:   je     0x0000779017fff471
+  0x0000779017fff464:   addl   $0x8,0x7c0(%r15)
+  0x0000779017fff46c:   jmp    0x0000779017fff652           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@33 (line 166)
+  0x0000779017fff471:   mov    %rdx,%rax                    ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.ref.ReferenceQueue::poll@35 (line 166)
+  0x0000779017fff474:   movabs $0x779017fff474,%rdx         ;   {section_word}
+  0x0000779017fff47e:   call   0x000077901f57e2e0           ;   {runtime_call handle_exception_nofpu_blob (C1 runtime)}
+  0x0000779017fff483:   nop                                 ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@35 (line 166)
+  0x0000779017fff484:   mov    0x5c0(%r15),%rax
+  0x0000779017fff48b:   xor    %r10,%r10
+  0x0000779017fff48e:   mov    %r10,0x5c0(%r15)
+  0x0000779017fff495:   xor    %r10,%r10
+  0x0000779017fff498:   mov    %r10,0x5c8(%r15)
+  0x0000779017fff49f:   movabs $0x778fd003ccc8,%rsi         ;   {metadata(method data for {method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff4a9:   addq   $0x1,0x148(%rsi)
+  0x0000779017fff4b1:   movabs $0x778fd003d290,%rsi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff4bb:   mov    0x90(%rsi),%edi
+  0x0000779017fff4c1:   add    $0x2,%edi
+  0x0000779017fff4c4:   mov    %edi,0x90(%rsi)
+  0x0000779017fff4ca:   and    $0x1ffffe,%edi
+  0x0000779017fff4d0:   test   %edi,%edi
+  0x0000779017fff4d2:   je     0x0000779017fff665
+  0x0000779017fff4d8:   movabs $0x778fd003d290,%rsi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff4e2:   addq   $0x1,0xd8(%rsi)
+  0x0000779017fff4ea:   movabs $0x778fd003cfd0,%rsi         ;   {metadata(method data for {method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff4f4:   mov    0x90(%rsi),%edi
+  0x0000779017fff4fa:   add    $0x2,%edi
+  0x0000779017fff4fd:   mov    %edi,0x90(%rsi)
+  0x0000779017fff503:   and    $0x1ffffe,%edi
+  0x0000779017fff509:   test   %edi,%edi
+  0x0000779017fff50b:   je     0x0000779017fff686
+  0x0000779017fff511:   movabs $0x778fd003d290,%rsi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff51b:   incl   0xf8(%rsi)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@3 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@38 (line 168)
+  0x0000779017fff521:   mov    %rax,0x50(%rsp)
+  0x0000779017fff526:   movabs $0x778fd003d290,%rsi         ;   {metadata(method data for {method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff530:   addq   $0x1,0x108(%rsi)
+  0x0000779017fff538:   nopl   0x0(%rax)
+  0x0000779017fff53f:   call   0x000077901f4adfe0           ; ImmutableOopMap {[80]=Oop }
+                                                            ;*invokestatic unpin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@6 (line 67)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@38 (line 168)
+                                                            ;   {static_call}
+  0x0000779017fff544:   nopl   0x400053c(%rax,%rax,1)       ;*invokestatic unpin {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@6 (line 67)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@38 (line 168)
+                                                            ;   {post_call_nop}
+  0x0000779017fff54c:   mov    0x50(%rsp),%rax
+  0x0000779017fff551:   jmp    0x0000779017fff6c4
+  0x0000779017fff556:   movabs $0x4e1aa708,%r10             ;   {metadata({method} {0x000000004e1aa708} &apos;poll&apos; &apos;()Ljava/lang/ref/Reference;&apos; in &apos;java/lang/ref/ReferenceQueue&apos;)}
+  0x0000779017fff560:   mov    %r10,0x8(%rsp)
+  0x0000779017fff565:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff56d:   call   0x000077901f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.ReferenceQueue::poll@-1 (line 157)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff572:   jmp    0x0000779017fff162
+  0x0000779017fff577:   movabs $0x4e280e40,%r10             ;   {metadata({method} {0x000000004e280e40} &apos;pinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff581:   mov    %r10,0x8(%rsp)
+  0x0000779017fff586:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff58e:   call   0x000077901f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::pinIfSupported@-1 (line 57)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@9 (line 162)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff593:   jmp    0x0000779017fff1cd
+  0x0000779017fff598:   movabs $0x4e280d90,%r10             ;   {metadata({method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff5a2:   mov    %r10,0x8(%rsp)
+  0x0000779017fff5a7:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff5af:   call   0x000077901f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::isSupported@-1 (line 40)
+                                                            ; - jdk.internal.vm.ContinuationSupport::pinIfSupported@0 (line 57)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@9 (line 162)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff5b4:   jmp    0x0000779017fff206
+  0x0000779017fff5b9:   call   0x000077901f57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@18 (line 164)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000779017fff5be:   mov    %rdi,0x8(%rsp)
+  0x0000779017fff5c3:   mov    %rbx,(%rsp)
+  0x0000779017fff5c7:   call   0x000077901f5807e0           ; ImmutableOopMap {rsi=Oop rdi=Oop [96]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.ReferenceQueue::poll@18 (line 164)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x0000779017fff5cc:   jmp    0x0000779017fff2a5
+  0x0000779017fff5d1:   lea    0x58(%rsp),%rax
+  0x0000779017fff5d6:   mov    %rax,(%rsp)
+  0x0000779017fff5da:   call   0x000077901f580de0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x0000779017fff5df:   jmp    0x0000779017fff329
+  0x0000779017fff5e4:   movabs $0x4e280e98,%r10             ;   {metadata({method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff5ee:   mov    %r10,0x8(%rsp)
+  0x0000779017fff5f3:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff5fb:   call   0x000077901f582fe0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@-1 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@26 (line 168)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff600:   jmp    0x0000779017fff362
+  0x0000779017fff605:   movabs $0x4e280d90,%r10             ;   {metadata({method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff60f:   mov    %r10,0x8(%rsp)
+  0x0000779017fff614:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff61c:   call   0x000077901f582fe0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::isSupported@-1 (line 40)
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@0 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@26 (line 168)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff621:   jmp    0x0000779017fff39b
+  0x0000779017fff626:   movabs $0x779017fff3d6,%r10         ;   {internal_word}
+  0x0000779017fff630:   mov    %r10,0x510(%r15)
+  0x0000779017fff637:   jmp    0x000077901f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000779017fff63c:   movabs $0x779017fff3f0,%r10         ;   {internal_word}
+  0x0000779017fff646:   mov    %r10,0x510(%r15)
+  0x0000779017fff64d:   jmp    0x000077901f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000779017fff652:   lea    0x58(%rsp),%rax
+  0x0000779017fff657:   mov    %rax,(%rsp)
+  0x0000779017fff65b:   call   0x000077901f580de0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x0000779017fff660:   jmp    0x0000779017fff471
+  0x0000779017fff665:   movabs $0x4e280e98,%r10             ;   {metadata({method} {0x000000004e280e98} &apos;unpinIfSupported&apos; &apos;()V&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff66f:   mov    %r10,0x8(%rsp)
+  0x0000779017fff674:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff67c:   call   0x000077901f582fe0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@-1 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@38 (line 168)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff681:   jmp    0x0000779017fff4d8
+  0x0000779017fff686:   movabs $0x4e280d90,%r10             ;   {metadata({method} {0x000000004e280d90} &apos;isSupported&apos; &apos;()Z&apos; in &apos;jdk/internal/vm/ContinuationSupport&apos;)}
+  0x0000779017fff690:   mov    %r10,0x8(%rsp)
+  0x0000779017fff695:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000779017fff69d:   call   0x000077901f582fe0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.vm.ContinuationSupport::isSupported@-1 (line 40)
+                                                            ; - jdk.internal.vm.ContinuationSupport::unpinIfSupported@0 (line 66)
+                                                            ; - java.lang.ref.ReferenceQueue::poll@38 (line 168)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000779017fff6a2:   jmp    0x0000779017fff511
+  0x0000779017fff6a7:   mov    0x5c0(%r15),%rax
+  0x0000779017fff6ae:   movq   $0x0,0x5c0(%r15)
+  0x0000779017fff6b9:   movq   $0x0,0x5c8(%r15)
+  0x0000779017fff6c4:   add    $0x70,%rsp
+  0x0000779017fff6c8:   pop    %rbp
+  0x0000779017fff6c9:   jmp    0x000077901f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000779017fff6ce:   hlt    
+  0x0000779017fff6cf:   hlt    
+[Stub Code]
+  0x0000779017fff6d0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000779017fff6da:   jmp    0x0000779017fff6da           ;   {runtime_call nmethod}
+  0x0000779017fff6df:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000779017fff6e9:   jmp    0x0000779017fff6e9           ;   {runtime_call nmethod}
+  0x0000779017fff6ee:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000779017fff6f8:   jmp    0x0000779017fff6f8           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000779017fff6fd:   call   0x000077901f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000779017fff702:   movabs $0x779036d3aec4,%rdi         ;   {external_word}
+  0x0000779017fff70c:   and    $0xfffffffffffffff0,%rsp
+  0x0000779017fff710:   call   0x0000779036791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000779017fff715:   hlt    
+  0x0000779017fff716:   call   0x000077901f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000779017fff71b:   jmp    0x0000779017fff716
+  0x0000779017fff71d:   hlt    
+  0x0000779017fff71e:   hlt    
+  0x0000779017fff71f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

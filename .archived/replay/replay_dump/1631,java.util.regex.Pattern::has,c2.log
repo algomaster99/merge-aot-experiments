@@ -1,0 +1,70 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 36749 1631       4       java.util.regex.Pattern::has (15 bytes)
+ total in heap  [0x000077b45fbe1708,0x000077b45fbe1880] = 376
+ main code      [0x000077b45fbe1800,0x000077b45fbe1878] = 120
+ stub code      [0x000077b45fbe1878,0x000077b45fbe1880] = 8
+ mutable data [0x000077b3cc000c40,0x000077b3cc000c60] = 32
+ relocation     [0x000077b3cc000c40,0x000077b3cc000c58] = 24
+ metadata       [0x000077b3cc000c58,0x000077b3cc000c60] = 8
+ immutable data [0x000077b3cc002150,0x000077b3cc0021f4] = 164
+ dependencies   [0x000077b3cc002150,0x000077b3cc002158] = 8
+ scopes pcs     [0x000077b3cc002158,0x000077b3cc0021c8] = 112
+ scopes data    [0x000077b3cc0021c8,0x000077b3cc0021f0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbe1800:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046227e98} &apos;has&apos; &apos;(I)Z&apos; in &apos;java/util/regex/Pattern&apos;
+  # this:     rsi:rsi   = &apos;java/util/regex/Pattern&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbe1802:   mov    0x8(%rsi),%r10d
+  0x000077b45fbe1806:   cmp    0x8(%rax),%r10d
+  0x000077b45fbe180a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbe1810:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbe1817:   push   %rbp
+  0x000077b45fbe1818:   sub    $0x10,%rsp
+  0x000077b45fbe181c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbe1824:   jne    0x000077b45fbe186e           ;*synchronization entry
+                                                            ; - java.util.regex.Pattern::has@-1 (line 2045)
+  0x000077b45fbe182a:   and    0x10(%rsi),%edx              ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern::has@5 (line 2045)
+  0x000077b45fbe182d:   jne    0x000077b45fbe1841           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern::has@6 (line 2045)
+  0x000077b45fbe182f:   xor    %eax,%eax
+  0x000077b45fbe1831:   add    $0x10,%rsp
+  0x000077b45fbe1835:   pop    %rbp
+  0x000077b45fbe1836:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbe183a:   ja     0x000077b45fbe1858
+  0x000077b45fbe1840:   ret    
+  0x000077b45fbe1841:   mov    $0xffffff45,%esi
+  0x000077b45fbe1846:   mov    %edx,%ebp
+  0x000077b45fbe1848:   data16 xchg %ax,%ax
+  0x000077b45fbe184b:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.regex.Pattern::has@6 (line 2045)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbe1850:   nopl   0x148(%rax,%rax,1)           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern::has@6 (line 2045)
+                                                            ;   {post_call_nop}
+  0x000077b45fbe1858:   movabs $0x77b45fbe1836,%r10         ;   {internal_word}
+  0x000077b45fbe1862:   mov    %r10,0x510(%r15)
+  0x000077b45fbe1869:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbe186e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbe1873:   jmp    0x000077b45fbe182a
+[Stub Code]
+  0x000077b45fbe1878:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbe187d:   jmp    0x000077b45fbe1878
+  0x000077b45fbe187f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

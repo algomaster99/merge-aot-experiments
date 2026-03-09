@@ -1,0 +1,101 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 4588  241       3       java.lang.Record::&lt;init&gt; (5 bytes)
+ total in heap  [0x000077b458029588,0x000077b4580297c8] = 576
+ main code      [0x000077b458029680,0x000077b4580297a8] = 296
+ stub code      [0x000077b4580297a8,0x000077b4580297c8] = 32
+ mutable data [0x000077b3ec01cd30,0x000077b3ec01cd78] = 72
+ relocation     [0x000077b3ec01cd30,0x000077b3ec01cd60] = 48
+ metadata       [0x000077b3ec01cd60,0x000077b3ec01cd78] = 24
+ immutable data [0x000077b3ec01df50,0x000077b3ec01dfcc] = 124
+ dependencies   [0x000077b3ec01df50,0x000077b3ec01df58] = 8
+ scopes pcs     [0x000077b3ec01df58,0x000077b3ec01dfa8] = 80
+ scopes data    [0x000077b3ec01dfa8,0x000077b3ec01dfc8] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458029680:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45802968b:   data16 data16 xchg %ax,%ax
+  0x000077b45802968f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461c3e08} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Record&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458029692:   mov    0x8(%rsi),%r10d
+  0x000077b458029696:   cmp    0x8(%rax),%r10d
+  0x000077b45802969a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580296a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580296a7:   push   %rbp
+  0x000077b4580296a8:   sub    $0x20,%rsp
+  0x000077b4580296ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580296b4:   je     0x000077b4580296bb
+  0x000077b4580296b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580296bb:   movabs $0x77b4140b8608,%rdi         ;   {metadata(method data for {method} {0x00000000461c3e08} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Record&apos;)}
+  0x000077b4580296c5:   mov    0x90(%rdi),%ebx
+  0x000077b4580296cb:   add    $0x2,%ebx
+  0x000077b4580296ce:   mov    %ebx,0x90(%rdi)
+  0x000077b4580296d4:   and    $0x7fe,%ebx
+  0x000077b4580296da:   test   %ebx,%ebx
+  0x000077b4580296dc:   je     0x000077b45802972e           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Record::&lt;init&gt;@0 (line 94)
+  0x000077b4580296e2:   mov    %rsi,%rdi
+  0x000077b4580296e5:   movabs $0x77b4140b8608,%rbx         ;   {metadata(method data for {method} {0x00000000461c3e08} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Record&apos;)}
+  0x000077b4580296ef:   addq   $0x1,0xd8(%rbx)
+  0x000077b4580296f7:   movabs $0x77b414010cd0,%rdi         ;   {metadata(method data for {method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b458029701:   mov    0x90(%rdi),%ebx
+  0x000077b458029707:   add    $0x2,%ebx
+  0x000077b45802970a:   mov    %ebx,0x90(%rdi)
+  0x000077b458029710:   and    $0x1ffffe,%ebx
+  0x000077b458029716:   test   %ebx,%ebx
+  0x000077b458029718:   je     0x000077b45802974c
+  0x000077b45802971e:   add    $0x20,%rsp
+  0x000077b458029722:   pop    %rbp
+  0x000077b458029723:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458029727:   ja     0x000077b45802976a
+  0x000077b45802972d:   ret    
+  0x000077b45802972e:   movabs $0x461c3e08,%r10             ;   {metadata({method} {0x00000000461c3e08} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Record&apos;)}
+  0x000077b458029738:   mov    %r10,0x8(%rsp)
+  0x000077b45802973d:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458029745:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Record::&lt;init&gt;@-1 (line 94)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45802974a:   jmp    0x000077b4580296e2
+  0x000077b45802974c:   movabs $0x464a6d78,%r10             ;   {metadata({method} {0x00000000464a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b458029756:   mov    %r10,0x8(%rsp)
+  0x000077b45802975b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458029763:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - java.lang.Record::&lt;init&gt;@1 (line 94)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458029768:   jmp    0x000077b45802971e
+  0x000077b45802976a:   movabs $0x77b458029723,%r10         ;   {internal_word}
+  0x000077b458029774:   mov    %r10,0x510(%r15)
+  0x000077b45802977b:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458029780:   mov    0x5c0(%r15),%rax
+  0x000077b458029787:   movq   $0x0,0x5c0(%r15)
+  0x000077b458029792:   movq   $0x0,0x5c8(%r15)
+  0x000077b45802979d:   add    $0x20,%rsp
+  0x000077b4580297a1:   pop    %rbp
+  0x000077b4580297a2:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580297a7:   hlt    
+[Exception Handler]
+  0x000077b4580297a8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580297ad:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580297b7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580297bb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580297c0:   hlt    
+  0x000077b4580297c1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580297c6:   jmp    0x000077b4580297c1
+--------------------------------------------------------------------------------
+[/Disassembly]

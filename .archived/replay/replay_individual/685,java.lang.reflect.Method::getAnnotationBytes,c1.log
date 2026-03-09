@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 389   29       1       java.lang.reflect.Method::getAnnotationBytes (5 bytes)
+ total in heap  [0x00007fb07bba5408,0x00007fb07bba55b0] = 424
+ main code      [0x00007fb07bba5500,0x00007fb07bba5590] = 144
+ stub code      [0x00007fb07bba5590,0x00007fb07bba55b0] = 32
+ mutable data [0x00007fb018014c70,0x00007fb018014c98] = 40
+ relocation     [0x00007fb018014c70,0x00007fb018014c90] = 32
+ metadata       [0x00007fb018014c90,0x00007fb018014c98] = 8
+ immutable data [0x00007fb018014c00,0x00007fb018014c5c] = 92
+ dependencies   [0x00007fb018014c00,0x00007fb018014c08] = 8
+ scopes pcs     [0x00007fb018014c08,0x00007fb018014c48] = 64
+ scopes data    [0x00007fb018014c48,0x00007fb018014c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007fb07bba5500:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007fb07bba550b:   data16 data16 xchg %ax,%ax
+  0x00007fb07bba550f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000007c1ae590} &apos;getAnnotationBytes&apos; &apos;()[B&apos; in &apos;java/lang/reflect/Method&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007fb07bba5512:   mov    0x8(%rsi),%r10d
+  0x00007fb07bba5516:   cmp    0x8(%rax),%r10d
+  0x00007fb07bba551a:   jne    0x00007fb07b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007fb07bba5520:   mov    %eax,-0x14000(%rsp)
+  0x00007fb07bba5527:   push   %rbp
+  0x00007fb07bba5528:   sub    $0x20,%rsp
+  0x00007fb07bba552c:   cmpl   $0x1,0x20(%r15)
+  0x00007fb07bba5534:   je     0x00007fb07bba553b
+  0x00007fb07bba5536:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getAnnotationBytes@0 (line 197)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007fb07bba553b:   mov    0x34(%rsi),%eax
+  0x00007fb07bba553e:   shl    $0x3,%rax                    ;*getfield annotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getAnnotationBytes@1 (line 197)
+  0x00007fb07bba5542:   add    $0x20,%rsp
+  0x00007fb07bba5546:   pop    %rbp
+  0x00007fb07bba5547:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007fb07bba554b:   ja     0x00007fb07bba5552
+  0x00007fb07bba5551:   ret    
+  0x00007fb07bba5552:   movabs $0x7fb07bba5547,%r10         ;   {internal_word}
+  0x00007fb07bba555c:   mov    %r10,0x510(%r15)
+  0x00007fb07bba5563:   jmp    0x00007fb07b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007fb07bba5568:   mov    0x5c0(%r15),%rax
+  0x00007fb07bba556f:   movq   $0x0,0x5c0(%r15)
+  0x00007fb07bba557a:   movq   $0x0,0x5c8(%r15)
+  0x00007fb07bba5585:   add    $0x20,%rsp
+  0x00007fb07bba5589:   pop    %rbp
+  0x00007fb07bba558a:   jmp    0x00007fb07b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007fb07bba558f:   hlt    
+[Exception Handler]
+  0x00007fb07bba5590:   call   0x00007fb07b57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007fb07bba5595:   movabs $0x7fb09473aec4,%rdi         ;   {external_word}
+  0x00007fb07bba559f:   and    $0xfffffffffffffff0,%rsp
+  0x00007fb07bba55a3:   call   0x00007fb094191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007fb07bba55a8:   hlt    
+  0x00007fb07bba55a9:   call   0x00007fb07b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007fb07bba55ae:   jmp    0x00007fb07bba55a9
+--------------------------------------------------------------------------------
+[/Disassembly]

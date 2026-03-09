@@ -1,0 +1,1013 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 333   23       3       java.lang.StringConcatHelper::doConcat (62 bytes)
+ total in heap  [0x00007e120bfff008,0x00007e120bffff20] = 3864
+ main code      [0x00007e120bfff100,0x00007e120bfffed0] = 3536
+ stub code      [0x00007e120bfffed0,0x00007e120bffff20] = 80
+ mutable data [0x00007e11b00259b0,0x00007e11b0025af8] = 328
+ relocation     [0x00007e11b00259b0,0x00007e11b0025ac0] = 272
+ metadata       [0x00007e11b0025ac0,0x00007e11b0025af8] = 56
+ immutable data [0x00007e11b0025200,0x00007e11b00259a4] = 1956
+ dependencies   [0x00007e11b0025200,0x00007e11b0025210] = 16
+ nul chk table  [0x00007e11b0025210,0x00007e11b0025240] = 48
+ scopes pcs     [0x00007e11b0025240,0x00007e11b00256d0] = 1168
+ scopes data    [0x00007e11b00256d0,0x00007e11b00259a0] = 720
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/String&apos;
+  # parm1:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0xa0]  (sp of caller)
+  0x00007e120bfff100:   mov    %eax,-0x14000(%rsp)
+  0x00007e120bfff107:   push   %rbp
+  0x00007e120bfff108:   sub    $0x90,%rsp
+  0x00007e120bfff10f:   nop
+  0x00007e120bfff110:   cmpl   $0x1,0x20(%r15)
+  0x00007e120bfff118:   je     0x00007e120bfff11f
+  0x00007e120bfff11a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007e120bfff11f:   mov    %rsi,0x50(%rsp)
+  0x00007e120bfff124:   mov    %rdx,0x60(%rsp)
+  0x00007e120bfff129:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff133:   mov    0x90(%rcx),%edi
+  0x00007e120bfff139:   add    $0x2,%edi
+  0x00007e120bfff13c:   mov    %edi,0x90(%rcx)
+  0x00007e120bfff142:   and    $0x7fe,%edi
+  0x00007e120bfff148:   test   %edi,%edi
+  0x00007e120bfff14a:   je     0x00007e120bfffc46           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@0 (line 178)
+  0x00007e120bfff150:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007e120bfffc67
+                                                            ;*invokevirtual coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+  0x00007e120bfff153:   mov    %rsi,%rcx
+  0x00007e120bfff156:   movabs $0x7e11c808b550,%rdi         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff160:   mov    0x8(%rcx),%ecx
+  0x00007e120bfff163:   mov    $0x31000000,%r10d
+  0x00007e120bfff169:   add    %r10,%rcx
+  0x00007e120bfff16c:   mov    $0x1c,%r10d
+  0x00007e120bfff172:   cmp    (%rdi,%r10,8),%rcx
+  0x00007e120bfff176:   je     0x00007e120bfff1af
+  0x00007e120bfff178:   add    $0x2,%r10
+  0x00007e120bfff17c:   cmp    $0x20,%r10
+  0x00007e120bfff180:   jne    0x00007e120bfff172
+  0x00007e120bfff182:   mov    $0x1c,%r10d
+  0x00007e120bfff188:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007e120bfff18d:   je     0x00007e120bfff19b
+  0x00007e120bfff18f:   add    $0x2,%r10
+  0x00007e120bfff193:   cmp    $0x20,%r10
+  0x00007e120bfff197:   jne    0x00007e120bfff188
+  0x00007e120bfff199:   jmp    0x00007e120bfff1a7
+  0x00007e120bfff19b:   push   %rax
+  0x00007e120bfff19c:   xor    %rax,%rax
+  0x00007e120bfff19f:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x00007e120bfff1a4:   pop    %rax
+  0x00007e120bfff1a5:   jmp    0x00007e120bfff16c
+  0x00007e120bfff1a7:   mov    $0x1b,%r10d
+  0x00007e120bfff1ad:   jmp    0x00007e120bfff1b3
+  0x00007e120bfff1af:   add    $0x1,%r10
+  0x00007e120bfff1b3:   addq   $0x1,(%rdi,%r10,8)
+  0x00007e120bfff1b8:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff1c2:   mov    0x90(%rcx),%edi
+  0x00007e120bfff1c8:   add    $0x2,%edi
+  0x00007e120bfff1cb:   mov    %edi,0x90(%rcx)
+  0x00007e120bfff1d1:   and    $0x1ffffe,%edi
+  0x00007e120bfff1d7:   test   %edi,%edi
+  0x00007e120bfff1d9:   je     0x00007e120bfffc6c
+  0x00007e120bfff1df:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff1e9:   incl   0xe8(%rcx)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@3 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+  0x00007e120bfff1ef:   movsbl 0x10(%rsi),%ecx              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+  0x00007e120bfff1f3:   movabs $0x7e11c808ab18,%rdi         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff1fd:   incl   0xf8(%rdi)                   ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@10 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+  0x00007e120bfff203:   shl    $0x18,%ecx
+  0x00007e120bfff206:   sar    $0x18,%ecx
+  0x00007e120bfff209:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x00007e120bfffc8d
+                                                            ;*invokevirtual coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+  0x00007e120bfff20c:   mov    %rdx,%rdi
+  0x00007e120bfff20f:   movabs $0x7e11c808b550,%rbx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff219:   mov    0x8(%rdi),%edi
+  0x00007e120bfff21c:   mov    $0x31000000,%r10d
+  0x00007e120bfff222:   add    %r10,%rdi
+  0x00007e120bfff225:   mov    $0x22,%r10d
+  0x00007e120bfff22b:   cmp    (%rbx,%r10,8),%rdi
+  0x00007e120bfff22f:   je     0x00007e120bfff268
+  0x00007e120bfff231:   add    $0x2,%r10
+  0x00007e120bfff235:   cmp    $0x26,%r10
+  0x00007e120bfff239:   jne    0x00007e120bfff22b
+  0x00007e120bfff23b:   mov    $0x22,%r10d
+  0x00007e120bfff241:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007e120bfff246:   je     0x00007e120bfff254
+  0x00007e120bfff248:   add    $0x2,%r10
+  0x00007e120bfff24c:   cmp    $0x26,%r10
+  0x00007e120bfff250:   jne    0x00007e120bfff241
+  0x00007e120bfff252:   jmp    0x00007e120bfff260
+  0x00007e120bfff254:   push   %rax
+  0x00007e120bfff255:   xor    %rax,%rax
+  0x00007e120bfff258:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007e120bfff25d:   pop    %rax
+  0x00007e120bfff25e:   jmp    0x00007e120bfff225
+  0x00007e120bfff260:   mov    $0x21,%r10d
+  0x00007e120bfff266:   jmp    0x00007e120bfff26c
+  0x00007e120bfff268:   add    $0x1,%r10
+  0x00007e120bfff26c:   addq   $0x1,(%rbx,%r10,8)
+  0x00007e120bfff271:   movabs $0x7e11c808ab18,%rdi         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff27b:   mov    0x90(%rdi),%ebx
+  0x00007e120bfff281:   add    $0x2,%ebx
+  0x00007e120bfff284:   mov    %ebx,0x90(%rdi)
+  0x00007e120bfff28a:   and    $0x1ffffe,%ebx
+  0x00007e120bfff290:   test   %ebx,%ebx
+  0x00007e120bfff292:   je     0x00007e120bfffc92
+  0x00007e120bfff298:   movabs $0x7e11c808ab18,%rdi         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff2a2:   incl   0xe8(%rdi)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@3 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+  0x00007e120bfff2a8:   movsbl 0x10(%rdx),%edi              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+  0x00007e120bfff2ac:   movabs $0x7e11c808ab18,%rbx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff2b6:   incl   0xf8(%rbx)                   ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@10 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+  0x00007e120bfff2bc:   shl    $0x18,%edi
+  0x00007e120bfff2bf:   sar    $0x18,%edi
+  0x00007e120bfff2c2:   mov    %rdi,%rbx
+  0x00007e120bfff2c5:   or     %rcx,%rbx
+  0x00007e120bfff2c8:   movsbl %bl,%ebx
+  0x00007e120bfff2cb:   mov    %ebx,0x58(%rsp)
+  0x00007e120bfff2cf:   mov    %rsi,%rax
+  0x00007e120bfff2d2:   movabs $0x7e11c808b550,%r8          ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff2dc:   mov    0x8(%rax),%eax
+  0x00007e120bfff2df:   mov    $0x31000000,%r10d
+  0x00007e120bfff2e5:   add    %r10,%rax
+  0x00007e120bfff2e8:   mov    $0x28,%r10d
+  0x00007e120bfff2ee:   cmp    (%r8,%r10,8),%rax
+  0x00007e120bfff2f2:   je     0x00007e120bfff331
+  0x00007e120bfff2f4:   add    $0x2,%r10
+  0x00007e120bfff2f8:   cmp    $0x2c,%r10
+  0x00007e120bfff2fc:   jne    0x00007e120bfff2ee
+  0x00007e120bfff2fe:   mov    $0x28,%r10d
+  0x00007e120bfff304:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007e120bfff309:   je     0x00007e120bfff317
+  0x00007e120bfff30b:   add    $0x2,%r10
+  0x00007e120bfff30f:   cmp    $0x2c,%r10
+  0x00007e120bfff313:   jne    0x00007e120bfff304
+  0x00007e120bfff315:   jmp    0x00007e120bfff329
+  0x00007e120bfff317:   push   %rbx
+  0x00007e120bfff318:   mov    %rax,%rbx
+  0x00007e120bfff31b:   xor    %rax,%rax
+  0x00007e120bfff31e:   cmpxchg %rbx,(%r8,%r10,8)
+  0x00007e120bfff323:   mov    %rbx,%rax
+  0x00007e120bfff326:   pop    %rbx
+  0x00007e120bfff327:   jmp    0x00007e120bfff2e8
+  0x00007e120bfff329:   mov    $0x27,%r10d
+  0x00007e120bfff32f:   jmp    0x00007e120bfff335
+  0x00007e120bfff331:   add    $0x1,%r10
+  0x00007e120bfff335:   addq   $0x1,(%r8,%r10,8)
+  0x00007e120bfff33a:   movabs $0x7e11c808ac58,%rax         ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff344:   mov    0x90(%rax),%r8d
+  0x00007e120bfff34b:   add    $0x2,%r8d
+  0x00007e120bfff34f:   mov    %r8d,0x90(%rax)
+  0x00007e120bfff356:   and    $0x1ffffe,%r8d
+  0x00007e120bfff35d:   test   %r8d,%r8d
+  0x00007e120bfff360:   je     0x00007e120bfffcb3
+  0x00007e120bfff366:   mov    0x14(%rsi),%eax
+  0x00007e120bfff369:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+  0x00007e120bfff36d:   mov    0xc(%rax),%eax               ; implicit exception: dispatches to 0x00007e120bfffcd4
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+  0x00007e120bfff370:   mov    %rsi,%r8
+  0x00007e120bfff373:   movabs $0x7e11c808ac58,%r9          ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff37d:   mov    0x8(%r8),%r8d
+  0x00007e120bfff381:   mov    $0x31000000,%r10d
+  0x00007e120bfff387:   add    %r10,%r8
+  0x00007e120bfff38a:   mov    $0x1c,%r10d
+  0x00007e120bfff390:   cmp    (%r9,%r10,8),%r8
+  0x00007e120bfff394:   je     0x00007e120bfff3cd
+  0x00007e120bfff396:   add    $0x2,%r10
+  0x00007e120bfff39a:   cmp    $0x20,%r10
+  0x00007e120bfff39e:   jne    0x00007e120bfff390
+  0x00007e120bfff3a0:   mov    $0x1c,%r10d
+  0x00007e120bfff3a6:   cmpq   $0x0,(%r9,%r10,8)
+  0x00007e120bfff3ab:   je     0x00007e120bfff3b9
+  0x00007e120bfff3ad:   add    $0x2,%r10
+  0x00007e120bfff3b1:   cmp    $0x20,%r10
+  0x00007e120bfff3b5:   jne    0x00007e120bfff3a6
+  0x00007e120bfff3b7:   jmp    0x00007e120bfff3c5
+  0x00007e120bfff3b9:   push   %rax
+  0x00007e120bfff3ba:   xor    %rax,%rax
+  0x00007e120bfff3bd:   cmpxchg %r8,(%r9,%r10,8)
+  0x00007e120bfff3c2:   pop    %rax
+  0x00007e120bfff3c3:   jmp    0x00007e120bfff38a
+  0x00007e120bfff3c5:   mov    $0x1b,%r10d
+  0x00007e120bfff3cb:   jmp    0x00007e120bfff3d1
+  0x00007e120bfff3cd:   add    $0x1,%r10
+  0x00007e120bfff3d1:   addq   $0x1,(%r9,%r10,8)
+  0x00007e120bfff3d6:   movabs $0x7e11c808ab18,%r8          ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff3e0:   mov    0x90(%r8),%r9d
+  0x00007e120bfff3e7:   add    $0x2,%r9d
+  0x00007e120bfff3eb:   mov    %r9d,0x90(%r8)
+  0x00007e120bfff3f2:   and    $0x1ffffe,%r9d
+  0x00007e120bfff3f9:   test   %r9d,%r9d
+  0x00007e120bfff3fc:   je     0x00007e120bfffcd9
+  0x00007e120bfff402:   movabs $0x7e11c808ab18,%r8          ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff40c:   incl   0xe8(%r8)                    ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@3 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+  0x00007e120bfff413:   movabs $0x7e11c808ab18,%r8          ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff41d:   incl   0xf8(%r8)                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@10 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+  0x00007e120bfff424:   sar    %cl,%eax
+  0x00007e120bfff426:   mov    %rdx,%rcx
+  0x00007e120bfff429:   movabs $0x7e11c808b550,%r8          ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff433:   mov    0x8(%rcx),%ecx
+  0x00007e120bfff436:   mov    $0x31000000,%r10d
+  0x00007e120bfff43c:   add    %r10,%rcx
+  0x00007e120bfff43f:   mov    $0x2e,%r10d
+  0x00007e120bfff445:   cmp    (%r8,%r10,8),%rcx
+  0x00007e120bfff449:   je     0x00007e120bfff482
+  0x00007e120bfff44b:   add    $0x2,%r10
+  0x00007e120bfff44f:   cmp    $0x32,%r10
+  0x00007e120bfff453:   jne    0x00007e120bfff445
+  0x00007e120bfff455:   mov    $0x2e,%r10d
+  0x00007e120bfff45b:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007e120bfff460:   je     0x00007e120bfff46e
+  0x00007e120bfff462:   add    $0x2,%r10
+  0x00007e120bfff466:   cmp    $0x32,%r10
+  0x00007e120bfff46a:   jne    0x00007e120bfff45b
+  0x00007e120bfff46c:   jmp    0x00007e120bfff47a
+  0x00007e120bfff46e:   push   %rax
+  0x00007e120bfff46f:   xor    %rax,%rax
+  0x00007e120bfff472:   cmpxchg %rcx,(%r8,%r10,8)
+  0x00007e120bfff477:   pop    %rax
+  0x00007e120bfff478:   jmp    0x00007e120bfff43f
+  0x00007e120bfff47a:   mov    $0x2d,%r10d
+  0x00007e120bfff480:   jmp    0x00007e120bfff486
+  0x00007e120bfff482:   add    $0x1,%r10
+  0x00007e120bfff486:   addq   $0x1,(%r8,%r10,8)
+  0x00007e120bfff48b:   movabs $0x7e11c808ac58,%rcx         ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff495:   mov    0x90(%rcx),%r8d
+  0x00007e120bfff49c:   add    $0x2,%r8d
+  0x00007e120bfff4a0:   mov    %r8d,0x90(%rcx)
+  0x00007e120bfff4a7:   and    $0x1ffffe,%r8d
+  0x00007e120bfff4ae:   test   %r8d,%r8d
+  0x00007e120bfff4b1:   je     0x00007e120bfffcfa
+  0x00007e120bfff4b7:   mov    0x14(%rdx),%ecx
+  0x00007e120bfff4ba:   shl    $0x3,%rcx                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+  0x00007e120bfff4be:   mov    0xc(%rcx),%r8d               ; implicit exception: dispatches to 0x00007e120bfffd1b
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+  0x00007e120bfff4c2:   mov    %rdx,%rcx
+  0x00007e120bfff4c5:   movabs $0x7e11c808ac58,%r9          ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff4cf:   mov    0x8(%rcx),%ecx
+  0x00007e120bfff4d2:   mov    $0x31000000,%r10d
+  0x00007e120bfff4d8:   add    %r10,%rcx
+  0x00007e120bfff4db:   mov    $0x1c,%r10d
+  0x00007e120bfff4e1:   cmp    (%r9,%r10,8),%rcx
+  0x00007e120bfff4e5:   je     0x00007e120bfff51e
+  0x00007e120bfff4e7:   add    $0x2,%r10
+  0x00007e120bfff4eb:   cmp    $0x20,%r10
+  0x00007e120bfff4ef:   jne    0x00007e120bfff4e1
+  0x00007e120bfff4f1:   mov    $0x1c,%r10d
+  0x00007e120bfff4f7:   cmpq   $0x0,(%r9,%r10,8)
+  0x00007e120bfff4fc:   je     0x00007e120bfff50a
+  0x00007e120bfff4fe:   add    $0x2,%r10
+  0x00007e120bfff502:   cmp    $0x20,%r10
+  0x00007e120bfff506:   jne    0x00007e120bfff4f7
+  0x00007e120bfff508:   jmp    0x00007e120bfff516
+  0x00007e120bfff50a:   push   %rax
+  0x00007e120bfff50b:   xor    %rax,%rax
+  0x00007e120bfff50e:   cmpxchg %rcx,(%r9,%r10,8)
+  0x00007e120bfff513:   pop    %rax
+  0x00007e120bfff514:   jmp    0x00007e120bfff4db
+  0x00007e120bfff516:   mov    $0x1b,%r10d
+  0x00007e120bfff51c:   jmp    0x00007e120bfff522
+  0x00007e120bfff51e:   add    $0x1,%r10
+  0x00007e120bfff522:   addq   $0x1,(%r9,%r10,8)
+  0x00007e120bfff527:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff531:   mov    0x90(%rcx),%r9d
+  0x00007e120bfff538:   add    $0x2,%r9d
+  0x00007e120bfff53c:   mov    %r9d,0x90(%rcx)
+  0x00007e120bfff543:   and    $0x1ffffe,%r9d
+  0x00007e120bfff54a:   test   %r9d,%r9d
+  0x00007e120bfff54d:   je     0x00007e120bfffd20
+  0x00007e120bfff553:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff55d:   incl   0xe8(%rcx)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@3 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+  0x00007e120bfff563:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff56d:   incl   0xf8(%rcx)                   ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@10 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+  0x00007e120bfff573:   mov    %rdi,%rcx
+  0x00007e120bfff576:   sar    %cl,%r8d
+  0x00007e120bfff579:   add    %eax,%r8d
+  0x00007e120bfff57c:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff586:   addq   $0x1,0x198(%rcx)
+  0x00007e120bfff58e:   movabs $0x7e11c808b7f0,%rcx         ;   {metadata(method data for {method} {0x000000003148c6f8} &apos;checkOverflow&apos; &apos;(I)I&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff598:   mov    0x90(%rcx),%edi
+  0x00007e120bfff59e:   add    $0x2,%edi
+  0x00007e120bfff5a1:   mov    %edi,0x90(%rcx)
+  0x00007e120bfff5a7:   and    $0x1ffffe,%edi
+  0x00007e120bfff5ad:   test   %edi,%edi
+  0x00007e120bfff5af:   je     0x00007e120bfffd41
+  0x00007e120bfff5b5:   test   %r8d,%r8d
+  0x00007e120bfff5b8:   movabs $0x7e11c808b7f0,%rcx         ;   {metadata(method data for {method} {0x000000003148c6f8} &apos;checkOverflow&apos; &apos;(I)I&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff5c2:   mov    $0xd8,%edi
+  0x00007e120bfff5c7:   jl     0x00007e120bfff5ce
+  0x00007e120bfff5c9:   mov    $0xe8,%edi
+  0x00007e120bfff5ce:   mov    (%rcx,%rdi,1),%rax
+  0x00007e120bfff5d2:   lea    0x1(%rax),%rax
+  0x00007e120bfff5d6:   mov    %rax,(%rcx,%rdi,1)
+  0x00007e120bfff5da:   jl     0x00007e120bfffbae           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@1 (line 482)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+  0x00007e120bfff5e0:   mov    %rbx,%rcx
+  0x00007e120bfff5e3:   shl    %cl,%r8d
+  0x00007e120bfff5e6:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff5f0:   addq   $0x1,0x1a8(%rcx)
+  0x00007e120bfff5f8:   movabs $0x7e11c808b080,%rcx         ;   {metadata(method data for {method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff602:   mov    0x90(%rcx),%edi
+  0x00007e120bfff608:   add    $0x2,%edi
+  0x00007e120bfff60b:   mov    %edi,0x90(%rcx)
+  0x00007e120bfff611:   and    $0x1ffffe,%edi
+  0x00007e120bfff617:   test   %edi,%edi
+  0x00007e120bfff619:   je     0x00007e120bfffd62
+  0x00007e120bfff61f:   test   %r8d,%r8d
+  0x00007e120bfff622:   movabs $0x7e11c808b080,%rcx         ;   {metadata(method data for {method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff62c:   mov    $0xe8,%edi
+  0x00007e120bfff631:   jl     0x00007e120bfff638
+  0x00007e120bfff633:   mov    $0xd8,%edi
+  0x00007e120bfff638:   mov    (%rcx,%rdi,1),%rax
+  0x00007e120bfff63c:   lea    0x1(%rax),%rax
+  0x00007e120bfff640:   mov    %rax,(%rcx,%rdi,1)
+  0x00007e120bfff644:   jl     0x00007e120bfffb13           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@1 (line 280)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfff64a:   movabs $0x41f801628,%rdi            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000041f801628})}
+  0x00007e120bfff654:   mov    %rdi,%rcx
+  0x00007e120bfff657:   movabs $0x7e11c808b080,%rax         ;   {metadata(method data for {method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff661:   mov    0x8(%rcx),%ecx
+  0x00007e120bfff664:   mov    $0x31000000,%r10d
+  0x00007e120bfff66a:   add    %r10,%rcx
+  0x00007e120bfff66d:   mov    $0x22,%r10d
+  0x00007e120bfff673:   cmp    (%rax,%r10,8),%rcx
+  0x00007e120bfff677:   je     0x00007e120bfff6b6
+  0x00007e120bfff679:   add    $0x2,%r10
+  0x00007e120bfff67d:   cmp    $0x26,%r10
+  0x00007e120bfff681:   jne    0x00007e120bfff673
+  0x00007e120bfff683:   mov    $0x22,%r10d
+  0x00007e120bfff689:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007e120bfff68e:   je     0x00007e120bfff69c
+  0x00007e120bfff690:   add    $0x2,%r10
+  0x00007e120bfff694:   cmp    $0x26,%r10
+  0x00007e120bfff698:   jne    0x00007e120bfff689
+  0x00007e120bfff69a:   jmp    0x00007e120bfff6ae
+  0x00007e120bfff69c:   push   %rbx
+  0x00007e120bfff69d:   mov    %rax,%rbx
+  0x00007e120bfff6a0:   xor    %rax,%rax
+  0x00007e120bfff6a3:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x00007e120bfff6a8:   mov    %rbx,%rax
+  0x00007e120bfff6ab:   pop    %rbx
+  0x00007e120bfff6ac:   jmp    0x00007e120bfff66d
+  0x00007e120bfff6ae:   mov    $0x21,%r10d
+  0x00007e120bfff6b4:   jmp    0x00007e120bfff6ba
+  0x00007e120bfff6b6:   add    $0x1,%r10
+  0x00007e120bfff6ba:   addq   $0x1,(%rax,%r10,8)
+  0x00007e120bfff6bf:   movabs $0x7ff8cee10,%rdx            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff8cee10} = byte)}
+  0x00007e120bfff6c9:   mov    %r8,%rcx
+  0x00007e120bfff6cc:   mov    %rdi,%rsi                    ;*invokevirtual allocateUninitializedArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfff6cf:   call   0x00007e12134ad9e0           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*invokevirtual allocateUninitializedArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {optimized virtual_call}
+  0x00007e120bfff6d4:   nopl   0x6cc(%rax,%rax,1)           ;*invokevirtual allocateUninitializedArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@21 (line 283)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {post_call_nop}
+  0x00007e120bfff6dc:   test   %rax,%rax
+  0x00007e120bfff6df:   movabs $0x7e11c808b080,%rcx         ;   {metadata(method data for {method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff6e9:   jne    0x00007e120bfff6f7
+  0x00007e120bfff6eb:   orb    $0x1,0x131(%rcx)
+  0x00007e120bfff6f2:   jmp    0x00007e120bfff775
+  0x00007e120bfff6f7:   mov    0x8(%rax),%r8d
+  0x00007e120bfff6fb:   mov    $0x31000000,%r10d
+  0x00007e120bfff701:   add    %r10,%r8
+  0x00007e120bfff704:   mov    $0x28,%r10d
+  0x00007e120bfff70a:   cmp    (%rcx,%r10,8),%r8
+  0x00007e120bfff70e:   je     0x00007e120bfff747
+  0x00007e120bfff710:   add    $0x2,%r10
+  0x00007e120bfff714:   cmp    $0x2c,%r10
+  0x00007e120bfff718:   jne    0x00007e120bfff70a
+  0x00007e120bfff71a:   mov    $0x28,%r10d
+  0x00007e120bfff720:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007e120bfff725:   je     0x00007e120bfff733
+  0x00007e120bfff727:   add    $0x2,%r10
+  0x00007e120bfff72b:   cmp    $0x2c,%r10
+  0x00007e120bfff72f:   jne    0x00007e120bfff720
+  0x00007e120bfff731:   jmp    0x00007e120bfff73f
+  0x00007e120bfff733:   push   %rax
+  0x00007e120bfff734:   xor    %rax,%rax
+  0x00007e120bfff737:   cmpxchg %r8,(%rcx,%r10,8)
+  0x00007e120bfff73c:   pop    %rax
+  0x00007e120bfff73d:   jmp    0x00007e120bfff704
+  0x00007e120bfff73f:   mov    $0x27,%r10d
+  0x00007e120bfff745:   jmp    0x00007e120bfff74b
+  0x00007e120bfff747:   add    $0x1,%r10
+  0x00007e120bfff74b:   addq   $0x1,(%rcx,%r10,8)
+  0x00007e120bfff750:   movabs $0x31175de8,%r8              ;   {metadata({type array byte})}
+  0x00007e120bfff75a:   mov    0x8(%rax),%ecx
+  0x00007e120bfff75d:   mov    $0x31000000,%r10d
+  0x00007e120bfff763:   add    %r10,%rcx
+  0x00007e120bfff766:   cmp    0x38(%rcx),%r8
+  0x00007e120bfff76a:   jne    0x00007e120bfffd83
+  0x00007e120bfff770:   jmp    0x00007e120bfff775
+  0x00007e120bfff775:   mov    %rax,%rdi                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@24 (line 283)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfff778:   mov    %rdi,0x68(%rsp)
+  0x00007e120bfff77d:   mov    0x50(%rsp),%rsi
+  0x00007e120bfff782:   mov    %rsi,%rdx
+  0x00007e120bfff785:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff78f:   mov    0x8(%rdx),%edx
+  0x00007e120bfff792:   mov    $0x31000000,%r10d
+  0x00007e120bfff798:   add    %r10,%rdx
+  0x00007e120bfff79b:   mov    $0x38,%r10d
+  0x00007e120bfff7a1:   cmp    (%rcx,%r10,8),%rdx
+  0x00007e120bfff7a5:   je     0x00007e120bfff7de
+  0x00007e120bfff7a7:   add    $0x2,%r10
+  0x00007e120bfff7ab:   cmp    $0x3c,%r10
+  0x00007e120bfff7af:   jne    0x00007e120bfff7a1
+  0x00007e120bfff7b1:   mov    $0x38,%r10d
+  0x00007e120bfff7b7:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007e120bfff7bc:   je     0x00007e120bfff7ca
+  0x00007e120bfff7be:   add    $0x2,%r10
+  0x00007e120bfff7c2:   cmp    $0x3c,%r10
+  0x00007e120bfff7c6:   jne    0x00007e120bfff7b7
+  0x00007e120bfff7c8:   jmp    0x00007e120bfff7d6
+  0x00007e120bfff7ca:   push   %rax
+  0x00007e120bfff7cb:   xor    %rax,%rax
+  0x00007e120bfff7ce:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007e120bfff7d3:   pop    %rax
+  0x00007e120bfff7d4:   jmp    0x00007e120bfff79b
+  0x00007e120bfff7d6:   mov    $0x37,%r10d
+  0x00007e120bfff7dc:   jmp    0x00007e120bfff7e2
+  0x00007e120bfff7de:   add    $0x1,%r10
+  0x00007e120bfff7e2:   addq   $0x1,(%rcx,%r10,8)
+  0x00007e120bfff7e7:   mov    %rdi,%rdx
+  0x00007e120bfff7ea:   mov    $0x0,%ecx
+  0x00007e120bfff7ef:   mov    0x58(%rsp),%r8d
+  0x00007e120bfff7f4:   mov    %rsi,%rbx
+  0x00007e120bfff7f7:   mov    %rbx,%rsi                    ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@37 (line 181)
+  0x00007e120bfff7fa:   nopl   0x0(%rax,%rax,1)
+  0x00007e120bfff7ff:   call   0x00007e12134ad9e0           ; ImmutableOopMap {[80]=Oop [96]=Oop [104]=Oop }
+                                                            ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@37 (line 181)
+                                                            ;   {optimized virtual_call}
+  0x00007e120bfff804:   nopl   0x10007fc(%rax,%rax,1)       ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@37 (line 181)
+                                                            ;   {post_call_nop}
+  0x00007e120bfff80c:   mov    0x50(%rsp),%rsi
+  0x00007e120bfff811:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff81b:   mov    0x8(%rsi),%esi
+  0x00007e120bfff81e:   mov    $0x31000000,%r10d
+  0x00007e120bfff824:   add    %r10,%rsi
+  0x00007e120bfff827:   mov    $0x3e,%r10d
+  0x00007e120bfff82d:   cmp    (%rcx,%r10,8),%rsi
+  0x00007e120bfff831:   je     0x00007e120bfff86a
+  0x00007e120bfff833:   add    $0x2,%r10
+  0x00007e120bfff837:   cmp    $0x42,%r10
+  0x00007e120bfff83b:   jne    0x00007e120bfff82d
+  0x00007e120bfff83d:   mov    $0x3e,%r10d
+  0x00007e120bfff843:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007e120bfff848:   je     0x00007e120bfff856
+  0x00007e120bfff84a:   add    $0x2,%r10
+  0x00007e120bfff84e:   cmp    $0x42,%r10
+  0x00007e120bfff852:   jne    0x00007e120bfff843
+  0x00007e120bfff854:   jmp    0x00007e120bfff862
+  0x00007e120bfff856:   push   %rax
+  0x00007e120bfff857:   xor    %rax,%rax
+  0x00007e120bfff85a:   cmpxchg %rsi,(%rcx,%r10,8)
+  0x00007e120bfff85f:   pop    %rax
+  0x00007e120bfff860:   jmp    0x00007e120bfff827
+  0x00007e120bfff862:   mov    $0x3d,%r10d
+  0x00007e120bfff868:   jmp    0x00007e120bfff86e
+  0x00007e120bfff86a:   add    $0x1,%r10
+  0x00007e120bfff86e:   addq   $0x1,(%rcx,%r10,8)
+  0x00007e120bfff873:   movabs $0x7e11c808ac58,%rcx         ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff87d:   mov    0x90(%rcx),%edx
+  0x00007e120bfff883:   add    $0x2,%edx
+  0x00007e120bfff886:   mov    %edx,0x90(%rcx)
+  0x00007e120bfff88c:   and    $0x1ffffe,%edx
+  0x00007e120bfff892:   test   %edx,%edx
+  0x00007e120bfff894:   je     0x00007e120bfffd8c
+  0x00007e120bfff89a:   mov    0x50(%rsp),%rsi
+  0x00007e120bfff89f:   mov    0x14(%rsi),%ecx
+  0x00007e120bfff8a2:   shl    $0x3,%rcx                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+  0x00007e120bfff8a6:   mov    0xc(%rcx),%edx               ; implicit exception: dispatches to 0x00007e120bfffdad
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+  0x00007e120bfff8a9:   mov    %rsi,%rcx
+  0x00007e120bfff8ac:   movabs $0x7e11c808ac58,%r8          ;   {metadata(method data for {method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff8b6:   mov    0x8(%rcx),%ecx
+  0x00007e120bfff8b9:   mov    $0x31000000,%r10d
+  0x00007e120bfff8bf:   add    %r10,%rcx
+  0x00007e120bfff8c2:   mov    $0x1c,%r10d
+  0x00007e120bfff8c8:   cmp    (%r8,%r10,8),%rcx
+  0x00007e120bfff8cc:   je     0x00007e120bfff905
+  0x00007e120bfff8ce:   add    $0x2,%r10
+  0x00007e120bfff8d2:   cmp    $0x20,%r10
+  0x00007e120bfff8d6:   jne    0x00007e120bfff8c8
+  0x00007e120bfff8d8:   mov    $0x1c,%r10d
+  0x00007e120bfff8de:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007e120bfff8e3:   je     0x00007e120bfff8f1
+  0x00007e120bfff8e5:   add    $0x2,%r10
+  0x00007e120bfff8e9:   cmp    $0x20,%r10
+  0x00007e120bfff8ed:   jne    0x00007e120bfff8de
+  0x00007e120bfff8ef:   jmp    0x00007e120bfff8fd
+  0x00007e120bfff8f1:   push   %rax
+  0x00007e120bfff8f2:   xor    %rax,%rax
+  0x00007e120bfff8f5:   cmpxchg %rcx,(%r8,%r10,8)
+  0x00007e120bfff8fa:   pop    %rax
+  0x00007e120bfff8fb:   jmp    0x00007e120bfff8c2
+  0x00007e120bfff8fd:   mov    $0x1b,%r10d
+  0x00007e120bfff903:   jmp    0x00007e120bfff909
+  0x00007e120bfff905:   add    $0x1,%r10
+  0x00007e120bfff909:   addq   $0x1,(%r8,%r10,8)
+  0x00007e120bfff90e:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff918:   mov    0x90(%rcx),%r8d
+  0x00007e120bfff91f:   add    $0x2,%r8d
+  0x00007e120bfff923:   mov    %r8d,0x90(%rcx)
+  0x00007e120bfff92a:   and    $0x1ffffe,%r8d
+  0x00007e120bfff931:   test   %r8d,%r8d
+  0x00007e120bfff934:   je     0x00007e120bfffdb2
+  0x00007e120bfff93a:   movabs $0x7e11c808ab18,%rcx         ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff944:   incl   0xe8(%rcx)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@3 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+  0x00007e120bfff94a:   movsbl 0x10(%rsi),%ecx              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+  0x00007e120bfff94e:   movabs $0x7e11c808ab18,%r8          ;   {metadata(method data for {method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfff958:   incl   0xf8(%r8)                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@10 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+  0x00007e120bfff95f:   shl    $0x18,%ecx
+  0x00007e120bfff962:   sar    $0x18,%ecx
+  0x00007e120bfff965:   mov    %rdx,%r8
+  0x00007e120bfff968:   sar    %cl,%r8d
+  0x00007e120bfff96b:   mov    0x68(%rsp),%rdi
+  0x00007e120bfff970:   mov    0x60(%rsp),%rdx
+  0x00007e120bfff975:   movabs $0x7e11c808b550,%rcx         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfff97f:   mov    0x8(%rdx),%edx
+  0x00007e120bfff982:   mov    $0x31000000,%r10d
+  0x00007e120bfff988:   add    %r10,%rdx
+  0x00007e120bfff98b:   mov    $0x44,%r10d
+  0x00007e120bfff991:   cmp    (%rcx,%r10,8),%rdx
+  0x00007e120bfff995:   je     0x00007e120bfff9ce
+  0x00007e120bfff997:   add    $0x2,%r10
+  0x00007e120bfff99b:   cmp    $0x48,%r10
+  0x00007e120bfff99f:   jne    0x00007e120bfff991
+  0x00007e120bfff9a1:   mov    $0x44,%r10d
+  0x00007e120bfff9a7:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007e120bfff9ac:   je     0x00007e120bfff9ba
+  0x00007e120bfff9ae:   add    $0x2,%r10
+  0x00007e120bfff9b2:   cmp    $0x48,%r10
+  0x00007e120bfff9b6:   jne    0x00007e120bfff9a7
+  0x00007e120bfff9b8:   jmp    0x00007e120bfff9c6
+  0x00007e120bfff9ba:   push   %rax
+  0x00007e120bfff9bb:   xor    %rax,%rax
+  0x00007e120bfff9be:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007e120bfff9c3:   pop    %rax
+  0x00007e120bfff9c4:   jmp    0x00007e120bfff98b
+  0x00007e120bfff9c6:   mov    $0x43,%r10d
+  0x00007e120bfff9cc:   jmp    0x00007e120bfff9d2
+  0x00007e120bfff9ce:   add    $0x1,%r10
+  0x00007e120bfff9d2:   addq   $0x1,(%rcx,%r10,8)
+  0x00007e120bfff9d7:   mov    %rdi,%rdx
+  0x00007e120bfff9da:   mov    %r8,%rcx
+  0x00007e120bfff9dd:   mov    0x58(%rsp),%r8d
+  0x00007e120bfff9e2:   mov    0x60(%rsp),%rsi              ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@48 (line 182)
+  0x00007e120bfff9e7:   call   0x00007e12134ad9e0           ; ImmutableOopMap {[104]=Oop }
+                                                            ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@48 (line 182)
+                                                            ;   {optimized virtual_call}
+  0x00007e120bfff9ec:   nopl   0x20009e4(%rax,%rax,1)       ;*invokevirtual getBytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@48 (line 182)
+                                                            ;   {post_call_nop}
+  0x00007e120bfff9f4:   movabs $0x31178db8,%rdx             ;   {metadata(&apos;java/lang/String&apos;)}
+  0x00007e120bfff9fe:   mov    0x1b0(%r15),%rax
+  0x00007e120bfffa05:   lea    0x18(%rax),%rdi
+  0x00007e120bfffa09:   cmp    0x1c0(%r15),%rdi
+  0x00007e120bfffa10:   ja     0x00007e120bfffdd3
+  0x00007e120bfffa16:   mov    %rdi,0x1b0(%r15)
+  0x00007e120bfffa1d:   movq   $0x1,(%rax)
+  0x00007e120bfffa24:   mov    %rdx,%rcx
+  0x00007e120bfffa27:   mov    $0x31000000,%r10d
+  0x00007e120bfffa2d:   sub    %r10,%rcx
+  0x00007e120bfffa30:   mov    %ecx,0x8(%rax)
+  0x00007e120bfffa33:   xor    %rcx,%rcx
+  0x00007e120bfffa36:   mov    %ecx,0xc(%rax)
+  0x00007e120bfffa39:   xor    %rcx,%rcx
+  0x00007e120bfffa3c:   mov    %rcx,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@51 (line 183)
+  0x00007e120bfffa40:   mov    %rax,%rdx
+  0x00007e120bfffa43:   movabs $0x7e11c808b550,%rsi         ;   {metadata(method data for {method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffa4d:   addq   $0x1,0x248(%rsi)
+  0x00007e120bfffa55:   movabs $0x7e11c808ada0,%rdx         ;   {metadata(method data for {method} {0x00000000314a1fc8} &apos;&lt;init&gt;&apos; &apos;([BB)V&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffa5f:   mov    0x90(%rdx),%esi
+  0x00007e120bfffa65:   add    $0x2,%esi
+  0x00007e120bfffa68:   mov    %esi,0x90(%rdx)
+  0x00007e120bfffa6e:   and    $0x1ffffe,%esi
+  0x00007e120bfffa74:   test   %esi,%esi
+  0x00007e120bfffa76:   je     0x00007e120bfffde0
+  0x00007e120bfffa7c:   mov    %rax,%rdx
+  0x00007e120bfffa7f:   movabs $0x7e11c808ada0,%rsi         ;   {metadata(method data for {method} {0x00000000314a1fc8} &apos;&lt;init&gt;&apos; &apos;([BB)V&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffa89:   addq   $0x1,0xd8(%rsi)
+  0x00007e120bfffa91:   movabs $0x7e11c808aa28,%rdx         ;   {metadata(method data for {method} {0x00000000314a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007e120bfffa9b:   mov    0x90(%rdx),%esi
+  0x00007e120bfffaa1:   add    $0x2,%esi
+  0x00007e120bfffaa4:   mov    %esi,0x90(%rdx)
+  0x00007e120bfffaaa:   and    $0x1ffffe,%esi
+  0x00007e120bfffab0:   test   %esi,%esi
+  0x00007e120bfffab2:   je     0x00007e120bfffe01
+  0x00007e120bfffab8:   movsbl 0x48(%r15),%edx
+  0x00007e120bfffabd:   test   %edx,%edx
+  0x00007e120bfffabf:   jne    0x00007e120bfffe22
+  0x00007e120bfffac5:   mov    0x68(%rsp),%rdi
+  0x00007e120bfffaca:   mov    %rdi,%r10
+  0x00007e120bfffacd:   shr    $0x3,%r10
+  0x00007e120bfffad1:   mov    %r10d,0x14(%rax)
+  0x00007e120bfffad5:   mov    %rax,%rsi
+  0x00007e120bfffad8:   xor    %rdi,%rsi
+  0x00007e120bfffadb:   shr    $0x17,%rsi
+  0x00007e120bfffadf:   je     0x00007e120bfffaf9
+  0x00007e120bfffae1:   test   %rdi,%rdi
+  0x00007e120bfffae4:   je     0x00007e120bfffaf9
+  0x00007e120bfffae6:   mov    %rax,%rsi
+  0x00007e120bfffae9:   shr    $0x9,%rsi
+  0x00007e120bfffaed:   add    0x50(%r15),%rsi
+  0x00007e120bfffaf1:   cmpb   $0xff,(%rsi)
+  0x00007e120bfffaf4:   jne    0x00007e120bfffaf9
+  0x00007e120bfffaf6:   movb   $0x0,(%rsi)                  ;*putfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::&lt;init&gt;@6 (line 5174)
+                                                            ; - java.lang.StringConcatHelper::doConcat@58 (line 183)
+  0x00007e120bfffaf9:   mov    0x58(%rsp),%ebx
+  0x00007e120bfffafd:   mov    %bl,0x10(%rax)               ;*putfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::&lt;init&gt;@11 (line 5175)
+                                                            ; - java.lang.StringConcatHelper::doConcat@58 (line 183)
+  0x00007e120bfffb00:   add    $0x90,%rsp
+  0x00007e120bfffb07:   pop    %rbp
+  0x00007e120bfffb08:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e120bfffb0c:   ja     0x00007e120bfffe40
+  0x00007e120bfffb12:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@61 (line 183)
+  0x00007e120bfffb13:   nopl   0x0(%rax,%rax,1)
+  0x00007e120bfffb18:   jmp    0x00007e120bfffe65           ;   {other}
+  0x00007e120bfffb1d:   add    %al,(%rax)
+  0x00007e120bfffb1f:   add    %al,(%rax)
+  0x00007e120bfffb21:   add    %cl,-0x75(%rcx)
+  0x00007e120bfffb24:   xchg   %esi,0x48000001(%rax)
+  0x00007e120bfffb2a:   lea    0x28(%rax),%edi
+  0x00007e120bfffb2d:   cmp    0x1c0(%r15),%rdi
+  0x00007e120bfffb34:   ja     0x00007e120bfffe6f
+  0x00007e120bfffb3a:   mov    %rdi,0x1b0(%r15)
+  0x00007e120bfffb41:   movq   $0x1,(%rax)
+  0x00007e120bfffb48:   mov    %rdx,%rcx
+  0x00007e120bfffb4b:   mov    $0x31000000,%r10d
+  0x00007e120bfffb51:   sub    %r10,%rcx
+  0x00007e120bfffb54:   mov    %ecx,0x8(%rax)
+  0x00007e120bfffb57:   xor    %rcx,%rcx
+  0x00007e120bfffb5a:   mov    %ecx,0xc(%rax)
+  0x00007e120bfffb5d:   xor    %rcx,%rcx
+  0x00007e120bfffb60:   mov    %rcx,0x10(%rax)
+  0x00007e120bfffb64:   mov    %rcx,0x18(%rax)
+  0x00007e120bfffb68:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@4 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfffb6c:   mov    %rax,%rdx
+  0x00007e120bfffb6f:   movabs $0x7e11c808b080,%rsi         ;   {metadata(method data for {method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffb79:   addq   $0x1,0xf8(%rsi)
+  0x00007e120bfffb81:   movabs $0x7ff87a808,%rdx            ;   {oop(&quot;Overflow: String length out of range&quot;{0x00000007ff87a808})}
+  0x00007e120bfffb8b:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@10 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfffb8e:   mov    %rax,0x70(%rsp)
+  0x00007e120bfffb93:   nopl   0x0(%rax)
+  0x00007e120bfffb97:   call   0x00007e12134ad9e0           ; ImmutableOopMap {[80]=Oop [96]=Oop [112]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@10 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {optimized virtual_call}
+  0x00007e120bfffb9c:   nopl   0x3000b94(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@10 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {post_call_nop}
+  0x00007e120bfffba4:   mov    0x70(%rsp),%rax
+  0x00007e120bfffba9:   jmp    0x00007e120bfffebf           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@13 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+  0x00007e120bfffbae:   xchg   %ax,%ax
+  0x00007e120bfffbb0:   jmp    0x00007e120bfffe8b           ;   {other}
+  0x00007e120bfffbb5:   add    %al,(%rax)
+  0x00007e120bfffbb7:   add    %al,(%rax)
+  0x00007e120bfffbb9:   add    %cl,-0x75(%rcx)
+  0x00007e120bfffbbc:   xchg   %esi,0x48000001(%rax)
+  0x00007e120bfffbc2:   lea    0x28(%rax),%edi
+  0x00007e120bfffbc5:   cmp    0x1c0(%r15),%rdi
+  0x00007e120bfffbcc:   ja     0x00007e120bfffe95
+  0x00007e120bfffbd2:   mov    %rdi,0x1b0(%r15)
+  0x00007e120bfffbd9:   movq   $0x1,(%rax)
+  0x00007e120bfffbe0:   mov    %rdx,%rcx
+  0x00007e120bfffbe3:   mov    $0x31000000,%r10d
+  0x00007e120bfffbe9:   sub    %r10,%rcx
+  0x00007e120bfffbec:   mov    %ecx,0x8(%rax)
+  0x00007e120bfffbef:   xor    %rcx,%rcx
+  0x00007e120bfffbf2:   mov    %ecx,0xc(%rax)
+  0x00007e120bfffbf5:   xor    %rcx,%rcx
+  0x00007e120bfffbf8:   mov    %rcx,0x10(%rax)
+  0x00007e120bfffbfc:   mov    %rcx,0x18(%rax)
+  0x00007e120bfffc00:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@6 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+  0x00007e120bfffc04:   mov    %rax,%rdx
+  0x00007e120bfffc07:   movabs $0x7e11c808b7f0,%rsi         ;   {metadata(method data for {method} {0x000000003148c6f8} &apos;checkOverflow&apos; &apos;(I)I&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffc11:   addq   $0x1,0xf8(%rsi)
+  0x00007e120bfffc19:   movabs $0x7ff87a808,%rdx            ;   {oop(&quot;Overflow: String length out of range&quot;{0x00000007ff87a808})}
+  0x00007e120bfffc23:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@12 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+  0x00007e120bfffc26:   mov    %rax,0x78(%rsp)
+  0x00007e120bfffc2b:   nopl   0x0(%rax)
+  0x00007e120bfffc2f:   call   0x00007e12134ad9e0           ; ImmutableOopMap {[80]=Oop [96]=Oop [120]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@12 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+                                                            ;   {optimized virtual_call}
+  0x00007e120bfffc34:   nopl   0x4000c2c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@12 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+                                                            ;   {post_call_nop}
+  0x00007e120bfffc3c:   mov    0x78(%rsp),%rax
+  0x00007e120bfffc41:   jmp    0x00007e120bfffebf
+  0x00007e120bfffc46:   movabs $0x3148ccd0,%r10             ;   {metadata({method} {0x000000003148ccd0} &apos;doConcat&apos; &apos;(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffc50:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffc55:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffc5d:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringConcatHelper::doConcat@-1 (line 178)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffc62:   jmp    0x00007e120bfff150
+  0x00007e120bfffc67:   call   0x00007e121357c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*invokevirtual coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e120bfffc6c:   movabs $0x314a15d0,%r10             ;   {metadata({method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffc76:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffc7b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffc83:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@1 (line 178)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffc88:   jmp    0x00007e120bfff1df
+  0x00007e120bfffc8d:   call   0x00007e121357c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*invokevirtual coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e120bfffc92:   movabs $0x314a15d0,%r10             ;   {metadata({method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffc9c:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffca1:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffca9:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+                                                            ; - java.lang.StringConcatHelper::doConcat@5 (line 178)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffcae:   jmp    0x00007e120bfff298
+  0x00007e120bfffcb3:   movabs $0x311797e8,%r10             ;   {metadata({method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffcbd:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffcc2:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffcca:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::length@-1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffccf:   jmp    0x00007e120bfff366
+  0x00007e120bfffcd4:   call   0x00007e121357c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e120bfffcd9:   movabs $0x314a15d0,%r10             ;   {metadata({method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffce3:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffce8:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffcf0:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@12 (line 179)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffcf5:   jmp    0x00007e120bfff402
+  0x00007e120bfffcfa:   movabs $0x311797e8,%r10             ;   {metadata({method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffd04:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffd09:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffd11:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::length@-1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffd16:   jmp    0x00007e120bfff4b7
+  0x00007e120bfffd1b:   call   0x00007e121357c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e120bfffd20:   movabs $0x314a15d0,%r10             ;   {metadata({method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffd2a:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffd2f:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffd37:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@16 (line 179)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffd3c:   jmp    0x00007e120bfff553
+  0x00007e120bfffd41:   movabs $0x3148c6f8,%r10             ;   {metadata({method} {0x000000003148c6f8} &apos;checkOverflow&apos; &apos;(I)I&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffd4b:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffd50:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffd58:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@-1 (line 482)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffd5d:   jmp    0x00007e120bfff5b5
+  0x00007e120bfffd62:   movabs $0x3148cd28,%r10             ;   {metadata({method} {0x000000003148cd28} &apos;newArray&apos; &apos;(I)[B&apos; in &apos;java/lang/StringConcatHelper&apos;)}
+  0x00007e120bfffd6c:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffd71:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffd79:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop rdx=Oop [80]=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringConcatHelper::newArray@-1 (line 280)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffd7e:   jmp    0x00007e120bfff61f
+  0x00007e120bfffd83:   mov    %rax,(%rsp)
+  0x00007e120bfffd87:   call   0x00007e121357f8e0           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@24 (line 283)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007e120bfffd8c:   movabs $0x311797e8,%r10             ;   {metadata({method} {0x00000000311797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffd96:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffd9b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffda3:   call   0x00007e1213583460           ; ImmutableOopMap {[80]=Oop [96]=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::length@-1 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffda8:   jmp    0x00007e120bfff89a
+  0x00007e120bfffdad:   call   0x00007e121357c660           ; ImmutableOopMap {rsi=Oop [80]=Oop [96]=Oop [104]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e120bfffdb2:   movabs $0x314a15d0,%r10             ;   {metadata({method} {0x00000000314a15d0} &apos;coder&apos; &apos;()B&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffdbc:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffdc1:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffdc9:   call   0x00007e1213583460           ; ImmutableOopMap {rsi=Oop [80]=Oop [96]=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::coder@-1 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.StringConcatHelper::doConcat@44 (line 182)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffdce:   jmp    0x00007e120bfff93a
+  0x00007e120bfffdd3:   mov    %rdx,%rdx
+  0x00007e120bfffdd6:   call   0x00007e121357d3e0           ; ImmutableOopMap {[104]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::doConcat@51 (line 183)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e120bfffddb:   jmp    0x00007e120bfffa40
+  0x00007e120bfffde0:   movabs $0x314a1fc8,%r10             ;   {metadata({method} {0x00000000314a1fc8} &apos;&lt;init&gt;&apos; &apos;([BB)V&apos; in &apos;java/lang/String&apos;)}
+  0x00007e120bfffdea:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffdef:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffdf7:   call   0x00007e1213583460           ; ImmutableOopMap {rax=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::&lt;init&gt;@-1 (line 5173)
+                                                            ; - java.lang.StringConcatHelper::doConcat@58 (line 183)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffdfc:   jmp    0x00007e120bfffa7c
+  0x00007e120bfffe01:   movabs $0x314a6d78,%r10             ;   {metadata({method} {0x00000000314a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007e120bfffe0b:   mov    %r10,0x8(%rsp)
+  0x00007e120bfffe10:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e120bfffe18:   call   0x00007e1213583460           ; ImmutableOopMap {rax=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - java.lang.String::&lt;init&gt;@1 (line 5173)
+                                                            ; - java.lang.StringConcatHelper::doConcat@58 (line 183)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e120bfffe1d:   jmp    0x00007e120bfffab8
+  0x00007e120bfffe22:   mov    0x14(%rax),%edx
+  0x00007e120bfffe25:   shl    $0x3,%rdx
+  0x00007e120bfffe29:   test   %rdx,%rdx
+  0x00007e120bfffe2c:   je     0x00007e120bfffac5
+  0x00007e120bfffe32:   mov    %rdx,(%rsp)
+  0x00007e120bfffe36:   call   0x00007e1213583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007e120bfffe3b:   jmp    0x00007e120bfffac5
+  0x00007e120bfffe40:   movabs $0x7e120bfffb08,%r10         ;   {internal_word}
+  0x00007e120bfffe4a:   mov    %r10,0x510(%r15)
+  0x00007e120bfffe51:   jmp    0x00007e12134afb60           ;   {runtime_call SafepointBlob}
+  0x00007e120bfffe56:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007e120bfffe60:   mov    $0xa050f00,%eax
+  0x00007e120bfffe65:   call   0x00007e1213582560           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringConcatHelper::newArray@4 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007e120bfffe6a:   jmp    0x00007e120bfffb18
+  0x00007e120bfffe6f:   mov    %rdx,%rdx
+  0x00007e120bfffe72:   call   0x00007e121357d3e0           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::newArray@4 (line 281)
+                                                            ; - java.lang.StringConcatHelper::doConcat@27 (line 180)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e120bfffe77:   jmp    0x00007e120bfffb6c
+  0x00007e120bfffe7c:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007e120bfffe86:   mov    $0xa050f00,%eax
+  0x00007e120bfffe8b:   call   0x00007e1213582560           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringConcatHelper::checkOverflow@6 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007e120bfffe90:   jmp    0x00007e120bfffbb0
+  0x00007e120bfffe95:   mov    %rdx,%rdx
+  0x00007e120bfffe98:   call   0x00007e121357d3e0           ; ImmutableOopMap {[80]=Oop [96]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringConcatHelper::checkOverflow@6 (line 485)
+                                                            ; - java.lang.StringConcatHelper::doConcat@20 (line 179)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e120bfffe9d:   jmp    0x00007e120bfffc04
+  0x00007e120bfffea2:   mov    0x5c0(%r15),%rax
+  0x00007e120bfffea9:   movq   $0x0,0x5c0(%r15)
+  0x00007e120bfffeb4:   movq   $0x0,0x5c8(%r15)
+  0x00007e120bfffebf:   add    $0x90,%rsp
+  0x00007e120bfffec6:   pop    %rbp
+  0x00007e120bfffec7:   jmp    0x00007e121357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007e120bfffecc:   hlt    
+  0x00007e120bfffecd:   hlt    
+  0x00007e120bfffece:   hlt    
+  0x00007e120bfffecf:   hlt    
+[Stub Code]
+  0x00007e120bfffed0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e120bfffeda:   jmp    0x00007e120bfffeda           ;   {runtime_call nmethod}
+  0x00007e120bfffedf:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e120bfffee9:   jmp    0x00007e120bfffee9           ;   {runtime_call nmethod}
+  0x00007e120bfffeee:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e120bfffef8:   jmp    0x00007e120bfffef8           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007e120bfffefd:   call   0x00007e121357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007e120bffff02:   movabs $0x7e122c93aec4,%rdi         ;   {external_word}
+  0x00007e120bffff0c:   and    $0xfffffffffffffff0,%rsp
+  0x00007e120bffff10:   call   0x00007e122c391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007e120bffff15:   hlt    
+  0x00007e120bffff16:   call   0x00007e12134afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007e120bffff1b:   jmp    0x00007e120bffff16
+  0x00007e120bffff1d:   hlt    
+  0x00007e120bffff1e:   hlt    
+  0x00007e120bffff1f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

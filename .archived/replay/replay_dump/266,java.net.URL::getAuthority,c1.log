@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 5348  266       1       java.net.URL::getAuthority (5 bytes)
+ total in heap  [0x000077b45fbb1088,0x000077b45fbb1230] = 424
+ main code      [0x000077b45fbb1180,0x000077b45fbb1210] = 144
+ stub code      [0x000077b45fbb1210,0x000077b45fbb1230] = 32
+ mutable data [0x000077b3f00045a0,0x000077b3f00045c8] = 40
+ relocation     [0x000077b3f00045a0,0x000077b3f00045c0] = 32
+ metadata       [0x000077b3f00045c0,0x000077b3f00045c8] = 8
+ immutable data [0x000077b3f0004290,0x000077b3f00042ec] = 92
+ dependencies   [0x000077b3f0004290,0x000077b3f0004298] = 8
+ scopes pcs     [0x000077b3f0004298,0x000077b3f00042d8] = 64
+ scopes data    [0x000077b3f00042d8,0x000077b3f00042e8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb1180:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb118b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb118f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461bea78} &apos;getAuthority&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/net/URL&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb1192:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb1196:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb119a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb11a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb11a7:   push   %rbp
+  0x000077b45fbb11a8:   sub    $0x20,%rsp
+  0x000077b45fbb11ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb11b4:   je     0x000077b45fbb11bb
+  0x000077b45fbb11b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::getAuthority@0 (line 994)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb11bb:   mov    0x24(%rsi),%eax
+  0x000077b45fbb11be:   shl    $0x3,%rax                    ;*getfield authority {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::getAuthority@1 (line 994)
+  0x000077b45fbb11c2:   add    $0x20,%rsp
+  0x000077b45fbb11c6:   pop    %rbp
+  0x000077b45fbb11c7:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb11cb:   ja     0x000077b45fbb11d2
+  0x000077b45fbb11d1:   ret    
+  0x000077b45fbb11d2:   movabs $0x77b45fbb11c7,%r10         ;   {internal_word}
+  0x000077b45fbb11dc:   mov    %r10,0x510(%r15)
+  0x000077b45fbb11e3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb11e8:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb11ef:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb11fa:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb1205:   add    $0x20,%rsp
+  0x000077b45fbb1209:   pop    %rbp
+  0x000077b45fbb120a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb120f:   hlt    
+[Exception Handler]
+  0x000077b45fbb1210:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb1215:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb121f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb1223:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb1228:   hlt    
+  0x000077b45fbb1229:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb122e:   jmp    0x000077b45fbb1229
+--------------------------------------------------------------------------------
+[/Disassembly]

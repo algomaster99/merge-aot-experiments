@@ -1,0 +1,88 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 69    3       2       java.util.zip.ZipUtils::CENHOW (9 bytes)
+ total in heap  [0x0000729fcbfff008,0x0000729fcbfff1e8] = 480
+ main code      [0x0000729fcbfff100,0x0000729fcbfff1b8] = 184
+ stub code      [0x0000729fcbfff1b8,0x0000729fcbfff1e8] = 48
+ mutable data [0x0000729f6c014d00,0x0000729f6c014d38] = 56
+ relocation     [0x0000729f6c014d00,0x0000729f6c014d30] = 48
+ metadata       [0x0000729f6c014d30,0x0000729f6c014d38] = 8
+ immutable data [0x0000729f6c000ba0,0x0000729f6c000c34] = 148
+ dependencies   [0x0000729f6c000ba0,0x0000729f6c000ba8] = 8
+ scopes pcs     [0x0000729f6c000ba8,0x0000729f6c000c08] = 96
+ scopes data    [0x0000729f6c000c08,0x0000729f6c000c30] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000002b3f8e28} &apos;CENHOW&apos; &apos;([BI)I&apos; in &apos;java/util/zip/ZipUtils&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x0000729fcbfff100:   mov    %eax,-0x14000(%rsp)
+  0x0000729fcbfff107:   push   %rbp
+  0x0000729fcbfff108:   sub    $0x30,%rsp
+  0x0000729fcbfff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000729fcbfff114:   je     0x0000729fcbfff11b
+  0x0000729fcbfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000729fcbfff11b:   movabs $0x729f8400d688,%rdi
+  0x0000729fcbfff125:   mov    0x8(%rdi),%ebx
+  0x0000729fcbfff128:   add    $0x2,%ebx
+  0x0000729fcbfff12b:   mov    %ebx,0x8(%rdi)
+  0x0000729fcbfff12e:   and    $0xffe,%ebx
+  0x0000729fcbfff134:   test   %ebx,%ebx
+  0x0000729fcbfff136:   je     0x0000729fcbfff15c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::CENHOW@0 (line 261)
+  0x0000729fcbfff13c:   add    $0xa,%edx
+  0x0000729fcbfff13f:   call   0x0000729fd34adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic get16 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::CENHOW@5 (line 261)
+                                                            ;   {static_call}
+  0x0000729fcbfff144:   nopl   0x13c(%rax,%rax,1)           ;*invokestatic get16 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::CENHOW@5 (line 261)
+                                                            ;   {post_call_nop}
+  0x0000729fcbfff14c:   add    $0x30,%rsp
+  0x0000729fcbfff150:   pop    %rbp
+  0x0000729fcbfff151:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000729fcbfff155:   ja     0x0000729fcbfff17a
+  0x0000729fcbfff15b:   ret    
+  0x0000729fcbfff15c:   movabs $0x2b3f8e28,%r10             ;   {metadata({method} {0x000000002b3f8e28} &apos;CENHOW&apos; &apos;([BI)I&apos; in &apos;java/util/zip/ZipUtils&apos;)}
+  0x0000729fcbfff166:   mov    %r10,0x8(%rsp)
+  0x0000729fcbfff16b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000729fcbfff173:   call   0x0000729fd3582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.zip.ZipUtils::CENHOW@-1 (line 261)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000729fcbfff178:   jmp    0x0000729fcbfff13c
+  0x0000729fcbfff17a:   movabs $0x729fcbfff151,%r10         ;   {internal_word}
+  0x0000729fcbfff184:   mov    %r10,0x510(%r15)
+  0x0000729fcbfff18b:   jmp    0x0000729fd34afb60           ;   {runtime_call SafepointBlob}
+  0x0000729fcbfff190:   mov    0x5c0(%r15),%rax
+  0x0000729fcbfff197:   movq   $0x0,0x5c0(%r15)
+  0x0000729fcbfff1a2:   movq   $0x0,0x5c8(%r15)
+  0x0000729fcbfff1ad:   add    $0x30,%rsp
+  0x0000729fcbfff1b1:   pop    %rbp
+  0x0000729fcbfff1b2:   jmp    0x0000729fd357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000729fcbfff1b7:   hlt    
+[Stub Code]
+  0x0000729fcbfff1b8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000729fcbfff1c2:   jmp    0x0000729fcbfff1c2           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000729fcbfff1c7:   call   0x0000729fd357e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000729fcbfff1cc:   movabs $0x729fe993aec4,%rdi         ;   {external_word}
+  0x0000729fcbfff1d6:   and    $0xfffffffffffffff0,%rsp
+  0x0000729fcbfff1da:   call   0x0000729fe9391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000729fcbfff1df:   hlt    
+  0x0000729fcbfff1e0:   call   0x0000729fd34afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000729fcbfff1e5:   jmp    0x0000729fcbfff1e0
+  0x0000729fcbfff1e7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

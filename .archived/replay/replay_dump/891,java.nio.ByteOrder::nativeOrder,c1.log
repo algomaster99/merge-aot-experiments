@@ -1,0 +1,75 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 14429  891       3       java.nio.ByteOrder::nativeOrder (4 bytes)
+ total in heap  [0x000077b45807e108,0x000077b45807e2d8] = 464
+ main code      [0x000077b45807e200,0x000077b45807e2b8] = 184
+ stub code      [0x000077b45807e2b8,0x000077b45807e2d8] = 32
+ mutable data [0x000077b3e8085a70,0x000077b3e8085aa0] = 48
+ relocation     [0x000077b3e8085a70,0x000077b3e8085a98] = 40
+ metadata       [0x000077b3e8085a98,0x000077b3e8085aa0] = 8
+ immutable data [0x000077b3e809f380,0x000077b3e809f3dc] = 92
+ dependencies   [0x000077b3e809f380,0x000077b3e809f388] = 8
+ scopes pcs     [0x000077b3e809f388,0x000077b3e809f3c8] = 64
+ scopes data    [0x000077b3e809f3c8,0x000077b3e809f3d8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000462e3560} &apos;nativeOrder&apos; &apos;()Ljava/nio/ByteOrder;&apos; in &apos;java/nio/ByteOrder&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45807e200:   mov    %eax,-0x14000(%rsp)
+  0x000077b45807e207:   push   %rbp
+  0x000077b45807e208:   sub    $0x20,%rsp
+  0x000077b45807e20c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45807e214:   je     0x000077b45807e21b
+  0x000077b45807e216:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45807e21b:   movabs $0x77b414280288,%rax         ;   {metadata(method data for {method} {0x00000000462e3560} &apos;nativeOrder&apos; &apos;()Ljava/nio/ByteOrder;&apos; in &apos;java/nio/ByteOrder&apos;)}
+  0x000077b45807e225:   mov    0x90(%rax),%esi
+  0x000077b45807e22b:   add    $0x2,%esi
+  0x000077b45807e22e:   mov    %esi,0x90(%rax)
+  0x000077b45807e234:   and    $0x7fe,%esi
+  0x000077b45807e23a:   test   %esi,%esi
+  0x000077b45807e23c:   je     0x000077b45807e25c           ;*getstatic NATIVE_ORDER {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.ByteOrder::nativeOrder@0 (line 70)
+  0x000077b45807e242:   movabs $0x41f803f50,%rax            ;   {oop(a &apos;java/nio/ByteOrder&apos;{0x000000041f803f50})}
+  0x000077b45807e24c:   add    $0x20,%rsp
+  0x000077b45807e250:   pop    %rbp
+  0x000077b45807e251:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45807e255:   ja     0x000077b45807e27a
+  0x000077b45807e25b:   ret    
+  0x000077b45807e25c:   movabs $0x462e3560,%r10             ;   {metadata({method} {0x00000000462e3560} &apos;nativeOrder&apos; &apos;()Ljava/nio/ByteOrder;&apos; in &apos;java/nio/ByteOrder&apos;)}
+  0x000077b45807e266:   mov    %r10,0x8(%rsp)
+  0x000077b45807e26b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45807e273:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.nio.ByteOrder::nativeOrder@-1 (line 70)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45807e278:   jmp    0x000077b45807e242
+  0x000077b45807e27a:   movabs $0x77b45807e251,%r10         ;   {internal_word}
+  0x000077b45807e284:   mov    %r10,0x510(%r15)
+  0x000077b45807e28b:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45807e290:   mov    0x5c0(%r15),%rax
+  0x000077b45807e297:   movq   $0x0,0x5c0(%r15)
+  0x000077b45807e2a2:   movq   $0x0,0x5c8(%r15)
+  0x000077b45807e2ad:   add    $0x20,%rsp
+  0x000077b45807e2b1:   pop    %rbp
+  0x000077b45807e2b2:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45807e2b7:   hlt    
+[Exception Handler]
+  0x000077b45807e2b8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45807e2bd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45807e2c7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45807e2cb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45807e2d0:   hlt    
+  0x000077b45807e2d1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45807e2d6:   jmp    0x000077b45807e2d1
+--------------------------------------------------------------------------------
+[/Disassembly]

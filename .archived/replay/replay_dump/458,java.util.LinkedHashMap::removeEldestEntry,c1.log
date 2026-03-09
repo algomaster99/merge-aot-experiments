@@ -1,0 +1,73 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 9409  458       1       java.util.LinkedHashMap::removeEldestEntry (2 bytes)
+ total in heap  [0x000077b45fbbb388,0x000077b45fbbb530] = 424
+ main code      [0x000077b45fbbb480,0x000077b45fbbb510] = 144
+ stub code      [0x000077b45fbbb510,0x000077b45fbbb530] = 32
+ mutable data [0x000077b3f00696f0,0x000077b3f0069718] = 40
+ relocation     [0x000077b3f00696f0,0x000077b3f0069710] = 32
+ metadata       [0x000077b3f0069710,0x000077b3f0069718] = 8
+ immutable data [0x000077b3f00653c0,0x000077b3f0065404] = 68
+ dependencies   [0x000077b3f00653c0,0x000077b3f00653c8] = 8
+ scopes pcs     [0x000077b3f00653c8,0x000077b3f00653f8] = 48
+ scopes data    [0x000077b3f00653f8,0x000077b3f0065400] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbb480:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbbb48b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbbb48f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004624aec0} &apos;removeEldestEntry&apos; &apos;(Ljava/util/Map$Entry;)Z&apos; in &apos;java/util/LinkedHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/LinkedHashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/util/Map$Entry&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbbb492:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbb496:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbb49a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbb4a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbbb4a7:   push   %rbp
+  0x000077b45fbbb4a8:   sub    $0x20,%rsp
+  0x000077b45fbbb4ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbb4b4:   je     0x000077b45fbbb4bb
+  0x000077b45fbbb4b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*iconst_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::removeEldestEntry@0 (line 606)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbb4bb:   mov    $0x0,%eax
+  0x000077b45fbbb4c0:   add    $0x20,%rsp
+  0x000077b45fbbb4c4:   pop    %rbp
+  0x000077b45fbbb4c5:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbb4c9:   ja     0x000077b45fbbb4d0
+  0x000077b45fbbb4cf:   ret    
+  0x000077b45fbbb4d0:   movabs $0x77b45fbbb4c5,%r10         ;   {internal_word}
+  0x000077b45fbbb4da:   mov    %r10,0x510(%r15)
+  0x000077b45fbbb4e1:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbb4e6:   mov    0x5c0(%r15),%rax
+  0x000077b45fbbb4ed:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbbb4f8:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbbb503:   add    $0x20,%rsp
+  0x000077b45fbbb507:   pop    %rbp
+  0x000077b45fbbb508:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbbb50d:   hlt    
+  0x000077b45fbbb50e:   hlt    
+  0x000077b45fbbb50f:   hlt    
+[Exception Handler]
+  0x000077b45fbbb510:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbbb515:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbbb51f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbbb523:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbbb528:   hlt    
+  0x000077b45fbbb529:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbb52e:   jmp    0x000077b45fbbb529
+--------------------------------------------------------------------------------
+[/Disassembly]

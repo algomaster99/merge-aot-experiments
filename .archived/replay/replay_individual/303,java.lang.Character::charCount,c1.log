@@ -1,0 +1,100 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 333   24       3       java.lang.Character::charCount (12 bytes)
+ total in heap  [0x0000708ab7fff008,0x0000708ab7fff240] = 568
+ main code      [0x0000708ab7fff100,0x0000708ab7fff220] = 288
+ stub code      [0x0000708ab7fff220,0x0000708ab7fff240] = 32
+ mutable data [0x0000708a60014d20,0x0000708a60014d58] = 56
+ relocation     [0x0000708a60014d20,0x0000708a60014d50] = 48
+ metadata       [0x0000708a60014d50,0x0000708a60014d58] = 8
+ immutable data [0x0000708a60014c70,0x0000708a60014d14] = 164
+ dependencies   [0x0000708a60014c70,0x0000708a60014c78] = 8
+ scopes pcs     [0x0000708a60014c78,0x0000708a60014ce8] = 112
+ scopes data    [0x0000708a60014ce8,0x0000708a60014d10] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000007019c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;
+  # parm0:    rsi       = int
+  #           [sp+0x30]  (sp of caller)
+  0x0000708ab7fff100:   mov    %eax,-0x14000(%rsp)
+  0x0000708ab7fff107:   push   %rbp
+  0x0000708ab7fff108:   sub    $0x20,%rsp
+  0x0000708ab7fff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000708ab7fff114:   je     0x0000708ab7fff11b
+  0x0000708ab7fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000708ab7fff11b:   movabs $0x708a700a53f8,%rax         ;   {metadata(method data for {method} {0x000000007019c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;)}
+  0x0000708ab7fff125:   mov    0x90(%rax),%edi
+  0x0000708ab7fff12b:   add    $0x2,%edi
+  0x0000708ab7fff12e:   mov    %edi,0x90(%rax)
+  0x0000708ab7fff134:   and    $0x7fe,%edi
+  0x0000708ab7fff13a:   test   %edi,%edi
+  0x0000708ab7fff13c:   je     0x0000708ab7fff1aa           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@0 (line 9697)
+  0x0000708ab7fff142:   cmp    $0x10000,%esi
+  0x0000708ab7fff148:   movabs $0x708a700a53f8,%rax         ;   {metadata(method data for {method} {0x000000007019c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;)}
+  0x0000708ab7fff152:   mov    $0xd8,%esi
+  0x0000708ab7fff157:   jl     0x0000708ab7fff15e
+  0x0000708ab7fff159:   mov    $0xe8,%esi
+  0x0000708ab7fff15e:   mov    (%rax,%rsi,1),%rdi
+  0x0000708ab7fff162:   lea    0x1(%rdi),%rdi
+  0x0000708ab7fff166:   mov    %rdi,(%rax,%rsi,1)
+  0x0000708ab7fff16a:   jl     0x0000708ab7fff195           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@3 (line 9697)
+  0x0000708ab7fff170:   movabs $0x708a700a53f8,%rax         ;   {metadata(method data for {method} {0x000000007019c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;)}
+  0x0000708ab7fff17a:   incl   0xf8(%rax)
+  0x0000708ab7fff180:   mov    $0x2,%eax                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@7 (line 9697)
+  0x0000708ab7fff185:   add    $0x20,%rsp
+  0x0000708ab7fff189:   pop    %rbp
+  0x0000708ab7fff18a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000708ab7fff18e:   ja     0x0000708ab7fff1cb
+  0x0000708ab7fff194:   ret    
+  0x0000708ab7fff195:   mov    $0x1,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Character::charCount@11 (line 9697)
+  0x0000708ab7fff19a:   add    $0x20,%rsp
+  0x0000708ab7fff19e:   pop    %rbp
+  0x0000708ab7fff19f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000708ab7fff1a3:   ja     0x0000708ab7fff1e1
+  0x0000708ab7fff1a9:   ret    
+  0x0000708ab7fff1aa:   movabs $0x7019c160,%r10             ;   {metadata({method} {0x000000007019c160} &apos;charCount&apos; &apos;(I)I&apos; in &apos;java/lang/Character&apos;)}
+  0x0000708ab7fff1b4:   mov    %r10,0x8(%rsp)
+  0x0000708ab7fff1b9:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000708ab7fff1c1:   call   0x0000708abf5821e0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Character::charCount@-1 (line 9697)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000708ab7fff1c6:   jmp    0x0000708ab7fff142
+  0x0000708ab7fff1cb:   movabs $0x708ab7fff18a,%r10         ;   {internal_word}
+  0x0000708ab7fff1d5:   mov    %r10,0x510(%r15)
+  0x0000708ab7fff1dc:   jmp    0x0000708abf4afb60           ;   {runtime_call SafepointBlob}
+  0x0000708ab7fff1e1:   movabs $0x708ab7fff19f,%r10         ;   {internal_word}
+  0x0000708ab7fff1eb:   mov    %r10,0x510(%r15)
+  0x0000708ab7fff1f2:   jmp    0x0000708abf4afb60           ;   {runtime_call SafepointBlob}
+  0x0000708ab7fff1f7:   mov    0x5c0(%r15),%rax
+  0x0000708ab7fff1fe:   movq   $0x0,0x5c0(%r15)
+  0x0000708ab7fff209:   movq   $0x0,0x5c8(%r15)
+  0x0000708ab7fff214:   add    $0x20,%rsp
+  0x0000708ab7fff218:   pop    %rbp
+  0x0000708ab7fff219:   jmp    0x0000708abf57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000708ab7fff21e:   hlt    
+  0x0000708ab7fff21f:   hlt    
+[Exception Handler]
+  0x0000708ab7fff220:   call   0x0000708abf57e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000708ab7fff225:   movabs $0x708ad793aec4,%rdi         ;   {external_word}
+  0x0000708ab7fff22f:   and    $0xfffffffffffffff0,%rsp
+  0x0000708ab7fff233:   call   0x0000708ad7391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000708ab7fff238:   hlt    
+  0x0000708ab7fff239:   call   0x0000708abf4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000708ab7fff23e:   jmp    0x0000708ab7fff239
+--------------------------------------------------------------------------------
+[/Disassembly]

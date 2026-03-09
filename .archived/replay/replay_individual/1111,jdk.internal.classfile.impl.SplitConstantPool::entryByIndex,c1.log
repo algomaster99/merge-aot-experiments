@@ -1,0 +1,483 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 443   45       3       jdk.internal.classfile.impl.SplitConstantPool::entryByIndex (11 bytes)
+ total in heap  [0x0000708133fff008,0x0000708133fff748] = 1856
+ main code      [0x0000708133fff100,0x0000708133fff6e8] = 1512
+ stub code      [0x0000708133fff6e8,0x0000708133fff748] = 96
+ mutable data [0x00007080d402d350,0x00007080d402d410] = 192
+ relocation     [0x00007080d402d350,0x00007080d402d3f0] = 160
+ metadata       [0x00007080d402d3f0,0x00007080d402d410] = 32
+ immutable data [0x00007080d402d020,0x00007080d402d33c] = 796
+ dependencies   [0x00007080d402d020,0x00007080d402d030] = 16
+ nul chk table  [0x00007080d402d030,0x00007080d402d048] = 24
+ scopes pcs     [0x00007080d402d048,0x00007080d402d248] = 512
+ scopes data    [0x00007080d402d248,0x00007080d402d338] = 240
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000708133fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000708133fff10b:   data16 data16 xchg %ax,%ax
+  0x0000708133fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000593485a8} &apos;entryByIndex&apos; &apos;(ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;
+  # parm0:    rdx       = int
+  # parm1:    rcx:rcx   = &apos;java/lang/Class&apos;
+  #           [sp+0xa0]  (sp of caller)
+  0x0000708133fff112:   mov    0x8(%rsi),%r10d
+  0x0000708133fff116:   cmp    0x8(%rax),%r10d
+  0x0000708133fff11a:   jne    0x000070813b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000708133fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000708133fff127:   push   %rbp
+  0x0000708133fff128:   sub    $0x90,%rsp
+  0x0000708133fff12f:   nop
+  0x0000708133fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000708133fff138:   je     0x0000708133fff13f
+  0x0000708133fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000708133fff13f:   mov    %rcx,0x60(%rsp)
+  0x0000708133fff144:   movabs $0x7080ec280288,%rdi         ;   {metadata(method data for {method} {0x00000000593485a8} &apos;entryByIndex&apos; &apos;(ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000708133fff14e:   mov    0x90(%rdi),%ebx
+  0x0000708133fff154:   add    $0x2,%ebx
+  0x0000708133fff157:   mov    %ebx,0x90(%rdi)
+  0x0000708133fff15d:   and    $0x7fe,%ebx
+  0x0000708133fff163:   test   %ebx,%ebx
+  0x0000708133fff165:   je     0x0000708133fff60c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@0 (line 109)
+  0x0000708133fff16b:   mov    %rsi,%rdi
+  0x0000708133fff16e:   movabs $0x7080ec280288,%rbx         ;   {metadata(method data for {method} {0x00000000593485a8} &apos;entryByIndex&apos; &apos;(ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000708133fff178:   mov    0x8(%rdi),%edi
+  0x0000708133fff17b:   mov    $0x59000000,%r10d
+  0x0000708133fff181:   add    %r10,%rdi
+  0x0000708133fff184:   mov    $0x1c,%r10d
+  0x0000708133fff18a:   cmp    (%rbx,%r10,8),%rdi
+  0x0000708133fff18e:   je     0x0000708133fff1c7
+  0x0000708133fff190:   add    $0x2,%r10
+  0x0000708133fff194:   cmp    $0x20,%r10
+  0x0000708133fff198:   jne    0x0000708133fff18a
+  0x0000708133fff19a:   mov    $0x1c,%r10d
+  0x0000708133fff1a0:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000708133fff1a5:   je     0x0000708133fff1b3
+  0x0000708133fff1a7:   add    $0x2,%r10
+  0x0000708133fff1ab:   cmp    $0x20,%r10
+  0x0000708133fff1af:   jne    0x0000708133fff1a0
+  0x0000708133fff1b1:   jmp    0x0000708133fff1bf
+  0x0000708133fff1b3:   push   %rax
+  0x0000708133fff1b4:   xor    %rax,%rax
+  0x0000708133fff1b7:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000708133fff1bc:   pop    %rax
+  0x0000708133fff1bd:   jmp    0x0000708133fff184
+  0x0000708133fff1bf:   mov    $0x1b,%r10d
+  0x0000708133fff1c5:   jmp    0x0000708133fff1cb
+  0x0000708133fff1c7:   add    $0x1,%r10
+  0x0000708133fff1cb:   addq   $0x1,(%rbx,%r10,8)
+  0x0000708133fff1d0:   mov    %rdx,%rdi
+  0x0000708133fff1d3:   mov    %rdi,%rdx                    ;*invokevirtual entryByIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@2 (line 109)
+  0x0000708133fff1d6:   mov    %edi,0x68(%rsp)
+  0x0000708133fff1da:   nopl   0x0(%rax,%rax,1)
+  0x0000708133fff1df:   call   0x000070813b4ad9e0           ; ImmutableOopMap {[96]=Oop }
+                                                            ;*invokevirtual entryByIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@2 (line 109)
+                                                            ;   {optimized virtual_call}
+  0x0000708133fff1e4:   nopl   0x1dc(%rax,%rax,1)           ;*invokevirtual entryByIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@2 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff1ec:   mov    %rax,0x70(%rsp)
+  0x0000708133fff1f1:   movabs $0x7080ec280288,%rdi         ;   {metadata(method data for {method} {0x00000000593485a8} &apos;entryByIndex&apos; &apos;(ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000708133fff1fb:   addq   $0x1,0x108(%rdi)
+  0x0000708133fff203:   movabs $0x7080ec2803f0,%rdi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff20d:   mov    0x90(%rdi),%esi
+  0x0000708133fff213:   add    $0x2,%esi
+  0x0000708133fff216:   mov    %esi,0x90(%rdi)
+  0x0000708133fff21c:   and    $0x1ffffe,%esi
+  0x0000708133fff222:   test   %esi,%esi
+  0x0000708133fff224:   je     0x0000708133fff62d
+  0x0000708133fff22a:   mov    0x60(%rsp),%rcx
+  0x0000708133fff22f:   cmp    (%rcx),%rax                  ; implicit exception: dispatches to 0x0000708133fff64e
+  0x0000708133fff232:   mov    %rcx,%rdi
+  0x0000708133fff235:   movabs $0x7080ec2803f0,%rsi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff23f:   mov    0x8(%rdi),%edi
+  0x0000708133fff242:   mov    $0x59000000,%r10d
+  0x0000708133fff248:   add    %r10,%rdi
+  0x0000708133fff24b:   mov    $0x1c,%r10d
+  0x0000708133fff251:   cmp    (%rsi,%r10,8),%rdi
+  0x0000708133fff255:   je     0x0000708133fff28e
+  0x0000708133fff257:   add    $0x2,%r10
+  0x0000708133fff25b:   cmp    $0x20,%r10
+  0x0000708133fff25f:   jne    0x0000708133fff251
+  0x0000708133fff261:   mov    $0x1c,%r10d
+  0x0000708133fff267:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000708133fff26c:   je     0x0000708133fff27a
+  0x0000708133fff26e:   add    $0x2,%r10
+  0x0000708133fff272:   cmp    $0x20,%r10
+  0x0000708133fff276:   jne    0x0000708133fff267
+  0x0000708133fff278:   jmp    0x0000708133fff286
+  0x0000708133fff27a:   push   %rax
+  0x0000708133fff27b:   xor    %rax,%rax
+  0x0000708133fff27e:   cmpxchg %rdi,(%rsi,%r10,8)
+  0x0000708133fff283:   pop    %rax
+  0x0000708133fff284:   jmp    0x0000708133fff24b
+  0x0000708133fff286:   mov    $0x1b,%r10d
+  0x0000708133fff28c:   jmp    0x0000708133fff292
+  0x0000708133fff28e:   add    $0x1,%r10
+  0x0000708133fff292:   addq   $0x1,(%rsi,%r10,8)
+  0x0000708133fff297:   mov    %rcx,%rdi
+  0x0000708133fff29a:   mov    %rax,%rsi
+  0x0000708133fff29d:   call   0x000070813b580ae0           ;   {runtime_call is_instance_of_blob (C1 runtime)}
+  0x0000708133fff2a2:   nopl   0x0(%rax,%rax,1)             ;*invokevirtual isInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@2 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff2aa:   test   %eax,%eax
+  0x0000708133fff2ac:   movabs $0x7080ec2803f0,%rdi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff2b6:   mov    $0x108,%esi
+  0x0000708133fff2bb:   je     0x0000708133fff2c2
+  0x0000708133fff2bd:   mov    $0x118,%esi
+  0x0000708133fff2c2:   mov    (%rdi,%rsi,1),%rbx
+  0x0000708133fff2c6:   lea    0x1(%rbx),%rbx
+  0x0000708133fff2ca:   mov    %rbx,(%rdi,%rsi,1)
+  0x0000708133fff2ce:   je     0x0000708133fff5d6           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@5 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff2d4:   mov    0x70(%rsp),%rax
+  0x0000708133fff2d9:   mov    0x60(%rsp),%rcx
+  0x0000708133fff2de:   movabs $0x7080ec2803f0,%rdi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff2e8:   mov    0x8(%rcx),%ecx
+  0x0000708133fff2eb:   mov    $0x59000000,%r10d
+  0x0000708133fff2f1:   add    %r10,%rcx
+  0x0000708133fff2f4:   mov    $0x26,%r10d
+  0x0000708133fff2fa:   cmp    (%rdi,%r10,8),%rcx
+  0x0000708133fff2fe:   je     0x0000708133fff337
+  0x0000708133fff300:   add    $0x2,%r10
+  0x0000708133fff304:   cmp    $0x2a,%r10
+  0x0000708133fff308:   jne    0x0000708133fff2fa
+  0x0000708133fff30a:   mov    $0x26,%r10d
+  0x0000708133fff310:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000708133fff315:   je     0x0000708133fff323
+  0x0000708133fff317:   add    $0x2,%r10
+  0x0000708133fff31b:   cmp    $0x2a,%r10
+  0x0000708133fff31f:   jne    0x0000708133fff310
+  0x0000708133fff321:   jmp    0x0000708133fff32f
+  0x0000708133fff323:   push   %rax
+  0x0000708133fff324:   xor    %rax,%rax
+  0x0000708133fff327:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x0000708133fff32c:   pop    %rax
+  0x0000708133fff32d:   jmp    0x0000708133fff2f4
+  0x0000708133fff32f:   mov    $0x25,%r10d
+  0x0000708133fff335:   jmp    0x0000708133fff33b
+  0x0000708133fff337:   add    $0x1,%r10
+  0x0000708133fff33b:   addq   $0x1,(%rdi,%r10,8)
+  0x0000708133fff340:   movabs $0x7080ec27fe08,%rdi         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff34a:   mov    0x90(%rdi),%esi
+  0x0000708133fff350:   add    $0x2,%esi
+  0x0000708133fff353:   mov    %esi,0x90(%rdi)
+  0x0000708133fff359:   and    $0x1ffffe,%esi
+  0x0000708133fff35f:   test   %esi,%esi
+  0x0000708133fff361:   je     0x0000708133fff653
+  0x0000708133fff367:   test   %rax,%rax
+  0x0000708133fff36a:   movabs $0x7080ec27fe08,%rdi         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff374:   mov    $0xd8,%esi
+  0x0000708133fff379:   je     0x0000708133fff380
+  0x0000708133fff37b:   mov    $0xe8,%esi
+  0x0000708133fff380:   mov    (%rdi,%rsi,1),%rbx
+  0x0000708133fff384:   lea    0x1(%rbx),%rbx
+  0x0000708133fff388:   mov    %rbx,(%rdi,%rsi,1)
+  0x0000708133fff38c:   je     0x0000708133fff438           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@1 (line 3492)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff392:   mov    0x60(%rsp),%rcx
+  0x0000708133fff397:   movabs $0x7080ec27fe08,%rdi         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff3a1:   mov    0x8(%rcx),%ecx
+  0x0000708133fff3a4:   mov    $0x59000000,%r10d
+  0x0000708133fff3aa:   add    %r10,%rcx
+  0x0000708133fff3ad:   mov    $0x20,%r10d
+  0x0000708133fff3b3:   cmp    (%rdi,%r10,8),%rcx
+  0x0000708133fff3b7:   je     0x0000708133fff3f0
+  0x0000708133fff3b9:   add    $0x2,%r10
+  0x0000708133fff3bd:   cmp    $0x24,%r10
+  0x0000708133fff3c1:   jne    0x0000708133fff3b3
+  0x0000708133fff3c3:   mov    $0x20,%r10d
+  0x0000708133fff3c9:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000708133fff3ce:   je     0x0000708133fff3dc
+  0x0000708133fff3d0:   add    $0x2,%r10
+  0x0000708133fff3d4:   cmp    $0x24,%r10
+  0x0000708133fff3d8:   jne    0x0000708133fff3c9
+  0x0000708133fff3da:   jmp    0x0000708133fff3e8
+  0x0000708133fff3dc:   push   %rax
+  0x0000708133fff3dd:   xor    %rax,%rax
+  0x0000708133fff3e0:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x0000708133fff3e5:   pop    %rax
+  0x0000708133fff3e6:   jmp    0x0000708133fff3ad
+  0x0000708133fff3e8:   mov    $0x1f,%r10d
+  0x0000708133fff3ee:   jmp    0x0000708133fff3f4
+  0x0000708133fff3f0:   add    $0x1,%r10
+  0x0000708133fff3f4:   addq   $0x1,(%rdi,%r10,8)
+  0x0000708133fff3f9:   mov    0x60(%rsp),%rdi
+  0x0000708133fff3fe:   mov    %rax,%rsi
+  0x0000708133fff401:   call   0x000070813b580ae0           ;   {runtime_call is_instance_of_blob (C1 runtime)}
+  0x0000708133fff406:   nopl   0x0(%rax,%rax,1)             ;*invokevirtual isInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@6 (line 3492)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff40e:   test   %eax,%eax
+  0x0000708133fff410:   movabs $0x7080ec27fe08,%rax         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff41a:   mov    $0x138,%edx
+  0x0000708133fff41f:   je     0x0000708133fff426
+  0x0000708133fff421:   mov    $0x128,%edx
+  0x0000708133fff426:   mov    (%rax,%rdx,1),%rsi
+  0x0000708133fff42a:   lea    0x1(%rsi),%rsi
+  0x0000708133fff42e:   mov    %rsi,(%rax,%rdx,1)
+  0x0000708133fff432:   je     0x0000708133fff505           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@9 (line 3492)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff438:   mov    0x70(%rsp),%rbx
+  0x0000708133fff43d:   test   %rbx,%rbx
+  0x0000708133fff440:   movabs $0x7080ec2803f0,%rsi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff44a:   jne    0x0000708133fff458
+  0x0000708133fff44c:   orb    $0x1,0x151(%rsi)
+  0x0000708133fff453:   jmp    0x0000708133fff4ef
+  0x0000708133fff458:   mov    0x8(%rbx),%edi
+  0x0000708133fff45b:   mov    $0x59000000,%r10d
+  0x0000708133fff461:   add    %r10,%rdi
+  0x0000708133fff464:   mov    $0x2c,%r10d
+  0x0000708133fff46a:   cmp    (%rsi,%r10,8),%rdi
+  0x0000708133fff46e:   je     0x0000708133fff4a7
+  0x0000708133fff470:   add    $0x2,%r10
+  0x0000708133fff474:   cmp    $0x30,%r10
+  0x0000708133fff478:   jne    0x0000708133fff46a
+  0x0000708133fff47a:   mov    $0x2c,%r10d
+  0x0000708133fff480:   cmpq   $0x0,(%rsi,%r10,8)
+  0x0000708133fff485:   je     0x0000708133fff493
+  0x0000708133fff487:   add    $0x2,%r10
+  0x0000708133fff48b:   cmp    $0x30,%r10
+  0x0000708133fff48f:   jne    0x0000708133fff480
+  0x0000708133fff491:   jmp    0x0000708133fff49f
+  0x0000708133fff493:   push   %rax
+  0x0000708133fff494:   xor    %rax,%rax
+  0x0000708133fff497:   cmpxchg %rdi,(%rsi,%r10,8)
+  0x0000708133fff49c:   pop    %rax
+  0x0000708133fff49d:   jmp    0x0000708133fff464
+  0x0000708133fff49f:   mov    $0x2b,%r10d
+  0x0000708133fff4a5:   jmp    0x0000708133fff4ab
+  0x0000708133fff4a7:   add    $0x1,%r10
+  0x0000708133fff4ab:   addq   $0x1,(%rsi,%r10,8)
+  0x0000708133fff4b0:   movabs $0x593058e0,%rdi             ;   {metadata(&apos;java/lang/classfile/constantpool/PoolEntry&apos;)}
+  0x0000708133fff4ba:   mov    0x8(%rbx),%esi
+  0x0000708133fff4bd:   mov    $0x59000000,%r10d
+  0x0000708133fff4c3:   add    %r10,%rsi
+  0x0000708133fff4c6:   cmp    0x20(%rsi),%rdi
+  0x0000708133fff4ca:   je     0x0000708133fff4ef
+  0x0000708133fff4d0:   cmp    %rdi,%rsi
+  0x0000708133fff4d3:   je     0x0000708133fff4ef
+  0x0000708133fff4d9:   push   %rsi
+  0x0000708133fff4da:   push   %rdi
+  0x0000708133fff4db:   call   0x000070813b5807e0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x0000708133fff4e0:   pop    %rsi
+  0x0000708133fff4e1:   pop    %rsi
+  0x0000708133fff4e2:   test   %esi,%esi
+  0x0000708133fff4e4:   je     0x0000708133fff674
+  0x0000708133fff4ea:   jmp    0x0000708133fff4ef
+  0x0000708133fff4ef:   mov    %rbx,%rax                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@13 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff4f2:   add    $0x90,%rsp
+  0x0000708133fff4f9:   pop    %rbp
+  0x0000708133fff4fa:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000708133fff4fe:   ja     0x0000708133fff67d
+  0x0000708133fff504:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@10 (line 109)
+  0x0000708133fff505:   mov    0x70(%rsp),%rbx
+  0x0000708133fff50a:   nopw   0x0(%rax,%rax,1)
+  0x0000708133fff510:   jmp    0x0000708133fff6a2           ;   {other}
+  0x0000708133fff515:   add    %al,(%rax)
+  0x0000708133fff517:   add    %al,(%rax)
+  0x0000708133fff519:   add    %cl,-0x75(%rcx)
+  0x0000708133fff51c:   xchg   %esi,0x48000001(%rax)
+  0x0000708133fff522:   lea    0x28(%rax),%edi
+  0x0000708133fff525:   cmp    0x1c0(%r15),%rdi
+  0x0000708133fff52c:   ja     0x0000708133fff6ac
+  0x0000708133fff532:   mov    %rdi,0x1b0(%r15)
+  0x0000708133fff539:   movq   $0x1,(%rax)
+  0x0000708133fff540:   mov    %rdx,%rcx
+  0x0000708133fff543:   mov    $0x59000000,%r10d
+  0x0000708133fff549:   sub    %r10,%rcx
+  0x0000708133fff54c:   mov    %ecx,0x8(%rax)
+  0x0000708133fff54f:   xor    %rcx,%rcx
+  0x0000708133fff552:   mov    %ecx,0xc(%rax)
+  0x0000708133fff555:   xor    %rcx,%rcx
+  0x0000708133fff558:   mov    %rcx,0x10(%rax)
+  0x0000708133fff55c:   mov    %rcx,0x18(%rax)
+  0x0000708133fff560:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@12 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff564:   mov    0x60(%rsp),%rcx
+  0x0000708133fff569:   movabs $0x7080ec27fe08,%rdx         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff573:   addq   $0x1,0x148(%rdx)
+  0x0000708133fff57b:   mov    %rbx,%rdx
+  0x0000708133fff57e:   mov    0x60(%rsp),%rsi              ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff583:   mov    %rax,0x78(%rsp)
+  0x0000708133fff588:   nopl   0x0(%rax)
+  0x0000708133fff58f:   call   0x000070813b4ad9e0           ; ImmutableOopMap {[120]=Oop }
+                                                            ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {optimized virtual_call}
+  0x0000708133fff594:   nopl   0x100058c(%rax,%rax,1)       ;*invokevirtual cannotCastMsg {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@18 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff59c:   mov    0x78(%rsp),%rdx
+  0x0000708133fff5a1:   movabs $0x7080ec27fe08,%rsi         ;   {metadata(method data for {method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff5ab:   addq   $0x1,0x178(%rsi)
+  0x0000708133fff5b3:   mov    %rax,%rdx
+  0x0000708133fff5b6:   mov    0x78(%rsp),%rsi              ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff5bb:   nopl   0x0(%rax)
+  0x0000708133fff5bf:   call   0x000070813b4ad9e0           ; ImmutableOopMap {[120]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {optimized virtual_call}
+  0x0000708133fff5c4:   nopl   0x20005bc(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@21 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff5cc:   mov    0x78(%rsp),%rax
+  0x0000708133fff5d1:   jmp    0x0000708133fff6db           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@24 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff5d6:   mov    0x60(%rsp),%rcx
+  0x0000708133fff5db:   mov    0x68(%rsp),%edx
+  0x0000708133fff5df:   movabs $0x7080ec2803f0,%rsi         ;   {metadata(method data for {method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff5e9:   addq   $0x1,0x188(%rsi)
+  0x0000708133fff5f1:   mov    %rdx,%rsi
+  0x0000708133fff5f4:   mov    %rcx,%rdx                    ;*invokestatic checkTypeError {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@19 (line 359)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+  0x0000708133fff5f7:   call   0x000070813b4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic checkTypeError {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@19 (line 359)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {static_call}
+  0x0000708133fff5fc:   nopl   0x30005f4(%rax,%rax,1)       ;*invokestatic checkTypeError {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@19 (line 359)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {post_call_nop}
+  0x0000708133fff604:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000708133fff6b9
+  0x0000708133fff607:   jmp    0x0000708133fff6db
+  0x0000708133fff60c:   movabs $0x593485a8,%r10             ;   {metadata({method} {0x00000000593485a8} &apos;entryByIndex&apos; &apos;(ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/SplitConstantPool&apos;)}
+  0x0000708133fff616:   mov    %r10,0x8(%rsp)
+  0x0000708133fff61b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000708133fff623:   call   0x000070813b583460           ; ImmutableOopMap {rsi=Oop rcx=Oop [96]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@-1 (line 109)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000708133fff628:   jmp    0x0000708133fff16b
+  0x0000708133fff62d:   movabs $0x5945ed20,%r10             ;   {metadata({method} {0x000000005945ed20} &apos;checkType&apos; &apos;(Ljava/lang/classfile/constantpool/PoolEntry;ILjava/lang/Class;)Ljava/lang/classfile/constantpool/PoolEntry;&apos; in &apos;jdk/internal/classfile/impl/ClassReaderImpl&apos;)}
+  0x0000708133fff637:   mov    %r10,0x8(%rsp)
+  0x0000708133fff63c:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000708133fff644:   call   0x000070813b583460           ; ImmutableOopMap {rax=Oop [96]=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@-1 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000708133fff649:   jmp    0x0000708133fff22a
+  0x0000708133fff64e:   call   0x000070813b57c660           ; ImmutableOopMap {rax=Oop rcx=Oop [96]=Oop [112]=Oop }
+                                                            ;*invokevirtual isInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@2 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000708133fff653:   movabs $0x59188c08,%r10             ;   {metadata({method} {0x0000000059188c08} &apos;cast&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/Class&apos;)}
+  0x0000708133fff65d:   mov    %r10,0x8(%rsp)
+  0x0000708133fff662:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000708133fff66a:   call   0x000070813b583460           ; ImmutableOopMap {rax=Oop [96]=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::cast@-1 (line 3492)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000708133fff66f:   jmp    0x0000708133fff367
+  0x0000708133fff674:   mov    %rbx,(%rsp)
+  0x0000708133fff678:   call   0x000070813b5801e0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@13 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000708133fff67d:   movabs $0x708133fff4fa,%r10         ;   {internal_word}
+  0x0000708133fff687:   mov    %r10,0x510(%r15)
+  0x0000708133fff68e:   jmp    0x000070813b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000708133fff693:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x0000708133fff69d:   mov    $0xa050f00,%eax
+  0x0000708133fff6a2:   call   0x000070813b582560           ; ImmutableOopMap {rbx=Oop [96]=Oop [112]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.Class::cast@12 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x0000708133fff6a7:   jmp    0x0000708133fff510
+  0x0000708133fff6ac:   mov    %rdx,%rdx
+  0x0000708133fff6af:   call   0x000070813b57dde0           ; ImmutableOopMap {rbx=Oop [96]=Oop [112]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::cast@12 (line 3493)
+                                                            ; - jdk.internal.classfile.impl.ClassReaderImpl::checkType@10 (line 358)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000708133fff6b4:   jmp    0x0000708133fff564
+  0x0000708133fff6b9:   call   0x000070813b57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.classfile.impl.ClassReaderImpl::checkType@22 (line 359)
+                                                            ; - jdk.internal.classfile.impl.SplitConstantPool::entryByIndex@7 (line 109)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000708133fff6be:   mov    0x5c0(%r15),%rax
+  0x0000708133fff6c5:   movq   $0x0,0x5c0(%r15)
+  0x0000708133fff6d0:   movq   $0x0,0x5c8(%r15)
+  0x0000708133fff6db:   add    $0x90,%rsp
+  0x0000708133fff6e2:   pop    %rbp
+  0x0000708133fff6e3:   jmp    0x000070813b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x0000708133fff6e8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000708133fff6f2:   jmp    0x0000708133fff6f2           ;   {runtime_call nmethod}
+  0x0000708133fff6f7:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000708133fff701:   jmp    0x0000708133fff701           ;   {runtime_call nmethod}
+  0x0000708133fff706:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000708133fff710:   jmp    0x0000708133fff710           ;   {runtime_call nmethod}
+  0x0000708133fff715:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000708133fff71f:   jmp    0x0000708133fff71f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000708133fff724:   call   0x000070813b57f760           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000708133fff729:   movabs $0x708151b3aec4,%rdi         ;   {external_word}
+  0x0000708133fff733:   and    $0xfffffffffffffff0,%rsp
+  0x0000708133fff737:   call   0x0000708151591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000708133fff73c:   hlt    
+  0x0000708133fff73d:   call   0x000070813b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000708133fff742:   jmp    0x0000708133fff73d
+  0x0000708133fff744:   hlt    
+  0x0000708133fff745:   hlt    
+  0x0000708133fff746:   hlt    
+  0x0000708133fff747:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

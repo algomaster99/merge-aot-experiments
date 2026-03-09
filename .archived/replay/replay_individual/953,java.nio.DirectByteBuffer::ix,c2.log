@@ -1,0 +1,65 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 415   29       4       java.nio.DirectByteBuffer::ix (10 bytes)
+ total in heap  [0x000075974bba5408,0x000075974bba5570] = 360
+ main code      [0x000075974bba5500,0x000075974bba5568] = 104
+ stub code      [0x000075974bba5568,0x000075974bba5570] = 8
+ mutable data [0x00007596e8071770,0x00007596e8071788] = 24
+ relocation     [0x00007596e8071770,0x00007596e8071780] = 16
+ metadata       [0x00007596e8071780,0x00007596e8071788] = 8
+ immutable data [0x00007596e8071b90,0x00007596e8071bec] = 92
+ dependencies   [0x00007596e8071b90,0x00007596e8071b98] = 8
+ scopes pcs     [0x00007596e8071b98,0x00007596e8071bd8] = 64
+ scopes data    [0x00007596e8071bd8,0x00007596e8071be8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000075974bba5500:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000832e6858} &apos;ix&apos; &apos;(I)J&apos; in &apos;java/nio/DirectByteBuffer&apos;
+  # this:     rsi:rsi   = &apos;java/nio/DirectByteBuffer&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x20]  (sp of caller)
+  0x000075974bba5502:   mov    0x8(%rsi),%r10d
+  0x000075974bba5506:   cmp    0x8(%rax),%r10d
+  0x000075974bba550a:   jne    0x000075974b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000075974bba5510:   sub    $0x18,%rsp
+  0x000075974bba5514:   mov    %rbp,0x10(%rsp)
+  0x000075974bba5519:   data16 xchg %ax,%ax
+  0x000075974bba551c:   cmpl   $0x1,0x20(%r15)
+  0x000075974bba5524:   jne    0x000075974bba5557           ;*synchronization entry
+                                                            ; - java.nio.DirectByteBuffer::ix@-1 (line 328)
+  0x000075974bba552a:   movslq %edx,%rax
+  0x000075974bba552d:   add    0x10(%rsi),%rax              ;*ladd {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.DirectByteBuffer::ix@8 (line 328)
+  0x000075974bba5531:   add    $0x10,%rsp
+  0x000075974bba5535:   pop    %rbp
+  0x000075974bba5536:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000075974bba553a:   ja     0x000075974bba5541
+  0x000075974bba5540:   ret    
+  0x000075974bba5541:   movabs $0x75974bba5536,%r10         ;   {internal_word}
+  0x000075974bba554b:   mov    %r10,0x510(%r15)
+  0x000075974bba5552:   jmp    0x000075974b4afb60           ;   {runtime_call SafepointBlob}
+  0x000075974bba5557:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000075974bba555c:   jmp    0x000075974bba552a
+  0x000075974bba5561:   hlt    
+  0x000075974bba5562:   hlt    
+  0x000075974bba5563:   hlt    
+  0x000075974bba5564:   hlt    
+  0x000075974bba5565:   hlt    
+  0x000075974bba5566:   hlt    
+  0x000075974bba5567:   hlt    
+[Stub Code]
+  0x000075974bba5568:   call   0x000075974b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000075974bba556d:   jmp    0x000075974bba5568
+  0x000075974bba556f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

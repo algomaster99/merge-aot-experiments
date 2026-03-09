@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 645   53       1       java.util.HashMap::size (5 bytes)
+ total in heap  [0x00007e504bba9c08,0x00007e504bba9db0] = 424
+ main code      [0x00007e504bba9d00,0x00007e504bba9d90] = 144
+ stub code      [0x00007e504bba9d90,0x00007e504bba9db0] = 32
+ mutable data [0x00007e4fe8024c70,0x00007e4fe8024c98] = 40
+ relocation     [0x00007e4fe8024c70,0x00007e4fe8024c90] = 32
+ metadata       [0x00007e4fe8024c90,0x00007e4fe8024c98] = 8
+ immutable data [0x00007e4fe8024c00,0x00007e4fe8024c5c] = 92
+ dependencies   [0x00007e4fe8024c00,0x00007e4fe8024c08] = 8
+ scopes pcs     [0x00007e4fe8024c08,0x00007e4fe8024c48] = 64
+ scopes data    [0x00007e4fe8024c48,0x00007e4fe8024c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007e504bba9d00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007e504bba9d0b:   data16 data16 xchg %ax,%ax
+  0x00007e504bba9d0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000951fcce8} &apos;size&apos; &apos;()I&apos; in &apos;java/util/HashMap&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007e504bba9d12:   mov    0x8(%rsi),%r10d
+  0x00007e504bba9d16:   cmp    0x8(%rax),%r10d
+  0x00007e504bba9d1a:   jne    0x00007e504b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007e504bba9d20:   mov    %eax,-0x14000(%rsp)
+  0x00007e504bba9d27:   push   %rbp
+  0x00007e504bba9d28:   sub    $0x20,%rsp
+  0x00007e504bba9d2c:   cmpl   $0x1,0x20(%r15)
+  0x00007e504bba9d34:   je     0x00007e504bba9d3b
+  0x00007e504bba9d36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::size@0 (line 534)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007e504bba9d3b:   mov    0x1c(%rsi),%eax              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::size@1 (line 534)
+  0x00007e504bba9d3e:   add    $0x20,%rsp
+  0x00007e504bba9d42:   pop    %rbp
+  0x00007e504bba9d43:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e504bba9d47:   ja     0x00007e504bba9d4e
+  0x00007e504bba9d4d:   ret    
+  0x00007e504bba9d4e:   movabs $0x7e504bba9d43,%r10         ;   {internal_word}
+  0x00007e504bba9d58:   mov    %r10,0x510(%r15)
+  0x00007e504bba9d5f:   jmp    0x00007e504b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007e504bba9d64:   mov    0x5c0(%r15),%rax
+  0x00007e504bba9d6b:   movq   $0x0,0x5c0(%r15)
+  0x00007e504bba9d76:   movq   $0x0,0x5c8(%r15)
+  0x00007e504bba9d81:   add    $0x20,%rsp
+  0x00007e504bba9d85:   pop    %rbp
+  0x00007e504bba9d86:   jmp    0x00007e504b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007e504bba9d8b:   hlt    
+  0x00007e504bba9d8c:   hlt    
+  0x00007e504bba9d8d:   hlt    
+  0x00007e504bba9d8e:   hlt    
+  0x00007e504bba9d8f:   hlt    
+[Exception Handler]
+  0x00007e504bba9d90:   call   0x00007e504b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007e504bba9d95:   movabs $0x7e506293aec4,%rdi         ;   {external_word}
+  0x00007e504bba9d9f:   and    $0xfffffffffffffff0,%rsp
+  0x00007e504bba9da3:   call   0x00007e5062391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007e504bba9da8:   hlt    
+  0x00007e504bba9da9:   call   0x00007e504b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007e504bba9dae:   jmp    0x00007e504bba9da9
+--------------------------------------------------------------------------------
+[/Disassembly]

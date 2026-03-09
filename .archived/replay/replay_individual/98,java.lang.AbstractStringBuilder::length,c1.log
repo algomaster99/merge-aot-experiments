@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 208    3       1       java.lang.AbstractStringBuilder::length (5 bytes)
+ total in heap  [0x0000761aafba0608,0x0000761aafba07b0] = 424
+ main code      [0x0000761aafba0700,0x0000761aafba0790] = 144
+ stub code      [0x0000761aafba0790,0x0000761aafba07b0] = 32
+ mutable data [0x0000761a4c014c70,0x0000761a4c014c98] = 40
+ relocation     [0x0000761a4c014c70,0x0000761a4c014c90] = 32
+ metadata       [0x0000761a4c014c90,0x0000761a4c014c98] = 8
+ immutable data [0x0000761a4c014c00,0x0000761a4c014c5c] = 92
+ dependencies   [0x0000761a4c014c00,0x0000761a4c014c08] = 8
+ scopes pcs     [0x0000761a4c014c08,0x0000761a4c014c48] = 64
+ scopes data    [0x0000761a4c014c48,0x0000761a4c014c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000761aafba0700:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000761aafba070b:   data16 data16 xchg %ax,%ax
+  0x0000761aafba070f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000007d1b4e28} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000761aafba0712:   mov    0x8(%rsi),%r10d
+  0x0000761aafba0716:   cmp    0x8(%rax),%r10d
+  0x0000761aafba071a:   jne    0x0000761aaf4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000761aafba0720:   mov    %eax,-0x14000(%rsp)
+  0x0000761aafba0727:   push   %rbp
+  0x0000761aafba0728:   sub    $0x20,%rsp
+  0x0000761aafba072c:   cmpl   $0x1,0x20(%r15)
+  0x0000761aafba0734:   je     0x0000761aafba073b
+  0x0000761aafba0736:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::length@0 (line 199)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000761aafba073b:   mov    0xc(%rsi),%eax               ;*getfield count {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::length@1 (line 199)
+  0x0000761aafba073e:   add    $0x20,%rsp
+  0x0000761aafba0742:   pop    %rbp
+  0x0000761aafba0743:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000761aafba0747:   ja     0x0000761aafba074e
+  0x0000761aafba074d:   ret    
+  0x0000761aafba074e:   movabs $0x761aafba0743,%r10         ;   {internal_word}
+  0x0000761aafba0758:   mov    %r10,0x510(%r15)
+  0x0000761aafba075f:   jmp    0x0000761aaf4afb60           ;   {runtime_call SafepointBlob}
+  0x0000761aafba0764:   mov    0x5c0(%r15),%rax
+  0x0000761aafba076b:   movq   $0x0,0x5c0(%r15)
+  0x0000761aafba0776:   movq   $0x0,0x5c8(%r15)
+  0x0000761aafba0781:   add    $0x20,%rsp
+  0x0000761aafba0785:   pop    %rbp
+  0x0000761aafba0786:   jmp    0x0000761aaf57bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000761aafba078b:   hlt    
+  0x0000761aafba078c:   hlt    
+  0x0000761aafba078d:   hlt    
+  0x0000761aafba078e:   hlt    
+  0x0000761aafba078f:   hlt    
+[Exception Handler]
+  0x0000761aafba0790:   call   0x0000761aaf57fbe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000761aafba0795:   movabs $0x761ac953aec4,%rdi         ;   {external_word}
+  0x0000761aafba079f:   and    $0xfffffffffffffff0,%rsp
+  0x0000761aafba07a3:   call   0x0000761ac8f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000761aafba07a8:   hlt    
+  0x0000761aafba07a9:   call   0x0000761aaf4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000761aafba07ae:   jmp    0x0000761aafba07a9
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,66 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 441   45       4       jdk.internal.constant.MethodTypeDescImpl::parameterCount (6 bytes)
+ total in heap  [0x000070b1b7ba8408,0x000070b1b7ba8580] = 376
+ main code      [0x000070b1b7ba8500,0x000070b1b7ba8578] = 120
+ stub code      [0x000070b1b7ba8578,0x000070b1b7ba8580] = 8
+ mutable data [0x000070b15c099c40,0x000070b15c099c60] = 32
+ relocation     [0x000070b15c099c40,0x000070b15c099c58] = 24
+ metadata       [0x000070b15c099c58,0x000070b15c099c60] = 8
+ immutable data [0x000070b15c099b90,0x000070b15c099c2c] = 156
+ dependencies   [0x000070b15c099b90,0x000070b15c099b98] = 8
+ nul chk table  [0x000070b15c099b98,0x000070b15c099ba8] = 16
+ scopes pcs     [0x000070b15c099ba8,0x000070b15c099c08] = 96
+ scopes data    [0x000070b15c099c08,0x000070b15c099c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000070b1b7ba8500:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000832b8c50} &apos;parameterCount&apos; &apos;()I&apos; in &apos;jdk/internal/constant/MethodTypeDescImpl&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000070b1b7ba8502:   mov    0x8(%rsi),%r10d
+  0x000070b1b7ba8506:   cmp    0x8(%rax),%r10d
+  0x000070b1b7ba850a:   jne    0x000070b1b74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000070b1b7ba8510:   mov    %eax,-0x14000(%rsp)
+  0x000070b1b7ba8517:   push   %rbp
+  0x000070b1b7ba8518:   sub    $0x10,%rsp
+  0x000070b1b7ba851c:   cmpl   $0x1,0x20(%r15)
+  0x000070b1b7ba8524:   jne    0x000070b1b7ba856e           ;*synchronization entry
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@-1 (line 215)
+  0x000070b1b7ba852a:   mov    0x10(%rsi),%r11d             ;*getfield argTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@1 (line 215)
+  0x000070b1b7ba852e:   mov    0xc(%r12,%r11,8),%eax        ; implicit exception: dispatches to 0x000070b1b7ba8543
+  0x000070b1b7ba8533:   add    $0x10,%rsp
+  0x000070b1b7ba8537:   pop    %rbp
+  0x000070b1b7ba8538:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000070b1b7ba853c:   ja     0x000070b1b7ba8558
+  0x000070b1b7ba8542:   ret    
+  0x000070b1b7ba8543:   mov    $0xfffffff6,%esi
+  0x000070b1b7ba8548:   data16 xchg %ax,%ax
+  0x000070b1b7ba854b:   call   0x000070b1b7585ce0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@4 (line 215)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000070b1b7ba8550:   nopl   0x148(%rax,%rax,1)           ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@4 (line 215)
+                                                            ;   {post_call_nop}
+  0x000070b1b7ba8558:   movabs $0x70b1b7ba8538,%r10         ;   {internal_word}
+  0x000070b1b7ba8562:   mov    %r10,0x510(%r15)
+  0x000070b1b7ba8569:   jmp    0x000070b1b74afb60           ;   {runtime_call SafepointBlob}
+  0x000070b1b7ba856e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000070b1b7ba8573:   jmp    0x000070b1b7ba852a
+[Stub Code]
+  0x000070b1b7ba8578:   call   0x000070b1b74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000070b1b7ba857d:   jmp    0x000070b1b7ba8578
+  0x000070b1b7ba857f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,132 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 74    3       4       jdk.internal.misc.Unsafe::getIntUnaligned (83 bytes)
+ total in heap  [0x00007bd903ba0608,0x00007bd903ba0820] = 536
+ main code      [0x00007bd903ba0700,0x00007bd903ba0818] = 280
+ stub code      [0x00007bd903ba0818,0x00007bd903ba0820] = 8
+ mutable data [0x00007bd8ac08a8d0,0x00007bd8ac08a920] = 80
+ relocation     [0x00007bd8ac08a8d0,0x00007bd8ac08a8f0] = 32
+ metadata       [0x00007bd8ac08a8f0,0x00007bd8ac08a920] = 48
+ immutable data [0x00007bd8ac08a710,0x00007bd8ac08a8bc] = 428
+ dependencies   [0x00007bd8ac08a710,0x00007bd8ac08a720] = 16
+ scopes pcs     [0x00007bd8ac08a720,0x00007bd8ac08a840] = 288
+ scopes data    [0x00007bd8ac08a840,0x00007bd8ac08a8b8] = 120
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007bd903ba0700:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000881e1b10} &apos;getIntUnaligned&apos; &apos;(Ljava/lang/Object;J)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = long
+  #           [sp+0x40]  (sp of caller)
+  0x00007bd903ba0702:   mov    0x8(%rsi),%r10d
+  0x00007bd903ba0706:   cmp    0x8(%rax),%r10d
+  0x00007bd903ba070a:   jne    0x00007bd9034ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007bd903ba0710:   mov    %eax,-0x14000(%rsp)
+  0x00007bd903ba0717:   push   %rbp
+  0x00007bd903ba0718:   sub    $0x30,%rsp
+  0x00007bd903ba071c:   cmpl   $0x1,0x20(%r15)
+  0x00007bd903ba0724:   jne    0x00007bd903ba080a           ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@-1 (line 3603)
+  0x00007bd903ba072a:   mov    %rsi,%r10
+  0x00007bd903ba072d:   test   $0x3,%cl
+  0x00007bd903ba0730:   jne    0x00007bd903ba0740           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@7 (line 3603)
+  0x00007bd903ba0732:   test   %rdx,%rdx
+  0x00007bd903ba0735:   je     0x00007bd903ba07bc
+  0x00007bd903ba073b:   mov    (%rdx,%rcx,1),%eax           ;*invokevirtual getInt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@13 (line 3604)
+  0x00007bd903ba073e:   jmp    0x00007bd903ba078f
+  0x00007bd903ba0740:   test   $0x1,%cl
+  0x00007bd903ba0743:   jne    0x00007bd903ba0761           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@22 (line 3605)
+  0x00007bd903ba0745:   test   %rdx,%rdx
+  0x00007bd903ba0748:   je     0x00007bd903ba07d8
+  0x00007bd903ba074e:   add    %rcx,%rdx
+  0x00007bd903ba0751:   movzwl (%rdx),%r10d
+  0x00007bd903ba0755:   movswl 0x2(%rdx),%eax               ;*invokevirtual getShort {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@38 (line 3607)
+  0x00007bd903ba0759:   shl    $0x10,%eax
+  0x00007bd903ba075c:   or     %r10d,%eax                   ;*ior {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::makeInt@23 (line 3795)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@41 (line 3606)
+  0x00007bd903ba075f:   jmp    0x00007bd903ba078f
+  0x00007bd903ba0761:   test   %rdx,%rdx
+  0x00007bd903ba0764:   je     0x00007bd903ba079f
+  0x00007bd903ba0766:   add    %rcx,%rdx
+  0x00007bd903ba0769:   movzbl (%rdx),%r10d                 ;*invokevirtual getByte {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@56 (line 3610)
+  0x00007bd903ba076d:   movzbl 0x1(%rdx),%eax               ;*invokevirtual getByte {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@66 (line 3611)
+  0x00007bd903ba0771:   movzbl 0x2(%rdx),%r11d
+  0x00007bd903ba0776:   movsbl 0x3(%rdx),%r9d               ;*invokevirtual getByte {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@76 (line 3612)
+  0x00007bd903ba077b:   shl    $0x8,%eax
+  0x00007bd903ba077e:   or     %r10d,%eax
+  0x00007bd903ba0781:   shl    $0x18,%r9d
+  0x00007bd903ba0785:   shl    $0x10,%r11d
+  0x00007bd903ba0789:   or     %r11d,%eax
+  0x00007bd903ba078c:   or     %r9d,%eax                    ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@-1 (line 3603)
+  0x00007bd903ba078f:   add    $0x30,%rsp
+  0x00007bd903ba0793:   pop    %rbp
+  0x00007bd903ba0794:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007bd903ba0798:   ja     0x00007bd903ba07f4
+  0x00007bd903ba079e:   ret    
+  0x00007bd903ba079f:   mov    $0xffffff54,%esi
+  0x00007bd903ba07a4:   mov    %r10,0x8(%rsp)
+  0x00007bd903ba07a9:   mov    %rcx,0x10(%rsp)
+  0x00007bd903ba07ae:   nop
+  0x00007bd903ba07af:   call   0x00007bd903585ce0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*invokevirtual getByte {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@48 (line 3609)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007bd903ba07b4:   nopl   0x1ac(%rax,%rax,1)           ;*invokevirtual getByte {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@48 (line 3609)
+                                                            ;   {post_call_nop}
+  0x00007bd903ba07bc:   mov    $0xffffff54,%esi
+  0x00007bd903ba07c1:   mov    %r10,%rbp
+  0x00007bd903ba07c4:   mov    %rcx,(%rsp)
+  0x00007bd903ba07c8:   data16 xchg %ax,%ax
+  0x00007bd903ba07cb:   call   0x00007bd903585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*invokevirtual getInt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@13 (line 3604)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007bd903ba07d0:   nopl   0x10001c8(%rax,%rax,1)       ;*invokevirtual getInt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@13 (line 3604)
+                                                            ;   {post_call_nop}
+  0x00007bd903ba07d8:   mov    $0xffffff54,%esi
+  0x00007bd903ba07dd:   mov    %r10,0x8(%rsp)
+  0x00007bd903ba07e2:   mov    %rcx,0x10(%rsp)
+  0x00007bd903ba07e7:   call   0x00007bd903585ce0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*invokevirtual getShort {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@28 (line 3606)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007bd903ba07ec:   nopl   0x20001e4(%rax,%rax,1)       ;*invokevirtual getShort {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@28 (line 3606)
+                                                            ;   {post_call_nop}
+  0x00007bd903ba07f4:   movabs $0x7bd903ba0794,%r10         ;   {internal_word}
+  0x00007bd903ba07fe:   mov    %r10,0x510(%r15)
+  0x00007bd903ba0805:   jmp    0x00007bd9034afb60           ;   {runtime_call SafepointBlob}
+  0x00007bd903ba080a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007bd903ba080f:   jmp    0x00007bd903ba072a
+  0x00007bd903ba0814:   hlt    
+  0x00007bd903ba0815:   hlt    
+  0x00007bd903ba0816:   hlt    
+  0x00007bd903ba0817:   hlt    
+[Stub Code]
+  0x00007bd903ba0818:   call   0x00007bd9034afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007bd903ba081d:   jmp    0x00007bd903ba0818
+  0x00007bd903ba081f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

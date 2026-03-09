@@ -1,0 +1,76 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 11404  666       1       java.util.Collections$EmptyMap::get (2 bytes)
+ total in heap  [0x000077b45fbbed88,0x000077b45fbbef38] = 432
+ main code      [0x000077b45fbbee80,0x000077b45fbbef18] = 152
+ stub code      [0x000077b45fbbef18,0x000077b45fbbef38] = 32
+ mutable data [0x000077b3e80929f0,0x000077b3e8092a18] = 40
+ relocation     [0x000077b3e80929f0,0x000077b3e8092a10] = 32
+ metadata       [0x000077b3e8092a10,0x000077b3e8092a18] = 8
+ immutable data [0x000077b3e80907f0,0x000077b3e8090834] = 68
+ dependencies   [0x000077b3e80907f0,0x000077b3e80907f8] = 8
+ scopes pcs     [0x000077b3e80907f8,0x000077b3e8090828] = 48
+ scopes data    [0x000077b3e8090828,0x000077b3e8090830] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbee80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbbee8b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbbee8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000462f44a0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Collections$EmptyMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/Collections$EmptyMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbbee92:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbee96:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbee9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbeea0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbbeea7:   push   %rbp
+  0x000077b45fbbeea8:   sub    $0x20,%rsp
+  0x000077b45fbbeeac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbeeb4:   je     0x000077b45fbbeebb
+  0x000077b45fbbeeb6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aconst_null {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Collections$EmptyMap::get@0 (line 5050)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbeebb:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x000077b45fbbeec5:   add    $0x20,%rsp
+  0x000077b45fbbeec9:   pop    %rbp
+  0x000077b45fbbeeca:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbeece:   ja     0x000077b45fbbeed5
+  0x000077b45fbbeed4:   ret    
+  0x000077b45fbbeed5:   movabs $0x77b45fbbeeca,%r10         ;   {internal_word}
+  0x000077b45fbbeedf:   mov    %r10,0x510(%r15)
+  0x000077b45fbbeee6:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbeeeb:   mov    0x5c0(%r15),%rax
+  0x000077b45fbbeef2:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbbeefd:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbbef08:   add    $0x20,%rsp
+  0x000077b45fbbef0c:   pop    %rbp
+  0x000077b45fbbef0d:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbbef12:   hlt    
+  0x000077b45fbbef13:   hlt    
+  0x000077b45fbbef14:   hlt    
+  0x000077b45fbbef15:   hlt    
+  0x000077b45fbbef16:   hlt    
+  0x000077b45fbbef17:   hlt    
+[Exception Handler]
+  0x000077b45fbbef18:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbbef1d:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbbef27:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbbef2b:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbbef30:   hlt    
+  0x000077b45fbbef31:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbef36:   jmp    0x000077b45fbbef31
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,128 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 477   45       3       java.lang.invoke.MethodType::erase (8 bytes)
+ total in heap  [0x0000731113fff008,0x0000731113fff270] = 616
+ main code      [0x0000731113fff100,0x0000731113fff250] = 336
+ stub code      [0x0000731113fff250,0x0000731113fff270] = 32
+ mutable data [0x00007310bc01cda0,0x00007310bc01cdd8] = 56
+ relocation     [0x00007310bc01cda0,0x00007310bc01cdc8] = 40
+ metadata       [0x00007310bc01cdc8,0x00007310bc01cdd8] = 16
+ immutable data [0x00007310bc01ccc0,0x00007310bc01cd8c] = 204
+ dependencies   [0x00007310bc01ccc0,0x00007310bc01ccc8] = 8
+ nul chk table  [0x00007310bc01ccc8,0x00007310bc01ccd8] = 16
+ scopes pcs     [0x00007310bc01ccd8,0x00007310bc01cd58] = 128
+ scopes data    [0x00007310bc01cd58,0x00007310bc01cd88] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000731113fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000731113fff10b:   data16 data16 xchg %ax,%ax
+  0x0000731113fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000002d47f870} &apos;erase&apos; &apos;()Ljava/lang/invoke/MethodType;&apos; in &apos;java/lang/invoke/MethodType&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x0000731113fff112:   mov    0x8(%rsi),%r10d
+  0x0000731113fff116:   cmp    0x8(%rax),%r10d
+  0x0000731113fff11a:   jne    0x000073111b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000731113fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000731113fff127:   push   %rbp
+  0x0000731113fff128:   sub    $0x30,%rsp
+  0x0000731113fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000731113fff134:   je     0x0000731113fff13b
+  0x0000731113fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000731113fff13b:   movabs $0x7310c827f360,%rax         ;   {metadata(method data for {method} {0x000000002d47f870} &apos;erase&apos; &apos;()Ljava/lang/invoke/MethodType;&apos; in &apos;java/lang/invoke/MethodType&apos;)}
+  0x0000731113fff145:   mov    0x90(%rax),%edi
+  0x0000731113fff14b:   add    $0x2,%edi
+  0x0000731113fff14e:   mov    %edi,0x90(%rax)
+  0x0000731113fff154:   and    $0x7fe,%edi
+  0x0000731113fff15a:   test   %edi,%edi
+  0x0000731113fff15c:   je     0x0000731113fff1e8           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::erase@0 (line 728)
+  0x0000731113fff162:   mov    0x14(%rsi),%eax
+  0x0000731113fff165:   shl    $0x3,%rax                    ;*getfield form {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::erase@1 (line 728)
+  0x0000731113fff169:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000731113fff209
+                                                            ;*invokevirtual erasedType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::erase@4 (line 728)
+  0x0000731113fff16c:   mov    %rax,%rsi
+  0x0000731113fff16f:   movabs $0x7310c827f360,%rdi         ;   {metadata(method data for {method} {0x000000002d47f870} &apos;erase&apos; &apos;()Ljava/lang/invoke/MethodType;&apos; in &apos;java/lang/invoke/MethodType&apos;)}
+  0x0000731113fff179:   mov    0x8(%rsi),%esi
+  0x0000731113fff17c:   mov    $0x2d000000,%r10d
+  0x0000731113fff182:   add    %r10,%rsi
+  0x0000731113fff185:   mov    $0x1c,%r10d
+  0x0000731113fff18b:   cmp    (%rdi,%r10,8),%rsi
+  0x0000731113fff18f:   je     0x0000731113fff1c8
+  0x0000731113fff191:   add    $0x2,%r10
+  0x0000731113fff195:   cmp    $0x20,%r10
+  0x0000731113fff199:   jne    0x0000731113fff18b
+  0x0000731113fff19b:   mov    $0x1c,%r10d
+  0x0000731113fff1a1:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000731113fff1a6:   je     0x0000731113fff1b4
+  0x0000731113fff1a8:   add    $0x2,%r10
+  0x0000731113fff1ac:   cmp    $0x20,%r10
+  0x0000731113fff1b0:   jne    0x0000731113fff1a1
+  0x0000731113fff1b2:   jmp    0x0000731113fff1c0
+  0x0000731113fff1b4:   push   %rax
+  0x0000731113fff1b5:   xor    %rax,%rax
+  0x0000731113fff1b8:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x0000731113fff1bd:   pop    %rax
+  0x0000731113fff1be:   jmp    0x0000731113fff185
+  0x0000731113fff1c0:   mov    $0x1b,%r10d
+  0x0000731113fff1c6:   jmp    0x0000731113fff1cc
+  0x0000731113fff1c8:   add    $0x1,%r10
+  0x0000731113fff1cc:   addq   $0x1,(%rdi,%r10,8)
+  0x0000731113fff1d1:   mov    0x10(%rax),%eax
+  0x0000731113fff1d4:   shl    $0x3,%rax                    ;*getfield erasedType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::erasedType@1 (line 101)
+                                                            ; - java.lang.invoke.MethodType::erase@4 (line 728)
+  0x0000731113fff1d8:   add    $0x30,%rsp
+  0x0000731113fff1dc:   pop    %rbp
+  0x0000731113fff1dd:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000731113fff1e1:   ja     0x0000731113fff20e
+  0x0000731113fff1e7:   ret    
+  0x0000731113fff1e8:   movabs $0x2d47f870,%r10             ;   {metadata({method} {0x000000002d47f870} &apos;erase&apos; &apos;()Ljava/lang/invoke/MethodType;&apos; in &apos;java/lang/invoke/MethodType&apos;)}
+  0x0000731113fff1f2:   mov    %r10,0x8(%rsp)
+  0x0000731113fff1f7:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000731113fff1ff:   call   0x000073111b582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.MethodType::erase@-1 (line 728)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000731113fff204:   jmp    0x0000731113fff162
+  0x0000731113fff209:   call   0x000073111b57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*invokevirtual erasedType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::erase@4 (line 728)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000731113fff20e:   movabs $0x731113fff1dd,%r10         ;   {internal_word}
+  0x0000731113fff218:   mov    %r10,0x510(%r15)
+  0x0000731113fff21f:   jmp    0x000073111b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000731113fff224:   mov    0x5c0(%r15),%rax
+  0x0000731113fff22b:   movq   $0x0,0x5c0(%r15)
+  0x0000731113fff236:   movq   $0x0,0x5c8(%r15)
+  0x0000731113fff241:   add    $0x30,%rsp
+  0x0000731113fff245:   pop    %rbp
+  0x0000731113fff246:   jmp    0x000073111b57b2e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000731113fff24b:   hlt    
+  0x0000731113fff24c:   hlt    
+  0x0000731113fff24d:   hlt    
+  0x0000731113fff24e:   hlt    
+  0x0000731113fff24f:   hlt    
+[Exception Handler]
+  0x0000731113fff250:   call   0x000073111b57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000731113fff255:   movabs $0x73113313aec4,%rdi         ;   {external_word}
+  0x0000731113fff25f:   and    $0xfffffffffffffff0,%rsp
+  0x0000731113fff263:   call   0x0000731132b91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000731113fff268:   hlt    
+  0x0000731113fff269:   call   0x000073111b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000731113fff26e:   jmp    0x0000731113fff269
+--------------------------------------------------------------------------------
+[/Disassembly]

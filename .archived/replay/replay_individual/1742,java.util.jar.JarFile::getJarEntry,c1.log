@@ -1,0 +1,352 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 636   53       3       java.util.jar.JarFile::getJarEntry (9 bytes)
+ total in heap  [0x00007ea1e3fff008,0x00007ea1e3fff5b0] = 1448
+ main code      [0x00007ea1e3fff100,0x00007ea1e3fff548] = 1096
+ stub code      [0x00007ea1e3fff548,0x00007ea1e3fff5b0] = 104
+ mutable data [0x00007ea18c000ba0,0x00007ea18c000c38] = 152
+ relocation     [0x00007ea18c000ba0,0x00007ea18c000c20] = 128
+ metadata       [0x00007ea18c000c20,0x00007ea18c000c38] = 24
+ immutable data [0x00007ea18c02cef0,0x00007ea18c02d10c] = 540
+ dependencies   [0x00007ea18c02cef0,0x00007ea18c02cef8] = 8
+ scopes pcs     [0x00007ea18c02cef8,0x00007ea18c02d068] = 368
+ scopes data    [0x00007ea18c02d068,0x00007ea18c02d108] = 160
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007ea1e3fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007ea1e3fff10b:   data16 data16 xchg %ax,%ax
+  0x00007ea1e3fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000632bee30} &apos;getJarEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/jar/JarEntry;&apos; in &apos;java/util/jar/JarFile&apos;
+  # this:     rsi:rsi   = &apos;java/util/jar/JarFile&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0x60]  (sp of caller)
+  0x00007ea1e3fff112:   mov    0x8(%rsi),%r10d
+  0x00007ea1e3fff116:   cmp    0x8(%rax),%r10d
+  0x00007ea1e3fff11a:   jne    0x00007ea1eb4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007ea1e3fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007ea1e3fff127:   push   %rbp
+  0x00007ea1e3fff128:   sub    $0x50,%rsp
+  0x00007ea1e3fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007ea1e3fff134:   je     0x00007ea1e3fff13b
+  0x00007ea1e3fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ea1e3fff13b:   movabs $0x7ea19c3190f8,%rdi         ;   {metadata(method data for {method} {0x00000000632bee30} &apos;getJarEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/jar/JarEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff145:   mov    0x90(%rdi),%ebx
+  0x00007ea1e3fff14b:   add    $0x2,%ebx
+  0x00007ea1e3fff14e:   mov    %ebx,0x90(%rdi)
+  0x00007ea1e3fff154:   and    $0x7fe,%ebx
+  0x00007ea1e3fff15a:   test   %ebx,%ebx
+  0x00007ea1e3fff15c:   je     0x00007ea1e3fff4b4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getJarEntry@0 (line 462)
+  0x00007ea1e3fff162:   mov    %rdx,0x40(%rsp)
+  0x00007ea1e3fff167:   mov    %rsi,%rdi
+  0x00007ea1e3fff16a:   movabs $0x7ea19c3190f8,%rbx         ;   {metadata(method data for {method} {0x00000000632bee30} &apos;getJarEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/jar/JarEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff174:   movabs $0x632bd998,%rdi             ;   {metadata(&apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff17e:   mov    $0x1c,%r10d
+  0x00007ea1e3fff184:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ea1e3fff188:   je     0x00007ea1e3fff1c1
+  0x00007ea1e3fff18a:   add    $0x2,%r10
+  0x00007ea1e3fff18e:   cmp    $0x20,%r10
+  0x00007ea1e3fff192:   jne    0x00007ea1e3fff184
+  0x00007ea1e3fff194:   mov    $0x1c,%r10d
+  0x00007ea1e3fff19a:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ea1e3fff19f:   je     0x00007ea1e3fff1ad
+  0x00007ea1e3fff1a1:   add    $0x2,%r10
+  0x00007ea1e3fff1a5:   cmp    $0x20,%r10
+  0x00007ea1e3fff1a9:   jne    0x00007ea1e3fff19a
+  0x00007ea1e3fff1ab:   jmp    0x00007ea1e3fff1b9
+  0x00007ea1e3fff1ad:   push   %rax
+  0x00007ea1e3fff1ae:   xor    %rax,%rax
+  0x00007ea1e3fff1b1:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ea1e3fff1b6:   pop    %rax
+  0x00007ea1e3fff1b7:   jmp    0x00007ea1e3fff17e
+  0x00007ea1e3fff1b9:   mov    $0x1b,%r10d
+  0x00007ea1e3fff1bf:   jmp    0x00007ea1e3fff1c5
+  0x00007ea1e3fff1c1:   add    $0x1,%r10
+  0x00007ea1e3fff1c5:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ea1e3fff1ca:   movabs $0x7ea19c319278,%rdi         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff1d4:   mov    0x90(%rdi),%ebx
+  0x00007ea1e3fff1da:   add    $0x2,%ebx
+  0x00007ea1e3fff1dd:   mov    %ebx,0x90(%rdi)
+  0x00007ea1e3fff1e3:   and    $0x1ffffe,%ebx
+  0x00007ea1e3fff1e9:   test   %ebx,%ebx
+  0x00007ea1e3fff1eb:   je     0x00007ea1e3fff4d5
+  0x00007ea1e3fff1f1:   mov    %rsi,%rdi
+  0x00007ea1e3fff1f4:   movabs $0x7ea19c319278,%rbx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff1fe:   mov    0x8(%rdi),%edi
+  0x00007ea1e3fff201:   mov    $0x63000000,%r10d
+  0x00007ea1e3fff207:   add    %r10,%rdi
+  0x00007ea1e3fff20a:   mov    $0x1c,%r10d
+  0x00007ea1e3fff210:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ea1e3fff214:   je     0x00007ea1e3fff24d
+  0x00007ea1e3fff216:   add    $0x2,%r10
+  0x00007ea1e3fff21a:   cmp    $0x20,%r10
+  0x00007ea1e3fff21e:   jne    0x00007ea1e3fff210
+  0x00007ea1e3fff220:   mov    $0x1c,%r10d
+  0x00007ea1e3fff226:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ea1e3fff22b:   je     0x00007ea1e3fff239
+  0x00007ea1e3fff22d:   add    $0x2,%r10
+  0x00007ea1e3fff231:   cmp    $0x20,%r10
+  0x00007ea1e3fff235:   jne    0x00007ea1e3fff226
+  0x00007ea1e3fff237:   jmp    0x00007ea1e3fff245
+  0x00007ea1e3fff239:   push   %rax
+  0x00007ea1e3fff23a:   xor    %rax,%rax
+  0x00007ea1e3fff23d:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ea1e3fff242:   pop    %rax
+  0x00007ea1e3fff243:   jmp    0x00007ea1e3fff20a
+  0x00007ea1e3fff245:   mov    $0x1b,%r10d
+  0x00007ea1e3fff24b:   jmp    0x00007ea1e3fff251
+  0x00007ea1e3fff24d:   add    $0x1,%r10
+  0x00007ea1e3fff251:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ea1e3fff256:   mov    %rsi,%rdi
+  0x00007ea1e3fff259:   mov    %rdi,%rsi                    ;*invokevirtual isMultiRelease {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@1 (line 500)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff25c:   mov    %rdi,0x38(%rsp)
+  0x00007ea1e3fff261:   nopw   0x0(%rax,%rax,1)
+  0x00007ea1e3fff267:   call   0x00007ea1eb4ad9e0           ; ImmutableOopMap {[56]=Oop [64]=Oop }
+                                                            ;*invokevirtual isMultiRelease {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@1 (line 500)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {optimized virtual_call}
+  0x00007ea1e3fff26c:   nopl   0x264(%rax,%rax,1)           ;*invokevirtual isMultiRelease {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@1 (line 500)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {post_call_nop}
+  0x00007ea1e3fff274:   test   %eax,%eax
+  0x00007ea1e3fff276:   movabs $0x7ea19c319278,%rdx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff280:   mov    $0x108,%ecx
+  0x00007ea1e3fff285:   je     0x00007ea1e3fff28c
+  0x00007ea1e3fff287:   mov    $0x118,%ecx
+  0x00007ea1e3fff28c:   mov    (%rdx,%rcx,1),%rsi
+  0x00007ea1e3fff290:   lea    0x1(%rsi),%rsi
+  0x00007ea1e3fff294:   mov    %rsi,(%rdx,%rcx,1)
+  0x00007ea1e3fff298:   je     0x00007ea1e3fff3df           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@4 (line 500)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff29e:   mov    0x38(%rsp),%rsi
+  0x00007ea1e3fff2a3:   movabs $0x7ea19c319278,%rdx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff2ad:   addq   $0x1,0x128(%rdx)
+  0x00007ea1e3fff2b5:   mov    0x40(%rsp),%rdx
+  0x00007ea1e3fff2ba:   movabs $0x0,%rcx                    ;   {oop(nullptr)}
+  0x00007ea1e3fff2c4:   mov    0x38(%rsp),%rsi              ;*invokevirtual getVersionedEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@10 (line 501)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff2c9:   nopw   0x0(%rax,%rax,1)
+  0x00007ea1e3fff2cf:   call   0x00007ea1eb4ad9e0           ; ImmutableOopMap {[56]=Oop [64]=Oop }
+                                                            ;*invokevirtual getVersionedEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@10 (line 501)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {optimized virtual_call}
+  0x00007ea1e3fff2d4:   nopl   0x10002cc(%rax,%rax,1)       ;*invokevirtual getVersionedEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@10 (line 501)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {post_call_nop}
+  0x00007ea1e3fff2dc:   test   %rax,%rax
+  0x00007ea1e3fff2df:   movabs $0x7ea19c319278,%rdx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff2e9:   mov    $0x158,%esi
+  0x00007ea1e3fff2ee:   jne    0x00007ea1e3fff2f5
+  0x00007ea1e3fff2f0:   mov    $0x168,%esi
+  0x00007ea1e3fff2f5:   mov    (%rdx,%rsi,1),%rdi
+  0x00007ea1e3fff2f9:   lea    0x1(%rdi),%rdi
+  0x00007ea1e3fff2fd:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007ea1e3fff301:   jne    0x00007ea1e3fff40c           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@15 (line 502)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff307:   mov    0x38(%rsp),%rsi
+  0x00007ea1e3fff30c:   movabs $0x7ea19c319278,%rdx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff316:   addq   $0x1,0x178(%rdx)
+  0x00007ea1e3fff31e:   mov    0x40(%rsp),%rdx
+  0x00007ea1e3fff323:   mov    0x38(%rsp),%rsi              ;*invokespecial getEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@20 (line 503)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff328:   nopl   0x0(%rax)
+  0x00007ea1e3fff32f:   call   0x00007ea1eb4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokespecial getEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@20 (line 503)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {optimized virtual_call}
+  0x00007ea1e3fff334:   nopl   0x200032c(%rax,%rax,1)       ;*invokespecial getEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@20 (line 503)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {post_call_nop}
+  0x00007ea1e3fff33c:   test   %rax,%rax
+  0x00007ea1e3fff33f:   movabs $0x7ea19c319278,%rdi         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff349:   jne    0x00007ea1e3fff357
+  0x00007ea1e3fff34b:   orb    $0x1,0x181(%rdi)
+  0x00007ea1e3fff352:   jmp    0x00007ea1e3fff3d4
+  0x00007ea1e3fff357:   mov    0x8(%rax),%ebx
+  0x00007ea1e3fff35a:   mov    $0x63000000,%r10d
+  0x00007ea1e3fff360:   add    %r10,%rbx
+  0x00007ea1e3fff363:   mov    $0x32,%r10d
+  0x00007ea1e3fff369:   cmp    (%rdi,%r10,8),%rbx
+  0x00007ea1e3fff36d:   je     0x00007ea1e3fff3a6
+  0x00007ea1e3fff36f:   add    $0x2,%r10
+  0x00007ea1e3fff373:   cmp    $0x36,%r10
+  0x00007ea1e3fff377:   jne    0x00007ea1e3fff369
+  0x00007ea1e3fff379:   mov    $0x32,%r10d
+  0x00007ea1e3fff37f:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007ea1e3fff384:   je     0x00007ea1e3fff392
+  0x00007ea1e3fff386:   add    $0x2,%r10
+  0x00007ea1e3fff38a:   cmp    $0x36,%r10
+  0x00007ea1e3fff38e:   jne    0x00007ea1e3fff37f
+  0x00007ea1e3fff390:   jmp    0x00007ea1e3fff39e
+  0x00007ea1e3fff392:   push   %rax
+  0x00007ea1e3fff393:   xor    %rax,%rax
+  0x00007ea1e3fff396:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007ea1e3fff39b:   pop    %rax
+  0x00007ea1e3fff39c:   jmp    0x00007ea1e3fff363
+  0x00007ea1e3fff39e:   mov    $0x31,%r10d
+  0x00007ea1e3fff3a4:   jmp    0x00007ea1e3fff3aa
+  0x00007ea1e3fff3a6:   add    $0x1,%r10
+  0x00007ea1e3fff3aa:   addq   $0x1,(%rdi,%r10,8)
+  0x00007ea1e3fff3af:   movabs $0x6330a278,%rbx             ;   {metadata(&apos;java/util/jar/JarEntry&apos;)}
+  0x00007ea1e3fff3b9:   mov    0x8(%rax),%edi
+  0x00007ea1e3fff3bc:   mov    $0x63000000,%r10d
+  0x00007ea1e3fff3c2:   add    %r10,%rdi
+  0x00007ea1e3fff3c5:   cmp    0x40(%rdi),%rbx
+  0x00007ea1e3fff3c9:   jne    0x00007ea1e3fff4f6
+  0x00007ea1e3fff3cf:   jmp    0x00007ea1e3fff3d4
+  0x00007ea1e3fff3d4:   mov    %rax,%rdx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@23 (line 503)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff3d7:   mov    %rdx,%rax
+  0x00007ea1e3fff3da:   jmp    0x00007ea1e3fff40c           ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@27 (line 505)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+  0x00007ea1e3fff3df:   mov    0x40(%rsp),%rdx
+  0x00007ea1e3fff3e4:   mov    0x38(%rsp),%rsi
+  0x00007ea1e3fff3e9:   mov    %rsi,%rdi
+  0x00007ea1e3fff3ec:   movabs $0x7ea19c319278,%rbx         ;   {metadata(method data for {method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff3f6:   addq   $0x1,0x1b8(%rbx)
+  0x00007ea1e3fff3fe:   nop
+  0x00007ea1e3fff3ff:   call   0x00007ea1eb4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokespecial getEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@31 (line 507)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {optimized virtual_call}
+  0x00007ea1e3fff404:   nopl   0x30003fc(%rax,%rax,1)       ;*invokespecial getEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@31 (line 507)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {post_call_nop}
+  0x00007ea1e3fff40c:   test   %rax,%rax
+  0x00007ea1e3fff40f:   movabs $0x7ea19c3190f8,%rdi         ;   {metadata(method data for {method} {0x00000000632bee30} &apos;getJarEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/jar/JarEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff419:   jne    0x00007ea1e3fff427
+  0x00007ea1e3fff41b:   orb    $0x1,0x101(%rdi)
+  0x00007ea1e3fff422:   jmp    0x00007ea1e3fff4a4
+  0x00007ea1e3fff427:   mov    0x8(%rax),%ebx
+  0x00007ea1e3fff42a:   mov    $0x63000000,%r10d
+  0x00007ea1e3fff430:   add    %r10,%rbx
+  0x00007ea1e3fff433:   mov    $0x22,%r10d
+  0x00007ea1e3fff439:   cmp    (%rdi,%r10,8),%rbx
+  0x00007ea1e3fff43d:   je     0x00007ea1e3fff476
+  0x00007ea1e3fff43f:   add    $0x2,%r10
+  0x00007ea1e3fff443:   cmp    $0x26,%r10
+  0x00007ea1e3fff447:   jne    0x00007ea1e3fff439
+  0x00007ea1e3fff449:   mov    $0x22,%r10d
+  0x00007ea1e3fff44f:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007ea1e3fff454:   je     0x00007ea1e3fff462
+  0x00007ea1e3fff456:   add    $0x2,%r10
+  0x00007ea1e3fff45a:   cmp    $0x26,%r10
+  0x00007ea1e3fff45e:   jne    0x00007ea1e3fff44f
+  0x00007ea1e3fff460:   jmp    0x00007ea1e3fff46e
+  0x00007ea1e3fff462:   push   %rax
+  0x00007ea1e3fff463:   xor    %rax,%rax
+  0x00007ea1e3fff466:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007ea1e3fff46b:   pop    %rax
+  0x00007ea1e3fff46c:   jmp    0x00007ea1e3fff433
+  0x00007ea1e3fff46e:   mov    $0x21,%r10d
+  0x00007ea1e3fff474:   jmp    0x00007ea1e3fff47a
+  0x00007ea1e3fff476:   add    $0x1,%r10
+  0x00007ea1e3fff47a:   addq   $0x1,(%rdi,%r10,8)
+  0x00007ea1e3fff47f:   movabs $0x6330a278,%rbx             ;   {metadata(&apos;java/util/jar/JarEntry&apos;)}
+  0x00007ea1e3fff489:   mov    0x8(%rax),%edi
+  0x00007ea1e3fff48c:   mov    $0x63000000,%r10d
+  0x00007ea1e3fff492:   add    %r10,%rdi
+  0x00007ea1e3fff495:   cmp    0x40(%rdi),%rbx
+  0x00007ea1e3fff499:   jne    0x00007ea1e3fff4ff
+  0x00007ea1e3fff49f:   jmp    0x00007ea1e3fff4a4           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getJarEntry@5 (line 462)
+  0x00007ea1e3fff4a4:   add    $0x50,%rsp
+  0x00007ea1e3fff4a8:   pop    %rbp
+  0x00007ea1e3fff4a9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ea1e3fff4ad:   ja     0x00007ea1e3fff508
+  0x00007ea1e3fff4b3:   ret    
+  0x00007ea1e3fff4b4:   movabs $0x632bee30,%r10             ;   {metadata({method} {0x00000000632bee30} &apos;getJarEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/jar/JarEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff4be:   mov    %r10,0x8(%rsp)
+  0x00007ea1e3fff4c3:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ea1e3fff4cb:   call   0x00007ea1eb5826e0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.jar.JarFile::getJarEntry@-1 (line 462)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ea1e3fff4d0:   jmp    0x00007ea1e3fff162
+  0x00007ea1e3fff4d5:   movabs $0x632bed28,%r10             ;   {metadata({method} {0x00000000632bed28} &apos;getEntry&apos; &apos;(Ljava/lang/String;)Ljava/util/zip/ZipEntry;&apos; in &apos;java/util/jar/JarFile&apos;)}
+  0x00007ea1e3fff4df:   mov    %r10,0x8(%rsp)
+  0x00007ea1e3fff4e4:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ea1e3fff4ec:   call   0x00007ea1eb5826e0           ; ImmutableOopMap {rsi=Oop [64]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.jar.JarFile::getEntry@-1 (line 500)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ea1e3fff4f1:   jmp    0x00007ea1e3fff1f1
+  0x00007ea1e3fff4f6:   mov    %rax,(%rsp)
+  0x00007ea1e3fff4fa:   call   0x00007ea1eb57eee0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getEntry@23 (line 503)
+                                                            ; - java.util.jar.JarFile::getJarEntry@2 (line 462)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007ea1e3fff4ff:   mov    %rax,(%rsp)
+  0x00007ea1e3fff503:   call   0x00007ea1eb57eee0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.JarFile::getJarEntry@5 (line 462)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007ea1e3fff508:   movabs $0x7ea1e3fff4a9,%r10         ;   {internal_word}
+  0x00007ea1e3fff512:   mov    %r10,0x510(%r15)
+  0x00007ea1e3fff519:   jmp    0x00007ea1eb4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ea1e3fff51e:   mov    0x5c0(%r15),%rax
+  0x00007ea1e3fff525:   movq   $0x0,0x5c0(%r15)
+  0x00007ea1e3fff530:   movq   $0x0,0x5c8(%r15)
+  0x00007ea1e3fff53b:   add    $0x50,%rsp
+  0x00007ea1e3fff53f:   pop    %rbp
+  0x00007ea1e3fff540:   jmp    0x00007ea1eb57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ea1e3fff545:   hlt    
+  0x00007ea1e3fff546:   hlt    
+  0x00007ea1e3fff547:   hlt    
+[Stub Code]
+  0x00007ea1e3fff548:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007ea1e3fff54d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ea1e3fff557:   jmp    0x00007ea1e3fff557           ;   {runtime_call nmethod}
+  0x00007ea1e3fff55c:   nop
+  0x00007ea1e3fff55d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ea1e3fff567:   jmp    0x00007ea1e3fff567           ;   {runtime_call nmethod}
+  0x00007ea1e3fff56c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ea1e3fff576:   jmp    0x00007ea1e3fff576           ;   {runtime_call nmethod}
+  0x00007ea1e3fff57b:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ea1e3fff585:   jmp    0x00007ea1e3fff585           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ea1e3fff58a:   call   0x00007ea1eb57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ea1e3fff58f:   movabs $0x7ea203f3aec4,%rdi         ;   {external_word}
+  0x00007ea1e3fff599:   and    $0xfffffffffffffff0,%rsp
+  0x00007ea1e3fff59d:   call   0x00007ea203991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ea1e3fff5a2:   hlt    
+  0x00007ea1e3fff5a3:   call   0x00007ea1eb4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ea1e3fff5a8:   jmp    0x00007ea1e3fff5a3
+  0x00007ea1e3fff5aa:   hlt    
+  0x00007ea1e3fff5ab:   hlt    
+  0x00007ea1e3fff5ac:   hlt    
+  0x00007ea1e3fff5ad:   hlt    
+  0x00007ea1e3fff5ae:   hlt    
+  0x00007ea1e3fff5af:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

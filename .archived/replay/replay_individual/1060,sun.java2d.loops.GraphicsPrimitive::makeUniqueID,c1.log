@@ -1,0 +1,280 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 467   41  s    3       sun.java2d.loops.GraphicsPrimitive::makeUniqueID (26 bytes)
+ total in heap  [0x00007c122bfff008,0x00007c122bfff4a0] = 1176
+ main code      [0x00007c122bfff100,0x00007c122bfff480] = 896
+ stub code      [0x00007c122bfff480,0x00007c122bfff4a0] = 32
+ mutable data [0x00007c11cc014e20,0x00007c11cc014e70] = 80
+ relocation     [0x00007c11cc014e20,0x00007c11cc014e58] = 56
+ metadata       [0x00007c11cc014e58,0x00007c11cc014e70] = 24
+ immutable data [0x00007c11cc014c90,0x00007c11cc014e14] = 388
+ dependencies   [0x00007c11cc014c90,0x00007c11cc014c98] = 8
+ nul chk table  [0x00007c11cc014c98,0x00007c11cc014cb8] = 32
+ scopes pcs     [0x00007c11cc014cb8,0x00007c11cc014da8] = 240
+ scopes data    [0x00007c11cc014da8,0x00007c11cc014e10] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx:rdx   = &apos;sun/java2d/loops/SurfaceType&apos;
+  # parm2:    rcx:rcx   = &apos;sun/java2d/loops/CompositeType&apos;
+  # parm3:    r8:r8     = &apos;sun/java2d/loops/SurfaceType&apos;
+  #           [sp+0x60]  (sp of caller)
+  0x00007c122bfff100:   mov    %eax,-0x14000(%rsp)
+  0x00007c122bfff107:   push   %rbp
+  0x00007c122bfff108:   sub    $0x50,%rsp
+  0x00007c122bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007c122bfff114:   je     0x00007c122bfff11b
+  0x00007c122bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007c122bfff11b:   movabs $0x41f80ff48,%rdi            ;   {oop(a &apos;java/lang/Class&apos;{0x000000041f80ff48} = &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff125:   lea    0x30(%rsp),%rbx
+  0x00007c122bfff12a:   mov    %rdi,0x8(%rbx)
+  0x00007c122bfff12e:   mov    (%rdi),%rax
+  0x00007c122bfff131:   mov    0x7c0(%r15),%r9d
+  0x00007c122bfff138:   cmp    $0x810,%r9d
+  0x00007c122bfff13f:   jge    0x00007c122bfff37c
+  0x00007c122bfff145:   cmp    -0x8(%r15,%r9,1),%rdi
+  0x00007c122bfff14a:   je     0x00007c122bfff175
+  0x00007c122bfff150:   test   $0x2,%al
+  0x00007c122bfff152:   jne    0x00007c122bfff37c
+  0x00007c122bfff158:   mov    %rax,%r9
+  0x00007c122bfff15b:   and    $0xfffffffffffffffe,%r9
+  0x00007c122bfff15f:   or     $0x1,%rax
+  0x00007c122bfff163:   lock cmpxchg %r9,(%rdi)
+  0x00007c122bfff168:   jne    0x00007c122bfff37c
+  0x00007c122bfff16e:   mov    0x7c0(%r15),%r9d
+  0x00007c122bfff175:   mov    %rdi,(%r15,%r9,1)
+  0x00007c122bfff179:   add    $0x8,%r9d
+  0x00007c122bfff17d:   mov    %r9d,0x7c0(%r15)
+  0x00007c122bfff184:   movabs $0x7c11e41e7e18,%rax         ;   {metadata(method data for {method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff18e:   mov    0x90(%rax),%edi
+  0x00007c122bfff194:   add    $0x2,%edi
+  0x00007c122bfff197:   mov    %edi,0x90(%rax)
+  0x00007c122bfff19d:   and    $0x7fe,%edi
+  0x00007c122bfff1a3:   test   %edi,%edi
+  0x00007c122bfff1a5:   je     0x00007c122bfff38f           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@0 (line 128)
+  0x00007c122bfff1ab:   cmp    (%r8),%rax                   ; implicit exception: dispatches to 0x00007c122bfff3b0
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@5 (line 129)
+  0x00007c122bfff1ae:   mov    %r8,%rax
+  0x00007c122bfff1b1:   movabs $0x7c11e41e7e18,%rdi         ;   {metadata(method data for {method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff1bb:   mov    0x8(%rax),%eax
+  0x00007c122bfff1be:   mov    $0x53000000,%r10d
+  0x00007c122bfff1c4:   add    %r10,%rax
+  0x00007c122bfff1c7:   mov    $0x1c,%r10d
+  0x00007c122bfff1cd:   cmp    (%rdi,%r10,8),%rax
+  0x00007c122bfff1d1:   je     0x00007c122bfff210
+  0x00007c122bfff1d3:   add    $0x2,%r10
+  0x00007c122bfff1d7:   cmp    $0x20,%r10
+  0x00007c122bfff1db:   jne    0x00007c122bfff1cd
+  0x00007c122bfff1dd:   mov    $0x1c,%r10d
+  0x00007c122bfff1e3:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007c122bfff1e8:   je     0x00007c122bfff1f6
+  0x00007c122bfff1ea:   add    $0x2,%r10
+  0x00007c122bfff1ee:   cmp    $0x20,%r10
+  0x00007c122bfff1f2:   jne    0x00007c122bfff1e3
+  0x00007c122bfff1f4:   jmp    0x00007c122bfff208
+  0x00007c122bfff1f6:   push   %rbx
+  0x00007c122bfff1f7:   mov    %rax,%rbx
+  0x00007c122bfff1fa:   xor    %rax,%rax
+  0x00007c122bfff1fd:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007c122bfff202:   mov    %rbx,%rax
+  0x00007c122bfff205:   pop    %rbx
+  0x00007c122bfff206:   jmp    0x00007c122bfff1c7
+  0x00007c122bfff208:   mov    $0x1b,%r10d
+  0x00007c122bfff20e:   jmp    0x00007c122bfff214
+  0x00007c122bfff210:   add    $0x1,%r10
+  0x00007c122bfff214:   addq   $0x1,(%rdi,%r10,8)
+  0x00007c122bfff219:   mov    0xc(%r8),%edi                ;*getfield uniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.SurfaceType::getUniqueID@1 (line 417)
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@5 (line 129)
+  0x00007c122bfff21d:   cmp    (%rcx),%rax                  ; implicit exception: dispatches to 0x00007c122bfff3b5
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@13 (line 130)
+  0x00007c122bfff220:   mov    %rcx,%rax
+  0x00007c122bfff223:   movabs $0x7c11e41e7e18,%rbx         ;   {metadata(method data for {method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff22d:   mov    0x8(%rax),%eax
+  0x00007c122bfff230:   mov    $0x53000000,%r10d
+  0x00007c122bfff236:   add    %r10,%rax
+  0x00007c122bfff239:   mov    $0x22,%r10d
+  0x00007c122bfff23f:   cmp    (%rbx,%r10,8),%rax
+  0x00007c122bfff243:   je     0x00007c122bfff282
+  0x00007c122bfff245:   add    $0x2,%r10
+  0x00007c122bfff249:   cmp    $0x26,%r10
+  0x00007c122bfff24d:   jne    0x00007c122bfff23f
+  0x00007c122bfff24f:   mov    $0x22,%r10d
+  0x00007c122bfff255:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007c122bfff25a:   je     0x00007c122bfff268
+  0x00007c122bfff25c:   add    $0x2,%r10
+  0x00007c122bfff260:   cmp    $0x26,%r10
+  0x00007c122bfff264:   jne    0x00007c122bfff255
+  0x00007c122bfff266:   jmp    0x00007c122bfff27a
+  0x00007c122bfff268:   push   %rcx
+  0x00007c122bfff269:   mov    %rax,%rcx
+  0x00007c122bfff26c:   xor    %rax,%rax
+  0x00007c122bfff26f:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x00007c122bfff274:   mov    %rcx,%rax
+  0x00007c122bfff277:   pop    %rcx
+  0x00007c122bfff278:   jmp    0x00007c122bfff239
+  0x00007c122bfff27a:   mov    $0x21,%r10d
+  0x00007c122bfff280:   jmp    0x00007c122bfff286
+  0x00007c122bfff282:   add    $0x1,%r10
+  0x00007c122bfff286:   addq   $0x1,(%rbx,%r10,8)
+  0x00007c122bfff28b:   mov    0xc(%rcx),%ebx               ;*getfield uniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.CompositeType::getUniqueID@1 (line 258)
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@13 (line 130)
+  0x00007c122bfff28e:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x00007c122bfff3ba
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@21 (line 131)
+  0x00007c122bfff291:   mov    %rdx,%rax
+  0x00007c122bfff294:   movabs $0x7c11e41e7e18,%rcx         ;   {metadata(method data for {method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff29e:   mov    0x8(%rax),%eax
+  0x00007c122bfff2a1:   mov    $0x53000000,%r10d
+  0x00007c122bfff2a7:   add    %r10,%rax
+  0x00007c122bfff2aa:   mov    $0x28,%r10d
+  0x00007c122bfff2b0:   cmp    (%rcx,%r10,8),%rax
+  0x00007c122bfff2b4:   je     0x00007c122bfff2f3
+  0x00007c122bfff2b6:   add    $0x2,%r10
+  0x00007c122bfff2ba:   cmp    $0x2c,%r10
+  0x00007c122bfff2be:   jne    0x00007c122bfff2b0
+  0x00007c122bfff2c0:   mov    $0x28,%r10d
+  0x00007c122bfff2c6:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007c122bfff2cb:   je     0x00007c122bfff2d9
+  0x00007c122bfff2cd:   add    $0x2,%r10
+  0x00007c122bfff2d1:   cmp    $0x2c,%r10
+  0x00007c122bfff2d5:   jne    0x00007c122bfff2c6
+  0x00007c122bfff2d7:   jmp    0x00007c122bfff2eb
+  0x00007c122bfff2d9:   push   %rbx
+  0x00007c122bfff2da:   mov    %rax,%rbx
+  0x00007c122bfff2dd:   xor    %rax,%rax
+  0x00007c122bfff2e0:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007c122bfff2e5:   mov    %rbx,%rax
+  0x00007c122bfff2e8:   pop    %rbx
+  0x00007c122bfff2e9:   jmp    0x00007c122bfff2aa
+  0x00007c122bfff2eb:   mov    $0x27,%r10d
+  0x00007c122bfff2f1:   jmp    0x00007c122bfff2f7
+  0x00007c122bfff2f3:   add    $0x1,%r10
+  0x00007c122bfff2f7:   addq   $0x1,(%rcx,%r10,8)
+  0x00007c122bfff2fc:   mov    0xc(%rdx),%edx               ;*getfield uniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.SurfaceType::getUniqueID@1 (line 417)
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@21 (line 131)
+  0x00007c122bfff2ff:   lea    0x30(%rsp),%rax
+  0x00007c122bfff304:   mov    0x8(%rax),%r8
+  0x00007c122bfff308:   mov    0x7c0(%r15),%ecx
+  0x00007c122bfff30f:   cmp    -0x8(%r15,%rcx,1),%r8
+  0x00007c122bfff314:   jne    0x00007c122bfff3bf
+  0x00007c122bfff31a:   subl   $0x8,0x7c0(%r15)
+  0x00007c122bfff322:   cmp    -0x10(%r15,%rcx,1),%r8
+  0x00007c122bfff327:   je     0x00007c122bfff357
+  0x00007c122bfff32d:   mov    (%r8),%rax
+  0x00007c122bfff330:   test   $0x2,%al
+  0x00007c122bfff332:   jne    0x00007c122bfff34a
+  0x00007c122bfff338:   mov    %rax,%rcx
+  0x00007c122bfff33b:   or     $0x1,%rcx
+  0x00007c122bfff33f:   lock cmpxchg %rcx,(%r8)
+  0x00007c122bfff344:   je     0x00007c122bfff357
+  0x00007c122bfff34a:   addl   $0x8,0x7c0(%r15)
+  0x00007c122bfff352:   jmp    0x00007c122bfff3bf           ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@25 (line 128)
+  0x00007c122bfff357:   shl    $0x18,%esi
+  0x00007c122bfff35a:   shl    $0x10,%edi
+  0x00007c122bfff35d:   or     %rdi,%rsi
+  0x00007c122bfff360:   shl    $0x8,%ebx
+  0x00007c122bfff363:   or     %rbx,%rsi
+  0x00007c122bfff366:   or     %rdx,%rsi
+  0x00007c122bfff369:   mov    %rsi,%rax
+  0x00007c122bfff36c:   add    $0x50,%rsp
+  0x00007c122bfff370:   pop    %rbp
+  0x00007c122bfff371:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c122bfff375:   ja     0x00007c122bfff3cf
+  0x00007c122bfff37b:   ret    
+  0x00007c122bfff37c:   mov    %rdi,0x8(%rsp)
+  0x00007c122bfff381:   mov    %rbx,(%rsp)
+  0x00007c122bfff385:   call   0x00007c12335810e0           ; ImmutableOopMap {rdx=Oop rcx=Oop r8=Oop rdi=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@-1 (line 128)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x00007c122bfff38a:   jmp    0x00007c122bfff184
+  0x00007c122bfff38f:   movabs $0x7c11e400e618,%r10         ;   {metadata({method} {0x00007c11e400e618} &apos;makeUniqueID&apos; &apos;(ILsun/java2d/loops/SurfaceType;Lsun/java2d/loops/CompositeType;Lsun/java2d/loops/SurfaceType;)I&apos; in &apos;sun/java2d/loops/GraphicsPrimitive&apos;)}
+  0x00007c122bfff399:   mov    %r10,0x8(%rsp)
+  0x00007c122bfff39e:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c122bfff3a6:   call   0x00007c1233583460           ; ImmutableOopMap {rdx=Oop rcx=Oop r8=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@-1 (line 128)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c122bfff3ab:   jmp    0x00007c122bfff1ab
+  0x00007c122bfff3b0:   call   0x00007c123357cae0           ; ImmutableOopMap {rdx=Oop rcx=Oop r8=Oop [56]=Oop }
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@5 (line 129)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c122bfff3b5:   call   0x00007c123357cae0           ; ImmutableOopMap {rdx=Oop rcx=Oop [56]=Oop }
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@13 (line 130)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c122bfff3ba:   call   0x00007c123357cae0           ; ImmutableOopMap {rdx=Oop [56]=Oop }
+                                                            ;*invokevirtual getUniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.GraphicsPrimitive::makeUniqueID@21 (line 131)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c122bfff3bf:   lea    0x30(%rsp),%rax
+  0x00007c122bfff3c4:   mov    %rax,(%rsp)
+  0x00007c122bfff3c8:   call   0x00007c12335816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007c122bfff3cd:   jmp    0x00007c122bfff357
+  0x00007c122bfff3cf:   movabs $0x7c122bfff371,%r10         ;   {internal_word}
+  0x00007c122bfff3d9:   mov    %r10,0x510(%r15)
+  0x00007c122bfff3e0:   jmp    0x00007c12334afb60           ;   {runtime_call SafepointBlob}
+  0x00007c122bfff3e5:   mov    0x5c0(%r15),%rax
+  0x00007c122bfff3ec:   movq   $0x0,0x5c0(%r15)
+  0x00007c122bfff3f7:   movq   $0x0,0x5c8(%r15)
+  0x00007c122bfff402:   mov    %rax,%rbx
+  0x00007c122bfff405:   lea    0x30(%rsp),%rax
+  0x00007c122bfff40a:   mov    0x8(%rax),%rsi
+  0x00007c122bfff40e:   mov    0x7c0(%r15),%edi
+  0x00007c122bfff415:   cmp    -0x8(%r15,%rdi,1),%rsi
+  0x00007c122bfff41a:   jne    0x00007c122bfff46a
+  0x00007c122bfff420:   subl   $0x8,0x7c0(%r15)
+  0x00007c122bfff428:   cmp    -0x10(%r15,%rdi,1),%rsi
+  0x00007c122bfff42d:   je     0x00007c122bfff45d
+  0x00007c122bfff433:   mov    (%rsi),%rax
+  0x00007c122bfff436:   test   $0x2,%al
+  0x00007c122bfff438:   jne    0x00007c122bfff450
+  0x00007c122bfff43e:   mov    %rax,%rdi
+  0x00007c122bfff441:   or     $0x1,%rdi
+  0x00007c122bfff445:   lock cmpxchg %rdi,(%rsi)
+  0x00007c122bfff44a:   je     0x00007c122bfff45d
+  0x00007c122bfff450:   addl   $0x8,0x7c0(%r15)
+  0x00007c122bfff458:   jmp    0x00007c122bfff46a
+  0x00007c122bfff45d:   mov    %rbx,%rax
+  0x00007c122bfff460:   add    $0x50,%rsp
+  0x00007c122bfff464:   pop    %rbp
+  0x00007c122bfff465:   jmp    0x00007c123357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007c122bfff46a:   lea    0x30(%rsp),%rax
+  0x00007c122bfff46f:   mov    %rax,(%rsp)
+  0x00007c122bfff473:   call   0x00007c12335816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007c122bfff478:   jmp    0x00007c122bfff45d
+  0x00007c122bfff47a:   hlt    
+  0x00007c122bfff47b:   hlt    
+  0x00007c122bfff47c:   hlt    
+  0x00007c122bfff47d:   hlt    
+  0x00007c122bfff47e:   hlt    
+  0x00007c122bfff47f:   hlt    
+[Exception Handler]
+  0x00007c122bfff480:   call   0x00007c123357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007c122bfff485:   movabs $0x7c124a53aec4,%rdi         ;   {external_word}
+  0x00007c122bfff48f:   and    $0xfffffffffffffff0,%rsp
+  0x00007c122bfff493:   call   0x00007c1249f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007c122bfff498:   hlt    
+  0x00007c122bfff499:   call   0x00007c12334afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007c122bfff49e:   jmp    0x00007c122bfff499
+--------------------------------------------------------------------------------
+[/Disassembly]

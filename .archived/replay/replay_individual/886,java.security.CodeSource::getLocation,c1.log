@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 398   29       1       java.security.CodeSource::getLocation (5 bytes)
+ total in heap  [0x000071023bba5408,0x000071023bba55b0] = 424
+ main code      [0x000071023bba5500,0x000071023bba5590] = 144
+ stub code      [0x000071023bba5590,0x000071023bba55b0] = 32
+ mutable data [0x00007101d8014870,0x00007101d8014898] = 40
+ relocation     [0x00007101d8014870,0x00007101d8014890] = 32
+ metadata       [0x00007101d8014890,0x00007101d8014898] = 8
+ immutable data [0x00007101d8014800,0x00007101d801485c] = 92
+ dependencies   [0x00007101d8014800,0x00007101d8014808] = 8
+ scopes pcs     [0x00007101d8014808,0x00007101d8014848] = 64
+ scopes data    [0x00007101d8014848,0x00007101d8014858] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000071023bba5500:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000071023bba550b:   data16 data16 xchg %ax,%ax
+  0x000071023bba550f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000931bcac8} &apos;getLocation&apos; &apos;()Ljava/net/URL;&apos; in &apos;java/security/CodeSource&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000071023bba5512:   mov    0x8(%rsi),%r10d
+  0x000071023bba5516:   cmp    0x8(%rax),%r10d
+  0x000071023bba551a:   jne    0x000071023b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000071023bba5520:   mov    %eax,-0x14000(%rsp)
+  0x000071023bba5527:   push   %rbp
+  0x000071023bba5528:   sub    $0x20,%rsp
+  0x000071023bba552c:   cmpl   $0x1,0x20(%r15)
+  0x000071023bba5534:   je     0x000071023bba553b
+  0x000071023bba5536:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.security.CodeSource::getLocation@0 (line 173)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000071023bba553b:   mov    0xc(%rsi),%eax
+  0x000071023bba553e:   shl    $0x3,%rax                    ;*getfield location {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.security.CodeSource::getLocation@1 (line 173)
+  0x000071023bba5542:   add    $0x20,%rsp
+  0x000071023bba5546:   pop    %rbp
+  0x000071023bba5547:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000071023bba554b:   ja     0x000071023bba5552
+  0x000071023bba5551:   ret    
+  0x000071023bba5552:   movabs $0x71023bba5547,%r10         ;   {internal_word}
+  0x000071023bba555c:   mov    %r10,0x510(%r15)
+  0x000071023bba5563:   jmp    0x000071023b4afb60           ;   {runtime_call SafepointBlob}
+  0x000071023bba5568:   mov    0x5c0(%r15),%rax
+  0x000071023bba556f:   movq   $0x0,0x5c0(%r15)
+  0x000071023bba557a:   movq   $0x0,0x5c8(%r15)
+  0x000071023bba5585:   add    $0x20,%rsp
+  0x000071023bba5589:   pop    %rbp
+  0x000071023bba558a:   jmp    0x000071023b55cee0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000071023bba558f:   hlt    
+[Exception Handler]
+  0x000071023bba5590:   call   0x000071023b57db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000071023bba5595:   movabs $0x71025553aec4,%rdi         ;   {external_word}
+  0x000071023bba559f:   and    $0xfffffffffffffff0,%rsp
+  0x000071023bba55a3:   call   0x0000710254f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000071023bba55a8:   hlt    
+  0x000071023bba55a9:   call   0x000071023b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000071023bba55ae:   jmp    0x000071023bba55a9
+--------------------------------------------------------------------------------
+[/Disassembly]

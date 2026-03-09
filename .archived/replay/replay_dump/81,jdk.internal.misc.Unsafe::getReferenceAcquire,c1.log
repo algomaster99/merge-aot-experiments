@@ -1,0 +1,110 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 1344   81       3       jdk.internal.misc.Unsafe::getReferenceAcquire (7 bytes)
+ total in heap  [0x000077b45800b988,0x000077b45800bbc8] = 576
+ main code      [0x000077b45800ba80,0x000077b45800bba8] = 296
+ stub code      [0x000077b45800bba8,0x000077b45800bbc8] = 32
+ mutable data [0x000077b3f001d090,0x000077b3f001d0c8] = 56
+ relocation     [0x000077b3f001d090,0x000077b3f001d0b8] = 40
+ metadata       [0x000077b3f001d0b8,0x000077b3f001d0c8] = 16
+ immutable data [0x000077b3f001d020,0x000077b3f001d084] = 100
+ dependencies   [0x000077b3f001d020,0x000077b3f001d028] = 8
+ scopes pcs     [0x000077b3f001d028,0x000077b3f001d068] = 64
+ scopes data    [0x000077b3f001d068,0x000077b3f001d080] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45800ba80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45800ba8b:   data16 data16 xchg %ax,%ax
+  0x000077b45800ba8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461e1220} &apos;getReferenceAcquire&apos; &apos;(Ljava/lang/Object;J)Ljava/lang/Object;&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = long
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45800ba92:   mov    0x8(%rsi),%r10d
+  0x000077b45800ba96:   cmp    0x8(%rax),%r10d
+  0x000077b45800ba9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45800baa0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45800baa7:   push   %rbp
+  0x000077b45800baa8:   sub    $0x30,%rsp
+  0x000077b45800baac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45800bab4:   je     0x000077b45800babb
+  0x000077b45800bab6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45800babb:   movabs $0x77b414024750,%rax         ;   {metadata(method data for {method} {0x00000000461e1220} &apos;getReferenceAcquire&apos; &apos;(Ljava/lang/Object;J)Ljava/lang/Object;&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x000077b45800bac5:   mov    0x90(%rax),%edi
+  0x000077b45800bacb:   add    $0x2,%edi
+  0x000077b45800bace:   mov    %edi,0x90(%rax)
+  0x000077b45800bad4:   and    $0x7fe,%edi
+  0x000077b45800bada:   test   %edi,%edi
+  0x000077b45800badc:   je     0x000077b45800bb38           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getReferenceAcquire@0 (line 2195)
+  0x000077b45800bae2:   mov    (%rdx,%rcx,1),%eax
+  0x000077b45800bae5:   shl    $0x3,%rax
+  0x000077b45800bae9:   mov    $0xc,%esi
+  0x000077b45800baee:   cmp    %rsi,%rcx
+  0x000077b45800baf1:   jne    0x000077b45800bb28
+  0x000077b45800baf7:   test   %rdx,%rdx
+  0x000077b45800bafa:   je     0x000077b45800bb28
+  0x000077b45800bb00:   mov    0x8(%rdx),%esi
+  0x000077b45800bb03:   mov    $0x46000000,%r10d
+  0x000077b45800bb09:   add    %r10,%rsi
+  0x000077b45800bb0c:   movsbl 0x131(%rsi),%esi
+  0x000077b45800bb13:   test   %esi,%esi
+  0x000077b45800bb15:   je     0x000077b45800bb28
+  0x000077b45800bb1b:   movsbl 0x48(%r15),%esi
+  0x000077b45800bb20:   test   %esi,%esi
+  0x000077b45800bb22:   jne    0x000077b45800bb56
+  0x000077b45800bb28:   add    $0x30,%rsp
+  0x000077b45800bb2c:   pop    %rbp
+  0x000077b45800bb2d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45800bb31:   ja     0x000077b45800bb66
+  0x000077b45800bb37:   ret    
+  0x000077b45800bb38:   movabs $0x461e1220,%r10             ;   {metadata({method} {0x00000000461e1220} &apos;getReferenceAcquire&apos; &apos;(Ljava/lang/Object;J)Ljava/lang/Object;&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x000077b45800bb42:   mov    %r10,0x8(%rsp)
+  0x000077b45800bb47:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45800bb4f:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::getReferenceAcquire@-1 (line 2195)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45800bb54:   jmp    0x000077b45800bae2
+  0x000077b45800bb56:   test   %rax,%rax
+  0x000077b45800bb59:   je     0x000077b45800bb28
+  0x000077b45800bb5b:   mov    %rax,(%rsp)
+  0x000077b45800bb5f:   call   0x000077b45f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x000077b45800bb64:   jmp    0x000077b45800bb28
+  0x000077b45800bb66:   movabs $0x77b45800bb2d,%r10         ;   {internal_word}
+  0x000077b45800bb70:   mov    %r10,0x510(%r15)
+  0x000077b45800bb77:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45800bb7c:   mov    0x5c0(%r15),%rax
+  0x000077b45800bb83:   movq   $0x0,0x5c0(%r15)
+  0x000077b45800bb8e:   movq   $0x0,0x5c8(%r15)
+  0x000077b45800bb99:   add    $0x30,%rsp
+  0x000077b45800bb9d:   pop    %rbp
+  0x000077b45800bb9e:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45800bba3:   hlt    
+  0x000077b45800bba4:   hlt    
+  0x000077b45800bba5:   hlt    
+  0x000077b45800bba6:   hlt    
+  0x000077b45800bba7:   hlt    
+[Exception Handler]
+  0x000077b45800bba8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45800bbad:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45800bbb7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45800bbbb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45800bbc0:   hlt    
+  0x000077b45800bbc1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45800bbc6:   jmp    0x000077b45800bbc1
+--------------------------------------------------------------------------------
+[/Disassembly]

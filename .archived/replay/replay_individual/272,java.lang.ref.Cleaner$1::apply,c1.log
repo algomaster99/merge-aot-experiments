@@ -1,0 +1,98 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 314   23       3       java.lang.ref.Cleaner$1::apply (5 bytes)
+ total in heap  [0x00007be6d7fff008,0x00007be6d7fff200] = 504
+ main code      [0x00007be6d7fff100,0x00007be6d7fff1e0] = 224
+ stub code      [0x00007be6d7fff1e0,0x00007be6d7fff200] = 32
+ mutable data [0x00007be6780144f0,0x00007be678014520] = 48
+ relocation     [0x00007be6780144f0,0x00007be678014518] = 40
+ metadata       [0x00007be678014518,0x00007be678014520] = 8
+ immutable data [0x00007be678014cb0,0x00007be678014d54] = 164
+ dependencies   [0x00007be678014cb0,0x00007be678014cb8] = 8
+ nul chk table  [0x00007be678014cb8,0x00007be678014cc8] = 16
+ scopes pcs     [0x00007be678014cc8,0x00007be678014d28] = 96
+ scopes data    [0x00007be678014d28,0x00007be678014d50] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007be6d7fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007be6d7fff10b:   data16 data16 xchg %ax,%ax
+  0x00007be6d7fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000562995f8} &apos;apply&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;java/lang/ref/Cleaner$1&apos;
+  # this:     rsi:rsi   = &apos;java/lang/ref/Cleaner$1&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/ref/Cleaner&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007be6d7fff112:   mov    0x8(%rsi),%r10d
+  0x00007be6d7fff116:   cmp    0x8(%rax),%r10d
+  0x00007be6d7fff11a:   jne    0x00007be6df4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007be6d7fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007be6d7fff127:   push   %rbp
+  0x00007be6d7fff128:   sub    $0x20,%rsp
+  0x00007be6d7fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007be6d7fff134:   je     0x00007be6d7fff13b
+  0x00007be6d7fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007be6d7fff13b:   movabs $0x7be69008aa28,%rax         ;   {metadata(method data for {method} {0x00000000562995f8} &apos;apply&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;java/lang/ref/Cleaner$1&apos;)}
+  0x00007be6d7fff145:   mov    0x90(%rax),%edi
+  0x00007be6d7fff14b:   add    $0x2,%edi
+  0x00007be6d7fff14e:   mov    %edi,0x90(%rax)
+  0x00007be6d7fff154:   and    $0x7fe,%edi
+  0x00007be6d7fff15a:   test   %edi,%edi
+  0x00007be6d7fff15c:   je     0x00007be6d7fff179           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.Cleaner$1::apply@0 (line 146)
+  0x00007be6d7fff162:   mov    0xc(%rdx),%eax               ; implicit exception: dispatches to 0x00007be6d7fff197
+  0x00007be6d7fff165:   shl    $0x3,%rax                    ;*getfield impl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.Cleaner$1::apply@1 (line 146)
+  0x00007be6d7fff169:   add    $0x20,%rsp
+  0x00007be6d7fff16d:   pop    %rbp
+  0x00007be6d7fff16e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007be6d7fff172:   ja     0x00007be6d7fff19c
+  0x00007be6d7fff178:   ret    
+  0x00007be6d7fff179:   movabs $0x562995f8,%r10             ;   {metadata({method} {0x00000000562995f8} &apos;apply&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;java/lang/ref/Cleaner$1&apos;)}
+  0x00007be6d7fff183:   mov    %r10,0x8(%rsp)
+  0x00007be6d7fff188:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007be6d7fff190:   call   0x00007be6df5826e0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Cleaner$1::apply@-1 (line 146)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007be6d7fff195:   jmp    0x00007be6d7fff162
+  0x00007be6d7fff197:   call   0x00007be6df57bd60           ; ImmutableOopMap {}
+                                                            ;*getfield impl {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.ref.Cleaner$1::apply@1 (line 146)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007be6d7fff19c:   movabs $0x7be6d7fff16e,%r10         ;   {internal_word}
+  0x00007be6d7fff1a6:   mov    %r10,0x510(%r15)
+  0x00007be6d7fff1ad:   jmp    0x00007be6df4afb60           ;   {runtime_call SafepointBlob}
+  0x00007be6d7fff1b2:   mov    0x5c0(%r15),%rax
+  0x00007be6d7fff1b9:   movq   $0x0,0x5c0(%r15)
+  0x00007be6d7fff1c4:   movq   $0x0,0x5c8(%r15)
+  0x00007be6d7fff1cf:   add    $0x20,%rsp
+  0x00007be6d7fff1d3:   pop    %rbp
+  0x00007be6d7fff1d4:   jmp    0x00007be6df57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007be6d7fff1d9:   hlt    
+  0x00007be6d7fff1da:   hlt    
+  0x00007be6d7fff1db:   hlt    
+  0x00007be6d7fff1dc:   hlt    
+  0x00007be6d7fff1dd:   hlt    
+  0x00007be6d7fff1de:   hlt    
+  0x00007be6d7fff1df:   hlt    
+[Exception Handler]
+  0x00007be6d7fff1e0:   call   0x00007be6df57e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007be6d7fff1e5:   movabs $0x7be6f573aec4,%rdi         ;   {external_word}
+  0x00007be6d7fff1ef:   and    $0xfffffffffffffff0,%rsp
+  0x00007be6d7fff1f3:   call   0x00007be6f5191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007be6d7fff1f8:   hlt    
+  0x00007be6d7fff1f9:   call   0x00007be6df4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007be6d7fff1fe:   jmp    0x00007be6d7fff1f9
+--------------------------------------------------------------------------------
+[/Disassembly]

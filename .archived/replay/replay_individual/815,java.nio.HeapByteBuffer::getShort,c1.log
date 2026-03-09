@@ -1,0 +1,698 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 472   29       3       java.nio.HeapByteBuffer::getShort (29 bytes)
+ total in heap  [0x0000778e43fff008,0x0000778e43fffa98] = 2704
+ main code      [0x0000778e43fff100,0x0000778e43fffa18] = 2328
+ stub code      [0x0000778e43fffa18,0x0000778e43fffa90] = 120
+ oops           [0x0000778e43fffa90,0x0000778e43fffa98] = 8
+ mutable data [0x0000778dec0156d0,0x0000778dec0157f0] = 288
+ relocation     [0x0000778dec0156d0,0x0000778dec0157b0] = 224
+ metadata       [0x0000778dec0157b0,0x0000778dec0157f0] = 64
+ immutable data [0x0000778dec0150f0,0x0000778dec0156bc] = 1484
+ dependencies   [0x0000778dec0150f0,0x0000778dec015108] = 24
+ nul chk table  [0x0000778dec015108,0x0000778dec015118] = 16
+ handler table  [0x0000778dec015118,0x0000778dec015160] = 72
+ scopes pcs     [0x0000778dec015160,0x0000778dec015470] = 784
+ scopes data    [0x0000778dec015470,0x0000778dec0156b8] = 584
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000778e43fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000778e43fff10b:   data16 data16 xchg %ax,%ax
+  0x0000778e43fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;
+  #           [sp+0xf0]  (sp of caller)
+  0x0000778e43fff112:   mov    0x8(%rsi),%r10d
+  0x0000778e43fff116:   cmp    0x8(%rax),%r10d
+  0x0000778e43fff11a:   jne    0x0000778e4b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000778e43fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000778e43fff127:   push   %rbp
+  0x0000778e43fff128:   sub    $0xe0,%rsp
+  0x0000778e43fff12f:   nop
+  0x0000778e43fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000778e43fff138:   je     0x0000778e43fff13f
+  0x0000778e43fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000778e43fff13f:   mov    %rsi,0xa8(%rsp)
+  0x0000778e43fff147:   movabs $0x778df813bab0,%rdi         ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff151:   mov    0x90(%rdi),%ebx
+  0x0000778e43fff157:   add    $0x2,%ebx
+  0x0000778e43fff15a:   mov    %ebx,0x90(%rdi)
+  0x0000778e43fff160:   and    $0x7fe,%ebx
+  0x0000778e43fff166:   test   %ebx,%ebx
+  0x0000778e43fff168:   je     0x0000778e43fff87c           ;*getstatic SCOPED_MEMORY_ACCESS {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getShort@0 (line 440)
+  0x0000778e43fff16e:   mov    %rsi,%rdi
+  0x0000778e43fff171:   movabs $0x778df813bab0,%rbx         ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff17b:   mov    0x8(%rdi),%edi
+  0x0000778e43fff17e:   mov    $0x1d000000,%r10d
+  0x0000778e43fff184:   add    %r10,%rdi
+  0x0000778e43fff187:   mov    $0x1c,%r10d
+  0x0000778e43fff18d:   cmp    (%rbx,%r10,8),%rdi
+  0x0000778e43fff191:   je     0x0000778e43fff1ca
+  0x0000778e43fff193:   add    $0x2,%r10
+  0x0000778e43fff197:   cmp    $0x20,%r10
+  0x0000778e43fff19b:   jne    0x0000778e43fff18d
+  0x0000778e43fff19d:   mov    $0x1c,%r10d
+  0x0000778e43fff1a3:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000778e43fff1a8:   je     0x0000778e43fff1b6
+  0x0000778e43fff1aa:   add    $0x2,%r10
+  0x0000778e43fff1ae:   cmp    $0x20,%r10
+  0x0000778e43fff1b2:   jne    0x0000778e43fff1a3
+  0x0000778e43fff1b4:   jmp    0x0000778e43fff1c2
+  0x0000778e43fff1b6:   push   %rax
+  0x0000778e43fff1b7:   xor    %rax,%rax
+  0x0000778e43fff1ba:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000778e43fff1bf:   pop    %rax
+  0x0000778e43fff1c0:   jmp    0x0000778e43fff187
+  0x0000778e43fff1c2:   mov    $0x1b,%r10d
+  0x0000778e43fff1c8:   jmp    0x0000778e43fff1ce
+  0x0000778e43fff1ca:   add    $0x1,%r10
+  0x0000778e43fff1ce:   addq   $0x1,(%rbx,%r10,8)
+  0x0000778e43fff1d3:   movabs $0x778df813b6c8,%rdi         ;   {metadata(method data for {method} {0x000000001d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff1dd:   mov    0x90(%rdi),%ebx
+  0x0000778e43fff1e3:   add    $0x2,%ebx
+  0x0000778e43fff1e6:   mov    %ebx,0x90(%rdi)
+  0x0000778e43fff1ec:   and    $0x1ffffe,%ebx
+  0x0000778e43fff1f2:   test   %ebx,%ebx
+  0x0000778e43fff1f4:   je     0x0000778e43fff89d
+  0x0000778e43fff1fa:   mov    0x24(%rsi),%edi
+  0x0000778e43fff1fd:   shl    $0x3,%rdi                    ;*getfield segment {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@1 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+  0x0000778e43fff201:   test   %rdi,%rdi
+  0x0000778e43fff204:   movabs $0x778df813b6c8,%rbx         ;   {metadata(method data for {method} {0x000000001d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff20e:   mov    $0xd8,%eax
+  0x0000778e43fff213:   je     0x0000778e43fff21a
+  0x0000778e43fff215:   mov    $0xe8,%eax
+  0x0000778e43fff21a:   mov    (%rbx,%rax,1),%rdx
+  0x0000778e43fff21e:   lea    0x1(%rdx),%rdx
+  0x0000778e43fff222:   mov    %rdx,(%rbx,%rax,1)
+  0x0000778e43fff226:   je     0x0000778e43fff311           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@4 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+  0x0000778e43fff22c:   test   %rdi,%rdi
+  0x0000778e43fff22f:   movabs $0x778df813b6c8,%rdx         ;   {metadata(method data for {method} {0x000000001d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff239:   jne    0x0000778e43fff247
+  0x0000778e43fff23b:   orb    $0x1,0xf1(%rdx)
+  0x0000778e43fff242:   jmp    0x0000778e43fff2eb
+  0x0000778e43fff247:   mov    0x8(%rdi),%ecx
+  0x0000778e43fff24a:   mov    $0x1d000000,%r10d
+  0x0000778e43fff250:   add    %r10,%rcx
+  0x0000778e43fff253:   mov    $0x20,%r10d
+  0x0000778e43fff259:   cmp    (%rdx,%r10,8),%rcx
+  0x0000778e43fff25d:   je     0x0000778e43fff296
+  0x0000778e43fff25f:   add    $0x2,%r10
+  0x0000778e43fff263:   cmp    $0x24,%r10
+  0x0000778e43fff267:   jne    0x0000778e43fff259
+  0x0000778e43fff269:   mov    $0x20,%r10d
+  0x0000778e43fff26f:   cmpq   $0x0,(%rdx,%r10,8)
+  0x0000778e43fff274:   je     0x0000778e43fff282
+  0x0000778e43fff276:   add    $0x2,%r10
+  0x0000778e43fff27a:   cmp    $0x24,%r10
+  0x0000778e43fff27e:   jne    0x0000778e43fff26f
+  0x0000778e43fff280:   jmp    0x0000778e43fff28e
+  0x0000778e43fff282:   push   %rax
+  0x0000778e43fff283:   xor    %rax,%rax
+  0x0000778e43fff286:   cmpxchg %rcx,(%rdx,%r10,8)
+  0x0000778e43fff28b:   pop    %rax
+  0x0000778e43fff28c:   jmp    0x0000778e43fff253
+  0x0000778e43fff28e:   mov    $0x1f,%r10d
+  0x0000778e43fff294:   jmp    0x0000778e43fff29a
+  0x0000778e43fff296:   add    $0x1,%r10
+  0x0000778e43fff29a:   addq   $0x1,(%rdx,%r10,8)
+  0x0000778e43fff29f:   nop
+  0x0000778e43fff2a0:   jmp    0x0000778e43fff8cd           ;   {other}
+  0x0000778e43fff2a5:   add    %al,(%rax)
+  0x0000778e43fff2a7:   add    %al,(%rax)
+  0x0000778e43fff2a9:   add    %cl,-0x45bef7a9(%rbx)
+  0x0000778e43fff2af:   add    %al,(%rax)
+  0x0000778e43fff2b1:   add    %bl,0x48d20349(%rip)        # 0x0000778e8cd1f600
+  0x0000778e43fff2b7:   cmp    %ecx,%edx
+  0x0000778e43fff2b9:   je     0x0000778e43fff2eb
+  0x0000778e43fff2bf:   mov    0x10(%rcx),%eax
+  0x0000778e43fff2c2:   cmp    (%rdx,%rax,1),%rcx
+  0x0000778e43fff2c6:   je     0x0000778e43fff2eb
+  0x0000778e43fff2cc:   cmp    $0x20,%eax
+  0x0000778e43fff2cf:   jne    0x0000778e43fff8d7
+  0x0000778e43fff2d5:   push   %rdx
+  0x0000778e43fff2d6:   push   %rcx
+  0x0000778e43fff2d7:   call   0x0000778e4b57de60           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x0000778e43fff2dc:   pop    %rdx
+  0x0000778e43fff2dd:   pop    %rcx
+  0x0000778e43fff2de:   test   %ecx,%ecx
+  0x0000778e43fff2e0:   je     0x0000778e43fff8d7
+  0x0000778e43fff2e6:   jmp    0x0000778e43fff2eb
+  0x0000778e43fff2eb:   mov    %rdi,%rbx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+  0x0000778e43fff2ee:   mov    %rbx,%rsi                    ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+  0x0000778e43fff2f1:   nopl   0x0(%rax)
+  0x0000778e43fff2f5:   movabs $0x778dec0159b0,%rax
+  0x0000778e43fff2ff:   call   0x0000778e4b4adce0           ; ImmutableOopMap {[168]=Oop }
+                                                            ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+                                                            ;   {virtual_call}
+  0x0000778e43fff304:   nopl   0x2fc(%rax,%rax,1)           ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+                                                            ;   {post_call_nop}
+  0x0000778e43fff30c:   jmp    0x0000778e43fff31b
+  0x0000778e43fff311:   movabs $0x0,%rax                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getShort@7 (line 440)
+                                                            ;   {oop(nullptr)}
+  0x0000778e43fff31b:   mov    0xa8(%rsp),%rsi
+  0x0000778e43fff323:   mov    0x28(%rsi),%edi
+  0x0000778e43fff326:   shl    $0x3,%rdi                    ;*getfield hb {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getShort@8 (line 440)
+  0x0000778e43fff32a:   mov    %rdi,0xb0(%rsp)
+  0x0000778e43fff332:   mov    %rsi,%rbx
+  0x0000778e43fff335:   movabs $0x778df813bab0,%rdx         ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff33f:   mov    0x8(%rbx),%ebx
+  0x0000778e43fff342:   mov    $0x1d000000,%r10d
+  0x0000778e43fff348:   add    %r10,%rbx
+  0x0000778e43fff34b:   mov    $0x22,%r10d
+  0x0000778e43fff351:   cmp    (%rdx,%r10,8),%rbx
+  0x0000778e43fff355:   je     0x0000778e43fff38e
+  0x0000778e43fff357:   add    $0x2,%r10
+  0x0000778e43fff35b:   cmp    $0x26,%r10
+  0x0000778e43fff35f:   jne    0x0000778e43fff351
+  0x0000778e43fff361:   mov    $0x22,%r10d
+  0x0000778e43fff367:   cmpq   $0x0,(%rdx,%r10,8)
+  0x0000778e43fff36c:   je     0x0000778e43fff37a
+  0x0000778e43fff36e:   add    $0x2,%r10
+  0x0000778e43fff372:   cmp    $0x26,%r10
+  0x0000778e43fff376:   jne    0x0000778e43fff367
+  0x0000778e43fff378:   jmp    0x0000778e43fff386
+  0x0000778e43fff37a:   push   %rax
+  0x0000778e43fff37b:   xor    %rax,%rax
+  0x0000778e43fff37e:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x0000778e43fff383:   pop    %rax
+  0x0000778e43fff384:   jmp    0x0000778e43fff34b
+  0x0000778e43fff386:   mov    $0x21,%r10d
+  0x0000778e43fff38c:   jmp    0x0000778e43fff392
+  0x0000778e43fff38e:   add    $0x1,%r10
+  0x0000778e43fff392:   addq   $0x1,(%rdx,%r10,8)
+  0x0000778e43fff397:   movabs $0x778df813b970,%rbx         ;   {metadata(method data for {method} {0x000000001d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff3a1:   mov    0x90(%rbx),%edx
+  0x0000778e43fff3a7:   add    $0x2,%edx
+  0x0000778e43fff3aa:   mov    %edx,0x90(%rbx)
+  0x0000778e43fff3b0:   and    $0x1ffffe,%edx
+  0x0000778e43fff3b6:   test   %edx,%edx
+  0x0000778e43fff3b8:   je     0x0000778e43fff8e0
+  0x0000778e43fff3be:   mov    0x18(%rsi),%ebx              ;*getfield position {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@1 (line 718)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff3c1:   mov    0x1c(%rsi),%edx              ;*getfield limit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@6 (line 719)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff3c4:   sub    %ebx,%edx
+  0x0000778e43fff3c6:   cmp    $0x2,%edx
+  0x0000778e43fff3c9:   movabs $0x778df813b970,%rdx         ;   {metadata(method data for {method} {0x000000001d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff3d3:   mov    $0xe8,%ecx
+  0x0000778e43fff3d8:   jl     0x0000778e43fff3df
+  0x0000778e43fff3da:   mov    $0xd8,%ecx
+  0x0000778e43fff3df:   mov    (%rdx,%rcx,1),%r8
+  0x0000778e43fff3e3:   lea    0x1(%r8),%r8
+  0x0000778e43fff3e7:   mov    %r8,(%rdx,%rcx,1)
+  0x0000778e43fff3eb:   jl     0x0000778e43fff782           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@12 (line 719)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff3f1:   mov    %rbx,%rdx
+  0x0000778e43fff3f4:   add    $0x2,%edx
+  0x0000778e43fff3f7:   mov    %edx,0x18(%rsi)              ;*putfield position {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@27 (line 721)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff3fa:   mov    %rsi,%rdx
+  0x0000778e43fff3fd:   movabs $0x778df813bab0,%rcx         ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff407:   addq   $0x1,0x138(%rcx)
+  0x0000778e43fff40f:   movslq %ebx,%rbx
+  0x0000778e43fff412:   movabs $0x778df813b860,%rdx         ;   {metadata(method data for {method} {0x000000001d2e8390} &apos;byteOffset&apos; &apos;(J)J&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff41c:   mov    0x90(%rdx),%ecx
+  0x0000778e43fff422:   add    $0x2,%ecx
+  0x0000778e43fff425:   mov    %ecx,0x90(%rdx)
+  0x0000778e43fff42b:   and    $0x1ffffe,%ecx
+  0x0000778e43fff431:   test   %ecx,%ecx
+  0x0000778e43fff433:   je     0x0000778e43fff901
+  0x0000778e43fff439:   mov    0x10(%rsi),%rdx              ;*getfield address {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::byteOffset@1 (line 171)
+                                                            ; - java.nio.HeapByteBuffer::getShort@18 (line 440)
+  0x0000778e43fff43d:   add    %rbx,%rdx
+  0x0000778e43fff440:   movsbl 0x31(%rsi),%ebx              ;*getfield bigEndian {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getShort@22 (line 440)
+  0x0000778e43fff444:   movabs $0x778df813bab0,%rsi         ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff44e:   lea    0x198(%rsi),%rsi
+  0x0000778e43fff455:   test   %rax,%rax
+  0x0000778e43fff458:   jne    0x0000778e43fff45c
+  0x0000778e43fff45a:   jmp    0x0000778e43fff4a2
+  0x0000778e43fff45c:   mov    0x8(%rax),%ecx
+  0x0000778e43fff45f:   mov    $0x1d000000,%r10d
+  0x0000778e43fff465:   add    %r10,%rcx
+  0x0000778e43fff468:   mov    %rcx,%r10
+  0x0000778e43fff46b:   xor    0x8(%rsi),%rcx
+  0x0000778e43fff46f:   test   $0xfffffffffffffffc,%rcx
+  0x0000778e43fff476:   je     0x0000778e43fff4a2
+  0x0000778e43fff478:   test   $0x2,%cl
+  0x0000778e43fff47b:   jne    0x0000778e43fff4a2
+  0x0000778e43fff47d:   testq  $0xfffffffffffffffe,0x8(%rsi)
+  0x0000778e43fff485:   je     0x0000778e43fff49e
+  0x0000778e43fff487:   mov    %r10,%rcx
+  0x0000778e43fff48a:   xor    0x8(%rsi),%rcx
+  0x0000778e43fff48e:   test   $0xfffffffffffffffc,%rcx
+  0x0000778e43fff495:   je     0x0000778e43fff4a2
+  0x0000778e43fff497:   orq    $0x2,0x8(%rsi)
+  0x0000778e43fff49c:   jmp    0x0000778e43fff4a2
+  0x0000778e43fff49e:   mov    %rcx,0x8(%rsi)
+  0x0000778e43fff4a2:   test   %rdi,%rdi
+  0x0000778e43fff4a5:   jne    0x0000778e43fff4b3
+  0x0000778e43fff4a7:   testb  $0x1,0x18(%rsi)
+  0x0000778e43fff4ab:   jne    0x0000778e43fff4b3
+  0x0000778e43fff4ad:   lock orq $0x1,0x18(%rsi)
+  0x0000778e43fff4b3:   movabs $0x41f803c48,%rsi            ;   {oop(a &apos;jdk/internal/misc/ScopedMemoryAccess&apos;{0x000000041f803c48})}
+  0x0000778e43fff4bd:   mov    %rsi,%rcx
+  0x0000778e43fff4c0:   movabs $0x778df813bab0,%r8          ;   {metadata(method data for {method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff4ca:   mov    0x8(%rcx),%ecx
+  0x0000778e43fff4cd:   mov    $0x1d000000,%r10d
+  0x0000778e43fff4d3:   add    %r10,%rcx
+  0x0000778e43fff4d6:   mov    $0x2e,%r10d
+  0x0000778e43fff4dc:   cmp    (%r8,%r10,8),%rcx
+  0x0000778e43fff4e0:   je     0x0000778e43fff519
+  0x0000778e43fff4e2:   add    $0x2,%r10
+  0x0000778e43fff4e6:   cmp    $0x32,%r10
+  0x0000778e43fff4ea:   jne    0x0000778e43fff4dc
+  0x0000778e43fff4ec:   mov    $0x2e,%r10d
+  0x0000778e43fff4f2:   cmpq   $0x0,(%r8,%r10,8)
+  0x0000778e43fff4f7:   je     0x0000778e43fff505
+  0x0000778e43fff4f9:   add    $0x2,%r10
+  0x0000778e43fff4fd:   cmp    $0x32,%r10
+  0x0000778e43fff501:   jne    0x0000778e43fff4f2
+  0x0000778e43fff503:   jmp    0x0000778e43fff511
+  0x0000778e43fff505:   push   %rax
+  0x0000778e43fff506:   xor    %rax,%rax
+  0x0000778e43fff509:   cmpxchg %rcx,(%r8,%r10,8)
+  0x0000778e43fff50e:   pop    %rax
+  0x0000778e43fff50f:   jmp    0x0000778e43fff4d6
+  0x0000778e43fff511:   mov    $0x2d,%r10d
+  0x0000778e43fff517:   jmp    0x0000778e43fff51d
+  0x0000778e43fff519:   add    $0x1,%r10
+  0x0000778e43fff51d:   addq   $0x1,(%r8,%r10,8)
+  0x0000778e43fff522:   movabs $0x778df813bcb0,%rcx         ;   {metadata(method data for {method} {0x000000001d1e98a0} &apos;getShortUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff52c:   mov    0x90(%rcx),%r8d
+  0x0000778e43fff533:   add    $0x2,%r8d
+  0x0000778e43fff537:   mov    %r8d,0x90(%rcx)
+  0x0000778e43fff53e:   and    $0x1ffffe,%r8d
+  0x0000778e43fff545:   test   %r8d,%r8d
+  0x0000778e43fff548:   je     0x0000778e43fff922
+  0x0000778e43fff54e:   movabs $0x778df813bcb0,%rcx         ;   {metadata(method data for {method} {0x000000001d1e98a0} &apos;getShortUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff558:   lea    0x108(%rcx),%rcx
+  0x0000778e43fff55f:   test   %rax,%rax
+  0x0000778e43fff562:   jne    0x0000778e43fff566
+  0x0000778e43fff564:   jmp    0x0000778e43fff5ae
+  0x0000778e43fff566:   mov    0x8(%rax),%r8d
+  0x0000778e43fff56a:   mov    $0x1d000000,%r10d
+  0x0000778e43fff570:   add    %r10,%r8
+  0x0000778e43fff573:   mov    %r8,%r10
+  0x0000778e43fff576:   xor    0x8(%rcx),%r8
+  0x0000778e43fff57a:   test   $0xfffffffffffffffc,%r8
+  0x0000778e43fff581:   je     0x0000778e43fff5ae
+  0x0000778e43fff583:   test   $0x2,%r8b
+  0x0000778e43fff587:   jne    0x0000778e43fff5ae
+  0x0000778e43fff589:   testq  $0xfffffffffffffffe,0x8(%rcx)
+  0x0000778e43fff591:   je     0x0000778e43fff5aa
+  0x0000778e43fff593:   mov    %r10,%r8
+  0x0000778e43fff596:   xor    0x8(%rcx),%r8
+  0x0000778e43fff59a:   test   $0xfffffffffffffffc,%r8
+  0x0000778e43fff5a1:   je     0x0000778e43fff5ae
+  0x0000778e43fff5a3:   orq    $0x2,0x8(%rcx)
+  0x0000778e43fff5a8:   jmp    0x0000778e43fff5ae
+  0x0000778e43fff5aa:   mov    %r8,0x8(%rcx)
+  0x0000778e43fff5ae:   test   %rdi,%rdi
+  0x0000778e43fff5b1:   jne    0x0000778e43fff5bf
+  0x0000778e43fff5b3:   testb  $0x1,0x18(%rcx)
+  0x0000778e43fff5b7:   jne    0x0000778e43fff5bf
+  0x0000778e43fff5b9:   lock orq $0x1,0x18(%rcx)
+  0x0000778e43fff5bf:   movabs $0x778df813bcb0,%rcx         ;   {metadata(method data for {method} {0x000000001d1e98a0} &apos;getShortUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff5c9:   addq   $0x1,0xd8(%rcx)
+  0x0000778e43fff5d1:   movabs $0x778df813be80,%rsi         ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff5db:   mov    0x90(%rsi),%ecx
+  0x0000778e43fff5e1:   add    $0x2,%ecx
+  0x0000778e43fff5e4:   mov    %ecx,0x90(%rsi)
+  0x0000778e43fff5ea:   and    $0x1ffffe,%ecx
+  0x0000778e43fff5f0:   test   %ecx,%ecx
+  0x0000778e43fff5f2:   je     0x0000778e43fff943
+  0x0000778e43fff5f8:   test   %rax,%rax
+  0x0000778e43fff5fb:   movabs $0x778df813be80,%rsi         ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff605:   mov    $0xe8,%ecx
+  0x0000778e43fff60a:   jne    0x0000778e43fff611
+  0x0000778e43fff60c:   mov    $0xd8,%ecx
+  0x0000778e43fff611:   mov    (%rsi,%rcx,1),%r8
+  0x0000778e43fff615:   lea    0x1(%r8),%r8
+  0x0000778e43fff619:   mov    %r8,(%rsi,%rcx,1)
+  0x0000778e43fff61d:   jne    0x0000778e43fff633           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@1 (line 1788)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff623:   mov    %rdx,%rcx
+  0x0000778e43fff626:   mov    %rax,0xc8(%rsp)
+  0x0000778e43fff62e:   jmp    0x0000778e43fff67b           ;*getstatic UNSAFE {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@8 (line 1791)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff633:   mov    %ebx,0xc0(%rsp)
+  0x0000778e43fff63a:   mov    %rdx,0xb8(%rsp)
+  0x0000778e43fff642:   mov    %rax,%rsi                    ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@5 (line 1789)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff645:   mov    %rax,0xc8(%rsp)
+  0x0000778e43fff64d:   movabs $0x778dec0159d8,%rax
+  0x0000778e43fff657:   call   0x0000778e4b4adce0           ; ImmutableOopMap {[176]=Oop [200]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@5 (line 1789)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {virtual_call}
+  0x0000778e43fff65c:   nopl   0x1000654(%rax,%rax,1)       ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@5 (line 1789)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {post_call_nop}
+  0x0000778e43fff664:   mov    0xc0(%rsp),%ebx
+  0x0000778e43fff66b:   mov    0xb8(%rsp),%rcx
+  0x0000778e43fff673:   mov    0xb0(%rsp),%rdi
+  0x0000778e43fff67b:   movabs $0x778df813be80,%rdx         ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff685:   lea    0x158(%rdx),%rdx
+  0x0000778e43fff68c:   test   %rdi,%rdi
+  0x0000778e43fff68f:   jne    0x0000778e43fff69d
+  0x0000778e43fff691:   testb  $0x1,0x8(%rdx)
+  0x0000778e43fff695:   jne    0x0000778e43fff69d
+  0x0000778e43fff697:   lock orq $0x1,0x8(%rdx)
+  0x0000778e43fff69d:   movabs $0x41f801628,%rsi            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000041f801628})}
+  0x0000778e43fff6a7:   mov    %rsi,%rdx
+  0x0000778e43fff6aa:   movabs $0x778df813be80,%r8          ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff6b4:   mov    0x8(%rdx),%edx
+  0x0000778e43fff6b7:   mov    $0x1d000000,%r10d
+  0x0000778e43fff6bd:   add    %r10,%rdx
+  0x0000778e43fff6c0:   mov    $0x26,%r10d
+  0x0000778e43fff6c6:   cmp    (%r8,%r10,8),%rdx
+  0x0000778e43fff6ca:   je     0x0000778e43fff703
+  0x0000778e43fff6cc:   add    $0x2,%r10
+  0x0000778e43fff6d0:   cmp    $0x2a,%r10
+  0x0000778e43fff6d4:   jne    0x0000778e43fff6c6
+  0x0000778e43fff6d6:   mov    $0x26,%r10d
+  0x0000778e43fff6dc:   cmpq   $0x0,(%r8,%r10,8)
+  0x0000778e43fff6e1:   je     0x0000778e43fff6ef
+  0x0000778e43fff6e3:   add    $0x2,%r10
+  0x0000778e43fff6e7:   cmp    $0x2a,%r10
+  0x0000778e43fff6eb:   jne    0x0000778e43fff6dc
+  0x0000778e43fff6ed:   jmp    0x0000778e43fff6fb
+  0x0000778e43fff6ef:   push   %rax
+  0x0000778e43fff6f0:   xor    %rax,%rax
+  0x0000778e43fff6f3:   cmpxchg %rdx,(%r8,%r10,8)
+  0x0000778e43fff6f8:   pop    %rax
+  0x0000778e43fff6f9:   jmp    0x0000778e43fff6c0
+  0x0000778e43fff6fb:   mov    $0x25,%r10d
+  0x0000778e43fff701:   jmp    0x0000778e43fff707
+  0x0000778e43fff703:   add    $0x1,%r10
+  0x0000778e43fff707:   addq   $0x1,(%r8,%r10,8)
+  0x0000778e43fff70c:   mov    %rdi,%rdx
+  0x0000778e43fff70f:   mov    %rbx,%r8                     ;*invokevirtual getShortUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@15 (line 1791)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff712:   nopl   0x0(%rax,%rax,1)
+  0x0000778e43fff717:   call   0x0000778e4b4ad9e0           ; ImmutableOopMap {[200]=Oop }
+                                                            ;*invokevirtual getShortUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@15 (line 1791)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {optimized virtual_call}
+  0x0000778e43fff71c:   nopl   0x2000714(%rax,%rax,1)       ;*invokevirtual getShortUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@15 (line 1791)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {post_call_nop}
+  0x0000778e43fff724:   movabs $0x778df813be80,%rdx         ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff72e:   addq   $0x1,0x170(%rdx)
+  0x0000778e43fff736:   movabs $0x778df813b5d8,%rdx         ;   {metadata(method data for {method} {0x000000001d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000778e43fff740:   mov    0x90(%rdx),%esi
+  0x0000778e43fff746:   add    $0x2,%esi
+  0x0000778e43fff749:   mov    %esi,0x90(%rdx)
+  0x0000778e43fff74f:   and    $0x1ffffe,%esi
+  0x0000778e43fff755:   test   %esi,%esi
+  0x0000778e43fff757:   je     0x0000778e43fff964
+  0x0000778e43fff75d:   shl    $0x10,%eax
+  0x0000778e43fff760:   sar    $0x10,%eax
+  0x0000778e43fff763:   shl    $0x10,%eax
+  0x0000778e43fff766:   sar    $0x10,%eax
+  0x0000778e43fff769:   shl    $0x10,%eax
+  0x0000778e43fff76c:   sar    $0x10,%eax
+  0x0000778e43fff76f:   add    $0xe0,%rsp
+  0x0000778e43fff776:   pop    %rbp
+  0x0000778e43fff777:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000778e43fff77b:   ja     0x0000778e43fff985
+  0x0000778e43fff781:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getShort@28 (line 440)
+  0x0000778e43fff782:   mov    %rax,0xc8(%rsp)
+  0x0000778e43fff78a:   nopw   0x0(%rax,%rax,1)
+  0x0000778e43fff790:   jmp    0x0000778e43fff9aa           ;   {other}
+  0x0000778e43fff795:   add    %al,(%rax)
+  0x0000778e43fff797:   add    %al,(%rax)
+  0x0000778e43fff799:   add    %ch,%cl
+  0x0000778e43fff79b:   adc    $0x48000002,%eax             ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff7a0:   mov    %eax,%edx
+  0x0000778e43fff7a2:   movabs $0x778df813b970,%rcx         ;   {metadata(method data for {method} {0x000000001d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff7ac:   addq   $0x1,0xf8(%rcx)
+  0x0000778e43fff7b4:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff7b7:   mov    %rax,0xd0(%rsp)
+  0x0000778e43fff7bf:   call   0x0000778e4b4ad9e0           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop [208]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+                                                            ;   {optimized virtual_call}
+  0x0000778e43fff7c4:   nopl   0x30007bc(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+                                                            ;   {post_call_nop}
+  0x0000778e43fff7cc:   mov    0xd0(%rsp),%rax
+  0x0000778e43fff7d4:   jmp    0x0000778e43fffa04           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@22 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+  0x0000778e43fff7d9:   mov    0x5c0(%r15),%rax
+  0x0000778e43fff7e0:   xor    %r10,%r10
+  0x0000778e43fff7e3:   mov    %r10,0x5c0(%r15)
+  0x0000778e43fff7ea:   xor    %r10,%r10
+  0x0000778e43fff7ed:   mov    %r10,0x5c8(%r15)
+  0x0000778e43fff7f4:   movabs $0x778df813be80,%rdx         ;   {metadata(method data for {method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff7fe:   addq   $0x1,0x180(%rdx)
+  0x0000778e43fff806:   movabs $0x778df813b5d8,%rdx         ;   {metadata(method data for {method} {0x000000001d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000778e43fff810:   mov    0x90(%rdx),%esi
+  0x0000778e43fff816:   add    $0x2,%esi
+  0x0000778e43fff819:   mov    %esi,0x90(%rdx)
+  0x0000778e43fff81f:   and    $0x1ffffe,%esi
+  0x0000778e43fff825:   test   %esi,%esi
+  0x0000778e43fff827:   je     0x0000778e43fff9c1           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@35 (line 1794)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff82d:   movabs $0x778e43fff82d,%rdx         ;   {section_word}
+  0x0000778e43fff837:   call   0x0000778e4b57cc60           ;   {runtime_call handle_exception_nofpu_blob (C1 runtime)}
+  0x0000778e43fff83c:   nop                                 ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@35 (line 1794)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff83d:   mov    0x5c0(%r15),%rax
+  0x0000778e43fff844:   xor    %r10,%r10
+  0x0000778e43fff847:   mov    %r10,0x5c0(%r15)
+  0x0000778e43fff84e:   xor    %r10,%r10
+  0x0000778e43fff851:   mov    %r10,0x5c8(%r15)
+  0x0000778e43fff858:   mov    %rax,%rsi                    ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@14 (line 1781)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+  0x0000778e43fff85b:   xchg   %ax,%ax
+  0x0000778e43fff85d:   movabs $0x778dec015a00,%rax
+  0x0000778e43fff867:   call   0x0000778e4b4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@14 (line 1781)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {virtual_call}
+  0x0000778e43fff86c:   nopl   0x5000864(%rax,%rax,1)       ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@14 (line 1781)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {post_call_nop}
+  0x0000778e43fff874:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000778e43fff9e2
+  0x0000778e43fff877:   jmp    0x0000778e43fffa04
+  0x0000778e43fff87c:   movabs $0x1d2e7418,%r10             ;   {metadata({method} {0x000000001d2e7418} &apos;getShort&apos; &apos;()S&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff886:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff88b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff893:   call   0x0000778e4b580f60           ; ImmutableOopMap {rsi=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.HeapByteBuffer::getShort@-1 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff898:   jmp    0x0000778e43fff16e
+  0x0000778e43fff89d:   movabs $0x1d1c10e8,%r10             ;   {metadata({method} {0x000000001d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff8a7:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff8ac:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff8b4:   call   0x0000778e4b580f60           ; ImmutableOopMap {rsi=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::session@-1 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff8b9:   jmp    0x0000778e43fff1fa
+  0x0000778e43fff8be:   movabs $0x0,%rcx                    ;   {metadata(nullptr)}
+  0x0000778e43fff8c8:   mov    $0xa050f00,%eax
+  0x0000778e43fff8cd:   call   0x0000778e4b57fbe0           ; ImmutableOopMap {rdi=Oop [168]=Oop }
+                                                            ;*checkcast {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x0000778e43fff8d2:   jmp    0x0000778e43fff2a0
+  0x0000778e43fff8d7:   mov    %rdi,(%rsp)
+  0x0000778e43fff8db:   call   0x0000778e4b57d860           ; ImmutableOopMap {rdi=Oop [168]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getShort@4 (line 440)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000778e43fff8e0:   movabs $0x1d1c11f0,%r10             ;   {metadata({method} {0x000000001d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x0000778e43fff8ea:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff8ef:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff8f7:   call   0x0000778e4b580f60           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [168]=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::nextGetIndex@-1 (line 718)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff8fc:   jmp    0x0000778e43fff3be
+  0x0000778e43fff901:   movabs $0x1d2e8390,%r10             ;   {metadata({method} {0x000000001d2e8390} &apos;byteOffset&apos; &apos;(J)J&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x0000778e43fff90b:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff910:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff918:   call   0x0000778e4b580f60           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [168]=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.HeapByteBuffer::byteOffset@-1 (line 171)
+                                                            ; - java.nio.HeapByteBuffer::getShort@18 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff91d:   jmp    0x0000778e43fff439
+  0x0000778e43fff922:   movabs $0x1d1e98a0,%r10             ;   {metadata({method} {0x000000001d1e98a0} &apos;getShortUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff92c:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff931:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff939:   call   0x0000778e4b580f60           ; ImmutableOopMap {rax=Oop rdi=Oop rsi=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@-1 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff93e:   jmp    0x0000778e43fff54e
+  0x0000778e43fff943:   movabs $0x1d1ef010,%r10             ;   {metadata({method} {0x000000001d1ef010} &apos;getShortUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)S&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000778e43fff94d:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff952:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff95a:   call   0x0000778e4b580f60           ; ImmutableOopMap {rax=Oop rdi=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@-1 (line 1788)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff95f:   jmp    0x0000778e43fff5f8
+  0x0000778e43fff964:   movabs $0x1d1a85e8,%r10             ;   {metadata({method} {0x000000001d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000778e43fff96e:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff973:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff97b:   call   0x0000778e4b580f60           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@21 (line 1793)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff980:   jmp    0x0000778e43fff75d
+  0x0000778e43fff985:   movabs $0x778e43fff777,%r10         ;   {internal_word}
+  0x0000778e43fff98f:   mov    %r10,0x510(%r15)
+  0x0000778e43fff996:   jmp    0x0000778e4b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000778e43fff99b:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x0000778e43fff9a5:   mov    $0xa050f00,%eax
+  0x0000778e43fff9aa:   call   0x0000778e4b57fbe0           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x0000778e43fff9af:   jmp    0x0000778e43fff790
+  0x0000778e43fff9b4:   mov    %rdx,%rdx
+  0x0000778e43fff9b7:   call   0x0000778e4b57ba60           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getShort@14 (line 440)
+                                                            ;   {runtime_call new_instance_blob (C1 runtime)}
+  0x0000778e43fff9bc:   jmp    0x0000778e43fff79f
+  0x0000778e43fff9c1:   movabs $0x1d1a85e8,%r10             ;   {metadata({method} {0x000000001d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000778e43fff9cb:   mov    %r10,0x8(%rsp)
+  0x0000778e43fff9d0:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778e43fff9d8:   call   0x0000778e4b580f60           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnalignedInternal@30 (line 1793)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@6 (line 1779)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778e43fff9dd:   jmp    0x0000778e43fff82d
+  0x0000778e43fff9e2:   call   0x0000778e4b57b460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getShortUnaligned@17 (line 1781)
+                                                            ; - java.nio.HeapByteBuffer::getShort@25 (line 440)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000778e43fff9e7:   mov    0x5c0(%r15),%rax
+  0x0000778e43fff9ee:   movq   $0x0,0x5c0(%r15)
+  0x0000778e43fff9f9:   movq   $0x0,0x5c8(%r15)
+  0x0000778e43fffa04:   add    $0xe0,%rsp
+  0x0000778e43fffa0b:   pop    %rbp
+  0x0000778e43fffa0c:   jmp    0x0000778e4b579c60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000778e43fffa11:   hlt    
+  0x0000778e43fffa12:   hlt    
+  0x0000778e43fffa13:   hlt    
+  0x0000778e43fffa14:   hlt    
+  0x0000778e43fffa15:   hlt    
+  0x0000778e43fffa16:   hlt    
+  0x0000778e43fffa17:   hlt    
+[Stub Code]
+  0x0000778e43fffa18:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000778e43fffa1d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778e43fffa27:   jmp    0x0000778e43fffa27           ;   {runtime_call nmethod}
+  0x0000778e43fffa2c:   nop
+  0x0000778e43fffa2d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778e43fffa37:   jmp    0x0000778e43fffa37           ;   {runtime_call nmethod}
+  0x0000778e43fffa3c:   nop
+  0x0000778e43fffa3d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778e43fffa47:   jmp    0x0000778e43fffa47           ;   {runtime_call nmethod}
+  0x0000778e43fffa4c:   nop
+  0x0000778e43fffa4d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778e43fffa57:   jmp    0x0000778e43fffa57           ;   {runtime_call nmethod}
+  0x0000778e43fffa5c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778e43fffa66:   jmp    0x0000778e43fffa66           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000778e43fffa6b:   call   0x0000778e4b57d260           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000778e43fffa70:   movabs $0x778e6353aec4,%rdi         ;   {external_word}
+  0x0000778e43fffa7a:   and    $0xfffffffffffffff0,%rsp
+  0x0000778e43fffa7e:   call   0x0000778e62f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000778e43fffa83:   hlt    
+  0x0000778e43fffa84:   call   0x0000778e4b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000778e43fffa89:   jmp    0x0000778e43fffa84
+  0x0000778e43fffa8b:   hlt    
+  0x0000778e43fffa8c:   hlt    
+  0x0000778e43fffa8d:   hlt    
+  0x0000778e43fffa8e:   hlt    
+  0x0000778e43fffa8f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

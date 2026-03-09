@@ -1,0 +1,190 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 324   23       3       jdk.internal.loader.BuiltinClassLoader::loadClass (22 bytes)
+ total in heap  [0x0000714517fff008,0x0000714517fff370] = 872
+ main code      [0x0000714517fff100,0x0000714517fff328] = 552
+ stub code      [0x0000714517fff328,0x0000714517fff370] = 72
+ mutable data [0x00007144b8014a90,0x00007144b8014ae8] = 88
+ relocation     [0x00007144b8014a90,0x00007144b8014ae0] = 80
+ metadata       [0x00007144b8014ae0,0x00007144b8014ae8] = 8
+ immutable data [0x00007144b8014930,0x00007144b8014a84] = 340
+ dependencies   [0x00007144b8014930,0x00007144b8014938] = 8
+ scopes pcs     [0x00007144b8014938,0x00007144b8014a18] = 224
+ scopes data    [0x00007144b8014a18,0x00007144b8014a80] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000714517fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000714517fff10b:   data16 data16 xchg %ax,%ax
+  0x0000714517fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/loader/BuiltinClassLoader&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  # parm1:    rcx       = boolean
+  #           [sp+0x50]  (sp of caller)
+  0x0000714517fff112:   mov    0x8(%rsi),%r10d
+  0x0000714517fff116:   cmp    0x8(%rax),%r10d
+  0x0000714517fff11a:   jne    0x000071451f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000714517fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000714517fff127:   push   %rbp
+  0x0000714517fff128:   sub    $0x40,%rsp
+  0x0000714517fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000714517fff134:   je     0x0000714517fff13b
+  0x0000714517fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000714517fff13b:   movabs $0x7144d008aa28,%rdi         ;   {metadata(method data for {method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;)}
+  0x0000714517fff145:   mov    0x90(%rdi),%ebx
+  0x0000714517fff14b:   add    $0x2,%ebx
+  0x0000714517fff14e:   mov    %ebx,0x90(%rdi)
+  0x0000714517fff154:   and    $0x7fe,%ebx
+  0x0000714517fff15a:   test   %ebx,%ebx
+  0x0000714517fff15c:   je     0x0000714517fff2be           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@0 (line 578)
+  0x0000714517fff162:   mov    %rsi,%rdi
+  0x0000714517fff165:   movabs $0x7144d008aa28,%rbx         ;   {metadata(method data for {method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;)}
+  0x0000714517fff16f:   mov    0x8(%rdi),%edi
+  0x0000714517fff172:   mov    $0x2b000000,%r10d
+  0x0000714517fff178:   add    %r10,%rdi
+  0x0000714517fff17b:   mov    $0x1c,%r10d
+  0x0000714517fff181:   cmp    (%rbx,%r10,8),%rdi
+  0x0000714517fff185:   je     0x0000714517fff1be
+  0x0000714517fff187:   add    $0x2,%r10
+  0x0000714517fff18b:   cmp    $0x20,%r10
+  0x0000714517fff18f:   jne    0x0000714517fff181
+  0x0000714517fff191:   mov    $0x1c,%r10d
+  0x0000714517fff197:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000714517fff19c:   je     0x0000714517fff1aa
+  0x0000714517fff19e:   add    $0x2,%r10
+  0x0000714517fff1a2:   cmp    $0x20,%r10
+  0x0000714517fff1a6:   jne    0x0000714517fff197
+  0x0000714517fff1a8:   jmp    0x0000714517fff1b6
+  0x0000714517fff1aa:   push   %rax
+  0x0000714517fff1ab:   xor    %rax,%rax
+  0x0000714517fff1ae:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000714517fff1b3:   pop    %rax
+  0x0000714517fff1b4:   jmp    0x0000714517fff17b
+  0x0000714517fff1b6:   mov    $0x1b,%r10d
+  0x0000714517fff1bc:   jmp    0x0000714517fff1c2
+  0x0000714517fff1be:   add    $0x1,%r10
+  0x0000714517fff1c2:   addq   $0x1,(%rbx,%r10,8)
+  0x0000714517fff1c7:   mov    %rdx,%rdi
+  0x0000714517fff1ca:   mov    %rdi,%rdx                    ;*invokevirtual loadClassOrNull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@3 (line 578)
+  0x0000714517fff1cd:   mov    %rdi,0x20(%rsp)
+  0x0000714517fff1d2:   data16 xchg %ax,%ax
+  0x0000714517fff1d5:   movabs $0x7144b8014b60,%rax
+  0x0000714517fff1df:   call   0x000071451f4adce0           ; ImmutableOopMap {[32]=Oop }
+                                                            ;*invokevirtual loadClassOrNull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@3 (line 578)
+                                                            ;   {virtual_call}
+  0x0000714517fff1e4:   nopl   0x1dc(%rax,%rax,1)           ;*invokevirtual loadClassOrNull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@3 (line 578)
+                                                            ;   {post_call_nop}
+  0x0000714517fff1ec:   test   %rax,%rax
+  0x0000714517fff1ef:   movabs $0x7144d008aa28,%rdx         ;   {metadata(method data for {method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;)}
+  0x0000714517fff1f9:   mov    $0x118,%esi
+  0x0000714517fff1fe:   je     0x0000714517fff205
+  0x0000714517fff200:   mov    $0x108,%esi
+  0x0000714517fff205:   mov    (%rdx,%rsi,1),%rdi
+  0x0000714517fff209:   lea    0x1(%rdi),%rdi
+  0x0000714517fff20d:   mov    %rdi,(%rdx,%rsi,1)
+  0x0000714517fff211:   je     0x0000714517fff227           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@8 (line 579)
+  0x0000714517fff217:   add    $0x40,%rsp
+  0x0000714517fff21b:   pop    %rbp
+  0x0000714517fff21c:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000714517fff220:   ja     0x0000714517fff2df
+  0x0000714517fff226:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@21 (line 581)
+  0x0000714517fff227:   mov    0x20(%rsp),%rbx
+  0x0000714517fff22c:   movabs $0x2b1d0120,%rdx             ;   {metadata(&apos;java/lang/ClassNotFoundException&apos;)}
+  0x0000714517fff236:   mov    0x1b0(%r15),%rax
+  0x0000714517fff23d:   lea    0x28(%rax),%rdi
+  0x0000714517fff241:   cmp    0x1c0(%r15),%rdi
+  0x0000714517fff248:   ja     0x0000714517fff2f5
+  0x0000714517fff24e:   mov    %rdi,0x1b0(%r15)
+  0x0000714517fff255:   movq   $0x1,(%rax)
+  0x0000714517fff25c:   mov    %rdx,%rcx
+  0x0000714517fff25f:   mov    $0x2b000000,%r10d
+  0x0000714517fff265:   sub    %r10,%rcx
+  0x0000714517fff268:   mov    %ecx,0x8(%rax)
+  0x0000714517fff26b:   xor    %rcx,%rcx
+  0x0000714517fff26e:   mov    %ecx,0xc(%rax)
+  0x0000714517fff271:   xor    %rcx,%rcx
+  0x0000714517fff274:   mov    %rcx,0x10(%rax)
+  0x0000714517fff278:   mov    %rcx,0x18(%rax)
+  0x0000714517fff27c:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@11 (line 580)
+  0x0000714517fff280:   mov    %rax,%rdx
+  0x0000714517fff283:   movabs $0x7144d008aa28,%rsi         ;   {metadata(method data for {method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;)}
+  0x0000714517fff28d:   addq   $0x1,0x128(%rsi)
+  0x0000714517fff295:   mov    %rbx,%rdx
+  0x0000714517fff298:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@16 (line 580)
+  0x0000714517fff29b:   mov    %rax,0x28(%rsp)
+  0x0000714517fff2a0:   nopl   0x0(%rax)
+  0x0000714517fff2a7:   call   0x000071451f4ad9e0           ; ImmutableOopMap {[40]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@16 (line 580)
+                                                            ;   {optimized virtual_call}
+  0x0000714517fff2ac:   nopl   0x10002a4(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@16 (line 580)
+                                                            ;   {post_call_nop}
+  0x0000714517fff2b4:   mov    0x28(%rsp),%rax
+  0x0000714517fff2b9:   jmp    0x0000714517fff31c
+  0x0000714517fff2be:   movabs $0x2b1ccf10,%r10             ;   {metadata({method} {0x000000002b1ccf10} &apos;loadClass&apos; &apos;(Ljava/lang/String;Z)Ljava/lang/Class;&apos; in &apos;jdk/internal/loader/BuiltinClassLoader&apos;)}
+  0x0000714517fff2c8:   mov    %r10,0x8(%rsp)
+  0x0000714517fff2cd:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000714517fff2d5:   call   0x000071451f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@-1 (line 578)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000714517fff2da:   jmp    0x0000714517fff162
+  0x0000714517fff2df:   movabs $0x714517fff21c,%r10         ;   {internal_word}
+  0x0000714517fff2e9:   mov    %r10,0x510(%r15)
+  0x0000714517fff2f0:   jmp    0x000071451f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000714517fff2f5:   mov    %rdx,%rdx
+  0x0000714517fff2f8:   call   0x000071451f57d3e0           ; ImmutableOopMap {rbx=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.loader.BuiltinClassLoader::loadClass@11 (line 580)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x0000714517fff2fd:   jmp    0x0000714517fff280
+  0x0000714517fff2ff:   mov    0x5c0(%r15),%rax
+  0x0000714517fff306:   movq   $0x0,0x5c0(%r15)
+  0x0000714517fff311:   movq   $0x0,0x5c8(%r15)
+  0x0000714517fff31c:   add    $0x40,%rsp
+  0x0000714517fff320:   pop    %rbp
+  0x0000714517fff321:   jmp    0x000071451f55e0e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000714517fff326:   hlt    
+  0x0000714517fff327:   hlt    
+[Stub Code]
+  0x0000714517fff328:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000714517fff32d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000714517fff337:   jmp    0x0000714517fff337           ;   {runtime_call nmethod}
+  0x0000714517fff33c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000714517fff346:   jmp    0x0000714517fff346           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000714517fff34b:   call   0x000071451f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000714517fff350:   movabs $0x71453673aec4,%rdi         ;   {external_word}
+  0x0000714517fff35a:   and    $0xfffffffffffffff0,%rsp
+  0x0000714517fff35e:   call   0x0000714536191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000714517fff363:   hlt    
+  0x0000714517fff364:   call   0x000071451f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000714517fff369:   jmp    0x0000714517fff364
+  0x0000714517fff36b:   hlt    
+  0x0000714517fff36c:   hlt    
+  0x0000714517fff36d:   hlt    
+  0x0000714517fff36e:   hlt    
+  0x0000714517fff36f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

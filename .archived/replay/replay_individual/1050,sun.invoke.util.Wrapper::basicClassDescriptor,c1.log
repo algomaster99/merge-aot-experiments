@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 428   39       1       sun.invoke.util.Wrapper::basicClassDescriptor (5 bytes)
+ total in heap  [0x0000779047ba7208,0x0000779047ba73b0] = 424
+ main code      [0x0000779047ba7300,0x0000779047ba7390] = 144
+ stub code      [0x0000779047ba7390,0x0000779047ba73b0] = 32
+ mutable data [0x0000778fe80144f0,0x0000778fe8014518] = 40
+ relocation     [0x0000778fe80144f0,0x0000778fe8014510] = 32
+ metadata       [0x0000778fe8014510,0x0000778fe8014518] = 8
+ immutable data [0x0000778fe8014c30,0x0000778fe8014c8c] = 92
+ dependencies   [0x0000778fe8014c30,0x0000778fe8014c38] = 8
+ scopes pcs     [0x0000778fe8014c38,0x0000778fe8014c78] = 64
+ scopes data    [0x0000778fe8014c78,0x0000778fe8014c88] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000779047ba7300:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000779047ba730b:   data16 data16 xchg %ax,%ax
+  0x0000779047ba730f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000002347c3b0} &apos;basicClassDescriptor&apos; &apos;()Ljava/lang/constant/ClassDesc;&apos; in &apos;sun/invoke/util/Wrapper&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000779047ba7312:   mov    0x8(%rsi),%r10d
+  0x0000779047ba7316:   cmp    0x8(%rax),%r10d
+  0x0000779047ba731a:   jne    0x00007790474ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000779047ba7320:   mov    %eax,-0x14000(%rsp)
+  0x0000779047ba7327:   push   %rbp
+  0x0000779047ba7328:   sub    $0x20,%rsp
+  0x0000779047ba732c:   cmpl   $0x1,0x20(%r15)
+  0x0000779047ba7334:   je     0x0000779047ba733b
+  0x0000779047ba7336:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicClassDescriptor@0 (line 392)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000779047ba733b:   mov    0x30(%rsi),%eax
+  0x0000779047ba733e:   shl    $0x3,%rax                    ;*getfield basicClassDesc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicClassDescriptor@1 (line 392)
+  0x0000779047ba7342:   add    $0x20,%rsp
+  0x0000779047ba7346:   pop    %rbp
+  0x0000779047ba7347:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000779047ba734b:   ja     0x0000779047ba7352
+  0x0000779047ba7351:   ret    
+  0x0000779047ba7352:   movabs $0x779047ba7347,%r10         ;   {internal_word}
+  0x0000779047ba735c:   mov    %r10,0x510(%r15)
+  0x0000779047ba7363:   jmp    0x00007790474afb60           ;   {runtime_call SafepointBlob}
+  0x0000779047ba7368:   mov    0x5c0(%r15),%rax
+  0x0000779047ba736f:   movq   $0x0,0x5c0(%r15)
+  0x0000779047ba737a:   movq   $0x0,0x5c8(%r15)
+  0x0000779047ba7385:   add    $0x20,%rsp
+  0x0000779047ba7389:   pop    %rbp
+  0x0000779047ba738a:   jmp    0x000077904757b2e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000779047ba738f:   hlt    
+[Exception Handler]
+  0x0000779047ba7390:   call   0x000077904757e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000779047ba7395:   movabs $0x77905ff3aec4,%rdi         ;   {external_word}
+  0x0000779047ba739f:   and    $0xfffffffffffffff0,%rsp
+  0x0000779047ba73a3:   call   0x000077905f991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000779047ba73a8:   hlt    
+  0x0000779047ba73a9:   call   0x00007790474afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000779047ba73ae:   jmp    0x0000779047ba73a9
+--------------------------------------------------------------------------------
+[/Disassembly]

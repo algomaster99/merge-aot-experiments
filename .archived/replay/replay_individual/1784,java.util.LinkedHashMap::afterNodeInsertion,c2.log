@@ -1,0 +1,72 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 634   53       4       java.util.LinkedHashMap::afterNodeInsertion (40 bytes)
+ total in heap  [0x00007d47d7ba9c08,0x00007d47d7ba9d80] = 376
+ main code      [0x00007d47d7ba9d00,0x00007d47d7ba9d78] = 120
+ stub code      [0x00007d47d7ba9d78,0x00007d47d7ba9d80] = 8
+ mutable data [0x00007d477c0a20e0,0x00007d477c0a2110] = 48
+ relocation     [0x00007d477c0a20e0,0x00007d477c0a20f8] = 24
+ metadata       [0x00007d477c0a20f8,0x00007d477c0a2110] = 24
+ immutable data [0x00007d477c0a2000,0x00007d477c0a20cc] = 204
+ dependencies   [0x00007d477c0a2000,0x00007d477c0a2010] = 16
+ scopes pcs     [0x00007d477c0a2010,0x00007d477c0a2090] = 128
+ scopes data    [0x00007d477c0a2090,0x00007d477c0a20c8] = 56
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007d47d7ba9d00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x000000001b24aba8} &apos;afterNodeInsertion&apos; &apos;(Z)V&apos; in &apos;java/util/LinkedHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/LinkedHashMap&apos;
+  # parm0:    rdx       = boolean
+  #           [sp+0x20]  (sp of caller)
+  0x00007d47d7ba9d02:   mov    0x8(%rsi),%r10d
+  0x00007d47d7ba9d06:   cmp    0x8(%rax),%r10d
+  0x00007d47d7ba9d0a:   jne    0x00007d47d74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007d47d7ba9d10:   mov    %eax,-0x14000(%rsp)
+  0x00007d47d7ba9d17:   push   %rbp
+  0x00007d47d7ba9d18:   sub    $0x10,%rsp
+  0x00007d47d7ba9d1c:   cmpl   $0x1,0x20(%r15)
+  0x00007d47d7ba9d24:   jne    0x00007d47d7ba9d6e           ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap::afterNodeInsertion@-1 (line 324)
+  0x00007d47d7ba9d2a:   test   %edx,%edx
+  0x00007d47d7ba9d2c:   je     0x00007d47d7ba9d48           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::afterNodeInsertion@1 (line 324)
+  0x00007d47d7ba9d2e:   mov    0x34(%rsi),%ebp              ;*getfield head {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::afterNodeInsertion@5 (line 324)
+  0x00007d47d7ba9d31:   test   %ebp,%ebp
+  0x00007d47d7ba9d33:   jne    0x00007d47d7ba9d48           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::afterNodeInsertion@10 (line 324)
+  0x00007d47d7ba9d35:   mov    $0xffffff45,%esi
+  0x00007d47d7ba9d3a:   nop
+  0x00007d47d7ba9d3b:   call   0x00007d47d7585860           ; ImmutableOopMap {rbp=NarrowOop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.LinkedHashMap::afterNodeInsertion@10 (line 324)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007d47d7ba9d40:   nopl   0x138(%rax,%rax,1)           ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::afterNodeInsertion@39 (line 328)
+                                                            ;   {post_call_nop}
+  0x00007d47d7ba9d48:   add    $0x10,%rsp
+  0x00007d47d7ba9d4c:   pop    %rbp
+  0x00007d47d7ba9d4d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d47d7ba9d51:   ja     0x00007d47d7ba9d58
+  0x00007d47d7ba9d57:   ret    
+  0x00007d47d7ba9d58:   movabs $0x7d47d7ba9d4d,%r10         ;   {internal_word}
+  0x00007d47d7ba9d62:   mov    %r10,0x510(%r15)
+  0x00007d47d7ba9d69:   jmp    0x00007d47d74afb60           ;   {runtime_call SafepointBlob}
+  0x00007d47d7ba9d6e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d47d7ba9d73:   jmp    0x00007d47d7ba9d2a
+[Stub Code]
+  0x00007d47d7ba9d78:   call   0x00007d47d74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d47d7ba9d7d:   jmp    0x00007d47d7ba9d78
+  0x00007d47d7ba9d7f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,166 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 392   29       3       java.lang.invoke.DirectMethodHandle::allocateInstance (16 bytes)
+ total in heap  [0x00007c091bfff008,0x00007c091bfff310] = 776
+ main code      [0x00007c091bfff100,0x00007c091bfff2e0] = 480
+ stub code      [0x00007c091bfff2e0,0x00007c091bfff310] = 48
+ mutable data [0x00007c08c4014dd0,0x00007c08c4014e18] = 72
+ relocation     [0x00007c08c4014dd0,0x00007c08c4014e10] = 64
+ metadata       [0x00007c08c4014e10,0x00007c08c4014e18] = 8
+ immutable data [0x00007c08c4014cc0,0x00007c08c4014dbc] = 252
+ dependencies   [0x00007c08c4014cc0,0x00007c08c4014cc8] = 8
+ nul chk table  [0x00007c08c4014cc8,0x00007c08c4014cd8] = 16
+ scopes pcs     [0x00007c08c4014cd8,0x00007c08c4014d78] = 160
+ scopes data    [0x00007c08c4014d78,0x00007c08c4014db8] = 64
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000007b201498} &apos;allocateInstance&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007c091bfff100:   mov    %eax,-0x14000(%rsp)
+  0x00007c091bfff107:   push   %rbp
+  0x00007c091bfff108:   sub    $0x20,%rsp
+  0x00007c091bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007c091bfff114:   je     0x00007c091bfff11b
+  0x00007c091bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007c091bfff11b:   movabs $0x7c08d013bb48,%rdx         ;   {metadata(method data for {method} {0x000000007b201498} &apos;allocateInstance&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;)}
+  0x00007c091bfff125:   mov    0x90(%rdx),%edi
+  0x00007c091bfff12b:   add    $0x2,%edi
+  0x00007c091bfff12e:   mov    %edi,0x90(%rdx)
+  0x00007c091bfff134:   and    $0x7fe,%edi
+  0x00007c091bfff13a:   test   %edi,%edi
+  0x00007c091bfff13c:   je     0x00007c091bfff274           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@0 (line 502)
+  0x00007c091bfff142:   test   %rsi,%rsi
+  0x00007c091bfff145:   movabs $0x7c08d013bb48,%rdi         ;   {metadata(method data for {method} {0x000000007b201498} &apos;allocateInstance&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;)}
+  0x00007c091bfff14f:   jne    0x00007c091bfff15d
+  0x00007c091bfff151:   orb    $0x1,0xd1(%rdi)
+  0x00007c091bfff158:   jmp    0x00007c091bfff1d9
+  0x00007c091bfff15d:   mov    0x8(%rsi),%ebx
+  0x00007c091bfff160:   mov    $0x7b000000,%r10d
+  0x00007c091bfff166:   add    %r10,%rbx
+  0x00007c091bfff169:   mov    $0x1c,%r10d
+  0x00007c091bfff16f:   cmp    (%rdi,%r10,8),%rbx
+  0x00007c091bfff173:   je     0x00007c091bfff1ac
+  0x00007c091bfff175:   add    $0x2,%r10
+  0x00007c091bfff179:   cmp    $0x20,%r10
+  0x00007c091bfff17d:   jne    0x00007c091bfff16f
+  0x00007c091bfff17f:   mov    $0x1c,%r10d
+  0x00007c091bfff185:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007c091bfff18a:   je     0x00007c091bfff198
+  0x00007c091bfff18c:   add    $0x2,%r10
+  0x00007c091bfff190:   cmp    $0x20,%r10
+  0x00007c091bfff194:   jne    0x00007c091bfff185
+  0x00007c091bfff196:   jmp    0x00007c091bfff1a4
+  0x00007c091bfff198:   push   %rax
+  0x00007c091bfff199:   xor    %rax,%rax
+  0x00007c091bfff19c:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007c091bfff1a1:   pop    %rax
+  0x00007c091bfff1a2:   jmp    0x00007c091bfff169
+  0x00007c091bfff1a4:   mov    $0x1b,%r10d
+  0x00007c091bfff1aa:   jmp    0x00007c091bfff1b0
+  0x00007c091bfff1ac:   add    $0x1,%r10
+  0x00007c091bfff1b0:   addq   $0x1,(%rdi,%r10,8)
+  0x00007c091bfff1b5:   movabs $0x7b282e20,%rbx             ;   {metadata(&apos;java/lang/invoke/DirectMethodHandle$Constructor&apos;)}
+  0x00007c091bfff1bf:   mov    0x8(%rsi),%edx
+  0x00007c091bfff1c2:   mov    $0x7b000000,%r10d
+  0x00007c091bfff1c8:   add    %r10,%rdx
+  0x00007c091bfff1cb:   cmp    %rdx,%rbx
+  0x00007c091bfff1ce:   jne    0x00007c091bfff295
+  0x00007c091bfff1d4:   jmp    0x00007c091bfff1d9
+  0x00007c091bfff1d9:   mov    %rsi,%rdx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@1 (line 502)
+  0x00007c091bfff1dc:   mov    0x28(%rdx),%edx              ; implicit exception: dispatches to 0x00007c091bfff29e
+  0x00007c091bfff1df:   shl    $0x3,%rdx                    ;*getfield instanceClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@9 (line 503)
+  0x00007c091bfff1e3:   movabs $0x41f801628,%rsi            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000041f801628})}
+  0x00007c091bfff1ed:   mov    %rsi,%rdi
+  0x00007c091bfff1f0:   movabs $0x7c08d013bb48,%rbx         ;   {metadata(method data for {method} {0x000000007b201498} &apos;allocateInstance&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;)}
+  0x00007c091bfff1fa:   mov    0x8(%rdi),%edi
+  0x00007c091bfff1fd:   mov    $0x7b000000,%r10d
+  0x00007c091bfff203:   add    %r10,%rdi
+  0x00007c091bfff206:   mov    $0x22,%r10d
+  0x00007c091bfff20c:   cmp    (%rbx,%r10,8),%rdi
+  0x00007c091bfff210:   je     0x00007c091bfff249
+  0x00007c091bfff212:   add    $0x2,%r10
+  0x00007c091bfff216:   cmp    $0x26,%r10
+  0x00007c091bfff21a:   jne    0x00007c091bfff20c
+  0x00007c091bfff21c:   mov    $0x22,%r10d
+  0x00007c091bfff222:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007c091bfff227:   je     0x00007c091bfff235
+  0x00007c091bfff229:   add    $0x2,%r10
+  0x00007c091bfff22d:   cmp    $0x26,%r10
+  0x00007c091bfff231:   jne    0x00007c091bfff222
+  0x00007c091bfff233:   jmp    0x00007c091bfff241
+  0x00007c091bfff235:   push   %rax
+  0x00007c091bfff236:   xor    %rax,%rax
+  0x00007c091bfff239:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007c091bfff23e:   pop    %rax
+  0x00007c091bfff23f:   jmp    0x00007c091bfff206
+  0x00007c091bfff241:   mov    $0x21,%r10d
+  0x00007c091bfff247:   jmp    0x00007c091bfff24d
+  0x00007c091bfff249:   add    $0x1,%r10
+  0x00007c091bfff24d:   addq   $0x1,(%rbx,%r10,8)
+  0x00007c091bfff252:   nopl   0x0(%rax,%rax,1)
+  0x00007c091bfff257:   call   0x00007c09234ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual allocateInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@12 (line 503)
+                                                            ;   {optimized virtual_call}
+  0x00007c091bfff25c:   nopl   0x254(%rax,%rax,1)           ;*invokevirtual allocateInstance {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@12 (line 503)
+                                                            ;   {post_call_nop}
+  0x00007c091bfff264:   add    $0x20,%rsp
+  0x00007c091bfff268:   pop    %rbp
+  0x00007c091bfff269:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c091bfff26d:   ja     0x00007c091bfff2a3
+  0x00007c091bfff273:   ret    
+  0x00007c091bfff274:   movabs $0x7b201498,%r10             ;   {metadata({method} {0x000000007b201498} &apos;allocateInstance&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/lang/invoke/DirectMethodHandle&apos;)}
+  0x00007c091bfff27e:   mov    %r10,0x8(%rsp)
+  0x00007c091bfff283:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c091bfff28b:   call   0x00007c0923580f60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@-1 (line 502)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c091bfff290:   jmp    0x00007c091bfff142
+  0x00007c091bfff295:   mov    %rsi,(%rsp)
+  0x00007c091bfff299:   call   0x00007c092357e160           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.DirectMethodHandle::allocateInstance@1 (line 502)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007c091bfff29e:   call   0x00007c092357b460           ; ImmutableOopMap {}
+                                                            ;*getfield instanceClass {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.invoke.DirectMethodHandle::allocateInstance@9 (line 503)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c091bfff2a3:   movabs $0x7c091bfff269,%r10         ;   {internal_word}
+  0x00007c091bfff2ad:   mov    %r10,0x510(%r15)
+  0x00007c091bfff2b4:   jmp    0x00007c09234afb60           ;   {runtime_call SafepointBlob}
+  0x00007c091bfff2b9:   mov    0x5c0(%r15),%rax
+  0x00007c091bfff2c0:   movq   $0x0,0x5c0(%r15)
+  0x00007c091bfff2cb:   movq   $0x0,0x5c8(%r15)
+  0x00007c091bfff2d6:   add    $0x20,%rsp
+  0x00007c091bfff2da:   pop    %rbp
+  0x00007c091bfff2db:   jmp    0x00007c092357a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x00007c091bfff2e0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007c091bfff2ea:   jmp    0x00007c091bfff2ea           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007c091bfff2ef:   call   0x00007c092357d6e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007c091bfff2f4:   movabs $0x7c093cf3aec4,%rdi         ;   {external_word}
+  0x00007c091bfff2fe:   and    $0xfffffffffffffff0,%rsp
+  0x00007c091bfff302:   call   0x00007c093c991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007c091bfff307:   hlt    
+  0x00007c091bfff308:   call   0x00007c09234afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007c091bfff30d:   jmp    0x00007c091bfff308
+  0x00007c091bfff30f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

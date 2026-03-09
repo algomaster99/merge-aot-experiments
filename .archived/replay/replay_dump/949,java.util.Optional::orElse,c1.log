@@ -1,0 +1,114 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 14798  949       3       java.util.Optional::orElse (16 bytes)
+ total in heap  [0x000077b458080388,0x000077b4580805e0] = 600
+ main code      [0x000077b458080480,0x000077b4580805c0] = 320
+ stub code      [0x000077b4580805c0,0x000077b4580805e0] = 32
+ mutable data [0x000077b3fc09d7d0,0x000077b3fc09d808] = 56
+ relocation     [0x000077b3fc09d7d0,0x000077b3fc09d800] = 48
+ metadata       [0x000077b3fc09d800,0x000077b3fc09d808] = 8
+ immutable data [0x000077b3fc0a3d00,0x000077b3fc0a3dbc] = 188
+ dependencies   [0x000077b3fc0a3d00,0x000077b3fc0a3d08] = 8
+ scopes pcs     [0x000077b3fc0a3d08,0x000077b3fc0a3d88] = 128
+ scopes data    [0x000077b3fc0a3d88,0x000077b3fc0a3db8] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458080480:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45808048b:   data16 data16 xchg %ax,%ax
+  0x000077b45808048f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046239eb0} &apos;orElse&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Optional&apos;
+  # this:     rsi:rsi   = &apos;java/util/Optional&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458080492:   mov    0x8(%rsi),%r10d
+  0x000077b458080496:   cmp    0x8(%rax),%r10d
+  0x000077b45808049a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580804a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580804a7:   push   %rbp
+  0x000077b4580804a8:   sub    $0x20,%rsp
+  0x000077b4580804ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580804b4:   je     0x000077b4580804bb
+  0x000077b4580804b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580804bb:   movabs $0x77b414288160,%rax         ;   {metadata(method data for {method} {0x0000000046239eb0} &apos;orElse&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Optional&apos;)}
+  0x000077b4580804c5:   mov    0x90(%rax),%edi
+  0x000077b4580804cb:   add    $0x2,%edi
+  0x000077b4580804ce:   mov    %edi,0x90(%rax)
+  0x000077b4580804d4:   and    $0x7fe,%edi
+  0x000077b4580804da:   test   %edi,%edi
+  0x000077b4580804dc:   je     0x000077b458080547           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Optional::orElse@0 (line 354)
+  0x000077b4580804e2:   mov    0xc(%rsi),%eax
+  0x000077b4580804e5:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Optional::orElse@1 (line 354)
+  0x000077b4580804e9:   test   %rax,%rax
+  0x000077b4580804ec:   movabs $0x77b414288160,%rsi         ;   {metadata(method data for {method} {0x0000000046239eb0} &apos;orElse&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Optional&apos;)}
+  0x000077b4580804f6:   mov    $0xd8,%edi
+  0x000077b4580804fb:   je     0x000077b458080502
+  0x000077b4580804fd:   mov    $0xe8,%edi
+  0x000077b458080502:   mov    (%rsi,%rdi,1),%rbx
+  0x000077b458080506:   lea    0x1(%rbx),%rbx
+  0x000077b45808050a:   mov    %rbx,(%rsi,%rdi,1)
+  0x000077b45808050e:   je     0x000077b458080534           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Optional::orElse@4 (line 354)
+  0x000077b458080514:   movabs $0x77b414288160,%rsi         ;   {metadata(method data for {method} {0x0000000046239eb0} &apos;orElse&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Optional&apos;)}
+  0x000077b45808051e:   incl   0xf8(%rsi)                   ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Optional::orElse@11 (line 354)
+  0x000077b458080524:   add    $0x20,%rsp
+  0x000077b458080528:   pop    %rbp
+  0x000077b458080529:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45808052d:   ja     0x000077b458080568
+  0x000077b458080533:   ret    
+  0x000077b458080534:   mov    %rdx,%rax                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Optional::orElse@15 (line 354)
+  0x000077b458080537:   add    $0x20,%rsp
+  0x000077b45808053b:   pop    %rbp
+  0x000077b45808053c:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458080540:   ja     0x000077b45808057e
+  0x000077b458080546:   ret    
+  0x000077b458080547:   movabs $0x46239eb0,%r10             ;   {metadata({method} {0x0000000046239eb0} &apos;orElse&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Optional&apos;)}
+  0x000077b458080551:   mov    %r10,0x8(%rsp)
+  0x000077b458080556:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45808055e:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Optional::orElse@-1 (line 354)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458080563:   jmp    0x000077b4580804e2
+  0x000077b458080568:   movabs $0x77b458080529,%r10         ;   {internal_word}
+  0x000077b458080572:   mov    %r10,0x510(%r15)
+  0x000077b458080579:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45808057e:   movabs $0x77b45808053c,%r10         ;   {internal_word}
+  0x000077b458080588:   mov    %r10,0x510(%r15)
+  0x000077b45808058f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458080594:   mov    0x5c0(%r15),%rax
+  0x000077b45808059b:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580805a6:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580805b1:   add    $0x20,%rsp
+  0x000077b4580805b5:   pop    %rbp
+  0x000077b4580805b6:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580805bb:   hlt    
+  0x000077b4580805bc:   hlt    
+  0x000077b4580805bd:   hlt    
+  0x000077b4580805be:   hlt    
+  0x000077b4580805bf:   hlt    
+[Exception Handler]
+  0x000077b4580805c0:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580805c5:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580805cf:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580805d3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580805d8:   hlt    
+  0x000077b4580805d9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580805de:   jmp    0x000077b4580805d9
+--------------------------------------------------------------------------------
+[/Disassembly]

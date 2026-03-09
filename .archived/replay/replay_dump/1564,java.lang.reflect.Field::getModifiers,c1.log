@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 35808 1564       1       java.lang.reflect.Field::getModifiers (5 bytes)
+ total in heap  [0x000077b45fbdff88,0x000077b45fbe0130] = 424
+ main code      [0x000077b45fbe0080,0x000077b45fbe0110] = 144
+ stub code      [0x000077b45fbe0110,0x000077b45fbe0130] = 32
+ mutable data [0x000077b3f018f970,0x000077b3f018f998] = 40
+ relocation     [0x000077b3f018f970,0x000077b3f018f990] = 32
+ metadata       [0x000077b3f018f990,0x000077b3f018f998] = 8
+ immutable data [0x000077b3f01ec290,0x000077b3f01ec2ec] = 92
+ dependencies   [0x000077b3f01ec290,0x000077b3f01ec298] = 8
+ scopes pcs     [0x000077b3f01ec298,0x000077b3f01ec2d8] = 64
+ scopes data    [0x000077b3f01ec2d8,0x000077b3f01ec2e8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbe0080:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbe008b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbe008f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461b1320} &apos;getModifiers&apos; &apos;()I&apos; in &apos;java/lang/reflect/Field&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbe0092:   mov    0x8(%rsi),%r10d
+  0x000077b45fbe0096:   cmp    0x8(%rax),%r10d
+  0x000077b45fbe009a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbe00a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbe00a7:   push   %rbp
+  0x000077b45fbe00a8:   sub    $0x20,%rsp
+  0x000077b45fbe00ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbe00b4:   je     0x000077b45fbe00bb
+  0x000077b45fbe00b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getModifiers@0 (line 237)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbe00bb:   mov    0x40(%rsi),%eax              ;*getfield modifiers {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getModifiers@1 (line 237)
+  0x000077b45fbe00be:   add    $0x20,%rsp
+  0x000077b45fbe00c2:   pop    %rbp
+  0x000077b45fbe00c3:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbe00c7:   ja     0x000077b45fbe00ce
+  0x000077b45fbe00cd:   ret    
+  0x000077b45fbe00ce:   movabs $0x77b45fbe00c3,%r10         ;   {internal_word}
+  0x000077b45fbe00d8:   mov    %r10,0x510(%r15)
+  0x000077b45fbe00df:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbe00e4:   mov    0x5c0(%r15),%rax
+  0x000077b45fbe00eb:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbe00f6:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbe0101:   add    $0x20,%rsp
+  0x000077b45fbe0105:   pop    %rbp
+  0x000077b45fbe0106:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbe010b:   hlt    
+  0x000077b45fbe010c:   hlt    
+  0x000077b45fbe010d:   hlt    
+  0x000077b45fbe010e:   hlt    
+  0x000077b45fbe010f:   hlt    
+[Exception Handler]
+  0x000077b45fbe0110:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbe0115:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbe011f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbe0123:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbe0128:   hlt    
+  0x000077b45fbe0129:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbe012e:   jmp    0x000077b45fbe0129
+--------------------------------------------------------------------------------
+[/Disassembly]

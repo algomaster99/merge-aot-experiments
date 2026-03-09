@@ -1,0 +1,131 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 611   52       3       java.lang.reflect.ReflectAccess::copyField (5 bytes)
+ total in heap  [0x00007275cbfff008,0x00007275cbfff280] = 632
+ main code      [0x00007275cbfff100,0x00007275cbfff250] = 336
+ stub code      [0x00007275cbfff250,0x00007275cbfff280] = 48
+ mutable data [0x0000727574024e10,0x0000727574024e50] = 64
+ relocation     [0x0000727574024e10,0x0000727574024e48] = 56
+ metadata       [0x0000727574024e48,0x0000727574024e50] = 8
+ immutable data [0x0000727574024d40,0x0000727574024e04] = 196
+ dependencies   [0x0000727574024d40,0x0000727574024d48] = 8
+ nul chk table  [0x0000727574024d48,0x0000727574024d58] = 16
+ scopes pcs     [0x0000727574024d58,0x0000727574024dd8] = 128
+ scopes data    [0x0000727574024dd8,0x0000727574024e00] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007275cbfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007275cbfff10b:   data16 data16 xchg %ax,%ax
+  0x00007275cbfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000003927efe0} &apos;copyField&apos; &apos;(Ljava/lang/reflect/Field;)Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/ReflectAccess&apos;
+  # this:     rsi:rsi   = &apos;java/lang/reflect/ReflectAccess&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/reflect/Field&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007275cbfff112:   mov    0x8(%rsi),%r10d
+  0x00007275cbfff116:   cmp    0x8(%rax),%r10d
+  0x00007275cbfff11a:   jne    0x00007275d34ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007275cbfff120:   mov    %eax,-0x14000(%rsp)
+  0x00007275cbfff127:   push   %rbp
+  0x00007275cbfff128:   sub    $0x20,%rsp
+  0x00007275cbfff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007275cbfff134:   je     0x00007275cbfff13b
+  0x00007275cbfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007275cbfff13b:   movabs $0x727584306138,%rdi         ;   {metadata(method data for {method} {0x000000003927efe0} &apos;copyField&apos; &apos;(Ljava/lang/reflect/Field;)Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/ReflectAccess&apos;)}
+  0x00007275cbfff145:   mov    0x90(%rdi),%ebx
+  0x00007275cbfff14b:   add    $0x2,%ebx
+  0x00007275cbfff14e:   mov    %ebx,0x90(%rdi)
+  0x00007275cbfff154:   and    $0x7fe,%ebx
+  0x00007275cbfff15a:   test   %ebx,%ebx
+  0x00007275cbfff15c:   je     0x00007275cbfff1ec           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@0 (line 60)
+  0x00007275cbfff162:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x00007275cbfff20d
+  0x00007275cbfff165:   mov    %rdx,%rsi
+  0x00007275cbfff168:   movabs $0x727584306138,%rdi         ;   {metadata(method data for {method} {0x000000003927efe0} &apos;copyField&apos; &apos;(Ljava/lang/reflect/Field;)Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/ReflectAccess&apos;)}
+  0x00007275cbfff172:   mov    0x8(%rsi),%esi
+  0x00007275cbfff175:   mov    $0x39000000,%r10d
+  0x00007275cbfff17b:   add    %r10,%rsi
+  0x00007275cbfff17e:   mov    $0x1c,%r10d
+  0x00007275cbfff184:   cmp    (%rdi,%r10,8),%rsi
+  0x00007275cbfff188:   je     0x00007275cbfff1c1
+  0x00007275cbfff18a:   add    $0x2,%r10
+  0x00007275cbfff18e:   cmp    $0x20,%r10
+  0x00007275cbfff192:   jne    0x00007275cbfff184
+  0x00007275cbfff194:   mov    $0x1c,%r10d
+  0x00007275cbfff19a:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007275cbfff19f:   je     0x00007275cbfff1ad
+  0x00007275cbfff1a1:   add    $0x2,%r10
+  0x00007275cbfff1a5:   cmp    $0x20,%r10
+  0x00007275cbfff1a9:   jne    0x00007275cbfff19a
+  0x00007275cbfff1ab:   jmp    0x00007275cbfff1b9
+  0x00007275cbfff1ad:   push   %rax
+  0x00007275cbfff1ae:   xor    %rax,%rax
+  0x00007275cbfff1b1:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x00007275cbfff1b6:   pop    %rax
+  0x00007275cbfff1b7:   jmp    0x00007275cbfff17e
+  0x00007275cbfff1b9:   mov    $0x1b,%r10d
+  0x00007275cbfff1bf:   jmp    0x00007275cbfff1c5
+  0x00007275cbfff1c1:   add    $0x1,%r10
+  0x00007275cbfff1c5:   addq   $0x1,(%rdi,%r10,8)
+  0x00007275cbfff1ca:   mov    %rdx,%rsi                    ;*invokevirtual copy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@1 (line 60)
+  0x00007275cbfff1cd:   xchg   %ax,%ax
+  0x00007275cbfff1cf:   call   0x00007275d34ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual copy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@1 (line 60)
+                                                            ;   {optimized virtual_call}
+  0x00007275cbfff1d4:   nopl   0x1cc(%rax,%rax,1)           ;*invokevirtual copy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@1 (line 60)
+                                                            ;   {post_call_nop}
+  0x00007275cbfff1dc:   add    $0x20,%rsp
+  0x00007275cbfff1e0:   pop    %rbp
+  0x00007275cbfff1e1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007275cbfff1e5:   ja     0x00007275cbfff212
+  0x00007275cbfff1eb:   ret    
+  0x00007275cbfff1ec:   movabs $0x3927efe0,%r10             ;   {metadata({method} {0x000000003927efe0} &apos;copyField&apos; &apos;(Ljava/lang/reflect/Field;)Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/ReflectAccess&apos;)}
+  0x00007275cbfff1f6:   mov    %r10,0x8(%rsp)
+  0x00007275cbfff1fb:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007275cbfff203:   call   0x00007275d3583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@-1 (line 60)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007275cbfff208:   jmp    0x00007275cbfff162
+  0x00007275cbfff20d:   call   0x00007275d357cae0           ; ImmutableOopMap {rdx=Oop }
+                                                            ;*invokevirtual copy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.ReflectAccess::copyField@1 (line 60)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007275cbfff212:   movabs $0x7275cbfff1e1,%r10         ;   {internal_word}
+  0x00007275cbfff21c:   mov    %r10,0x510(%r15)
+  0x00007275cbfff223:   jmp    0x00007275d34afb60           ;   {runtime_call SafepointBlob}
+  0x00007275cbfff228:   mov    0x5c0(%r15),%rax
+  0x00007275cbfff22f:   movq   $0x0,0x5c0(%r15)
+  0x00007275cbfff23a:   movq   $0x0,0x5c8(%r15)
+  0x00007275cbfff245:   add    $0x20,%rsp
+  0x00007275cbfff249:   pop    %rbp
+  0x00007275cbfff24a:   jmp    0x00007275d357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007275cbfff24f:   hlt    
+[Stub Code]
+  0x00007275cbfff250:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007275cbfff25a:   jmp    0x00007275cbfff25a           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007275cbfff25f:   call   0x00007275d357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007275cbfff264:   movabs $0x7275ebf3aec4,%rdi         ;   {external_word}
+  0x00007275cbfff26e:   and    $0xfffffffffffffff0,%rsp
+  0x00007275cbfff272:   call   0x00007275eb991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007275cbfff277:   hlt    
+  0x00007275cbfff278:   call   0x00007275d34afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007275cbfff27d:   jmp    0x00007275cbfff278
+  0x00007275cbfff27f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

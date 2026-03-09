@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 416   37       1       jdk.internal.classfile.impl.UnboundAttribute::attributeMapper (5 bytes)
+ total in heap  [0x000076db07ba6c08,0x000076db07ba6db0] = 424
+ main code      [0x000076db07ba6d00,0x000076db07ba6d90] = 144
+ stub code      [0x000076db07ba6d90,0x000076db07ba6db0] = 32
+ mutable data [0x000076daa00144f0,0x000076daa0014518] = 40
+ relocation     [0x000076daa00144f0,0x000076daa0014510] = 32
+ metadata       [0x000076daa0014510,0x000076daa0014518] = 8
+ immutable data [0x000076daa0014c30,0x000076daa0014c8c] = 92
+ dependencies   [0x000076daa0014c30,0x000076daa0014c38] = 8
+ scopes pcs     [0x000076daa0014c38,0x000076daa0014c78] = 64
+ scopes data    [0x000076daa0014c78,0x000076daa0014c88] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000076db07ba6d00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000076db07ba6d0b:   data16 data16 xchg %ax,%ax
+  0x000076db07ba6d0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000006c27d340} &apos;attributeMapper&apos; &apos;()Ljava/lang/classfile/AttributeMapper;&apos; in &apos;jdk/internal/classfile/impl/UnboundAttribute&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000076db07ba6d12:   mov    0x8(%rsi),%r10d
+  0x000076db07ba6d16:   cmp    0x8(%rax),%r10d
+  0x000076db07ba6d1a:   jne    0x000076db074ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000076db07ba6d20:   mov    %eax,-0x14000(%rsp)
+  0x000076db07ba6d27:   push   %rbp
+  0x000076db07ba6d28:   sub    $0x20,%rsp
+  0x000076db07ba6d2c:   cmpl   $0x1,0x20(%r15)
+  0x000076db07ba6d34:   je     0x000076db07ba6d3b
+  0x000076db07ba6d36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.UnboundAttribute::attributeMapper@0 (line 54)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000076db07ba6d3b:   mov    0xc(%rsi),%eax
+  0x000076db07ba6d3e:   shl    $0x3,%rax                    ;*getfield mapper {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.UnboundAttribute::attributeMapper@1 (line 54)
+  0x000076db07ba6d42:   add    $0x20,%rsp
+  0x000076db07ba6d46:   pop    %rbp
+  0x000076db07ba6d47:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000076db07ba6d4b:   ja     0x000076db07ba6d52
+  0x000076db07ba6d51:   ret    
+  0x000076db07ba6d52:   movabs $0x76db07ba6d47,%r10         ;   {internal_word}
+  0x000076db07ba6d5c:   mov    %r10,0x510(%r15)
+  0x000076db07ba6d63:   jmp    0x000076db074afb60           ;   {runtime_call SafepointBlob}
+  0x000076db07ba6d68:   mov    0x5c0(%r15),%rax
+  0x000076db07ba6d6f:   movq   $0x0,0x5c0(%r15)
+  0x000076db07ba6d7a:   movq   $0x0,0x5c8(%r15)
+  0x000076db07ba6d85:   add    $0x20,%rsp
+  0x000076db07ba6d89:   pop    %rbp
+  0x000076db07ba6d8a:   jmp    0x000076db0757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000076db07ba6d8f:   hlt    
+[Exception Handler]
+  0x000076db07ba6d90:   call   0x000076db0757f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000076db07ba6d95:   movabs $0x76db1e13aec4,%rdi         ;   {external_word}
+  0x000076db07ba6d9f:   and    $0xfffffffffffffff0,%rsp
+  0x000076db07ba6da3:   call   0x000076db1db91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000076db07ba6da8:   hlt    
+  0x000076db07ba6da9:   call   0x000076db074afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000076db07ba6dae:   jmp    0x000076db07ba6da9
+--------------------------------------------------------------------------------
+[/Disassembly]

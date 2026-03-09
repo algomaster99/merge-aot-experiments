@@ -1,0 +1,76 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 71    3       2       java.lang.Short::toUnsignedInt (5 bytes)
+ total in heap  [0x00007d909bfff008,0x00007d909bfff1d0] = 456
+ main code      [0x00007d909bfff100,0x00007d909bfff1b0] = 176
+ stub code      [0x00007d909bfff1b0,0x00007d909bfff1d0] = 32
+ mutable data [0x00007d9044014ce0,0x00007d9044014d08] = 40
+ relocation     [0x00007d9044014ce0,0x00007d9044014d00] = 32
+ metadata       [0x00007d9044014d00,0x00007d9044014d08] = 8
+ immutable data [0x00007d9044014c70,0x00007d9044014cd4] = 100
+ dependencies   [0x00007d9044014c70,0x00007d9044014c78] = 8
+ scopes pcs     [0x00007d9044014c78,0x00007d9044014cb8] = 64
+ scopes data    [0x00007d9044014cb8,0x00007d9044014cd0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000000a1a0fa0} &apos;toUnsignedInt&apos; &apos;(S)I&apos; in &apos;java/lang/Short&apos;
+  # parm0:    rsi       = short
+  #           [sp+0x30]  (sp of caller)
+  0x00007d909bfff100:   mov    %eax,-0x14000(%rsp)
+  0x00007d909bfff107:   push   %rbp
+  0x00007d909bfff108:   sub    $0x20,%rsp
+  0x00007d909bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007d909bfff114:   je     0x00007d909bfff11b
+  0x00007d909bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d909bfff11b:   movabs $0x7d905400d438,%rax
+  0x00007d909bfff125:   mov    0x8(%rax),%edi
+  0x00007d909bfff128:   add    $0x2,%edi
+  0x00007d909bfff12b:   mov    %edi,0x8(%rax)
+  0x00007d909bfff12e:   and    $0xffe,%edi
+  0x00007d909bfff134:   test   %edi,%edi
+  0x00007d909bfff136:   je     0x00007d909bfff155           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Short::toUnsignedInt@0 (line 590)
+  0x00007d909bfff13c:   and    $0xffff,%esi
+  0x00007d909bfff142:   mov    %rsi,%rax
+  0x00007d909bfff145:   add    $0x20,%rsp
+  0x00007d909bfff149:   pop    %rbp
+  0x00007d909bfff14a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d909bfff14e:   ja     0x00007d909bfff173
+  0x00007d909bfff154:   ret    
+  0x00007d909bfff155:   movabs $0xa1a0fa0,%r10              ;   {metadata({method} {0x000000000a1a0fa0} &apos;toUnsignedInt&apos; &apos;(S)I&apos; in &apos;java/lang/Short&apos;)}
+  0x00007d909bfff15f:   mov    %r10,0x8(%rsp)
+  0x00007d909bfff164:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007d909bfff16c:   call   0x00007d90a3581ce0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Short::toUnsignedInt@-1 (line 590)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007d909bfff171:   jmp    0x00007d909bfff13c
+  0x00007d909bfff173:   movabs $0x7d909bfff14a,%r10         ;   {internal_word}
+  0x00007d909bfff17d:   mov    %r10,0x510(%r15)
+  0x00007d909bfff184:   jmp    0x00007d90a34afb60           ;   {runtime_call SafepointBlob}
+  0x00007d909bfff189:   mov    0x5c0(%r15),%rax
+  0x00007d909bfff190:   movq   $0x0,0x5c0(%r15)
+  0x00007d909bfff19b:   movq   $0x0,0x5c8(%r15)
+  0x00007d909bfff1a6:   add    $0x20,%rsp
+  0x00007d909bfff1aa:   pop    %rbp
+  0x00007d909bfff1ab:   jmp    0x00007d90a357a9e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x00007d909bfff1b0:   call   0x00007d90a357db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007d909bfff1b5:   movabs $0x7d90bbb3aec4,%rdi         ;   {external_word}
+  0x00007d909bfff1bf:   and    $0xfffffffffffffff0,%rsp
+  0x00007d909bfff1c3:   call   0x00007d90bb591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007d909bfff1c8:   hlt    
+  0x00007d909bfff1c9:   call   0x00007d90a34afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d909bfff1ce:   jmp    0x00007d909bfff1c9
+--------------------------------------------------------------------------------
+[/Disassembly]

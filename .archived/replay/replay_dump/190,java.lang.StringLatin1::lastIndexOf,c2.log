@@ -1,0 +1,203 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 3714  190       4       java.lang.StringLatin1::lastIndexOf (40 bytes)
+ total in heap  [0x000077b45fbabb08,0x000077b45fbabdd0] = 712
+ main code      [0x000077b45fbabc00,0x000077b45fbabdc8] = 456
+ stub code      [0x000077b45fbabdc8,0x000077b45fbabdd0] = 8
+ mutable data [0x000077b4080b1980,0x000077b4080b19b0] = 48
+ relocation     [0x000077b4080b1980,0x000077b4080b19a0] = 32
+ metadata       [0x000077b4080b19a0,0x000077b4080b19b0] = 16
+ immutable data [0x000077b4080b1630,0x000077b4080b1974] = 836
+ dependencies   [0x000077b4080b1630,0x000077b4080b1638] = 8
+ nul chk table  [0x000077b4080b1638,0x000077b4080b1648] = 16
+ scopes pcs     [0x000077b4080b1648,0x000077b4080b18c8] = 640
+ scopes data    [0x000077b4080b18c8,0x000077b4080b1970] = 168
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046190778} &apos;lastIndexOf&apos; &apos;([BII)I&apos; in &apos;java/lang/StringLatin1&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbabc00:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbabc07:   push   %rbp
+  0x000077b45fbabc08:   sub    $0x20,%rsp
+  0x000077b45fbabc0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbabc14:   jne    0x000077b45fbabdbe           ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::lastIndexOf@-1 (line 392)
+  0x000077b45fbabc1a:   cmp    $0x100,%edx
+  0x000077b45fbabc20:   jae    0x000077b45fbabd70           ;*if_icmpgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@8 (line 56)
+                                                            ; - java.lang.StringLatin1::lastIndexOf@1 (line 392)
+  0x000077b45fbabc26:   mov    0xc(%rsi),%r11d              ; implicit exception: dispatches to 0x000077b45fbabd94
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@11 (line 395)
+  0x000077b45fbabc2a:   lea    -0x1(%r11),%r8d
+  0x000077b45fbabc2e:   cmp    %ecx,%r8d
+  0x000077b45fbabc31:   cmovg  %ecx,%r8d                    ;*invokestatic min {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@14 (line 395)
+  0x000077b45fbabc35:   test   %r8d,%r8d
+  0x000077b45fbabc38:   jl     0x000077b45fbabd08           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@19 (line 396)
+  0x000077b45fbabc3e:   test   %r11d,%r11d
+  0x000077b45fbabc41:   jbe    0x000077b45fbabd32
+  0x000077b45fbabc47:   cmp    %r11d,%r8d
+  0x000077b45fbabc4a:   jae    0x000077b45fbabd32
+  0x000077b45fbabc50:   test   %r8d,%r8d
+  0x000077b45fbabc53:   jle    0x000077b45fbabd50
+  0x000077b45fbabc59:   lea    -0x1(%r8),%r10d
+  0x000077b45fbabc5d:   movsbl %dl,%ebx                     ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@22 (line 397)
+  0x000077b45fbabc60:   movsbl 0x10(%rsi,%r8,1),%r9d        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabc66:   cmp    %ebx,%r9d
+  0x000077b45fbabc69:   je     0x000077b45fbabd28           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabc6f:   dec    %r8d                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@32 (line 396)
+  0x000077b45fbabc72:   cmp    %r10d,%r8d
+  0x000077b45fbabc75:   jg     0x000077b45fbabc60           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@19 (line 396)
+  0x000077b45fbabc77:   cmp    $0x2,%r8d
+  0x000077b45fbabc7b:   jle    0x000077b45fbabcec
+  0x000077b45fbabc7d:   mov    $0xfa0,%r9d
+  0x000077b45fbabc83:   xor    %edi,%edi
+  0x000077b45fbabc85:   lea    -0x2(%r8),%r11d
+  0x000077b45fbabc89:   cmp    $0x2,%r8d
+  0x000077b45fbabc8d:   cmovl  %edi,%r11d
+  0x000077b45fbabc91:   cmp    $0xfa0,%r11d
+  0x000077b45fbabc98:   cmova  %r9d,%r11d
+  0x000077b45fbabc9c:   mov    %r8d,%ecx
+  0x000077b45fbabc9f:   sub    %r11d,%ecx                   ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@22 (line 397)
+  0x000077b45fbabca2:   movsbl 0x10(%rsi,%r8,1),%r10d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabca8:   cmp    %ebx,%r10d
+  0x000077b45fbabcab:   je     0x000077b45fbabd0f           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabcad:   movsbl 0xf(%rsi,%r8,1),%r10d        ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabcb3:   cmp    %ebx,%r10d
+  0x000077b45fbabcb6:   je     0x000077b45fbabd14           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabcb8:   lea    -0x2(%r8),%eax
+  0x000077b45fbabcbc:   movsbl 0x10(%rsi,%rax,1),%r10d      ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabcc2:   cmp    %ebx,%r10d
+  0x000077b45fbabcc5:   je     0x000077b45fbabd18           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabcc7:   lea    -0x3(%r8),%eax
+  0x000077b45fbabccb:   movsbl 0x10(%rsi,%rax,1),%r11d      ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabcd1:   cmp    %ebx,%r11d
+  0x000077b45fbabcd4:   je     0x000077b45fbabd18           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabcd6:   add    $0xfffffffc,%r8d             ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@32 (line 396)
+  0x000077b45fbabcda:   cmp    %ecx,%r8d
+  0x000077b45fbabcdd:   jg     0x000077b45fbabca2           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@35 (line 396)
+  0x000077b45fbabcdf:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rsi=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::lastIndexOf@35 (line 396)
+  0x000077b45fbabce3:   test   %eax,(%r10)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@35 (line 396)
+                                                            ;   {poll}
+  0x000077b45fbabce6:   cmp    $0x2,%r8d
+  0x000077b45fbabcea:   jg     0x000077b45fbabc85
+  0x000077b45fbabcec:   cmp    $0xffffffff,%r8d
+  0x000077b45fbabcf0:   jle    0x000077b45fbabd08
+  0x000077b45fbabcf2:   xchg   %ax,%ax                      ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@22 (line 397)
+  0x000077b45fbabcf4:   movsbl 0x10(%rsi,%r8,1),%r11d       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@24 (line 397)
+  0x000077b45fbabcfa:   cmp    %ebx,%r11d
+  0x000077b45fbabcfd:   je     0x000077b45fbabd2d           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+  0x000077b45fbabcff:   dec    %r8d                         ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@32 (line 396)
+  0x000077b45fbabd02:   cmp    $0xffffffff,%r8d
+  0x000077b45fbabd06:   jg     0x000077b45fbabcf4           ;*iconst_m1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@38 (line 401)
+  0x000077b45fbabd08:   mov    $0xffffffff,%eax
+  0x000077b45fbabd0d:   jmp    0x000077b45fbabd18
+  0x000077b45fbabd0f:   mov    %r8d,%eax
+  0x000077b45fbabd12:   jmp    0x000077b45fbabd18
+  0x000077b45fbabd14:   lea    -0x1(%r8),%eax               ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::lastIndexOf@-1 (line 392)
+  0x000077b45fbabd18:   add    $0x20,%rsp
+  0x000077b45fbabd1c:   pop    %rbp
+  0x000077b45fbabd1d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbabd21:   ja     0x000077b45fbabda8
+  0x000077b45fbabd27:   ret    
+  0x000077b45fbabd28:   mov    %r8d,%eax
+  0x000077b45fbabd2b:   jmp    0x000077b45fbabd18
+  0x000077b45fbabd2d:   mov    %r8d,%eax
+  0x000077b45fbabd30:   jmp    0x000077b45fbabd18           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@19 (line 396)
+  0x000077b45fbabd32:   mov    %rsi,%rbp
+  0x000077b45fbabd35:   mov    %r8d,0x4(%rsp)
+  0x000077b45fbabd3a:   mov    %edx,0x8(%rsp)
+  0x000077b45fbabd3e:   mov    $0xffffff6e,%esi
+  0x000077b45fbabd43:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*iflt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::lastIndexOf@19 (line 396)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbabd48:   nopl   0x1000240(%rax,%rax,1)       ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@19 (line 396)
+                                                            ;   {post_call_nop}
+  0x000077b45fbabd50:   mov    %rsi,%rbp
+  0x000077b45fbabd53:   mov    %r8d,0x4(%rsp)
+  0x000077b45fbabd58:   mov    %edx,0x8(%rsp)
+  0x000077b45fbabd5c:   mov    $0xffffff66,%esi
+  0x000077b45fbabd61:   xchg   %ax,%ax
+  0x000077b45fbabd63:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*iflt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::lastIndexOf@19 (line 396)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbabd68:   nopl   0x2000260(%rax,%rax,1)       ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@19 (line 396)
+                                                            ;   {post_call_nop}
+  0x000077b45fbabd70:   mov    %rsi,%rbp
+  0x000077b45fbabd73:   mov    %ecx,0x4(%rsp)
+  0x000077b45fbabd77:   mov    %edx,0x8(%rsp)
+  0x000077b45fbabd7b:   mov    %edx,0xc(%rsp)
+  0x000077b45fbabd7f:   mov    $0xffffff3d,%esi
+  0x000077b45fbabd84:   data16 xchg %ax,%ax
+  0x000077b45fbabd87:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*iflt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.StringLatin1::canEncode@1 (line 56)
+                                                            ; - java.lang.StringLatin1::lastIndexOf@1 (line 392)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbabd8c:   nopl   0x3000284(%rax,%rax,1)       ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::canEncode@1 (line 56)
+                                                            ; - java.lang.StringLatin1::lastIndexOf@1 (line 392)
+                                                            ;   {post_call_nop}
+  0x000077b45fbabd94:   mov    $0xfffffff6,%esi
+  0x000077b45fbabd99:   xchg   %ax,%ax
+  0x000077b45fbabd9b:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@11 (line 395)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbabda0:   nopl   0x4000298(%rax,%rax,1)       ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::lastIndexOf@27 (line 397)
+                                                            ;   {post_call_nop}
+  0x000077b45fbabda8:   movabs $0x77b45fbabd1d,%r10         ;   {internal_word}
+  0x000077b45fbabdb2:   mov    %r10,0x510(%r15)
+  0x000077b45fbabdb9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbabdbe:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbabdc3:   jmp    0x000077b45fbabc1a
+[Stub Code]
+  0x000077b45fbabdc8:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbabdcd:   jmp    0x000077b45fbabdc8
+  0x000077b45fbabdcf:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

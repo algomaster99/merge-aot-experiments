@@ -1,0 +1,159 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 14530  894       3       java.util.HashMap::get (19 bytes)
+ total in heap  [0x000077b45807e408,0x000077b45807e6f0] = 744
+ main code      [0x000077b45807e500,0x000077b45807e6c0] = 448
+ stub code      [0x000077b45807e6c0,0x000077b45807e6f0] = 48
+ mutable data [0x000077b3f00d4f30,0x000077b3f00d4f80] = 80
+ relocation     [0x000077b3f00d4f30,0x000077b3f00d4f78] = 72
+ metadata       [0x000077b3f00d4f78,0x000077b3f00d4f80] = 8
+ immutable data [0x000077b3f00566b0,0x000077b3f00567ac] = 252
+ dependencies   [0x000077b3f00566b0,0x000077b3f00566b8] = 8
+ nul chk table  [0x000077b3f00566b8,0x000077b3f00566c8] = 16
+ scopes pcs     [0x000077b3f00566c8,0x000077b3f0056768] = 160
+ scopes data    [0x000077b3f0056768,0x000077b3f00567a8] = 64
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45807e500:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45807e50b:   data16 data16 xchg %ax,%ax
+  0x000077b45807e50f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/HashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45807e512:   mov    0x8(%rsi),%r10d
+  0x000077b45807e516:   cmp    0x8(%rax),%r10d
+  0x000077b45807e51a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45807e520:   mov    %eax,-0x14000(%rsp)
+  0x000077b45807e527:   push   %rbp
+  0x000077b45807e528:   sub    $0x20,%rsp
+  0x000077b45807e52c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45807e534:   je     0x000077b45807e53b
+  0x000077b45807e536:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45807e53b:   movabs $0x77b414281a88,%rdi         ;   {metadata(method data for {method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;)}
+  0x000077b45807e545:   mov    0x90(%rdi),%ebx
+  0x000077b45807e54b:   add    $0x2,%ebx
+  0x000077b45807e54e:   mov    %ebx,0x90(%rdi)
+  0x000077b45807e554:   and    $0x7fe,%ebx
+  0x000077b45807e55a:   test   %ebx,%ebx
+  0x000077b45807e55c:   je     0x000077b45807e640           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@0 (line 565)
+  0x000077b45807e562:   mov    %rsi,%rdi
+  0x000077b45807e565:   movabs $0x77b414281a88,%rbx         ;   {metadata(method data for {method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;)}
+  0x000077b45807e56f:   mov    0x8(%rdi),%edi
+  0x000077b45807e572:   mov    $0x46000000,%r10d
+  0x000077b45807e578:   add    %r10,%rdi
+  0x000077b45807e57b:   mov    $0x1c,%r10d
+  0x000077b45807e581:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b45807e585:   je     0x000077b45807e5be
+  0x000077b45807e587:   add    $0x2,%r10
+  0x000077b45807e58b:   cmp    $0x20,%r10
+  0x000077b45807e58f:   jne    0x000077b45807e581
+  0x000077b45807e591:   mov    $0x1c,%r10d
+  0x000077b45807e597:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b45807e59c:   je     0x000077b45807e5aa
+  0x000077b45807e59e:   add    $0x2,%r10
+  0x000077b45807e5a2:   cmp    $0x20,%r10
+  0x000077b45807e5a6:   jne    0x000077b45807e597
+  0x000077b45807e5a8:   jmp    0x000077b45807e5b6
+  0x000077b45807e5aa:   push   %rax
+  0x000077b45807e5ab:   xor    %rax,%rax
+  0x000077b45807e5ae:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b45807e5b3:   pop    %rax
+  0x000077b45807e5b4:   jmp    0x000077b45807e57b
+  0x000077b45807e5b6:   mov    $0x1b,%r10d
+  0x000077b45807e5bc:   jmp    0x000077b45807e5c2
+  0x000077b45807e5be:   add    $0x1,%r10
+  0x000077b45807e5c2:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b45807e5c7:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@2 (line 565)
+                                                            ;   {optimized virtual_call}
+  0x000077b45807e5cc:   nopl   0x1c4(%rax,%rax,1)           ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@2 (line 565)
+                                                            ;   {post_call_nop}
+  0x000077b45807e5d4:   test   %rax,%rax
+  0x000077b45807e5d7:   movabs $0x77b414281a88,%rsi         ;   {metadata(method data for {method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;)}
+  0x000077b45807e5e1:   mov    $0x108,%edi
+  0x000077b45807e5e6:   jne    0x000077b45807e5ed
+  0x000077b45807e5e8:   mov    $0x118,%edi
+  0x000077b45807e5ed:   mov    (%rsi,%rdi,1),%rbx
+  0x000077b45807e5f1:   lea    0x1(%rbx),%rbx
+  0x000077b45807e5f5:   mov    %rbx,(%rsi,%rdi,1)
+  0x000077b45807e5f9:   jne    0x000077b45807e629           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@7 (line 565)
+  0x000077b45807e5ff:   movabs $0x77b414281a88,%rax         ;   {metadata(method data for {method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;)}
+  0x000077b45807e609:   incl   0x128(%rax)
+  0x000077b45807e60f:   movabs $0x0,%rax                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@11 (line 565)
+                                                            ;   {oop(nullptr)}
+  0x000077b45807e619:   add    $0x20,%rsp
+  0x000077b45807e61d:   pop    %rbp
+  0x000077b45807e61e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45807e622:   ja     0x000077b45807e661
+  0x000077b45807e628:   ret    
+  0x000077b45807e629:   mov    0x14(%rax),%eax              ; implicit exception: dispatches to 0x000077b45807e677
+  0x000077b45807e62c:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::get@15 (line 565)
+  0x000077b45807e630:   add    $0x20,%rsp
+  0x000077b45807e634:   pop    %rbp
+  0x000077b45807e635:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45807e639:   ja     0x000077b45807e67c
+  0x000077b45807e63f:   ret    
+  0x000077b45807e640:   movabs $0x461fcea0,%r10             ;   {metadata({method} {0x00000000461fcea0} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/HashMap&apos;)}
+  0x000077b45807e64a:   mov    %r10,0x8(%rsp)
+  0x000077b45807e64f:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45807e657:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.HashMap::get@-1 (line 565)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45807e65c:   jmp    0x000077b45807e562
+  0x000077b45807e661:   movabs $0x77b45807e61e,%r10         ;   {internal_word}
+  0x000077b45807e66b:   mov    %r10,0x510(%r15)
+  0x000077b45807e672:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45807e677:   call   0x000077b45f57c660           ; ImmutableOopMap {}
+                                                            ;*getfield value {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.HashMap::get@15 (line 565)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45807e67c:   movabs $0x77b45807e635,%r10         ;   {internal_word}
+  0x000077b45807e686:   mov    %r10,0x510(%r15)
+  0x000077b45807e68d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45807e692:   mov    0x5c0(%r15),%rax
+  0x000077b45807e699:   movq   $0x0,0x5c0(%r15)
+  0x000077b45807e6a4:   movq   $0x0,0x5c8(%r15)
+  0x000077b45807e6af:   add    $0x20,%rsp
+  0x000077b45807e6b3:   pop    %rbp
+  0x000077b45807e6b4:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45807e6b9:   hlt    
+  0x000077b45807e6ba:   hlt    
+  0x000077b45807e6bb:   hlt    
+  0x000077b45807e6bc:   hlt    
+  0x000077b45807e6bd:   hlt    
+  0x000077b45807e6be:   hlt    
+  0x000077b45807e6bf:   hlt    
+[Stub Code]
+  0x000077b45807e6c0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45807e6ca:   jmp    0x000077b45807e6ca           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b45807e6cf:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45807e6d4:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45807e6de:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45807e6e2:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45807e6e7:   hlt    
+  0x000077b45807e6e8:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45807e6ed:   jmp    0x000077b45807e6e8
+  0x000077b45807e6ef:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

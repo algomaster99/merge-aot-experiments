@@ -1,0 +1,60 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 423   29       4       java.util.concurrent.ConcurrentHashMap::tabAt (21 bytes)
+ total in heap  [0x000074ae47ba5408,0x000074ae47ba5568] = 352
+ main code      [0x000074ae47ba5500,0x000074ae47ba5560] = 96
+ stub code      [0x000074ae47ba5560,0x000074ae47ba5568] = 8
+ mutable data [0x000074adec071770,0x000074adec071788] = 24
+ relocation     [0x000074adec071770,0x000074adec071780] = 16
+ metadata       [0x000074adec071780,0x000074adec071788] = 8
+ immutable data [0x000074adec071b90,0x000074adec071bd4] = 68
+ dependencies   [0x000074adec071b90,0x000074adec071b98] = 8
+ scopes pcs     [0x000074adec071b98,0x000074adec071bc8] = 48
+ scopes data    [0x000074adec071bc8,0x000074adec071bd0] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000017484e38} &apos;tabAt&apos; &apos;([Ljava/util/concurrent/ConcurrentHashMap$Node;I)Ljava/util/concurrent/ConcurrentHashMap$Node;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # parm0:    rsi:rsi   = &apos;[Ljava/util/concurrent/ConcurrentHashMap$Node;&apos;
+  # parm1:    rdx       = int
+  #           [sp+0x20]  (sp of caller)
+  0x000074ae47ba5500:   sub    $0x18,%rsp
+  0x000074ae47ba5504:   mov    %rbp,0x10(%rsp)
+  0x000074ae47ba5509:   data16 xchg %ax,%ax
+  0x000074ae47ba550c:   cmpl   $0x1,0x20(%r15)
+  0x000074ae47ba5514:   jne    0x000074ae47ba554f
+  0x000074ae47ba551a:   movslq %edx,%r10
+  0x000074ae47ba551d:   mov    0x10(%rsi,%r10,4),%r10d
+  0x000074ae47ba5522:   mov    %r10,%rax
+  0x000074ae47ba5525:   shl    $0x3,%rax                    ;*invokevirtual getReferenceAcquire {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::tabAt@14 (line 774)
+  0x000074ae47ba5529:   add    $0x10,%rsp
+  0x000074ae47ba552d:   pop    %rbp
+  0x000074ae47ba552e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000074ae47ba5532:   ja     0x000074ae47ba5539
+  0x000074ae47ba5538:   ret    
+  0x000074ae47ba5539:   movabs $0x74ae47ba552e,%r10         ;   {internal_word}
+  0x000074ae47ba5543:   mov    %r10,0x510(%r15)
+  0x000074ae47ba554a:   jmp    0x000074ae474afb60           ;   {runtime_call SafepointBlob}
+  0x000074ae47ba554f:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000074ae47ba5554:   jmp    0x000074ae47ba551a
+  0x000074ae47ba5559:   hlt    
+  0x000074ae47ba555a:   hlt    
+  0x000074ae47ba555b:   hlt    
+  0x000074ae47ba555c:   hlt    
+  0x000074ae47ba555d:   hlt    
+  0x000074ae47ba555e:   hlt    
+  0x000074ae47ba555f:   hlt    
+[Stub Code]
+  0x000074ae47ba5560:   call   0x000074ae474afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000074ae47ba5565:   jmp    0x000074ae47ba5560
+  0x000074ae47ba5567:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,88 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3376  183       3       java.nio.DirectByteBuffer::ix (10 bytes)
+ total in heap  [0x000077b45801e508,0x000077b45801e6f8] = 496
+ main code      [0x000077b45801e600,0x000077b45801e6d8] = 216
+ stub code      [0x000077b45801e6d8,0x000077b45801e6f8] = 32
+ mutable data [0x000077b3f0021760,0x000077b3f0021790] = 48
+ relocation     [0x000077b3f0021760,0x000077b3f0021788] = 40
+ metadata       [0x000077b3f0021788,0x000077b3f0021790] = 8
+ immutable data [0x000077b3f00216d0,0x000077b3f002174c] = 124
+ dependencies   [0x000077b3f00216d0,0x000077b3f00216d8] = 8
+ scopes pcs     [0x000077b3f00216d8,0x000077b3f0021728] = 80
+ scopes data    [0x000077b3f0021728,0x000077b3f0021748] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45801e600:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45801e60b:   data16 data16 xchg %ax,%ax
+  0x000077b45801e60f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000462e6858} &apos;ix&apos; &apos;(I)J&apos; in &apos;java/nio/DirectByteBuffer&apos;
+  # this:     rsi:rsi   = &apos;java/nio/DirectByteBuffer&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x50]  (sp of caller)
+  0x000077b45801e612:   mov    0x8(%rsi),%r10d
+  0x000077b45801e616:   cmp    0x8(%rax),%r10d
+  0x000077b45801e61a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45801e620:   mov    %eax,-0x14000(%rsp)
+  0x000077b45801e627:   push   %rbp
+  0x000077b45801e628:   sub    $0x40,%rsp
+  0x000077b45801e62c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45801e634:   je     0x000077b45801e63b
+  0x000077b45801e636:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45801e63b:   movabs $0x77b41406e338,%rax         ;   {metadata(method data for {method} {0x00000000462e6858} &apos;ix&apos; &apos;(I)J&apos; in &apos;java/nio/DirectByteBuffer&apos;)}
+  0x000077b45801e645:   mov    0x90(%rax),%edi
+  0x000077b45801e64b:   add    $0x2,%edi
+  0x000077b45801e64e:   mov    %edi,0x90(%rax)
+  0x000077b45801e654:   and    $0x7fe,%edi
+  0x000077b45801e65a:   test   %edi,%edi
+  0x000077b45801e65c:   je     0x000077b45801e67c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.DirectByteBuffer::ix@0 (line 328)
+  0x000077b45801e662:   mov    0x10(%rsi),%rax              ;*getfield address {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.DirectByteBuffer::ix@1 (line 328)
+  0x000077b45801e666:   movslq %edx,%rdx
+  0x000077b45801e669:   add    %rdx,%rax
+  0x000077b45801e66c:   add    $0x40,%rsp
+  0x000077b45801e670:   pop    %rbp
+  0x000077b45801e671:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45801e675:   ja     0x000077b45801e69a
+  0x000077b45801e67b:   ret    
+  0x000077b45801e67c:   movabs $0x462e6858,%r10             ;   {metadata({method} {0x00000000462e6858} &apos;ix&apos; &apos;(I)J&apos; in &apos;java/nio/DirectByteBuffer&apos;)}
+  0x000077b45801e686:   mov    %r10,0x8(%rsp)
+  0x000077b45801e68b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45801e693:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.DirectByteBuffer::ix@-1 (line 328)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45801e698:   jmp    0x000077b45801e662
+  0x000077b45801e69a:   movabs $0x77b45801e671,%r10         ;   {internal_word}
+  0x000077b45801e6a4:   mov    %r10,0x510(%r15)
+  0x000077b45801e6ab:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45801e6b0:   mov    0x5c0(%r15),%rax
+  0x000077b45801e6b7:   movq   $0x0,0x5c0(%r15)
+  0x000077b45801e6c2:   movq   $0x0,0x5c8(%r15)
+  0x000077b45801e6cd:   add    $0x40,%rsp
+  0x000077b45801e6d1:   pop    %rbp
+  0x000077b45801e6d2:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45801e6d7:   hlt    
+[Exception Handler]
+  0x000077b45801e6d8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45801e6dd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45801e6e7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45801e6eb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45801e6f0:   hlt    
+  0x000077b45801e6f1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45801e6f6:   jmp    0x000077b45801e6f1
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 18969 1059       1       sun.java2d.loops.CompositeType::getUniqueID (5 bytes)
+ total in heap  [0x000077b45fbc9208,0x000077b45fbc93b0] = 424
+ main code      [0x000077b45fbc9300,0x000077b45fbc9390] = 144
+ stub code      [0x000077b45fbc9390,0x000077b45fbc93b0] = 32
+ mutable data [0x000077b3fc101da0,0x000077b3fc101dc8] = 40
+ relocation     [0x000077b3fc101da0,0x000077b3fc101dc0] = 32
+ metadata       [0x000077b3fc101dc0,0x000077b3fc101dc8] = 8
+ immutable data [0x000077b3fc1048f0,0x000077b3fc10494c] = 92
+ dependencies   [0x000077b3fc1048f0,0x000077b3fc1048f8] = 8
+ scopes pcs     [0x000077b3fc1048f8,0x000077b3fc104938] = 64
+ scopes data    [0x000077b3fc104938,0x000077b3fc104948] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbc9300:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbc930b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbc930f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000077b41436ab18} &apos;getUniqueID&apos; &apos;()I&apos; in &apos;sun/java2d/loops/CompositeType&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbc9312:   mov    0x8(%rsi),%r10d
+  0x000077b45fbc9316:   cmp    0x8(%rax),%r10d
+  0x000077b45fbc931a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbc9320:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbc9327:   push   %rbp
+  0x000077b45fbc9328:   sub    $0x20,%rsp
+  0x000077b45fbc932c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbc9334:   je     0x000077b45fbc933b
+  0x000077b45fbc9336:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.CompositeType::getUniqueID@0 (line 258)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbc933b:   mov    0xc(%rsi),%eax               ;*getfield uniqueID {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.java2d.loops.CompositeType::getUniqueID@1 (line 258)
+  0x000077b45fbc933e:   add    $0x20,%rsp
+  0x000077b45fbc9342:   pop    %rbp
+  0x000077b45fbc9343:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbc9347:   ja     0x000077b45fbc934e
+  0x000077b45fbc934d:   ret    
+  0x000077b45fbc934e:   movabs $0x77b45fbc9343,%r10         ;   {internal_word}
+  0x000077b45fbc9358:   mov    %r10,0x510(%r15)
+  0x000077b45fbc935f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbc9364:   mov    0x5c0(%r15),%rax
+  0x000077b45fbc936b:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbc9376:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbc9381:   add    $0x20,%rsp
+  0x000077b45fbc9385:   pop    %rbp
+  0x000077b45fbc9386:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbc938b:   hlt    
+  0x000077b45fbc938c:   hlt    
+  0x000077b45fbc938d:   hlt    
+  0x000077b45fbc938e:   hlt    
+  0x000077b45fbc938f:   hlt    
+[Exception Handler]
+  0x000077b45fbc9390:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbc9395:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbc939f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbc93a3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbc93a8:   hlt    
+  0x000077b45fbc93a9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbc93ae:   jmp    0x000077b45fbc93a9
+--------------------------------------------------------------------------------
+[/Disassembly]

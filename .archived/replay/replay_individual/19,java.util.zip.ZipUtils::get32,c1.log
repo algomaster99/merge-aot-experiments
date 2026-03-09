@@ -1,0 +1,149 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 63    3       2       java.util.zip.ZipUtils::get32 (40 bytes)
+ total in heap  [0x00007d22affff008,0x00007d22affff2b0] = 680
+ main code      [0x00007d22affff100,0x00007d22affff278] = 376
+ stub code      [0x00007d22affff278,0x00007d22affff2a8] = 48
+ oops           [0x00007d22affff2a8,0x00007d22affff2b0] = 8
+ mutable data [0x00007d2254014f00,0x00007d2254014f58] = 88
+ relocation     [0x00007d2254014f00,0x00007d2254014f40] = 64
+ metadata       [0x00007d2254014f40,0x00007d2254014f58] = 24
+ immutable data [0x00007d2254014d90,0x00007d2254014ef4] = 356
+ dependencies   [0x00007d2254014d90,0x00007d2254014d98] = 8
+ nul chk table  [0x00007d2254014d98,0x00007d2254014da8] = 16
+ scopes pcs     [0x00007d2254014da8,0x00007d2254014e98] = 240
+ scopes data    [0x00007d2254014e98,0x00007d2254014ef0] = 88
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000005d3f95b8} &apos;get32&apos; &apos;([BI)J&apos; in &apos;java/util/zip/ZipUtils&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  #           [sp+0x80]  (sp of caller)
+  0x00007d22affff100:   mov    %eax,-0x14000(%rsp)
+  0x00007d22affff107:   push   %rbp
+  0x00007d22affff108:   sub    $0x70,%rsp
+  0x00007d22affff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007d22affff114:   je     0x00007d22affff11b
+  0x00007d22affff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d22affff11b:   movabs $0x7d226000d7e0,%rcx
+  0x00007d22affff125:   mov    0x8(%rcx),%r8d
+  0x00007d22affff129:   add    $0x2,%r8d
+  0x00007d22affff12d:   mov    %r8d,0x8(%rcx)
+  0x00007d22affff131:   and    $0xffe,%r8d
+  0x00007d22affff138:   test   %r8d,%r8d
+  0x00007d22affff13b:   je     0x00007d22affff1dc           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@0 (line 185)
+  0x00007d22affff141:   mov    0xc(%rsi),%ecx               ; implicit exception: dispatches to 0x00007d22affff1fd
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@2 (line 185)
+  0x00007d22affff144:   movabs $0x41f803c98,%r8             ;   {oop(a &apos;jdk/internal/util/Preconditions$4&apos;{0x000000041f803c98})}
+  0x00007d22affff14e:   mov    $0x0,%r8d
+  0x00007d22affff154:   cmp    %r8d,%edx
+  0x00007d22affff157:   jl     0x00007d22affff202
+  0x00007d22affff15d:   cmp    %ecx,%edx
+  0x00007d22affff15f:   jge    0x00007d22affff20f
+  0x00007d22affff165:   mov    %rdx,%r8                     ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@6 (line 185)
+  0x00007d22affff168:   mov    %rdx,%r8
+  0x00007d22affff16b:   add    $0x3,%r8d
+  0x00007d22affff16f:   mov    $0x0,%edi
+  0x00007d22affff174:   cmp    %edi,%r8d
+  0x00007d22affff177:   jl     0x00007d22affff21c
+  0x00007d22affff17d:   cmp    %ecx,%r8d
+  0x00007d22affff180:   jge    0x00007d22affff229           ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@18 (line 186)
+  0x00007d22affff186:   movslq %edx,%rdx
+  0x00007d22affff189:   mov    %rdx,%rcx
+  0x00007d22affff18c:   mov    $0x10,%r10d
+  0x00007d22affff192:   add    %r10,%rcx
+  0x00007d22affff195:   mov    %rsi,%rdx
+  0x00007d22affff198:   mov    $0x0,%r8d
+  0x00007d22affff19e:   movabs $0x41f801628,%rsi            ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@33 (line 188)
+                                                            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000041f801628})}
+  0x00007d22affff1a8:   nopl   0x0(%rax)
+  0x00007d22affff1af:   call   0x00007d22b74ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@33 (line 188)
+                                                            ;   {optimized virtual_call}
+  0x00007d22affff1b4:   nopl   0x1ac(%rax,%rax,1)           ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@33 (line 188)
+                                                            ;   {post_call_nop}
+  0x00007d22affff1bc:   movslq %eax,%rax
+  0x00007d22affff1bf:   movabs $0xffffffff,%r10
+  0x00007d22affff1c9:   and    %r10,%rax
+  0x00007d22affff1cc:   add    $0x70,%rsp
+  0x00007d22affff1d0:   pop    %rbp
+  0x00007d22affff1d1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d22affff1d5:   ja     0x00007d22affff236
+  0x00007d22affff1db:   ret    
+  0x00007d22affff1dc:   movabs $0x5d3f95b8,%r10             ;   {metadata({method} {0x000000005d3f95b8} &apos;get32&apos; &apos;([BI)J&apos; in &apos;java/util/zip/ZipUtils&apos;)}
+  0x00007d22affff1e6:   mov    %r10,0x8(%rsp)
+  0x00007d22affff1eb:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007d22affff1f3:   call   0x00007d22b7583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.zip.ZipUtils::get32@-1 (line 185)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007d22affff1f8:   jmp    0x00007d22affff141
+  0x00007d22affff1fd:   call   0x00007d22b757cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@2 (line 185)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007d22affff202:   movq   $0xffffffffffffffe4,(%rsp)
+  0x00007d22affff20a:   call   0x00007d22b7581e60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@6 (line 185)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x00007d22affff20f:   movq   $0xffffffffffffffe4,(%rsp)
+  0x00007d22affff217:   call   0x00007d22b7581e60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@6 (line 185)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x00007d22affff21c:   movq   $0xffffffffffffffe4,(%rsp)
+  0x00007d22affff224:   call   0x00007d22b7581e60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@18 (line 186)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x00007d22affff229:   movq   $0xffffffffffffffe4,(%rsp)
+  0x00007d22affff231:   call   0x00007d22b7581e60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipUtils::get32@18 (line 186)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x00007d22affff236:   movabs $0x7d22affff1d1,%r10         ;   {internal_word}
+  0x00007d22affff240:   mov    %r10,0x510(%r15)
+  0x00007d22affff247:   jmp    0x00007d22b74afb60           ;   {runtime_call SafepointBlob}
+  0x00007d22affff24c:   mov    0x5c0(%r15),%rax
+  0x00007d22affff253:   movq   $0x0,0x5c0(%r15)
+  0x00007d22affff25e:   movq   $0x0,0x5c8(%r15)
+  0x00007d22affff269:   add    $0x70,%rsp
+  0x00007d22affff26d:   pop    %rbp
+  0x00007d22affff26e:   jmp    0x00007d22b757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007d22affff273:   hlt    
+  0x00007d22affff274:   hlt    
+  0x00007d22affff275:   hlt    
+  0x00007d22affff276:   hlt    
+  0x00007d22affff277:   hlt    
+[Stub Code]
+  0x00007d22affff278:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007d22affff282:   jmp    0x00007d22affff282           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007d22affff287:   call   0x00007d22b757f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007d22affff28c:   movabs $0x7d22cd73aec4,%rdi         ;   {external_word}
+  0x00007d22affff296:   and    $0xfffffffffffffff0,%rsp
+  0x00007d22affff29a:   call   0x00007d22cd191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007d22affff29f:   hlt    
+  0x00007d22affff2a0:   call   0x00007d22b74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d22affff2a5:   jmp    0x00007d22affff2a0
+  0x00007d22affff2a7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

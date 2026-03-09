@@ -1,0 +1,54 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 622   53       4       java.lang.ref.Reference::reachabilityFence (1 bytes)
+ total in heap  [0x000078eb2bba9c08,0x000078eb2bba9d58] = 336
+ main code      [0x000078eb2bba9d00,0x000078eb2bba9d50] = 80
+ stub code      [0x000078eb2bba9d50,0x000078eb2bba9d58] = 8
+ mutable data [0x000078eac8091b70,0x000078eac8091b88] = 24
+ relocation     [0x000078eac8091b70,0x000078eac8091b80] = 16
+ metadata       [0x000078eac8091b80,0x000078eac8091b88] = 8
+ immutable data [0x000078eac8099f90,0x000078eac8099fd4] = 68
+ dependencies   [0x000078eac8099f90,0x000078eac8099f98] = 8
+ scopes pcs     [0x000078eac8099f98,0x000078eac8099fc8] = 48
+ scopes data    [0x000078eac8099fc8,0x000078eac8099fd0] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000071a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000078eb2bba9d00:   sub    $0x18,%rsp
+  0x000078eb2bba9d04:   mov    %rbp,0x10(%rsp)
+  0x000078eb2bba9d09:   data16 xchg %ax,%ax
+  0x000078eb2bba9d0c:   cmpl   $0x1,0x20(%r15)
+  0x000078eb2bba9d14:   jne    0x000078eb2bba9d40           ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+  0x000078eb2bba9d1a:   add    $0x10,%rsp
+  0x000078eb2bba9d1e:   pop    %rbp
+  0x000078eb2bba9d1f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078eb2bba9d23:   ja     0x000078eb2bba9d2a
+  0x000078eb2bba9d29:   ret    
+  0x000078eb2bba9d2a:   movabs $0x78eb2bba9d1f,%r10         ;   {internal_word}
+  0x000078eb2bba9d34:   mov    %r10,0x510(%r15)
+  0x000078eb2bba9d3b:   jmp    0x000078eb2b4afb60           ;   {runtime_call SafepointBlob}
+  0x000078eb2bba9d40:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000078eb2bba9d45:   jmp    0x000078eb2bba9d1a
+  0x000078eb2bba9d4a:   hlt    
+  0x000078eb2bba9d4b:   hlt    
+  0x000078eb2bba9d4c:   hlt    
+  0x000078eb2bba9d4d:   hlt    
+  0x000078eb2bba9d4e:   hlt    
+  0x000078eb2bba9d4f:   hlt    
+[Stub Code]
+  0x000078eb2bba9d50:   call   0x000078eb2b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000078eb2bba9d55:   jmp    0x000078eb2bba9d50
+  0x000078eb2bba9d57:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

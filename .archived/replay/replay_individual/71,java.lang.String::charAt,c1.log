@@ -1,0 +1,291 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 97    3       3       java.lang.String::charAt (25 bytes)
+ total in heap  [0x0000746207fff008,0x0000746207fff4d0] = 1224
+ main code      [0x0000746207fff100,0x0000746207fff490] = 912
+ stub code      [0x0000746207fff490,0x0000746207fff4c8] = 56
+ oops           [0x0000746207fff4c8,0x0000746207fff4d0] = 8
+ mutable data [0x00007461b0000ba0,0x00007461b0000c30] = 144
+ relocation     [0x00007461b0000ba0,0x00007461b0000c08] = 104
+ metadata       [0x00007461b0000c08,0x00007461b0000c30] = 40
+ immutable data [0x00007461b0014ed0,0x00007461b0015154] = 644
+ dependencies   [0x00007461b0014ed0,0x00007461b0014ee0] = 16
+ nul chk table  [0x00007461b0014ee0,0x00007461b0014ef0] = 16
+ scopes pcs     [0x00007461b0014ef0,0x00007461b0015080] = 400
+ scopes data    [0x00007461b0015080,0x00007461b0015150] = 208
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000746207fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000746207fff10b:   data16 data16 xchg %ax,%ax
+  0x0000746207fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;
+  # this:     rsi:rsi   = &apos;java/lang/String&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x70]  (sp of caller)
+  0x0000746207fff112:   mov    0x8(%rsi),%r10d
+  0x0000746207fff116:   cmp    0x8(%rax),%r10d
+  0x0000746207fff11a:   jne    0x000074620f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000746207fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000746207fff127:   push   %rbp
+  0x0000746207fff128:   sub    $0x60,%rsp
+  0x0000746207fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000746207fff134:   je     0x0000746207fff13b
+  0x0000746207fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000746207fff13b:   movabs $0x7461bc00d658,%rax         ;   {metadata(method data for {method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff145:   mov    0x90(%rax),%edi
+  0x0000746207fff14b:   add    $0x2,%edi
+  0x0000746207fff14e:   mov    %edi,0x90(%rax)
+  0x0000746207fff154:   and    $0x7fe,%edi
+  0x0000746207fff15a:   test   %edi,%edi
+  0x0000746207fff15c:   je     0x0000746207fff389           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@0 (line 1784)
+  0x0000746207fff162:   mov    %rsi,%rax
+  0x0000746207fff165:   movabs $0x7461bc00d658,%rdi         ;   {metadata(method data for {method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff16f:   mov    0x8(%rax),%eax
+  0x0000746207fff172:   mov    $0x91000000,%r10d
+  0x0000746207fff178:   add    %r10,%rax
+  0x0000746207fff17b:   mov    $0x1c,%r10d
+  0x0000746207fff181:   cmp    (%rdi,%r10,8),%rax
+  0x0000746207fff185:   je     0x0000746207fff1c4
+  0x0000746207fff187:   add    $0x2,%r10
+  0x0000746207fff18b:   cmp    $0x20,%r10
+  0x0000746207fff18f:   jne    0x0000746207fff181
+  0x0000746207fff191:   mov    $0x1c,%r10d
+  0x0000746207fff197:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000746207fff19c:   je     0x0000746207fff1aa
+  0x0000746207fff19e:   add    $0x2,%r10
+  0x0000746207fff1a2:   cmp    $0x20,%r10
+  0x0000746207fff1a6:   jne    0x0000746207fff197
+  0x0000746207fff1a8:   jmp    0x0000746207fff1bc
+  0x0000746207fff1aa:   push   %rbx
+  0x0000746207fff1ab:   mov    %rax,%rbx
+  0x0000746207fff1ae:   xor    %rax,%rax
+  0x0000746207fff1b1:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x0000746207fff1b6:   mov    %rbx,%rax
+  0x0000746207fff1b9:   pop    %rbx
+  0x0000746207fff1ba:   jmp    0x0000746207fff17b
+  0x0000746207fff1bc:   mov    $0x1b,%r10d
+  0x0000746207fff1c2:   jmp    0x0000746207fff1c8
+  0x0000746207fff1c4:   add    $0x1,%r10
+  0x0000746207fff1c8:   addq   $0x1,(%rdi,%r10,8)
+  0x0000746207fff1cd:   movabs $0x7461bc00d380,%rax         ;   {metadata(method data for {method} {0x00000000914a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff1d7:   mov    0x90(%rax),%edi
+  0x0000746207fff1dd:   add    $0x2,%edi
+  0x0000746207fff1e0:   mov    %edi,0x90(%rax)
+  0x0000746207fff1e6:   and    $0x1ffffe,%edi
+  0x0000746207fff1ec:   test   %edi,%edi
+  0x0000746207fff1ee:   je     0x0000746207fff3aa
+  0x0000746207fff1f4:   movabs $0x7461bc00d380,%rax         ;   {metadata(method data for {method} {0x00000000914a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff1fe:   incl   0xe8(%rax)                   ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@3 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+  0x0000746207fff204:   movsbl 0x10(%rsi),%eax              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@7 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+  0x0000746207fff208:   test   %eax,%eax
+  0x0000746207fff20a:   movabs $0x7461bc00d380,%rax         ;   {metadata(method data for {method} {0x00000000914a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff214:   mov    $0xf8,%edi
+  0x0000746207fff219:   jne    0x0000746207fff220
+  0x0000746207fff21b:   mov    $0x108,%edi
+  0x0000746207fff220:   mov    (%rax,%rdi,1),%rbx
+  0x0000746207fff224:   lea    0x1(%rbx),%rbx
+  0x0000746207fff228:   mov    %rbx,(%rax,%rdi,1)
+  0x0000746207fff22c:   jne    0x0000746207fff24c           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+  0x0000746207fff232:   movabs $0x7461bc00d380,%rax         ;   {metadata(method data for {method} {0x00000000914a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff23c:   incl   0x118(%rax)
+  0x0000746207fff242:   mov    $0x1,%eax
+  0x0000746207fff247:   jmp    0x0000746207fff251           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@14 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+  0x0000746207fff24c:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@18 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+  0x0000746207fff251:   and    $0x1,%eax
+  0x0000746207fff254:   test   %eax,%eax
+  0x0000746207fff256:   movabs $0x7461bc00d658,%rax         ;   {metadata(method data for {method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff260:   mov    $0x108,%edi
+  0x0000746207fff265:   je     0x0000746207fff26c
+  0x0000746207fff267:   mov    $0x118,%edi
+  0x0000746207fff26c:   mov    (%rax,%rdi,1),%rbx
+  0x0000746207fff270:   lea    0x1(%rbx),%rbx
+  0x0000746207fff274:   mov    %rbx,(%rax,%rdi,1)
+  0x0000746207fff278:   je     0x0000746207fff35d           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@4 (line 1784)
+  0x0000746207fff27e:   mov    0x14(%rsi),%eax
+  0x0000746207fff281:   shl    $0x3,%rax                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@8 (line 1785)
+  0x0000746207fff285:   movabs $0x7461bc00d658,%rsi         ;   {metadata(method data for {method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff28f:   addq   $0x1,0x128(%rsi)
+  0x0000746207fff297:   movabs $0x7461bc00d7e8,%rsi         ;   {metadata(method data for {method} {0x0000000091190618} &apos;charAt&apos; &apos;([BI)C&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x0000746207fff2a1:   mov    0x90(%rsi),%edi
+  0x0000746207fff2a7:   add    $0x2,%edi
+  0x0000746207fff2aa:   mov    %edi,0x90(%rsi)
+  0x0000746207fff2b0:   and    $0x1ffffe,%edi
+  0x0000746207fff2b6:   test   %edi,%edi
+  0x0000746207fff2b8:   je     0x0000746207fff3cb
+  0x0000746207fff2be:   mov    0xc(%rax),%esi               ; implicit exception: dispatches to 0x0000746207fff3ec
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::charAt@2 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+  0x0000746207fff2c1:   movabs $0x7461bc00d7e8,%rdi         ;   {metadata(method data for {method} {0x0000000091190618} &apos;charAt&apos; &apos;([BI)C&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x0000746207fff2cb:   addq   $0x1,0xd8(%rdi)
+  0x0000746207fff2d3:   movabs $0x7461bc00d918,%rdi         ;   {metadata(method data for {method} {0x00000000914a1c00} &apos;checkIndex&apos; &apos;(II)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff2dd:   mov    0x90(%rdi),%ebx
+  0x0000746207fff2e3:   add    $0x2,%ebx
+  0x0000746207fff2e6:   mov    %ebx,0x90(%rdi)
+  0x0000746207fff2ec:   and    $0x1ffffe,%ebx
+  0x0000746207fff2f2:   test   %ebx,%ebx
+  0x0000746207fff2f4:   je     0x0000746207fff3f1
+  0x0000746207fff2fa:   movabs $0x7461bc00d918,%rdi         ;   {metadata(method data for {method} {0x00000000914a1c00} &apos;checkIndex&apos; &apos;(II)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff304:   addq   $0x1,0xd8(%rdi)
+  0x0000746207fff30c:   movabs $0x41f803c78,%rdi            ;   {oop(a &apos;jdk/internal/util/Preconditions$4&apos;{0x000000041f803c78})}
+  0x0000746207fff316:   mov    $0x0,%edi
+  0x0000746207fff31b:   cmp    %edi,%edx
+  0x0000746207fff31d:   jl     0x0000746207fff412
+  0x0000746207fff323:   cmp    %esi,%edx
+  0x0000746207fff325:   jge    0x0000746207fff41f
+  0x0000746207fff32b:   mov    %rdx,%rdi                    ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkIndex@5 (line 5198)
+                                                            ; - java.lang.StringLatin1::charAt@3 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+  0x0000746207fff32e:   cmp    %edx,%esi
+  0x0000746207fff330:   jbe    0x0000746207fff42c
+  0x0000746207fff336:   movslq %edx,%rdx
+  0x0000746207fff339:   movsbl 0x10(%rax,%rdx,1),%eax       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::charAt@8 (line 48)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+  0x0000746207fff33e:   and    $0xff,%eax
+  0x0000746207fff343:   and    $0xffff,%eax
+  0x0000746207fff348:   and    $0xffff,%eax
+  0x0000746207fff34d:   add    $0x60,%rsp
+  0x0000746207fff351:   pop    %rbp
+  0x0000746207fff352:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000746207fff356:   ja     0x0000746207fff43a
+  0x0000746207fff35c:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@15 (line 1785)
+  0x0000746207fff35d:   mov    0x14(%rsi),%esi
+  0x0000746207fff360:   shl    $0x3,%rsi                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@17 (line 1787)
+  0x0000746207fff364:   data16 xchg %ax,%ax
+  0x0000746207fff367:   call   0x000074620f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic charAt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@21 (line 1787)
+                                                            ;   {static_call}
+  0x0000746207fff36c:   nopl   0x364(%rax,%rax,1)           ;*invokestatic charAt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::charAt@21 (line 1787)
+                                                            ;   {post_call_nop}
+  0x0000746207fff374:   and    $0xffff,%eax
+  0x0000746207fff379:   add    $0x60,%rsp
+  0x0000746207fff37d:   pop    %rbp
+  0x0000746207fff37e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000746207fff382:   ja     0x0000746207fff450
+  0x0000746207fff388:   ret    
+  0x0000746207fff389:   movabs $0x91179898,%r10             ;   {metadata({method} {0x0000000091179898} &apos;charAt&apos; &apos;(I)C&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff393:   mov    %r10,0x8(%rsp)
+  0x0000746207fff398:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000746207fff3a0:   call   0x000074620f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::charAt@-1 (line 1784)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000746207fff3a5:   jmp    0x0000746207fff162
+  0x0000746207fff3aa:   movabs $0x914a0708,%r10             ;   {metadata({method} {0x00000000914a0708} &apos;isLatin1&apos; &apos;()Z&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff3b4:   mov    %r10,0x8(%rsp)
+  0x0000746207fff3b9:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000746207fff3c1:   call   0x000074620f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::isLatin1@-1 (line 5187)
+                                                            ; - java.lang.String::charAt@1 (line 1784)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000746207fff3c6:   jmp    0x0000746207fff1f4
+  0x0000746207fff3cb:   movabs $0x91190618,%r10             ;   {metadata({method} {0x0000000091190618} &apos;charAt&apos; &apos;([BI)C&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x0000746207fff3d5:   mov    %r10,0x8(%rsp)
+  0x0000746207fff3da:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000746207fff3e2:   call   0x000074620f583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::charAt@-1 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000746207fff3e7:   jmp    0x0000746207fff2be
+  0x0000746207fff3ec:   call   0x000074620f57cae0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::charAt@2 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000746207fff3f1:   movabs $0x914a1c00,%r10             ;   {metadata({method} {0x00000000914a1c00} &apos;checkIndex&apos; &apos;(II)V&apos; in &apos;java/lang/String&apos;)}
+  0x0000746207fff3fb:   mov    %r10,0x8(%rsp)
+  0x0000746207fff400:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000746207fff408:   call   0x000074620f583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::checkIndex@-1 (line 5198)
+                                                            ; - java.lang.StringLatin1::charAt@3 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000746207fff40d:   jmp    0x0000746207fff2fa
+  0x0000746207fff412:   movq   $0xffffffffffffffe4,(%rsp)
+  0x0000746207fff41a:   call   0x000074620f5819e0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkIndex@5 (line 5198)
+                                                            ; - java.lang.StringLatin1::charAt@3 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x0000746207fff41f:   movq   $0xffffffffffffffe4,(%rsp)
+  0x0000746207fff427:   call   0x000074620f5819e0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*invokestatic checkIndex {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkIndex@5 (line 5198)
+                                                            ; - java.lang.StringLatin1::charAt@3 (line 47)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call deoptimize_blob (C1 runtime)}
+  0x0000746207fff42c:   mov    %rdx,(%rsp)
+  0x0000746207fff430:   mov    %rax,0x8(%rsp)
+  0x0000746207fff435:   call   0x000074620f57c1e0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::charAt@8 (line 48)
+                                                            ; - java.lang.String::charAt@12 (line 1785)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x0000746207fff43a:   movabs $0x746207fff352,%r10         ;   {internal_word}
+  0x0000746207fff444:   mov    %r10,0x510(%r15)
+  0x0000746207fff44b:   jmp    0x000074620f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000746207fff450:   movabs $0x746207fff37e,%r10         ;   {internal_word}
+  0x0000746207fff45a:   mov    %r10,0x510(%r15)
+  0x0000746207fff461:   jmp    0x000074620f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000746207fff466:   mov    0x5c0(%r15),%rax
+  0x0000746207fff46d:   movq   $0x0,0x5c0(%r15)
+  0x0000746207fff478:   movq   $0x0,0x5c8(%r15)
+  0x0000746207fff483:   add    $0x60,%rsp
+  0x0000746207fff487:   pop    %rbp
+  0x0000746207fff488:   jmp    0x000074620f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000746207fff48d:   hlt    
+  0x0000746207fff48e:   hlt    
+  0x0000746207fff48f:   hlt    
+[Stub Code]
+  0x0000746207fff490:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000746207fff495:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000746207fff49f:   jmp    0x0000746207fff49f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000746207fff4a4:   call   0x000074620f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000746207fff4a9:   movabs $0x746228f3aec4,%rdi         ;   {external_word}
+  0x0000746207fff4b3:   and    $0xfffffffffffffff0,%rsp
+  0x0000746207fff4b7:   call   0x0000746228991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000746207fff4bc:   hlt    
+  0x0000746207fff4bd:   call   0x000074620f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000746207fff4c2:   jmp    0x0000746207fff4bd
+  0x0000746207fff4c4:   hlt    
+  0x0000746207fff4c5:   hlt    
+  0x0000746207fff4c6:   hlt    
+  0x0000746207fff4c7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

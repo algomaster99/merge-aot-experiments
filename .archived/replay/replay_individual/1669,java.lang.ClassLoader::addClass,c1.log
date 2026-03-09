@@ -1,0 +1,474 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 586   53   !   3       java.lang.ClassLoader::addClass (27 bytes)
+ total in heap  [0x0000767bb3fff008,0x0000767bb3fff738] = 1840
+ main code      [0x0000767bb3fff100,0x0000767bb3fff708] = 1544
+ stub code      [0x0000767bb3fff708,0x0000767bb3fff738] = 48
+ mutable data [0x0000767b54000ba0,0x0000767b54000c38] = 152
+ relocation     [0x0000767b54000ba0,0x0000767b54000c10] = 112
+ metadata       [0x0000767b54000c10,0x0000767b54000c38] = 40
+ immutable data [0x0000767b54034eb0,0x0000767b54035354] = 1188
+ dependencies   [0x0000767b54034eb0,0x0000767b54034ec0] = 16
+ nul chk table  [0x0000767b54034ec0,0x0000767b54034ef8] = 56
+ handler table  [0x0000767b54034ef8,0x0000767b54034fb8] = 192
+ scopes pcs     [0x0000767b54034fb8,0x0000767b540351f8] = 576
+ scopes data    [0x0000767b540351f8,0x0000767b54035350] = 344
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000767bb3fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000767bb3fff10b:   data16 data16 xchg %ax,%ax
+  0x0000767bb3fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000083180fa8} &apos;addClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/ClassLoader&apos;
+  # this:     rsi:rsi   = &apos;java/lang/ClassLoader&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0xd0]  (sp of caller)
+  0x0000767bb3fff112:   mov    0x8(%rsi),%r10d
+  0x0000767bb3fff116:   cmp    0x8(%rax),%r10d
+  0x0000767bb3fff11a:   jne    0x0000767bbb4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000767bb3fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000767bb3fff127:   push   %rbp
+  0x0000767bb3fff128:   sub    $0xc0,%rsp
+  0x0000767bb3fff12f:   nop
+  0x0000767bb3fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000767bb3fff138:   je     0x0000767bb3fff13f
+  0x0000767bb3fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000767bb3fff13f:   movabs $0x767b6c319ea0,%rax         ;   {metadata(method data for {method} {0x0000000083180fa8} &apos;addClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x0000767bb3fff149:   mov    0x90(%rax),%edi
+  0x0000767bb3fff14f:   add    $0x2,%edi
+  0x0000767bb3fff152:   mov    %edi,0x90(%rax)
+  0x0000767bb3fff158:   and    $0x7fe,%edi
+  0x0000767bb3fff15e:   test   %edi,%edi
+  0x0000767bb3fff160:   je     0x0000767bb3fff5ae           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@0 (line 325)
+  0x0000767bb3fff166:   mov    0x30(%rsi),%edi
+  0x0000767bb3fff169:   shl    $0x3,%rdi                    ;*getfield classes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@1 (line 325)
+  0x0000767bb3fff16d:   lea    0xa0(%rsp),%rbx
+  0x0000767bb3fff175:   mov    %rdi,0x8(%rbx)
+  0x0000767bb3fff179:   mov    (%rdi),%rax                  ; implicit exception: dispatches to 0x0000767bb3fff5cf
+  0x0000767bb3fff17c:   mov    0x7c0(%r15),%ecx
+  0x0000767bb3fff183:   cmp    $0x810,%ecx
+  0x0000767bb3fff189:   jge    0x0000767bb3fff5d4
+  0x0000767bb3fff18f:   cmp    -0x8(%r15,%rcx,1),%rdi
+  0x0000767bb3fff194:   je     0x0000767bb3fff1bf
+  0x0000767bb3fff19a:   test   $0x2,%al
+  0x0000767bb3fff19c:   jne    0x0000767bb3fff5d4
+  0x0000767bb3fff1a2:   mov    %rax,%rcx
+  0x0000767bb3fff1a5:   and    $0xfffffffffffffffe,%rcx
+  0x0000767bb3fff1a9:   or     $0x1,%rax
+  0x0000767bb3fff1ad:   lock cmpxchg %rcx,(%rdi)
+  0x0000767bb3fff1b2:   jne    0x0000767bb3fff5d4
+  0x0000767bb3fff1b8:   mov    0x7c0(%r15),%ecx
+  0x0000767bb3fff1bf:   mov    %rdi,(%r15,%rcx,1)
+  0x0000767bb3fff1c3:   add    $0x8,%ecx
+  0x0000767bb3fff1c6:   mov    %ecx,0x7c0(%r15)             ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@6 (line 325)
+  0x0000767bb3fff1cd:   mov    0x30(%rsi),%ebx
+  0x0000767bb3fff1d0:   shl    $0x3,%rbx                    ;*getfield classes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@8 (line 326)
+  0x0000767bb3fff1d4:   cmp    (%rbx),%rax                  ; implicit exception: dispatches to 0x0000767bb3fff5e7
+                                                            ;*invokevirtual add {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff1d7:   mov    %rbx,%rsi
+  0x0000767bb3fff1da:   movabs $0x767b6c319ea0,%rax         ;   {metadata(method data for {method} {0x0000000083180fa8} &apos;addClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x0000767bb3fff1e4:   movabs $0x832196b8,%rsi             ;   {metadata(&apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff1ee:   mov    $0x1c,%r10d
+  0x0000767bb3fff1f4:   cmp    (%rax,%r10,8),%rsi
+  0x0000767bb3fff1f8:   je     0x0000767bb3fff237
+  0x0000767bb3fff1fa:   add    $0x2,%r10
+  0x0000767bb3fff1fe:   cmp    $0x20,%r10
+  0x0000767bb3fff202:   jne    0x0000767bb3fff1f4
+  0x0000767bb3fff204:   mov    $0x1c,%r10d
+  0x0000767bb3fff20a:   cmpq   $0x0,(%rax,%r10,8)
+  0x0000767bb3fff20f:   je     0x0000767bb3fff21d
+  0x0000767bb3fff211:   add    $0x2,%r10
+  0x0000767bb3fff215:   cmp    $0x20,%r10
+  0x0000767bb3fff219:   jne    0x0000767bb3fff20a
+  0x0000767bb3fff21b:   jmp    0x0000767bb3fff22f
+  0x0000767bb3fff21d:   push   %rbx
+  0x0000767bb3fff21e:   mov    %rax,%rbx
+  0x0000767bb3fff221:   xor    %rax,%rax
+  0x0000767bb3fff224:   cmpxchg %rsi,(%rbx,%r10,8)
+  0x0000767bb3fff229:   mov    %rbx,%rax
+  0x0000767bb3fff22c:   pop    %rbx
+  0x0000767bb3fff22d:   jmp    0x0000767bb3fff1ee
+  0x0000767bb3fff22f:   mov    $0x1b,%r10d
+  0x0000767bb3fff235:   jmp    0x0000767bb3fff23b
+  0x0000767bb3fff237:   add    $0x1,%r10
+  0x0000767bb3fff23b:   addq   $0x1,(%rax,%r10,8)
+  0x0000767bb3fff240:   movabs $0x767b6c3198c8,%rsi         ;   {metadata(method data for {method} {0x000000008321d3c0} &apos;add&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff24a:   mov    0x90(%rsi),%eax
+  0x0000767bb3fff250:   add    $0x2,%eax
+  0x0000767bb3fff253:   mov    %eax,0x90(%rsi)
+  0x0000767bb3fff259:   and    $0x1ffffe,%eax
+  0x0000767bb3fff25e:   test   %eax,%eax
+  0x0000767bb3fff260:   je     0x0000767bb3fff5ec
+  0x0000767bb3fff266:   mov    0xc(%rbx),%esi               ;*getfield modCount {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@2 (line 496)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff269:   inc    %esi
+  0x0000767bb3fff26b:   mov    %esi,0xc(%rbx)               ;*putfield modCount {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@7 (line 496)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff26e:   mov    0x14(%rbx),%esi
+  0x0000767bb3fff271:   shl    $0x3,%rsi                    ;*getfield elementData {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@13 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff275:   mov    0x10(%rbx),%eax              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@17 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff278:   mov    %rbx,%rcx
+  0x0000767bb3fff27b:   movabs $0x767b6c3198c8,%r8          ;   {metadata(method data for {method} {0x000000008321d3c0} &apos;add&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff285:   addq   $0x1,0xd8(%r8)
+  0x0000767bb3fff28d:   movabs $0x767b6c319a18,%rcx         ;   {metadata(method data for {method} {0x000000008321e2e0} &apos;add&apos; &apos;(Ljava/lang/Object;[Ljava/lang/Object;I)V&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff297:   mov    0x90(%rcx),%r8d
+  0x0000767bb3fff29e:   add    $0x2,%r8d
+  0x0000767bb3fff2a2:   mov    %r8d,0x90(%rcx)
+  0x0000767bb3fff2a9:   and    $0x1ffffe,%r8d
+  0x0000767bb3fff2b0:   test   %r8d,%r8d
+  0x0000767bb3fff2b3:   je     0x0000767bb3fff60d
+  0x0000767bb3fff2b9:   mov    0xc(%rsi),%ecx               ; implicit exception: dispatches to 0x0000767bb3fff62e
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@2 (line 483)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff2bc:   cmp    %ecx,%eax
+  0x0000767bb3fff2be:   movabs $0x767b6c319a18,%rcx         ;   {metadata(method data for {method} {0x000000008321e2e0} &apos;add&apos; &apos;(Ljava/lang/Object;[Ljava/lang/Object;I)V&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff2c8:   mov    $0xd8,%r8d
+  0x0000767bb3fff2ce:   jne    0x0000767bb3fff2d6
+  0x0000767bb3fff2d0:   mov    $0xe8,%r8d
+  0x0000767bb3fff2d6:   mov    (%rcx,%r8,1),%r9
+  0x0000767bb3fff2da:   lea    0x1(%r9),%r9
+  0x0000767bb3fff2de:   mov    %r9,(%rcx,%r8,1)
+  0x0000767bb3fff2e2:   jne    0x0000767bb3fff396           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@3 (line 483)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff2e8:   mov    %rdi,0x98(%rsp)
+  0x0000767bb3fff2f0:   mov    %rdx,0x88(%rsp)
+  0x0000767bb3fff2f8:   mov    %rbx,%rsi
+  0x0000767bb3fff2fb:   movabs $0x767b6c319a18,%rcx         ;   {metadata(method data for {method} {0x000000008321e2e0} &apos;add&apos; &apos;(Ljava/lang/Object;[Ljava/lang/Object;I)V&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff305:   addq   $0x1,0xf8(%rcx)
+  0x0000767bb3fff30d:   movabs $0x767b6c319bc8,%rsi         ;   {metadata(method data for {method} {0x000000008321e440} &apos;grow&apos; &apos;()[Ljava/lang/Object;&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff317:   mov    0x90(%rsi),%ecx
+  0x0000767bb3fff31d:   add    $0x2,%ecx
+  0x0000767bb3fff320:   mov    %ecx,0x90(%rsi)
+  0x0000767bb3fff326:   and    $0x1ffffe,%ecx
+  0x0000767bb3fff32c:   test   %ecx,%ecx
+  0x0000767bb3fff32e:   je     0x0000767bb3fff633
+  0x0000767bb3fff334:   mov    %rbx,%rsi
+  0x0000767bb3fff337:   movabs $0x767b6c319bc8,%rcx         ;   {metadata(method data for {method} {0x000000008321e440} &apos;grow&apos; &apos;()[Ljava/lang/Object;&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff341:   addq   $0x1,0xd8(%rcx)
+  0x0000767bb3fff349:   mov    %rax,%rsi
+  0x0000767bb3fff34c:   inc    %esi
+  0x0000767bb3fff34e:   mov    %rsi,%rdx
+  0x0000767bb3fff351:   mov    %rbx,%rsi                    ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::grow@7 (line 245)
+                                                            ; - java.util.ArrayList::add@7 (line 484)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff354:   mov    %rbx,0x90(%rsp)
+  0x0000767bb3fff35c:   mov    %eax,0x80(%rsp)
+  0x0000767bb3fff363:   nopl   0x0(%rax)
+  0x0000767bb3fff367:   call   0x0000767bbb4ad9e0           ; ImmutableOopMap {[136]=Oop [144]=Oop [152]=Oop [168]=Oop }
+                                                            ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::grow@7 (line 245)
+                                                            ; - java.util.ArrayList::add@7 (line 484)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {optimized virtual_call}
+  0x0000767bb3fff36c:   nopl   0x364(%rax,%rax,1)           ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::grow@7 (line 245)
+                                                            ; - java.util.ArrayList::add@7 (line 484)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {post_call_nop}
+  0x0000767bb3fff374:   mov    %rax,%rsi                    ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@11 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff377:   mov    0x80(%rsp),%eax
+  0x0000767bb3fff37e:   mov    0x90(%rsp),%rbx
+  0x0000767bb3fff386:   mov    0x98(%rsp),%rdi
+  0x0000767bb3fff38e:   mov    0x88(%rsp),%rdx
+  0x0000767bb3fff396:   cmp    0xc(%rsi),%eax               ; implicit exception: dispatches to 0x0000767bb3fff654
+  0x0000767bb3fff399:   jae    0x0000767bb3fff65e
+  0x0000767bb3fff39f:   test   %rdx,%rdx
+  0x0000767bb3fff3a2:   movabs $0x767b6c319a18,%r8          ;   {metadata(method data for {method} {0x000000008321e2e0} &apos;add&apos; &apos;(Ljava/lang/Object;[Ljava/lang/Object;I)V&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff3ac:   jne    0x0000767bb3fff3bb
+  0x0000767bb3fff3ae:   orb    $0x1,0x121(%r8)
+  0x0000767bb3fff3b6:   jmp    0x0000767bb3fff467
+  0x0000767bb3fff3bb:   mov    0x8(%rdx),%ecx
+  0x0000767bb3fff3be:   mov    $0x83000000,%r10d
+  0x0000767bb3fff3c4:   add    %r10,%rcx
+  0x0000767bb3fff3c7:   mov    $0x26,%r10d
+  0x0000767bb3fff3cd:   cmp    (%r8,%r10,8),%rcx
+  0x0000767bb3fff3d1:   je     0x0000767bb3fff40a
+  0x0000767bb3fff3d3:   add    $0x2,%r10
+  0x0000767bb3fff3d7:   cmp    $0x2a,%r10
+  0x0000767bb3fff3db:   jne    0x0000767bb3fff3cd
+  0x0000767bb3fff3dd:   mov    $0x26,%r10d
+  0x0000767bb3fff3e3:   cmpq   $0x0,(%r8,%r10,8)
+  0x0000767bb3fff3e8:   je     0x0000767bb3fff3f6
+  0x0000767bb3fff3ea:   add    $0x2,%r10
+  0x0000767bb3fff3ee:   cmp    $0x2a,%r10
+  0x0000767bb3fff3f2:   jne    0x0000767bb3fff3e3
+  0x0000767bb3fff3f4:   jmp    0x0000767bb3fff402
+  0x0000767bb3fff3f6:   push   %rax
+  0x0000767bb3fff3f7:   xor    %rax,%rax
+  0x0000767bb3fff3fa:   cmpxchg %rcx,(%r8,%r10,8)
+  0x0000767bb3fff3ff:   pop    %rax
+  0x0000767bb3fff400:   jmp    0x0000767bb3fff3c7
+  0x0000767bb3fff402:   mov    $0x25,%r10d
+  0x0000767bb3fff408:   jmp    0x0000767bb3fff40e
+  0x0000767bb3fff40a:   add    $0x1,%r10
+  0x0000767bb3fff40e:   addq   $0x1,(%r8,%r10,8)
+  0x0000767bb3fff413:   mov    0x8(%rsi),%ecx               ; implicit exception: dispatches to 0x0000767bb3fff66c
+  0x0000767bb3fff416:   mov    $0x83000000,%r10d
+  0x0000767bb3fff41c:   add    %r10,%rcx
+  0x0000767bb3fff41f:   mov    0x8(%rdx),%r8d
+  0x0000767bb3fff423:   mov    $0x83000000,%r10d
+  0x0000767bb3fff429:   add    %r10,%r8
+  0x0000767bb3fff42c:   mov    0xe0(%rcx),%rcx
+  0x0000767bb3fff433:   cmp    %rcx,%r8
+  0x0000767bb3fff436:   je     0x0000767bb3fff467
+  0x0000767bb3fff43c:   mov    0x10(%rcx),%r9d
+  0x0000767bb3fff440:   cmp    (%r8,%r9,1),%rcx
+  0x0000767bb3fff444:   je     0x0000767bb3fff467
+  0x0000767bb3fff44a:   cmp    $0x20,%r9d
+  0x0000767bb3fff44e:   jne    0x0000767bb3fff671
+  0x0000767bb3fff454:   push   %r8
+  0x0000767bb3fff456:   push   %rcx
+  0x0000767bb3fff457:   call   0x0000767bbb57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x0000767bb3fff45c:   pop    %r8
+  0x0000767bb3fff45e:   pop    %rcx
+  0x0000767bb3fff45f:   test   %ecx,%ecx
+  0x0000767bb3fff461:   je     0x0000767bb3fff671
+  0x0000767bb3fff467:   movslq %eax,%rdi
+  0x0000767bb3fff46a:   lea    0x10(%rsi,%rdi,4),%rsi
+  0x0000767bb3fff46f:   movsbl 0x48(%r15),%edi
+  0x0000767bb3fff474:   test   %edi,%edi
+  0x0000767bb3fff476:   jne    0x0000767bb3fff67a
+  0x0000767bb3fff47c:   mov    %rdx,%r10
+  0x0000767bb3fff47f:   shr    $0x3,%r10
+  0x0000767bb3fff483:   mov    %r10d,(%rsi)
+  0x0000767bb3fff486:   mov    %rsi,%rcx
+  0x0000767bb3fff489:   xor    %rdx,%rcx
+  0x0000767bb3fff48c:   shr    $0x17,%rcx
+  0x0000767bb3fff490:   je     0x0000767bb3fff4aa
+  0x0000767bb3fff492:   test   %rdx,%rdx
+  0x0000767bb3fff495:   je     0x0000767bb3fff4aa
+  0x0000767bb3fff497:   mov    %rsi,%rcx
+  0x0000767bb3fff49a:   shr    $0x9,%rcx
+  0x0000767bb3fff49e:   add    0x50(%r15),%rcx
+  0x0000767bb3fff4a2:   cmpb   $0xff,(%rcx)
+  0x0000767bb3fff4a5:   jne    0x0000767bb3fff4aa
+  0x0000767bb3fff4a7:   movb   $0x0,(%rcx)                  ;*aastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff4aa:   inc    %eax
+  0x0000767bb3fff4ac:   mov    %eax,0x10(%rbx)              ;*putfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@19 (line 486)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+  0x0000767bb3fff4af:   lea    0xa0(%rsp),%rax
+  0x0000767bb3fff4b7:   mov    0x8(%rax),%rdi
+  0x0000767bb3fff4bb:   mov    0x7c0(%r15),%esi
+  0x0000767bb3fff4c2:   cmp    -0x8(%r15,%rsi,1),%rdi
+  0x0000767bb3fff4c7:   jne    0x0000767bb3fff697
+  0x0000767bb3fff4cd:   subl   $0x8,0x7c0(%r15)
+  0x0000767bb3fff4d5:   cmp    -0x10(%r15,%rsi,1),%rdi
+  0x0000767bb3fff4da:   je     0x0000767bb3fff50a
+  0x0000767bb3fff4e0:   mov    (%rdi),%rax
+  0x0000767bb3fff4e3:   test   $0x2,%al
+  0x0000767bb3fff4e5:   jne    0x0000767bb3fff4fd
+  0x0000767bb3fff4eb:   mov    %rax,%rsi
+  0x0000767bb3fff4ee:   or     $0x1,%rsi
+  0x0000767bb3fff4f2:   lock cmpxchg %rsi,(%rdi)
+  0x0000767bb3fff4f7:   je     0x0000767bb3fff50a
+  0x0000767bb3fff4fd:   addl   $0x8,0x7c0(%r15)
+  0x0000767bb3fff505:   jmp    0x0000767bb3fff697           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@17 (line 327)
+  0x0000767bb3fff50a:   movabs $0x767b6c319ea0,%rax         ;   {metadata(method data for {method} {0x0000000083180fa8} &apos;addClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x0000767bb3fff514:   incl   0x108(%rax)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@18 (line 327)
+  0x0000767bb3fff51a:   add    $0xc0,%rsp
+  0x0000767bb3fff521:   pop    %rbp
+  0x0000767bb3fff522:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000767bb3fff526:   ja     0x0000767bb3fff6ad
+  0x0000767bb3fff52c:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@26 (line 328)
+  0x0000767bb3fff52d:   mov    0x5c0(%r15),%rax
+  0x0000767bb3fff534:   xor    %r10,%r10
+  0x0000767bb3fff537:   mov    %r10,0x5c0(%r15)
+  0x0000767bb3fff53e:   xor    %r10,%r10
+  0x0000767bb3fff541:   mov    %r10,0x5c8(%r15)
+  0x0000767bb3fff548:   mov    %rax,%rsi
+  0x0000767bb3fff54b:   lea    0xa0(%rsp),%rax
+  0x0000767bb3fff553:   mov    0x8(%rax),%rbx
+  0x0000767bb3fff557:   mov    0x7c0(%r15),%edi
+  0x0000767bb3fff55e:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x0000767bb3fff563:   jne    0x0000767bb3fff6c3
+  0x0000767bb3fff569:   subl   $0x8,0x7c0(%r15)
+  0x0000767bb3fff571:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x0000767bb3fff576:   je     0x0000767bb3fff5a6
+  0x0000767bb3fff57c:   mov    (%rbx),%rax
+  0x0000767bb3fff57f:   test   $0x2,%al
+  0x0000767bb3fff581:   jne    0x0000767bb3fff599
+  0x0000767bb3fff587:   mov    %rax,%rdi
+  0x0000767bb3fff58a:   or     $0x1,%rdi
+  0x0000767bb3fff58e:   lock cmpxchg %rdi,(%rbx)
+  0x0000767bb3fff593:   je     0x0000767bb3fff5a6
+  0x0000767bb3fff599:   addl   $0x8,0x7c0(%r15)
+  0x0000767bb3fff5a1:   jmp    0x0000767bb3fff6c3           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@23 (line 327)
+  0x0000767bb3fff5a6:   mov    %rsi,%rax
+  0x0000767bb3fff5a9:   jmp    0x0000767bb3fff6f6
+  0x0000767bb3fff5ae:   movabs $0x83180fa8,%r10             ;   {metadata({method} {0x0000000083180fa8} &apos;addClass&apos; &apos;(Ljava/lang/Class;)V&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x0000767bb3fff5b8:   mov    %r10,0x8(%rsp)
+  0x0000767bb3fff5bd:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000767bb3fff5c5:   call   0x0000767bbb583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ClassLoader::addClass@-1 (line 325)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000767bb3fff5ca:   jmp    0x0000767bb3fff166
+  0x0000767bb3fff5cf:   call   0x0000767bbb57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop rdi=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@6 (line 325)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff5d4:   mov    %rdi,0x8(%rsp)
+  0x0000767bb3fff5d9:   mov    %rbx,(%rsp)
+  0x0000767bb3fff5dd:   call   0x0000767bbb5807e0           ; ImmutableOopMap {rsi=Oop rdx=Oop rdi=Oop [168]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@6 (line 325)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x0000767bb3fff5e2:   jmp    0x0000767bb3fff1cd
+  0x0000767bb3fff5e7:   call   0x0000767bbb57c660           ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop [168]=Oop }
+                                                            ;*invokevirtual add {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff5ec:   movabs $0x8321d3c0,%r10             ;   {metadata({method} {0x000000008321d3c0} &apos;add&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff5f6:   mov    %r10,0x8(%rsp)
+  0x0000767bb3fff5fb:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000767bb3fff603:   call   0x0000767bbb583460           ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayList::add@-1 (line 496)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000767bb3fff608:   jmp    0x0000767bb3fff266
+  0x0000767bb3fff60d:   movabs $0x8321e2e0,%r10             ;   {metadata({method} {0x000000008321e2e0} &apos;add&apos; &apos;(Ljava/lang/Object;[Ljava/lang/Object;I)V&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff617:   mov    %r10,0x8(%rsp)
+  0x0000767bb3fff61c:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000767bb3fff624:   call   0x0000767bbb583460           ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop rsi=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayList::add@-1 (line 483)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000767bb3fff629:   jmp    0x0000767bb3fff2b9
+  0x0000767bb3fff62e:   call   0x0000767bbb57c660           ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop rsi=Oop [168]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::add@2 (line 483)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff633:   movabs $0x8321e440,%r10             ;   {metadata({method} {0x000000008321e440} &apos;grow&apos; &apos;()[Ljava/lang/Object;&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000767bb3fff63d:   mov    %r10,0x8(%rsp)
+  0x0000767bb3fff642:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000767bb3fff64a:   call   0x0000767bbb583460           ; ImmutableOopMap {rbx=Oop [136]=Oop [152]=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayList::grow@-1 (line 245)
+                                                            ; - java.util.ArrayList::add@7 (line 484)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000767bb3fff64f:   jmp    0x0000767bb3fff334
+  0x0000767bb3fff654:   call   0x0000767bbb57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop rdx=Oop [168]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff659:   call   0x0000767bbb57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop rdx=Oop [168]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff65e:   mov    %rax,(%rsp)
+  0x0000767bb3fff662:   mov    %rsi,0x8(%rsp)
+  0x0000767bb3fff667:   call   0x0000767bbb57bd60           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop rdx=Oop [168]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x0000767bb3fff66c:   call   0x0000767bbb57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop rdx=Oop [168]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000767bb3fff671:   mov    %rdx,(%rsp)
+  0x0000767bb3fff675:   call   0x0000767bbb57f5e0           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop rdx=Oop [168]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::add@14 (line 485)
+                                                            ; - java.util.ArrayList::add@20 (line 497)
+                                                            ; - java.lang.ClassLoader::addClass@12 (line 326)
+                                                            ;   {runtime_call throw_array_store_exception_blob (C1 runtime)}
+  0x0000767bb3fff67a:   mov    (%rsi),%edi
+  0x0000767bb3fff67c:   shl    $0x3,%rdi
+  0x0000767bb3fff680:   test   %rdi,%rdi
+  0x0000767bb3fff683:   je     0x0000767bb3fff47c
+  0x0000767bb3fff689:   mov    %rdi,(%rsp)
+  0x0000767bb3fff68d:   call   0x0000767bbb583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x0000767bb3fff692:   jmp    0x0000767bb3fff47c
+  0x0000767bb3fff697:   lea    0xa0(%rsp),%rax
+  0x0000767bb3fff69f:   mov    %rax,(%rsp)
+  0x0000767bb3fff6a3:   call   0x0000767bbb581260           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x0000767bb3fff6a8:   jmp    0x0000767bb3fff50a
+  0x0000767bb3fff6ad:   movabs $0x767bb3fff522,%r10         ;   {internal_word}
+  0x0000767bb3fff6b7:   mov    %r10,0x510(%r15)
+  0x0000767bb3fff6be:   jmp    0x0000767bbb4afb60           ;   {runtime_call SafepointBlob}
+  0x0000767bb3fff6c3:   lea    0xa0(%rsp),%rax
+  0x0000767bb3fff6cb:   mov    %rax,(%rsp)
+  0x0000767bb3fff6cf:   call   0x0000767bbb581260           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x0000767bb3fff6d4:   jmp    0x0000767bb3fff5a6
+  0x0000767bb3fff6d9:   mov    0x5c0(%r15),%rax
+  0x0000767bb3fff6e0:   movq   $0x0,0x5c0(%r15)
+  0x0000767bb3fff6eb:   movq   $0x0,0x5c8(%r15)
+  0x0000767bb3fff6f6:   add    $0xc0,%rsp
+  0x0000767bb3fff6fd:   pop    %rbp
+  0x0000767bb3fff6fe:   jmp    0x0000767bbb57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000767bb3fff703:   hlt    
+  0x0000767bb3fff704:   hlt    
+  0x0000767bb3fff705:   hlt    
+  0x0000767bb3fff706:   hlt    
+  0x0000767bb3fff707:   hlt    
+[Stub Code]
+  0x0000767bb3fff708:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000767bb3fff712:   jmp    0x0000767bb3fff712           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000767bb3fff717:   call   0x0000767bbb57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000767bb3fff71c:   movabs $0x767bd193aec4,%rdi         ;   {external_word}
+  0x0000767bb3fff726:   and    $0xfffffffffffffff0,%rsp
+  0x0000767bb3fff72a:   call   0x0000767bd1391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000767bb3fff72f:   hlt    
+  0x0000767bb3fff730:   call   0x0000767bbb4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000767bb3fff735:   jmp    0x0000767bb3fff730
+  0x0000767bb3fff737:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,451 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 538   47       3       java.util.ImmutableCollections::listCopy (54 bytes)
+ total in heap  [0x0000778dfbfff008,0x0000778dfbfff758] = 1872
+ main code      [0x0000778dfbfff100,0x0000778dfbfff700] = 1536
+ stub code      [0x0000778dfbfff700,0x0000778dfbfff758] = 88
+ mutable data [0x0000778d9c025080,0x0000778d9c025128] = 168
+ relocation     [0x0000778d9c025080,0x0000778d9c025118] = 152
+ metadata       [0x0000778d9c025118,0x0000778d9c025128] = 16
+ immutable data [0x0000778d9c024dd0,0x0000778d9c02506c] = 668
+ dependencies   [0x0000778d9c024dd0,0x0000778d9c024dd8] = 8
+ nul chk table  [0x0000778d9c024dd8,0x0000778d9c024df0] = 24
+ scopes pcs     [0x0000778d9c024df0,0x0000778d9c024fc0] = 464
+ scopes data    [0x0000778d9c024fc0,0x0000778d9c025068] = 168
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;
+  # parm0:    rsi:rsi   = &apos;java/util/Collection&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x0000778dfbfff100:   mov    %eax,-0x14000(%rsp)
+  0x0000778dfbfff107:   push   %rbp
+  0x0000778dfbfff108:   sub    $0x30,%rsp
+  0x0000778dfbfff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000778dfbfff114:   je     0x0000778dfbfff11b
+  0x0000778dfbfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000778dfbfff11b:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff125:   mov    0x90(%rdi),%ebx
+  0x0000778dfbfff12b:   add    $0x2,%ebx
+  0x0000778dfbfff12e:   mov    %ebx,0x90(%rdi)
+  0x0000778dfbfff134:   and    $0x7fe,%ebx
+  0x0000778dfbfff13a:   test   %ebx,%ebx
+  0x0000778dfbfff13c:   je     0x0000778dfbfff639           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@0 (line 183)
+  0x0000778dfbfff142:   test   %rsi,%rsi
+  0x0000778dfbfff145:   movabs $0x778db4289b78,%rax         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff14f:   jne    0x0000778dfbfff15d
+  0x0000778dfbfff151:   orb    $0x1,0xd1(%rax)
+  0x0000778dfbfff158:   jmp    0x0000778dfbfff1df
+  0x0000778dfbfff15d:   mov    0x8(%rsi),%edx
+  0x0000778dfbfff160:   mov    $0x47000000,%r10d
+  0x0000778dfbfff166:   add    %r10,%rdx
+  0x0000778dfbfff169:   mov    $0x1c,%r10d
+  0x0000778dfbfff16f:   cmp    (%rax,%r10,8),%rdx
+  0x0000778dfbfff173:   je     0x0000778dfbfff1b2
+  0x0000778dfbfff175:   add    $0x2,%r10
+  0x0000778dfbfff179:   cmp    $0x20,%r10
+  0x0000778dfbfff17d:   jne    0x0000778dfbfff16f
+  0x0000778dfbfff17f:   mov    $0x1c,%r10d
+  0x0000778dfbfff185:   cmpq   $0x0,(%rax,%r10,8)
+  0x0000778dfbfff18a:   je     0x0000778dfbfff198
+  0x0000778dfbfff18c:   add    $0x2,%r10
+  0x0000778dfbfff190:   cmp    $0x20,%r10
+  0x0000778dfbfff194:   jne    0x0000778dfbfff185
+  0x0000778dfbfff196:   jmp    0x0000778dfbfff1aa
+  0x0000778dfbfff198:   push   %rbx
+  0x0000778dfbfff199:   mov    %rax,%rbx
+  0x0000778dfbfff19c:   xor    %rax,%rax
+  0x0000778dfbfff19f:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x0000778dfbfff1a4:   mov    %rbx,%rax
+  0x0000778dfbfff1a7:   pop    %rbx
+  0x0000778dfbfff1a8:   jmp    0x0000778dfbfff169
+  0x0000778dfbfff1aa:   mov    $0x1b,%r10d
+  0x0000778dfbfff1b0:   jmp    0x0000778dfbfff1b6
+  0x0000778dfbfff1b2:   add    $0x1,%r10
+  0x0000778dfbfff1b6:   addq   $0x1,(%rax,%r10,8)
+  0x0000778dfbfff1bb:   movabs $0x4726bc10,%rdx             ;   {metadata(&apos;java/util/ImmutableCollections$List12&apos;)}
+  0x0000778dfbfff1c5:   mov    0x8(%rsi),%ebx
+  0x0000778dfbfff1c8:   mov    $0x47000000,%r10d
+  0x0000778dfbfff1ce:   add    %r10,%rbx
+  0x0000778dfbfff1d1:   cmp    %rbx,%rdx
+  0x0000778dfbfff1d4:   jne    0x0000778dfbfff1df
+  0x0000778dfbfff1da:   jmp    0x0000778dfbfff1e4
+  0x0000778dfbfff1df:   xor    %rdi,%rdi
+  0x0000778dfbfff1e2:   jmp    0x0000778dfbfff1e9
+  0x0000778dfbfff1e4:   mov    $0x1,%edi                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@1 (line 183)
+  0x0000778dfbfff1e9:   test   %edi,%edi
+  0x0000778dfbfff1eb:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff1f5:   mov    $0x108,%ebx
+  0x0000778dfbfff1fa:   jne    0x0000778dfbfff201
+  0x0000778dfbfff1fc:   mov    $0x118,%ebx
+  0x0000778dfbfff201:   mov    (%rdi,%rbx,1),%rax
+  0x0000778dfbfff205:   lea    0x1(%rax),%rax
+  0x0000778dfbfff209:   mov    %rax,(%rdi,%rbx,1)
+  0x0000778dfbfff20d:   jne    0x0000778dfbfff574           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@4 (line 183)
+  0x0000778dfbfff213:   test   %rsi,%rsi
+  0x0000778dfbfff216:   movabs $0x778db4289b78,%rax         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff220:   jne    0x0000778dfbfff22e
+  0x0000778dfbfff222:   orb    $0x1,0x121(%rax)
+  0x0000778dfbfff229:   jmp    0x0000778dfbfff2b0
+  0x0000778dfbfff22e:   mov    0x8(%rsi),%edx
+  0x0000778dfbfff231:   mov    $0x47000000,%r10d
+  0x0000778dfbfff237:   add    %r10,%rdx
+  0x0000778dfbfff23a:   mov    $0x26,%r10d
+  0x0000778dfbfff240:   cmp    (%rax,%r10,8),%rdx
+  0x0000778dfbfff244:   je     0x0000778dfbfff283
+  0x0000778dfbfff246:   add    $0x2,%r10
+  0x0000778dfbfff24a:   cmp    $0x2a,%r10
+  0x0000778dfbfff24e:   jne    0x0000778dfbfff240
+  0x0000778dfbfff250:   mov    $0x26,%r10d
+  0x0000778dfbfff256:   cmpq   $0x0,(%rax,%r10,8)
+  0x0000778dfbfff25b:   je     0x0000778dfbfff269
+  0x0000778dfbfff25d:   add    $0x2,%r10
+  0x0000778dfbfff261:   cmp    $0x2a,%r10
+  0x0000778dfbfff265:   jne    0x0000778dfbfff256
+  0x0000778dfbfff267:   jmp    0x0000778dfbfff27b
+  0x0000778dfbfff269:   push   %rbx
+  0x0000778dfbfff26a:   mov    %rax,%rbx
+  0x0000778dfbfff26d:   xor    %rax,%rax
+  0x0000778dfbfff270:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x0000778dfbfff275:   mov    %rbx,%rax
+  0x0000778dfbfff278:   pop    %rbx
+  0x0000778dfbfff279:   jmp    0x0000778dfbfff23a
+  0x0000778dfbfff27b:   mov    $0x25,%r10d
+  0x0000778dfbfff281:   jmp    0x0000778dfbfff287
+  0x0000778dfbfff283:   add    $0x1,%r10
+  0x0000778dfbfff287:   addq   $0x1,(%rax,%r10,8)
+  0x0000778dfbfff28c:   movabs $0x4726d820,%rdx             ;   {metadata(&apos;java/util/ImmutableCollections$ListN&apos;)}
+  0x0000778dfbfff296:   mov    0x8(%rsi),%ebx
+  0x0000778dfbfff299:   mov    $0x47000000,%r10d
+  0x0000778dfbfff29f:   add    %r10,%rbx
+  0x0000778dfbfff2a2:   cmp    %rbx,%rdx
+  0x0000778dfbfff2a5:   jne    0x0000778dfbfff2b0
+  0x0000778dfbfff2ab:   jmp    0x0000778dfbfff2b5
+  0x0000778dfbfff2b0:   xor    %rdi,%rdi
+  0x0000778dfbfff2b3:   jmp    0x0000778dfbfff2ba
+  0x0000778dfbfff2b5:   mov    $0x1,%edi                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@8 (line 183)
+  0x0000778dfbfff2ba:   test   %edi,%edi
+  0x0000778dfbfff2bc:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff2c6:   mov    $0x158,%ebx
+  0x0000778dfbfff2cb:   je     0x0000778dfbfff2d2
+  0x0000778dfbfff2cd:   mov    $0x168,%ebx
+  0x0000778dfbfff2d2:   mov    (%rdi,%rbx,1),%rax
+  0x0000778dfbfff2d6:   lea    0x1(%rax),%rax
+  0x0000778dfbfff2da:   mov    %rax,(%rdi,%rbx,1)
+  0x0000778dfbfff2de:   je     0x0000778dfbfff3b2           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@11 (line 183)
+  0x0000778dfbfff2e4:   test   %rsi,%rsi
+  0x0000778dfbfff2e7:   movabs $0x778db4289b78,%rax         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff2f1:   jne    0x0000778dfbfff2ff
+  0x0000778dfbfff2f3:   orb    $0x1,0x171(%rax)
+  0x0000778dfbfff2fa:   jmp    0x0000778dfbfff381
+  0x0000778dfbfff2ff:   mov    0x8(%rsi),%edx
+  0x0000778dfbfff302:   mov    $0x47000000,%r10d
+  0x0000778dfbfff308:   add    %r10,%rdx
+  0x0000778dfbfff30b:   mov    $0x30,%r10d
+  0x0000778dfbfff311:   cmp    (%rax,%r10,8),%rdx
+  0x0000778dfbfff315:   je     0x0000778dfbfff354
+  0x0000778dfbfff317:   add    $0x2,%r10
+  0x0000778dfbfff31b:   cmp    $0x34,%r10
+  0x0000778dfbfff31f:   jne    0x0000778dfbfff311
+  0x0000778dfbfff321:   mov    $0x30,%r10d
+  0x0000778dfbfff327:   cmpq   $0x0,(%rax,%r10,8)
+  0x0000778dfbfff32c:   je     0x0000778dfbfff33a
+  0x0000778dfbfff32e:   add    $0x2,%r10
+  0x0000778dfbfff332:   cmp    $0x34,%r10
+  0x0000778dfbfff336:   jne    0x0000778dfbfff327
+  0x0000778dfbfff338:   jmp    0x0000778dfbfff34c
+  0x0000778dfbfff33a:   push   %rbx
+  0x0000778dfbfff33b:   mov    %rax,%rbx
+  0x0000778dfbfff33e:   xor    %rax,%rax
+  0x0000778dfbfff341:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x0000778dfbfff346:   mov    %rbx,%rax
+  0x0000778dfbfff349:   pop    %rbx
+  0x0000778dfbfff34a:   jmp    0x0000778dfbfff30b
+  0x0000778dfbfff34c:   mov    $0x2f,%r10d
+  0x0000778dfbfff352:   jmp    0x0000778dfbfff358
+  0x0000778dfbfff354:   add    $0x1,%r10
+  0x0000778dfbfff358:   addq   $0x1,(%rax,%r10,8)
+  0x0000778dfbfff35d:   movabs $0x4726d820,%rdx             ;   {metadata(&apos;java/util/ImmutableCollections$ListN&apos;)}
+  0x0000778dfbfff367:   mov    0x8(%rsi),%ebx
+  0x0000778dfbfff36a:   mov    $0x47000000,%r10d
+  0x0000778dfbfff370:   add    %r10,%rbx
+  0x0000778dfbfff373:   cmp    %rbx,%rdx
+  0x0000778dfbfff376:   jne    0x0000778dfbfff65a
+  0x0000778dfbfff37c:   jmp    0x0000778dfbfff381
+  0x0000778dfbfff381:   mov    %rsi,%rdi                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@15 (line 183)
+  0x0000778dfbfff384:   movsbl 0xc(%rdi),%edi               ; implicit exception: dispatches to 0x0000778dfbfff663
+                                                            ;*getfield allowNulls {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@20 (line 183)
+  0x0000778dfbfff388:   test   %edi,%edi
+  0x0000778dfbfff38a:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff394:   mov    $0x1b8,%ebx
+  0x0000778dfbfff399:   je     0x0000778dfbfff3a0
+  0x0000778dfbfff39b:   mov    $0x1a8,%ebx
+  0x0000778dfbfff3a0:   mov    (%rdi,%rbx,1),%rax
+  0x0000778dfbfff3a4:   lea    0x1(%rax),%rax
+  0x0000778dfbfff3a8:   mov    %rax,(%rdi,%rbx,1)
+  0x0000778dfbfff3ac:   je     0x0000778dfbfff574           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@23 (line 183)
+  0x0000778dfbfff3b2:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x0000778dfbfff668
+  0x0000778dfbfff3b5:   mov    %rsi,%rdi
+  0x0000778dfbfff3b8:   movabs $0x778db4289b78,%rbx         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff3c2:   mov    0x8(%rdi),%edi
+  0x0000778dfbfff3c5:   mov    $0x47000000,%r10d
+  0x0000778dfbfff3cb:   add    %r10,%rdi
+  0x0000778dfbfff3ce:   mov    $0x40,%r10d
+  0x0000778dfbfff3d4:   cmp    (%rbx,%r10,8),%rdi
+  0x0000778dfbfff3d8:   je     0x0000778dfbfff411
+  0x0000778dfbfff3da:   add    $0x2,%r10
+  0x0000778dfbfff3de:   cmp    $0x44,%r10
+  0x0000778dfbfff3e2:   jne    0x0000778dfbfff3d4
+  0x0000778dfbfff3e4:   mov    $0x40,%r10d
+  0x0000778dfbfff3ea:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000778dfbfff3ef:   je     0x0000778dfbfff3fd
+  0x0000778dfbfff3f1:   add    $0x2,%r10
+  0x0000778dfbfff3f5:   cmp    $0x44,%r10
+  0x0000778dfbfff3f9:   jne    0x0000778dfbfff3ea
+  0x0000778dfbfff3fb:   jmp    0x0000778dfbfff409
+  0x0000778dfbfff3fd:   push   %rax
+  0x0000778dfbfff3fe:   xor    %rax,%rax
+  0x0000778dfbfff401:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000778dfbfff406:   pop    %rax
+  0x0000778dfbfff407:   jmp    0x0000778dfbfff3ce
+  0x0000778dfbfff409:   mov    $0x3f,%r10d
+  0x0000778dfbfff40f:   jmp    0x0000778dfbfff415
+  0x0000778dfbfff411:   add    $0x1,%r10
+  0x0000778dfbfff415:   addq   $0x1,(%rbx,%r10,8)
+  0x0000778dfbfff41a:   mov    %rsi,%rdi
+  0x0000778dfbfff41d:   mov    %rdi,%rsi                    ;*invokeinterface isEmpty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@32 (line 185)
+  0x0000778dfbfff420:   mov    %rdi,0x20(%rsp)
+  0x0000778dfbfff425:   movabs $0x778d9c0251f0,%rax
+  0x0000778dfbfff42f:   call   0x0000778e034adce0           ; ImmutableOopMap {[32]=Oop }
+                                                            ;*invokeinterface isEmpty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@32 (line 185)
+                                                            ;   {virtual_call}
+  0x0000778dfbfff434:   nopl   0x42c(%rax,%rax,1)           ;*invokeinterface isEmpty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@32 (line 185)
+                                                            ;   {post_call_nop}
+  0x0000778dfbfff43c:   test   %eax,%eax
+  0x0000778dfbfff43e:   movabs $0x778db4289b78,%rax         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff448:   mov    $0x228,%esi
+  0x0000778dfbfff44d:   je     0x0000778dfbfff454
+  0x0000778dfbfff44f:   mov    $0x238,%esi
+  0x0000778dfbfff454:   mov    (%rax,%rsi,1),%rdi
+  0x0000778dfbfff458:   lea    0x1(%rdi),%rdi
+  0x0000778dfbfff45c:   mov    %rdi,(%rax,%rsi,1)
+  0x0000778dfbfff460:   je     0x0000778dfbfff4b9           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@37 (line 185)
+  0x0000778dfbfff466:   movabs $0x778db4289b78,%rax         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff470:   addq   $0x1,0x248(%rax)
+  0x0000778dfbfff478:   movabs $0x778db4289e50,%rax         ;   {metadata(method data for {method} {0x000000004721a918} &apos;of&apos; &apos;()Ljava/util/List;&apos; in &apos;java/util/List&apos;)}
+  0x0000778dfbfff482:   mov    0x90(%rax),%esi
+  0x0000778dfbfff488:   add    $0x2,%esi
+  0x0000778dfbfff48b:   mov    %esi,0x90(%rax)
+  0x0000778dfbfff491:   and    $0x1ffffe,%esi
+  0x0000778dfbfff497:   test   %esi,%esi
+  0x0000778dfbfff499:   je     0x0000778dfbfff66d
+  0x0000778dfbfff49f:   movabs $0x7ff819390,%rax            ;   {oop(a &apos;java/util/ImmutableCollections$ListN&apos;{0x00000007ff819390})}
+  0x0000778dfbfff4a9:   add    $0x30,%rsp
+  0x0000778dfbfff4ad:   pop    %rbp
+  0x0000778dfbfff4ae:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000778dfbfff4b2:   ja     0x0000778dfbfff68e
+  0x0000778dfbfff4b8:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@43 (line 186)
+  0x0000778dfbfff4b9:   mov    0x20(%rsp),%rsi
+  0x0000778dfbfff4be:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff4c8:   mov    0x8(%rsi),%esi
+  0x0000778dfbfff4cb:   mov    $0x47000000,%r10d
+  0x0000778dfbfff4d1:   add    %r10,%rsi
+  0x0000778dfbfff4d4:   mov    $0x4c,%r10d
+  0x0000778dfbfff4da:   cmp    (%rdi,%r10,8),%rsi
+  0x0000778dfbfff4de:   je     0x0000778dfbfff517
+  0x0000778dfbfff4e0:   add    $0x2,%r10
+  0x0000778dfbfff4e4:   cmp    $0x50,%r10
+  0x0000778dfbfff4e8:   jne    0x0000778dfbfff4da
+  0x0000778dfbfff4ea:   mov    $0x4c,%r10d
+  0x0000778dfbfff4f0:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000778dfbfff4f5:   je     0x0000778dfbfff503
+  0x0000778dfbfff4f7:   add    $0x2,%r10
+  0x0000778dfbfff4fb:   cmp    $0x50,%r10
+  0x0000778dfbfff4ff:   jne    0x0000778dfbfff4f0
+  0x0000778dfbfff501:   jmp    0x0000778dfbfff50f
+  0x0000778dfbfff503:   push   %rax
+  0x0000778dfbfff504:   xor    %rax,%rax
+  0x0000778dfbfff507:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x0000778dfbfff50c:   pop    %rax
+  0x0000778dfbfff50d:   jmp    0x0000778dfbfff4d4
+  0x0000778dfbfff50f:   mov    $0x4b,%r10d
+  0x0000778dfbfff515:   jmp    0x0000778dfbfff51b
+  0x0000778dfbfff517:   add    $0x1,%r10
+  0x0000778dfbfff51b:   addq   $0x1,(%rdi,%r10,8)
+  0x0000778dfbfff520:   mov    0x20(%rsp),%rsi              ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@45 (line 188)
+  0x0000778dfbfff525:   movabs $0x778d9c025218,%rax
+  0x0000778dfbfff52f:   call   0x0000778e034adce0           ; ImmutableOopMap {}
+                                                            ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@45 (line 188)
+                                                            ;   {virtual_call}
+  0x0000778dfbfff534:   nopl   0x100052c(%rax,%rax,1)       ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@45 (line 188)
+                                                            ;   {post_call_nop}
+  0x0000778dfbfff53c:   movabs $0x778db4289b78,%rsi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff546:   addq   $0x1,0x288(%rsi)
+  0x0000778dfbfff54e:   mov    %rax,%rsi                    ;*invokestatic of {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@50 (line 188)
+  0x0000778dfbfff551:   nopw   0x0(%rax,%rax,1)
+  0x0000778dfbfff557:   call   0x0000778e034adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic of {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@50 (line 188)
+                                                            ;   {static_call}
+  0x0000778dfbfff55c:   nopl   0x2000554(%rax,%rax,1)       ;*invokestatic of {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@50 (line 188)
+                                                            ;   {post_call_nop}
+  0x0000778dfbfff564:   add    $0x30,%rsp
+  0x0000778dfbfff568:   pop    %rbp
+  0x0000778dfbfff569:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000778dfbfff56d:   ja     0x0000778dfbfff6a4
+  0x0000778dfbfff573:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@53 (line 188)
+  0x0000778dfbfff574:   test   %rsi,%rsi
+  0x0000778dfbfff577:   movabs $0x778db4289b78,%rdi         ;   {metadata(method data for {method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff581:   jne    0x0000778dfbfff58f
+  0x0000778dfbfff583:   orb    $0x1,0x1c1(%rdi)
+  0x0000778dfbfff58a:   jmp    0x0000778dfbfff626
+  0x0000778dfbfff58f:   mov    0x8(%rsi),%ebx
+  0x0000778dfbfff592:   mov    $0x47000000,%r10d
+  0x0000778dfbfff598:   add    %r10,%rbx
+  0x0000778dfbfff59b:   mov    $0x3a,%r10d
+  0x0000778dfbfff5a1:   cmp    (%rdi,%r10,8),%rbx
+  0x0000778dfbfff5a5:   je     0x0000778dfbfff5de
+  0x0000778dfbfff5a7:   add    $0x2,%r10
+  0x0000778dfbfff5ab:   cmp    $0x3e,%r10
+  0x0000778dfbfff5af:   jne    0x0000778dfbfff5a1
+  0x0000778dfbfff5b1:   mov    $0x3a,%r10d
+  0x0000778dfbfff5b7:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000778dfbfff5bc:   je     0x0000778dfbfff5ca
+  0x0000778dfbfff5be:   add    $0x2,%r10
+  0x0000778dfbfff5c2:   cmp    $0x3e,%r10
+  0x0000778dfbfff5c6:   jne    0x0000778dfbfff5b7
+  0x0000778dfbfff5c8:   jmp    0x0000778dfbfff5d6
+  0x0000778dfbfff5ca:   push   %rax
+  0x0000778dfbfff5cb:   xor    %rax,%rax
+  0x0000778dfbfff5ce:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x0000778dfbfff5d3:   pop    %rax
+  0x0000778dfbfff5d4:   jmp    0x0000778dfbfff59b
+  0x0000778dfbfff5d6:   mov    $0x39,%r10d
+  0x0000778dfbfff5dc:   jmp    0x0000778dfbfff5e2
+  0x0000778dfbfff5de:   add    $0x1,%r10
+  0x0000778dfbfff5e2:   addq   $0x1,(%rdi,%r10,8)
+  0x0000778dfbfff5e7:   movabs $0x47219d20,%rbx             ;   {metadata(&apos;java/util/List&apos;)}
+  0x0000778dfbfff5f1:   mov    0x8(%rsi),%edi
+  0x0000778dfbfff5f4:   mov    $0x47000000,%r10d
+  0x0000778dfbfff5fa:   add    %r10,%rdi
+  0x0000778dfbfff5fd:   cmp    0x20(%rdi),%rbx
+  0x0000778dfbfff601:   je     0x0000778dfbfff626
+  0x0000778dfbfff607:   cmp    %rbx,%rdi
+  0x0000778dfbfff60a:   je     0x0000778dfbfff626
+  0x0000778dfbfff610:   push   %rdi
+  0x0000778dfbfff611:   push   %rbx
+  0x0000778dfbfff612:   call   0x0000778e0357fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x0000778dfbfff617:   pop    %rdi
+  0x0000778dfbfff618:   pop    %rdi
+  0x0000778dfbfff619:   test   %edi,%edi
+  0x0000778dfbfff61b:   je     0x0000778dfbfff6ba
+  0x0000778dfbfff621:   jmp    0x0000778dfbfff626
+  0x0000778dfbfff626:   mov    %rsi,%rax                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@27 (line 184)
+  0x0000778dfbfff629:   add    $0x30,%rsp
+  0x0000778dfbfff62d:   pop    %rbp
+  0x0000778dfbfff62e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000778dfbfff632:   ja     0x0000778dfbfff6c3
+  0x0000778dfbfff638:   ret    
+  0x0000778dfbfff639:   movabs $0x4726fc90,%r10             ;   {metadata({method} {0x000000004726fc90} &apos;listCopy&apos; &apos;(Ljava/util/Collection;)Ljava/util/List;&apos; in &apos;java/util/ImmutableCollections&apos;)}
+  0x0000778dfbfff643:   mov    %r10,0x8(%rsp)
+  0x0000778dfbfff648:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778dfbfff650:   call   0x0000778e03583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ImmutableCollections::listCopy@-1 (line 183)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778dfbfff655:   jmp    0x0000778dfbfff142
+  0x0000778dfbfff65a:   mov    %rsi,(%rsp)
+  0x0000778dfbfff65e:   call   0x0000778e0357f8e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@15 (line 183)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000778dfbfff663:   call   0x0000778e0357c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*getfield allowNulls {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ImmutableCollections::listCopy@20 (line 183)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000778dfbfff668:   call   0x0000778e0357c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokeinterface isEmpty {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@32 (line 185)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000778dfbfff66d:   movabs $0x4721a918,%r10             ;   {metadata({method} {0x000000004721a918} &apos;of&apos; &apos;()Ljava/util/List;&apos; in &apos;java/util/List&apos;)}
+  0x0000778dfbfff677:   mov    %r10,0x8(%rsp)
+  0x0000778dfbfff67c:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000778dfbfff684:   call   0x0000778e03583460           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.util.List::of@-1 (line 924)
+                                                            ; - java.util.ImmutableCollections::listCopy@40 (line 186)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000778dfbfff689:   jmp    0x0000778dfbfff49f
+  0x0000778dfbfff68e:   movabs $0x778dfbfff4ae,%r10         ;   {internal_word}
+  0x0000778dfbfff698:   mov    %r10,0x510(%r15)
+  0x0000778dfbfff69f:   jmp    0x0000778e034afb60           ;   {runtime_call SafepointBlob}
+  0x0000778dfbfff6a4:   movabs $0x778dfbfff569,%r10         ;   {internal_word}
+  0x0000778dfbfff6ae:   mov    %r10,0x510(%r15)
+  0x0000778dfbfff6b5:   jmp    0x0000778e034afb60           ;   {runtime_call SafepointBlob}
+  0x0000778dfbfff6ba:   mov    %rsi,(%rsp)
+  0x0000778dfbfff6be:   call   0x0000778e0357f8e0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections::listCopy@27 (line 184)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x0000778dfbfff6c3:   movabs $0x778dfbfff62e,%r10         ;   {internal_word}
+  0x0000778dfbfff6cd:   mov    %r10,0x510(%r15)
+  0x0000778dfbfff6d4:   jmp    0x0000778e034afb60           ;   {runtime_call SafepointBlob}
+  0x0000778dfbfff6d9:   mov    0x5c0(%r15),%rax
+  0x0000778dfbfff6e0:   movq   $0x0,0x5c0(%r15)
+  0x0000778dfbfff6eb:   movq   $0x0,0x5c8(%r15)
+  0x0000778dfbfff6f6:   add    $0x30,%rsp
+  0x0000778dfbfff6fa:   pop    %rbp
+  0x0000778dfbfff6fb:   jmp    0x0000778e0357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x0000778dfbfff700:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000778dfbfff705:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778dfbfff70f:   jmp    0x0000778dfbfff70f           ;   {runtime_call nmethod}
+  0x0000778dfbfff714:   nop
+  0x0000778dfbfff715:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778dfbfff71f:   jmp    0x0000778dfbfff71f           ;   {runtime_call nmethod}
+  0x0000778dfbfff724:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000778dfbfff72e:   jmp    0x0000778dfbfff72e           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000778dfbfff733:   call   0x0000778e0357ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000778dfbfff738:   movabs $0x778e1ab3aec4,%rdi         ;   {external_word}
+  0x0000778dfbfff742:   and    $0xfffffffffffffff0,%rsp
+  0x0000778dfbfff746:   call   0x0000778e1a591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000778dfbfff74b:   hlt    
+  0x0000778dfbfff74c:   call   0x0000778e034afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000778dfbfff751:   jmp    0x0000778dfbfff74c
+  0x0000778dfbfff753:   hlt    
+  0x0000778dfbfff754:   hlt    
+  0x0000778dfbfff755:   hlt    
+  0x0000778dfbfff756:   hlt    
+  0x0000778dfbfff757:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

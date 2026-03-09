@@ -1,0 +1,174 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 313   23       3       jdk.internal.ref.CleanerImpl::getCleanerImpl (13 bytes)
+ total in heap  [0x00007d84c7fff008,0x00007d84c7fff328] = 800
+ main code      [0x00007d84c7fff100,0x00007d84c7fff2f0] = 496
+ stub code      [0x00007d84c7fff2f0,0x00007d84c7fff328] = 56
+ mutable data [0x00007d8470014dd0,0x00007d8470014e18] = 72
+ relocation     [0x00007d8470014dd0,0x00007d8470014e10] = 64
+ metadata       [0x00007d8470014e10,0x00007d8470014e18] = 8
+ immutable data [0x00007d8470014cd0,0x00007d8470014dbc] = 236
+ dependencies   [0x00007d8470014cd0,0x00007d8470014cd8] = 8
+ nul chk table  [0x00007d8470014cd8,0x00007d8470014ce8] = 16
+ scopes pcs     [0x00007d8470014ce8,0x00007d8470014d88] = 160
+ scopes data    [0x00007d8470014d88,0x00007d8470014db8] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000001e465fb8} &apos;getCleanerImpl&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;jdk/internal/ref/CleanerImpl&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/ref/Cleaner&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007d84c7fff100:   mov    %eax,-0x14000(%rsp)
+  0x00007d84c7fff107:   push   %rbp
+  0x00007d84c7fff108:   sub    $0x20,%rsp
+  0x00007d84c7fff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007d84c7fff114:   je     0x00007d84c7fff11b
+  0x00007d84c7fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d84c7fff11b:   movabs $0x7d848008aa28,%rdx         ;   {metadata(method data for {method} {0x000000001e465fb8} &apos;getCleanerImpl&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff125:   mov    0x90(%rdx),%edi
+  0x00007d84c7fff12b:   add    $0x2,%edi
+  0x00007d84c7fff12e:   mov    %edi,0x90(%rdx)
+  0x00007d84c7fff134:   and    $0x7fe,%edi
+  0x00007d84c7fff13a:   test   %edi,%edi
+  0x00007d84c7fff13c:   je     0x00007d84c7fff283
+  0x00007d84c7fff142:   movabs $0x7ff892e48,%rdx            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff892e48} = &apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff14c:   mov    0x78(%rdx),%edi
+  0x00007d84c7fff14f:   shl    $0x3,%rdi                    ;*getstatic cleanerImplAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@0 (line 77)
+  0x00007d84c7fff153:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x00007d84c7fff2a4
+  0x00007d84c7fff156:   mov    %rdi,%rdx
+  0x00007d84c7fff159:   movabs $0x7d848008aa28,%rbx         ;   {metadata(method data for {method} {0x000000001e465fb8} &apos;getCleanerImpl&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff163:   mov    0x8(%rdx),%edx
+  0x00007d84c7fff166:   mov    $0x1e000000,%r10d
+  0x00007d84c7fff16c:   add    %r10,%rdx
+  0x00007d84c7fff16f:   mov    $0x1c,%r10d
+  0x00007d84c7fff175:   cmp    (%rbx,%r10,8),%rdx
+  0x00007d84c7fff179:   je     0x00007d84c7fff1b2
+  0x00007d84c7fff17b:   add    $0x2,%r10
+  0x00007d84c7fff17f:   cmp    $0x20,%r10
+  0x00007d84c7fff183:   jne    0x00007d84c7fff175
+  0x00007d84c7fff185:   mov    $0x1c,%r10d
+  0x00007d84c7fff18b:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007d84c7fff190:   je     0x00007d84c7fff19e
+  0x00007d84c7fff192:   add    $0x2,%r10
+  0x00007d84c7fff196:   cmp    $0x20,%r10
+  0x00007d84c7fff19a:   jne    0x00007d84c7fff18b
+  0x00007d84c7fff19c:   jmp    0x00007d84c7fff1aa
+  0x00007d84c7fff19e:   push   %rax
+  0x00007d84c7fff19f:   xor    %rax,%rax
+  0x00007d84c7fff1a2:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x00007d84c7fff1a7:   pop    %rax
+  0x00007d84c7fff1a8:   jmp    0x00007d84c7fff16f
+  0x00007d84c7fff1aa:   mov    $0x1b,%r10d
+  0x00007d84c7fff1b0:   jmp    0x00007d84c7fff1b6
+  0x00007d84c7fff1b2:   add    $0x1,%r10
+  0x00007d84c7fff1b6:   addq   $0x1,(%rbx,%r10,8)
+  0x00007d84c7fff1bb:   mov    %rsi,%rdx
+  0x00007d84c7fff1be:   mov    %rdi,%rsi                    ;*invokeinterface apply {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@4 (line 77)
+  0x00007d84c7fff1c1:   nopl   0x0(%rax)
+  0x00007d84c7fff1c5:   movabs $0x7d8470014eb0,%rax
+  0x00007d84c7fff1cf:   call   0x00007d84cf4adce0           ; ImmutableOopMap {}
+                                                            ;*invokeinterface apply {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@4 (line 77)
+                                                            ;   {virtual_call}
+  0x00007d84c7fff1d4:   nopl   0x1cc(%rax,%rax,1)           ;*invokeinterface apply {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@4 (line 77)
+                                                            ;   {post_call_nop}
+  0x00007d84c7fff1dc:   test   %rax,%rax
+  0x00007d84c7fff1df:   movabs $0x7d848008aa28,%rdi         ;   {metadata(method data for {method} {0x000000001e465fb8} &apos;getCleanerImpl&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff1e9:   jne    0x00007d84c7fff1f7
+  0x00007d84c7fff1eb:   orb    $0x1,0x101(%rdi)
+  0x00007d84c7fff1f2:   jmp    0x00007d84c7fff273
+  0x00007d84c7fff1f7:   mov    0x8(%rax),%ebx
+  0x00007d84c7fff1fa:   mov    $0x1e000000,%r10d
+  0x00007d84c7fff200:   add    %r10,%rbx
+  0x00007d84c7fff203:   mov    $0x22,%r10d
+  0x00007d84c7fff209:   cmp    (%rdi,%r10,8),%rbx
+  0x00007d84c7fff20d:   je     0x00007d84c7fff246
+  0x00007d84c7fff20f:   add    $0x2,%r10
+  0x00007d84c7fff213:   cmp    $0x26,%r10
+  0x00007d84c7fff217:   jne    0x00007d84c7fff209
+  0x00007d84c7fff219:   mov    $0x22,%r10d
+  0x00007d84c7fff21f:   cmpq   $0x0,(%rdi,%r10,8)
+  0x00007d84c7fff224:   je     0x00007d84c7fff232
+  0x00007d84c7fff226:   add    $0x2,%r10
+  0x00007d84c7fff22a:   cmp    $0x26,%r10
+  0x00007d84c7fff22e:   jne    0x00007d84c7fff21f
+  0x00007d84c7fff230:   jmp    0x00007d84c7fff23e
+  0x00007d84c7fff232:   push   %rax
+  0x00007d84c7fff233:   xor    %rax,%rax
+  0x00007d84c7fff236:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x00007d84c7fff23b:   pop    %rax
+  0x00007d84c7fff23c:   jmp    0x00007d84c7fff203
+  0x00007d84c7fff23e:   mov    $0x21,%r10d
+  0x00007d84c7fff244:   jmp    0x00007d84c7fff24a
+  0x00007d84c7fff246:   add    $0x1,%r10
+  0x00007d84c7fff24a:   addq   $0x1,(%rdi,%r10,8)
+  0x00007d84c7fff24f:   movabs $0x1e2987b8,%rbx             ;   {metadata(&apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff259:   mov    0x8(%rax),%esi
+  0x00007d84c7fff25c:   mov    $0x1e000000,%r10d
+  0x00007d84c7fff262:   add    %r10,%rsi
+  0x00007d84c7fff265:   cmp    %rsi,%rbx
+  0x00007d84c7fff268:   jne    0x00007d84c7fff2a9
+  0x00007d84c7fff26e:   jmp    0x00007d84c7fff273           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@9 (line 77)
+  0x00007d84c7fff273:   add    $0x20,%rsp
+  0x00007d84c7fff277:   pop    %rbp
+  0x00007d84c7fff278:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d84c7fff27c:   ja     0x00007d84c7fff2b2
+  0x00007d84c7fff282:   ret    
+  0x00007d84c7fff283:   movabs $0x1e465fb8,%r10             ;   {metadata({method} {0x000000001e465fb8} &apos;getCleanerImpl&apos; &apos;(Ljava/lang/ref/Cleaner;)Ljdk/internal/ref/CleanerImpl;&apos; in &apos;jdk/internal/ref/CleanerImpl&apos;)}
+  0x00007d84c7fff28d:   mov    %r10,0x8(%rsp)
+  0x00007d84c7fff292:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007d84c7fff29a:   call   0x00007d84cf5813e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@-1 (line 77)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007d84c7fff29f:   jmp    0x00007d84c7fff142
+  0x00007d84c7fff2a4:   call   0x00007d84cf57b460           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*invokeinterface apply {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@4 (line 77)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007d84c7fff2a9:   mov    %rax,(%rsp)
+  0x00007d84c7fff2ad:   call   0x00007d84cf57dce0           ; ImmutableOopMap {}
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.CleanerImpl::getCleanerImpl@9 (line 77)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007d84c7fff2b2:   movabs $0x7d84c7fff278,%r10         ;   {internal_word}
+  0x00007d84c7fff2bc:   mov    %r10,0x510(%r15)
+  0x00007d84c7fff2c3:   jmp    0x00007d84cf4afb60           ;   {runtime_call SafepointBlob}
+  0x00007d84c7fff2c8:   mov    0x5c0(%r15),%rax
+  0x00007d84c7fff2cf:   movq   $0x0,0x5c0(%r15)
+  0x00007d84c7fff2da:   movq   $0x0,0x5c8(%r15)
+  0x00007d84c7fff2e5:   add    $0x20,%rsp
+  0x00007d84c7fff2e9:   pop    %rbp
+  0x00007d84c7fff2ea:   jmp    0x00007d84cf579c60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007d84c7fff2ef:   hlt    
+[Stub Code]
+  0x00007d84c7fff2f0:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007d84c7fff2f5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007d84c7fff2ff:   jmp    0x00007d84c7fff2ff           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007d84c7fff304:   call   0x00007d84cf57d6e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007d84c7fff309:   movabs $0x7d84e7d3aec4,%rdi         ;   {external_word}
+  0x00007d84c7fff313:   and    $0xfffffffffffffff0,%rsp
+  0x00007d84c7fff317:   call   0x00007d84e7791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007d84c7fff31c:   hlt    
+  0x00007d84c7fff31d:   call   0x00007d84cf4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d84c7fff322:   jmp    0x00007d84c7fff31d
+  0x00007d84c7fff324:   hlt    
+  0x00007d84c7fff325:   hlt    
+  0x00007d84c7fff326:   hlt    
+  0x00007d84c7fff327:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

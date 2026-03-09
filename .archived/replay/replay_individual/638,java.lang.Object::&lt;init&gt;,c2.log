@@ -1,0 +1,75 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 416   29       4       java.lang.Object::&lt;init&gt; (1 bytes)
+ total in heap  [0x0000762a4fba5408,0x0000762a4fba5598] = 400
+ main code      [0x0000762a4fba5500,0x0000762a4fba5590] = 144
+ stub code      [0x0000762a4fba5590,0x0000762a4fba5598] = 8
+ mutable data [0x00007629ec071c40,0x00007629ec071c60] = 32
+ relocation     [0x00007629ec071c40,0x00007629ec071c58] = 24
+ metadata       [0x00007629ec071c58,0x00007629ec071c60] = 8
+ immutable data [0x00007629ec071b90,0x00007629ec071c2c] = 156
+ dependencies   [0x00007629ec071b90,0x00007629ec071b98] = 8
+ handler table  [0x00007629ec071b98,0x00007629ec071bb0] = 24
+ scopes pcs     [0x00007629ec071bb0,0x00007629ec071c10] = 96
+ scopes data    [0x00007629ec071c10,0x00007629ec071c28] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000762a4fba5500:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000344a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x0000762a4fba5502:   mov    0x8(%rsi),%r10d
+  0x0000762a4fba5506:   cmp    0x8(%rax),%r10d
+  0x0000762a4fba550a:   jne    0x0000762a4f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000762a4fba5510:   mov    %eax,-0x14000(%rsp)
+  0x0000762a4fba5517:   push   %rbp
+  0x0000762a4fba5518:   sub    $0x10,%rsp
+  0x0000762a4fba551c:   cmpl   $0x1,0x20(%r15)
+  0x0000762a4fba5524:   jne    0x0000762a4fba5583           ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+  0x0000762a4fba552a:   mov    0x8(%rsi),%r10d
+  0x0000762a4fba552e:   mov    $0x34000000,%r11d
+  0x0000762a4fba5534:   add    %r10,%r11
+  0x0000762a4fba5537:   testb  $0x4,0xe(%r11)
+  0x0000762a4fba553c:   je     0x0000762a4fba5550           ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Object::&lt;init&gt;@0 (line 46)
+  0x0000762a4fba553e:   mov    %rsi,%rbp
+  0x0000762a4fba5541:   xchg   %ax,%ax
+  0x0000762a4fba5543:   call   0x0000762a4f58d560           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*return {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.Object::&lt;init&gt;@0 (line 46)
+                                                            ;   {runtime_call register_finalizer_blob (C2 runtime)}
+  0x0000762a4fba5548:   nopl   0x140(%rax,%rax,1)           ;   {post_call_nop}
+  0x0000762a4fba5550:   add    $0x10,%rsp
+  0x0000762a4fba5554:   pop    %rbp
+  0x0000762a4fba5555:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000762a4fba5559:   ja     0x0000762a4fba556d
+  0x0000762a4fba555f:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Object::&lt;init&gt;@0 (line 46)
+  0x0000762a4fba5560:   mov    %rax,%rsi
+  0x0000762a4fba5563:   add    $0x10,%rsp
+  0x0000762a4fba5567:   pop    %rbp
+  0x0000762a4fba5568:   jmp    0x0000762a4f58cf60           ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x0000762a4fba556d:   movabs $0x762a4fba5555,%r10         ;   {internal_word}
+  0x0000762a4fba5577:   mov    %r10,0x510(%r15)
+  0x0000762a4fba557e:   jmp    0x0000762a4f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000762a4fba5583:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000762a4fba5588:   jmp    0x0000762a4fba552a
+  0x0000762a4fba558d:   hlt    
+  0x0000762a4fba558e:   hlt    
+  0x0000762a4fba558f:   hlt    
+[Stub Code]
+  0x0000762a4fba5590:   call   0x0000762a4f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000762a4fba5595:   jmp    0x0000762a4fba5590
+  0x0000762a4fba5597:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

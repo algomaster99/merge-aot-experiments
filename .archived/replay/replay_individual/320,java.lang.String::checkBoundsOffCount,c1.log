@@ -1,0 +1,156 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 390   24       3       java.lang.String::checkBoundsOffCount (10 bytes)
+ total in heap  [0x000076226ffff008,0x000076226ffff2f0] = 744
+ main code      [0x000076226ffff100,0x000076226ffff2b8] = 440
+ stub code      [0x000076226ffff2b8,0x000076226ffff2e8] = 48
+ oops           [0x000076226ffff2e8,0x000076226ffff2f0] = 8
+ mutable data [0x0000762210014f20,0x0000762210014f78] = 88
+ relocation     [0x0000762210014f20,0x0000762210014f68] = 72
+ metadata       [0x0000762210014f68,0x0000762210014f78] = 16
+ immutable data [0x0000762210014dc0,0x0000762210014f0c] = 332
+ dependencies   [0x0000762210014dc0,0x0000762210014dc8] = 8
+ nul chk table  [0x0000762210014dc8,0x0000762210014dd8] = 16
+ scopes pcs     [0x0000762210014dd8,0x0000762210014e98] = 192
+ scopes data    [0x0000762210014e98,0x0000762210014f08] = 112
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000644a1520} &apos;checkBoundsOffCount&apos; &apos;(III)I&apos; in &apos;java/lang/String&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  #           [sp+0x70]  (sp of caller)
+  0x000076226ffff100:   mov    %eax,-0x14000(%rsp)
+  0x000076226ffff107:   push   %rbp
+  0x000076226ffff108:   sub    $0x60,%rsp
+  0x000076226ffff10c:   cmpl   $0x1,0x20(%r15)
+  0x000076226ffff114:   je     0x000076226ffff11b
+  0x000076226ffff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000076226ffff11b:   mov    %rsi,%r8
+  0x000076226ffff11e:   mov    %rdx,%rdi
+  0x000076226ffff121:   mov    %rcx,%rbx
+  0x000076226ffff124:   movabs $0x7622280aecb0,%rax         ;   {metadata(method data for {method} {0x00000000644a1520} &apos;checkBoundsOffCount&apos; &apos;(III)I&apos; in &apos;java/lang/String&apos;)}
+  0x000076226ffff12e:   mov    0x90(%rax),%esi
+  0x000076226ffff134:   add    $0x2,%esi
+  0x000076226ffff137:   mov    %esi,0x90(%rax)
+  0x000076226ffff13d:   and    $0x7fe,%esi
+  0x000076226ffff143:   test   %esi,%esi
+  0x000076226ffff145:   je     0x000076226ffff234           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkBoundsOffCount@0 (line 5219)
+  0x000076226ffff14b:   movabs $0x7622280aecb0,%rax         ;   {metadata(method data for {method} {0x00000000644a1520} &apos;checkBoundsOffCount&apos; &apos;(III)I&apos; in &apos;java/lang/String&apos;)}
+  0x000076226ffff155:   addq   $0x1,0xd8(%rax)
+  0x000076226ffff15d:   movabs $0x7622280ae930,%rax         ;   {metadata(method data for {method} {0x00000000641c3210} &apos;checkFromIndexSize&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x000076226ffff167:   mov    0x90(%rax),%esi
+  0x000076226ffff16d:   add    $0x2,%esi
+  0x000076226ffff170:   mov    %esi,0x90(%rax)
+  0x000076226ffff176:   and    $0x1ffffe,%esi
+  0x000076226ffff17c:   test   %esi,%esi
+  0x000076226ffff17e:   je     0x000076226ffff255
+  0x000076226ffff184:   mov    %rbx,%rax
+  0x000076226ffff187:   or     %r8,%rax
+  0x000076226ffff18a:   or     %rdi,%rax
+  0x000076226ffff18d:   test   %eax,%eax
+  0x000076226ffff18f:   movabs $0x7622280ae930,%rax         ;   {metadata(method data for {method} {0x00000000641c3210} &apos;checkFromIndexSize&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x000076226ffff199:   mov    $0xd8,%esi
+  0x000076226ffff19e:   jl     0x000076226ffff1a5
+  0x000076226ffff1a0:   mov    $0xe8,%esi
+  0x000076226ffff1a5:   mov    (%rax,%rsi,1),%rdx
+  0x000076226ffff1a9:   lea    0x1(%rdx),%rdx
+  0x000076226ffff1ad:   mov    %rdx,(%rax,%rsi,1)
+  0x000076226ffff1b1:   jl     0x000076226ffff1fa           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@5 (line 396)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+  0x000076226ffff1b7:   mov    %rbx,%rax
+  0x000076226ffff1ba:   sub    %r8d,%eax
+  0x000076226ffff1bd:   cmp    %eax,%edi
+  0x000076226ffff1bf:   movabs $0x7622280ae930,%rax         ;   {metadata(method data for {method} {0x00000000641c3210} &apos;checkFromIndexSize&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x000076226ffff1c9:   mov    $0x108,%esi
+  0x000076226ffff1ce:   jg     0x000076226ffff1d5
+  0x000076226ffff1d0:   mov    $0xf8,%esi
+  0x000076226ffff1d5:   mov    (%rax,%rsi,1),%rdx
+  0x000076226ffff1d9:   lea    0x1(%rdx),%rdx
+  0x000076226ffff1dd:   mov    %rdx,(%rax,%rsi,1)
+  0x000076226ffff1e1:   jg     0x000076226ffff1fa           ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@12 (line 396)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+  0x000076226ffff1e7:   mov    %r8,%rax
+  0x000076226ffff1ea:   add    $0x60,%rsp
+  0x000076226ffff1ee:   pop    %rbp
+  0x000076226ffff1ef:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000076226ffff1f3:   ja     0x000076226ffff276
+  0x000076226ffff1f9:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::checkBoundsOffCount@9 (line 5219)
+  0x000076226ffff1fa:   movabs $0x7622280ae930,%rsi         ;   {metadata(method data for {method} {0x00000000641c3210} &apos;checkFromIndexSize&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x000076226ffff204:   addq   $0x1,0x118(%rsi)
+  0x000076226ffff20c:   movabs $0x41f803c78,%rsi            ;   {oop(a &apos;jdk/internal/util/Preconditions$4&apos;{0x000000041f803c78})}
+  0x000076226ffff216:   mov    %r8,%rdx
+  0x000076226ffff219:   mov    %rdi,%rcx
+  0x000076226ffff21c:   mov    %rbx,%r8                     ;*invokestatic outOfBoundsCheckFromIndexSize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@19 (line 397)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+  0x000076226ffff21f:   call   0x00007622774adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic outOfBoundsCheckFromIndexSize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@19 (line 397)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+                                                            ;   {static_call}
+  0x000076226ffff224:   nopl   0x21c(%rax,%rax,1)           ;*invokestatic outOfBoundsCheckFromIndexSize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@19 (line 397)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+                                                            ;   {post_call_nop}
+  0x000076226ffff22c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x000076226ffff28c
+  0x000076226ffff22f:   jmp    0x000076226ffff2ae
+  0x000076226ffff234:   movabs $0x644a1520,%r10             ;   {metadata({method} {0x00000000644a1520} &apos;checkBoundsOffCount&apos; &apos;(III)I&apos; in &apos;java/lang/String&apos;)}
+  0x000076226ffff23e:   mov    %r10,0x8(%rsp)
+  0x000076226ffff243:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076226ffff24b:   call   0x0000762277582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::checkBoundsOffCount@-1 (line 5219)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076226ffff250:   jmp    0x000076226ffff14b
+  0x000076226ffff255:   movabs $0x641c3210,%r10             ;   {metadata({method} {0x00000000641c3210} &apos;checkFromIndexSize&apos; &apos;(IIILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;)}
+  0x000076226ffff25f:   mov    %r10,0x8(%rsp)
+  0x000076226ffff264:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076226ffff26c:   call   0x0000762277582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.Preconditions::checkFromIndexSize@-1 (line 396)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076226ffff271:   jmp    0x000076226ffff184
+  0x000076226ffff276:   movabs $0x76226ffff1ef,%r10         ;   {internal_word}
+  0x000076226ffff280:   mov    %r10,0x510(%r15)
+  0x000076226ffff287:   jmp    0x00007622774afb60           ;   {runtime_call SafepointBlob}
+  0x000076226ffff28c:   call   0x000076227757cae0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.Preconditions::checkFromIndexSize@22 (line 397)
+                                                            ; - java.lang.String::checkBoundsOffCount@6 (line 5219)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000076226ffff291:   mov    0x5c0(%r15),%rax
+  0x000076226ffff298:   movq   $0x0,0x5c0(%r15)
+  0x000076226ffff2a3:   movq   $0x0,0x5c8(%r15)
+  0x000076226ffff2ae:   add    $0x60,%rsp
+  0x000076226ffff2b2:   pop    %rbp
+  0x000076226ffff2b3:   jmp    0x000076227757bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x000076226ffff2b8:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000076226ffff2c2:   jmp    0x000076226ffff2c2           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000076226ffff2c7:   call   0x000076227757f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000076226ffff2cc:   movabs $0x76228e93aec4,%rdi         ;   {external_word}
+  0x000076226ffff2d6:   and    $0xfffffffffffffff0,%rsp
+  0x000076226ffff2da:   call   0x000076228e391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000076226ffff2df:   hlt    
+  0x000076226ffff2e0:   call   0x00007622774afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000076226ffff2e5:   jmp    0x000076226ffff2e0
+  0x000076226ffff2e7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

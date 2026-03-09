@@ -1,0 +1,519 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 653   53       3       java.net.URL::isBuiltinStreamHandler (32 bytes)
+ total in heap  [0x00007ad8b7fff008,0x00007ad8b7fff860] = 2136
+ main code      [0x00007ad8b7fff100,0x00007ad8b7fff818] = 1816
+ stub code      [0x00007ad8b7fff818,0x00007ad8b7fff858] = 64
+ oops           [0x00007ad8b7fff858,0x00007ad8b7fff860] = 8
+ mutable data [0x00007ad860045500,0x00007ad8600455f0] = 240
+ relocation     [0x00007ad860045500,0x00007ad8600455a0] = 160
+ metadata       [0x00007ad8600455a0,0x00007ad8600455f0] = 80
+ immutable data [0x00007ad860045120,0x00007ad8600454f4] = 980
+ dependencies   [0x00007ad860045120,0x00007ad860045138] = 24
+ nul chk table  [0x00007ad860045138,0x00007ad860045158] = 32
+ scopes pcs     [0x00007ad860045158,0x00007ad860045398] = 576
+ scopes data    [0x00007ad860045398,0x00007ad8600454f0] = 344
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007ad8b7fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007ad8b7fff10b:   data16 data16 xchg %ax,%ax
+  0x00007ad8b7fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;
+  # this:     rsi:rsi   = &apos;java/net/URL&apos;
+  # parm0:    rdx:rdx   = &apos;java/net/URLStreamHandler&apos;
+  #           [sp+0x90]  (sp of caller)
+  0x00007ad8b7fff112:   mov    0x8(%rsi),%r10d
+  0x00007ad8b7fff116:   cmp    0x8(%rax),%r10d
+  0x00007ad8b7fff11a:   jne    0x00007ad8bf4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007ad8b7fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007ad8b7fff127:   push   %rbp
+  0x00007ad8b7fff128:   sub    $0x80,%rsp
+  0x00007ad8b7fff12f:   nop
+  0x00007ad8b7fff130:   cmpl   $0x1,0x20(%r15)
+  0x00007ad8b7fff138:   je     0x00007ad8b7fff13f
+  0x00007ad8b7fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ad8b7fff13f:   movabs $0x7ad870319338,%rdi         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff149:   mov    0x90(%rdi),%ebx
+  0x00007ad8b7fff14f:   add    $0x2,%ebx
+  0x00007ad8b7fff152:   mov    %ebx,0x90(%rdi)
+  0x00007ad8b7fff158:   and    $0x7fe,%ebx
+  0x00007ad8b7fff15e:   test   %ebx,%ebx
+  0x00007ad8b7fff160:   je     0x00007ad8b7fff6c0           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@0 (line 1720)
+  0x00007ad8b7fff166:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x00007ad8b7fff6e1
+  0x00007ad8b7fff169:   mov    %rdx,%rdi
+  0x00007ad8b7fff16c:   movabs $0x7ad870319338,%rbx         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff176:   mov    0x8(%rdi),%edi
+  0x00007ad8b7fff179:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff17f:   add    %r10,%rdi
+  0x00007ad8b7fff182:   mov    $0x1c,%r10d
+  0x00007ad8b7fff188:   cmp    (%rbx,%r10,8),%rdi
+  0x00007ad8b7fff18c:   je     0x00007ad8b7fff1c5
+  0x00007ad8b7fff18e:   add    $0x2,%r10
+  0x00007ad8b7fff192:   cmp    $0x20,%r10
+  0x00007ad8b7fff196:   jne    0x00007ad8b7fff188
+  0x00007ad8b7fff198:   mov    $0x1c,%r10d
+  0x00007ad8b7fff19e:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007ad8b7fff1a3:   je     0x00007ad8b7fff1b1
+  0x00007ad8b7fff1a5:   add    $0x2,%r10
+  0x00007ad8b7fff1a9:   cmp    $0x20,%r10
+  0x00007ad8b7fff1ad:   jne    0x00007ad8b7fff19e
+  0x00007ad8b7fff1af:   jmp    0x00007ad8b7fff1bd
+  0x00007ad8b7fff1b1:   push   %rax
+  0x00007ad8b7fff1b2:   xor    %rax,%rax
+  0x00007ad8b7fff1b5:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007ad8b7fff1ba:   pop    %rax
+  0x00007ad8b7fff1bb:   jmp    0x00007ad8b7fff182
+  0x00007ad8b7fff1bd:   mov    $0x1b,%r10d
+  0x00007ad8b7fff1c3:   jmp    0x00007ad8b7fff1c9
+  0x00007ad8b7fff1c5:   add    $0x1,%r10
+  0x00007ad8b7fff1c9:   addq   $0x1,(%rbx,%r10,8)
+  0x00007ad8b7fff1ce:   mov    0x8(%rdx),%edi
+  0x00007ad8b7fff1d1:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff1d7:   add    %r10,%rdi
+  0x00007ad8b7fff1da:   mov    0x70(%rdi),%rdi
+  0x00007ad8b7fff1de:   mov    (%rdi),%rdi                  ;*invokevirtual getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@1 (line 1720)
+  0x00007ad8b7fff1e1:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x00007ad8b7fff6e6
+                                                            ;*invokevirtual getName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff1e4:   mov    %rdi,%rbx
+  0x00007ad8b7fff1e7:   movabs $0x7ad870319338,%rax         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff1f1:   mov    0x8(%rbx),%ebx
+  0x00007ad8b7fff1f4:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff1fa:   add    %r10,%rbx
+  0x00007ad8b7fff1fd:   mov    $0x22,%r10d
+  0x00007ad8b7fff203:   cmp    (%rax,%r10,8),%rbx
+  0x00007ad8b7fff207:   je     0x00007ad8b7fff246
+  0x00007ad8b7fff209:   add    $0x2,%r10
+  0x00007ad8b7fff20d:   cmp    $0x26,%r10
+  0x00007ad8b7fff211:   jne    0x00007ad8b7fff203
+  0x00007ad8b7fff213:   mov    $0x22,%r10d
+  0x00007ad8b7fff219:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007ad8b7fff21e:   je     0x00007ad8b7fff22c
+  0x00007ad8b7fff220:   add    $0x2,%r10
+  0x00007ad8b7fff224:   cmp    $0x26,%r10
+  0x00007ad8b7fff228:   jne    0x00007ad8b7fff219
+  0x00007ad8b7fff22a:   jmp    0x00007ad8b7fff23e
+  0x00007ad8b7fff22c:   push   %rcx
+  0x00007ad8b7fff22d:   mov    %rax,%rcx
+  0x00007ad8b7fff230:   xor    %rax,%rax
+  0x00007ad8b7fff233:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007ad8b7fff238:   mov    %rcx,%rax
+  0x00007ad8b7fff23b:   pop    %rcx
+  0x00007ad8b7fff23c:   jmp    0x00007ad8b7fff1fd
+  0x00007ad8b7fff23e:   mov    $0x21,%r10d
+  0x00007ad8b7fff244:   jmp    0x00007ad8b7fff24a
+  0x00007ad8b7fff246:   add    $0x1,%r10
+  0x00007ad8b7fff24a:   addq   $0x1,(%rax,%r10,8)
+  0x00007ad8b7fff24f:   movabs $0x7ad8703191b8,%rbx         ;   {metadata(method data for {method} {0x00000000731886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x00007ad8b7fff259:   mov    0x90(%rbx),%eax
+  0x00007ad8b7fff25f:   add    $0x2,%eax
+  0x00007ad8b7fff262:   mov    %eax,0x90(%rbx)
+  0x00007ad8b7fff268:   and    $0x1ffffe,%eax
+  0x00007ad8b7fff26d:   test   %eax,%eax
+  0x00007ad8b7fff26f:   je     0x00007ad8b7fff6eb
+  0x00007ad8b7fff275:   mov    0x34(%rdi),%ebx
+  0x00007ad8b7fff278:   shl    $0x3,%rbx                    ;*getfield name {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@1 (line 959)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff27c:   test   %rbx,%rbx
+  0x00007ad8b7fff27f:   movabs $0x7ad8703191b8,%rax         ;   {metadata(method data for {method} {0x00000000731886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x00007ad8b7fff289:   mov    $0xd8,%edx
+  0x00007ad8b7fff28e:   je     0x00007ad8b7fff295
+  0x00007ad8b7fff290:   mov    $0xe8,%edx
+  0x00007ad8b7fff295:   mov    (%rax,%rdx,1),%rcx
+  0x00007ad8b7fff299:   lea    0x1(%rcx),%rcx
+  0x00007ad8b7fff29d:   mov    %rcx,(%rax,%rdx,1)
+  0x00007ad8b7fff2a1:   je     0x00007ad8b7fff2c6           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@6 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff2a7:   movabs $0x7ad8703191b8,%rax         ;   {metadata(method data for {method} {0x00000000731886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x00007ad8b7fff2b1:   incl   0xf8(%rax)
+  0x00007ad8b7fff2b7:   mov    %rdi,0x68(%rsp)
+  0x00007ad8b7fff2bc:   mov    %rsi,0x60(%rsp)
+  0x00007ad8b7fff2c1:   jmp    0x00007ad8b7fff2ff           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@10 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff2c6:   mov    %rsi,0x60(%rsp)
+  0x00007ad8b7fff2cb:   mov    %rdi,%rbx
+  0x00007ad8b7fff2ce:   movabs $0x7ad8703191b8,%rax         ;   {metadata(method data for {method} {0x00000000731886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x00007ad8b7fff2d8:   addq   $0x1,0x110(%rax)
+  0x00007ad8b7fff2e0:   mov    %rdi,%rsi                    ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff2e3:   mov    %rdi,0x68(%rsp)
+  0x00007ad8b7fff2e8:   nopl   0x0(%rax)
+  0x00007ad8b7fff2ef:   call   0x00007ad8bf4ad9e0           ; ImmutableOopMap {[96]=Oop [104]=Oop }
+                                                            ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+                                                            ;   {optimized virtual_call}
+  0x00007ad8b7fff2f4:   nopl   0x2ec(%rax,%rax,1)           ;*invokevirtual initClassName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@14 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+                                                            ;   {post_call_nop}
+  0x00007ad8b7fff2fc:   mov    %rax,%rbx                    ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getName@17 (line 960)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+  0x00007ad8b7fff2ff:   mov    0x60(%rsp),%rsi
+  0x00007ad8b7fff304:   movabs $0x7ad870319338,%rdx         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff30e:   addq   $0x1,0x138(%rdx)
+  0x00007ad8b7fff316:   movabs $0x7ad870319580,%rdx         ;   {metadata(method data for {method} {0x00000000731be4a0} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff320:   mov    0x90(%rdx),%ecx
+  0x00007ad8b7fff326:   add    $0x2,%ecx
+  0x00007ad8b7fff329:   mov    %ecx,0x90(%rdx)
+  0x00007ad8b7fff32f:   and    $0x1ffffe,%ecx
+  0x00007ad8b7fff335:   test   %ecx,%ecx
+  0x00007ad8b7fff337:   je     0x00007ad8b7fff70c
+  0x00007ad8b7fff33d:   cmp    (%rbx),%rax                  ; implicit exception: dispatches to 0x00007ad8b7fff72d
+                                                            ;*invokevirtual startsWith {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+  0x00007ad8b7fff340:   mov    %rbx,%rdx
+  0x00007ad8b7fff343:   movabs $0x7ad870319580,%rcx         ;   {metadata(method data for {method} {0x00000000731be4a0} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff34d:   mov    0x8(%rdx),%edx
+  0x00007ad8b7fff350:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff356:   add    %r10,%rdx
+  0x00007ad8b7fff359:   mov    $0x1c,%r10d
+  0x00007ad8b7fff35f:   cmp    (%rcx,%r10,8),%rdx
+  0x00007ad8b7fff363:   je     0x00007ad8b7fff39c
+  0x00007ad8b7fff365:   add    $0x2,%r10
+  0x00007ad8b7fff369:   cmp    $0x20,%r10
+  0x00007ad8b7fff36d:   jne    0x00007ad8b7fff35f
+  0x00007ad8b7fff36f:   mov    $0x1c,%r10d
+  0x00007ad8b7fff375:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007ad8b7fff37a:   je     0x00007ad8b7fff388
+  0x00007ad8b7fff37c:   add    $0x2,%r10
+  0x00007ad8b7fff380:   cmp    $0x20,%r10
+  0x00007ad8b7fff384:   jne    0x00007ad8b7fff375
+  0x00007ad8b7fff386:   jmp    0x00007ad8b7fff394
+  0x00007ad8b7fff388:   push   %rax
+  0x00007ad8b7fff389:   xor    %rax,%rax
+  0x00007ad8b7fff38c:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007ad8b7fff391:   pop    %rax
+  0x00007ad8b7fff392:   jmp    0x00007ad8b7fff359
+  0x00007ad8b7fff394:   mov    $0x1b,%r10d
+  0x00007ad8b7fff39a:   jmp    0x00007ad8b7fff3a0
+  0x00007ad8b7fff39c:   add    $0x1,%r10
+  0x00007ad8b7fff3a0:   addq   $0x1,(%rcx,%r10,8)
+  0x00007ad8b7fff3a5:   movabs $0x7ad870319068,%rdx         ;   {metadata(method data for {method} {0x00000000734a0130} &apos;startsWith&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/lang/String&apos;)}
+  0x00007ad8b7fff3af:   mov    0x90(%rdx),%ecx
+  0x00007ad8b7fff3b5:   add    $0x2,%ecx
+  0x00007ad8b7fff3b8:   mov    %ecx,0x90(%rdx)
+  0x00007ad8b7fff3be:   and    $0x1ffffe,%ecx
+  0x00007ad8b7fff3c4:   test   %ecx,%ecx
+  0x00007ad8b7fff3c6:   je     0x00007ad8b7fff732
+  0x00007ad8b7fff3cc:   mov    %rbx,%rdx
+  0x00007ad8b7fff3cf:   movabs $0x7ad870319068,%rcx         ;   {metadata(method data for {method} {0x00000000734a0130} &apos;startsWith&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/lang/String&apos;)}
+  0x00007ad8b7fff3d9:   mov    0x8(%rdx),%edx
+  0x00007ad8b7fff3dc:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff3e2:   add    %r10,%rdx
+  0x00007ad8b7fff3e5:   mov    $0x1c,%r10d
+  0x00007ad8b7fff3eb:   cmp    (%rcx,%r10,8),%rdx
+  0x00007ad8b7fff3ef:   je     0x00007ad8b7fff428
+  0x00007ad8b7fff3f1:   add    $0x2,%r10
+  0x00007ad8b7fff3f5:   cmp    $0x20,%r10
+  0x00007ad8b7fff3f9:   jne    0x00007ad8b7fff3eb
+  0x00007ad8b7fff3fb:   mov    $0x1c,%r10d
+  0x00007ad8b7fff401:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007ad8b7fff406:   je     0x00007ad8b7fff414
+  0x00007ad8b7fff408:   add    $0x2,%r10
+  0x00007ad8b7fff40c:   cmp    $0x20,%r10
+  0x00007ad8b7fff410:   jne    0x00007ad8b7fff401
+  0x00007ad8b7fff412:   jmp    0x00007ad8b7fff420
+  0x00007ad8b7fff414:   push   %rax
+  0x00007ad8b7fff415:   xor    %rax,%rax
+  0x00007ad8b7fff418:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007ad8b7fff41d:   pop    %rax
+  0x00007ad8b7fff41e:   jmp    0x00007ad8b7fff3e5
+  0x00007ad8b7fff420:   mov    $0x1b,%r10d
+  0x00007ad8b7fff426:   jmp    0x00007ad8b7fff42c
+  0x00007ad8b7fff428:   add    $0x1,%r10
+  0x00007ad8b7fff42c:   addq   $0x1,(%rcx,%r10,8)
+  0x00007ad8b7fff431:   movabs $0x7ff842c38,%rdx            ;   {oop(&quot;sun.net.www.protocol&quot;{0x00000007ff842c38})}
+  0x00007ad8b7fff43b:   mov    $0x0,%ecx
+  0x00007ad8b7fff440:   mov    %rbx,%rsi                    ;*invokevirtual startsWith {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::startsWith@3 (line 2684)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+  0x00007ad8b7fff443:   nopl   0x0(%rax)
+  0x00007ad8b7fff447:   call   0x00007ad8bf4ad9e0           ; ImmutableOopMap {[104]=Oop }
+                                                            ;*invokevirtual startsWith {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::startsWith@3 (line 2684)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+                                                            ;   {optimized virtual_call}
+  0x00007ad8b7fff44c:   nopl   0x1000444(%rax,%rax,1)       ;*invokevirtual startsWith {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::startsWith@3 (line 2684)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+                                                            ;   {post_call_nop}
+  0x00007ad8b7fff454:   and    $0x1,%eax
+  0x00007ad8b7fff457:   and    $0x1,%eax
+  0x00007ad8b7fff45a:   test   %eax,%eax
+  0x00007ad8b7fff45c:   movabs $0x7ad870319338,%rax         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff466:   mov    $0x168,%esi
+  0x00007ad8b7fff46b:   jne    0x00007ad8b7fff472
+  0x00007ad8b7fff46d:   mov    $0x178,%esi
+  0x00007ad8b7fff472:   mov    (%rax,%rsi,1),%rdi
+  0x00007ad8b7fff476:   lea    0x1(%rdi),%rdi
+  0x00007ad8b7fff47a:   mov    %rdi,(%rax,%rsi,1)
+  0x00007ad8b7fff47e:   jne    0x00007ad8b7fff68b           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@13 (line 1721)
+  0x00007ad8b7fff484:   mov    0x68(%rsp),%rdi
+  0x00007ad8b7fff489:   mov    %rdi,%rax
+  0x00007ad8b7fff48c:   movabs $0x7ad870319338,%rsi         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff496:   mov    0x8(%rax),%eax
+  0x00007ad8b7fff499:   mov    $0x73000000,%r10d
+  0x00007ad8b7fff49f:   add    %r10,%rax
+  0x00007ad8b7fff4a2:   mov    $0x32,%r10d
+  0x00007ad8b7fff4a8:   cmp    (%rsi,%r10,8),%rax
+  0x00007ad8b7fff4ac:   je     0x00007ad8b7fff4eb
+  0x00007ad8b7fff4ae:   add    $0x2,%r10
+  0x00007ad8b7fff4b2:   cmp    $0x36,%r10
+  0x00007ad8b7fff4b6:   jne    0x00007ad8b7fff4a8
+  0x00007ad8b7fff4b8:   mov    $0x32,%r10d
+  0x00007ad8b7fff4be:   cmpq   $0x0,(%rsi,%r10,8)
+  0x00007ad8b7fff4c3:   je     0x00007ad8b7fff4d1
+  0x00007ad8b7fff4c5:   add    $0x2,%r10
+  0x00007ad8b7fff4c9:   cmp    $0x36,%r10
+  0x00007ad8b7fff4cd:   jne    0x00007ad8b7fff4be
+  0x00007ad8b7fff4cf:   jmp    0x00007ad8b7fff4e3
+  0x00007ad8b7fff4d1:   push   %rbx
+  0x00007ad8b7fff4d2:   mov    %rax,%rbx
+  0x00007ad8b7fff4d5:   xor    %rax,%rax
+  0x00007ad8b7fff4d8:   cmpxchg %rbx,(%rsi,%r10,8)
+  0x00007ad8b7fff4dd:   mov    %rbx,%rax
+  0x00007ad8b7fff4e0:   pop    %rbx
+  0x00007ad8b7fff4e1:   jmp    0x00007ad8b7fff4a2
+  0x00007ad8b7fff4e3:   mov    $0x31,%r10d
+  0x00007ad8b7fff4e9:   jmp    0x00007ad8b7fff4ef
+  0x00007ad8b7fff4eb:   add    $0x1,%r10
+  0x00007ad8b7fff4ef:   addq   $0x1,(%rsi,%r10,8)
+  0x00007ad8b7fff4f4:   mov    0x3c(%rdi),%eax
+  0x00007ad8b7fff4f7:   shl    $0x3,%rax                    ;*getfield classLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getClassLoader@1 (line 982)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@17 (line 1722)
+  0x00007ad8b7fff4fb:   movabs $0x7ad870319338,%rsi         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff505:   addq   $0x1,0x1b8(%rsi)
+  0x00007ad8b7fff50d:   movabs $0x7ad8703196d0,%rsi         ;   {metadata(method data for {method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff517:   mov    0x90(%rsi),%edi
+  0x00007ad8b7fff51d:   add    $0x2,%edi
+  0x00007ad8b7fff520:   mov    %edi,0x90(%rsi)
+  0x00007ad8b7fff526:   and    $0x1ffffe,%edi
+  0x00007ad8b7fff52c:   test   %edi,%edi
+  0x00007ad8b7fff52e:   je     0x00007ad8b7fff753
+  0x00007ad8b7fff534:   test   %rax,%rax
+  0x00007ad8b7fff537:   movabs $0x7ad8703196d0,%rsi         ;   {metadata(method data for {method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff541:   mov    $0xd8,%edi
+  0x00007ad8b7fff546:   je     0x00007ad8b7fff54d
+  0x00007ad8b7fff548:   mov    $0xe8,%edi
+  0x00007ad8b7fff54d:   mov    (%rsi,%rdi,1),%rbx
+  0x00007ad8b7fff551:   lea    0x1(%rbx),%rbx
+  0x00007ad8b7fff555:   mov    %rbx,(%rsi,%rdi,1)
+  0x00007ad8b7fff559:   je     0x00007ad8b7fff63f           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@1 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+  0x00007ad8b7fff55f:   movabs $0x7ad8703196d0,%rsi         ;   {metadata(method data for {method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff569:   addq   $0x1,0xf8(%rsi)
+  0x00007ad8b7fff571:   movabs $0x7ad870319850,%rsi         ;   {metadata(method data for {method} {0x0000000073496358} &apos;getPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff57b:   mov    0x90(%rsi),%edi
+  0x00007ad8b7fff581:   add    $0x2,%edi
+  0x00007ad8b7fff584:   mov    %edi,0x90(%rsi)
+  0x00007ad8b7fff58a:   and    $0x1ffffe,%edi
+  0x00007ad8b7fff590:   test   %edi,%edi
+  0x00007ad8b7fff592:   je     0x00007ad8b7fff774
+  0x00007ad8b7fff598:   movabs $0x7ad870319850,%rsi         ;   {metadata(method data for {method} {0x0000000073496358} &apos;getPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff5a2:   addq   $0x1,0xd8(%rsi)
+  0x00007ad8b7fff5aa:   movabs $0x7ad870319970,%rsi         ;   {metadata(method data for {method} {0x0000000073495bb8} &apos;getBuiltinPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff5b4:   mov    0x90(%rsi),%edi
+  0x00007ad8b7fff5ba:   add    $0x2,%edi
+  0x00007ad8b7fff5bd:   mov    %edi,0x90(%rsi)
+  0x00007ad8b7fff5c3:   and    $0x1ffffe,%edi
+  0x00007ad8b7fff5c9:   test   %edi,%edi
+  0x00007ad8b7fff5cb:   je     0x00007ad8b7fff795
+  0x00007ad8b7fff5d1:   movabs $0x7ad870319970,%rsi         ;   {metadata(method data for {method} {0x0000000073495bb8} &apos;getBuiltinPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff5db:   addq   $0x1,0xd8(%rsi)
+  0x00007ad8b7fff5e3:   movabs $0x7ad870319a90,%rsi         ;   {metadata(method data for {method} {0x00000000732195a8} &apos;platformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;jdk/internal/loader/ClassLoaders&apos;)}
+  0x00007ad8b7fff5ed:   mov    0x90(%rsi),%edi
+  0x00007ad8b7fff5f3:   add    $0x2,%edi
+  0x00007ad8b7fff5f6:   mov    %edi,0x90(%rsi)
+  0x00007ad8b7fff5fc:   and    $0x1ffffe,%edi
+  0x00007ad8b7fff602:   test   %edi,%edi
+  0x00007ad8b7fff604:   je     0x00007ad8b7fff7b6
+  0x00007ad8b7fff60a:   movabs $0x7ff81f558,%r10            ;   {oop(a &apos;jdk/internal/loader/ClassLoaders$PlatformClassLoader&apos;{0x00000007ff81f558})}
+  0x00007ad8b7fff614:   cmp    %r10,%rax
+  0x00007ad8b7fff617:   movabs $0x7ad8703196d0,%rax         ;   {metadata(method data for {method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff621:   mov    $0x108,%esi
+  0x00007ad8b7fff626:   jne    0x00007ad8b7fff62d
+  0x00007ad8b7fff628:   mov    $0x118,%esi
+  0x00007ad8b7fff62d:   mov    (%rax,%rsi,1),%rdi
+  0x00007ad8b7fff631:   lea    0x1(%rdi),%rdi
+  0x00007ad8b7fff635:   mov    %rdi,(%rax,%rsi,1)
+  0x00007ad8b7fff639:   jne    0x00007ad8b7fff659           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@8 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+  0x00007ad8b7fff63f:   movabs $0x7ad8703196d0,%rax         ;   {metadata(method data for {method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff649:   incl   0x128(%rax)
+  0x00007ad8b7fff64f:   mov    $0x1,%eax
+  0x00007ad8b7fff654:   jmp    0x00007ad8b7fff65e           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@12 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+  0x00007ad8b7fff659:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@16 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+  0x00007ad8b7fff65e:   and    $0x1,%eax
+  0x00007ad8b7fff661:   test   %eax,%eax
+  0x00007ad8b7fff663:   movabs $0x7ad870319338,%rax         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff66d:   mov    $0x1c8,%esi
+  0x00007ad8b7fff672:   je     0x00007ad8b7fff679
+  0x00007ad8b7fff674:   mov    $0x1d8,%esi
+  0x00007ad8b7fff679:   mov    (%rax,%rsi,1),%rdi
+  0x00007ad8b7fff67d:   lea    0x1(%rdi),%rdi
+  0x00007ad8b7fff681:   mov    %rdi,(%rax,%rsi,1)
+  0x00007ad8b7fff685:   je     0x00007ad8b7fff6a5           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@23 (line 1722)
+  0x00007ad8b7fff68b:   movabs $0x7ad870319338,%rax         ;   {metadata(method data for {method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff695:   incl   0x1e8(%rax)
+  0x00007ad8b7fff69b:   mov    $0x1,%eax
+  0x00007ad8b7fff6a0:   jmp    0x00007ad8b7fff6aa           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@27 (line 1722)
+  0x00007ad8b7fff6a5:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@31 (line 1721)
+  0x00007ad8b7fff6aa:   and    $0x1,%eax
+  0x00007ad8b7fff6ad:   add    $0x80,%rsp
+  0x00007ad8b7fff6b4:   pop    %rbp
+  0x00007ad8b7fff6b5:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ad8b7fff6b9:   ja     0x00007ad8b7fff7d7
+  0x00007ad8b7fff6bf:   ret    
+  0x00007ad8b7fff6c0:   movabs $0x731be448,%r10             ;   {metadata({method} {0x00000000731be448} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/net/URLStreamHandler;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff6ca:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff6cf:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff6d7:   call   0x00007ad8bf583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.net.URL::isBuiltinStreamHandler@-1 (line 1720)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff6dc:   jmp    0x00007ad8b7fff166
+  0x00007ad8b7fff6e1:   call   0x00007ad8bf57cae0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*invokevirtual getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@1 (line 1720)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ad8b7fff6e6:   call   0x00007ad8bf57cae0           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*invokevirtual getName {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ad8b7fff6eb:   movabs $0x731886e8,%r10             ;   {metadata({method} {0x00000000731886e8} &apos;getName&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/Class&apos;)}
+  0x00007ad8b7fff6f5:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff6fa:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff702:   call   0x00007ad8bf583460           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Class::getName@-1 (line 959)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@7 (line 1721)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff707:   jmp    0x00007ad8b7fff275
+  0x00007ad8b7fff70c:   movabs $0x731be4a0,%r10             ;   {metadata({method} {0x00000000731be4a0} &apos;isBuiltinStreamHandler&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/net/URL&apos;)}
+  0x00007ad8b7fff716:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff71b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff723:   call   0x00007ad8bf583460           ; ImmutableOopMap {rbx=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.net.URL::isBuiltinStreamHandler@-1 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff728:   jmp    0x00007ad8b7fff33d
+  0x00007ad8b7fff72d:   call   0x00007ad8bf57cae0           ; ImmutableOopMap {rbx=Oop [104]=Oop }
+                                                            ;*invokevirtual startsWith {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ad8b7fff732:   movabs $0x734a0130,%r10             ;   {metadata({method} {0x00000000734a0130} &apos;startsWith&apos; &apos;(Ljava/lang/String;)Z&apos; in &apos;java/lang/String&apos;)}
+  0x00007ad8b7fff73c:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff741:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff749:   call   0x00007ad8bf583460           ; ImmutableOopMap {rbx=Oop [104]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.String::startsWith@-1 (line 2684)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@4 (line 1726)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@10 (line 1721)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff74e:   jmp    0x00007ad8b7fff3cc
+  0x00007ad8b7fff753:   movabs $0x7349bfd8,%r10             ;   {metadata({method} {0x000000007349bfd8} &apos;isSystemDomainLoader&apos; &apos;(Ljava/lang/ClassLoader;)Z&apos; in &apos;jdk/internal/misc/VM&apos;)}
+  0x00007ad8b7fff75d:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff762:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff76a:   call   0x00007ad8bf583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@-1 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff76f:   jmp    0x00007ad8b7fff534
+  0x00007ad8b7fff774:   movabs $0x73496358,%r10             ;   {metadata({method} {0x0000000073496358} &apos;getPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff77e:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff783:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff78b:   call   0x00007ad8bf583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ClassLoader::getPlatformClassLoader@-1 (line 1802)
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@5 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff790:   jmp    0x00007ad8b7fff598
+  0x00007ad8b7fff795:   movabs $0x73495bb8,%r10             ;   {metadata({method} {0x0000000073495bb8} &apos;getBuiltinPlatformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ad8b7fff79f:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff7a4:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff7ac:   call   0x00007ad8bf583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ClassLoader::getBuiltinPlatformClassLoader@-1 (line 1891)
+                                                            ; - java.lang.ClassLoader::getPlatformClassLoader@0 (line 1802)
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@5 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff7b1:   jmp    0x00007ad8b7fff5d1
+  0x00007ad8b7fff7b6:   movabs $0x732195a8,%r10             ;   {metadata({method} {0x00000000732195a8} &apos;platformClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;jdk/internal/loader/ClassLoaders&apos;)}
+  0x00007ad8b7fff7c0:   mov    %r10,0x8(%rsp)
+  0x00007ad8b7fff7c5:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ad8b7fff7cd:   call   0x00007ad8bf583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.loader.ClassLoaders::platformClassLoader@-1 (line 117)
+                                                            ; - java.lang.ClassLoader::getBuiltinPlatformClassLoader@0 (line 1891)
+                                                            ; - java.lang.ClassLoader::getPlatformClassLoader@0 (line 1802)
+                                                            ; - jdk.internal.misc.VM::isSystemDomainLoader@5 (line 198)
+                                                            ; - java.net.URL::isBuiltinStreamHandler@20 (line 1722)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ad8b7fff7d2:   jmp    0x00007ad8b7fff60a
+  0x00007ad8b7fff7d7:   movabs $0x7ad8b7fff6b5,%r10         ;   {internal_word}
+  0x00007ad8b7fff7e1:   mov    %r10,0x510(%r15)
+  0x00007ad8b7fff7e8:   jmp    0x00007ad8bf4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ad8b7fff7ed:   mov    0x5c0(%r15),%rax
+  0x00007ad8b7fff7f4:   movq   $0x0,0x5c0(%r15)
+  0x00007ad8b7fff7ff:   movq   $0x0,0x5c8(%r15)
+  0x00007ad8b7fff80a:   add    $0x80,%rsp
+  0x00007ad8b7fff811:   pop    %rbp
+  0x00007ad8b7fff812:   jmp    0x00007ad8bf57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ad8b7fff817:   hlt    
+[Stub Code]
+  0x00007ad8b7fff818:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ad8b7fff822:   jmp    0x00007ad8b7fff822           ;   {runtime_call nmethod}
+  0x00007ad8b7fff827:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ad8b7fff831:   jmp    0x00007ad8b7fff831           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ad8b7fff836:   call   0x00007ad8bf57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ad8b7fff83b:   movabs $0x7ad8d773aec4,%rdi         ;   {external_word}
+  0x00007ad8b7fff845:   and    $0xfffffffffffffff0,%rsp
+  0x00007ad8b7fff849:   call   0x00007ad8d7191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ad8b7fff84e:   hlt    
+  0x00007ad8b7fff84f:   call   0x00007ad8bf4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ad8b7fff854:   jmp    0x00007ad8b7fff84f
+  0x00007ad8b7fff856:   hlt    
+  0x00007ad8b7fff857:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

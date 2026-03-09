@@ -1,0 +1,575 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 278   13   !   3       java.util.WeakHashMap::expungeStaleEntries (139 bytes)
+ total in heap  [0x00007cb663fff008,0x00007cb663fff910] = 2312
+ main code      [0x00007cb663fff100,0x00007cb663fff8d8] = 2008
+ stub code      [0x00007cb663fff8d8,0x00007cb663fff910] = 56
+ mutable data [0x00007cb608015420,0x00007cb6080154d0] = 176
+ relocation     [0x00007cb608015420,0x00007cb6080154a8] = 136
+ metadata       [0x00007cb6080154a8,0x00007cb6080154d0] = 40
+ immutable data [0x00007cb608014d90,0x00007cb608015414] = 1668
+ dependencies   [0x00007cb608014d90,0x00007cb608014da0] = 16
+ nul chk table  [0x00007cb608014da0,0x00007cb608014de8] = 72
+ handler table  [0x00007cb608014de8,0x00007cb608014ec0] = 216
+ scopes pcs     [0x00007cb608014ec0,0x00007cb608015210] = 848
+ scopes data    [0x00007cb608015210,0x00007cb608015410] = 512
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007cb663fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007cb663fff10b:   data16 data16 xchg %ax,%ax
+  0x00007cb663fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;
+  #           [sp+0x70]  (sp of caller)
+  0x00007cb663fff112:   mov    0x8(%rsi),%r10d
+  0x00007cb663fff116:   cmp    0x8(%rax),%r10d
+  0x00007cb663fff11a:   jne    0x00007cb66b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007cb663fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007cb663fff127:   push   %rbp
+  0x00007cb663fff128:   sub    $0x60,%rsp
+  0x00007cb663fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007cb663fff134:   je     0x00007cb663fff13b
+  0x00007cb663fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007cb663fff13b:   mov    %rsi,0x40(%rsp)
+  0x00007cb663fff140:   movabs $0x7cb620054eb0,%rdi         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff14a:   mov    0x90(%rdi),%ebx
+  0x00007cb663fff150:   add    $0x2,%ebx
+  0x00007cb663fff153:   mov    %ebx,0x90(%rdi)
+  0x00007cb663fff159:   and    $0x7fe,%ebx
+  0x00007cb663fff15f:   test   %ebx,%ebx
+  0x00007cb663fff161:   je     0x00007cb663fff73a           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@0 (line 330)
+  0x00007cb663fff167:   nop
+  0x00007cb663fff168:   mov    0x18(%rsi),%edi
+  0x00007cb663fff16b:   shl    $0x3,%rdi                    ;*getfield queue {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@1 (line 330)
+  0x00007cb663fff16f:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x00007cb663fff75b
+  0x00007cb663fff172:   mov    %rdi,%rbx
+  0x00007cb663fff175:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff17f:   mov    0x8(%rbx),%ebx
+  0x00007cb663fff182:   mov    $0x11000000,%r10d
+  0x00007cb663fff188:   add    %r10,%rbx
+  0x00007cb663fff18b:   mov    $0x1c,%r10d
+  0x00007cb663fff191:   cmp    (%rax,%r10,8),%rbx
+  0x00007cb663fff195:   je     0x00007cb663fff1d4
+  0x00007cb663fff197:   add    $0x2,%r10
+  0x00007cb663fff19b:   cmp    $0x20,%r10
+  0x00007cb663fff19f:   jne    0x00007cb663fff191
+  0x00007cb663fff1a1:   mov    $0x1c,%r10d
+  0x00007cb663fff1a7:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007cb663fff1ac:   je     0x00007cb663fff1ba
+  0x00007cb663fff1ae:   add    $0x2,%r10
+  0x00007cb663fff1b2:   cmp    $0x20,%r10
+  0x00007cb663fff1b6:   jne    0x00007cb663fff1a7
+  0x00007cb663fff1b8:   jmp    0x00007cb663fff1cc
+  0x00007cb663fff1ba:   push   %rcx
+  0x00007cb663fff1bb:   mov    %rax,%rcx
+  0x00007cb663fff1be:   xor    %rax,%rax
+  0x00007cb663fff1c1:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007cb663fff1c6:   mov    %rcx,%rax
+  0x00007cb663fff1c9:   pop    %rcx
+  0x00007cb663fff1ca:   jmp    0x00007cb663fff18b
+  0x00007cb663fff1cc:   mov    $0x1b,%r10d
+  0x00007cb663fff1d2:   jmp    0x00007cb663fff1d8
+  0x00007cb663fff1d4:   add    $0x1,%r10
+  0x00007cb663fff1d8:   addq   $0x1,(%rax,%r10,8)
+  0x00007cb663fff1dd:   mov    %rdi,%rsi                    ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@4 (line 330)
+  0x00007cb663fff1e0:   nopl   0x0(%rax)
+  0x00007cb663fff1e7:   call   0x00007cb66b4ad9e0           ; ImmutableOopMap {[64]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@4 (line 330)
+                                                            ;   {optimized virtual_call}
+  0x00007cb663fff1ec:   nopl   0x1e4(%rax,%rax,1)           ;   {post_call_nop}
+  0x00007cb663fff1f4:   mov    %rax,%rsi                    ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@4 (line 330)
+  0x00007cb663fff1f7:   test   %rsi,%rsi
+  0x00007cb663fff1fa:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff204:   mov    $0x108,%edi
+  0x00007cb663fff209:   je     0x00007cb663fff210
+  0x00007cb663fff20b:   mov    $0x118,%edi
+  0x00007cb663fff210:   mov    (%rax,%rdi,1),%rbx
+  0x00007cb663fff214:   lea    0x1(%rbx),%rbx
+  0x00007cb663fff218:   mov    %rbx,(%rax,%rdi,1)
+  0x00007cb663fff21c:   je     0x00007cb663fff6ac           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@9 (line 330)
+  0x00007cb663fff222:   mov    0x40(%rsp),%rdi
+  0x00007cb663fff227:   mov    0x18(%rdi),%ebx
+  0x00007cb663fff22a:   shl    $0x3,%rbx                    ;*getfield queue {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@13 (line 331)
+  0x00007cb663fff22e:   lea    0x48(%rsp),%rdx
+  0x00007cb663fff233:   mov    %rbx,0x8(%rdx)
+  0x00007cb663fff237:   mov    (%rbx),%rax                  ; implicit exception: dispatches to 0x00007cb663fff760
+  0x00007cb663fff23a:   mov    0x7c0(%r15),%ecx
+  0x00007cb663fff241:   cmp    $0x810,%ecx
+  0x00007cb663fff247:   jge    0x00007cb663fff765
+  0x00007cb663fff24d:   cmp    -0x8(%r15,%rcx,1),%rbx
+  0x00007cb663fff252:   je     0x00007cb663fff27d
+  0x00007cb663fff258:   test   $0x2,%al
+  0x00007cb663fff25a:   jne    0x00007cb663fff765
+  0x00007cb663fff260:   mov    %rax,%rcx
+  0x00007cb663fff263:   and    $0xfffffffffffffffe,%rcx
+  0x00007cb663fff267:   or     $0x1,%rax
+  0x00007cb663fff26b:   lock cmpxchg %rcx,(%rbx)
+  0x00007cb663fff270:   jne    0x00007cb663fff765
+  0x00007cb663fff276:   mov    0x7c0(%r15),%ecx
+  0x00007cb663fff27d:   mov    %rbx,(%r15,%rcx,1)
+  0x00007cb663fff281:   add    $0x8,%ecx
+  0x00007cb663fff284:   mov    %ecx,0x7c0(%r15)             ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@18 (line 331)
+  0x00007cb663fff28b:   test   %rsi,%rsi
+  0x00007cb663fff28e:   movabs $0x7cb620054eb0,%rdx         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff298:   jne    0x00007cb663fff2a6
+  0x00007cb663fff29a:   orb    $0x1,0x121(%rdx)
+  0x00007cb663fff2a1:   jmp    0x00007cb663fff322
+  0x00007cb663fff2a6:   mov    0x8(%rsi),%ecx
+  0x00007cb663fff2a9:   mov    $0x11000000,%r10d
+  0x00007cb663fff2af:   add    %r10,%rcx
+  0x00007cb663fff2b2:   mov    $0x26,%r10d
+  0x00007cb663fff2b8:   cmp    (%rdx,%r10,8),%rcx
+  0x00007cb663fff2bc:   je     0x00007cb663fff2f5
+  0x00007cb663fff2be:   add    $0x2,%r10
+  0x00007cb663fff2c2:   cmp    $0x2a,%r10
+  0x00007cb663fff2c6:   jne    0x00007cb663fff2b8
+  0x00007cb663fff2c8:   mov    $0x26,%r10d
+  0x00007cb663fff2ce:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007cb663fff2d3:   je     0x00007cb663fff2e1
+  0x00007cb663fff2d5:   add    $0x2,%r10
+  0x00007cb663fff2d9:   cmp    $0x2a,%r10
+  0x00007cb663fff2dd:   jne    0x00007cb663fff2ce
+  0x00007cb663fff2df:   jmp    0x00007cb663fff2ed
+  0x00007cb663fff2e1:   push   %rax
+  0x00007cb663fff2e2:   xor    %rax,%rax
+  0x00007cb663fff2e5:   cmpxchg %rcx,(%rdx,%r10,8)
+  0x00007cb663fff2ea:   pop    %rax
+  0x00007cb663fff2eb:   jmp    0x00007cb663fff2b2
+  0x00007cb663fff2ed:   mov    $0x25,%r10d
+  0x00007cb663fff2f3:   jmp    0x00007cb663fff2f9
+  0x00007cb663fff2f5:   add    $0x1,%r10
+  0x00007cb663fff2f9:   addq   $0x1,(%rdx,%r10,8)
+  0x00007cb663fff2fe:   movabs $0x113106d0,%rcx             ;   {metadata(&apos;java/util/WeakHashMap$Entry&apos;)}
+  0x00007cb663fff308:   mov    0x8(%rsi),%eax
+  0x00007cb663fff30b:   mov    $0x11000000,%r10d
+  0x00007cb663fff311:   add    %r10,%rax
+  0x00007cb663fff314:   cmp    %rax,%rcx
+  0x00007cb663fff317:   jne    0x00007cb663fff778
+  0x00007cb663fff31d:   jmp    0x00007cb663fff322
+  0x00007cb663fff322:   mov    %rsi,%rax                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@20 (line 333)
+  0x00007cb663fff325:   mov    0x24(%rax),%esi              ; implicit exception: dispatches to 0x00007cb663fff781
+                                                            ;*getfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@25 (line 334)
+  0x00007cb663fff328:   mov    0x14(%rdi),%edx
+  0x00007cb663fff32b:   shl    $0x3,%rdx                    ;*getfield table {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@29 (line 334)
+  0x00007cb663fff32f:   mov    0xc(%rdx),%ecx               ; implicit exception: dispatches to 0x00007cb663fff786
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@32 (line 334)
+  0x00007cb663fff332:   movabs $0x7cb620054eb0,%r8          ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff33c:   addq   $0x1,0x158(%r8)
+  0x00007cb663fff344:   movabs $0x7cb620055178,%r8          ;   {metadata(method data for {method} {0x000000001146b340} &apos;indexFor&apos; &apos;(II)I&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff34e:   mov    0x90(%r8),%r9d
+  0x00007cb663fff355:   add    $0x2,%r9d
+  0x00007cb663fff359:   mov    %r9d,0x90(%r8)
+  0x00007cb663fff360:   and    $0x1ffffe,%r9d
+  0x00007cb663fff367:   test   %r9d,%r9d
+  0x00007cb663fff36a:   je     0x00007cb663fff78b
+  0x00007cb663fff370:   dec    %ecx
+  0x00007cb663fff372:   and    %rcx,%rsi
+  0x00007cb663fff375:   cmp    0xc(%rdx),%esi
+  0x00007cb663fff378:   jae    0x00007cb663fff7ac
+  0x00007cb663fff37e:   movslq %esi,%rcx
+  0x00007cb663fff381:   mov    0x10(%rdx,%rcx,4),%ecx
+  0x00007cb663fff385:   shl    $0x3,%rcx                    ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@44 (line 336)
+  0x00007cb663fff389:   mov    %rcx,%r8
+  0x00007cb663fff38c:   jmp    0x00007cb663fff416           ;*aload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@51 (line 338)
+  0x00007cb663fff391:   nopl   0x0(%rax)
+  0x00007cb663fff398:   mov    0x20(%r8),%r9d               ; implicit exception: dispatches to 0x00007cb663fff7ba
+  0x00007cb663fff39c:   shl    $0x3,%r9                     ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@58 (line 339)
+  0x00007cb663fff3a0:   cmp    %rax,%r8
+  0x00007cb663fff3a3:   movabs $0x7cb620054eb0,%r11         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff3ad:   mov    $0x198,%r13d
+  0x00007cb663fff3b3:   je     0x00007cb663fff3bb
+  0x00007cb663fff3b5:   mov    $0x188,%r13d
+  0x00007cb663fff3bb:   mov    (%r11,%r13,1),%r14
+  0x00007cb663fff3bf:   lea    0x1(%r14),%r14
+  0x00007cb663fff3c3:   mov    %r14,(%r11,%r13,1)
+  0x00007cb663fff3c7:   je     0x00007cb663fff448           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@66 (line 340)
+  0x00007cb663fff3cd:   movabs $0x7cb620054eb0,%rcx         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff3d7:   mov    0x94(%rcx),%r11d
+  0x00007cb663fff3de:   add    $0x2,%r11d
+  0x00007cb663fff3e2:   mov    %r11d,0x94(%rcx)
+  0x00007cb663fff3e9:   and    $0x3ffe,%r11d
+  0x00007cb663fff3f0:   test   %r11d,%r11d
+  0x00007cb663fff3f3:   je     0x00007cb663fff7bf           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@120 (line 353)
+  0x00007cb663fff3f9:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop r8=Oop r9=Oop [64]=Oop [80]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@120 (line 353)
+  0x00007cb663fff3fd:   test   %eax,(%r10)                  ;   {poll}
+  0x00007cb663fff400:   movabs $0x7cb620054eb0,%rcx         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff40a:   incl   0x228(%rcx)
+  0x00007cb663fff410:   mov    %r8,%rcx
+  0x00007cb663fff413:   mov    %r9,%r8                      ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@120 (line 353)
+  0x00007cb663fff416:   test   %r8,%r8
+  0x00007cb663fff419:   movabs $0x7cb620054eb0,%r9          ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff423:   mov    $0x168,%r11d
+  0x00007cb663fff429:   je     0x00007cb663fff431
+  0x00007cb663fff42b:   mov    $0x178,%r11d
+  0x00007cb663fff431:   mov    (%r9,%r11,1),%r13
+  0x00007cb663fff435:   lea    0x1(%r13),%r13
+  0x00007cb663fff439:   mov    %r13,(%r9,%r11,1)
+  0x00007cb663fff43d:   je     0x00007cb663fff5fe
+  0x00007cb663fff443:   jmp    0x00007cb663fff398           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@53 (line 338)
+  0x00007cb663fff448:   cmp    %rax,%rcx
+  0x00007cb663fff44b:   movabs $0x7cb620054eb0,%r8          ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff455:   mov    $0x1a8,%r11d
+  0x00007cb663fff45b:   jne    0x00007cb663fff463
+  0x00007cb663fff45d:   mov    $0x1b8,%r11d
+  0x00007cb663fff463:   mov    (%r8,%r11,1),%r13
+  0x00007cb663fff467:   lea    0x1(%r13),%r13
+  0x00007cb663fff46b:   mov    %r13,(%r8,%r11,1)
+  0x00007cb663fff46f:   jne    0x00007cb663fff596           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@72 (line 341)
+  0x00007cb663fff475:   test   %r9,%r9
+  0x00007cb663fff478:   movabs $0x7cb620054eb0,%r8          ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff482:   jne    0x00007cb663fff491
+  0x00007cb663fff484:   orb    $0x1,0x1c1(%r8)
+  0x00007cb663fff48c:   jmp    0x00007cb663fff53e
+  0x00007cb663fff491:   mov    0x8(%r9),%ecx
+  0x00007cb663fff495:   mov    $0x11000000,%r10d
+  0x00007cb663fff49b:   add    %r10,%rcx
+  0x00007cb663fff49e:   mov    $0x3a,%r10d
+  0x00007cb663fff4a4:   cmp    (%r8,%r10,8),%rcx
+  0x00007cb663fff4a8:   je     0x00007cb663fff4e1
+  0x00007cb663fff4aa:   add    $0x2,%r10
+  0x00007cb663fff4ae:   cmp    $0x3e,%r10
+  0x00007cb663fff4b2:   jne    0x00007cb663fff4a4
+  0x00007cb663fff4b4:   mov    $0x3a,%r10d
+  0x00007cb663fff4ba:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007cb663fff4bf:   je     0x00007cb663fff4cd
+  0x00007cb663fff4c1:   add    $0x2,%r10
+  0x00007cb663fff4c5:   cmp    $0x3e,%r10
+  0x00007cb663fff4c9:   jne    0x00007cb663fff4ba
+  0x00007cb663fff4cb:   jmp    0x00007cb663fff4d9
+  0x00007cb663fff4cd:   push   %rax
+  0x00007cb663fff4ce:   xor    %rax,%rax
+  0x00007cb663fff4d1:   cmpxchg %rcx,(%r8,%r10,8)
+  0x00007cb663fff4d6:   pop    %rax
+  0x00007cb663fff4d7:   jmp    0x00007cb663fff49e
+  0x00007cb663fff4d9:   mov    $0x39,%r10d
+  0x00007cb663fff4df:   jmp    0x00007cb663fff4e5
+  0x00007cb663fff4e1:   add    $0x1,%r10
+  0x00007cb663fff4e5:   addq   $0x1,(%r8,%r10,8)
+  0x00007cb663fff4ea:   mov    0x8(%rdx),%ecx               ; implicit exception: dispatches to 0x00007cb663fff7e0
+  0x00007cb663fff4ed:   mov    $0x11000000,%r10d
+  0x00007cb663fff4f3:   add    %r10,%rcx
+  0x00007cb663fff4f6:   mov    0x8(%r9),%r8d
+  0x00007cb663fff4fa:   mov    $0x11000000,%r10d
+  0x00007cb663fff500:   add    %r10,%r8
+  0x00007cb663fff503:   mov    0xe0(%rcx),%rcx
+  0x00007cb663fff50a:   cmp    %rcx,%r8
+  0x00007cb663fff50d:   je     0x00007cb663fff53e
+  0x00007cb663fff513:   mov    0x10(%rcx),%r11d
+  0x00007cb663fff517:   cmp    (%r8,%r11,1),%rcx
+  0x00007cb663fff51b:   je     0x00007cb663fff53e
+  0x00007cb663fff521:   cmp    $0x20,%r11d
+  0x00007cb663fff525:   jne    0x00007cb663fff7e5
+  0x00007cb663fff52b:   push   %r8
+  0x00007cb663fff52d:   push   %rcx
+  0x00007cb663fff52e:   call   0x00007cb66b5807e0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x00007cb663fff533:   pop    %r8
+  0x00007cb663fff535:   pop    %rcx
+  0x00007cb663fff536:   test   %ecx,%ecx
+  0x00007cb663fff538:   je     0x00007cb663fff7e5
+  0x00007cb663fff53e:   movslq %esi,%rsi
+  0x00007cb663fff541:   lea    0x10(%rdx,%rsi,4),%rsi
+  0x00007cb663fff546:   movsbl 0x48(%r15),%ebx
+  0x00007cb663fff54b:   test   %ebx,%ebx
+  0x00007cb663fff54d:   jne    0x00007cb663fff7ee
+  0x00007cb663fff553:   mov    %r9,%r10
+  0x00007cb663fff556:   shr    $0x3,%r10
+  0x00007cb663fff55a:   mov    %r10d,(%rsi)
+  0x00007cb663fff55d:   mov    %rsi,%rdx
+  0x00007cb663fff560:   xor    %r9,%rdx
+  0x00007cb663fff563:   shr    $0x17,%rdx
+  0x00007cb663fff567:   je     0x00007cb663fff581
+  0x00007cb663fff569:   test   %r9,%r9
+  0x00007cb663fff56c:   je     0x00007cb663fff581
+  0x00007cb663fff56e:   mov    %rsi,%rdx
+  0x00007cb663fff571:   shr    $0x9,%rdx
+  0x00007cb663fff575:   add    0x50(%r15),%rdx
+  0x00007cb663fff579:   cmpb   $0xff,(%rdx)
+  0x00007cb663fff57c:   jne    0x00007cb663fff581
+  0x00007cb663fff57e:   movb   $0x0,(%rdx)                  ;*aastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@83 (line 342)
+  0x00007cb663fff581:   movabs $0x7cb620054eb0,%rsi         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff58b:   incl   0x1f8(%rsi)
+  0x00007cb663fff591:   jmp    0x00007cb663fff5d2           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@84 (line 342)
+  0x00007cb663fff596:   movsbl 0x48(%r15),%esi
+  0x00007cb663fff59b:   test   %esi,%esi
+  0x00007cb663fff59d:   jne    0x00007cb663fff80b
+  0x00007cb663fff5a3:   mov    %r9,%r10
+  0x00007cb663fff5a6:   shr    $0x3,%r10
+  0x00007cb663fff5aa:   mov    %r10d,0x20(%rcx)             ; implicit exception: dispatches to 0x00007cb663fff829
+  0x00007cb663fff5ae:   mov    %rcx,%rbx
+  0x00007cb663fff5b1:   xor    %r9,%rbx
+  0x00007cb663fff5b4:   shr    $0x17,%rbx
+  0x00007cb663fff5b8:   je     0x00007cb663fff5d2
+  0x00007cb663fff5ba:   test   %r9,%r9
+  0x00007cb663fff5bd:   je     0x00007cb663fff5d2
+  0x00007cb663fff5bf:   mov    %rcx,%rbx
+  0x00007cb663fff5c2:   shr    $0x9,%rbx
+  0x00007cb663fff5c6:   add    0x50(%r15),%rbx
+  0x00007cb663fff5ca:   cmpb   $0xff,(%rbx)
+  0x00007cb663fff5cd:   jne    0x00007cb663fff5d2
+  0x00007cb663fff5cf:   movb   $0x0,(%rbx)                  ;*putfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@91 (line 344)
+  0x00007cb663fff5d2:   movsbl 0x48(%r15),%esi
+  0x00007cb663fff5d7:   test   %esi,%esi
+  0x00007cb663fff5d9:   jne    0x00007cb663fff82e
+  0x00007cb663fff5df:   movl   $0x0,0x1c(%rax)              ;*putfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@96 (line 347)
+  0x00007cb663fff5e6:   mov    0x20(%rdi),%eax              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@101 (line 348)
+  0x00007cb663fff5e9:   dec    %eax
+  0x00007cb663fff5eb:   mov    %eax,0x20(%rdi)              ;*putfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@106 (line 348)
+  0x00007cb663fff5ee:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff5f8:   incl   0x210(%rax)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@109 (line 349)
+  0x00007cb663fff5fe:   lea    0x48(%rsp),%rax
+  0x00007cb663fff603:   mov    0x8(%rax),%rbx
+  0x00007cb663fff607:   mov    0x7c0(%r15),%esi
+  0x00007cb663fff60e:   cmp    -0x8(%r15,%rsi,1),%rbx
+  0x00007cb663fff613:   jne    0x00007cb663fff84c
+  0x00007cb663fff619:   subl   $0x8,0x7c0(%r15)
+  0x00007cb663fff621:   cmp    -0x10(%r15,%rsi,1),%rbx
+  0x00007cb663fff626:   je     0x00007cb663fff656
+  0x00007cb663fff62c:   mov    (%rbx),%rax
+  0x00007cb663fff62f:   test   $0x2,%al
+  0x00007cb663fff631:   jne    0x00007cb663fff649
+  0x00007cb663fff637:   mov    %rax,%rsi
+  0x00007cb663fff63a:   or     $0x1,%rsi
+  0x00007cb663fff63e:   lock cmpxchg %rsi,(%rbx)
+  0x00007cb663fff643:   je     0x00007cb663fff656
+  0x00007cb663fff649:   addl   $0x8,0x7c0(%r15)
+  0x00007cb663fff651:   jmp    0x00007cb663fff84c           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@124 (line 354)
+  0x00007cb663fff656:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff660:   incl   0x240(%rax)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@125 (line 354)
+  0x00007cb663fff666:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff670:   mov    0x94(%rax),%esi
+  0x00007cb663fff676:   add    $0x2,%esi
+  0x00007cb663fff679:   mov    %esi,0x94(%rax)
+  0x00007cb663fff67f:   and    $0x3ffe,%esi
+  0x00007cb663fff685:   test   %esi,%esi
+  0x00007cb663fff687:   je     0x00007cb663fff85f           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@135 (line 354)
+  0x00007cb663fff68d:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rdi=Oop [64]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@135 (line 354)
+  0x00007cb663fff691:   test   %eax,(%r10)                  ;   {poll}
+  0x00007cb663fff694:   movabs $0x7cb620054eb0,%rax         ;   {metadata(method data for {method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff69e:   incl   0x258(%rax)
+  0x00007cb663fff6a4:   mov    %rdi,%rsi
+  0x00007cb663fff6a7:   jmp    0x00007cb663fff168           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@135 (line 354)
+  0x00007cb663fff6ac:   add    $0x60,%rsp
+  0x00007cb663fff6b0:   pop    %rbp
+  0x00007cb663fff6b1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007cb663fff6b5:   ja     0x00007cb663fff880
+  0x00007cb663fff6bb:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@138 (line 356)
+  0x00007cb663fff6bc:   mov    0x5c0(%r15),%rax
+  0x00007cb663fff6c3:   xor    %r10,%r10
+  0x00007cb663fff6c6:   mov    %r10,0x5c0(%r15)
+  0x00007cb663fff6cd:   xor    %r10,%r10
+  0x00007cb663fff6d0:   mov    %r10,0x5c8(%r15)
+  0x00007cb663fff6d7:   mov    %rax,%rsi
+  0x00007cb663fff6da:   lea    0x48(%rsp),%rax
+  0x00007cb663fff6df:   mov    0x8(%rax),%rbx
+  0x00007cb663fff6e3:   mov    0x7c0(%r15),%edi
+  0x00007cb663fff6ea:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x00007cb663fff6ef:   jne    0x00007cb663fff896
+  0x00007cb663fff6f5:   subl   $0x8,0x7c0(%r15)
+  0x00007cb663fff6fd:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x00007cb663fff702:   je     0x00007cb663fff732
+  0x00007cb663fff708:   mov    (%rbx),%rax
+  0x00007cb663fff70b:   test   $0x2,%al
+  0x00007cb663fff70d:   jne    0x00007cb663fff725
+  0x00007cb663fff713:   mov    %rax,%rdi
+  0x00007cb663fff716:   or     $0x1,%rdi
+  0x00007cb663fff71a:   lock cmpxchg %rdi,(%rbx)
+  0x00007cb663fff71f:   je     0x00007cb663fff732
+  0x00007cb663fff725:   addl   $0x8,0x7c0(%r15)
+  0x00007cb663fff72d:   jmp    0x00007cb663fff896           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@131 (line 354)
+  0x00007cb663fff732:   mov    %rsi,%rax
+  0x00007cb663fff735:   jmp    0x00007cb663fff8cb
+  0x00007cb663fff73a:   movabs $0x1146b2e8,%r10             ;   {metadata({method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff744:   mov    %r10,0x8(%rsp)
+  0x00007cb663fff749:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007cb663fff751:   call   0x00007cb66b583460           ; ImmutableOopMap {rsi=Oop [64]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@-1 (line 330)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007cb663fff756:   jmp    0x00007cb663fff167
+  0x00007cb663fff75b:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rsi=Oop rdi=Oop [64]=Oop }
+                                                            ;*invokevirtual poll {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@4 (line 330)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff760:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop [64]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@18 (line 331)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff765:   mov    %rbx,0x8(%rsp)
+  0x00007cb663fff76a:   mov    %rdx,(%rsp)
+  0x00007cb663fff76e:   call   0x00007cb66b5810e0           ; ImmutableOopMap {rsi=Oop rdi=Oop rbx=Oop [64]=Oop [80]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@18 (line 331)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x00007cb663fff773:   jmp    0x00007cb663fff28b
+  0x00007cb663fff778:   mov    %rsi,(%rsp)
+  0x00007cb663fff77c:   call   0x00007cb66b57fd60           ; ImmutableOopMap {rdi=Oop rbx=Oop [64]=Oop [80]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@20 (line 333)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007cb663fff781:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop [64]=Oop [80]=Oop }
+                                                            ;*getfield hash {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@25 (line 334)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff786:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop [64]=Oop [80]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@32 (line 334)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff78b:   movabs $0x1146b340,%r10             ;   {metadata({method} {0x000000001146b340} &apos;indexFor&apos; &apos;(II)I&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff795:   mov    %r10,0x8(%rsp)
+  0x00007cb663fff79a:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007cb663fff7a2:   call   0x00007cb66b583460           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop [64]=Oop [80]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.WeakHashMap::indexFor@-1 (line 323)
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@33 (line 334)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007cb663fff7a7:   jmp    0x00007cb663fff370
+  0x00007cb663fff7ac:   mov    %rsi,(%rsp)
+  0x00007cb663fff7b0:   mov    %rdx,0x8(%rsp)
+  0x00007cb663fff7b5:   call   0x00007cb66b57c1e0           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop [64]=Oop [80]=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::expungeStaleEntries@44 (line 336)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007cb663fff7ba:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop r8=Oop rcx=Oop [64]=Oop [80]=Oop }
+                                                            ;*getfield next {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@58 (line 339)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff7bf:   movabs $0x1146b2e8,%r10             ;   {metadata({method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff7c9:   mov    %r10,0x8(%rsp)
+  0x00007cb663fff7ce:   movq   $0x78,(%rsp)
+  0x00007cb663fff7d6:   call   0x00007cb66b583460           ; ImmutableOopMap {rdi=Oop rbx=Oop rax=Oop rdx=Oop r8=Oop r9=Oop [64]=Oop [80]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@120 (line 353)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007cb663fff7db:   jmp    0x00007cb663fff3f9
+  0x00007cb663fff7e0:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop r9=Oop rdx=Oop rax=Oop rbx=Oop [64]=Oop [80]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@83 (line 342)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff7e5:   mov    %r9,(%rsp)
+  0x00007cb663fff7e9:   call   0x00007cb66b57f5e0           ; ImmutableOopMap {rdi=Oop r9=Oop rdx=Oop rax=Oop rbx=Oop [64]=Oop [80]=Oop }
+                                                            ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@83 (line 342)
+                                                            ;   {runtime_call throw_array_store_exception_blob (C1 runtime)}
+  0x00007cb663fff7ee:   mov    (%rsi),%ebx
+  0x00007cb663fff7f0:   shl    $0x3,%rbx
+  0x00007cb663fff7f4:   test   %rbx,%rbx
+  0x00007cb663fff7f7:   je     0x00007cb663fff553
+  0x00007cb663fff7fd:   mov    %rbx,(%rsp)
+  0x00007cb663fff801:   call   0x00007cb66b583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007cb663fff806:   jmp    0x00007cb663fff553
+  0x00007cb663fff80b:   mov    0x20(%rcx),%esi              ; implicit exception: dispatches to 0x00007cb663fff8a9
+  0x00007cb663fff80e:   shl    $0x3,%rsi
+  0x00007cb663fff812:   test   %rsi,%rsi
+  0x00007cb663fff815:   je     0x00007cb663fff5a3
+  0x00007cb663fff81b:   mov    %rsi,(%rsp)
+  0x00007cb663fff81f:   call   0x00007cb66b583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007cb663fff824:   jmp    0x00007cb663fff5a3
+  0x00007cb663fff829:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop rax=Oop rcx=Oop rbx=Oop r9=Oop [64]=Oop [80]=Oop }
+                                                            ;*putfield next {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@91 (line 344)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff82e:   mov    0x1c(%rax),%esi
+  0x00007cb663fff831:   shl    $0x3,%rsi
+  0x00007cb663fff835:   test   %rsi,%rsi
+  0x00007cb663fff838:   je     0x00007cb663fff5df
+  0x00007cb663fff83e:   mov    %rsi,(%rsp)
+  0x00007cb663fff842:   call   0x00007cb66b583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007cb663fff847:   jmp    0x00007cb663fff5df
+  0x00007cb663fff84c:   lea    0x48(%rsp),%rax
+  0x00007cb663fff851:   mov    %rax,(%rsp)
+  0x00007cb663fff855:   call   0x00007cb66b5816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007cb663fff85a:   jmp    0x00007cb663fff656
+  0x00007cb663fff85f:   movabs $0x1146b2e8,%r10             ;   {metadata({method} {0x000000001146b2e8} &apos;expungeStaleEntries&apos; &apos;()V&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x00007cb663fff869:   mov    %r10,0x8(%rsp)
+  0x00007cb663fff86e:   movq   $0x87,(%rsp)
+  0x00007cb663fff876:   call   0x00007cb66b583460           ; ImmutableOopMap {rdi=Oop [64]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@135 (line 354)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007cb663fff87b:   jmp    0x00007cb663fff68d
+  0x00007cb663fff880:   movabs $0x7cb663fff6b1,%r10         ;   {internal_word}
+  0x00007cb663fff88a:   mov    %r10,0x510(%r15)
+  0x00007cb663fff891:   jmp    0x00007cb66b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007cb663fff896:   lea    0x48(%rsp),%rax
+  0x00007cb663fff89b:   mov    %rax,(%rsp)
+  0x00007cb663fff89f:   call   0x00007cb66b5816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007cb663fff8a4:   jmp    0x00007cb663fff732
+  0x00007cb663fff8a9:   call   0x00007cb66b57cae0           ; ImmutableOopMap {rdi=Oop rax=Oop rcx=Oop rbx=Oop r9=Oop [64]=Oop [80]=Oop }
+                                                            ;*putfield next {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.WeakHashMap::expungeStaleEntries@91 (line 344)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007cb663fff8ae:   mov    0x5c0(%r15),%rax
+  0x00007cb663fff8b5:   movq   $0x0,0x5c0(%r15)
+  0x00007cb663fff8c0:   movq   $0x0,0x5c8(%r15)
+  0x00007cb663fff8cb:   add    $0x60,%rsp
+  0x00007cb663fff8cf:   pop    %rbp
+  0x00007cb663fff8d0:   jmp    0x00007cb66b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007cb663fff8d5:   hlt    
+  0x00007cb663fff8d6:   hlt    
+  0x00007cb663fff8d7:   hlt    
+[Stub Code]
+  0x00007cb663fff8d8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007cb663fff8dd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007cb663fff8e7:   jmp    0x00007cb663fff8e7           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007cb663fff8ec:   call   0x00007cb66b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007cb663fff8f1:   movabs $0x7cb68493aec4,%rdi         ;   {external_word}
+  0x00007cb663fff8fb:   and    $0xfffffffffffffff0,%rsp
+  0x00007cb663fff8ff:   call   0x00007cb684391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007cb663fff904:   hlt    
+  0x00007cb663fff905:   call   0x00007cb66b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007cb663fff90a:   jmp    0x00007cb663fff905
+  0x00007cb663fff90c:   hlt    
+  0x00007cb663fff90d:   hlt    
+  0x00007cb663fff90e:   hlt    
+  0x00007cb663fff90f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

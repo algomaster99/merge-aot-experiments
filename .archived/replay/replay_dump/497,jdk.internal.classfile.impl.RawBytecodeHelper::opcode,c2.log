@@ -1,0 +1,57 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 9539  497       4       jdk.internal.classfile.impl.RawBytecodeHelper::opcode (9 bytes)
+ total in heap  [0x000077b45fbbba08,0x000077b45fbbbb68] = 352
+ main code      [0x000077b45fbbbb00,0x000077b45fbbbb60] = 96
+ stub code      [0x000077b45fbbbb60,0x000077b45fbbbb68] = 8
+ mutable data [0x000077b4701c0390,0x000077b4701c03a8] = 24
+ relocation     [0x000077b4701c0390,0x000077b4701c03a0] = 16
+ metadata       [0x000077b4701c03a0,0x000077b4701c03a8] = 8
+ immutable data [0x000077b408081990,0x000077b4080819ec] = 92
+ dependencies   [0x000077b408081990,0x000077b408081998] = 8
+ scopes pcs     [0x000077b408081998,0x000077b4080819d8] = 64
+ scopes data    [0x000077b4080819d8,0x000077b4080819e8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbbb00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x000000004634c890} &apos;opcode&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/RawBytecodeHelper&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbbbb02:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbbb06:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbbb0a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbbb10:   sub    $0x18,%rsp
+  0x000077b45fbbbb14:   mov    %rbp,0x10(%rsp)
+  0x000077b45fbbbb19:   data16 xchg %ax,%ax
+  0x000077b45fbbbb1c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbbb24:   jne    0x000077b45fbbbb54           ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.RawBytecodeHelper::opcode@-1 (line 343)
+  0x000077b45fbbbb2a:   movzbl 0x14(%rsi),%eax              ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.RawBytecodeHelper::opcode@7 (line 343)
+  0x000077b45fbbbb2e:   add    $0x10,%rsp
+  0x000077b45fbbbb32:   pop    %rbp
+  0x000077b45fbbbb33:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbbb37:   ja     0x000077b45fbbbb3e
+  0x000077b45fbbbb3d:   ret    
+  0x000077b45fbbbb3e:   movabs $0x77b45fbbbb33,%r10         ;   {internal_word}
+  0x000077b45fbbbb48:   mov    %r10,0x510(%r15)
+  0x000077b45fbbbb4f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbbb54:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbbb59:   jmp    0x000077b45fbbbb2a
+  0x000077b45fbbbb5e:   hlt    
+  0x000077b45fbbbb5f:   hlt    
+[Stub Code]
+  0x000077b45fbbbb60:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbbb65:   jmp    0x000077b45fbbbb60
+  0x000077b45fbbbb67:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

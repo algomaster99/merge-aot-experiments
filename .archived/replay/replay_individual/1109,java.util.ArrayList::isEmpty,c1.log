@@ -1,0 +1,105 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 480   45       3       java.util.ArrayList::isEmpty (13 bytes)
+ total in heap  [0x0000790983fff008,0x0000790983fff240] = 568
+ main code      [0x0000790983fff100,0x0000790983fff220] = 288
+ stub code      [0x0000790983fff220,0x0000790983fff240] = 32
+ mutable data [0x000079092801cd40,0x000079092801cd70] = 48
+ relocation     [0x000079092801cd40,0x000079092801cd68] = 40
+ metadata       [0x000079092801cd68,0x000079092801cd70] = 8
+ immutable data [0x000079092801cc70,0x000079092801cd2c] = 188
+ dependencies   [0x000079092801cc70,0x000079092801cc78] = 8
+ scopes pcs     [0x000079092801cc78,0x000079092801ccf8] = 128
+ scopes data    [0x000079092801ccf8,0x000079092801cd28] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000790983fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000790983fff10b:   data16 data16 xchg %ax,%ax
+  0x0000790983fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000006f21d368} &apos;isEmpty&apos; &apos;()Z&apos; in &apos;java/util/ArrayList&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000790983fff112:   mov    0x8(%rsi),%r10d
+  0x0000790983fff116:   cmp    0x8(%rax),%r10d
+  0x0000790983fff11a:   jne    0x000079098b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000790983fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000790983fff127:   push   %rbp
+  0x0000790983fff128:   sub    $0x20,%rsp
+  0x0000790983fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000790983fff134:   je     0x0000790983fff13b
+  0x0000790983fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000790983fff13b:   movabs $0x79094027ea10,%rax         ;   {metadata(method data for {method} {0x000000006f21d368} &apos;isEmpty&apos; &apos;()Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000790983fff145:   mov    0x90(%rax),%edi
+  0x0000790983fff14b:   add    $0x2,%edi
+  0x0000790983fff14e:   mov    %edi,0x90(%rax)
+  0x0000790983fff154:   and    $0x7fe,%edi
+  0x0000790983fff15a:   test   %edi,%edi
+  0x0000790983fff15c:   je     0x0000790983fff1c1           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::isEmpty@0 (line 263)
+  0x0000790983fff162:   mov    0x10(%rsi),%eax              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::isEmpty@1 (line 263)
+  0x0000790983fff165:   test   %eax,%eax
+  0x0000790983fff167:   movabs $0x79094027ea10,%rax         ;   {metadata(method data for {method} {0x000000006f21d368} &apos;isEmpty&apos; &apos;()Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000790983fff171:   mov    $0xd8,%esi
+  0x0000790983fff176:   jne    0x0000790983fff17d
+  0x0000790983fff178:   mov    $0xe8,%esi
+  0x0000790983fff17d:   mov    (%rax,%rsi,1),%rdi
+  0x0000790983fff181:   lea    0x1(%rdi),%rdi
+  0x0000790983fff185:   mov    %rdi,(%rax,%rsi,1)
+  0x0000790983fff189:   jne    0x0000790983fff1a9           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::isEmpty@4 (line 263)
+  0x0000790983fff18f:   movabs $0x79094027ea10,%rax         ;   {metadata(method data for {method} {0x000000006f21d368} &apos;isEmpty&apos; &apos;()Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000790983fff199:   incl   0xf8(%rax)
+  0x0000790983fff19f:   mov    $0x1,%eax
+  0x0000790983fff1a4:   jmp    0x0000790983fff1ae           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::isEmpty@8 (line 263)
+  0x0000790983fff1a9:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::isEmpty@12 (line 263)
+  0x0000790983fff1ae:   and    $0x1,%eax
+  0x0000790983fff1b1:   add    $0x20,%rsp
+  0x0000790983fff1b5:   pop    %rbp
+  0x0000790983fff1b6:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000790983fff1ba:   ja     0x0000790983fff1df
+  0x0000790983fff1c0:   ret    
+  0x0000790983fff1c1:   movabs $0x6f21d368,%r10             ;   {metadata({method} {0x000000006f21d368} &apos;isEmpty&apos; &apos;()Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x0000790983fff1cb:   mov    %r10,0x8(%rsp)
+  0x0000790983fff1d0:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000790983fff1d8:   call   0x000079098b584660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayList::isEmpty@-1 (line 263)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000790983fff1dd:   jmp    0x0000790983fff162
+  0x0000790983fff1df:   movabs $0x790983fff1b6,%r10         ;   {internal_word}
+  0x0000790983fff1e9:   mov    %r10,0x510(%r15)
+  0x0000790983fff1f0:   jmp    0x000079098b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000790983fff1f5:   mov    0x5c0(%r15),%rax
+  0x0000790983fff1fc:   movq   $0x0,0x5c0(%r15)
+  0x0000790983fff207:   movq   $0x0,0x5c8(%r15)
+  0x0000790983fff212:   add    $0x20,%rsp
+  0x0000790983fff216:   pop    %rbp
+  0x0000790983fff217:   jmp    0x000079098b57c5e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000790983fff21c:   hlt    
+  0x0000790983fff21d:   hlt    
+  0x0000790983fff21e:   hlt    
+  0x0000790983fff21f:   hlt    
+[Exception Handler]
+  0x0000790983fff220:   call   0x000079098b580060           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000790983fff225:   movabs $0x7909a4f3aec4,%rdi         ;   {external_word}
+  0x0000790983fff22f:   and    $0xfffffffffffffff0,%rsp
+  0x0000790983fff233:   call   0x00007909a4991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000790983fff238:   hlt    
+  0x0000790983fff239:   call   0x000079098b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000790983fff23e:   jmp    0x0000790983fff239
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,80 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 15484  967       3       java.lang.StringLatin1::coderFromChar (10 bytes)
+ total in heap  [0x000077b458087188,0x000077b458087360] = 472
+ main code      [0x000077b458087280,0x000077b458087340] = 192
+ stub code      [0x000077b458087340,0x000077b458087360] = 32
+ mutable data [0x000077b3e8084250,0x000077b3e8084280] = 48
+ relocation     [0x000077b3e8084250,0x000077b3e8084278] = 40
+ metadata       [0x000077b3e8084278,0x000077b3e8084280] = 8
+ immutable data [0x000077b3e8004940,0x000077b3e80049a4] = 100
+ dependencies   [0x000077b3e8004940,0x000077b3e8004948] = 8
+ scopes pcs     [0x000077b3e8004948,0x000077b3e8004988] = 64
+ scopes data    [0x000077b3e8004988,0x000077b3e80049a0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;
+  # parm0:    rsi       = char
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458087280:   mov    %eax,-0x14000(%rsp)
+  0x000077b458087287:   push   %rbp
+  0x000077b458087288:   sub    $0x20,%rsp
+  0x000077b45808728c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458087294:   je     0x000077b45808729b
+  0x000077b458087296:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45808729b:   movabs $0x77b41429e660,%rax         ;   {metadata(method data for {method} {0x0000000046190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x000077b4580872a5:   mov    0x90(%rax),%edi
+  0x000077b4580872ab:   add    $0x2,%edi
+  0x000077b4580872ae:   mov    %edi,0x90(%rax)
+  0x000077b4580872b4:   and    $0x7fe,%edi
+  0x000077b4580872ba:   test   %edi,%edi
+  0x000077b4580872bc:   je     0x000077b4580872e5           ;*sipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::coderFromChar@0 (line 60)
+  0x000077b4580872c2:   mov    $0xff,%eax
+  0x000077b4580872c7:   sub    %esi,%eax
+  0x000077b4580872c9:   shr    $0x1f,%eax
+  0x000077b4580872cc:   movsbl %al,%eax
+  0x000077b4580872cf:   shl    $0x18,%eax
+  0x000077b4580872d2:   sar    $0x18,%eax
+  0x000077b4580872d5:   add    $0x20,%rsp
+  0x000077b4580872d9:   pop    %rbp
+  0x000077b4580872da:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580872de:   ja     0x000077b458087303
+  0x000077b4580872e4:   ret    
+  0x000077b4580872e5:   movabs $0x46190cf8,%r10             ;   {metadata({method} {0x0000000046190cf8} &apos;coderFromChar&apos; &apos;(C)B&apos; in &apos;java/lang/StringLatin1&apos;)}
+  0x000077b4580872ef:   mov    %r10,0x8(%rsp)
+  0x000077b4580872f4:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580872fc:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringLatin1::coderFromChar@-1 (line 60)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458087301:   jmp    0x000077b4580872c2
+  0x000077b458087303:   movabs $0x77b4580872da,%r10         ;   {internal_word}
+  0x000077b45808730d:   mov    %r10,0x510(%r15)
+  0x000077b458087314:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458087319:   mov    0x5c0(%r15),%rax
+  0x000077b458087320:   movq   $0x0,0x5c0(%r15)
+  0x000077b45808732b:   movq   $0x0,0x5c8(%r15)
+  0x000077b458087336:   add    $0x20,%rsp
+  0x000077b45808733a:   pop    %rbp
+  0x000077b45808733b:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x000077b458087340:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458087345:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45808734f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458087353:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458087358:   hlt    
+  0x000077b458087359:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45808735e:   jmp    0x000077b458087359
+--------------------------------------------------------------------------------
+[/Disassembly]

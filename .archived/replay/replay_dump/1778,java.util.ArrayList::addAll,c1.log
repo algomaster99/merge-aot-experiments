@@ -1,0 +1,446 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 40621 1778       3       java.util.ArrayList::addAll (108 bytes)
+ total in heap  [0x000077b458153d88,0x000077b458154450] = 1736
+ main code      [0x000077b458153e80,0x000077b4581543e8] = 1384
+ stub code      [0x000077b4581543e8,0x000077b458154450] = 104
+ mutable data [0x000077b3fc2f7540,0x000077b3fc2f75e8] = 168
+ relocation     [0x000077b3fc2f7540,0x000077b3fc2f75d0] = 144
+ metadata       [0x000077b3fc2f75d0,0x000077b3fc2f75e8] = 24
+ immutable data [0x000077b3fc189e30,0x000077b3fc18a1dc] = 940
+ dependencies   [0x000077b3fc189e30,0x000077b3fc189e38] = 8
+ nul chk table  [0x000077b3fc189e38,0x000077b3fc189e60] = 40
+ scopes pcs     [0x000077b3fc189e60,0x000077b3fc18a0b0] = 592
+ scopes data    [0x000077b3fc18a0b0,0x000077b3fc18a1d8] = 296
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458153e80:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b458153e8b:   data16 data16 xchg %ax,%ax
+  0x000077b458153e8f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;
+  # this:     rsi:rsi   = &apos;java/util/ArrayList&apos;
+  # parm0:    rdx:rdx   = &apos;java/util/Collection&apos;
+  #           [sp+0x70]  (sp of caller)
+  0x000077b458153e92:   mov    0x8(%rsi),%r10d
+  0x000077b458153e96:   cmp    0x8(%rax),%r10d
+  0x000077b458153e9a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b458153ea0:   mov    %eax,-0x14000(%rsp)
+  0x000077b458153ea7:   push   %rbp
+  0x000077b458153ea8:   sub    $0x60,%rsp
+  0x000077b458153eac:   cmpl   $0x1,0x20(%r15)
+  0x000077b458153eb4:   je     0x000077b458153ebb
+  0x000077b458153eb6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b458153ebb:   mov    %rsi,0x38(%rsp)
+  0x000077b458153ec0:   movabs $0x77b41427fb58,%rdi         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458153eca:   mov    0x90(%rdi),%ebx
+  0x000077b458153ed0:   add    $0x2,%ebx
+  0x000077b458153ed3:   mov    %ebx,0x90(%rdi)
+  0x000077b458153ed9:   and    $0x7fe,%ebx
+  0x000077b458153edf:   test   %ebx,%ebx
+  0x000077b458153ee1:   je     0x000077b458154349           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@0 (line 755)
+  0x000077b458153ee7:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x000077b45815436a
+  0x000077b458153eea:   mov    %rdx,%rdi
+  0x000077b458153eed:   movabs $0x77b41427fb58,%rbx         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458153ef7:   mov    0x8(%rdi),%edi
+  0x000077b458153efa:   mov    $0x46000000,%r10d
+  0x000077b458153f00:   add    %r10,%rdi
+  0x000077b458153f03:   mov    $0x1c,%r10d
+  0x000077b458153f09:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458153f0d:   je     0x000077b458153f46
+  0x000077b458153f0f:   add    $0x2,%r10
+  0x000077b458153f13:   cmp    $0x20,%r10
+  0x000077b458153f17:   jne    0x000077b458153f09
+  0x000077b458153f19:   mov    $0x1c,%r10d
+  0x000077b458153f1f:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b458153f24:   je     0x000077b458153f32
+  0x000077b458153f26:   add    $0x2,%r10
+  0x000077b458153f2a:   cmp    $0x20,%r10
+  0x000077b458153f2e:   jne    0x000077b458153f1f
+  0x000077b458153f30:   jmp    0x000077b458153f3e
+  0x000077b458153f32:   push   %rax
+  0x000077b458153f33:   xor    %rax,%rax
+  0x000077b458153f36:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b458153f3b:   pop    %rax
+  0x000077b458153f3c:   jmp    0x000077b458153f03
+  0x000077b458153f3e:   mov    $0x1b,%r10d
+  0x000077b458153f44:   jmp    0x000077b458153f4a
+  0x000077b458153f46:   add    $0x1,%r10
+  0x000077b458153f4a:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458153f4f:   mov    %rdx,%rsi                    ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@1 (line 755)
+  0x000077b458153f52:   mov    %rdx,0x30(%rsp)
+  0x000077b458153f57:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[48]=Oop [56]=Oop }
+                                                            ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@1 (line 755)
+                                                            ;   {optimized virtual_call}
+  0x000077b458153f5c:   nopl   0x1d4(%rax,%rax,1)           ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@1 (line 755)
+                                                            ;   {post_call_nop}
+  0x000077b458153f64:   movabs $0x7ff875410,%r10            ;   {oop(a &apos;java/lang/Class&apos;{0x00000007ff875410} = &apos;java/util/ArrayList&apos;)}
+  0x000077b458153f6e:   cmp    %r10,%rax
+  0x000077b458153f71:   movabs $0x77b41427fb58,%rsi         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458153f7b:   mov    $0x108,%edi
+  0x000077b458153f80:   jne    0x000077b458153f87
+  0x000077b458153f82:   mov    $0x118,%edi
+  0x000077b458153f87:   mov    (%rsi,%rdi,1),%rbx
+  0x000077b458153f8b:   lea    0x1(%rbx),%rbx
+  0x000077b458153f8f:   mov    %rbx,(%rsi,%rdi,1)
+  0x000077b458153f93:   mov    0x30(%rsp),%rdx
+  0x000077b458153f98:   jne    0x000077b45815405d           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@8 (line 755)
+  0x000077b458153f9e:   test   %rdx,%rdx
+  0x000077b458153fa1:   movabs $0x77b41427fb58,%rbx         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458153fab:   jne    0x000077b458153fb9
+  0x000077b458153fad:   orb    $0x1,0x121(%rbx)
+  0x000077b458153fb4:   jmp    0x000077b45815403b
+  0x000077b458153fb9:   mov    0x8(%rdx),%eax
+  0x000077b458153fbc:   mov    $0x46000000,%r10d
+  0x000077b458153fc2:   add    %r10,%rax
+  0x000077b458153fc5:   mov    $0x26,%r10d
+  0x000077b458153fcb:   cmp    (%rbx,%r10,8),%rax
+  0x000077b458153fcf:   je     0x000077b45815400e
+  0x000077b458153fd1:   add    $0x2,%r10
+  0x000077b458153fd5:   cmp    $0x2a,%r10
+  0x000077b458153fd9:   jne    0x000077b458153fcb
+  0x000077b458153fdb:   mov    $0x26,%r10d
+  0x000077b458153fe1:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b458153fe6:   je     0x000077b458153ff4
+  0x000077b458153fe8:   add    $0x2,%r10
+  0x000077b458153fec:   cmp    $0x2a,%r10
+  0x000077b458153ff0:   jne    0x000077b458153fe1
+  0x000077b458153ff2:   jmp    0x000077b458154006
+  0x000077b458153ff4:   push   %rcx
+  0x000077b458153ff5:   mov    %rax,%rcx
+  0x000077b458153ff8:   xor    %rax,%rax
+  0x000077b458153ffb:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x000077b458154000:   mov    %rcx,%rax
+  0x000077b458154003:   pop    %rcx
+  0x000077b458154004:   jmp    0x000077b458153fc5
+  0x000077b458154006:   mov    $0x25,%r10d
+  0x000077b45815400c:   jmp    0x000077b458154012
+  0x000077b45815400e:   add    $0x1,%r10
+  0x000077b458154012:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458154017:   movabs $0x462196b8,%rax             ;   {metadata(&apos;java/util/ArrayList&apos;)}
+  0x000077b458154021:   mov    0x8(%rdx),%edi
+  0x000077b458154024:   mov    $0x46000000,%r10d
+  0x000077b45815402a:   add    %r10,%rdi
+  0x000077b45815402d:   cmp    %rdi,%rax
+  0x000077b458154030:   jne    0x000077b45815436f
+  0x000077b458154036:   jmp    0x000077b45815403b
+  0x000077b45815403b:   mov    %rdx,%rsi                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@12 (line 756)
+  0x000077b45815403e:   mov    0x14(%rsi),%edi              ; implicit exception: dispatches to 0x000077b458154378
+  0x000077b458154041:   shl    $0x3,%rdi                    ;*getfield elementData {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@19 (line 757)
+  0x000077b458154045:   mov    0x10(%rsi),%esi              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@25 (line 758)
+  0x000077b458154048:   movabs $0x77b41427fb58,%rbx         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458154052:   incl   0x158(%rbx)
+  0x000077b458154058:   jmp    0x000077b4581540e5           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@29 (line 759)
+  0x000077b45815405d:   mov    %rdx,%rsi
+  0x000077b458154060:   movabs $0x77b41427fb58,%rdi         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b45815406a:   mov    0x8(%rsi),%esi
+  0x000077b45815406d:   mov    $0x46000000,%r10d
+  0x000077b458154073:   add    %r10,%rsi
+  0x000077b458154076:   mov    $0x2f,%r10d
+  0x000077b45815407c:   cmp    (%rdi,%r10,8),%rsi
+  0x000077b458154080:   je     0x000077b4581540b9
+  0x000077b458154082:   add    $0x2,%r10
+  0x000077b458154086:   cmp    $0x33,%r10
+  0x000077b45815408a:   jne    0x000077b45815407c
+  0x000077b45815408c:   mov    $0x2f,%r10d
+  0x000077b458154092:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b458154097:   je     0x000077b4581540a5
+  0x000077b458154099:   add    $0x2,%r10
+  0x000077b45815409d:   cmp    $0x33,%r10
+  0x000077b4581540a1:   jne    0x000077b458154092
+  0x000077b4581540a3:   jmp    0x000077b4581540b1
+  0x000077b4581540a5:   push   %rax
+  0x000077b4581540a6:   xor    %rax,%rax
+  0x000077b4581540a9:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000077b4581540ae:   pop    %rax
+  0x000077b4581540af:   jmp    0x000077b458154076
+  0x000077b4581540b1:   mov    $0x2e,%r10d
+  0x000077b4581540b7:   jmp    0x000077b4581540bd
+  0x000077b4581540b9:   add    $0x1,%r10
+  0x000077b4581540bd:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b4581540c2:   mov    %rdx,%rsi                    ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@33 (line 760)
+  0x000077b4581540c5:   movabs $0x77b3fc2f75f0,%rax
+  0x000077b4581540cf:   call   0x000077b45f4adce0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@33 (line 760)
+                                                            ;   {virtual_call}
+  0x000077b4581540d4:   nopl   0x100034c(%rax,%rax,1)       ;*invokeinterface toArray {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@33 (line 760)
+                                                            ;   {post_call_nop}
+  0x000077b4581540dc:   mov    0xc(%rax),%edx               ; implicit exception: dispatches to 0x000077b45815437d
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@40 (line 761)
+  0x000077b4581540df:   mov    %rdx,%rsi
+  0x000077b4581540e2:   mov    %rax,%rdi                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@42 (line 763)
+  0x000077b4581540e5:   mov    0x38(%rsp),%rbx
+  0x000077b4581540ea:   mov    0xc(%rbx),%edx               ;*getfield modCount {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@44 (line 763)
+  0x000077b4581540ed:   inc    %edx
+  0x000077b4581540ef:   mov    %edx,0xc(%rbx)               ;*putfield modCount {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@49 (line 763)
+  0x000077b4581540f2:   test   %esi,%esi
+  0x000077b4581540f4:   movabs $0x77b41427fb58,%rdx         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b4581540fe:   mov    $0x1b0,%eax
+  0x000077b458154103:   je     0x000077b45815410a
+  0x000077b458154105:   mov    $0x1a0,%eax
+  0x000077b45815410a:   mov    (%rdx,%rax,1),%rcx
+  0x000077b45815410e:   lea    0x1(%rcx),%rcx
+  0x000077b458154112:   mov    %rcx,(%rdx,%rax,1)
+  0x000077b458154116:   je     0x000077b458154334           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@53 (line 764)
+  0x000077b45815411c:   mov    0x14(%rbx),%edx
+  0x000077b45815411f:   shl    $0x3,%rdx                    ;*getfield elementData {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@60 (line 768)
+  0x000077b458154123:   mov    0xc(%rdx),%eax               ; implicit exception: dispatches to 0x000077b458154382
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@66 (line 768)
+  0x000077b458154126:   mov    0x10(%rbx),%ecx              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@68 (line 768)
+  0x000077b458154129:   mov    %ecx,0x48(%rsp)
+  0x000077b45815412d:   sub    %ecx,%eax
+  0x000077b45815412f:   cmp    %eax,%esi
+  0x000077b458154131:   movabs $0x77b41427fb58,%rax         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b45815413b:   mov    $0x1d0,%r8d
+  0x000077b458154141:   jg     0x000077b458154149
+  0x000077b458154143:   mov    $0x1c0,%r8d
+  0x000077b458154149:   mov    (%rax,%r8,1),%r9
+  0x000077b45815414d:   lea    0x1(%r9),%r9
+  0x000077b458154151:   mov    %r9,(%rax,%r8,1)
+  0x000077b458154155:   jg     0x000077b458154163           ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@75 (line 768)
+  0x000077b45815415b:   mov    %rdx,%rax
+  0x000077b45815415e:   jmp    0x000077b4581541a9           ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@88 (line 770)
+  0x000077b458154163:   mov    %rdi,0x40(%rsp)
+  0x000077b458154168:   mov    %rbx,%rdx
+  0x000077b45815416b:   movabs $0x77b41427fb58,%rax         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458154175:   addq   $0x1,0x1e0(%rax)
+  0x000077b45815417d:   mov    %rcx,%rdx
+  0x000077b458154180:   add    %esi,%edx
+  0x000077b458154182:   mov    %esi,0x4c(%rsp)
+  0x000077b458154186:   mov    %rbx,%rsi                    ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@83 (line 769)
+  0x000077b458154189:   nopw   0x0(%rax,%rax,1)
+  0x000077b45815418f:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {[56]=Oop [64]=Oop }
+                                                            ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@83 (line 769)
+                                                            ;   {optimized virtual_call}
+  0x000077b458154194:   nopl   0x200040c(%rax,%rax,1)       ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@83 (line 769)
+                                                            ;   {post_call_nop}
+  0x000077b45815419c:   mov    0x48(%rsp),%ecx
+  0x000077b4581541a0:   mov    0x4c(%rsp),%esi
+  0x000077b4581541a4:   mov    0x40(%rsp),%rdi
+  0x000077b4581541a9:   movabs $0x77b41427fb58,%rdx         ;   {metadata(method data for {method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b4581541b3:   addq   $0x1,0x210(%rdx)
+  0x000077b4581541bb:   mov    %rsi,%r11
+  0x000077b4581541be:   mov    %rdi,%rsi
+  0x000077b4581541c1:   mov    $0x0,%edx
+  0x000077b4581541c6:   mov    %rcx,%rdi
+  0x000077b4581541c9:   mov    %rax,%rcx
+  0x000077b4581541cc:   mov    %rdi,%r8
+  0x000077b4581541cf:   mov    %r11,%r9
+  0x000077b4581541d2:   mov    %r11d,0x4c(%rsp)
+  0x000077b4581541d7:   test   %rsi,%rsi
+  0x000077b4581541da:   je     0x000077b458154387
+  0x000077b4581541e0:   test   %rcx,%rcx
+  0x000077b4581541e3:   je     0x000077b458154387
+  0x000077b4581541e9:   test   %r8d,%r8d
+  0x000077b4581541ec:   jl     0x000077b458154387
+  0x000077b4581541f2:   lea    (%rdx,%r9,1),%rdi
+  0x000077b4581541f6:   cmp    0xc(%rsi),%edi
+  0x000077b4581541f9:   ja     0x000077b458154387
+  0x000077b4581541ff:   lea    (%r8,%r9,1),%rdi
+  0x000077b458154203:   cmp    0xc(%rcx),%edi
+  0x000077b458154206:   ja     0x000077b458154387
+  0x000077b45815420c:   test   %r9d,%r9d
+  0x000077b45815420f:   jl     0x000077b458154387
+  0x000077b458154215:   movslq %edx,%rdx
+  0x000077b458154218:   movslq %r8d,%r8
+  0x000077b45815421b:   push   %rsi
+  0x000077b45815421c:   push   %rcx
+  0x000077b45815421d:   mov    0x8(%rsi),%esi
+  0x000077b458154220:   mov    $0x46000000,%r10d
+  0x000077b458154226:   add    %r10,%rsi
+  0x000077b458154229:   mov    0x8(%rcx),%ecx
+  0x000077b45815422c:   mov    $0x46000000,%r10d
+  0x000077b458154232:   add    %r10,%rcx
+  0x000077b458154235:   cmp    %rcx,%rsi
+  0x000077b458154238:   je     0x000077b4581542df
+  0x000077b45815423e:   mov    0x10(%rcx),%edi
+  0x000077b458154241:   cmp    (%rsi,%rdi,1),%rcx
+  0x000077b458154245:   je     0x000077b4581542df
+  0x000077b45815424b:   cmp    $0x20,%edi
+  0x000077b45815424e:   jne    0x000077b458154265
+  0x000077b458154254:   push   %rsi
+  0x000077b458154255:   push   %rcx
+  0x000077b458154256:   call   0x000077b45f57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x000077b45815425b:   pop    %rcx
+  0x000077b45815425c:   pop    %rsi
+  0x000077b45815425d:   test   %esi,%esi
+  0x000077b45815425f:   jne    0x000077b4581542df
+  0x000077b458154265:   pop    %rcx
+  0x000077b458154266:   pop    %rsi
+  0x000077b458154267:   mov    %rcx,(%rsp)
+  0x000077b45815426b:   mov    %r8,0x8(%rsp)
+  0x000077b458154270:   mov    %r9,0x10(%rsp)
+  0x000077b458154275:   mov    %rdx,0x18(%rsp)
+  0x000077b45815427a:   mov    %rsi,0x20(%rsp)
+  0x000077b45815427f:   movslq %r9d,%r9
+  0x000077b458154282:   lea    0x10(%rsi,%rdx,4),%rdi
+  0x000077b458154287:   lea    0x10(%rcx,%r8,4),%rsi
+  0x000077b45815428c:   mov    %r9,%rdx
+  0x000077b45815428f:   mov    0x8(%rcx),%r8d
+  0x000077b458154293:   mov    $0x46000000,%r10d
+  0x000077b458154299:   add    %r10,%r8
+  0x000077b45815429c:   mov    0xe0(%r8),%r8
+  0x000077b4581542a3:   mov    0x10(%r8),%ecx
+  0x000077b4581542a7:   call   Stub::checkcast_arraycopy_stub (stub gen)
+                                                            ;   {runtime_call Stub::checkcast_arraycopy_stub (stub gen)}
+  0x000077b4581542ac:   test   %eax,%eax
+  0x000077b4581542ae:   je     0x000077b45815430f
+  0x000077b4581542b4:   mov    %rax,%rdi
+  0x000077b4581542b7:   xor    $0xffffffff,%edi
+  0x000077b4581542ba:   mov    (%rsp),%rcx
+  0x000077b4581542be:   mov    0x8(%rsp),%r8
+  0x000077b4581542c3:   mov    0x10(%rsp),%r9
+  0x000077b4581542c8:   mov    0x18(%rsp),%rdx
+  0x000077b4581542cd:   mov    0x20(%rsp),%rsi
+  0x000077b4581542d2:   sub    %edi,%r9d
+  0x000077b4581542d5:   add    %edi,%edx
+  0x000077b4581542d7:   add    %edi,%r8d
+  0x000077b4581542da:   jmp    0x000077b458154387
+  0x000077b4581542df:   pop    %rcx
+  0x000077b4581542e0:   pop    %rsi
+  0x000077b4581542e1:   lea    0x10(%rsi,%rdx,4),%rdi
+  0x000077b4581542e6:   lea    0x10(%rcx,%r8,4),%rsi
+  0x000077b4581542eb:   mov    %r9,%rdx
+  0x000077b4581542ee:   test   $0xf,%spl
+  0x000077b4581542f2:   je     0x000077b45815430a
+  0x000077b4581542f8:   sub    $0x8,%rsp
+  0x000077b4581542fc:   call   Stub::oop_arraycopy_stub (stub gen)
+                                                            ;   {runtime_call Stub::oop_arraycopy_stub (stub gen)}
+  0x000077b458154301:   add    $0x8,%rsp
+  0x000077b458154305:   jmp    0x000077b45815430f
+  0x000077b45815430a:   call   Stub::oop_arraycopy_stub (stub gen)
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@95 (line 770)
+                                                            ;   {runtime_call Stub::oop_arraycopy_stub (stub gen)}
+  0x000077b45815430f:   mov    0x48(%rsp),%ecx
+  0x000077b458154313:   add    0x4c(%rsp),%ecx
+  0x000077b458154317:   mov    0x38(%rsp),%rsi
+  0x000077b45815431c:   mov    %ecx,0x10(%rsi)              ;*putfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@103 (line 771)
+  0x000077b45815431f:   mov    $0x1,%eax
+  0x000077b458154324:   add    $0x60,%rsp
+  0x000077b458154328:   pop    %rbp
+  0x000077b458154329:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45815432d:   ja     0x000077b45815438e
+  0x000077b458154333:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@107 (line 772)
+  0x000077b458154334:   mov    $0x0,%eax
+  0x000077b458154339:   add    $0x60,%rsp
+  0x000077b45815433d:   pop    %rbp
+  0x000077b45815433e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458154342:   ja     0x000077b4581543a4
+  0x000077b458154348:   ret    
+  0x000077b458154349:   movabs $0x4621d578,%r10             ;   {metadata({method} {0x000000004621d578} &apos;addAll&apos; &apos;(Ljava/util/Collection;)Z&apos; in &apos;java/util/ArrayList&apos;)}
+  0x000077b458154353:   mov    %r10,0x8(%rsp)
+  0x000077b458154358:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458154360:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayList::addAll@-1 (line 755)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458154365:   jmp    0x000077b458153ee7
+  0x000077b45815436a:   call   0x000077b45f57c660           ; ImmutableOopMap {rdx=Oop [56]=Oop }
+                                                            ;*invokeinterface getClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@1 (line 755)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45815436f:   mov    %rdx,(%rsp)
+  0x000077b458154373:   call   0x000077b45f57f3e0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@12 (line 756)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x000077b458154378:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop [56]=Oop }
+                                                            ;*getfield elementData {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.ArrayList::addAll@19 (line 757)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45815437d:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop [56]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@40 (line 761)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458154382:   call   0x000077b45f57c660           ; ImmutableOopMap {rdi=Oop rbx=Oop rdx=Oop [56]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@66 (line 768)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458154387:   call   0x000077b45f4adfe0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayList::addAll@95 (line 770)
+                                                            ;   {static_call}
+  0x000077b45815438c:   jmp    0x000077b45815430f
+  0x000077b45815438e:   movabs $0x77b458154329,%r10         ;   {internal_word}
+  0x000077b458154398:   mov    %r10,0x510(%r15)
+  0x000077b45815439f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4581543a4:   movabs $0x77b45815433e,%r10         ;   {internal_word}
+  0x000077b4581543ae:   mov    %r10,0x510(%r15)
+  0x000077b4581543b5:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4581543ba:   mov    0x5c0(%r15),%rax
+  0x000077b4581543c1:   movq   $0x0,0x5c0(%r15)
+  0x000077b4581543cc:   movq   $0x0,0x5c8(%r15)
+  0x000077b4581543d7:   add    $0x60,%rsp
+  0x000077b4581543db:   pop    %rbp
+  0x000077b4581543dc:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4581543e1:   hlt    
+  0x000077b4581543e2:   hlt    
+  0x000077b4581543e3:   hlt    
+  0x000077b4581543e4:   hlt    
+  0x000077b4581543e5:   hlt    
+  0x000077b4581543e6:   hlt    
+  0x000077b4581543e7:   hlt    
+[Stub Code]
+  0x000077b4581543e8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b4581543ed:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4581543f7:   jmp    0x000077b4581543f7           ;   {runtime_call nmethod}
+  0x000077b4581543fc:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458154406:   jmp    0x000077b458154406           ;   {runtime_call nmethod}
+  0x000077b45815440b:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458154415:   jmp    0x000077b458154415           ;   {runtime_call nmethod}
+  0x000077b45815441a:   data16 xchg %ax,%ax
+  0x000077b45815441d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458154427:   jmp    0x000077b458154427           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b45815442c:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458154431:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45815443b:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45815443f:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458154444:   hlt    
+  0x000077b458154445:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45815444a:   jmp    0x000077b458154445
+  0x000077b45815444c:   hlt    
+  0x000077b45815444d:   hlt    
+  0x000077b45815444e:   hlt    
+  0x000077b45815444f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

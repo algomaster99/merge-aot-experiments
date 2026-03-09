@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 19848 1095       1       java.util.concurrent.locks.AbstractOwnableSynchronizer::getExclusiveOwnerThread (5 bytes)
+ total in heap  [0x000077b45fbcad08,0x000077b45fbcaeb0] = 424
+ main code      [0x000077b45fbcae00,0x000077b45fbcae90] = 144
+ stub code      [0x000077b45fbcae90,0x000077b45fbcaeb0] = 32
+ mutable data [0x000077b3f01131a0,0x000077b3f01131c8] = 40
+ relocation     [0x000077b3f01131a0,0x000077b3f01131c0] = 32
+ metadata       [0x000077b3f01131c0,0x000077b3f01131c8] = 8
+ immutable data [0x000077b3f0114a80,0x000077b3f0114adc] = 92
+ dependencies   [0x000077b3f0114a80,0x000077b3f0114a88] = 8
+ scopes pcs     [0x000077b3f0114a88,0x000077b3f0114ac8] = 64
+ scopes data    [0x000077b3f0114ac8,0x000077b3f0114ad8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbcae00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbcae0b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbcae0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461d6068} &apos;getExclusiveOwnerThread&apos; &apos;()Ljava/lang/Thread;&apos; in &apos;java/util/concurrent/locks/AbstractOwnableSynchronizer&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbcae12:   mov    0x8(%rsi),%r10d
+  0x000077b45fbcae16:   cmp    0x8(%rax),%r10d
+  0x000077b45fbcae1a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbcae20:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbcae27:   push   %rbp
+  0x000077b45fbcae28:   sub    $0x20,%rsp
+  0x000077b45fbcae2c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbcae34:   je     0x000077b45fbcae3b
+  0x000077b45fbcae36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.locks.AbstractOwnableSynchronizer::getExclusiveOwnerThread@0 (line 84)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbcae3b:   mov    0xc(%rsi),%eax
+  0x000077b45fbcae3e:   shl    $0x3,%rax                    ;*getfield exclusiveOwnerThread {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.locks.AbstractOwnableSynchronizer::getExclusiveOwnerThread@1 (line 84)
+  0x000077b45fbcae42:   add    $0x20,%rsp
+  0x000077b45fbcae46:   pop    %rbp
+  0x000077b45fbcae47:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbcae4b:   ja     0x000077b45fbcae52
+  0x000077b45fbcae51:   ret    
+  0x000077b45fbcae52:   movabs $0x77b45fbcae47,%r10         ;   {internal_word}
+  0x000077b45fbcae5c:   mov    %r10,0x510(%r15)
+  0x000077b45fbcae63:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbcae68:   mov    0x5c0(%r15),%rax
+  0x000077b45fbcae6f:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbcae7a:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbcae85:   add    $0x20,%rsp
+  0x000077b45fbcae89:   pop    %rbp
+  0x000077b45fbcae8a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbcae8f:   hlt    
+[Exception Handler]
+  0x000077b45fbcae90:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbcae95:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbcae9f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbcaea3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbcaea8:   hlt    
+  0x000077b45fbcaea9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbcaeae:   jmp    0x000077b45fbcaea9
+--------------------------------------------------------------------------------
+[/Disassembly]

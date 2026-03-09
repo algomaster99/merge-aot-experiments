@@ -1,0 +1,131 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 232    3       3       java.util.concurrent.ConcurrentHashMap::putIfAbsent (8 bytes)
+ total in heap  [0x0000757fa3fff008,0x0000757fa3fff288] = 640
+ main code      [0x0000757fa3fff100,0x0000757fa3fff258] = 344
+ stub code      [0x0000757fa3fff258,0x0000757fa3fff288] = 48
+ mutable data [0x0000757f440144f0,0x0000757f44014530] = 64
+ relocation     [0x0000757f440144f0,0x0000757f44014528] = 56
+ metadata       [0x0000757f44014528,0x0000757f44014530] = 8
+ immutable data [0x0000757f44014d50,0x0000757f44014df4] = 164
+ dependencies   [0x0000757f44014d50,0x0000757f44014d58] = 8
+ scopes pcs     [0x0000757f44014d58,0x0000757f44014dc8] = 112
+ scopes data    [0x0000757f44014dc8,0x0000757f44014df0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000757fa3fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000757fa3fff10b:   data16 data16 xchg %ax,%ax
+  0x0000757fa3fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000831c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = &apos;java/lang/Object&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x0000757fa3fff112:   mov    0x8(%rsi),%r10d
+  0x0000757fa3fff116:   cmp    0x8(%rax),%r10d
+  0x0000757fa3fff11a:   jne    0x0000757fab4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000757fa3fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000757fa3fff127:   push   %rbp
+  0x0000757fa3fff128:   sub    $0x30,%rsp
+  0x0000757fa3fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000757fa3fff134:   je     0x0000757fa3fff13b
+  0x0000757fa3fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000757fa3fff13b:   movabs $0x757f5c01ff78,%r8          ;   {metadata(method data for {method} {0x00000000831c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x0000757fa3fff145:   mov    0x90(%r8),%edi
+  0x0000757fa3fff14c:   add    $0x2,%edi
+  0x0000757fa3fff14f:   mov    %edi,0x90(%r8)
+  0x0000757fa3fff156:   and    $0x7fe,%edi
+  0x0000757fa3fff15c:   test   %edi,%edi
+  0x0000757fa3fff15e:   je     0x0000757fa3fff1f4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@0 (line 1566)
+  0x0000757fa3fff164:   mov    %rsi,%r8
+  0x0000757fa3fff167:   movabs $0x757f5c01ff78,%rdi         ;   {metadata(method data for {method} {0x00000000831c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x0000757fa3fff171:   mov    0x8(%r8),%r8d
+  0x0000757fa3fff175:   mov    $0x83000000,%r10d
+  0x0000757fa3fff17b:   add    %r10,%r8
+  0x0000757fa3fff17e:   mov    $0x1c,%r10d
+  0x0000757fa3fff184:   cmp    (%rdi,%r10,8),%r8
+  0x0000757fa3fff188:   je     0x0000757fa3fff1c1
+  0x0000757fa3fff18a:   add    $0x2,%r10
+  0x0000757fa3fff18e:   cmp    $0x20,%r10
+  0x0000757fa3fff192:   jne    0x0000757fa3fff184
+  0x0000757fa3fff194:   mov    $0x1c,%r10d
+  0x0000757fa3fff19a:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000757fa3fff19f:   je     0x0000757fa3fff1ad
+  0x0000757fa3fff1a1:   add    $0x2,%r10
+  0x0000757fa3fff1a5:   cmp    $0x20,%r10
+  0x0000757fa3fff1a9:   jne    0x0000757fa3fff19a
+  0x0000757fa3fff1ab:   jmp    0x0000757fa3fff1b9
+  0x0000757fa3fff1ad:   push   %rax
+  0x0000757fa3fff1ae:   xor    %rax,%rax
+  0x0000757fa3fff1b1:   cmpxchg %r8,(%rdi,%r10,8)
+  0x0000757fa3fff1b6:   pop    %rax
+  0x0000757fa3fff1b7:   jmp    0x0000757fa3fff17e
+  0x0000757fa3fff1b9:   mov    $0x1b,%r10d
+  0x0000757fa3fff1bf:   jmp    0x0000757fa3fff1c5
+  0x0000757fa3fff1c1:   add    $0x1,%r10
+  0x0000757fa3fff1c5:   addq   $0x1,(%rdi,%r10,8)
+  0x0000757fa3fff1ca:   mov    $0x1,%r8d                    ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+  0x0000757fa3fff1d0:   nopl   0x0(%rax)
+  0x0000757fa3fff1d7:   call   0x0000757fab4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+                                                            ;   {optimized virtual_call}
+  0x0000757fa3fff1dc:   nopl   0x1d4(%rax,%rax,1)           ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+                                                            ;   {post_call_nop}
+  0x0000757fa3fff1e4:   add    $0x30,%rsp
+  0x0000757fa3fff1e8:   pop    %rbp
+  0x0000757fa3fff1e9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000757fa3fff1ed:   ja     0x0000757fa3fff215
+  0x0000757fa3fff1f3:   ret    
+  0x0000757fa3fff1f4:   movabs $0x831c7790,%r10             ;   {metadata({method} {0x00000000831c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x0000757fa3fff1fe:   mov    %r10,0x8(%rsp)
+  0x0000757fa3fff203:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000757fa3fff20b:   call   0x0000757fab582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop rcx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@-1 (line 1566)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000757fa3fff210:   jmp    0x0000757fa3fff164
+  0x0000757fa3fff215:   movabs $0x757fa3fff1e9,%r10         ;   {internal_word}
+  0x0000757fa3fff21f:   mov    %r10,0x510(%r15)
+  0x0000757fa3fff226:   jmp    0x0000757fab4afb60           ;   {runtime_call SafepointBlob}
+  0x0000757fa3fff22b:   mov    0x5c0(%r15),%rax
+  0x0000757fa3fff232:   movq   $0x0,0x5c0(%r15)
+  0x0000757fa3fff23d:   movq   $0x0,0x5c8(%r15)
+  0x0000757fa3fff248:   add    $0x30,%rsp
+  0x0000757fa3fff24c:   pop    %rbp
+  0x0000757fa3fff24d:   jmp    0x0000757fab57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000757fa3fff252:   hlt    
+  0x0000757fa3fff253:   hlt    
+  0x0000757fa3fff254:   hlt    
+  0x0000757fa3fff255:   hlt    
+  0x0000757fa3fff256:   hlt    
+  0x0000757fa3fff257:   hlt    
+[Stub Code]
+  0x0000757fa3fff258:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000757fa3fff262:   jmp    0x0000757fa3fff262           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000757fa3fff267:   call   0x0000757fab57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000757fa3fff26c:   movabs $0x757fc2d3aec4,%rdi         ;   {external_word}
+  0x0000757fa3fff276:   and    $0xfffffffffffffff0,%rsp
+  0x0000757fa3fff27a:   call   0x0000757fc2791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000757fa3fff27f:   hlt    
+  0x0000757fa3fff280:   call   0x0000757fab4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000757fa3fff285:   jmp    0x0000757fa3fff280
+  0x0000757fa3fff287:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

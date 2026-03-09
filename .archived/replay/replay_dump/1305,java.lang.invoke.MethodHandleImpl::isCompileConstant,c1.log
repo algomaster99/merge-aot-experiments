@@ -1,0 +1,64 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 27380 1305       1       java.lang.invoke.MethodHandleImpl::isCompileConstant (2 bytes)
+ total in heap  [0x000077b45fbd5388,0x000077b45fbd5510] = 392
+ main code      [0x000077b45fbd5480,0x000077b45fbd54f0] = 112
+ stub code      [0x000077b45fbd54f0,0x000077b45fbd5510] = 32
+ mutable data [0x000077b3dc07bc40,0x000077b3dc07bc68] = 40
+ relocation     [0x000077b3dc07bc40,0x000077b3dc07bc60] = 32
+ metadata       [0x000077b3dc07bc60,0x000077b3dc07bc68] = 8
+ immutable data [0x000077b3dc07bbf0,0x000077b3dc07bc34] = 68
+ dependencies   [0x000077b3dc07bbf0,0x000077b3dc07bbf8] = 8
+ scopes pcs     [0x000077b3dc07bbf8,0x000077b3dc07bc28] = 48
+ scopes data    [0x000077b3dc07bc28,0x000077b3dc07bc30] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000461fa8d8} &apos;isCompileConstant&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/invoke/MethodHandleImpl&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbd5480:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbd5487:   push   %rbp
+  0x000077b45fbd5488:   sub    $0x20,%rsp
+  0x000077b45fbd548c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbd5494:   je     0x000077b45fbd549b
+  0x000077b45fbd5496:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*iconst_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandleImpl::isCompileConstant@0 (line 628)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbd549b:   mov    $0x0,%eax
+  0x000077b45fbd54a0:   add    $0x20,%rsp
+  0x000077b45fbd54a4:   pop    %rbp
+  0x000077b45fbd54a5:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbd54a9:   ja     0x000077b45fbd54b0
+  0x000077b45fbd54af:   ret    
+  0x000077b45fbd54b0:   movabs $0x77b45fbd54a5,%r10         ;   {internal_word}
+  0x000077b45fbd54ba:   mov    %r10,0x510(%r15)
+  0x000077b45fbd54c1:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbd54c6:   mov    0x5c0(%r15),%rax
+  0x000077b45fbd54cd:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbd54d8:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbd54e3:   add    $0x20,%rsp
+  0x000077b45fbd54e7:   pop    %rbp
+  0x000077b45fbd54e8:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbd54ed:   hlt    
+  0x000077b45fbd54ee:   hlt    
+  0x000077b45fbd54ef:   hlt    
+[Exception Handler]
+  0x000077b45fbd54f0:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbd54f5:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbd54ff:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbd5503:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbd5508:   hlt    
+  0x000077b45fbd5509:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbd550e:   jmp    0x000077b45fbd5509
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,260 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 32089 1434       4       java.lang.String::hashCode (60 bytes)
+ total in heap  [0x000077b45fbdc708,0x000077b45fbdcae8] = 992
+ main code      [0x000077b45fbdc800,0x000077b45fbdcae0] = 736
+ stub code      [0x000077b45fbdcae0,0x000077b45fbdcae8] = 8
+ mutable data [0x000077b40812ed60,0x000077b40812edd0] = 112
+ relocation     [0x000077b40812ed60,0x000077b40812eda8] = 72
+ metadata       [0x000077b40812eda8,0x000077b40812edd0] = 40
+ immutable data [0x000077b40812eac0,0x000077b40812ed54] = 660
+ dependencies   [0x000077b40812eac0,0x000077b40812ead0] = 16
+ nul chk table  [0x000077b40812ead0,0x000077b40812eae0] = 16
+ scopes pcs     [0x000077b40812eae0,0x000077b40812ec80] = 416
+ scopes data    [0x000077b40812ec80,0x000077b40812ed50] = 208
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbdc800:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046179118} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/String&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbdc802:   mov    0x8(%rsi),%r10d
+  0x000077b45fbdc806:   cmp    0x8(%rax),%r10d
+  0x000077b45fbdc80a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbdc810:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbdc817:   push   %rbp
+  0x000077b45fbdc818:   sub    $0x20,%rsp
+  0x000077b45fbdc81c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbdc824:   jne    0x000077b45fbdcad2           ;*synchronization entry
+                                                            ; - java.lang.String::hashCode@-1 (line 2724)
+  0x000077b45fbdc82a:   mov    0xc(%rsi),%eax               ;*getfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@1 (line 2724)
+  0x000077b45fbdc82d:   test   %eax,%eax
+  0x000077b45fbdc82f:   jne    0x000077b45fbdca3f           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@6 (line 2725)
+  0x000077b45fbdc835:   movzbl 0x11(%rsi),%r11d
+  0x000077b45fbdc83a:   test   %r11d,%r11d
+  0x000077b45fbdc83d:   jne    0x000077b45fbdca52           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@13 (line 2725)
+  0x000077b45fbdc843:   movsbl 0x10(%rsi),%ebp              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@7 (line 5187)
+                                                            ; - java.lang.String::hashCode@17 (line 2726)
+  0x000077b45fbdc847:   test   %ebp,%ebp
+  0x000077b45fbdc849:   jne    0x000077b45fbdca6e           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+                                                            ; - java.lang.String::hashCode@17 (line 2726)
+  0x000077b45fbdc84f:   mov    0x14(%rsi),%ebp              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@24 (line 2726)
+  0x000077b45fbdc852:   mov    0xc(%r12,%rbp,8),%edx        ; implicit exception: dispatches to 0x000077b45fbdcaa4
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::hashCode@3 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdc857:   lea    0x10(%r12,%rbp,8),%rdi       ;*invokestatic vectorizedHashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@51 (line 276)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdc85c:   cmp    $0x2,%edx
+  0x000077b45fbdc85f:   jl     0x000077b45fbdca56           ;*lookupswitch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@1 (line 273)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdc865:   xor    %ebx,%ebx
+  0x000077b45fbdc867:   cmp    $0x20,%edx
+  0x000077b45fbdc86a:   jl     0x000077b45fbdc9e5
+  0x000077b45fbdc870:   xor    %r11d,%r11d
+  0x000077b45fbdc873:   vpxor  %ymm5,%ymm5,%ymm5
+  0x000077b45fbdc877:   vpxor  %ymm6,%ymm6,%ymm6
+  0x000077b45fbdc87b:   vpxor  %ymm7,%ymm7,%ymm7
+  0x000077b45fbdc87f:   vpxor  %ymm8,%ymm8,%ymm8
+  0x000077b45fbdc884:   movabs $0x77b478e173c0,%r10         ;   {external_word}
+  0x000077b45fbdc88e:   mov    (%r10),%r8d
+  0x000077b45fbdc891:   vmovd  %r8d,%xmm0
+  0x000077b45fbdc896:   vpbroadcastd %xmm0,%ymm0
+  0x000077b45fbdc89b:   mov    %edx,%r10d
+  0x000077b45fbdc89e:   and    $0xffffffe0,%r10d
+  0x000077b45fbdc8a2:   imul   %r8d,%ebx
+  0x000077b45fbdc8a6:   vmovq  (%rdi,%r11,1),%xmm9
+  0x000077b45fbdc8ac:   vmovq  0x8(%rdi,%r11,1),%xmm10
+  0x000077b45fbdc8b3:   vmovq  0x10(%rdi,%r11,1),%xmm11
+  0x000077b45fbdc8ba:   vmovq  0x18(%rdi,%r11,1),%xmm12
+  0x000077b45fbdc8c1:   vpmulld %ymm0,%ymm5,%ymm5
+  0x000077b45fbdc8c6:   vpmovzxbd %xmm9,%ymm9
+  0x000077b45fbdc8cb:   vpaddd %ymm9,%ymm5,%ymm5
+  0x000077b45fbdc8d0:   vpmulld %ymm0,%ymm6,%ymm6
+  0x000077b45fbdc8d5:   vpmovzxbd %xmm10,%ymm10
+  0x000077b45fbdc8da:   vpaddd %ymm10,%ymm6,%ymm6
+  0x000077b45fbdc8df:   vpmulld %ymm0,%ymm7,%ymm7
+  0x000077b45fbdc8e4:   vpmovzxbd %xmm11,%ymm11
+  0x000077b45fbdc8e9:   vpaddd %ymm11,%ymm7,%ymm7
+  0x000077b45fbdc8ee:   vpmulld %ymm0,%ymm8,%ymm8
+  0x000077b45fbdc8f3:   vpmovzxbd %xmm12,%ymm12
+  0x000077b45fbdc8f8:   vpaddd %ymm12,%ymm8,%ymm8
+  0x000077b45fbdc8fd:   add    $0x20,%r11d
+  0x000077b45fbdc901:   cmp    %r10d,%r11d
+  0x000077b45fbdc904:   jl     0x000077b45fbdc8a2
+  0x000077b45fbdc906:   lea    (%rdi,%r10,1),%rdi
+  0x000077b45fbdc90a:   sub    %r10d,%edx
+  0x000077b45fbdc90d:   movabs $0x77b478e173c4,%r10         ;   {external_word}
+  0x000077b45fbdc917:   vmovdqu (%r10),%ymm1
+  0x000077b45fbdc91c:   vpmulld %ymm1,%ymm5,%ymm5
+  0x000077b45fbdc921:   movabs $0x77b478e173e4,%r10         ;   {external_word}
+  0x000077b45fbdc92b:   vmovdqu (%r10),%ymm2
+  0x000077b45fbdc930:   vpmulld %ymm2,%ymm6,%ymm6
+  0x000077b45fbdc935:   movabs $0x77b478e17404,%r10         ;   {external_word}
+  0x000077b45fbdc93f:   vmovdqu (%r10),%ymm3
+  0x000077b45fbdc944:   vpmulld %ymm3,%ymm7,%ymm7
+  0x000077b45fbdc949:   movabs $0x77b478e17424,%r10         ;   {external_word}
+  0x000077b45fbdc953:   vmovdqu (%r10),%ymm4
+  0x000077b45fbdc958:   vpmulld %ymm4,%ymm8,%ymm8
+  0x000077b45fbdc95d:   vphaddd %ymm5,%ymm5,%ymm9
+  0x000077b45fbdc962:   vextracti128 $0x1,%ymm9,%xmm10
+  0x000077b45fbdc968:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbdc96d:   vphaddd %xmm9,%xmm9,%xmm9
+  0x000077b45fbdc972:   vmovd  %ebx,%xmm10
+  0x000077b45fbdc976:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbdc97b:   vmovd  %xmm9,%ebx
+  0x000077b45fbdc97f:   vphaddd %ymm6,%ymm6,%ymm11
+  0x000077b45fbdc984:   vextracti128 $0x1,%ymm11,%xmm12
+  0x000077b45fbdc98a:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbdc98f:   vphaddd %xmm11,%xmm11,%xmm11
+  0x000077b45fbdc994:   vmovd  %ebx,%xmm12
+  0x000077b45fbdc998:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbdc99d:   vmovd  %xmm11,%ebx
+  0x000077b45fbdc9a1:   vphaddd %ymm7,%ymm7,%ymm9
+  0x000077b45fbdc9a6:   vextracti128 $0x1,%ymm9,%xmm10
+  0x000077b45fbdc9ac:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbdc9b1:   vphaddd %xmm9,%xmm9,%xmm9
+  0x000077b45fbdc9b6:   vmovd  %ebx,%xmm10
+  0x000077b45fbdc9ba:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbdc9bf:   vmovd  %xmm9,%ebx
+  0x000077b45fbdc9c3:   vphaddd %ymm8,%ymm8,%ymm11
+  0x000077b45fbdc9c8:   vextracti128 $0x1,%ymm11,%xmm12
+  0x000077b45fbdc9ce:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbdc9d3:   vphaddd %xmm11,%xmm11,%xmm11
+  0x000077b45fbdc9d8:   vmovd  %ebx,%xmm12
+  0x000077b45fbdc9dc:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbdc9e1:   vmovd  %xmm11,%ebx
+  0x000077b45fbdc9e5:   mov    $0x1,%r11d
+  0x000077b45fbdc9eb:   cmp    %edx,%r11d
+  0x000077b45fbdc9ee:   jge    0x000077b45fbdca22
+  0x000077b45fbdc9f4:   mov    $0x3c1,%r8d
+  0x000077b45fbdc9fa:   imul   %r8d,%ebx
+  0x000077b45fbdc9fe:   movzbl -0x1(%rdi,%r11,1),%r10d
+  0x000077b45fbdca04:   mov    %r10d,%r8d
+  0x000077b45fbdca07:   shl    $0x5,%r8d
+  0x000077b45fbdca0b:   sub    %r10d,%r8d
+  0x000077b45fbdca0e:   add    %r8d,%ebx
+  0x000077b45fbdca11:   movzbl (%rdi,%r11,1),%r8d
+  0x000077b45fbdca16:   add    %r8d,%ebx
+  0x000077b45fbdca19:   add    $0x2,%r11d
+  0x000077b45fbdca1d:   cmp    %edx,%r11d
+  0x000077b45fbdca20:   jl     0x000077b45fbdc9f4
+  0x000077b45fbdca22:   jg     0x000077b45fbdca36
+  0x000077b45fbdca24:   mov    %ebx,%r10d
+  0x000077b45fbdca27:   shl    $0x5,%ebx
+  0x000077b45fbdca2a:   sub    %r10d,%ebx
+  0x000077b45fbdca2d:   movzbl -0x1(%rdi,%r11,1),%r8d
+  0x000077b45fbdca33:   add    %r8d,%ebx                    ;*invokestatic vectorizedHashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@51 (line 276)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdca36:   test   %ebx,%ebx
+  0x000077b45fbdca38:   je     0x000077b45fbdca66           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@43 (line 275)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdca3a:   mov    %ebx,0xc(%rsi)               ;*putfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@55 (line 2731)
+  0x000077b45fbdca3d:   mov    %ebx,%eax                    ;*synchronization entry
+                                                            ; - java.lang.String::hashCode@-1 (line 2724)
+  0x000077b45fbdca3f:   vzeroupper 
+  0x000077b45fbdca42:   add    $0x20,%rsp
+  0x000077b45fbdca46:   pop    %rbp
+  0x000077b45fbdca47:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbdca4b:   ja     0x000077b45fbdcabc
+  0x000077b45fbdca51:   ret    
+  0x000077b45fbdca52:   xor    %eax,%eax
+  0x000077b45fbdca54:   jmp    0x000077b45fbdca3f
+  0x000077b45fbdca56:   cmp    $0x1,%edx
+  0x000077b45fbdca59:   jne    0x000077b45fbdca66           ;*lookupswitch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@1 (line 273)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdca5b:   test   %edx,%edx
+  0x000077b45fbdca5d:   jbe    0x000077b45fbdca88
+  0x000077b45fbdca5f:   movzbl (%rdi),%ebx                  ;*iand {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Byte::toUnsignedInt@4 (line 554)
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@39 (line 275)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+  0x000077b45fbdca62:   test   %ebx,%ebx
+  0x000077b45fbdca64:   jne    0x000077b45fbdca3a           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@42 (line 2728)
+  0x000077b45fbdca66:   movb   $0x1,0x11(%rsi)              ;*putfield hashIsZero {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::hashCode@47 (line 2729)
+  0x000077b45fbdca6a:   xor    %eax,%eax
+  0x000077b45fbdca6c:   jmp    0x000077b45fbdca3f
+  0x000077b45fbdca6e:   mov    %rsi,(%rsp)
+  0x000077b45fbdca72:   mov    $0xffffff45,%esi
+  0x000077b45fbdca77:   nop
+  0x000077b45fbdca78:   vzeroupper 
+  0x000077b45fbdca7b:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop }
+                                                            ;*ifne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::isLatin1@10 (line 5187)
+                                                            ; - java.lang.String::hashCode@17 (line 2726)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdca80:   nopl   0x378(%rax,%rax,1)           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::isLatin1@10 (line 5187)
+                                                            ; - java.lang.String::hashCode@17 (line 2726)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdca88:   mov    %rsi,(%rsp)
+  0x000077b45fbdca8c:   mov    $0xffffffe4,%esi
+  0x000077b45fbdca91:   data16 xchg %ax,%ax
+  0x000077b45fbdca94:   vzeroupper 
+  0x000077b45fbdca97:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop }
+                                                            ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@38 (line 275)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdca9c:   nopl   0x1000394(%rax,%rax,1)       ;*baload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@38 (line 275)
+                                                            ; - java.lang.StringLatin1::hashCode@5 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdcaa4:   mov    $0xfffffff6,%esi
+  0x000077b45fbdcaa9:   data16 xchg %ax,%ax
+  0x000077b45fbdcaac:   vzeroupper 
+  0x000077b45fbdcaaf:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::hashCode@3 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbdcab4:   nopl   0x20003ac(%rax,%rax,1)       ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringLatin1::hashCode@3 (line 307)
+                                                            ; - java.lang.String::hashCode@27 (line 2726)
+                                                            ;   {post_call_nop}
+  0x000077b45fbdcabc:   movabs $0x77b45fbdca47,%r10         ;   {internal_word}
+  0x000077b45fbdcac6:   mov    %r10,0x510(%r15)
+  0x000077b45fbdcacd:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbdcad2:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbdcad7:   jmp    0x000077b45fbdc82a
+  0x000077b45fbdcadc:   hlt    
+  0x000077b45fbdcadd:   hlt    
+  0x000077b45fbdcade:   hlt    
+  0x000077b45fbdcadf:   hlt    
+[Stub Code]
+  0x000077b45fbdcae0:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbdcae5:   jmp    0x000077b45fbdcae0
+  0x000077b45fbdcae7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

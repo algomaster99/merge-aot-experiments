@@ -1,0 +1,126 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 532   53       3       java.lang.invoke.Invokers::maybeCustomize (5 bytes)
+ total in heap  [0x00007b15fffff008,0x00007b15fffff268] = 608
+ main code      [0x00007b15fffff100,0x00007b15fffff230] = 304
+ stub code      [0x00007b15fffff230,0x00007b15fffff268] = 56
+ mutable data [0x00007b15a8024e00,0x00007b15a8024e50] = 80
+ relocation     [0x00007b15a8024e00,0x00007b15a8024e38] = 56
+ metadata       [0x00007b15a8024e38,0x00007b15a8024e50] = 24
+ immutable data [0x00007b15a8024d30,0x00007b15a8024dec] = 188
+ dependencies   [0x00007b15a8024d30,0x00007b15a8024d38] = 8
+ nul chk table  [0x00007b15a8024d38,0x00007b15a8024d48] = 16
+ scopes pcs     [0x00007b15a8024d48,0x00007b15a8024dc8] = 128
+ scopes data    [0x00007b15a8024dc8,0x00007b15a8024de8] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000005e478e28} &apos;maybeCustomize&apos; &apos;(Ljava/lang/invoke/MethodHandle;)V&apos; in &apos;java/lang/invoke/Invokers&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/invoke/MethodHandle&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007b15fffff100:   mov    %eax,-0x14000(%rsp)
+  0x00007b15fffff107:   push   %rbp
+  0x00007b15fffff108:   sub    $0x20,%rsp
+  0x00007b15fffff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007b15fffff114:   je     0x00007b15fffff11b
+  0x00007b15fffff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007b15fffff11b:   movabs $0x7b15bc318d48,%rdi         ;   {metadata(method data for {method} {0x000000005e478e28} &apos;maybeCustomize&apos; &apos;(Ljava/lang/invoke/MethodHandle;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x00007b15fffff125:   mov    0x90(%rdi),%ebx
+  0x00007b15fffff12b:   add    $0x2,%ebx
+  0x00007b15fffff12e:   mov    %ebx,0x90(%rdi)
+  0x00007b15fffff134:   and    $0x7fe,%ebx
+  0x00007b15fffff13a:   test   %ebx,%ebx
+  0x00007b15fffff13c:   je     0x00007b15fffff1cc           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@0 (line 634)
+  0x00007b15fffff142:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x00007b15fffff1ed
+                                                            ;*invokevirtual maybeCustomize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@1 (line 634)
+  0x00007b15fffff145:   mov    %rsi,%rdi
+  0x00007b15fffff148:   movabs $0x7b15bc318d48,%rbx         ;   {metadata(method data for {method} {0x000000005e478e28} &apos;maybeCustomize&apos; &apos;(Ljava/lang/invoke/MethodHandle;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x00007b15fffff152:   mov    0x8(%rdi),%edi
+  0x00007b15fffff155:   mov    $0x5e000000,%r10d
+  0x00007b15fffff15b:   add    %r10,%rdi
+  0x00007b15fffff15e:   mov    $0x1c,%r10d
+  0x00007b15fffff164:   cmp    (%rbx,%r10,8),%rdi
+  0x00007b15fffff168:   je     0x00007b15fffff1a1
+  0x00007b15fffff16a:   add    $0x2,%r10
+  0x00007b15fffff16e:   cmp    $0x20,%r10
+  0x00007b15fffff172:   jne    0x00007b15fffff164
+  0x00007b15fffff174:   mov    $0x1c,%r10d
+  0x00007b15fffff17a:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007b15fffff17f:   je     0x00007b15fffff18d
+  0x00007b15fffff181:   add    $0x2,%r10
+  0x00007b15fffff185:   cmp    $0x20,%r10
+  0x00007b15fffff189:   jne    0x00007b15fffff17a
+  0x00007b15fffff18b:   jmp    0x00007b15fffff199
+  0x00007b15fffff18d:   push   %rax
+  0x00007b15fffff18e:   xor    %rax,%rax
+  0x00007b15fffff191:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007b15fffff196:   pop    %rax
+  0x00007b15fffff197:   jmp    0x00007b15fffff15e
+  0x00007b15fffff199:   mov    $0x1b,%r10d
+  0x00007b15fffff19f:   jmp    0x00007b15fffff1a5
+  0x00007b15fffff1a1:   add    $0x1,%r10
+  0x00007b15fffff1a5:   addq   $0x1,(%rbx,%r10,8)
+  0x00007b15fffff1aa:   nopl   0x0(%rax,%rax,1)
+  0x00007b15fffff1af:   call   0x00007b16074ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual maybeCustomize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@1 (line 634)
+                                                            ;   {optimized virtual_call}
+  0x00007b15fffff1b4:   nopl   0x1ac(%rax,%rax,1)           ;*invokevirtual maybeCustomize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@1 (line 634)
+                                                            ;   {post_call_nop}
+  0x00007b15fffff1bc:   add    $0x20,%rsp
+  0x00007b15fffff1c0:   pop    %rbp
+  0x00007b15fffff1c1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007b15fffff1c5:   ja     0x00007b15fffff1f2
+  0x00007b15fffff1cb:   ret    
+  0x00007b15fffff1cc:   movabs $0x5e478e28,%r10             ;   {metadata({method} {0x000000005e478e28} &apos;maybeCustomize&apos; &apos;(Ljava/lang/invoke/MethodHandle;)V&apos; in &apos;java/lang/invoke/Invokers&apos;)}
+  0x00007b15fffff1d6:   mov    %r10,0x8(%rsp)
+  0x00007b15fffff1db:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007b15fffff1e3:   call   0x00007b1607583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@-1 (line 634)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007b15fffff1e8:   jmp    0x00007b15fffff142
+  0x00007b15fffff1ed:   call   0x00007b160757cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokevirtual maybeCustomize {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.Invokers::maybeCustomize@1 (line 634)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007b15fffff1f2:   movabs $0x7b15fffff1c1,%r10         ;   {internal_word}
+  0x00007b15fffff1fc:   mov    %r10,0x510(%r15)
+  0x00007b15fffff203:   jmp    0x00007b16074afb60           ;   {runtime_call SafepointBlob}
+  0x00007b15fffff208:   mov    0x5c0(%r15),%rax
+  0x00007b15fffff20f:   movq   $0x0,0x5c0(%r15)
+  0x00007b15fffff21a:   movq   $0x0,0x5c8(%r15)
+  0x00007b15fffff225:   add    $0x20,%rsp
+  0x00007b15fffff229:   pop    %rbp
+  0x00007b15fffff22a:   jmp    0x00007b160757b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007b15fffff22f:   hlt    
+[Stub Code]
+  0x00007b15fffff230:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007b15fffff235:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007b15fffff23f:   jmp    0x00007b15fffff23f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007b15fffff244:   call   0x00007b160757f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007b15fffff249:   movabs $0x7b161f73aec4,%rdi         ;   {external_word}
+  0x00007b15fffff253:   and    $0xfffffffffffffff0,%rsp
+  0x00007b15fffff257:   call   0x00007b161f191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007b15fffff25c:   hlt    
+  0x00007b15fffff25d:   call   0x00007b16074afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007b15fffff262:   jmp    0x00007b15fffff25d
+  0x00007b15fffff264:   hlt    
+  0x00007b15fffff265:   hlt    
+  0x00007b15fffff266:   hlt    
+  0x00007b15fffff267:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

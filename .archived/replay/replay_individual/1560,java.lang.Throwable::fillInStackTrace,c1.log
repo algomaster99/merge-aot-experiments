@@ -1,0 +1,229 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 614   53  s    3       java.lang.Throwable::fillInStackTrace (29 bytes)
+ total in heap  [0x000078b453fff008,0x000078b453fff458] = 1104
+ main code      [0x000078b453fff100,0x000078b453fff428] = 808
+ stub code      [0x000078b453fff428,0x000078b453fff458] = 48
+ mutable data [0x000078b3fc02cde0,0x000078b3fc02ce30] = 80
+ relocation     [0x000078b3fc02cde0,0x000078b3fc02ce28] = 72
+ metadata       [0x000078b3fc02ce28,0x000078b3fc02ce30] = 8
+ immutable data [0x000078b3fc02cc90,0x000078b3fc02cdcc] = 316
+ dependencies   [0x000078b3fc02cc90,0x000078b3fc02cc98] = 8
+ scopes pcs     [0x000078b3fc02cc98,0x000078b3fc02cd78] = 224
+ scopes data    [0x000078b3fc02cd78,0x000078b3fc02cdc8] = 80
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000078b453fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000078b453fff10b:   data16 data16 xchg %ax,%ax
+  0x000078b453fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x000078b453fff112:   mov    0x8(%rsi),%r10d
+  0x000078b453fff116:   cmp    0x8(%rax),%r10d
+  0x000078b453fff11a:   jne    0x000078b45b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000078b453fff120:   mov    %eax,-0x14000(%rsp)
+  0x000078b453fff127:   push   %rbp
+  0x000078b453fff128:   sub    $0x40,%rsp
+  0x000078b453fff12c:   cmpl   $0x1,0x20(%r15)
+  0x000078b453fff134:   je     0x000078b453fff13b
+  0x000078b453fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000078b453fff13b:   lea    0x20(%rsp),%rdx
+  0x000078b453fff140:   mov    %rsi,0x8(%rdx)
+  0x000078b453fff144:   mov    (%rsi),%rax
+  0x000078b453fff147:   mov    0x7c0(%r15),%edi
+  0x000078b453fff14e:   cmp    $0x810,%edi
+  0x000078b453fff154:   jge    0x000078b453fff319
+  0x000078b453fff15a:   cmp    -0x8(%r15,%rdi,1),%rsi
+  0x000078b453fff15f:   je     0x000078b453fff18a
+  0x000078b453fff165:   test   $0x2,%al
+  0x000078b453fff167:   jne    0x000078b453fff319
+  0x000078b453fff16d:   mov    %rax,%rdi
+  0x000078b453fff170:   and    $0xfffffffffffffffe,%rdi
+  0x000078b453fff174:   or     $0x1,%rax
+  0x000078b453fff178:   lock cmpxchg %rdi,(%rsi)
+  0x000078b453fff17d:   jne    0x000078b453fff319
+  0x000078b453fff183:   mov    0x7c0(%r15),%edi
+  0x000078b453fff18a:   mov    %rsi,(%r15,%rdi,1)
+  0x000078b453fff18e:   add    $0x8,%edi
+  0x000078b453fff191:   mov    %edi,0x7c0(%r15)
+  0x000078b453fff198:   movabs $0x78b40c318d48,%rdx         ;   {metadata(method data for {method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;)}
+  0x000078b453fff1a2:   mov    0x90(%rdx),%edi
+  0x000078b453fff1a8:   add    $0x2,%edi
+  0x000078b453fff1ab:   mov    %edi,0x90(%rdx)
+  0x000078b453fff1b1:   and    $0x7fe,%edi
+  0x000078b453fff1b7:   test   %edi,%edi
+  0x000078b453fff1b9:   je     0x000078b453fff32c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@0 (line 823)
+  0x000078b453fff1bf:   mov    0x1c(%rsi),%edx
+  0x000078b453fff1c2:   shl    $0x3,%rdx                    ;*getfield stackTrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@1 (line 823)
+  0x000078b453fff1c6:   test   %rdx,%rdx
+  0x000078b453fff1c9:   movabs $0x78b40c318d48,%rdx         ;   {metadata(method data for {method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;)}
+  0x000078b453fff1d3:   mov    $0xd8,%edi
+  0x000078b453fff1d8:   jne    0x000078b453fff1df
+  0x000078b453fff1da:   mov    $0xe8,%edi
+  0x000078b453fff1df:   mov    (%rdx,%rdi,1),%rbx
+  0x000078b453fff1e3:   lea    0x1(%rbx),%rbx
+  0x000078b453fff1e7:   mov    %rbx,(%rdx,%rdi,1)
+  0x000078b453fff1eb:   jne    0x000078b453fff223           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@4 (line 823)
+  0x000078b453fff1f1:   mov    0x10(%rsi),%edx
+  0x000078b453fff1f4:   shl    $0x3,%rdx                    ;*getfield backtrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@8 (line 823)
+  0x000078b453fff1f8:   test   %rdx,%rdx
+  0x000078b453fff1fb:   movabs $0x78b40c318d48,%rdx         ;   {metadata(method data for {method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;)}
+  0x000078b453fff205:   mov    $0xf8,%edi
+  0x000078b453fff20a:   je     0x000078b453fff211
+  0x000078b453fff20c:   mov    $0x108,%edi
+  0x000078b453fff211:   mov    (%rdx,%rdi,1),%rbx
+  0x000078b453fff215:   lea    0x1(%rbx),%rbx
+  0x000078b453fff219:   mov    %rbx,(%rdx,%rdi,1)
+  0x000078b453fff21d:   je     0x000078b453fff2ae           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@11 (line 823)
+  0x000078b453fff223:   mov    %rsi,%rdx
+  0x000078b453fff226:   movabs $0x78b40c318d48,%rdi         ;   {metadata(method data for {method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;)}
+  0x000078b453fff230:   addq   $0x1,0x118(%rdi)
+  0x000078b453fff238:   mov    $0x0,%edx
+  0x000078b453fff23d:   mov    %rsi,%rdi
+  0x000078b453fff240:   mov    %rdi,%rsi                    ;*invokevirtual fillInStackTrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@16 (line 825)
+  0x000078b453fff243:   mov    %rdi,0x18(%rsp)
+  0x000078b453fff248:   nopl   0x0(%rax)
+  0x000078b453fff24f:   call   0x000078b45b4ad9e0           ; ImmutableOopMap {[24]=Oop [40]=Oop }
+                                                            ;*invokevirtual fillInStackTrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@16 (line 825)
+                                                            ;   {optimized virtual_call}
+  0x000078b453fff254:   nopl   0x24c(%rax,%rax,1)           ;*invokevirtual fillInStackTrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@16 (line 825)
+                                                            ;   {post_call_nop}
+  0x000078b453fff25c:   movsbl 0x48(%r15),%eax
+  0x000078b453fff261:   test   %eax,%eax
+  0x000078b453fff263:   mov    0x18(%rsp),%rsi
+  0x000078b453fff268:   jne    0x000078b453fff34d
+  0x000078b453fff26e:   movabs $0x420027ef8,%r10            ;   {oop(a &apos;java/lang/StackTraceElement&apos;[0] {0x0000000420027ef8})}
+  0x000078b453fff278:   shr    $0x3,%r10
+  0x000078b453fff27c:   mov    %r10d,0x1c(%rsi)
+  0x000078b453fff280:   movabs $0x420027ef8,%rax            ;   {oop(a &apos;java/lang/StackTraceElement&apos;[0] {0x0000000420027ef8})}
+  0x000078b453fff28a:   mov    %rsi,%rbx
+  0x000078b453fff28d:   xor    %rax,%rbx
+  0x000078b453fff290:   shr    $0x17,%rbx
+  0x000078b453fff294:   je     0x000078b453fff2ae
+  0x000078b453fff296:   test   %rax,%rax
+  0x000078b453fff299:   je     0x000078b453fff2ae
+  0x000078b453fff29b:   mov    %rsi,%rbx
+  0x000078b453fff29e:   shr    $0x9,%rbx
+  0x000078b453fff2a2:   add    0x50(%r15),%rbx
+  0x000078b453fff2a6:   cmpb   $0xff,(%rbx)
+  0x000078b453fff2a9:   jne    0x000078b453fff2ae
+  0x000078b453fff2ab:   movb   $0x0,(%rbx)                  ;*putfield stackTrace {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@24 (line 826)
+  0x000078b453fff2ae:   lea    0x20(%rsp),%rax
+  0x000078b453fff2b3:   mov    0x8(%rax),%rbx
+  0x000078b453fff2b7:   mov    0x7c0(%r15),%edi
+  0x000078b453fff2be:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x000078b453fff2c3:   jne    0x000078b453fff36b
+  0x000078b453fff2c9:   subl   $0x8,0x7c0(%r15)
+  0x000078b453fff2d1:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x000078b453fff2d6:   je     0x000078b453fff306
+  0x000078b453fff2dc:   mov    (%rbx),%rax
+  0x000078b453fff2df:   test   $0x2,%al
+  0x000078b453fff2e1:   jne    0x000078b453fff2f9
+  0x000078b453fff2e7:   mov    %rax,%rdi
+  0x000078b453fff2ea:   or     $0x1,%rdi
+  0x000078b453fff2ee:   lock cmpxchg %rdi,(%rbx)
+  0x000078b453fff2f3:   je     0x000078b453fff306
+  0x000078b453fff2f9:   addl   $0x8,0x7c0(%r15)
+  0x000078b453fff301:   jmp    0x000078b453fff36b           ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Throwable::fillInStackTrace@28 (line 828)
+  0x000078b453fff306:   mov    %rsi,%rax
+  0x000078b453fff309:   add    $0x40,%rsp
+  0x000078b453fff30d:   pop    %rbp
+  0x000078b453fff30e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000078b453fff312:   ja     0x000078b453fff37b
+  0x000078b453fff318:   ret    
+  0x000078b453fff319:   mov    %rsi,0x8(%rsp)
+  0x000078b453fff31e:   mov    %rdx,(%rsp)
+  0x000078b453fff322:   call   0x000078b45b5810e0           ; ImmutableOopMap {rsi=Oop [40]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Throwable::fillInStackTrace@-1 (line 823)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x000078b453fff327:   jmp    0x000078b453fff198
+  0x000078b453fff32c:   movabs $0x6c197cb0,%r10             ;   {metadata({method} {0x000000006c197cb0} &apos;fillInStackTrace&apos; &apos;()Ljava/lang/Throwable;&apos; in &apos;java/lang/Throwable&apos;)}
+  0x000078b453fff336:   mov    %r10,0x8(%rsp)
+  0x000078b453fff33b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000078b453fff343:   call   0x000078b45b583460           ; ImmutableOopMap {rsi=Oop [40]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Throwable::fillInStackTrace@-1 (line 823)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000078b453fff348:   jmp    0x000078b453fff1bf
+  0x000078b453fff34d:   mov    0x1c(%rsi),%eax
+  0x000078b453fff350:   shl    $0x3,%rax
+  0x000078b453fff354:   test   %rax,%rax
+  0x000078b453fff357:   je     0x000078b453fff26e
+  0x000078b453fff35d:   mov    %rax,(%rsp)
+  0x000078b453fff361:   call   0x000078b45b583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x000078b453fff366:   jmp    0x000078b453fff26e
+  0x000078b453fff36b:   lea    0x20(%rsp),%rax
+  0x000078b453fff370:   mov    %rax,(%rsp)
+  0x000078b453fff374:   call   0x000078b45b5816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x000078b453fff379:   jmp    0x000078b453fff306
+  0x000078b453fff37b:   movabs $0x78b453fff30e,%r10         ;   {internal_word}
+  0x000078b453fff385:   mov    %r10,0x510(%r15)
+  0x000078b453fff38c:   jmp    0x000078b45b4afb60           ;   {runtime_call SafepointBlob}
+  0x000078b453fff391:   mov    0x5c0(%r15),%rax
+  0x000078b453fff398:   movq   $0x0,0x5c0(%r15)
+  0x000078b453fff3a3:   movq   $0x0,0x5c8(%r15)
+  0x000078b453fff3ae:   mov    %rax,%rbx
+  0x000078b453fff3b1:   lea    0x20(%rsp),%rax
+  0x000078b453fff3b6:   mov    0x8(%rax),%rsi
+  0x000078b453fff3ba:   mov    0x7c0(%r15),%edi
+  0x000078b453fff3c1:   cmp    -0x8(%r15,%rdi,1),%rsi
+  0x000078b453fff3c6:   jne    0x000078b453fff416
+  0x000078b453fff3cc:   subl   $0x8,0x7c0(%r15)
+  0x000078b453fff3d4:   cmp    -0x10(%r15,%rdi,1),%rsi
+  0x000078b453fff3d9:   je     0x000078b453fff409
+  0x000078b453fff3df:   mov    (%rsi),%rax
+  0x000078b453fff3e2:   test   $0x2,%al
+  0x000078b453fff3e4:   jne    0x000078b453fff3fc
+  0x000078b453fff3ea:   mov    %rax,%rdi
+  0x000078b453fff3ed:   or     $0x1,%rdi
+  0x000078b453fff3f1:   lock cmpxchg %rdi,(%rsi)
+  0x000078b453fff3f6:   je     0x000078b453fff409
+  0x000078b453fff3fc:   addl   $0x8,0x7c0(%r15)
+  0x000078b453fff404:   jmp    0x000078b453fff416
+  0x000078b453fff409:   mov    %rbx,%rax
+  0x000078b453fff40c:   add    $0x40,%rsp
+  0x000078b453fff410:   pop    %rbp
+  0x000078b453fff411:   jmp    0x000078b45b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000078b453fff416:   lea    0x20(%rsp),%rax
+  0x000078b453fff41b:   mov    %rax,(%rsp)
+  0x000078b453fff41f:   call   0x000078b45b5816e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x000078b453fff424:   jmp    0x000078b453fff409
+  0x000078b453fff426:   hlt    
+  0x000078b453fff427:   hlt    
+[Stub Code]
+  0x000078b453fff428:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000078b453fff432:   jmp    0x000078b453fff432           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000078b453fff437:   call   0x000078b45b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000078b453fff43c:   movabs $0x78b47373aec4,%rdi         ;   {external_word}
+  0x000078b453fff446:   and    $0xfffffffffffffff0,%rsp
+  0x000078b453fff44a:   call   0x000078b473191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000078b453fff44f:   hlt    
+  0x000078b453fff450:   call   0x000078b45b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000078b453fff455:   jmp    0x000078b453fff450
+  0x000078b453fff457:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

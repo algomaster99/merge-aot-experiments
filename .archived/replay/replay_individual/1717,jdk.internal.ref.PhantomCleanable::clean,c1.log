@@ -1,0 +1,282 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 655   53       3       jdk.internal.ref.PhantomCleanable::clean (20 bytes)
+ total in heap  [0x0000706773fff008,0x0000706773fff4a8] = 1184
+ main code      [0x0000706773fff100,0x0000706773fff450] = 848
+ stub code      [0x0000706773fff450,0x0000706773fff4a8] = 88
+ mutable data [0x000070671c02d010,0x000070671c02d0b0] = 160
+ relocation     [0x000070671c02d010,0x000070671c02d080] = 112
+ metadata       [0x000070671c02d080,0x000070671c02d0b0] = 48
+ immutable data [0x000070671c02ce40,0x000070671c02d004] = 452
+ dependencies   [0x000070671c02ce40,0x000070671c02ce50] = 16
+ nul chk table  [0x000070671c02ce50,0x000070671c02ce60] = 16
+ scopes pcs     [0x000070671c02ce60,0x000070671c02cf80] = 288
+ scopes data    [0x000070671c02cf80,0x000070671c02d000] = 128
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000706773fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000706773fff10b:   data16 data16 xchg %ax,%ax
+  0x0000706773fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;
+  #           [sp+0x60]  (sp of caller)
+  0x0000706773fff112:   mov    0x8(%rsi),%r10d
+  0x0000706773fff116:   cmp    0x8(%rax),%r10d
+  0x0000706773fff11a:   jne    0x000070677b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000706773fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000706773fff127:   push   %rbp
+  0x0000706773fff128:   sub    $0x50,%rsp
+  0x0000706773fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000706773fff134:   je     0x0000706773fff13b
+  0x0000706773fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000706773fff13b:   mov    %rsi,0x38(%rsp)
+  0x0000706773fff140:   movabs $0x70672c318fd8,%rdx         ;   {metadata(method data for {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff14a:   mov    0x90(%rdx),%edi
+  0x0000706773fff150:   add    $0x2,%edi
+  0x0000706773fff153:   mov    %edi,0x90(%rdx)
+  0x0000706773fff159:   and    $0x7fe,%edi
+  0x0000706773fff15f:   test   %edi,%edi
+  0x0000706773fff161:   je     0x0000706773fff3a4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@0 (line 94)
+  0x0000706773fff167:   mov    0x1c(%rsi),%edi
+  0x0000706773fff16a:   shl    $0x3,%rdi                    ;*getfield list {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@1 (line 94)
+  0x0000706773fff16e:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x0000706773fff3c5
+  0x0000706773fff171:   mov    %rdi,%rdx
+  0x0000706773fff174:   movabs $0x70672c318fd8,%rbx         ;   {metadata(method data for {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff17e:   mov    0x8(%rdx),%edx
+  0x0000706773fff181:   mov    $0x5a000000,%r10d
+  0x0000706773fff187:   add    %r10,%rdx
+  0x0000706773fff18a:   mov    $0x1c,%r10d
+  0x0000706773fff190:   cmp    (%rbx,%r10,8),%rdx
+  0x0000706773fff194:   je     0x0000706773fff1cd
+  0x0000706773fff196:   add    $0x2,%r10
+  0x0000706773fff19a:   cmp    $0x20,%r10
+  0x0000706773fff19e:   jne    0x0000706773fff190
+  0x0000706773fff1a0:   mov    $0x1c,%r10d
+  0x0000706773fff1a6:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000706773fff1ab:   je     0x0000706773fff1b9
+  0x0000706773fff1ad:   add    $0x2,%r10
+  0x0000706773fff1b1:   cmp    $0x20,%r10
+  0x0000706773fff1b5:   jne    0x0000706773fff1a6
+  0x0000706773fff1b7:   jmp    0x0000706773fff1c5
+  0x0000706773fff1b9:   push   %rax
+  0x0000706773fff1ba:   xor    %rax,%rax
+  0x0000706773fff1bd:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x0000706773fff1c2:   pop    %rax
+  0x0000706773fff1c3:   jmp    0x0000706773fff18a
+  0x0000706773fff1c5:   mov    $0x1b,%r10d
+  0x0000706773fff1cb:   jmp    0x0000706773fff1d1
+  0x0000706773fff1cd:   add    $0x1,%r10
+  0x0000706773fff1d1:   addq   $0x1,(%rbx,%r10,8)
+  0x0000706773fff1d6:   mov    %rsi,%rdx
+  0x0000706773fff1d9:   mov    %rdi,%rsi                    ;*invokevirtual remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@5 (line 94)
+  0x0000706773fff1dc:   data16 xchg %ax,%ax
+  0x0000706773fff1df:   call   0x000070677b4ad9e0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokevirtual remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@5 (line 94)
+                                                            ;   {optimized virtual_call}
+  0x0000706773fff1e4:   nopl   0x1dc(%rax,%rax,1)           ;*invokevirtual remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@5 (line 94)
+                                                            ;   {post_call_nop}
+  0x0000706773fff1ec:   test   %eax,%eax
+  0x0000706773fff1ee:   movabs $0x70672c318fd8,%rsi         ;   {metadata(method data for {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff1f8:   mov    $0x108,%edi
+  0x0000706773fff1fd:   je     0x0000706773fff204
+  0x0000706773fff1ff:   mov    $0x118,%edi
+  0x0000706773fff204:   mov    (%rsi,%rdi,1),%rbx
+  0x0000706773fff208:   lea    0x1(%rbx),%rbx
+  0x0000706773fff20c:   mov    %rbx,(%rsi,%rdi,1)
+  0x0000706773fff210:   je     0x0000706773fff394           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@8 (line 94)
+  0x0000706773fff216:   mov    0x38(%rsp),%rsi
+  0x0000706773fff21b:   mov    %rsi,%rdi
+  0x0000706773fff21e:   movabs $0x70672c318fd8,%rbx         ;   {metadata(method data for {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff228:   addq   $0x1,0x128(%rbx)
+  0x0000706773fff230:   movabs $0x70672c318d48,%rdi         ;   {metadata(method data for {method} {0x000000005a1a7bf8} &apos;clear&apos; &apos;()V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000706773fff23a:   mov    0x90(%rdi),%ebx
+  0x0000706773fff240:   add    $0x2,%ebx
+  0x0000706773fff243:   mov    %ebx,0x90(%rdi)
+  0x0000706773fff249:   and    $0x1ffffe,%ebx
+  0x0000706773fff24f:   test   %ebx,%ebx
+  0x0000706773fff251:   je     0x0000706773fff3ca
+  0x0000706773fff257:   mov    %rsi,%rdi
+  0x0000706773fff25a:   movabs $0x70672c318d48,%rbx         ;   {metadata(method data for {method} {0x000000005a1a7bf8} &apos;clear&apos; &apos;()V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000706773fff264:   mov    0x8(%rdi),%edi
+  0x0000706773fff267:   mov    $0x5a000000,%r10d
+  0x0000706773fff26d:   add    %r10,%rdi
+  0x0000706773fff270:   mov    $0x1c,%r10d
+  0x0000706773fff276:   cmp    (%rbx,%r10,8),%rdi
+  0x0000706773fff27a:   je     0x0000706773fff2b3
+  0x0000706773fff27c:   add    $0x2,%r10
+  0x0000706773fff280:   cmp    $0x20,%r10
+  0x0000706773fff284:   jne    0x0000706773fff276
+  0x0000706773fff286:   mov    $0x1c,%r10d
+  0x0000706773fff28c:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000706773fff291:   je     0x0000706773fff29f
+  0x0000706773fff293:   add    $0x2,%r10
+  0x0000706773fff297:   cmp    $0x20,%r10
+  0x0000706773fff29b:   jne    0x0000706773fff28c
+  0x0000706773fff29d:   jmp    0x0000706773fff2ab
+  0x0000706773fff29f:   push   %rax
+  0x0000706773fff2a0:   xor    %rax,%rax
+  0x0000706773fff2a3:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000706773fff2a8:   pop    %rax
+  0x0000706773fff2a9:   jmp    0x0000706773fff270
+  0x0000706773fff2ab:   mov    $0x1b,%r10d
+  0x0000706773fff2b1:   jmp    0x0000706773fff2b7
+  0x0000706773fff2b3:   add    $0x1,%r10
+  0x0000706773fff2b7:   addq   $0x1,(%rbx,%r10,8)
+  0x0000706773fff2bc:   movabs $0x70672c318e90,%rdi         ;   {metadata(method data for {method} {0x000000005a1a98e8} &apos;clearImpl&apos; &apos;()V&apos; in &apos;java/lang/ref/PhantomReference&apos;)}
+  0x0000706773fff2c6:   mov    0x90(%rdi),%ebx
+  0x0000706773fff2cc:   add    $0x2,%ebx
+  0x0000706773fff2cf:   mov    %ebx,0x90(%rdi)
+  0x0000706773fff2d5:   and    $0x1ffffe,%ebx
+  0x0000706773fff2db:   test   %ebx,%ebx
+  0x0000706773fff2dd:   je     0x0000706773fff3eb
+  0x0000706773fff2e3:   mov    %rsi,%rdi
+  0x0000706773fff2e6:   movabs $0x70672c318e90,%rbx         ;   {metadata(method data for {method} {0x000000005a1a98e8} &apos;clearImpl&apos; &apos;()V&apos; in &apos;java/lang/ref/PhantomReference&apos;)}
+  0x0000706773fff2f0:   addq   $0x1,0xd8(%rbx)
+  0x0000706773fff2f8:   mov    %rsi,%rdi
+  0x0000706773fff2fb:   mov    %rdi,%rsi                    ;*invokevirtual clear0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.PhantomReference::clearImpl@1 (line 87)
+                                                            ; - java.lang.ref.Reference::clear@1 (line 391)
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@12 (line 95)
+  0x0000706773fff2fe:   nop
+  0x0000706773fff2ff:   call   0x000070677b4ad9e0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokevirtual clear0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.PhantomReference::clearImpl@1 (line 87)
+                                                            ; - java.lang.ref.Reference::clear@1 (line 391)
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@12 (line 95)
+                                                            ;   {optimized virtual_call}
+  0x0000706773fff304:   nopl   0x10002fc(%rax,%rax,1)       ;*invokevirtual clear0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.PhantomReference::clearImpl@1 (line 87)
+                                                            ; - java.lang.ref.Reference::clear@1 (line 391)
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@12 (line 95)
+                                                            ;   {post_call_nop}
+  0x0000706773fff30c:   mov    0x38(%rsp),%rsi
+  0x0000706773fff311:   movabs $0x70672c318fd8,%rdi         ;   {metadata(method data for {method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff31b:   mov    0x8(%rsi),%esi
+  0x0000706773fff31e:   mov    $0x5a000000,%r10d
+  0x0000706773fff324:   add    %r10,%rsi
+  0x0000706773fff327:   mov    $0x28,%r10d
+  0x0000706773fff32d:   cmp    (%rdi,%r10,8),%rsi
+  0x0000706773fff331:   je     0x0000706773fff36a
+  0x0000706773fff333:   add    $0x2,%r10
+  0x0000706773fff337:   cmp    $0x2c,%r10
+  0x0000706773fff33b:   jne    0x0000706773fff32d
+  0x0000706773fff33d:   mov    $0x28,%r10d
+  0x0000706773fff343:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000706773fff348:   je     0x0000706773fff356
+  0x0000706773fff34a:   add    $0x2,%r10
+  0x0000706773fff34e:   cmp    $0x2c,%r10
+  0x0000706773fff352:   jne    0x0000706773fff343
+  0x0000706773fff354:   jmp    0x0000706773fff362
+  0x0000706773fff356:   push   %rax
+  0x0000706773fff357:   xor    %rax,%rax
+  0x0000706773fff35a:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x0000706773fff35f:   pop    %rax
+  0x0000706773fff360:   jmp    0x0000706773fff327
+  0x0000706773fff362:   mov    $0x27,%r10d
+  0x0000706773fff368:   jmp    0x0000706773fff36e
+  0x0000706773fff36a:   add    $0x1,%r10
+  0x0000706773fff36e:   addq   $0x1,(%rdi,%r10,8)
+  0x0000706773fff373:   mov    0x38(%rsp),%rsi              ;*invokevirtual performCleanup {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@16 (line 96)
+  0x0000706773fff378:   nopl   0x0(%rax,%rax,1)
+  0x0000706773fff37d:   movabs $0x70671c02d0f0,%rax
+  0x0000706773fff387:   call   0x000070677b4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual performCleanup {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@16 (line 96)
+                                                            ;   {virtual_call}
+  0x0000706773fff38c:   nopl   0x2000384(%rax,%rax,1)       ;*invokevirtual performCleanup {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@16 (line 96)
+                                                            ;   {post_call_nop}
+  0x0000706773fff394:   add    $0x50,%rsp
+  0x0000706773fff398:   pop    %rbp
+  0x0000706773fff399:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000706773fff39d:   ja     0x0000706773fff40c
+  0x0000706773fff3a3:   ret    
+  0x0000706773fff3a4:   movabs $0x5a299340,%r10             ;   {metadata({method} {0x000000005a299340} &apos;clean&apos; &apos;()V&apos; in &apos;jdk/internal/ref/PhantomCleanable&apos;)}
+  0x0000706773fff3ae:   mov    %r10,0x8(%rsp)
+  0x0000706773fff3b3:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000706773fff3bb:   call   0x000070677b583460           ; ImmutableOopMap {rsi=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@-1 (line 94)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000706773fff3c0:   jmp    0x0000706773fff167
+  0x0000706773fff3c5:   call   0x000070677b57cae0           ; ImmutableOopMap {rsi=Oop rdi=Oop [56]=Oop }
+                                                            ;*invokevirtual remove {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@5 (line 94)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000706773fff3ca:   movabs $0x5a1a7bf8,%r10             ;   {metadata({method} {0x000000005a1a7bf8} &apos;clear&apos; &apos;()V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000706773fff3d4:   mov    %r10,0x8(%rsp)
+  0x0000706773fff3d9:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000706773fff3e1:   call   0x000070677b583460           ; ImmutableOopMap {rsi=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::clear@-1 (line 391)
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@12 (line 95)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000706773fff3e6:   jmp    0x0000706773fff257
+  0x0000706773fff3eb:   movabs $0x5a1a98e8,%r10             ;   {metadata({method} {0x000000005a1a98e8} &apos;clearImpl&apos; &apos;()V&apos; in &apos;java/lang/ref/PhantomReference&apos;)}
+  0x0000706773fff3f5:   mov    %r10,0x8(%rsp)
+  0x0000706773fff3fa:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000706773fff402:   call   0x000070677b583460           ; ImmutableOopMap {rsi=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.PhantomReference::clearImpl@-1 (line 87)
+                                                            ; - java.lang.ref.Reference::clear@1 (line 391)
+                                                            ; - jdk.internal.ref.PhantomCleanable::clean@12 (line 95)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000706773fff407:   jmp    0x0000706773fff2e3
+  0x0000706773fff40c:   movabs $0x706773fff399,%r10         ;   {internal_word}
+  0x0000706773fff416:   mov    %r10,0x510(%r15)
+  0x0000706773fff41d:   jmp    0x000070677b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000706773fff422:   mov    0x5c0(%r15),%rax
+  0x0000706773fff429:   movq   $0x0,0x5c0(%r15)
+  0x0000706773fff434:   movq   $0x0,0x5c8(%r15)
+  0x0000706773fff43f:   add    $0x50,%rsp
+  0x0000706773fff443:   pop    %rbp
+  0x0000706773fff444:   jmp    0x000070677b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000706773fff449:   hlt    
+  0x0000706773fff44a:   hlt    
+  0x0000706773fff44b:   hlt    
+  0x0000706773fff44c:   hlt    
+  0x0000706773fff44d:   hlt    
+  0x0000706773fff44e:   hlt    
+  0x0000706773fff44f:   hlt    
+[Stub Code]
+  0x0000706773fff450:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000706773fff455:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000706773fff45f:   jmp    0x0000706773fff45f           ;   {runtime_call nmethod}
+  0x0000706773fff464:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000706773fff46e:   jmp    0x0000706773fff46e           ;   {runtime_call nmethod}
+  0x0000706773fff473:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000706773fff47d:   jmp    0x0000706773fff47d           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000706773fff482:   call   0x000070677b57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000706773fff487:   movabs $0x70679393aec4,%rdi         ;   {external_word}
+  0x0000706773fff491:   and    $0xfffffffffffffff0,%rsp
+  0x0000706773fff495:   call   0x0000706793391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000706773fff49a:   hlt    
+  0x0000706773fff49b:   call   0x000070677b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000706773fff4a0:   jmp    0x0000706773fff49b
+  0x0000706773fff4a2:   hlt    
+  0x0000706773fff4a3:   hlt    
+  0x0000706773fff4a4:   hlt    
+  0x0000706773fff4a5:   hlt    
+  0x0000706773fff4a6:   hlt    
+  0x0000706773fff4a7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,96 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 12733  761       3       java.util.ImmutableCollections$ListN::size (6 bytes)
+ total in heap  [0x000077b45806fa08,0x000077b45806fc00] = 504
+ main code      [0x000077b45806fb00,0x000077b45806fbe0] = 224
+ stub code      [0x000077b45806fbe0,0x000077b45806fc00] = 32
+ mutable data [0x000077b3e80983c0,0x000077b3e80983f0] = 48
+ relocation     [0x000077b3e80983c0,0x000077b3e80983e8] = 40
+ metadata       [0x000077b3e80983e8,0x000077b3e80983f0] = 8
+ immutable data [0x000077b3e8098420,0x000077b3e80984d4] = 180
+ dependencies   [0x000077b3e8098420,0x000077b3e8098428] = 8
+ nul chk table  [0x000077b3e8098428,0x000077b3e8098438] = 16
+ scopes pcs     [0x000077b3e8098438,0x000077b3e80984a8] = 112
+ scopes data    [0x000077b3e80984a8,0x000077b3e80984d0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45806fb00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45806fb0b:   data16 data16 xchg %ax,%ax
+  0x000077b45806fb0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004626de30} &apos;size&apos; &apos;()I&apos; in &apos;java/util/ImmutableCollections$ListN&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45806fb12:   mov    0x8(%rsi),%r10d
+  0x000077b45806fb16:   cmp    0x8(%rax),%r10d
+  0x000077b45806fb1a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45806fb20:   mov    %eax,-0x14000(%rsp)
+  0x000077b45806fb27:   push   %rbp
+  0x000077b45806fb28:   sub    $0x20,%rsp
+  0x000077b45806fb2c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45806fb34:   je     0x000077b45806fb3b
+  0x000077b45806fb36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45806fb3b:   movabs $0x77b414117310,%rax         ;   {metadata(method data for {method} {0x000000004626de30} &apos;size&apos; &apos;()I&apos; in &apos;java/util/ImmutableCollections$ListN&apos;)}
+  0x000077b45806fb45:   mov    0x90(%rax),%edi
+  0x000077b45806fb4b:   add    $0x2,%edi
+  0x000077b45806fb4e:   mov    %edi,0x90(%rax)
+  0x000077b45806fb54:   and    $0x7fe,%edi
+  0x000077b45806fb5a:   test   %edi,%edi
+  0x000077b45806fb5c:   je     0x000077b45806fb7c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections$ListN::size@0 (line 730)
+  0x000077b45806fb62:   mov    0x10(%rsi),%eax
+  0x000077b45806fb65:   shl    $0x3,%rax                    ;*getfield elements {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections$ListN::size@1 (line 730)
+  0x000077b45806fb69:   mov    0xc(%rax),%eax               ; implicit exception: dispatches to 0x000077b45806fb9a
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections$ListN::size@4 (line 730)
+  0x000077b45806fb6c:   add    $0x20,%rsp
+  0x000077b45806fb70:   pop    %rbp
+  0x000077b45806fb71:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45806fb75:   ja     0x000077b45806fb9f
+  0x000077b45806fb7b:   ret    
+  0x000077b45806fb7c:   movabs $0x4626de30,%r10             ;   {metadata({method} {0x000000004626de30} &apos;size&apos; &apos;()I&apos; in &apos;java/util/ImmutableCollections$ListN&apos;)}
+  0x000077b45806fb86:   mov    %r10,0x8(%rsp)
+  0x000077b45806fb8b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45806fb93:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ImmutableCollections$ListN::size@-1 (line 730)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45806fb98:   jmp    0x000077b45806fb62
+  0x000077b45806fb9a:   call   0x000077b45f57c660           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ImmutableCollections$ListN::size@4 (line 730)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45806fb9f:   movabs $0x77b45806fb71,%r10         ;   {internal_word}
+  0x000077b45806fba9:   mov    %r10,0x510(%r15)
+  0x000077b45806fbb0:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45806fbb5:   mov    0x5c0(%r15),%rax
+  0x000077b45806fbbc:   movq   $0x0,0x5c0(%r15)
+  0x000077b45806fbc7:   movq   $0x0,0x5c8(%r15)
+  0x000077b45806fbd2:   add    $0x20,%rsp
+  0x000077b45806fbd6:   pop    %rbp
+  0x000077b45806fbd7:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45806fbdc:   hlt    
+  0x000077b45806fbdd:   hlt    
+  0x000077b45806fbde:   hlt    
+  0x000077b45806fbdf:   hlt    
+[Exception Handler]
+  0x000077b45806fbe0:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45806fbe5:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45806fbef:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45806fbf3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45806fbf8:   hlt    
+  0x000077b45806fbf9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45806fbfe:   jmp    0x000077b45806fbf9
+--------------------------------------------------------------------------------
+[/Disassembly]

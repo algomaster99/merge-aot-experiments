@@ -1,0 +1,404 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 16128 1004       3       jdk.internal.util.StrongReferenceKey::equals (28 bytes)
+ total in heap  [0x000077b45808be08,0x000077b45808c460] = 1624
+ main code      [0x000077b45808bf00,0x000077b45808c418] = 1304
+ stub code      [0x000077b45808c418,0x000077b45808c460] = 72
+ mutable data [0x000077b3f0090780,0x000077b3f0090808] = 136
+ relocation     [0x000077b3f0090780,0x000077b3f00907f0] = 112
+ metadata       [0x000077b3f00907f0,0x000077b3f0090808] = 24
+ immutable data [0x000077b3f0054210,0x000077b3f005445c] = 588
+ dependencies   [0x000077b3f0054210,0x000077b3f0054218] = 8
+ nul chk table  [0x000077b3f0054218,0x000077b3f0054230] = 24
+ scopes pcs     [0x000077b3f0054230,0x000077b3f00543b0] = 384
+ scopes data    [0x000077b3f00543b0,0x000077b3f0054458] = 168
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45808bf00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45808bf0b:   data16 data16 xchg %ax,%ax
+  0x000077b45808bf0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/util/StrongReferenceKey&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x000077b45808bf12:   mov    0x8(%rsi),%r10d
+  0x000077b45808bf16:   cmp    0x8(%rax),%r10d
+  0x000077b45808bf1a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45808bf20:   mov    %eax,-0x14000(%rsp)
+  0x000077b45808bf27:   push   %rbp
+  0x000077b45808bf28:   sub    $0x40,%rsp
+  0x000077b45808bf2c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45808bf34:   je     0x000077b45808bf3b
+  0x000077b45808bf36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45808bf3b:   movabs $0x77b4142b9378,%rdi         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808bf45:   mov    0x90(%rdi),%ebx
+  0x000077b45808bf4b:   add    $0x2,%ebx
+  0x000077b45808bf4e:   mov    %ebx,0x90(%rdi)
+  0x000077b45808bf54:   and    $0x7fe,%ebx
+  0x000077b45808bf5a:   test   %ebx,%ebx
+  0x000077b45808bf5c:   je     0x000077b45808c383           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@0 (line 66)
+  0x000077b45808bf62:   test   %rdx,%rdx
+  0x000077b45808bf65:   movabs $0x77b4142b9378,%rax         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808bf6f:   jne    0x000077b45808bf7d
+  0x000077b45808bf71:   orb    $0x1,0xd1(%rax)
+  0x000077b45808bf78:   jmp    0x000077b45808c01a
+  0x000077b45808bf7d:   mov    0x8(%rdx),%ecx
+  0x000077b45808bf80:   mov    $0x46000000,%r10d
+  0x000077b45808bf86:   add    %r10,%rcx
+  0x000077b45808bf89:   mov    $0x1c,%r10d
+  0x000077b45808bf8f:   cmp    (%rax,%r10,8),%rcx
+  0x000077b45808bf93:   je     0x000077b45808bfd2
+  0x000077b45808bf95:   add    $0x2,%r10
+  0x000077b45808bf99:   cmp    $0x20,%r10
+  0x000077b45808bf9d:   jne    0x000077b45808bf8f
+  0x000077b45808bf9f:   mov    $0x1c,%r10d
+  0x000077b45808bfa5:   cmpq   $0x0,(%rax,%r10,8)
+  0x000077b45808bfaa:   je     0x000077b45808bfb8
+  0x000077b45808bfac:   add    $0x2,%r10
+  0x000077b45808bfb0:   cmp    $0x20,%r10
+  0x000077b45808bfb4:   jne    0x000077b45808bfa5
+  0x000077b45808bfb6:   jmp    0x000077b45808bfca
+  0x000077b45808bfb8:   push   %rbx
+  0x000077b45808bfb9:   mov    %rax,%rbx
+  0x000077b45808bfbc:   xor    %rax,%rax
+  0x000077b45808bfbf:   cmpxchg %rcx,(%rbx,%r10,8)
+  0x000077b45808bfc4:   mov    %rbx,%rax
+  0x000077b45808bfc7:   pop    %rbx
+  0x000077b45808bfc8:   jmp    0x000077b45808bf89
+  0x000077b45808bfca:   mov    $0x1b,%r10d
+  0x000077b45808bfd0:   jmp    0x000077b45808bfd6
+  0x000077b45808bfd2:   add    $0x1,%r10
+  0x000077b45808bfd6:   addq   $0x1,(%rax,%r10,8)
+  0x000077b45808bfdb:   movabs $0x4632eef0,%rcx             ;   {metadata(&apos;jdk/internal/util/ReferenceKey&apos;)}
+  0x000077b45808bfe5:   mov    0x8(%rdx),%eax
+  0x000077b45808bfe8:   mov    $0x46000000,%r10d
+  0x000077b45808bfee:   add    %r10,%rax
+  0x000077b45808bff1:   cmp    0x20(%rax),%rcx
+  0x000077b45808bff5:   je     0x000077b45808c01f
+  0x000077b45808bffb:   cmp    %rcx,%rax
+  0x000077b45808bffe:   je     0x000077b45808c01f
+  0x000077b45808c004:   push   %rax
+  0x000077b45808c005:   push   %rcx
+  0x000077b45808c006:   call   0x000077b45f57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x000077b45808c00b:   pop    %rax
+  0x000077b45808c00c:   pop    %rax
+  0x000077b45808c00d:   test   %eax,%eax
+  0x000077b45808c00f:   je     0x000077b45808c01a
+  0x000077b45808c015:   jmp    0x000077b45808c01f
+  0x000077b45808c01a:   xor    %rdi,%rdi
+  0x000077b45808c01d:   jmp    0x000077b45808c024
+  0x000077b45808c01f:   mov    $0x1,%edi                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@1 (line 66)
+  0x000077b45808c024:   test   %edi,%edi
+  0x000077b45808c026:   movabs $0x77b4142b9378,%rdi         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c030:   mov    $0x108,%ebx
+  0x000077b45808c035:   je     0x000077b45808c03c
+  0x000077b45808c037:   mov    $0x118,%ebx
+  0x000077b45808c03c:   mov    (%rdi,%rbx,1),%rax
+  0x000077b45808c040:   lea    0x1(%rax),%rax
+  0x000077b45808c044:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b45808c048:   je     0x000077b45808c1a4           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@4 (line 66)
+  0x000077b45808c04e:   mov    %rsi,0x30(%rsp)
+  0x000077b45808c053:   test   %rdx,%rdx
+  0x000077b45808c056:   movabs $0x77b4142b9378,%rax         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c060:   jne    0x000077b45808c06e
+  0x000077b45808c062:   orb    $0x1,0x121(%rax)
+  0x000077b45808c069:   jmp    0x000077b45808c10b
+  0x000077b45808c06e:   mov    0x8(%rdx),%edi
+  0x000077b45808c071:   mov    $0x46000000,%r10d
+  0x000077b45808c077:   add    %r10,%rdi
+  0x000077b45808c07a:   mov    $0x26,%r10d
+  0x000077b45808c080:   cmp    (%rax,%r10,8),%rdi
+  0x000077b45808c084:   je     0x000077b45808c0c3
+  0x000077b45808c086:   add    $0x2,%r10
+  0x000077b45808c08a:   cmp    $0x2a,%r10
+  0x000077b45808c08e:   jne    0x000077b45808c080
+  0x000077b45808c090:   mov    $0x26,%r10d
+  0x000077b45808c096:   cmpq   $0x0,(%rax,%r10,8)
+  0x000077b45808c09b:   je     0x000077b45808c0a9
+  0x000077b45808c09d:   add    $0x2,%r10
+  0x000077b45808c0a1:   cmp    $0x2a,%r10
+  0x000077b45808c0a5:   jne    0x000077b45808c096
+  0x000077b45808c0a7:   jmp    0x000077b45808c0bb
+  0x000077b45808c0a9:   push   %rbx
+  0x000077b45808c0aa:   mov    %rax,%rbx
+  0x000077b45808c0ad:   xor    %rax,%rax
+  0x000077b45808c0b0:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b45808c0b5:   mov    %rbx,%rax
+  0x000077b45808c0b8:   pop    %rbx
+  0x000077b45808c0b9:   jmp    0x000077b45808c07a
+  0x000077b45808c0bb:   mov    $0x25,%r10d
+  0x000077b45808c0c1:   jmp    0x000077b45808c0c7
+  0x000077b45808c0c3:   add    $0x1,%r10
+  0x000077b45808c0c7:   addq   $0x1,(%rax,%r10,8)
+  0x000077b45808c0cc:   movabs $0x4632eef0,%rdi             ;   {metadata(&apos;jdk/internal/util/ReferenceKey&apos;)}
+  0x000077b45808c0d6:   mov    0x8(%rdx),%eax
+  0x000077b45808c0d9:   mov    $0x46000000,%r10d
+  0x000077b45808c0df:   add    %r10,%rax
+  0x000077b45808c0e2:   cmp    0x20(%rax),%rdi
+  0x000077b45808c0e6:   je     0x000077b45808c10b
+  0x000077b45808c0ec:   cmp    %rdi,%rax
+  0x000077b45808c0ef:   je     0x000077b45808c10b
+  0x000077b45808c0f5:   push   %rax
+  0x000077b45808c0f6:   push   %rdi
+  0x000077b45808c0f7:   call   0x000077b45f57fee0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x000077b45808c0fc:   pop    %rax
+  0x000077b45808c0fd:   pop    %rax
+  0x000077b45808c0fe:   test   %eax,%eax
+  0x000077b45808c100:   je     0x000077b45808c3a4
+  0x000077b45808c106:   jmp    0x000077b45808c10b
+  0x000077b45808c10b:   mov    %rdx,%rdi                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@8 (line 66)
+  0x000077b45808c10e:   cmp    (%rdi),%rax                  ; implicit exception: dispatches to 0x000077b45808c3ad
+  0x000077b45808c111:   mov    %rdi,%rbx
+  0x000077b45808c114:   movabs $0x77b4142b9378,%rax         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c11e:   mov    0x8(%rbx),%ebx
+  0x000077b45808c121:   mov    $0x46000000,%r10d
+  0x000077b45808c127:   add    %r10,%rbx
+  0x000077b45808c12a:   mov    $0x2c,%r10d
+  0x000077b45808c130:   cmp    (%rax,%r10,8),%rbx
+  0x000077b45808c134:   je     0x000077b45808c173
+  0x000077b45808c136:   add    $0x2,%r10
+  0x000077b45808c13a:   cmp    $0x30,%r10
+  0x000077b45808c13e:   jne    0x000077b45808c130
+  0x000077b45808c140:   mov    $0x2c,%r10d
+  0x000077b45808c146:   cmpq   $0x0,(%rax,%r10,8)
+  0x000077b45808c14b:   je     0x000077b45808c159
+  0x000077b45808c14d:   add    $0x2,%r10
+  0x000077b45808c151:   cmp    $0x30,%r10
+  0x000077b45808c155:   jne    0x000077b45808c146
+  0x000077b45808c157:   jmp    0x000077b45808c16b
+  0x000077b45808c159:   push   %rcx
+  0x000077b45808c15a:   mov    %rax,%rcx
+  0x000077b45808c15d:   xor    %rax,%rax
+  0x000077b45808c160:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000077b45808c165:   mov    %rcx,%rax
+  0x000077b45808c168:   pop    %rcx
+  0x000077b45808c169:   jmp    0x000077b45808c12a
+  0x000077b45808c16b:   mov    $0x2b,%r10d
+  0x000077b45808c171:   jmp    0x000077b45808c177
+  0x000077b45808c173:   add    $0x1,%r10
+  0x000077b45808c177:   addq   $0x1,(%rax,%r10,8)
+  0x000077b45808c17c:   mov    %rdi,%rsi                    ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@13 (line 67)
+  0x000077b45808c17f:   nopw   0x0(%rax,%rax,1)
+  0x000077b45808c185:   movabs $0x77b3f0090810,%rax
+  0x000077b45808c18f:   call   0x000077b45f4adce0           ; ImmutableOopMap {[48]=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@13 (line 67)
+                                                            ;   {virtual_call}
+  0x000077b45808c194:   nopl   0x38c(%rax,%rax,1)           ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@13 (line 67)
+                                                            ;   {post_call_nop}
+  0x000077b45808c19c:   mov    %rax,%rdx                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@19 (line 69)
+  0x000077b45808c19f:   mov    0x30(%rsp),%rsi
+  0x000077b45808c1a4:   mov    %rsi,%rdi
+  0x000077b45808c1a7:   movabs $0x77b4142b9378,%rbx         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c1b1:   mov    0x8(%rdi),%edi
+  0x000077b45808c1b4:   mov    $0x46000000,%r10d
+  0x000077b45808c1ba:   add    %r10,%rdi
+  0x000077b45808c1bd:   mov    $0x32,%r10d
+  0x000077b45808c1c3:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b45808c1c7:   je     0x000077b45808c200
+  0x000077b45808c1c9:   add    $0x2,%r10
+  0x000077b45808c1cd:   cmp    $0x36,%r10
+  0x000077b45808c1d1:   jne    0x000077b45808c1c3
+  0x000077b45808c1d3:   mov    $0x32,%r10d
+  0x000077b45808c1d9:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b45808c1de:   je     0x000077b45808c1ec
+  0x000077b45808c1e0:   add    $0x2,%r10
+  0x000077b45808c1e4:   cmp    $0x36,%r10
+  0x000077b45808c1e8:   jne    0x000077b45808c1d9
+  0x000077b45808c1ea:   jmp    0x000077b45808c1f8
+  0x000077b45808c1ec:   push   %rax
+  0x000077b45808c1ed:   xor    %rax,%rax
+  0x000077b45808c1f0:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b45808c1f5:   pop    %rax
+  0x000077b45808c1f6:   jmp    0x000077b45808c1bd
+  0x000077b45808c1f8:   mov    $0x31,%r10d
+  0x000077b45808c1fe:   jmp    0x000077b45808c204
+  0x000077b45808c200:   add    $0x1,%r10
+  0x000077b45808c204:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b45808c209:   mov    0xc(%rsi),%esi
+  0x000077b45808c20c:   shl    $0x3,%rsi                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::get@1 (line 55)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@20 (line 69)
+  0x000077b45808c210:   movabs $0x77b4142b9378,%rdi         ;   {metadata(method data for {method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c21a:   addq   $0x1,0x1b8(%rdi)
+  0x000077b45808c222:   movabs $0x77b4140a5540,%rdi         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c22c:   mov    0x90(%rdi),%ebx
+  0x000077b45808c232:   add    $0x2,%ebx
+  0x000077b45808c235:   mov    %ebx,0x90(%rdi)
+  0x000077b45808c23b:   and    $0x1ffffe,%ebx
+  0x000077b45808c241:   test   %ebx,%ebx
+  0x000077b45808c243:   je     0x000077b45808c3b2
+  0x000077b45808c249:   cmp    %rdx,%rsi
+  0x000077b45808c24c:   movabs $0x77b4140a5540,%rdi         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c256:   mov    $0xd8,%ebx
+  0x000077b45808c25b:   je     0x000077b45808c262
+  0x000077b45808c25d:   mov    $0xe8,%ebx
+  0x000077b45808c262:   mov    (%rdi,%rbx,1),%rax
+  0x000077b45808c266:   lea    0x1(%rax),%rax
+  0x000077b45808c26a:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b45808c26e:   je     0x000077b45808c358           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@2 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c274:   test   %rsi,%rsi
+  0x000077b45808c277:   movabs $0x77b4140a5540,%rdi         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c281:   mov    $0xf8,%ebx
+  0x000077b45808c286:   je     0x000077b45808c28d
+  0x000077b45808c288:   mov    $0x108,%ebx
+  0x000077b45808c28d:   mov    (%rdi,%rbx,1),%rax
+  0x000077b45808c291:   lea    0x1(%rax),%rax
+  0x000077b45808c295:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b45808c299:   je     0x000077b45808c34e           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@6 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c29f:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000077b45808c3d3
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@11 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c2a2:   mov    %rsi,%rdi
+  0x000077b45808c2a5:   movabs $0x77b4140a5540,%rbx         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c2af:   mov    0x8(%rdi),%edi
+  0x000077b45808c2b2:   mov    $0x46000000,%r10d
+  0x000077b45808c2b8:   add    %r10,%rdi
+  0x000077b45808c2bb:   mov    $0x24,%r10d
+  0x000077b45808c2c1:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b45808c2c5:   je     0x000077b45808c2fe
+  0x000077b45808c2c7:   add    $0x2,%r10
+  0x000077b45808c2cb:   cmp    $0x28,%r10
+  0x000077b45808c2cf:   jne    0x000077b45808c2c1
+  0x000077b45808c2d1:   mov    $0x24,%r10d
+  0x000077b45808c2d7:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b45808c2dc:   je     0x000077b45808c2ea
+  0x000077b45808c2de:   add    $0x2,%r10
+  0x000077b45808c2e2:   cmp    $0x28,%r10
+  0x000077b45808c2e6:   jne    0x000077b45808c2d7
+  0x000077b45808c2e8:   jmp    0x000077b45808c2f6
+  0x000077b45808c2ea:   push   %rax
+  0x000077b45808c2eb:   xor    %rax,%rax
+  0x000077b45808c2ee:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b45808c2f3:   pop    %rax
+  0x000077b45808c2f4:   jmp    0x000077b45808c2bb
+  0x000077b45808c2f6:   mov    $0x23,%r10d
+  0x000077b45808c2fc:   jmp    0x000077b45808c302
+  0x000077b45808c2fe:   add    $0x1,%r10
+  0x000077b45808c302:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b45808c307:   nopw   0x0(%rax,%rax,1)
+  0x000077b45808c30d:   movabs $0x77b3f0090838,%rax
+  0x000077b45808c317:   call   0x000077b45f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@11 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+                                                            ;   {virtual_call}
+  0x000077b45808c31c:   nopl   0x1000514(%rax,%rax,1)       ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@11 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+                                                            ;   {post_call_nop}
+  0x000077b45808c324:   test   %eax,%eax
+  0x000077b45808c326:   movabs $0x77b4140a5540,%rax         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c330:   mov    $0x158,%esi
+  0x000077b45808c335:   jne    0x000077b45808c33c
+  0x000077b45808c337:   mov    $0x148,%esi
+  0x000077b45808c33c:   mov    (%rax,%rsi,1),%rdi
+  0x000077b45808c340:   lea    0x1(%rdi),%rdi
+  0x000077b45808c344:   mov    %rdi,(%rax,%rsi,1)
+  0x000077b45808c348:   jne    0x000077b45808c358           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@14 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c34e:   mov    $0x0,%eax
+  0x000077b45808c353:   jmp    0x000077b45808c36d           ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@22 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c358:   movabs $0x77b4140a5540,%rax         ;   {metadata(method data for {method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c362:   incl   0x168(%rax)
+  0x000077b45808c368:   mov    $0x1,%eax                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@18 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+  0x000077b45808c36d:   and    $0x1,%eax
+  0x000077b45808c370:   and    $0x1,%eax
+  0x000077b45808c373:   add    $0x40,%rsp
+  0x000077b45808c377:   pop    %rbp
+  0x000077b45808c378:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45808c37c:   ja     0x000077b45808c3d8
+  0x000077b45808c382:   ret    
+  0x000077b45808c383:   movabs $0x463300e8,%r10             ;   {metadata({method} {0x00000000463300e8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;jdk/internal/util/StrongReferenceKey&apos;)}
+  0x000077b45808c38d:   mov    %r10,0x8(%rsp)
+  0x000077b45808c392:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45808c39a:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@-1 (line 66)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45808c39f:   jmp    0x000077b45808bf62
+  0x000077b45808c3a4:   mov    %rdx,(%rsp)
+  0x000077b45808c3a8:   call   0x000077b45f57f3e0           ; ImmutableOopMap {[48]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@8 (line 66)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x000077b45808c3ad:   call   0x000077b45f57c660           ; ImmutableOopMap {rdi=Oop [48]=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@13 (line 67)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45808c3b2:   movabs $0x4621ec30,%r10             ;   {metadata({method} {0x000000004621ec30} &apos;equals&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Z&apos; in &apos;java/util/Objects&apos;)}
+  0x000077b45808c3bc:   mov    %r10,0x8(%rsp)
+  0x000077b45808c3c1:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45808c3c9:   call   0x000077b45f582fe0           ; ImmutableOopMap {rdx=Oop rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Objects::equals@-1 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45808c3ce:   jmp    0x000077b45808c249
+  0x000077b45808c3d3:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::equals@11 (line 62)
+                                                            ; - jdk.internal.util.StrongReferenceKey::equals@24 (line 69)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45808c3d8:   movabs $0x77b45808c378,%r10         ;   {internal_word}
+  0x000077b45808c3e2:   mov    %r10,0x510(%r15)
+  0x000077b45808c3e9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45808c3ee:   mov    0x5c0(%r15),%rax
+  0x000077b45808c3f5:   movq   $0x0,0x5c0(%r15)
+  0x000077b45808c400:   movq   $0x0,0x5c8(%r15)
+  0x000077b45808c40b:   add    $0x40,%rsp
+  0x000077b45808c40f:   pop    %rbp
+  0x000077b45808c410:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45808c415:   hlt    
+  0x000077b45808c416:   hlt    
+  0x000077b45808c417:   hlt    
+[Stub Code]
+  0x000077b45808c418:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b45808c41d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45808c427:   jmp    0x000077b45808c427           ;   {runtime_call nmethod}
+  0x000077b45808c42c:   nop
+  0x000077b45808c42d:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45808c437:   jmp    0x000077b45808c437           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b45808c43c:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45808c441:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45808c44b:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45808c44f:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45808c454:   hlt    
+  0x000077b45808c455:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45808c45a:   jmp    0x000077b45808c455
+  0x000077b45808c45c:   hlt    
+  0x000077b45808c45d:   hlt    
+  0x000077b45808c45e:   hlt    
+  0x000077b45808c45f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

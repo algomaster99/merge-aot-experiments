@@ -1,0 +1,85 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 242   49       4       jdk.internal.util.Preconditions::checkIndex (18 bytes)
+ total in heap  [0x000077b45fba1688,0x000077b45fba1820] = 408
+ main code      [0x000077b45fba1780,0x000077b45fba1818] = 152
+ stub code      [0x000077b45fba1818,0x000077b45fba1820] = 8
+ mutable data [0x000077b40807ca10,0x000077b40807ca30] = 32
+ relocation     [0x000077b40807ca10,0x000077b40807ca28] = 24
+ metadata       [0x000077b40807ca28,0x000077b40807ca30] = 8
+ immutable data [0x000077b408097800,0x000077b4080978d4] = 212
+ dependencies   [0x000077b408097800,0x000077b408097808] = 8
+ scopes pcs     [0x000077b408097808,0x000077b408097898] = 144
+ scopes data    [0x000077b408097898,0x000077b4080978d0] = 56
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000461c30b0} &apos;checkIndex&apos; &apos;(IILjava/util/function/BiFunction;)I&apos; in &apos;jdk/internal/util/Preconditions&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  # parm2:    rcx:rcx   = &apos;java/util/function/BiFunction&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45fba1780:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fba1787:   push   %rbp
+  0x000077b45fba1788:   sub    $0x30,%rsp
+  0x000077b45fba178c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fba1794:   jne    0x000077b45fba180a           ;*synchronization entry
+                                                            ; - jdk.internal.util.Preconditions::checkIndex@-1 (line 301)
+  0x000077b45fba179a:   mov    %esi,%eax
+  0x000077b45fba179c:   test   %esi,%esi
+  0x000077b45fba179e:   jl     0x000077b45fba17b4           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkIndex@1 (line 301)
+  0x000077b45fba17a0:   cmp    %edx,%esi
+  0x000077b45fba17a2:   jge    0x000077b45fba17d4           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkIndex@6 (line 301)
+  0x000077b45fba17a4:   add    $0x30,%rsp
+  0x000077b45fba17a8:   pop    %rbp
+  0x000077b45fba17a9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fba17ad:   ja     0x000077b45fba17f4
+  0x000077b45fba17b3:   ret    
+  0x000077b45fba17b4:   mov    $0xffffff45,%esi
+  0x000077b45fba17b9:   mov    %edx,(%rsp)
+  0x000077b45fba17bc:   mov    %rcx,0x8(%rsp)
+  0x000077b45fba17c1:   mov    %eax,0x4(%rsp)
+  0x000077b45fba17c5:   xchg   %ax,%ax
+  0x000077b45fba17c7:   call   0x000077b45f5865e0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*iflt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.Preconditions::checkIndex@1 (line 301)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fba17cc:   nopl   0x144(%rax,%rax,1)           ;*iflt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkIndex@1 (line 301)
+                                                            ;   {post_call_nop}
+  0x000077b45fba17d4:   mov    $0xffffff45,%esi
+  0x000077b45fba17d9:   mov    %rcx,0x8(%rsp)
+  0x000077b45fba17de:   mov    %eax,0x4(%rsp)
+  0x000077b45fba17e2:   mov    %edx,0x10(%rsp)
+  0x000077b45fba17e6:   nop
+  0x000077b45fba17e7:   call   0x000077b45f5865e0           ; ImmutableOopMap {[8]=Oop }
+                                                            ;*if_icmplt {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.Preconditions::checkIndex@6 (line 301)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fba17ec:   nopl   0x1000164(%rax,%rax,1)       ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.Preconditions::checkIndex@6 (line 301)
+                                                            ;   {post_call_nop}
+  0x000077b45fba17f4:   movabs $0x77b45fba17a9,%r10         ;   {internal_word}
+  0x000077b45fba17fe:   mov    %r10,0x510(%r15)
+  0x000077b45fba1805:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fba180a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fba180f:   jmp    0x000077b45fba179a
+  0x000077b45fba1814:   hlt    
+  0x000077b45fba1815:   hlt    
+  0x000077b45fba1816:   hlt    
+  0x000077b45fba1817:   hlt    
+[Stub Code]
+  0x000077b45fba1818:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fba181d:   jmp    0x000077b45fba1818
+  0x000077b45fba181f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

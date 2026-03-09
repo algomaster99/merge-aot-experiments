@@ -1,0 +1,106 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 29018 1332       4       java.lang.AbstractStringBuilder::needsNewBuffer (33 bytes)
+ total in heap  [0x000077b45fbd6f88,0x000077b45fbd7150] = 456
+ main code      [0x000077b45fbd7080,0x000077b45fbd7148] = 200
+ stub code      [0x000077b45fbd7148,0x000077b45fbd7150] = 8
+ mutable data [0x000077b4080e1b90,0x000077b4080e1bb8] = 40
+ relocation     [0x000077b4080e1b90,0x000077b4080e1bb0] = 32
+ metadata       [0x000077b4080e1bb0,0x000077b4080e1bb8] = 8
+ immutable data [0x000077b4080e1a10,0x000077b4080e1b84] = 372
+ dependencies   [0x000077b4080e1a10,0x000077b4080e1a18] = 8
+ nul chk table  [0x000077b4080e1a18,0x000077b4080e1a28] = 16
+ scopes pcs     [0x000077b4080e1a28,0x000077b4080e1b18] = 240
+ scopes data    [0x000077b4080e1b18,0x000077b4080e1b80] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000461b67f0} &apos;needsNewBuffer&apos; &apos;([BBIB)Z&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = byte
+  # parm2:    rcx       = int
+  # parm3:    r8        = byte
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbd7080:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbd7087:   push   %rbp
+  0x000077b45fbd7088:   sub    $0x20,%rsp
+  0x000077b45fbd708c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbd7094:   jne    0x000077b45fbd713e           ;*synchronization entry
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@-1 (line 249)
+  0x000077b45fbd709a:   cmp    %r8d,%edx
+  0x000077b45fbd709d:   jne    0x000077b45fbd70d1           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@8 (line 250)
+  0x000077b45fbd709f:   mov    0xc(%rsi),%r11d              ; implicit exception: dispatches to 0x000077b45fbd7114
+  0x000077b45fbd70a3:   movslq %ecx,%r10
+  0x000077b45fbd70a6:   shlx   %r8,%r10,%r10                ;*lshl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@3 (line 249)
+  0x000077b45fbd70ab:   movslq %r11d,%r11
+  0x000077b45fbd70ae:   cmp    %r11,%r10
+  0x000077b45fbd70b1:   jg     0x000077b45fbd70ca           ;*ifgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@17 (line 250)
+  0x000077b45fbd70b3:   test   %r10,%r10
+  0x000077b45fbd70b6:   jl     0x000077b45fbd70ec           ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@24 (line 250)
+  0x000077b45fbd70b8:   xor    %eax,%eax                    ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@28 (line 250)
+  0x000077b45fbd70ba:   add    $0x20,%rsp
+  0x000077b45fbd70be:   pop    %rbp
+  0x000077b45fbd70bf:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbd70c3:   ja     0x000077b45fbd7128
+  0x000077b45fbd70c9:   ret    
+  0x000077b45fbd70ca:   mov    $0x1,%eax
+  0x000077b45fbd70cf:   jmp    0x000077b45fbd70ba
+  0x000077b45fbd70d1:   mov    $0xffffff45,%esi
+  0x000077b45fbd70d6:   mov    %edx,%ebp
+  0x000077b45fbd70d8:   mov    %r8d,(%rsp)
+  0x000077b45fbd70dc:   data16 xchg %ax,%ax
+  0x000077b45fbd70df:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::needsNewBuffer@8 (line 250)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbd70e4:   nopl   0x15c(%rax,%rax,1)           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@8 (line 250)
+                                                            ;   {post_call_nop}
+  0x000077b45fbd70ec:   xor    %r11d,%r11d
+  0x000077b45fbd70ef:   cmp    %r10,%r11
+  0x000077b45fbd70f2:   mov    $0xffffffff,%ebp
+  0x000077b45fbd70f7:   jl     0x000077b45fbd7101
+  0x000077b45fbd70f9:   setne  %bpl
+  0x000077b45fbd70fd:   movzbl %bpl,%ebp                    ;*lcmp {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@23 (line 250)
+  0x000077b45fbd7101:   mov    $0xffffff45,%esi
+  0x000077b45fbd7106:   nop
+  0x000077b45fbd7107:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*ifle {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::needsNewBuffer@24 (line 250)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbd710c:   nopl   0x1000184(%rax,%rax,1)       ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@24 (line 250)
+                                                            ;   {post_call_nop}
+  0x000077b45fbd7114:   mov    $0xfffffff6,%esi
+  0x000077b45fbd7119:   xchg   %ax,%ax
+  0x000077b45fbd711b:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@14 (line 250)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbd7120:   nopl   0x2000198(%rax,%rax,1)       ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@14 (line 250)
+                                                            ;   {post_call_nop}
+  0x000077b45fbd7128:   movabs $0x77b45fbd70bf,%r10         ;   {internal_word}
+  0x000077b45fbd7132:   mov    %r10,0x510(%r15)
+  0x000077b45fbd7139:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbd713e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbd7143:   jmp    0x000077b45fbd709a
+[Stub Code]
+  0x000077b45fbd7148:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbd714d:   jmp    0x000077b45fbd7148
+  0x000077b45fbd714f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

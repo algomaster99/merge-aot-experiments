@@ -1,0 +1,108 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 450   39       4       java.util.concurrent.ConcurrentHashMap::casTabAt (20 bytes)
+ total in heap  [0x00007a74bbba7208,0x00007a74bbba7410] = 520
+ main code      [0x00007a74bbba7300,0x00007a74bbba7408] = 264
+ stub code      [0x00007a74bbba7408,0x00007a74bbba7410] = 8
+ mutable data [0x00007a7464071770,0x00007a7464071788] = 24
+ relocation     [0x00007a7464071770,0x00007a7464071780] = 16
+ metadata       [0x00007a7464071780,0x00007a7464071788] = 8
+ immutable data [0x00007a7464071b90,0x00007a7464071bd4] = 68
+ dependencies   [0x00007a7464071b90,0x00007a7464071b98] = 8
+ scopes pcs     [0x00007a7464071b98,0x00007a7464071bc8] = 48
+ scopes data    [0x00007a7464071bc8,0x00007a7464071bd0] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000092484d30} &apos;casTabAt&apos; &apos;([Ljava/util/concurrent/ConcurrentHashMap$Node;ILjava/util/concurrent/ConcurrentHashMap$Node;Ljava/util/concurrent/ConcurrentHashMap$Node;)Z&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # parm0:    rsi:rsi   = &apos;[Ljava/util/concurrent/ConcurrentHashMap$Node;&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx:rcx   = &apos;java/util/concurrent/ConcurrentHashMap$Node&apos;
+  # parm3:    r8:r8     = &apos;java/util/concurrent/ConcurrentHashMap$Node&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x00007a74bbba7300:   sub    $0x18,%rsp
+  0x00007a74bbba7304:   mov    %rbp,0x10(%rsp)
+  0x00007a74bbba7309:   data16 xchg %ax,%ax
+  0x00007a74bbba730c:   cmpl   $0x1,0x20(%r15)
+  0x00007a74bbba7314:   jne    0x00007a74bbba73f8
+  0x00007a74bbba731a:   movslq %edx,%r10
+  0x00007a74bbba731d:   lea    0x10(%rsi,%r10,4),%r10
+  0x00007a74bbba7322:   mov    %rcx,%rax
+  0x00007a74bbba7325:   shr    $0x3,%rax
+  0x00007a74bbba7329:   mov    %r8,%r11
+  0x00007a74bbba732c:   shr    $0x3,%r11
+  0x00007a74bbba7330:   cmpb   $0x0,0x48(%r15)
+  0x00007a74bbba7335:   jne    0x00007a74bbba7383
+  0x00007a74bbba733b:   mov    %r11d,%r9d
+  0x00007a74bbba733e:   lock cmpxchg %r9d,(%r10)
+  0x00007a74bbba7343:   sete   %bl
+  0x00007a74bbba7346:   movzbl %bl,%ebx
+  0x00007a74bbba7349:   shl    $0x3,%r9
+  0x00007a74bbba734d:   mov    %r10,%rcx
+  0x00007a74bbba7350:   xor    %r9,%rcx
+  0x00007a74bbba7353:   shr    $0x17,%rcx
+  0x00007a74bbba7357:   je     0x00007a74bbba7371
+  0x00007a74bbba7359:   test   %r9,%r9
+  0x00007a74bbba735c:   je     0x00007a74bbba7371
+  0x00007a74bbba735e:   mov    %r10,%rcx
+  0x00007a74bbba7361:   shr    $0x9,%rcx
+  0x00007a74bbba7365:   add    0x50(%r15),%rcx
+  0x00007a74bbba7369:   cmpb   $0xff,(%rcx)
+  0x00007a74bbba736c:   jne    0x00007a74bbba7371
+  0x00007a74bbba736e:   movb   $0x0,(%rcx)                  ;*invokevirtual compareAndSetReference {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::casTabAt@16 (line 779)
+  0x00007a74bbba7371:   mov    %ebx,%eax
+  0x00007a74bbba7373:   add    $0x10,%rsp
+  0x00007a74bbba7377:   pop    %rbp
+  0x00007a74bbba7378:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007a74bbba737c:   ja     0x00007a74bbba73e2
+  0x00007a74bbba7382:   ret    
+  0x00007a74bbba7383:   mov    (%r10),%ecx
+  0x00007a74bbba7386:   shl    $0x3,%rcx
+  0x00007a74bbba738a:   test   %rcx,%rcx
+  0x00007a74bbba738d:   je     0x00007a74bbba733b
+  0x00007a74bbba738f:   mov    0x40(%r15),%r8
+  0x00007a74bbba7393:   test   %r8,%r8
+  0x00007a74bbba7396:   je     0x00007a74bbba73a9
+  0x00007a74bbba7398:   sub    $0x8,%r8
+  0x00007a74bbba739c:   mov    %r8,0x40(%r15)
+  0x00007a74bbba73a0:   add    0x38(%r15),%r8
+  0x00007a74bbba73a4:   mov    %rcx,(%r8)
+  0x00007a74bbba73a7:   jmp    0x00007a74bbba733b
+  0x00007a74bbba73a9:   sub    $0x20,%rsp
+  0x00007a74bbba73ad:   mov    %r10,0x18(%rsp)
+  0x00007a74bbba73b2:   mov    %r11,0x10(%rsp)
+  0x00007a74bbba73b7:   mov    %rax,0x8(%rsp)
+  0x00007a74bbba73bc:   mov    %rcx,%rdi
+  0x00007a74bbba73bf:   mov    %r15,%rsi
+  0x00007a74bbba73c2:   call   0x00007a74d3f09bd0           ;   {runtime_call G1BarrierSetRuntime::write_ref_field_pre_entry(oopDesc*, JavaThread*)}
+  0x00007a74bbba73c7:   mov    0x8(%rsp),%rax
+  0x00007a74bbba73cc:   mov    0x10(%rsp),%r11
+  0x00007a74bbba73d1:   mov    0x18(%rsp),%r10
+  0x00007a74bbba73d6:   vzeroupper 
+  0x00007a74bbba73d9:   add    $0x20,%rsp
+  0x00007a74bbba73dd:   jmp    0x00007a74bbba733b
+  0x00007a74bbba73e2:   movabs $0x7a74bbba7378,%r10         ;   {internal_word}
+  0x00007a74bbba73ec:   mov    %r10,0x510(%r15)
+  0x00007a74bbba73f3:   jmp    0x00007a74bb4afb60           ;   {runtime_call SafepointBlob}
+  0x00007a74bbba73f8:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007a74bbba73fd:   jmp    0x00007a74bbba731a
+  0x00007a74bbba7402:   hlt    
+  0x00007a74bbba7403:   hlt    
+  0x00007a74bbba7404:   hlt    
+  0x00007a74bbba7405:   hlt    
+  0x00007a74bbba7406:   hlt    
+  0x00007a74bbba7407:   hlt    
+[Stub Code]
+  0x00007a74bbba7408:   call   0x00007a74bb4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007a74bbba740d:   jmp    0x00007a74bbba7408
+  0x00007a74bbba740f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

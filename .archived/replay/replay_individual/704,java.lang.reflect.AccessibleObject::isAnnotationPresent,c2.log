@@ -1,0 +1,977 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 413   29       4       java.lang.reflect.AccessibleObject::isAnnotationPresent (6 bytes)
+ total in heap  [0x0000715ba7ba5408,0x0000715ba7ba5dd0] = 2504
+ main code      [0x0000715ba7ba5500,0x0000715ba7ba5d68] = 2152
+ stub code      [0x0000715ba7ba5d68,0x0000715ba7ba5dd0] = 104
+ mutable data [0x0000715b500d2a40,0x0000715b500d2bb8] = 376
+ relocation     [0x0000715b500d2a40,0x0000715b500d2b08] = 200
+ metadata       [0x0000715b500d2b08,0x0000715b500d2bb8] = 176
+ immutable data [0x0000715b500d2130,0x0000715b500d2a2c] = 2300
+ dependencies   [0x0000715b500d2130,0x0000715b500d2158] = 40
+ nul chk table  [0x0000715b500d2158,0x0000715b500d2180] = 40
+ handler table  [0x0000715b500d2180,0x0000715b500d2228] = 168
+ scopes pcs     [0x0000715b500d2228,0x0000715b500d2788] = 1376
+ scopes data    [0x0000715b500d2788,0x0000715b500d2a28] = 672
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000715ba7ba5500:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x000000004d1aaf40} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AccessibleObject&apos;
+  # this:     rsi:rsi   = &apos;java/lang/reflect/AccessibleObject&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x0000715ba7ba5502:   mov    0x8(%rsi),%r10d
+  0x0000715ba7ba5506:   cmp    0x8(%rax),%r10d
+  0x0000715ba7ba550a:   jne    0x0000715ba74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000715ba7ba5510:   mov    %eax,-0x14000(%rsp)
+  0x0000715ba7ba5517:   push   %rbp
+  0x0000715ba7ba5518:   sub    $0x40,%rsp
+  0x0000715ba7ba551c:   cmpl   $0x1,0x20(%r15)
+  0x0000715ba7ba5524:   jne    0x0000715ba7ba5d59           ;*synchronization entry
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@-1 (line 505)
+  0x0000715ba7ba552a:   mov    %rdx,(%rsp)
+  0x0000715ba7ba552e:   mov    0x8(%rsi),%r10d
+  0x0000715ba7ba5532:   cmp    $0x1aba90,%r10d              ;   {metadata(&apos;java/lang/reflect/Method&apos;)}
+  0x0000715ba7ba5539:   je     0x0000715ba7ba55d5
+  0x0000715ba7ba553f:   cmp    $0x1b07f8,%r10d              ;   {metadata(&apos;java/lang/reflect/Field&apos;)}
+  0x0000715ba7ba5546:   jne    0x0000715ba7ba5bda           ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba554c:   mov    %rdx,%rbp
+  0x0000715ba7ba554f:   mov    0x10(%rdx),%r10              ; implicit exception: dispatches to 0x0000715ba7ba5cb0
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@16 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5553:   mov    %r10,0x8(%rsp)
+  0x0000715ba7ba5558:   data16 xchg %ax,%ax
+  0x0000715ba7ba555b:   call   0x0000715ba74ad9e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.reflect.Field::getAnnotation@7 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {optimized virtual_call}
+  0x0000715ba7ba5560:   nopl   0x158(%rax,%rax,1)           ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@7 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5568:   mov    %rax,%rsi
+  0x0000715ba7ba556b:   mov    %rbp,%rdx
+  0x0000715ba7ba556e:   data16 xchg %ax,%ax
+  0x0000715ba7ba5571:   movabs $0x715b500d2e20,%rax
+  0x0000715ba7ba557b:   call   0x0000715ba74adce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.reflect.Field::getAnnotation@11 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {virtual_call}
+  0x0000715ba7ba5580:   nopl   0x1000178(%rax,%rax,1)       ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@11 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5588:   mov    0x8(%rsp),%rdi
+  0x0000715ba7ba558d:   mov    0x10(%rdi),%r9d              ; implicit exception: dispatches to 0x0000715ba7ba5c3c
+  0x0000715ba7ba5591:   mov    %rax,%r10
+  0x0000715ba7ba5594:   test   %rax,%rax
+  0x0000715ba7ba5597:   je     0x0000715ba7ba5b60
+  0x0000715ba7ba559d:   mov    0x8(%rax),%r11d
+  0x0000715ba7ba55a1:   movslq %r9d,%r8
+  0x0000715ba7ba55a4:   mov    $0x4d000000,%esi
+  0x0000715ba7ba55a9:   add    %r11,%rsi
+  0x0000715ba7ba55ac:   mov    (%rsi,%r8,1),%r11
+  0x0000715ba7ba55b0:   cmp    %r11,%rdi
+  0x0000715ba7ba55b3:   jne    0x0000715ba7ba5a36           ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@16 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55b9:   mov    0x20(%rsi),%r11
+  0x0000715ba7ba55bd:   movabs $0x4d247978,%r8              ;   {metadata(&apos;java/lang/annotation/Annotation&apos;)}
+  0x0000715ba7ba55c7:   cmp    %r8,%r11
+  0x0000715ba7ba55ca:   jne    0x0000715ba7ba5aeb           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@19 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55d0:   jmp    0x0000715ba7ba587a           ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55d5:   mov    %rsi,0x18(%rsp)
+  0x0000715ba7ba55da:   mov    0x10(%rdx),%r10              ; implicit exception: dispatches to 0x0000715ba7ba5c98
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55de:   mov    %r10,0x20(%rsp)
+  0x0000715ba7ba55e3:   mov    0x18(%rsi),%r10d             ;*getfield declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@1 (line 665)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55e7:   test   %r10d,%r10d
+  0x0000715ba7ba55ea:   jne    0x0000715ba7ba581c           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@6 (line 665)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba55f0:   lea    0x30(%rsp),%rbx
+  0x0000715ba7ba55f5:   mov    (%rsi),%r10
+  0x0000715ba7ba55f8:   mov    0x7c0(%r15),%ebx
+  0x0000715ba7ba55ff:   test   $0x2,%r10b
+  0x0000715ba7ba5603:   jne    0x0000715ba7ba5640
+  0x0000715ba7ba5609:   cmp    $0x80f,%ebx
+  0x0000715ba7ba560f:   jg     0x0000715ba7ba5660
+  0x0000715ba7ba5615:   cmp    -0x8(%r15,%rbx,1),%rsi
+  0x0000715ba7ba561a:   je     0x0000715ba7ba5632
+  0x0000715ba7ba561c:   mov    %r10,%rax
+  0x0000715ba7ba561f:   or     $0x1,%rax
+  0x0000715ba7ba5623:   and    $0xfffffffffffffffe,%r10
+  0x0000715ba7ba5627:   lock cmpxchg %r10,(%rsi)
+  0x0000715ba7ba562c:   jne    0x0000715ba7ba5660
+  0x0000715ba7ba5632:   mov    %rsi,(%r15,%rbx,1)
+  0x0000715ba7ba5636:   addl   $0x8,0x7c0(%r15)
+  0x0000715ba7ba563e:   jmp    0x0000715ba7ba565e
+  0x0000715ba7ba5640:   xor    %rax,%rax
+  0x0000715ba7ba5643:   mov    0x4f8(%r15),%rbx
+  0x0000715ba7ba564a:   lock cmpxchg %rbx,0x3e(%r10)
+  0x0000715ba7ba5650:   je     0x0000715ba7ba565e
+  0x0000715ba7ba5652:   cmp    %rax,%rbx
+  0x0000715ba7ba5655:   jne    0x0000715ba7ba5660
+  0x0000715ba7ba5657:   incq   0x86(%r10)
+  0x0000715ba7ba565e:   xor    %eax,%eax
+  0x0000715ba7ba5660:   jne    0x0000715ba7ba5b80           ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@12 (line 666)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5666:   mov    0x18(%rsp),%r10
+  0x0000715ba7ba566b:   mov    0x18(%r10),%ebp              ;*getfield declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@14 (line 667)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba566f:   test   %ebp,%ebp
+  0x0000715ba7ba5671:   jne    0x0000715ba7ba5bf0           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@19 (line 667)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5677:   mov    0x40(%r10),%r11d             ;*getfield root {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 187)
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 72)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@23 (line 668)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba567b:   test   %r11d,%r11d
+  0x0000715ba7ba567e:   jne    0x0000715ba7ba56fc           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@31 (line 669)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5680:   mov    0x34(%r10),%ebp              ;*getfield annotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getAnnotationBytes@1 (line 197)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@43 (line 673)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5684:   mov    0x1c(%r10),%r10d             ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getDeclaringClass@1 (line 206)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@50 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5688:   test   %r10d,%r10d
+  0x0000715ba7ba568b:   je     0x0000715ba7ba5c04           ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5691:   rex.W push 0x20(%rsp)
+  0x0000715ba7ba5696:   rex.W pop 0x10(%rsp)
+  0x0000715ba7ba569b:   rex.W push 0x18(%rsp)
+  0x0000715ba7ba56a0:   rex.W pop 0x8(%rsp)
+  0x0000715ba7ba56a5:   lea    (%r12,%r10,8),%rsi           ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getDeclaringClass@1 (line 206)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@50 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba56a9:   xchg   %ax,%ax
+  0x0000715ba7ba56ab:   call   0x0000715ba74ad9e0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [8]=Oop }
+                                                            ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {optimized virtual_call}
+  0x0000715ba7ba56b0:   nopl   0x20002a8(%rax,%rax,1)       ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba56b8:   rex.W push 0x8(%rsp)
+  0x0000715ba7ba56bd:   rex.W pop 0x18(%rsp)
+  0x0000715ba7ba56c2:   mov    0x8(%rsp),%r11
+  0x0000715ba7ba56c7:   mov    0x1c(%r11),%r8d
+  0x0000715ba7ba56cb:   mov    %rbp,%rsi
+  0x0000715ba7ba56ce:   shl    $0x3,%rsi                    ;*getfield annotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getAnnotationBytes@1 (line 197)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@43 (line 673)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba56d2:   mov    %r8,%rcx
+  0x0000715ba7ba56d5:   shl    $0x3,%rcx                    ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getDeclaringClass@1 (line 206)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@59 (line 676)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba56d9:   mov    %rax,%rdx
+  0x0000715ba7ba56dc:   mov    (%rsp),%rbp
+  0x0000715ba7ba56e0:   data16 xchg %ax,%ax
+  0x0000715ba7ba56e3:   call   0x0000715ba74adfe0           ; ImmutableOopMap {rbp=Oop [0]=Oop [8]=Oop [24]=Oop }
+                                                            ;*invokestatic parseAnnotations {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@62 (line 672)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {static_call}
+  0x0000715ba7ba56e8:   nopl   0x30002e0(%rax,%rax,1)       ;*invokestatic parseAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@62 (line 672)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba56f0:   rex.W push 0x10(%rsp)
+  0x0000715ba7ba56f5:   rex.W pop 0x20(%rsp)
+  0x0000715ba7ba56fa:   jmp    0x0000715ba7ba571c
+  0x0000715ba7ba56fc:   lea    (%r12,%r11,8),%rsi           ;*getfield root {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 187)
+                                                            ; - java.lang.reflect.Method::getRoot@1 (line 72)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@23 (line 668)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5700:   mov    (%rsp),%rbp
+  0x0000715ba7ba5704:   mov    %r10,0x8(%rsp)
+  0x0000715ba7ba5709:   mov    %r10,0x10(%rsp)
+  0x0000715ba7ba570e:   nop
+  0x0000715ba7ba570f:   call   0x0000715ba74ad9e0           ; ImmutableOopMap {rbp=Oop [0]=Oop [8]=Oop [16]=Oop [24]=Oop }
+                                                            ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@35 (line 670)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {optimized virtual_call}
+  0x0000715ba7ba5714:   nopl   0x400030c(%rax,%rax,1)       ;   {post_call_nop}
+  0x0000715ba7ba571c:   mov    %rax,%rbx
+  0x0000715ba7ba571f:   mov    0x18(%rsp),%rcx
+  0x0000715ba7ba5724:   lea    0x18(%rcx),%r8
+  0x0000715ba7ba5728:   cmpb   $0x0,0x48(%r15)
+  0x0000715ba7ba572d:   jne    0x0000715ba7ba5cc8
+  0x0000715ba7ba5733:   mov    %rax,%r9
+  0x0000715ba7ba5736:   shr    $0x3,%r9
+  0x0000715ba7ba573a:   mov    %r9d,(%r8)
+  0x0000715ba7ba573d:   mov    %r8,%r10
+  0x0000715ba7ba5740:   xor    %rax,%r10
+  0x0000715ba7ba5743:   shr    $0x17,%r10
+  0x0000715ba7ba5747:   je     0x0000715ba7ba5763
+  0x0000715ba7ba5749:   test   %rax,%rax
+  0x0000715ba7ba574c:   je     0x0000715ba7ba5763
+  0x0000715ba7ba574e:   mov    %r8,%r10
+  0x0000715ba7ba5751:   shr    $0x9,%r10
+  0x0000715ba7ba5755:   add    0x50(%r15),%r10
+  0x0000715ba7ba5759:   cmpb   $0xff,(%r10)
+  0x0000715ba7ba575d:   jne    0x0000715ba7ba5763
+  0x0000715ba7ba575f:   movb   $0x0,(%r10)
+  0x0000715ba7ba5763:   lock addl $0x0,-0x40(%rsp)          ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@72 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5769:   lea    0x30(%rsp),%rax              ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@12 (line 666)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba576e:   mov    0x7c0(%r15),%eax
+  0x0000715ba7ba5775:   mov    (%rcx),%r11
+  0x0000715ba7ba5778:   cmp    -0x8(%r15,%rax,1),%rcx
+  0x0000715ba7ba577d:   jne    0x0000715ba7ba57b1
+  0x0000715ba7ba5783:   subl   $0x8,0x7c0(%r15)
+  0x0000715ba7ba578b:   cmp    -0x10(%r15,%rax,1),%rcx
+  0x0000715ba7ba5790:   je     0x0000715ba7ba57f5
+  0x0000715ba7ba5796:   mov    %r11,%rax
+  0x0000715ba7ba5799:   and    $0xfffffffffffffffc,%rax
+  0x0000715ba7ba579d:   or     $0x1,%r11
+  0x0000715ba7ba57a1:   lock cmpxchg %r11,(%rcx)
+  0x0000715ba7ba57a6:   jne    0x0000715ba7ba5d4c
+  0x0000715ba7ba57ac:   jmp    0x0000715ba7ba57f5
+  0x0000715ba7ba57b1:   cmpq   $0x0,0x86(%r11)
+  0x0000715ba7ba57b9:   jne    0x0000715ba7ba57ee
+  0x0000715ba7ba57bb:   movq   $0x0,0x3e(%r11)
+  0x0000715ba7ba57c3:   lock addl $0x0,-0x40(%rsp)
+  0x0000715ba7ba57c9:   cmpq   $0x0,0x8e(%r11)
+  0x0000715ba7ba57d1:   je     0x0000715ba7ba57f5
+  0x0000715ba7ba57d3:   cmpq   $0x0,0x9e(%r11)
+  0x0000715ba7ba57db:   jne    0x0000715ba7ba57f5
+  0x0000715ba7ba57dd:   and    $0xfffffffffffffffd,%r11
+  0x0000715ba7ba57e1:   mov    %r11,0x610(%r15)
+  0x0000715ba7ba57e8:   or     $0x1,%r11d
+  0x0000715ba7ba57ec:   jmp    0x0000715ba7ba57f8
+  0x0000715ba7ba57ee:   decq   0x86(%r11)
+  0x0000715ba7ba57f5:   xor    %r11d,%r11d
+  0x0000715ba7ba57f8:   jne    0x0000715ba7ba5bb3           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@72 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba57fe:   test   %rbx,%rbx
+  0x0000715ba7ba5801:   jne    0x0000715ba7ba5820
+  0x0000715ba7ba5803:   mov    $0xfffffff6,%esi
+  0x0000715ba7ba5808:   mov    (%rsp),%rbp
+  0x0000715ba7ba580c:   data16 xchg %ax,%ax
+  0x0000715ba7ba580f:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5814:   nopl   0x500040c(%rax,%rax,1)       ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba581c:   lea    (%r12,%r10,8),%rbx           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@73 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5820:   mov    0x8(%rbx),%r10d
+  0x0000715ba7ba5824:   cmp    $0x2f3e60,%r10d              ;   {metadata(&apos;java/util/Collections$EmptyMap&apos;)}
+  0x0000715ba7ba582b:   jne    0x0000715ba7ba59c4
+  0x0000715ba7ba5831:   xor    %r10d,%r10d                  ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5834:   mov    0x20(%rsp),%r11
+  0x0000715ba7ba5839:   mov    0x10(%r11),%r11d             ; implicit exception: dispatches to 0x0000715ba7ba5943
+  0x0000715ba7ba583d:   test   %r10,%r10
+  0x0000715ba7ba5840:   je     0x0000715ba7ba5b58
+  0x0000715ba7ba5846:   mov    0x8(%r10),%r8d
+  0x0000715ba7ba584a:   movslq %r11d,%r9
+  0x0000715ba7ba584d:   mov    $0x4d000000,%esi
+  0x0000715ba7ba5852:   add    %r8,%rsi
+  0x0000715ba7ba5855:   mov    (%rsi,%r9,1),%r8
+  0x0000715ba7ba5859:   mov    0x20(%rsp),%r9
+  0x0000715ba7ba585e:   cmp    %r8,%r9
+  0x0000715ba7ba5861:   jne    0x0000715ba7ba5895           ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5863:   mov    0x20(%rsi),%r11
+  0x0000715ba7ba5867:   movabs $0x4d247978,%r8              ;   {metadata(&apos;java/lang/annotation/Annotation&apos;)}
+  0x0000715ba7ba5871:   cmp    %r8,%r11
+  0x0000715ba7ba5874:   jne    0x0000715ba7ba5960           ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba587a:   test   %r10,%r10
+  0x0000715ba7ba587d:   jne    0x0000715ba7ba5b68           ;*synchronization entry
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@-1 (line 505)
+  0x0000715ba7ba5883:   xor    %eax,%eax
+  0x0000715ba7ba5885:   add    $0x40,%rsp
+  0x0000715ba7ba5889:   pop    %rbp
+  0x0000715ba7ba588a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000715ba7ba588e:   ja     0x0000715ba7ba5d36
+  0x0000715ba7ba5894:   ret    
+  0x0000715ba7ba5895:   cmp    $0x20,%r11d
+  0x0000715ba7ba5899:   jne    0x0000715ba7ba5943
+  0x0000715ba7ba589f:   cmp    %r9,%rsi
+  0x0000715ba7ba58a2:   je     0x0000715ba7ba5863
+  0x0000715ba7ba58a4:   mov    0x20(%rsp),%rax
+  0x0000715ba7ba58a9:   mov    0xa8(%rsi),%rbx
+  0x0000715ba7ba58b0:   mov    %rbx,%rdx
+  0x0000715ba7ba58b3:   mov    0xb0(%rax),%cl
+  0x0000715ba7ba58b9:   xor    $0x3f,%ecx
+  0x0000715ba7ba58bc:   shl    %cl,%rdx
+  0x0000715ba7ba58bf:   test   %rdx,%rdx
+  0x0000715ba7ba58c2:   jns    0x0000715ba7ba592e
+  0x0000715ba7ba58c8:   popcnt %rdx,%rdx
+  0x0000715ba7ba58cd:   mov    0x28(%rsi),%r11
+  0x0000715ba7ba58d1:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba58d5:   je     0x0000715ba7ba5937
+  0x0000715ba7ba58d7:   mov    0xb0(%rax),%cl
+  0x0000715ba7ba58dd:   ror    %cl,%rbx
+  0x0000715ba7ba58e0:   bt     $0x1,%rbx
+  0x0000715ba7ba58e5:   jae    0x0000715ba7ba592e
+  0x0000715ba7ba58e7:   mov    (%r11),%edi
+  0x0000715ba7ba58ea:   add    $0x8,%r11
+  0x0000715ba7ba58ee:   cmp    $0x3e,%edi
+  0x0000715ba7ba58f1:   jg     0x0000715ba7ba591b
+  0x0000715ba7ba58f7:   xor    %ecx,%ecx
+  0x0000715ba7ba58f9:   cmp    %edi,%edx
+  0x0000715ba7ba58fb:   cmovge %ecx,%edx
+  0x0000715ba7ba58fe:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba5902:   je     0x0000715ba7ba5937
+  0x0000715ba7ba5908:   bt     $0x2,%rbx
+  0x0000715ba7ba590d:   jae    0x0000715ba7ba592e
+  0x0000715ba7ba5913:   ror    %rbx
+  0x0000715ba7ba5916:   add    $0x1,%edx
+  0x0000715ba7ba5919:   jmp    0x0000715ba7ba58f9
+  0x0000715ba7ba591b:   xor    %edx,%edx
+  0x0000715ba7ba591d:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba5921:   je     0x0000715ba7ba5937
+  0x0000715ba7ba5927:   add    $0x1,%edx
+  0x0000715ba7ba592a:   cmp    %edi,%edx
+  0x0000715ba7ba592c:   jl     0x0000715ba7ba591d
+  0x0000715ba7ba592e:   mov    $0x1,%rdi
+  0x0000715ba7ba5935:   jmp    0x0000715ba7ba593a
+  0x0000715ba7ba5937:   xor    %rdi,%rdi
+  0x0000715ba7ba593a:   test   %rdi,%rdi
+  0x0000715ba7ba593d:   je     0x0000715ba7ba5863
+  0x0000715ba7ba5943:   mov    $0xffffffce,%esi
+  0x0000715ba7ba5948:   mov    (%rsp),%rbp
+  0x0000715ba7ba594c:   mov    %r10,(%rsp)
+  0x0000715ba7ba5950:   data16 xchg %ax,%ax
+  0x0000715ba7ba5953:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5958:   nopl   0x6000550(%rax,%rax,1)       ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@16 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5960:   movabs $0x4d247978,%rax             ;   {metadata(&apos;java/lang/annotation/Annotation&apos;)}
+  0x0000715ba7ba596a:   xor    %rdi,%rdi
+  0x0000715ba7ba596d:   mov    0xa8(%rsi),%r11
+  0x0000715ba7ba5974:   mov    %r11,%rdx
+  0x0000715ba7ba5977:   shl    $0x2b,%rdx
+  0x0000715ba7ba597b:   jns    0x0000715ba7ba59a2
+  0x0000715ba7ba5981:   popcnt %rdx,%rdx
+  0x0000715ba7ba5986:   mov    0x28(%rsi),%rbx
+  0x0000715ba7ba598a:   cmp    (%rbx,%rdx,8),%rax
+  0x0000715ba7ba598e:   je     0x0000715ba7ba59a5
+  0x0000715ba7ba5990:   bt     $0x15,%r11
+  0x0000715ba7ba5995:   jae    0x0000715ba7ba59a2
+  0x0000715ba7ba5997:   ror    $0x14,%r11
+  0x0000715ba7ba599b:   call   Stub::lookup_secondary_supers_table_slow_path_stub (stub gen)
+                                                            ;   {runtime_call Stub::lookup_secondary_supers_table_slow_path_stub (stub gen)}
+  0x0000715ba7ba59a0:   jmp    0x0000715ba7ba59a5
+  0x0000715ba7ba59a2:   inc    %rdi
+  0x0000715ba7ba59a5:   test   %rdi,%rdi
+  0x0000715ba7ba59a8:   je     0x0000715ba7ba587a
+  0x0000715ba7ba59ae:   mov    $0xffffffde,%esi
+  0x0000715ba7ba59b3:   mov    %r10,%rbp
+  0x0000715ba7ba59b6:   nop
+  0x0000715ba7ba59b7:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@19 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba59bc:   nopl   0x70005b4(%rax,%rax,1)       ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@19 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba59c4:   cmp    $0x249388,%r10d              ;   {metadata(&apos;java/util/LinkedHashMap&apos;)}
+  0x0000715ba7ba59cb:   jne    0x0000715ba7ba5c20
+  0x0000715ba7ba59d1:   mov    %rbx,%rbp                    ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap::get@-1 (line 537)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba59d4:   mov    %rbp,%rsi
+  0x0000715ba7ba59d7:   mov    (%rsp),%rdx
+  0x0000715ba7ba59db:   call   0x0000715ba74ad9e0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {optimized virtual_call}
+  0x0000715ba7ba59e0:   nopl   0x80005d8(%rax,%rax,1)       ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba59e8:   mov    %rax,%r11
+  0x0000715ba7ba59eb:   test   %rax,%rax
+  0x0000715ba7ba59ee:   je     0x0000715ba7ba5b50           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@7 (line 537)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba59f4:   movzbl 0x30(%rbp),%r10d
+  0x0000715ba7ba59f9:   test   %r10d,%r10d
+  0x0000715ba7ba59fc:   je     0x0000715ba7ba5a29           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@16 (line 539)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba59fe:   mov    %rax,0x10(%rsp)
+  0x0000715ba7ba5a03:   mov    %rbp,%r10
+  0x0000715ba7ba5a06:   mov    (%rsp),%rbp
+  0x0000715ba7ba5a0a:   mov    %r10,%rsi
+  0x0000715ba7ba5a0d:   mov    %rax,%rdx
+  0x0000715ba7ba5a10:   data16 xchg %ax,%ax
+  0x0000715ba7ba5a13:   call   0x0000715ba74ad9e0           ; ImmutableOopMap {rbp=Oop [16]=Oop }
+                                                            ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {optimized virtual_call}
+  0x0000715ba7ba5a18:   nopl   0x9000610(%rax,%rax,1)       ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5a20:   mov    %rbp,(%rsp)
+  0x0000715ba7ba5a24:   mov    0x10(%rsp),%r11              ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@24 (line 541)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5a29:   mov    0x14(%r11),%r10d
+  0x0000715ba7ba5a2d:   shl    $0x3,%r10                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@25 (line 541)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5a31:   jmp    0x0000715ba7ba5834
+  0x0000715ba7ba5a36:   cmp    $0x20,%r9d
+  0x0000715ba7ba5a3a:   jne    0x0000715ba7ba5c3f
+  0x0000715ba7ba5a40:   cmp    %rdi,%rsi
+  0x0000715ba7ba5a43:   je     0x0000715ba7ba55b9
+  0x0000715ba7ba5a49:   mov    %rdi,%rax
+  0x0000715ba7ba5a4c:   mov    0xa8(%rsi),%rbx
+  0x0000715ba7ba5a53:   mov    %rbx,%rdx
+  0x0000715ba7ba5a56:   mov    0xb0(%rax),%cl
+  0x0000715ba7ba5a5c:   xor    $0x3f,%ecx
+  0x0000715ba7ba5a5f:   shl    %cl,%rdx
+  0x0000715ba7ba5a62:   test   %rdx,%rdx
+  0x0000715ba7ba5a65:   jns    0x0000715ba7ba5ad1
+  0x0000715ba7ba5a6b:   popcnt %rdx,%rdx
+  0x0000715ba7ba5a70:   mov    0x28(%rsi),%r11
+  0x0000715ba7ba5a74:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba5a78:   je     0x0000715ba7ba5ada
+  0x0000715ba7ba5a7a:   mov    0xb0(%rax),%cl
+  0x0000715ba7ba5a80:   ror    %cl,%rbx
+  0x0000715ba7ba5a83:   bt     $0x1,%rbx
+  0x0000715ba7ba5a88:   jae    0x0000715ba7ba5ad1
+  0x0000715ba7ba5a8a:   mov    (%r11),%edi
+  0x0000715ba7ba5a8d:   add    $0x8,%r11
+  0x0000715ba7ba5a91:   cmp    $0x3e,%edi
+  0x0000715ba7ba5a94:   jg     0x0000715ba7ba5abe
+  0x0000715ba7ba5a9a:   xor    %ecx,%ecx
+  0x0000715ba7ba5a9c:   cmp    %edi,%edx
+  0x0000715ba7ba5a9e:   cmovge %ecx,%edx
+  0x0000715ba7ba5aa1:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba5aa5:   je     0x0000715ba7ba5ada
+  0x0000715ba7ba5aab:   bt     $0x2,%rbx
+  0x0000715ba7ba5ab0:   jae    0x0000715ba7ba5ad1
+  0x0000715ba7ba5ab6:   ror    %rbx
+  0x0000715ba7ba5ab9:   add    $0x1,%edx
+  0x0000715ba7ba5abc:   jmp    0x0000715ba7ba5a9c
+  0x0000715ba7ba5abe:   xor    %edx,%edx
+  0x0000715ba7ba5ac0:   cmp    (%r11,%rdx,8),%rax
+  0x0000715ba7ba5ac4:   je     0x0000715ba7ba5ada
+  0x0000715ba7ba5aca:   add    $0x1,%edx
+  0x0000715ba7ba5acd:   cmp    %edi,%edx
+  0x0000715ba7ba5acf:   jl     0x0000715ba7ba5ac0
+  0x0000715ba7ba5ad1:   mov    $0x1,%rdi
+  0x0000715ba7ba5ad8:   jmp    0x0000715ba7ba5add
+  0x0000715ba7ba5ada:   xor    %rdi,%rdi
+  0x0000715ba7ba5add:   test   %rdi,%rdi
+  0x0000715ba7ba5ae0:   jne    0x0000715ba7ba5c3f
+  0x0000715ba7ba5ae6:   jmp    0x0000715ba7ba55b9
+  0x0000715ba7ba5aeb:   movabs $0x4d247978,%rax             ;   {metadata(&apos;java/lang/annotation/Annotation&apos;)}
+  0x0000715ba7ba5af5:   xor    %rdi,%rdi
+  0x0000715ba7ba5af8:   mov    0xa8(%rsi),%r11
+  0x0000715ba7ba5aff:   mov    %r11,%rdx
+  0x0000715ba7ba5b02:   shl    $0x2b,%rdx
+  0x0000715ba7ba5b06:   jns    0x0000715ba7ba5b2d
+  0x0000715ba7ba5b0c:   popcnt %rdx,%rdx
+  0x0000715ba7ba5b11:   mov    0x28(%rsi),%rbx
+  0x0000715ba7ba5b15:   cmp    (%rbx,%rdx,8),%rax
+  0x0000715ba7ba5b19:   je     0x0000715ba7ba5b30
+  0x0000715ba7ba5b1b:   bt     $0x15,%r11
+  0x0000715ba7ba5b20:   jae    0x0000715ba7ba5b2d
+  0x0000715ba7ba5b22:   ror    $0x14,%r11
+  0x0000715ba7ba5b26:   call   Stub::lookup_secondary_supers_table_slow_path_stub (stub gen)
+                                                            ;   {runtime_call Stub::lookup_secondary_supers_table_slow_path_stub (stub gen)}
+  0x0000715ba7ba5b2b:   jmp    0x0000715ba7ba5b30
+  0x0000715ba7ba5b2d:   inc    %rdi
+  0x0000715ba7ba5b30:   test   %rdi,%rdi
+  0x0000715ba7ba5b33:   je     0x0000715ba7ba55d0
+  0x0000715ba7ba5b39:   mov    $0xffffffde,%esi
+  0x0000715ba7ba5b3e:   mov    %r10,%rbp
+  0x0000715ba7ba5b41:   xchg   %ax,%ax
+  0x0000715ba7ba5b43:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@19 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5b48:   nopl   0xa000740(%rax,%rax,1)       ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@19 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5b50:   xor    %r10d,%r10d
+  0x0000715ba7ba5b53:   jmp    0x0000715ba7ba5834
+  0x0000715ba7ba5b58:   xor    %r10d,%r10d
+  0x0000715ba7ba5b5b:   jmp    0x0000715ba7ba587a
+  0x0000715ba7ba5b60:   xor    %r10d,%r10d
+  0x0000715ba7ba5b63:   jmp    0x0000715ba7ba587a           ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5b68:   mov    $0xffffff45,%esi
+  0x0000715ba7ba5b6d:   mov    %r10,%rbp
+  0x0000715ba7ba5b70:   data16 xchg %ax,%ax
+  0x0000715ba7ba5b73:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.reflect.AnnotatedElement::isAnnotationPresent@7 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5b78:   nopl   0xb000770(%rax,%rax,1)       ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@7 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5b80:   rex.W push 0x20(%rsp)
+  0x0000715ba7ba5b85:   rex.W pop 0x10(%rsp)
+  0x0000715ba7ba5b8a:   mov    %rsi,0x8(%rsp)
+  0x0000715ba7ba5b8f:   mov    %rdx,%rbp
+  0x0000715ba7ba5b92:   lea    0x30(%rsp),%rdx
+  0x0000715ba7ba5b97:   call   0x0000715ba758c660           ; ImmutableOopMap {rbp=Oop [0]=Oop [8]=Oop [24]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@12 (line 666)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call complete_monitor_locking_blob (C2 runtime)}
+  0x0000715ba7ba5b9c:   nopl   0xc000794(%rax,%rax,1)       ;   {post_call_nop}
+  0x0000715ba7ba5ba4:   rex.W push 0x10(%rsp)
+  0x0000715ba7ba5ba9:   rex.W pop 0x20(%rsp)
+  0x0000715ba7ba5bae:   jmp    0x0000715ba7ba5666
+  0x0000715ba7ba5bb3:   mov    0x18(%rsp),%rdi
+  0x0000715ba7ba5bb8:   lea    0x30(%rsp),%rsi              ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@12 (line 666)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5bbd:   mov    %r15,%rdx
+  0x0000715ba7ba5bc0:   movabs $0x715bc0f84170,%r10         ;   {runtime_call SharedRuntime::complete_monitor_unlocking_C(oopDesc*, BasicLock*, JavaThread*)}
+  0x0000715ba7ba5bca:   call   *%r10
+  0x0000715ba7ba5bcd:   nopl   0x0(%rax,%rax,1)             ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@72 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5bd5:   jmp    0x0000715ba7ba57fe
+  0x0000715ba7ba5bda:   mov    %rsi,%rbp
+  0x0000715ba7ba5bdd:   mov    $0xffffffc6,%esi
+  0x0000715ba7ba5be2:   nop
+  0x0000715ba7ba5be3:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5be8:   nopl   0xd0007e0(%rax,%rax,1)       ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5bf0:   mov    $0xffffff45,%esi
+  0x0000715ba7ba5bf5:   xchg   %ax,%ax
+  0x0000715ba7ba5bf7:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [24]=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.reflect.Executable::declaredAnnotations@19 (line 667)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5bfc:   nopl   0xe0007f4(%rax,%rax,1)       ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@19 (line 667)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5c04:   mov    $0xfffffff6,%esi
+  0x0000715ba7ba5c09:   rex.W push 0x18(%rsp)
+  0x0000715ba7ba5c0e:   rex.W pop 0x10(%rsp)
+  0x0000715ba7ba5c13:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=NarrowOop [0]=Oop [16]=Oop }
+                                                            ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5c18:   nopl   0xf000810(%rax,%rax,1)       ;   {post_call_nop}
+  0x0000715ba7ba5c20:   mov    $0xffffffc6,%esi
+  0x0000715ba7ba5c25:   mov    (%rsp),%rbp
+  0x0000715ba7ba5c29:   mov    %rbx,0x8(%rsp)
+  0x0000715ba7ba5c2e:   nop
+  0x0000715ba7ba5c2f:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [8]=Oop }
+                                                            ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5c34:   nopl   0x1000082c(%rax,%rax,1)      ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5c3c:   mov    %rax,%r10
+  0x0000715ba7ba5c3f:   mov    $0xffffffce,%esi
+  0x0000715ba7ba5c44:   mov    %r10,(%rsp)
+  0x0000715ba7ba5c48:   data16 xchg %ax,%ax
+  0x0000715ba7ba5c4b:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*invokevirtual cast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@16 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5c50:   nopl   0x11000848(%rax,%rax,1)      ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@7 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5c58:   jmp    0x0000715ba7ba5c5a           ;*invokeinterface get {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@11 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c5a:   mov    %rax,%rsi
+  0x0000715ba7ba5c5d:   jmp    0x0000715ba7ba5c64           ;*invokevirtual getNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@2 (line 537)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c5f:   jmp    0x0000715ba7ba5c61           ;*invokevirtual afterNodeAccess {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap::get@21 (line 540)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@11 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c61:   mov    %rax,%rsi                    ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c64:   add    $0x40,%rsp
+  0x0000715ba7ba5c68:   pop    %rbp
+  0x0000715ba7ba5c69:   jmp    0x0000715ba758cf60           ;*invokevirtual declaredAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@35 (line 670)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x0000715ba7ba5c6e:   mov    %rax,%rbp
+  0x0000715ba7ba5c71:   jmp    0x0000715ba7ba5c85           ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c73:   mov    %rax,%rbp
+  0x0000715ba7ba5c76:   rex.W push 0x8(%rsp)
+  0x0000715ba7ba5c7b:   rex.W pop 0x18(%rsp)
+  0x0000715ba7ba5c80:   jmp    0x0000715ba7ba5c85           ;*invokestatic parseAnnotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@62 (line 672)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c82:   mov    %rax,%rbp                    ;*invokeinterface getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@53 (line 675)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+  0x0000715ba7ba5c85:   mov    $0xffffff95,%esi
+  0x0000715ba7ba5c8a:   nop
+  0x0000715ba7ba5c8b:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop [24]=Oop }
+                                                            ;*astore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@76 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5c90:   nopl   0x12000888(%rax,%rax,1)      ;*astore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Executable::declaredAnnotations@76 (line 681)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@7 (line 638)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5c98:   mov    $0xffffff45,%esi
+  0x0000715ba7ba5c9d:   mov    %rdx,0x8(%rsp)
+  0x0000715ba7ba5ca2:   nop
+  0x0000715ba7ba5ca3:   call   0x0000715ba7585ce0           ; ImmutableOopMap {[0]=Oop [8]=Oop [24]=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Objects::requireNonNull@1 (line 219)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5ca8:   nopl   0x130008a0(%rax,%rax,1)      ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Objects::requireNonNull@1 (line 219)
+                                                            ; - java.lang.reflect.Executable::getAnnotation@1 (line 637)
+                                                            ; - java.lang.reflect.Method::getAnnotation@2 (line 778)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5cb0:   mov    %rsi,(%rsp)
+  0x0000715ba7ba5cb4:   mov    $0xffffff45,%esi
+  0x0000715ba7ba5cb9:   xchg   %ax,%ax
+  0x0000715ba7ba5cbb:   call   0x0000715ba7585ce0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Objects::requireNonNull@1 (line 219)
+                                                            ; - java.lang.reflect.Field::getAnnotation@1 (line 1365)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000715ba7ba5cc0:   nopl   0x140008b8(%rax,%rax,1)      ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::getAnnotation@19 (line 1366)
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ; - java.lang.reflect.AccessibleObject::isAnnotationPresent@2 (line 505)
+                                                            ;   {post_call_nop}
+  0x0000715ba7ba5cc8:   mov    (%r8),%r9d
+  0x0000715ba7ba5ccb:   shl    $0x3,%r9
+  0x0000715ba7ba5ccf:   test   %r9,%r9
+  0x0000715ba7ba5cd2:   je     0x0000715ba7ba5733
+  0x0000715ba7ba5cd8:   mov    0x40(%r15),%r10
+  0x0000715ba7ba5cdc:   test   %r10,%r10
+  0x0000715ba7ba5cdf:   je     0x0000715ba7ba5cf5
+  0x0000715ba7ba5ce1:   sub    $0x8,%r10
+  0x0000715ba7ba5ce5:   mov    %r10,0x40(%r15)
+  0x0000715ba7ba5ce9:   add    0x38(%r15),%r10
+  0x0000715ba7ba5ced:   mov    %r9,(%r10)
+  0x0000715ba7ba5cf0:   jmp    0x0000715ba7ba5733
+  0x0000715ba7ba5cf5:   sub    $0x20,%rsp
+  0x0000715ba7ba5cf9:   mov    %r11,0x18(%rsp)
+  0x0000715ba7ba5cfe:   mov    %r8,0x10(%rsp)
+  0x0000715ba7ba5d03:   mov    %rcx,0x8(%rsp)
+  0x0000715ba7ba5d08:   mov    %rax,(%rsp)
+  0x0000715ba7ba5d0c:   mov    %r9,%rdi
+  0x0000715ba7ba5d0f:   mov    %r15,%rsi
+  0x0000715ba7ba5d12:   call   0x0000715bc0909bd0           ;   {runtime_call G1BarrierSetRuntime::write_ref_field_pre_entry(oopDesc*, JavaThread*)}
+  0x0000715ba7ba5d17:   mov    (%rsp),%rax
+  0x0000715ba7ba5d1b:   mov    0x8(%rsp),%rcx
+  0x0000715ba7ba5d20:   mov    0x10(%rsp),%r8
+  0x0000715ba7ba5d25:   mov    0x18(%rsp),%r11
+  0x0000715ba7ba5d2a:   vzeroupper 
+  0x0000715ba7ba5d2d:   add    $0x20,%rsp
+  0x0000715ba7ba5d31:   jmp    0x0000715ba7ba5733
+  0x0000715ba7ba5d36:   movabs $0x715ba7ba588a,%r10         ;   {internal_word}
+  0x0000715ba7ba5d40:   mov    %r10,0x510(%r15)
+  0x0000715ba7ba5d47:   jmp    0x0000715ba74afb60           ;   {runtime_call SafepointBlob}
+  0x0000715ba7ba5d4c:   addl   $0x8,0x7c0(%r15)
+  0x0000715ba7ba5d54:   jmp    0x0000715ba7ba57f8
+  0x0000715ba7ba5d59:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000715ba7ba5d5e:   jmp    0x0000715ba7ba552a
+  0x0000715ba7ba5d63:   hlt    
+  0x0000715ba7ba5d64:   hlt    
+  0x0000715ba7ba5d65:   hlt    
+  0x0000715ba7ba5d66:   hlt    
+  0x0000715ba7ba5d67:   hlt    
+[Stub Code]
+  0x0000715ba7ba5d68:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5d72:   jmp    0x0000715ba7ba5d72           ;   {runtime_call nmethod}
+  0x0000715ba7ba5d77:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5d81:   jmp    0x0000715ba7ba5d81           ;   {runtime_call nmethod}
+  0x0000715ba7ba5d86:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5d90:   jmp    0x0000715ba7ba5d90           ;   {runtime_call nmethod}
+  0x0000715ba7ba5d95:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5d9f:   jmp    0x0000715ba7ba5d9f           ;   {runtime_call nmethod}
+  0x0000715ba7ba5da4:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5dae:   jmp    0x0000715ba7ba5dae           ;   {runtime_call nmethod}
+  0x0000715ba7ba5db3:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000715ba7ba5dbd:   jmp    0x0000715ba7ba5dbd           ;   {runtime_call nmethod}
+  0x0000715ba7ba5dc2:   call   0x0000715ba74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000715ba7ba5dc7:   jmp    0x0000715ba7ba5dc2
+  0x0000715ba7ba5dc9:   hlt    
+  0x0000715ba7ba5dca:   hlt    
+  0x0000715ba7ba5dcb:   hlt    
+  0x0000715ba7ba5dcc:   hlt    
+  0x0000715ba7ba5dcd:   hlt    
+  0x0000715ba7ba5dce:   hlt    
+  0x0000715ba7ba5dcf:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

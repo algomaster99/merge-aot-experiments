@@ -1,0 +1,365 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 599   52       4       java.lang.AbstractStringBuilder::append (100 bytes)
+ total in heap  [0x0000739c53ba9908,0x0000739c53ba9dc8] = 1216
+ main code      [0x0000739c53ba9a00,0x0000739c53ba9db0] = 944
+ stub code      [0x0000739c53ba9db0,0x0000739c53ba9dc8] = 24
+ mutable data [0x0000739bf80c2740,0x0000739bf80c27b8] = 120
+ relocation     [0x0000739bf80c2740,0x0000739bf80c2790] = 80
+ metadata       [0x0000739bf80c2790,0x0000739bf80c27b8] = 40
+ immutable data [0x0000739bf80c2210,0x0000739bf80c272c] = 1308
+ dependencies   [0x0000739bf80c2210,0x0000739bf80c2220] = 16
+ nul chk table  [0x0000739bf80c2220,0x0000739bf80c2250] = 48
+ handler table  [0x0000739bf80c2250,0x0000739bf80c2268] = 24
+ scopes pcs     [0x0000739bf80c2268,0x0000739bf80c2518] = 688
+ scopes data    [0x0000739bf80c2518,0x0000739bf80c2728] = 528
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000739c53ba9a00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000541b5090} &apos;append&apos; &apos;(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder;&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  # this:     rsi:rsi   = &apos;java/lang/AbstractStringBuilder&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x0000739c53ba9a02:   mov    0x8(%rsi),%r10d
+  0x0000739c53ba9a06:   cmp    0x8(%rax),%r10d
+  0x0000739c53ba9a0a:   jne    0x0000739c534ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000739c53ba9a10:   mov    %eax,-0x14000(%rsp)
+  0x0000739c53ba9a17:   push   %rbp
+  0x0000739c53ba9a18:   sub    $0x40,%rsp
+  0x0000739c53ba9a1c:   cmpl   $0x1,0x20(%r15)
+  0x0000739c53ba9a24:   jne    0x0000739c53ba9da0           ;*synchronization entry
+                                                            ; - java.lang.AbstractStringBuilder::append@-1 (line 641)
+  0x0000739c53ba9a2a:   mov    %rsi,%r10
+  0x0000739c53ba9a2d:   mov    0x14(%rdx),%r8d              ; implicit exception: dispatches to 0x0000739c53ba9cf0
+                                                            ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@1 (line 1744)
+                                                            ; - java.lang.AbstractStringBuilder::append@26 (line 647)
+  0x0000739c53ba9a31:   mov    0xc(%r12,%r8,8),%r9d         ; implicit exception: dispatches to 0x0000739c53ba9c88
+  0x0000739c53ba9a36:   mov    %rsi,%rbx
+  0x0000739c53ba9a39:   movsbl 0x10(%rsi),%r11d             ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@10 (line 644)
+  0x0000739c53ba9a3e:   movsbl 0x10(%rdx),%r8d              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.String::length@6 (line 1744)
+                                                            ; - java.lang.AbstractStringBuilder::append@26 (line 647)
+  0x0000739c53ba9a43:   mov    0xc(%rsi),%r10d              ;*getfield count {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@15 (line 645)
+  0x0000739c53ba9a47:   sarx   %r8d,%r9d,%ecx               ;*ishr {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@9 (line 1744)
+                                                            ; - java.lang.AbstractStringBuilder::append@26 (line 647)
+  0x0000739c53ba9a4c:   mov    %r11d,%r9d
+  0x0000739c53ba9a4f:   or     %r8d,%r9d                    ;*ior {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@36 (line 648)
+  0x0000739c53ba9a52:   mov    0x14(%rsi),%edi              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@20 (line 646)
+  0x0000739c53ba9a55:   cmp    %r9d,%r11d
+  0x0000739c53ba9a58:   jne    0x0000739c53ba9bc4           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@8 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+  0x0000739c53ba9a5e:   mov    0xc(%r12,%rdi,8),%esi        ; implicit exception: dispatches to 0x0000739c53ba9ca0
+  0x0000739c53ba9a63:   lea    (%rcx,%r10,1),%r13d
+  0x0000739c53ba9a67:   movslq %esi,%rbp
+  0x0000739c53ba9a6a:   movslq %r13d,%rsi
+  0x0000739c53ba9a6d:   shlx   %r9,%rsi,%rsi                ;*lshl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@3 (line 249)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+  0x0000739c53ba9a72:   lea    (%r12,%rdi,8),%rax           ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@20 (line 646)
+  0x0000739c53ba9a76:   cmp    %rbp,%rsi
+  0x0000739c53ba9a79:   jg     0x0000739c53ba9af6           ;*ifgt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@17 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+  0x0000739c53ba9a7b:   test   %rsi,%rsi
+  0x0000739c53ba9a7e:   jl     0x0000739c53ba9c2c           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@81 (line 653)
+  0x0000739c53ba9a84:   cmp    %r9d,%r8d
+  0x0000739c53ba9a87:   jne    0x0000739c53ba9bf8           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@5 (line 5090)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+  0x0000739c53ba9a8d:   mov    0x14(%rdx),%r8d              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@9 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+  0x0000739c53ba9a91:   mov    0xc(%r12,%r8,8),%r11d        ; implicit exception: dispatches to 0x0000739c53ba9cb8
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@21 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+  0x0000739c53ba9a96:   shlx   %r9d,%r10d,%ebp              ;*ishl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@16 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+  0x0000739c53ba9a9b:   mov    0xc(%rax),%edi               ; implicit exception: dispatches to 0x0000739c53ba9cd0
+  0x0000739c53ba9a9e:   test   %ebp,%ebp
+  0x0000739c53ba9aa0:   jl     0x0000739c53ba9b93
+  0x0000739c53ba9aa6:   lea    (%r11,%rbp,1),%edx
+  0x0000739c53ba9aaa:   cmp    %edx,%edi
+  0x0000739c53ba9aac:   jb     0x0000739c53ba9b93
+  0x0000739c53ba9ab2:   test   %r11d,%r11d
+  0x0000739c53ba9ab5:   jbe    0x0000739c53ba9adc
+  0x0000739c53ba9ab7:   lea    0x10(%rax,%rbp,1),%rsi
+  0x0000739c53ba9abc:   movslq %r11d,%rdx
+  0x0000739c53ba9abf:   lea    0x10(%r12,%r8,8),%rdi
+  0x0000739c53ba9ac4:   vzeroupper 
+  0x0000739c53ba9ac7:   movabs $0x739c534937a0,%r10         ;   {runtime_call Stub::jbyte_arraycopy_stub (stub gen)}
+  0x0000739c53ba9ad1:   call   *%r10
+  0x0000739c53ba9ad4:   nopl   0x0(%rax,%rax,1)             ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9adc:   mov    %r13d,0xc(%rbx)              ;*synchronization entry
+                                                            ; - java.lang.AbstractStringBuilder::append@-1 (line 641)
+  0x0000739c53ba9ae0:   mov    %rbx,%rax
+  0x0000739c53ba9ae3:   vzeroupper 
+  0x0000739c53ba9ae6:   add    $0x40,%rsp
+  0x0000739c53ba9aea:   pop    %rbp
+  0x0000739c53ba9aeb:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000739c53ba9aef:   ja     0x0000739c53ba9d8a
+  0x0000739c53ba9af5:   ret    
+  0x0000739c53ba9af6:   mov    %r13d,0x14(%rsp)
+  0x0000739c53ba9afb:   mov    %r9d,0x10(%rsp)
+  0x0000739c53ba9b00:   mov    %ecx,0xc(%rsp)
+  0x0000739c53ba9b04:   mov    %r10d,0x8(%rsp)
+  0x0000739c53ba9b09:   mov    %rbx,(%rsp)
+  0x0000739c53ba9b0d:   mov    %rdx,%rbp
+  0x0000739c53ba9b10:   mov    %rax,%rsi
+  0x0000739c53ba9b13:   mov    %r11d,%edx
+  0x0000739c53ba9b16:   mov    %r10d,%ecx
+  0x0000739c53ba9b19:   mov    %r13d,%r8d
+  0x0000739c53ba9b1c:   vzeroupper 
+  0x0000739c53ba9b1f:   call   0x0000739c534adfe0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*invokestatic ensureCapacityNewCoder {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.lang.AbstractStringBuilder::append@66 (line 650)
+                                                            ;   {static_call}
+  0x0000739c53ba9b24:   nopl   0x21c(%rax,%rax,1)           ;*invokestatic ensureCapacityNewCoder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@66 (line 650)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9b2c:   mov    (%rsp),%rbx
+  0x0000739c53ba9b30:   mov    0x10(%rsp),%r9d
+  0x0000739c53ba9b35:   mov    %r9b,0x10(%rbx)              ;*putfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@78 (line 651)
+  0x0000739c53ba9b39:   mov    %rbp,%rdx
+  0x0000739c53ba9b3c:   movsbl 0x10(%rdx),%r8d              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.String::getBytes@1 (line 5090)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+  0x0000739c53ba9b41:   lea    0x14(%rbx),%rcx
+  0x0000739c53ba9b45:   cmpb   $0x0,0x48(%r15)
+  0x0000739c53ba9b4a:   jne    0x0000739c53ba9d10
+  0x0000739c53ba9b50:   mov    %rax,%r10
+  0x0000739c53ba9b53:   shr    $0x3,%r10
+  0x0000739c53ba9b57:   mov    %r10d,(%rcx)
+  0x0000739c53ba9b5a:   mov    %rcx,%r11
+  0x0000739c53ba9b5d:   xor    %rax,%r11
+  0x0000739c53ba9b60:   shr    $0x17,%r11
+  0x0000739c53ba9b64:   je     0x0000739c53ba9b80
+  0x0000739c53ba9b66:   test   %rax,%rax
+  0x0000739c53ba9b69:   je     0x0000739c53ba9b80
+  0x0000739c53ba9b6b:   mov    %rcx,%r11
+  0x0000739c53ba9b6e:   shr    $0x9,%r11
+  0x0000739c53ba9b72:   add    0x50(%r15),%r11
+  0x0000739c53ba9b76:   cmpb   $0xff,(%r11)
+  0x0000739c53ba9b7a:   jne    0x0000739c53ba9b80
+  0x0000739c53ba9b7c:   movb   $0x0,(%r11)                  ;*putfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@72 (line 650)
+  0x0000739c53ba9b80:   mov    0x8(%rsp),%r10d
+  0x0000739c53ba9b85:   mov    0xc(%rsp),%ecx
+  0x0000739c53ba9b89:   mov    0x14(%rsp),%r13d
+  0x0000739c53ba9b8e:   jmp    0x0000739c53ba9a84
+  0x0000739c53ba9b93:   mov    $0xffffffcc,%esi
+  0x0000739c53ba9b98:   mov    %rbx,(%rsp)
+  0x0000739c53ba9b9c:   mov    %r10d,0x8(%rsp)
+  0x0000739c53ba9ba1:   mov    %ecx,0xc(%rsp)
+  0x0000739c53ba9ba5:   mov    %r8d,0x10(%rsp)
+  0x0000739c53ba9baa:   mov    %rax,0x18(%rsp)
+  0x0000739c53ba9baf:   mov    %r11d,0x14(%rsp)
+  0x0000739c53ba9bb4:   vzeroupper 
+  0x0000739c53ba9bb7:   call   0x0000739c53584660           ; ImmutableOopMap {[0]=Oop [16]=NarrowOop [24]=Oop }
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9bbc:   nopl   0x10002b4(%rax,%rax,1)       ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9bc4:   mov    $0xffffff45,%esi
+  0x0000739c53ba9bc9:   mov    %rbx,%rbp
+  0x0000739c53ba9bcc:   mov    %rdx,(%rsp)
+  0x0000739c53ba9bd0:   mov    %r10d,0xc(%rsp)
+  0x0000739c53ba9bd5:   mov    %edi,0x10(%rsp)
+  0x0000739c53ba9bd9:   mov    %ecx,0x14(%rsp)
+  0x0000739c53ba9bdd:   mov    %r11d,0x1c(%rsp)
+  0x0000739c53ba9be2:   mov    %r9d,0x20(%rsp)
+  0x0000739c53ba9be7:   nop
+  0x0000739c53ba9be8:   vzeroupper 
+  0x0000739c53ba9beb:   call   0x0000739c53584660           ; ImmutableOopMap {rbp=Oop [0]=Oop [16]=NarrowOop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::needsNewBuffer@8 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9bf0:   nopl   0x20002e8(%rax,%rax,1)       ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@5 (line 5090)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9bf8:   mov    $0xffffff45,%esi
+  0x0000739c53ba9bfd:   mov    %rbx,%rbp
+  0x0000739c53ba9c00:   mov    %rdx,(%rsp)
+  0x0000739c53ba9c04:   mov    %ecx,0xc(%rsp)
+  0x0000739c53ba9c08:   mov    %rax,0x10(%rsp)
+  0x0000739c53ba9c0d:   mov    %r10d,0x18(%rsp)
+  0x0000739c53ba9c12:   mov    %r8d,0x1c(%rsp)
+  0x0000739c53ba9c17:   mov    %r9d,0x20(%rsp)
+  0x0000739c53ba9c1c:   vzeroupper 
+  0x0000739c53ba9c1f:   call   0x0000739c53584660           ; ImmutableOopMap {rbp=Oop [0]=Oop [16]=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::getBytes@5 (line 5090)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9c24:   nopl   0x300031c(%rax,%rax,1)       ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@5 (line 5090)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9c2c:   xor    %r8d,%r8d
+  0x0000739c53ba9c2f:   cmp    %rsi,%r8
+  0x0000739c53ba9c32:   mov    $0xffffffff,%ebp
+  0x0000739c53ba9c37:   jl     0x0000739c53ba9c41
+  0x0000739c53ba9c39:   setne  %bpl
+  0x0000739c53ba9c3d:   movzbl %bpl,%ebp                    ;*lcmp {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@23 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+  0x0000739c53ba9c41:   mov    $0xffffff45,%esi
+  0x0000739c53ba9c46:   mov    %rbx,(%rsp)
+  0x0000739c53ba9c4a:   mov    %rdx,0x8(%rsp)
+  0x0000739c53ba9c4f:   mov    %r11d,0x10(%rsp)
+  0x0000739c53ba9c54:   mov    %r10d,0x14(%rsp)
+  0x0000739c53ba9c59:   mov    %edi,0x18(%rsp)
+  0x0000739c53ba9c5d:   mov    %ecx,0x1c(%rsp)
+  0x0000739c53ba9c61:   mov    %r9d,0x20(%rsp)
+  0x0000739c53ba9c66:   xchg   %ax,%ax
+  0x0000739c53ba9c68:   vzeroupper 
+  0x0000739c53ba9c6b:   call   0x0000739c53584660           ; ImmutableOopMap {[0]=Oop [8]=Oop [24]=NarrowOop }
+                                                            ;*ifle {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::needsNewBuffer@24 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9c70:   nopl   0x4000368(%rax,%rax,1)       ;*invokestatic ensureCapacityNewCoder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@66 (line 650)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9c78:   mov    %rax,%rsi
+  0x0000739c53ba9c7b:   vzeroupper 
+  0x0000739c53ba9c7e:   add    $0x40,%rsp
+  0x0000739c53ba9c82:   pop    %rbp
+  0x0000739c53ba9c83:   jmp    0x0000739c5358d060           ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x0000739c53ba9c88:   mov    $0xfffffff6,%esi
+  0x0000739c53ba9c8d:   data16 xchg %ax,%ax
+  0x0000739c53ba9c90:   vzeroupper 
+  0x0000739c53ba9c93:   call   0x0000739c53584660           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.AbstractStringBuilder::append@26 (line 647)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9c98:   nopl   0x5000390(%rax,%rax,1)       ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ; - java.lang.AbstractStringBuilder::append@26 (line 647)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9ca0:   mov    $0xfffffff6,%esi
+  0x0000739c53ba9ca5:   data16 xchg %ax,%ax
+  0x0000739c53ba9ca8:   vzeroupper 
+  0x0000739c53ba9cab:   call   0x0000739c53584660           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::needsNewBuffer@14 (line 250)
+                                                            ; - java.lang.AbstractStringBuilder::append@49 (line 649)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9cb0:   nopl   0x60003a8(%rax,%rax,1)       ;   {post_call_nop}
+  0x0000739c53ba9cb8:   mov    $0xfffffff6,%esi
+  0x0000739c53ba9cbd:   data16 xchg %ax,%ax
+  0x0000739c53ba9cc0:   vzeroupper 
+  0x0000739c53ba9cc3:   call   0x0000739c53584660           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@21 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9cc8:   nopl   0x70003c0(%rax,%rax,1)       ;   {post_call_nop}
+  0x0000739c53ba9cd0:   mov    $0xfffffff6,%esi
+  0x0000739c53ba9cd5:   mov    %r8d,(%rsp)
+  0x0000739c53ba9cd9:   mov    %r11d,0x4(%rsp)
+  0x0000739c53ba9cde:   xchg   %ax,%ax
+  0x0000739c53ba9ce0:   vzeroupper 
+  0x0000739c53ba9ce3:   call   0x0000739c53584660           ; ImmutableOopMap {[0]=NarrowOop }
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9ce8:   nopl   0x80003e0(%rax,%rax,1)       ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ; - java.lang.AbstractStringBuilder::append@87 (line 653)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9cf0:   mov    $0xffffff45,%esi
+  0x0000739c53ba9cf5:   mov    %r10,%rbp
+  0x0000739c53ba9cf8:   mov    %rdx,0x8(%rsp)
+  0x0000739c53ba9cfd:   data16 xchg %ax,%ax
+  0x0000739c53ba9d00:   vzeroupper 
+  0x0000739c53ba9d03:   call   0x0000739c53584660           ; ImmutableOopMap {rbp=Oop [8]=Oop }
+                                                            ;*ifnonnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::append@1 (line 641)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000739c53ba9d08:   nopl   0x9000400(%rax,%rax,1)       ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::append@1 (line 641)
+                                                            ;   {post_call_nop}
+  0x0000739c53ba9d10:   mov    (%rcx),%r10d
+  0x0000739c53ba9d13:   shl    $0x3,%r10
+  0x0000739c53ba9d17:   test   %r10,%r10
+  0x0000739c53ba9d1a:   je     0x0000739c53ba9b50
+  0x0000739c53ba9d20:   mov    0x40(%r15),%r11
+  0x0000739c53ba9d24:   test   %r11,%r11
+  0x0000739c53ba9d27:   je     0x0000739c53ba9d3d
+  0x0000739c53ba9d29:   sub    $0x8,%r11
+  0x0000739c53ba9d2d:   mov    %r11,0x40(%r15)
+  0x0000739c53ba9d31:   add    0x38(%r15),%r11
+  0x0000739c53ba9d35:   mov    %r10,(%r11)
+  0x0000739c53ba9d38:   jmp    0x0000739c53ba9b50
+  0x0000739c53ba9d3d:   sub    $0x30,%rsp
+  0x0000739c53ba9d41:   mov    %r8,0x28(%rsp)
+  0x0000739c53ba9d46:   mov    %r9,0x20(%rsp)
+  0x0000739c53ba9d4b:   mov    %rcx,0x18(%rsp)
+  0x0000739c53ba9d50:   mov    %rdx,0x10(%rsp)
+  0x0000739c53ba9d55:   mov    %rax,0x8(%rsp)
+  0x0000739c53ba9d5a:   mov    %r10,%rdi
+  0x0000739c53ba9d5d:   mov    %r15,%rsi
+  0x0000739c53ba9d60:   call   0x0000739c6a509bd0           ;   {runtime_call G1BarrierSetRuntime::write_ref_field_pre_entry(oopDesc*, JavaThread*)}
+  0x0000739c53ba9d65:   mov    0x8(%rsp),%rax
+  0x0000739c53ba9d6a:   mov    0x10(%rsp),%rdx
+  0x0000739c53ba9d6f:   mov    0x18(%rsp),%rcx
+  0x0000739c53ba9d74:   mov    0x20(%rsp),%r9
+  0x0000739c53ba9d79:   mov    0x28(%rsp),%r8
+  0x0000739c53ba9d7e:   vzeroupper 
+  0x0000739c53ba9d81:   add    $0x30,%rsp
+  0x0000739c53ba9d85:   jmp    0x0000739c53ba9b50
+  0x0000739c53ba9d8a:   movabs $0x739c53ba9aeb,%r10         ;   {internal_word}
+  0x0000739c53ba9d94:   mov    %r10,0x510(%r15)
+  0x0000739c53ba9d9b:   jmp    0x0000739c534afb60           ;   {runtime_call SafepointBlob}
+  0x0000739c53ba9da0:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000739c53ba9da5:   jmp    0x0000739c53ba9a2a
+  0x0000739c53ba9daa:   hlt    
+  0x0000739c53ba9dab:   hlt    
+  0x0000739c53ba9dac:   hlt    
+  0x0000739c53ba9dad:   hlt    
+  0x0000739c53ba9dae:   hlt    
+  0x0000739c53ba9daf:   hlt    
+[Stub Code]
+  0x0000739c53ba9db0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000739c53ba9dba:   jmp    0x0000739c53ba9dba           ;   {runtime_call nmethod}
+  0x0000739c53ba9dbf:   call   0x0000739c534afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000739c53ba9dc4:   jmp    0x0000739c53ba9dbf
+  0x0000739c53ba9dc6:   hlt    
+  0x0000739c53ba9dc7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

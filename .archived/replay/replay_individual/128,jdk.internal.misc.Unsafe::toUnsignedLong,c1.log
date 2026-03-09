@@ -1,0 +1,78 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 248    3       3       jdk.internal.misc.Unsafe::toUnsignedLong (7 bytes)
+ total in heap  [0x0000792147fff008,0x0000792147fff1e0] = 472
+ main code      [0x0000792147fff100,0x0000792147fff1c0] = 192
+ stub code      [0x0000792147fff1c0,0x0000792147fff1e0] = 32
+ mutable data [0x00007920f0014ce0,0x00007920f0014d10] = 48
+ relocation     [0x00007920f0014ce0,0x00007920f0014d08] = 40
+ metadata       [0x00007920f0014d08,0x00007920f0014d10] = 8
+ immutable data [0x00007920f0014c70,0x00007920f0014cd4] = 100
+ dependencies   [0x00007920f0014c70,0x00007920f0014c78] = 8
+ scopes pcs     [0x00007920f0014c78,0x00007920f0014cb8] = 64
+ scopes data    [0x00007920f0014cb8,0x00007920f0014cd0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000481e3638} &apos;toUnsignedLong&apos; &apos;(S)J&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rsi       = short
+  #           [sp+0x40]  (sp of caller)
+  0x0000792147fff100:   mov    %eax,-0x14000(%rsp)
+  0x0000792147fff107:   push   %rbp
+  0x0000792147fff108:   sub    $0x30,%rsp
+  0x0000792147fff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000792147fff114:   je     0x0000792147fff11b
+  0x0000792147fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000792147fff11b:   movabs $0x7920fc01d3c0,%rax         ;   {metadata(method data for {method} {0x00000000481e3638} &apos;toUnsignedLong&apos; &apos;(S)J&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000792147fff125:   mov    0x90(%rax),%edi
+  0x0000792147fff12b:   add    $0x2,%edi
+  0x0000792147fff12e:   mov    %edi,0x90(%rax)
+  0x0000792147fff134:   and    $0x7fe,%edi
+  0x0000792147fff13a:   test   %edi,%edi
+  0x0000792147fff13c:   je     0x0000792147fff165           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::toUnsignedLong@0 (line 3854)
+  0x0000792147fff142:   movslq %esi,%rsi
+  0x0000792147fff145:   movabs $0xffff,%r10
+  0x0000792147fff14f:   and    %r10,%rsi
+  0x0000792147fff152:   mov    %rsi,%rax
+  0x0000792147fff155:   add    $0x30,%rsp
+  0x0000792147fff159:   pop    %rbp
+  0x0000792147fff15a:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000792147fff15e:   ja     0x0000792147fff183
+  0x0000792147fff164:   ret    
+  0x0000792147fff165:   movabs $0x481e3638,%r10             ;   {metadata({method} {0x00000000481e3638} &apos;toUnsignedLong&apos; &apos;(S)J&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000792147fff16f:   mov    %r10,0x8(%rsp)
+  0x0000792147fff174:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000792147fff17c:   call   0x000079214f583460           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::toUnsignedLong@-1 (line 3854)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000792147fff181:   jmp    0x0000792147fff142
+  0x0000792147fff183:   movabs $0x792147fff15a,%r10         ;   {internal_word}
+  0x0000792147fff18d:   mov    %r10,0x510(%r15)
+  0x0000792147fff194:   jmp    0x000079214f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000792147fff199:   mov    0x5c0(%r15),%rax
+  0x0000792147fff1a0:   movq   $0x0,0x5c0(%r15)
+  0x0000792147fff1ab:   movq   $0x0,0x5c8(%r15)
+  0x0000792147fff1b6:   add    $0x30,%rsp
+  0x0000792147fff1ba:   pop    %rbp
+  0x0000792147fff1bb:   jmp    0x000079214f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x0000792147fff1c0:   call   0x000079214f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000792147fff1c5:   movabs $0x79216873aec4,%rdi         ;   {external_word}
+  0x0000792147fff1cf:   and    $0xfffffffffffffff0,%rsp
+  0x0000792147fff1d3:   call   0x0000792168191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000792147fff1d8:   hlt    
+  0x0000792147fff1d9:   call   0x000079214f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000792147fff1de:   jmp    0x0000792147fff1d9
+--------------------------------------------------------------------------------
+[/Disassembly]

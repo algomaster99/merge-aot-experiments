@@ -1,0 +1,278 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 291   13   !   3       jdk.internal.misc.ScopedMemoryAccess::getByte (16 bytes)
+ total in heap  [0x000076d107fff008,0x000076d107fff4d8] = 1232
+ main code      [0x000076d107fff100,0x000076d107fff490] = 912
+ stub code      [0x000076d107fff490,0x000076d107fff4d8] = 72
+ mutable data [0x000076d0ac000ba0,0x000076d0ac000c30] = 144
+ relocation     [0x000076d0ac000ba0,0x000076d0ac000c10] = 112
+ metadata       [0x000076d0ac000c10,0x000076d0ac000c30] = 32
+ immutable data [0x000076d0ac014e40,0x000076d0ac015094] = 596
+ dependencies   [0x000076d0ac014e40,0x000076d0ac014e50] = 16
+ nul chk table  [0x000076d0ac014e50,0x000076d0ac014e60] = 16
+ handler table  [0x000076d0ac014e60,0x000076d0ac014e90] = 48
+ scopes pcs     [0x000076d0ac014e90,0x000076d0ac014fb0] = 288
+ scopes data    [0x000076d0ac014fb0,0x000076d0ac015090] = 224
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000076d107fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000076d107fff10b:   data16 data16 xchg %ax,%ax
+  0x000076d107fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000371e8350} &apos;getByte&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/ScopedMemoryAccess&apos;
+  # parm0:    rdx:rdx   = &apos;jdk/internal/foreign/MemorySessionImpl&apos;
+  # parm1:    rcx:rcx   = &apos;java/lang/Object&apos;
+  # parm2:    r8:r8     = long
+  #           [sp+0x90]  (sp of caller)
+  0x000076d107fff112:   mov    0x8(%rsi),%r10d
+  0x000076d107fff116:   cmp    0x8(%rax),%r10d
+  0x000076d107fff11a:   jne    0x000076d10f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000076d107fff120:   mov    %eax,-0x14000(%rsp)
+  0x000076d107fff127:   push   %rbp
+  0x000076d107fff128:   sub    $0x80,%rsp
+  0x000076d107fff12f:   nop
+  0x000076d107fff130:   cmpl   $0x1,0x20(%r15)
+  0x000076d107fff138:   je     0x000076d107fff13f
+  0x000076d107fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000076d107fff13f:   movabs $0x76d0c4054918,%rdi         ;   {metadata(method data for {method} {0x00000000371e8350} &apos;getByte&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff149:   mov    0x90(%rdi),%ebx
+  0x000076d107fff14f:   add    $0x2,%ebx
+  0x000076d107fff152:   mov    %ebx,0x90(%rdi)
+  0x000076d107fff158:   and    $0x7fe,%ebx
+  0x000076d107fff15e:   test   %ebx,%ebx
+  0x000076d107fff160:   je     0x000076d107fff3c4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@0 (line 1088)
+  0x000076d107fff166:   movabs $0x76d0c4054918,%rdi         ;   {metadata(method data for {method} {0x00000000371e8350} &apos;getByte&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff170:   lea    0x108(%rdi),%rdi
+  0x000076d107fff177:   test   %rdx,%rdx
+  0x000076d107fff17a:   jne    0x000076d107fff18a
+  0x000076d107fff17c:   testb  $0x1,0x8(%rdi)
+  0x000076d107fff180:   jne    0x000076d107fff1d0
+  0x000076d107fff182:   lock orq $0x1,0x8(%rdi)
+  0x000076d107fff188:   jmp    0x000076d107fff1d0
+  0x000076d107fff18a:   mov    0x8(%rdx),%ebx
+  0x000076d107fff18d:   mov    $0x37000000,%r10d
+  0x000076d107fff193:   add    %r10,%rbx
+  0x000076d107fff196:   mov    %rbx,%r10
+  0x000076d107fff199:   xor    0x8(%rdi),%rbx
+  0x000076d107fff19d:   test   $0xfffffffffffffffc,%rbx
+  0x000076d107fff1a4:   je     0x000076d107fff1d0
+  0x000076d107fff1a6:   test   $0x2,%bl
+  0x000076d107fff1a9:   jne    0x000076d107fff1d0
+  0x000076d107fff1ab:   testq  $0xfffffffffffffffe,0x8(%rdi)
+  0x000076d107fff1b3:   je     0x000076d107fff1cc
+  0x000076d107fff1b5:   mov    %r10,%rbx
+  0x000076d107fff1b8:   xor    0x8(%rdi),%rbx
+  0x000076d107fff1bc:   test   $0xfffffffffffffffc,%rbx
+  0x000076d107fff1c3:   je     0x000076d107fff1d0
+  0x000076d107fff1c5:   orq    $0x2,0x8(%rdi)
+  0x000076d107fff1ca:   jmp    0x000076d107fff1d0
+  0x000076d107fff1cc:   mov    %rbx,0x8(%rdi)
+  0x000076d107fff1d0:   test   %rcx,%rcx
+  0x000076d107fff1d3:   jne    0x000076d107fff1e3
+  0x000076d107fff1d5:   testb  $0x1,0x18(%rdi)
+  0x000076d107fff1d9:   jne    0x000076d107fff229
+  0x000076d107fff1db:   lock orq $0x1,0x18(%rdi)
+  0x000076d107fff1e1:   jmp    0x000076d107fff229
+  0x000076d107fff1e3:   mov    0x8(%rcx),%ebx
+  0x000076d107fff1e6:   mov    $0x37000000,%r10d
+  0x000076d107fff1ec:   add    %r10,%rbx
+  0x000076d107fff1ef:   mov    %rbx,%r10
+  0x000076d107fff1f2:   xor    0x18(%rdi),%rbx
+  0x000076d107fff1f6:   test   $0xfffffffffffffffc,%rbx
+  0x000076d107fff1fd:   je     0x000076d107fff229
+  0x000076d107fff1ff:   test   $0x2,%bl
+  0x000076d107fff202:   jne    0x000076d107fff229
+  0x000076d107fff204:   testq  $0xfffffffffffffffe,0x18(%rdi)
+  0x000076d107fff20c:   je     0x000076d107fff225
+  0x000076d107fff20e:   mov    %r10,%rbx
+  0x000076d107fff211:   xor    0x18(%rdi),%rbx
+  0x000076d107fff215:   test   $0xfffffffffffffffc,%rbx
+  0x000076d107fff21c:   je     0x000076d107fff229
+  0x000076d107fff21e:   orq    $0x2,0x18(%rdi)
+  0x000076d107fff223:   jmp    0x000076d107fff229
+  0x000076d107fff225:   mov    %rbx,0x18(%rdi)
+  0x000076d107fff229:   movabs $0x76d0c4054918,%rdi         ;   {metadata(method data for {method} {0x00000000371e8350} &apos;getByte&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff233:   addq   $0x1,0xd8(%rdi)
+  0x000076d107fff23b:   movabs $0x76d0c4054ae0,%rsi         ;   {metadata(method data for {method} {0x00000000371ee4b8} &apos;getByteInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff245:   mov    0x90(%rsi),%edi
+  0x000076d107fff24b:   add    $0x2,%edi
+  0x000076d107fff24e:   mov    %edi,0x90(%rsi)
+  0x000076d107fff254:   and    $0x1ffffe,%edi
+  0x000076d107fff25a:   test   %edi,%edi
+  0x000076d107fff25c:   je     0x000076d107fff3e5
+  0x000076d107fff262:   test   %rdx,%rdx
+  0x000076d107fff265:   movabs $0x76d0c4054ae0,%rsi         ;   {metadata(method data for {method} {0x00000000371ee4b8} &apos;getByteInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff26f:   mov    $0xd8,%edi
+  0x000076d107fff274:   je     0x000076d107fff27b
+  0x000076d107fff276:   mov    $0xe8,%edi
+  0x000076d107fff27b:   mov    (%rsi,%rdi,1),%rbx
+  0x000076d107fff27f:   lea    0x1(%rbx),%rbx
+  0x000076d107fff283:   mov    %rbx,(%rsi,%rdi,1)
+  0x000076d107fff287:   je     0x000076d107fff2c6           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@1 (line 1097)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+  0x000076d107fff28d:   mov    %r8,0x68(%rsp)
+  0x000076d107fff292:   mov    %rcx,0x60(%rsp)
+  0x000076d107fff297:   mov    %rdx,%rsi                    ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@5 (line 1098)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+  0x000076d107fff29a:   mov    %rdx,0x70(%rsp)
+  0x000076d107fff29f:   nopw   0x0(%rax,%rax,1)
+  0x000076d107fff2a5:   movabs $0x76d0ac015180,%rax
+  0x000076d107fff2af:   call   0x000076d10f4adce0           ; ImmutableOopMap {[96]=Oop [112]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@5 (line 1098)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+                                                            ;   {virtual_call}
+  0x000076d107fff2b4:   nopl   0x2ac(%rax,%rax,1)           ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@5 (line 1098)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+                                                            ;   {post_call_nop}
+  0x000076d107fff2bc:   mov    0x68(%rsp),%r8
+  0x000076d107fff2c1:   mov    0x60(%rsp),%rcx
+  0x000076d107fff2c6:   movsbl (%rcx,%r8,1),%eax
+  0x000076d107fff2cb:   movabs $0x76d0c4054ae0,%rdx         ;   {metadata(method data for {method} {0x00000000371ee4b8} &apos;getByteInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff2d5:   addq   $0x1,0x170(%rdx)
+  0x000076d107fff2dd:   movabs $0x76d0c4054828,%rdx         ;   {metadata(method data for {method} {0x00000000371a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000076d107fff2e7:   mov    0x90(%rdx),%esi
+  0x000076d107fff2ed:   add    $0x2,%esi
+  0x000076d107fff2f0:   mov    %esi,0x90(%rdx)
+  0x000076d107fff2f6:   and    $0x1ffffe,%esi
+  0x000076d107fff2fc:   test   %esi,%esi
+  0x000076d107fff2fe:   je     0x000076d107fff406
+  0x000076d107fff304:   shl    $0x18,%eax
+  0x000076d107fff307:   sar    $0x18,%eax
+  0x000076d107fff30a:   shl    $0x18,%eax
+  0x000076d107fff30d:   sar    $0x18,%eax
+  0x000076d107fff310:   add    $0x80,%rsp
+  0x000076d107fff317:   pop    %rbp
+  0x000076d107fff318:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000076d107fff31c:   ja     0x000076d107fff427
+  0x000076d107fff322:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@7 (line 1088)
+  0x000076d107fff323:   mov    0x5c0(%r15),%rax
+  0x000076d107fff32a:   xor    %r10,%r10
+  0x000076d107fff32d:   mov    %r10,0x5c0(%r15)
+  0x000076d107fff334:   xor    %r10,%r10
+  0x000076d107fff337:   mov    %r10,0x5c8(%r15)
+  0x000076d107fff33e:   movabs $0x76d0c4054ae0,%rdx         ;   {metadata(method data for {method} {0x00000000371ee4b8} &apos;getByteInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff348:   addq   $0x1,0x180(%rdx)
+  0x000076d107fff350:   movabs $0x76d0c4054828,%rdx         ;   {metadata(method data for {method} {0x00000000371a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000076d107fff35a:   mov    0x90(%rdx),%esi
+  0x000076d107fff360:   add    $0x2,%esi
+  0x000076d107fff363:   mov    %esi,0x90(%rdx)
+  0x000076d107fff369:   and    $0x1ffffe,%esi
+  0x000076d107fff36f:   test   %esi,%esi
+  0x000076d107fff371:   je     0x000076d107fff43d           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getByteInternal@33 (line 1103)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+  0x000076d107fff377:   movabs $0x76d107fff377,%rdx         ;   {section_word}
+  0x000076d107fff381:   call   0x000076d10f57e2e0           ;   {runtime_call handle_exception_nofpu_blob (C1 runtime)}
+  0x000076d107fff386:   nop                                 ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@33 (line 1103)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+  0x000076d107fff387:   mov    0x5c0(%r15),%rax
+  0x000076d107fff38e:   xor    %r10,%r10
+  0x000076d107fff391:   mov    %r10,0x5c0(%r15)
+  0x000076d107fff398:   xor    %r10,%r10
+  0x000076d107fff39b:   mov    %r10,0x5c8(%r15)
+  0x000076d107fff3a2:   mov    %rax,%rsi                    ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@12 (line 1090)
+  0x000076d107fff3a5:   movabs $0x76d0ac0151a8,%rax
+  0x000076d107fff3af:   call   0x000076d10f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@12 (line 1090)
+                                                            ;   {virtual_call}
+  0x000076d107fff3b4:   nopl   0x20003ac(%rax,%rax,1)       ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@12 (line 1090)
+                                                            ;   {post_call_nop}
+  0x000076d107fff3bc:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x000076d107fff45e
+  0x000076d107fff3bf:   jmp    0x000076d107fff480
+  0x000076d107fff3c4:   movabs $0x371e8350,%r10             ;   {metadata({method} {0x00000000371e8350} &apos;getByte&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff3ce:   mov    %r10,0x8(%rsp)
+  0x000076d107fff3d3:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076d107fff3db:   call   0x000076d10f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop rcx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@-1 (line 1088)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076d107fff3e0:   jmp    0x000076d107fff166
+  0x000076d107fff3e5:   movabs $0x371ee4b8,%r10             ;   {metadata({method} {0x00000000371ee4b8} &apos;getByteInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;J)B&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x000076d107fff3ef:   mov    %r10,0x8(%rsp)
+  0x000076d107fff3f4:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076d107fff3fc:   call   0x000076d10f582fe0           ; ImmutableOopMap {rdx=Oop rcx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@-1 (line 1097)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076d107fff401:   jmp    0x000076d107fff262
+  0x000076d107fff406:   movabs $0x371a85e8,%r10             ;   {metadata({method} {0x00000000371a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000076d107fff410:   mov    %r10,0x8(%rsp)
+  0x000076d107fff415:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076d107fff41d:   call   0x000076d10f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@19 (line 1102)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076d107fff422:   jmp    0x000076d107fff304
+  0x000076d107fff427:   movabs $0x76d107fff318,%r10         ;   {internal_word}
+  0x000076d107fff431:   mov    %r10,0x510(%r15)
+  0x000076d107fff438:   jmp    0x000076d10f4afb60           ;   {runtime_call SafepointBlob}
+  0x000076d107fff43d:   movabs $0x371a85e8,%r10             ;   {metadata({method} {0x00000000371a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000076d107fff447:   mov    %r10,0x8(%rsp)
+  0x000076d107fff44c:   movq   $0xffffffffffffffff,(%rsp)
+  0x000076d107fff454:   call   0x000076d10f582fe0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByteInternal@28 (line 1102)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getByte@4 (line 1088)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000076d107fff459:   jmp    0x000076d107fff377
+  0x000076d107fff45e:   call   0x000076d10f57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getByte@15 (line 1090)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000076d107fff463:   mov    0x5c0(%r15),%rax
+  0x000076d107fff46a:   movq   $0x0,0x5c0(%r15)
+  0x000076d107fff475:   movq   $0x0,0x5c8(%r15)
+  0x000076d107fff480:   add    $0x80,%rsp
+  0x000076d107fff487:   pop    %rbp
+  0x000076d107fff488:   jmp    0x000076d10f57b2e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000076d107fff48d:   hlt    
+  0x000076d107fff48e:   hlt    
+  0x000076d107fff48f:   hlt    
+[Stub Code]
+  0x000076d107fff490:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000076d107fff495:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000076d107fff49f:   jmp    0x000076d107fff49f           ;   {runtime_call nmethod}
+  0x000076d107fff4a4:   nop
+  0x000076d107fff4a5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000076d107fff4af:   jmp    0x000076d107fff4af           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000076d107fff4b4:   call   0x000076d10f57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000076d107fff4b9:   movabs $0x76d128f3aec4,%rdi         ;   {external_word}
+  0x000076d107fff4c3:   and    $0xfffffffffffffff0,%rsp
+  0x000076d107fff4c7:   call   0x000076d128991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000076d107fff4cc:   hlt    
+  0x000076d107fff4cd:   call   0x000076d10f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000076d107fff4d2:   jmp    0x000076d107fff4cd
+  0x000076d107fff4d4:   hlt    
+  0x000076d107fff4d5:   hlt    
+  0x000076d107fff4d6:   hlt    
+  0x000076d107fff4d7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

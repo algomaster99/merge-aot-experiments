@@ -1,0 +1,179 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 589   52       3       java.lang.ProcessEnvironment$ExternalData::hashCode (8 bytes)
+ total in heap  [0x000070077ffff008,0x000070077ffff338] = 816
+ main code      [0x000070077ffff100,0x000070077ffff308] = 520
+ stub code      [0x000070077ffff308,0x000070077ffff338] = 48
+ mutable data [0x000070072402cf00,0x000070072402cf68] = 104
+ relocation     [0x000070072402cf00,0x000070072402cf48] = 72
+ metadata       [0x000070072402cf48,0x000070072402cf68] = 32
+ immutable data [0x000070072402cd90,0x000070072402ceec] = 348
+ dependencies   [0x000070072402cd90,0x000070072402cda0] = 16
+ nul chk table  [0x000070072402cda0,0x000070072402cdb0] = 16
+ scopes pcs     [0x000070072402cdb0,0x000070072402ce90] = 224
+ scopes data    [0x000070072402ce90,0x000070072402cee8] = 88
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000070077ffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000070077ffff10b:   data16 data16 xchg %ax,%ax
+  0x000070077ffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000070073c00d720} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/ProcessEnvironment$ExternalData&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x000070077ffff112:   mov    0x8(%rsi),%r10d
+  0x000070077ffff116:   cmp    0x8(%rax),%r10d
+  0x000070077ffff11a:   jne    0x00007007874ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000070077ffff120:   mov    %eax,-0x14000(%rsp)
+  0x000070077ffff127:   push   %rbp
+  0x000070077ffff128:   sub    $0x40,%rsp
+  0x000070077ffff12c:   cmpl   $0x1,0x20(%r15)
+  0x000070077ffff134:   je     0x000070077ffff13b
+  0x000070077ffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000070077ffff13b:   movabs $0x70073c317b98,%rdx         ;   {metadata(method data for {method} {0x000070073c00d720} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/ProcessEnvironment$ExternalData&apos;)}
+  0x000070077ffff145:   mov    0x90(%rdx),%ecx
+  0x000070077ffff14b:   add    $0x2,%ecx
+  0x000070077ffff14e:   mov    %ecx,0x90(%rdx)
+  0x000070077ffff154:   and    $0x7fe,%ecx
+  0x000070077ffff15a:   test   %ecx,%ecx
+  0x000070077ffff15c:   je     0x000070077ffff282           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@0 (line 151)
+  0x000070077ffff162:   mov    %rsi,%rdx
+  0x000070077ffff165:   movabs $0x70073c317b98,%rcx         ;   {metadata(method data for {method} {0x000070073c00d720} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/ProcessEnvironment$ExternalData&apos;)}
+  0x000070077ffff16f:   mov    0x8(%rdx),%edx
+  0x000070077ffff172:   mov    $0x46000000,%r10d
+  0x000070077ffff178:   add    %r10,%rdx
+  0x000070077ffff17b:   mov    $0x1c,%r10d
+  0x000070077ffff181:   cmp    (%rcx,%r10,8),%rdx
+  0x000070077ffff185:   je     0x000070077ffff1be
+  0x000070077ffff187:   add    $0x2,%r10
+  0x000070077ffff18b:   cmp    $0x20,%r10
+  0x000070077ffff18f:   jne    0x000070077ffff181
+  0x000070077ffff191:   mov    $0x1c,%r10d
+  0x000070077ffff197:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000070077ffff19c:   je     0x000070077ffff1aa
+  0x000070077ffff19e:   add    $0x2,%r10
+  0x000070077ffff1a2:   cmp    $0x20,%r10
+  0x000070077ffff1a6:   jne    0x000070077ffff197
+  0x000070077ffff1a8:   jmp    0x000070077ffff1b6
+  0x000070077ffff1aa:   push   %rax
+  0x000070077ffff1ab:   xor    %rax,%rax
+  0x000070077ffff1ae:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x000070077ffff1b3:   pop    %rax
+  0x000070077ffff1b4:   jmp    0x000070077ffff17b
+  0x000070077ffff1b6:   mov    $0x1b,%r10d
+  0x000070077ffff1bc:   jmp    0x000070077ffff1c2
+  0x000070077ffff1be:   add    $0x1,%r10
+  0x000070077ffff1c2:   addq   $0x1,(%rcx,%r10,8)
+  0x000070077ffff1c7:   mov    0x10(%rsi),%esi
+  0x000070077ffff1ca:   shl    $0x3,%rsi                    ;*getfield bytes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::getBytes@1 (line 138)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@1 (line 151)
+  0x000070077ffff1ce:   movabs $0x70073c317b98,%rdx         ;   {metadata(method data for {method} {0x000070073c00d720} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/ProcessEnvironment$ExternalData&apos;)}
+  0x000070077ffff1d8:   addq   $0x1,0x108(%rdx)
+  0x000070077ffff1e0:   movabs $0x70073c317cf0,%rdx         ;   {metadata(method data for {method} {0x000000004648b7f0} &apos;hashCode&apos; &apos;([B)I&apos; in &apos;java/util/Arrays&apos;)}
+  0x000070077ffff1ea:   mov    0x90(%rdx),%ecx
+  0x000070077ffff1f0:   add    $0x2,%ecx
+  0x000070077ffff1f3:   mov    %ecx,0x90(%rdx)
+  0x000070077ffff1f9:   and    $0x1ffffe,%ecx
+  0x000070077ffff1ff:   test   %ecx,%ecx
+  0x000070077ffff201:   je     0x000070077ffff2a3
+  0x000070077ffff207:   test   %rsi,%rsi
+  0x000070077ffff20a:   movabs $0x70073c317cf0,%rdx         ;   {metadata(method data for {method} {0x000000004648b7f0} &apos;hashCode&apos; &apos;([B)I&apos; in &apos;java/util/Arrays&apos;)}
+  0x000070077ffff214:   mov    $0xd8,%ecx
+  0x000070077ffff219:   jne    0x000070077ffff220
+  0x000070077ffff21b:   mov    $0xe8,%ecx
+  0x000070077ffff220:   mov    (%rdx,%rcx,1),%r8
+  0x000070077ffff224:   lea    0x1(%r8),%r8
+  0x000070077ffff228:   mov    %r8,(%rdx,%rcx,1)
+  0x000070077ffff22c:   jne    0x000070077ffff23c           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@1 (line 4425)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+  0x000070077ffff232:   mov    $0x0,%esi
+  0x000070077ffff237:   jmp    0x000070077ffff26f           ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@7 (line 151)
+  0x000070077ffff23c:   mov    0xc(%rsi),%ecx               ; implicit exception: dispatches to 0x000070077ffff2c4
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@9 (line 4428)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+  0x000070077ffff23f:   movabs $0x70073c317cf0,%rdx         ;   {metadata(method data for {method} {0x000000004648b7f0} &apos;hashCode&apos; &apos;([B)I&apos; in &apos;java/util/Arrays&apos;)}
+  0x000070077ffff249:   addq   $0x1,0xf8(%rdx)
+  0x000070077ffff251:   mov    $0x0,%edx
+  0x000070077ffff256:   mov    $0x1,%r8d                    ;*invokestatic hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@11 (line 4428)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+  0x000070077ffff25c:   data16 xchg %ax,%ax
+  0x000070077ffff25f:   call   0x00007007874adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@11 (line 4428)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+                                                            ;   {static_call}
+  0x000070077ffff264:   nopl   0x25c(%rax,%rax,1)           ;*invokestatic hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@11 (line 4428)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+                                                            ;   {post_call_nop}
+  0x000070077ffff26c:   mov    %rax,%rsi                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@7 (line 151)
+  0x000070077ffff26f:   mov    %rsi,%rax
+  0x000070077ffff272:   add    $0x40,%rsp
+  0x000070077ffff276:   pop    %rbp
+  0x000070077ffff277:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000070077ffff27b:   ja     0x000070077ffff2c9
+  0x000070077ffff281:   ret    
+  0x000070077ffff282:   movabs $0x70073c00d720,%r10         ;   {metadata({method} {0x000070073c00d720} &apos;hashCode&apos; &apos;()I&apos; in &apos;java/lang/ProcessEnvironment$ExternalData&apos;)}
+  0x000070077ffff28c:   mov    %r10,0x8(%rsp)
+  0x000070077ffff291:   movq   $0xffffffffffffffff,(%rsp)
+  0x000070077ffff299:   call   0x0000700787582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@-1 (line 151)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000070077ffff29e:   jmp    0x000070077ffff162
+  0x000070077ffff2a3:   movabs $0x4648b7f0,%r10             ;   {metadata({method} {0x000000004648b7f0} &apos;hashCode&apos; &apos;([B)I&apos; in &apos;java/util/Arrays&apos;)}
+  0x000070077ffff2ad:   mov    %r10,0x8(%rsp)
+  0x000070077ffff2b2:   movq   $0xffffffffffffffff,(%rsp)
+  0x000070077ffff2ba:   call   0x0000700787582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Arrays::hashCode@-1 (line 4425)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000070077ffff2bf:   jmp    0x000070077ffff207
+  0x000070077ffff2c4:   call   0x000070078757c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Arrays::hashCode@9 (line 4428)
+                                                            ; - java.lang.ProcessEnvironment$ExternalData::hashCode@4 (line 151)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000070077ffff2c9:   movabs $0x70077ffff277,%r10         ;   {internal_word}
+  0x000070077ffff2d3:   mov    %r10,0x510(%r15)
+  0x000070077ffff2da:   jmp    0x00007007874afb60           ;   {runtime_call SafepointBlob}
+  0x000070077ffff2df:   mov    0x5c0(%r15),%rax
+  0x000070077ffff2e6:   movq   $0x0,0x5c0(%r15)
+  0x000070077ffff2f1:   movq   $0x0,0x5c8(%r15)
+  0x000070077ffff2fc:   add    $0x40,%rsp
+  0x000070077ffff300:   pop    %rbp
+  0x000070077ffff301:   jmp    0x000070078757ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000070077ffff306:   hlt    
+  0x000070077ffff307:   hlt    
+[Stub Code]
+  0x000070077ffff308:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000070077ffff312:   jmp    0x000070077ffff312           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000070077ffff317:   call   0x000070078757e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000070077ffff31c:   movabs $0x7007a133aec4,%rdi         ;   {external_word}
+  0x000070077ffff326:   and    $0xfffffffffffffff0,%rsp
+  0x000070077ffff32a:   call   0x00007007a0d91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000070077ffff32f:   hlt    
+  0x000070077ffff330:   call   0x00007007874afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000070077ffff335:   jmp    0x000070077ffff330
+  0x000070077ffff337:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

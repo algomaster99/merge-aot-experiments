@@ -1,0 +1,522 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 537   47  s    3       java.util.Hashtable::put (104 bytes)
+ total in heap  [0x00007e9963fff008,0x00007e9963fff850] = 2120
+ main code      [0x00007e9963fff100,0x00007e9963fff7e8] = 1768
+ stub code      [0x00007e9963fff7e8,0x00007e9963fff850] = 104
+ mutable data [0x00007e990403d230,0x00007e990403d2d8] = 168
+ relocation     [0x00007e990403d230,0x00007e990403d2d0] = 160
+ metadata       [0x00007e990403d2d0,0x00007e990403d2d8] = 8
+ immutable data [0x00007e990403cde0,0x00007e990403d224] = 1092
+ dependencies   [0x00007e990403cde0,0x00007e990403cde8] = 8
+ nul chk table  [0x00007e990403cde8,0x00007e990403ce18] = 48
+ scopes pcs     [0x00007e990403ce18,0x00007e990403d0d8] = 704
+ scopes data    [0x00007e990403d0d8,0x00007e990403d220] = 328
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007e9963fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007e9963fff10b:   data16 data16 xchg %ax,%ax
+  0x00007e9963fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;
+  # this:     rsi:rsi   = &apos;java/util/Hashtable&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = &apos;java/lang/Object&apos;
+  #           [sp+0x90]  (sp of caller)
+  0x00007e9963fff112:   mov    0x8(%rsi),%r10d
+  0x00007e9963fff116:   cmp    0x8(%rax),%r10d
+  0x00007e9963fff11a:   jne    0x00007e996b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007e9963fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007e9963fff127:   push   %rbp
+  0x00007e9963fff128:   sub    $0x80,%rsp
+  0x00007e9963fff12f:   nop
+  0x00007e9963fff130:   cmpl   $0x1,0x20(%r15)
+  0x00007e9963fff138:   je     0x00007e9963fff13f
+  0x00007e9963fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007e9963fff13f:   mov    %rdx,0x38(%rsp)
+  0x00007e9963fff144:   lea    0x68(%rsp),%rdi
+  0x00007e9963fff149:   mov    %rsi,0x8(%rdi)
+  0x00007e9963fff14d:   mov    (%rsi),%rax
+  0x00007e9963fff150:   mov    0x7c0(%r15),%ebx
+  0x00007e9963fff157:   cmp    $0x810,%ebx
+  0x00007e9963fff15d:   jge    0x00007e9963fff646
+  0x00007e9963fff163:   cmp    -0x8(%r15,%rbx,1),%rsi
+  0x00007e9963fff168:   je     0x00007e9963fff193
+  0x00007e9963fff16e:   test   $0x2,%al
+  0x00007e9963fff170:   jne    0x00007e9963fff646
+  0x00007e9963fff176:   mov    %rax,%rbx
+  0x00007e9963fff179:   and    $0xfffffffffffffffe,%rbx
+  0x00007e9963fff17d:   or     $0x1,%rax
+  0x00007e9963fff181:   lock cmpxchg %rbx,(%rsi)
+  0x00007e9963fff186:   jne    0x00007e9963fff646
+  0x00007e9963fff18c:   mov    0x7c0(%r15),%ebx
+  0x00007e9963fff193:   mov    %rsi,(%r15,%rbx,1)
+  0x00007e9963fff197:   add    $0x8,%ebx
+  0x00007e9963fff19a:   mov    %ebx,0x7c0(%r15)
+  0x00007e9963fff1a1:   movabs $0x7e991c29ae58,%rdi         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff1ab:   mov    0x90(%rdi),%ebx
+  0x00007e9963fff1b1:   add    $0x2,%ebx
+  0x00007e9963fff1b4:   mov    %ebx,0x90(%rdi)
+  0x00007e9963fff1ba:   and    $0x7fe,%ebx
+  0x00007e9963fff1c0:   test   %ebx,%ebx
+  0x00007e9963fff1c2:   je     0x00007e9963fff659           ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@0 (line 474)
+  0x00007e9963fff1c8:   test   %rcx,%rcx
+  0x00007e9963fff1cb:   movabs $0x7e991c29ae58,%rdi         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff1d5:   mov    $0xe8,%ebx
+  0x00007e9963fff1da:   je     0x00007e9963fff1e1
+  0x00007e9963fff1dc:   mov    $0xd8,%ebx
+  0x00007e9963fff1e1:   mov    (%rdi,%rbx,1),%rax
+  0x00007e9963fff1e5:   lea    0x1(%rax),%rax
+  0x00007e9963fff1e9:   mov    %rax,(%rdi,%rbx,1)
+  0x00007e9963fff1ed:   je     0x00007e9963fff5b1           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@1 (line 474)
+  0x00007e9963fff1f3:   mov    %rcx,0x40(%rsp)
+  0x00007e9963fff1f8:   mov    0x1c(%rsi),%edi
+  0x00007e9963fff1fb:   shl    $0x3,%rdi                    ;*getfield table {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@13 (line 479)
+  0x00007e9963fff1ff:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x00007e9963fff67a
+  0x00007e9963fff202:   mov    %rdx,%rbx
+  0x00007e9963fff205:   movabs $0x7e991c29ae58,%rax         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff20f:   mov    0x8(%rbx),%ebx
+  0x00007e9963fff212:   mov    $0x55000000,%r10d
+  0x00007e9963fff218:   add    %r10,%rbx
+  0x00007e9963fff21b:   mov    $0x22,%r10d
+  0x00007e9963fff221:   cmp    (%rax,%r10,8),%rbx
+  0x00007e9963fff225:   je     0x00007e9963fff264
+  0x00007e9963fff227:   add    $0x2,%r10
+  0x00007e9963fff22b:   cmp    $0x26,%r10
+  0x00007e9963fff22f:   jne    0x00007e9963fff221
+  0x00007e9963fff231:   mov    $0x22,%r10d
+  0x00007e9963fff237:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007e9963fff23c:   je     0x00007e9963fff24a
+  0x00007e9963fff23e:   add    $0x2,%r10
+  0x00007e9963fff242:   cmp    $0x26,%r10
+  0x00007e9963fff246:   jne    0x00007e9963fff237
+  0x00007e9963fff248:   jmp    0x00007e9963fff25c
+  0x00007e9963fff24a:   push   %rcx
+  0x00007e9963fff24b:   mov    %rax,%rcx
+  0x00007e9963fff24e:   xor    %rax,%rax
+  0x00007e9963fff251:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007e9963fff256:   mov    %rcx,%rax
+  0x00007e9963fff259:   pop    %rcx
+  0x00007e9963fff25a:   jmp    0x00007e9963fff21b
+  0x00007e9963fff25c:   mov    $0x21,%r10d
+  0x00007e9963fff262:   jmp    0x00007e9963fff268
+  0x00007e9963fff264:   add    $0x1,%r10
+  0x00007e9963fff268:   addq   $0x1,(%rax,%r10,8)
+  0x00007e9963fff26d:   mov    %rsi,0x48(%rsp)
+  0x00007e9963fff272:   mov    %rdx,%rsi                    ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@18 (line 480)
+  0x00007e9963fff275:   mov    %rdi,0x30(%rsp)
+  0x00007e9963fff27a:   data16 xchg %ax,%ax
+  0x00007e9963fff27d:   movabs $0x7e990403d4a0,%rax
+  0x00007e9963fff287:   call   0x00007e996b4adce0           ; ImmutableOopMap {[48]=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@18 (line 480)
+                                                            ;   {virtual_call}
+  0x00007e9963fff28c:   nopl   0x284(%rax,%rax,1)           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@18 (line 480)
+                                                            ;   {post_call_nop}
+  0x00007e9963fff294:   mov    %eax,0x58(%rsp)
+  0x00007e9963fff298:   mov    0x30(%rsp),%rdi
+  0x00007e9963fff29d:   mov    0xc(%rdi),%esi               ; implicit exception: dispatches to 0x00007e9963fff67f
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@29 (line 481)
+  0x00007e9963fff2a0:   mov    %rax,%rdx
+  0x00007e9963fff2a3:   and    $0x7fffffff,%edx
+  0x00007e9963fff2a9:   mov    %rax,%rbx
+  0x00007e9963fff2ac:   mov    %rdx,%rax
+  0x00007e9963fff2af:   cmp    $0x80000000,%eax
+  0x00007e9963fff2b4:   jne    0x00007e9963fff2c5
+  0x00007e9963fff2ba:   xor    %edx,%edx
+  0x00007e9963fff2bc:   cmp    $0xffffffff,%esi
+  0x00007e9963fff2bf:   je     0x00007e9963fff2c8
+  0x00007e9963fff2c5:   cltd   
+  0x00007e9963fff2c6:   idiv   %esi                         ; implicit exception: dispatches to 0x00007e9963fff684
+                                                            ;*irem {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@30 (line 481)
+  0x00007e9963fff2c8:   mov    %edx,0x5c(%rsp)
+  0x00007e9963fff2cc:   movslq %edx,%rsi
+  0x00007e9963fff2cf:   mov    0x10(%rdi,%rsi,4),%esi
+  0x00007e9963fff2d3:   shl    $0x3,%rsi                    ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@36 (line 483)
+  0x00007e9963fff2d7:   nop
+  0x00007e9963fff2d8:   mov    0x38(%rsp),%rdx
+  0x00007e9963fff2dd:   test   %rsi,%rsi
+  0x00007e9963fff2e0:   movabs $0x7e991c29ae58,%rax         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff2ea:   mov    $0x138,%ecx
+  0x00007e9963fff2ef:   je     0x00007e9963fff2f6
+  0x00007e9963fff2f1:   mov    $0x148,%ecx
+  0x00007e9963fff2f6:   mov    (%rax,%rcx,1),%r8
+  0x00007e9963fff2fa:   lea    0x1(%r8),%r8
+  0x00007e9963fff2fe:   mov    %r8,(%rax,%rcx,1)
+  0x00007e9963fff302:   je     0x00007e9963fff502           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@41 (line 484)
+  0x00007e9963fff308:   mov    0xc(%rsi),%eax               ; implicit exception: dispatches to 0x00007e9963fff689
+                                                            ;*getfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@46 (line 485)
+  0x00007e9963fff30b:   cmp    %ebx,%eax
+  0x00007e9963fff30d:   movabs $0x7e991c29ae58,%rax         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff317:   mov    $0x158,%ecx
+  0x00007e9963fff31c:   jne    0x00007e9963fff323
+  0x00007e9963fff31e:   mov    $0x168,%ecx
+  0x00007e9963fff323:   mov    (%rax,%rcx,1),%r8
+  0x00007e9963fff327:   lea    0x1(%r8),%r8
+  0x00007e9963fff32b:   mov    %r8,(%rax,%rcx,1)
+  0x00007e9963fff32f:   jne    0x00007e9963fff3fb           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@51 (line 485)
+  0x00007e9963fff335:   mov    0x10(%rsi),%ebx
+  0x00007e9963fff338:   shl    $0x3,%rbx                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@56 (line 485)
+  0x00007e9963fff33c:   cmp    (%rbx),%rax                  ; implicit exception: dispatches to 0x00007e9963fff68e
+  0x00007e9963fff33f:   mov    %rbx,%rcx
+  0x00007e9963fff342:   movabs $0x7e991c29ae58,%r8          ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff34c:   mov    0x8(%rcx),%ecx
+  0x00007e9963fff34f:   mov    $0x55000000,%r10d
+  0x00007e9963fff355:   add    %r10,%rcx
+  0x00007e9963fff358:   mov    $0x30,%r10d
+  0x00007e9963fff35e:   cmp    (%r8,%r10,8),%rcx
+  0x00007e9963fff362:   je     0x00007e9963fff39b
+  0x00007e9963fff364:   add    $0x2,%r10
+  0x00007e9963fff368:   cmp    $0x34,%r10
+  0x00007e9963fff36c:   jne    0x00007e9963fff35e
+  0x00007e9963fff36e:   mov    $0x30,%r10d
+  0x00007e9963fff374:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007e9963fff379:   je     0x00007e9963fff387
+  0x00007e9963fff37b:   add    $0x2,%r10
+  0x00007e9963fff37f:   cmp    $0x34,%r10
+  0x00007e9963fff383:   jne    0x00007e9963fff374
+  0x00007e9963fff385:   jmp    0x00007e9963fff393
+  0x00007e9963fff387:   push   %rax
+  0x00007e9963fff388:   xor    %rax,%rax
+  0x00007e9963fff38b:   cmpxchg %rcx,(%r8,%r10,8)
+  0x00007e9963fff390:   pop    %rax
+  0x00007e9963fff391:   jmp    0x00007e9963fff358
+  0x00007e9963fff393:   mov    $0x2f,%r10d
+  0x00007e9963fff399:   jmp    0x00007e9963fff39f
+  0x00007e9963fff39b:   add    $0x1,%r10
+  0x00007e9963fff39f:   addq   $0x1,(%r8,%r10,8)
+  0x00007e9963fff3a4:   mov    %rdx,%rcx
+  0x00007e9963fff3a7:   mov    %rcx,%rdx
+  0x00007e9963fff3aa:   mov    %rsi,0x50(%rsp)
+  0x00007e9963fff3af:   mov    %rbx,%rsi                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@60 (line 485)
+  0x00007e9963fff3b2:   data16 xchg %ax,%ax
+  0x00007e9963fff3b5:   movabs $0x7e990403d4c8,%rax
+  0x00007e9963fff3bf:   call   0x00007e996b4adce0           ; ImmutableOopMap {[56]=Oop [64]=Oop [72]=Oop [80]=Oop [112]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@60 (line 485)
+                                                            ;   {virtual_call}
+  0x00007e9963fff3c4:   nopl   0x10003bc(%rax,%rax,1)       ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@60 (line 485)
+                                                            ;   {post_call_nop}
+  0x00007e9963fff3cc:   test   %eax,%eax
+  0x00007e9963fff3ce:   movabs $0x7e991c29ae58,%rax         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff3d8:   mov    $0x1b8,%edx
+  0x00007e9963fff3dd:   jne    0x00007e9963fff3e4
+  0x00007e9963fff3df:   mov    $0x1a8,%edx
+  0x00007e9963fff3e4:   mov    (%rax,%rdx,1),%rcx
+  0x00007e9963fff3e8:   lea    0x1(%rcx),%rcx
+  0x00007e9963fff3ec:   mov    %rcx,(%rax,%rdx,1)
+  0x00007e9963fff3f0:   mov    0x50(%rsp),%rsi
+  0x00007e9963fff3f5:   jne    0x00007e9963fff44c           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@63 (line 485)
+  0x00007e9963fff3fb:   mov    0x18(%rsi),%eax
+  0x00007e9963fff3fe:   shl    $0x3,%rax                    ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@84 (line 484)
+  0x00007e9963fff402:   movabs $0x7e991c29ae58,%rdx         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff40c:   mov    0x94(%rdx),%ecx
+  0x00007e9963fff412:   add    $0x2,%ecx
+  0x00007e9963fff415:   mov    %ecx,0x94(%rdx)
+  0x00007e9963fff41b:   and    $0x3ffe,%ecx
+  0x00007e9963fff421:   test   %ecx,%ecx
+  0x00007e9963fff423:   je     0x00007e9963fff693           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@89 (line 484)
+  0x00007e9963fff429:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rax=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Hashtable::put@89 (line 484)
+  0x00007e9963fff42d:   test   %eax,(%r10)                  ;   {poll}
+  0x00007e9963fff430:   movabs $0x7e991c29ae58,%rdx         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff43a:   incl   0x1c8(%rdx)
+  0x00007e9963fff440:   mov    %rax,%rsi
+  0x00007e9963fff443:   mov    0x58(%rsp),%ebx
+  0x00007e9963fff447:   jmp    0x00007e9963fff2d8           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@89 (line 484)
+  0x00007e9963fff44c:   mov    0x40(%rsp),%r8
+  0x00007e9963fff451:   mov    0x14(%rsi),%edx
+  0x00007e9963fff454:   shl    $0x3,%rdx                    ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@68 (line 486)
+  0x00007e9963fff458:   movsbl 0x48(%r15),%eax
+  0x00007e9963fff45d:   test   %eax,%eax
+  0x00007e9963fff45f:   jne    0x00007e9963fff6b4
+  0x00007e9963fff465:   mov    %r8,%r10
+  0x00007e9963fff468:   shr    $0x3,%r10
+  0x00007e9963fff46c:   mov    %r10d,0x14(%rsi)
+  0x00007e9963fff470:   mov    %rsi,%rcx
+  0x00007e9963fff473:   xor    %r8,%rcx
+  0x00007e9963fff476:   shr    $0x17,%rcx
+  0x00007e9963fff47a:   je     0x00007e9963fff494
+  0x00007e9963fff47c:   test   %r8,%r8
+  0x00007e9963fff47f:   je     0x00007e9963fff494
+  0x00007e9963fff481:   mov    %rsi,%rcx
+  0x00007e9963fff484:   shr    $0x9,%rcx
+  0x00007e9963fff488:   add    0x50(%r15),%rcx
+  0x00007e9963fff48c:   cmpb   $0xff,(%rcx)
+  0x00007e9963fff48f:   jne    0x00007e9963fff494
+  0x00007e9963fff491:   movb   $0x0,(%rcx)                  ;*putfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@76 (line 487)
+  0x00007e9963fff494:   lea    0x68(%rsp),%rax
+  0x00007e9963fff499:   mov    0x8(%rax),%r8
+  0x00007e9963fff49d:   mov    0x7c0(%r15),%ecx
+  0x00007e9963fff4a4:   cmp    -0x8(%r15,%rcx,1),%r8
+  0x00007e9963fff4a9:   jne    0x00007e9963fff6d2
+  0x00007e9963fff4af:   subl   $0x8,0x7c0(%r15)
+  0x00007e9963fff4b7:   cmp    -0x10(%r15,%rcx,1),%r8
+  0x00007e9963fff4bc:   je     0x00007e9963fff4ec
+  0x00007e9963fff4c2:   mov    (%r8),%rax
+  0x00007e9963fff4c5:   test   $0x2,%al
+  0x00007e9963fff4c7:   jne    0x00007e9963fff4df
+  0x00007e9963fff4cd:   mov    %rax,%rcx
+  0x00007e9963fff4d0:   or     $0x1,%rcx
+  0x00007e9963fff4d4:   lock cmpxchg %rcx,(%r8)
+  0x00007e9963fff4d9:   je     0x00007e9963fff4ec
+  0x00007e9963fff4df:   addl   $0x8,0x7c0(%r15)
+  0x00007e9963fff4e7:   jmp    0x00007e9963fff6d2
+  0x00007e9963fff4ec:   mov    %rdx,%rax
+  0x00007e9963fff4ef:   add    $0x80,%rsp
+  0x00007e9963fff4f6:   pop    %rbp
+  0x00007e9963fff4f7:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e9963fff4fb:   ja     0x00007e9963fff6e5
+  0x00007e9963fff501:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@81 (line 488)
+  0x00007e9963fff502:   mov    0x5c(%rsp),%r9d
+  0x00007e9963fff507:   mov    %rbx,%rax
+  0x00007e9963fff50a:   mov    0x40(%rsp),%r8
+  0x00007e9963fff50f:   mov    %rdx,%rcx
+  0x00007e9963fff512:   mov    0x48(%rsp),%rsi
+  0x00007e9963fff517:   mov    %rsi,%rdx
+  0x00007e9963fff51a:   movabs $0x7e991c29ae58,%rdi         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff524:   addq   $0x1,0x1e0(%rdi)
+  0x00007e9963fff52c:   mov    %rax,%rdx                    ;*invokevirtual addEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@99 (line 492)
+  0x00007e9963fff52f:   call   0x00007e996b4ad9e0           ; ImmutableOopMap {[112]=Oop }
+                                                            ;*invokevirtual addEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@99 (line 492)
+                                                            ;   {optimized virtual_call}
+  0x00007e9963fff534:   nopl   0x300052c(%rax,%rax,1)       ;*invokevirtual addEntry {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@99 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007e9963fff53c:   lea    0x68(%rsp),%rax
+  0x00007e9963fff541:   mov    0x8(%rax),%rsi
+  0x00007e9963fff545:   mov    0x7c0(%r15),%edx
+  0x00007e9963fff54c:   cmp    -0x8(%r15,%rdx,1),%rsi
+  0x00007e9963fff551:   jne    0x00007e9963fff6fb
+  0x00007e9963fff557:   subl   $0x8,0x7c0(%r15)
+  0x00007e9963fff55f:   cmp    -0x10(%r15,%rdx,1),%rsi
+  0x00007e9963fff564:   je     0x00007e9963fff594
+  0x00007e9963fff56a:   mov    (%rsi),%rax
+  0x00007e9963fff56d:   test   $0x2,%al
+  0x00007e9963fff56f:   jne    0x00007e9963fff587
+  0x00007e9963fff575:   mov    %rax,%rdx
+  0x00007e9963fff578:   or     $0x1,%rdx
+  0x00007e9963fff57c:   lock cmpxchg %rdx,(%rsi)
+  0x00007e9963fff581:   je     0x00007e9963fff594
+  0x00007e9963fff587:   addl   $0x8,0x7c0(%r15)
+  0x00007e9963fff58f:   jmp    0x00007e9963fff6fb
+  0x00007e9963fff594:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x00007e9963fff59e:   add    $0x80,%rsp
+  0x00007e9963fff5a5:   pop    %rbp
+  0x00007e9963fff5a6:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e9963fff5aa:   ja     0x00007e9963fff70e
+  0x00007e9963fff5b0:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@103 (line 493)
+  0x00007e9963fff5b1:   nopl   0x0(%rax)
+  0x00007e9963fff5b8:   jmp    0x00007e9963fff733           ;   {other}
+  0x00007e9963fff5bd:   add    %al,(%rax)
+  0x00007e9963fff5bf:   add    %al,(%rax)
+  0x00007e9963fff5c1:   add    %cl,-0x75(%rcx)
+  0x00007e9963fff5c4:   xchg   %esi,0x48000001(%rax)
+  0x00007e9963fff5ca:   lea    0x30(%rax),%edi
+  0x00007e9963fff5cd:   cmp    0x1c0(%r15),%rdi
+  0x00007e9963fff5d4:   ja     0x00007e9963fff73d
+  0x00007e9963fff5da:   mov    %rdi,0x1b0(%r15)
+  0x00007e9963fff5e1:   movq   $0x1,(%rax)
+  0x00007e9963fff5e8:   mov    %rdx,%rcx
+  0x00007e9963fff5eb:   mov    $0x55000000,%r10d
+  0x00007e9963fff5f1:   sub    %r10,%rcx
+  0x00007e9963fff5f4:   mov    %ecx,0x8(%rax)
+  0x00007e9963fff5f7:   xor    %rcx,%rcx
+  0x00007e9963fff5fa:   mov    %ecx,0xc(%rax)
+  0x00007e9963fff5fd:   xor    %rcx,%rcx
+  0x00007e9963fff600:   mov    %rcx,0x10(%rax)
+  0x00007e9963fff604:   mov    %rcx,0x18(%rax)
+  0x00007e9963fff608:   mov    %rcx,0x20(%rax)
+  0x00007e9963fff60c:   mov    %rcx,0x28(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@4 (line 475)
+  0x00007e9963fff610:   mov    %rax,%rsi
+  0x00007e9963fff613:   movabs $0x7e991c29ae58,%rdi         ;   {metadata(method data for {method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff61d:   addq   $0x1,0xf8(%rdi)
+  0x00007e9963fff625:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@8 (line 475)
+  0x00007e9963fff628:   mov    %rax,0x60(%rsp)
+  0x00007e9963fff62d:   xchg   %ax,%ax
+  0x00007e9963fff62f:   call   0x00007e996b4ad9e0           ; ImmutableOopMap {[96]=Oop [112]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@8 (line 475)
+                                                            ;   {optimized virtual_call}
+  0x00007e9963fff634:   nopl   0x400062c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@8 (line 475)
+                                                            ;   {post_call_nop}
+  0x00007e9963fff63c:   mov    0x60(%rsp),%rax
+  0x00007e9963fff641:   jmp    0x00007e9963fff767
+  0x00007e9963fff646:   mov    %rsi,0x8(%rsp)
+  0x00007e9963fff64b:   mov    %rdi,(%rsp)
+  0x00007e9963fff64f:   call   0x00007e996b57fde0           ; ImmutableOopMap {rsi=Oop rdx=Oop rcx=Oop [56]=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Hashtable::put@-1 (line 474)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x00007e9963fff654:   jmp    0x00007e9963fff1a1
+  0x00007e9963fff659:   movabs $0x554a3f00,%r10             ;   {metadata({method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff663:   mov    %r10,0x8(%rsp)
+  0x00007e9963fff668:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e9963fff670:   call   0x00007e996b581ce0           ; ImmutableOopMap {rsi=Oop rdx=Oop rcx=Oop [56]=Oop [112]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.Hashtable::put@-1 (line 474)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e9963fff675:   jmp    0x00007e9963fff1c8
+  0x00007e9963fff67a:   call   0x00007e996b57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop rdi=Oop [56]=Oop [64]=Oop [112]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@18 (line 480)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e9963fff67f:   call   0x00007e996b57c660           ; ImmutableOopMap {rdi=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@29 (line 481)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e9963fff684:   call   0x00007e996b57c360           ; ImmutableOopMap {rdi=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*irem {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@30 (line 481)
+                                                            ;   {runtime_call throw_div0_exception_blob (C1 runtime)}
+  0x00007e9963fff689:   call   0x00007e996b57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*getfield hash {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Hashtable::put@46 (line 485)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e9963fff68e:   call   0x00007e996b57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop rbx=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@60 (line 485)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e9963fff693:   movabs $0x554a3f00,%r10             ;   {metadata({method} {0x00000000554a3f00} &apos;put&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/Hashtable&apos;)}
+  0x00007e9963fff69d:   mov    %r10,0x8(%rsp)
+  0x00007e9963fff6a2:   movq   $0x59,(%rsp)
+  0x00007e9963fff6aa:   call   0x00007e996b581ce0           ; ImmutableOopMap {rax=Oop [56]=Oop [64]=Oop [72]=Oop [112]=Oop }
+                                                            ;*goto {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Hashtable::put@89 (line 484)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e9963fff6af:   jmp    0x00007e9963fff429
+  0x00007e9963fff6b4:   mov    0x14(%rsi),%eax
+  0x00007e9963fff6b7:   shl    $0x3,%rax
+  0x00007e9963fff6bb:   test   %rax,%rax
+  0x00007e9963fff6be:   je     0x00007e9963fff465
+  0x00007e9963fff6c4:   mov    %rax,(%rsp)
+  0x00007e9963fff6c8:   call   0x00007e996b5822e0           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007e9963fff6cd:   jmp    0x00007e9963fff465
+  0x00007e9963fff6d2:   lea    0x68(%rsp),%rax
+  0x00007e9963fff6d7:   mov    %rax,(%rsp)
+  0x00007e9963fff6db:   call   0x00007e996b5803e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007e9963fff6e0:   jmp    0x00007e9963fff4ec
+  0x00007e9963fff6e5:   movabs $0x7e9963fff4f7,%r10         ;   {internal_word}
+  0x00007e9963fff6ef:   mov    %r10,0x510(%r15)
+  0x00007e9963fff6f6:   jmp    0x00007e996b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007e9963fff6fb:   lea    0x68(%rsp),%rax
+  0x00007e9963fff700:   mov    %rax,(%rsp)
+  0x00007e9963fff704:   call   0x00007e996b5803e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007e9963fff709:   jmp    0x00007e9963fff594
+  0x00007e9963fff70e:   movabs $0x7e9963fff5a6,%r10         ;   {internal_word}
+  0x00007e9963fff718:   mov    %r10,0x510(%r15)
+  0x00007e9963fff71f:   jmp    0x00007e996b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007e9963fff724:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007e9963fff72e:   mov    $0xa050f00,%eax
+  0x00007e9963fff733:   call   0x00007e996b580de0           ; ImmutableOopMap {[112]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.Hashtable::put@4 (line 475)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007e9963fff738:   jmp    0x00007e9963fff5b8
+  0x00007e9963fff73d:   mov    %rdx,%rdx
+  0x00007e9963fff740:   call   0x00007e996b57cf60           ; ImmutableOopMap {[112]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.Hashtable::put@4 (line 475)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e9963fff745:   jmp    0x00007e9963fff610
+  0x00007e9963fff74a:   mov    0x5c0(%r15),%rax
+  0x00007e9963fff751:   movq   $0x0,0x5c0(%r15)
+  0x00007e9963fff75c:   movq   $0x0,0x5c8(%r15)
+  0x00007e9963fff767:   mov    %rax,%rbx
+  0x00007e9963fff76a:   lea    0x68(%rsp),%rax
+  0x00007e9963fff76f:   mov    0x8(%rax),%rsi
+  0x00007e9963fff773:   mov    0x7c0(%r15),%edi
+  0x00007e9963fff77a:   cmp    -0x8(%r15,%rdi,1),%rsi
+  0x00007e9963fff77f:   jne    0x00007e9963fff7d2
+  0x00007e9963fff785:   subl   $0x8,0x7c0(%r15)
+  0x00007e9963fff78d:   cmp    -0x10(%r15,%rdi,1),%rsi
+  0x00007e9963fff792:   je     0x00007e9963fff7c2
+  0x00007e9963fff798:   mov    (%rsi),%rax
+  0x00007e9963fff79b:   test   $0x2,%al
+  0x00007e9963fff79d:   jne    0x00007e9963fff7b5
+  0x00007e9963fff7a3:   mov    %rax,%rdi
+  0x00007e9963fff7a6:   or     $0x1,%rdi
+  0x00007e9963fff7aa:   lock cmpxchg %rdi,(%rsi)
+  0x00007e9963fff7af:   je     0x00007e9963fff7c2
+  0x00007e9963fff7b5:   addl   $0x8,0x7c0(%r15)
+  0x00007e9963fff7bd:   jmp    0x00007e9963fff7d2
+  0x00007e9963fff7c2:   mov    %rbx,%rax
+  0x00007e9963fff7c5:   add    $0x80,%rsp
+  0x00007e9963fff7cc:   pop    %rbp
+  0x00007e9963fff7cd:   jmp    0x00007e996b57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007e9963fff7d2:   lea    0x68(%rsp),%rax
+  0x00007e9963fff7d7:   mov    %rax,(%rsp)
+  0x00007e9963fff7db:   call   0x00007e996b5803e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007e9963fff7e0:   jmp    0x00007e9963fff7c2
+  0x00007e9963fff7e2:   hlt    
+  0x00007e9963fff7e3:   hlt    
+  0x00007e9963fff7e4:   hlt    
+  0x00007e9963fff7e5:   hlt    
+  0x00007e9963fff7e6:   hlt    
+  0x00007e9963fff7e7:   hlt    
+[Stub Code]
+  0x00007e9963fff7e8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007e9963fff7ed:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e9963fff7f7:   jmp    0x00007e9963fff7f7           ;   {runtime_call nmethod}
+  0x00007e9963fff7fc:   nop
+  0x00007e9963fff7fd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e9963fff807:   jmp    0x00007e9963fff807           ;   {runtime_call nmethod}
+  0x00007e9963fff80c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e9963fff816:   jmp    0x00007e9963fff816           ;   {runtime_call nmethod}
+  0x00007e9963fff81b:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e9963fff825:   jmp    0x00007e9963fff825           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007e9963fff82a:   call   0x00007e996b57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007e9963fff82f:   movabs $0x7e998313aec4,%rdi         ;   {external_word}
+  0x00007e9963fff839:   and    $0xfffffffffffffff0,%rsp
+  0x00007e9963fff83d:   call   0x00007e9982b91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007e9963fff842:   hlt    
+  0x00007e9963fff843:   call   0x00007e996b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007e9963fff848:   jmp    0x00007e9963fff843
+  0x00007e9963fff84a:   hlt    
+  0x00007e9963fff84b:   hlt    
+  0x00007e9963fff84c:   hlt    
+  0x00007e9963fff84d:   hlt    
+  0x00007e9963fff84e:   hlt    
+  0x00007e9963fff84f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

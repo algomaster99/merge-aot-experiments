@@ -1,0 +1,307 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 394   29   !   3       java.util.zip.Inflater::needsInput (55 bytes)
+ total in heap  [0x00007303fbfff008,0x00007303fbfff558] = 1360
+ main code      [0x00007303fbfff100,0x00007303fbfff538] = 1080
+ stub code      [0x00007303fbfff538,0x00007303fbfff558] = 32
+ mutable data [0x00007303a4014ff0,0x00007303a4015048] = 88
+ relocation     [0x00007303a4014ff0,0x00007303a4015038] = 72
+ metadata       [0x00007303a4015038,0x00007303a4015048] = 16
+ immutable data [0x00007303a4014d00,0x00007303a4014fe4] = 740
+ dependencies   [0x00007303a4014d00,0x00007303a4014d08] = 8
+ nul chk table  [0x00007303a4014d08,0x00007303a4014d20] = 24
+ handler table  [0x00007303a4014d20,0x00007303a4014d38] = 24
+ scopes pcs     [0x00007303a4014d38,0x00007303a4014f08] = 464
+ scopes data    [0x00007303a4014f08,0x00007303a4014fe0] = 216
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007303fbfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007303fbfff10b:   data16 data16 xchg %ax,%ax
+  0x00007303fbfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;
+  #           [sp+0x60]  (sp of caller)
+  0x00007303fbfff112:   mov    0x8(%rsi),%r10d
+  0x00007303fbfff116:   cmp    0x8(%rax),%r10d
+  0x00007303fbfff11a:   jne    0x00007304034ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007303fbfff120:   mov    %eax,-0x14000(%rsp)
+  0x00007303fbfff127:   push   %rbp
+  0x00007303fbfff128:   sub    $0x50,%rsp
+  0x00007303fbfff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007303fbfff134:   je     0x00007303fbfff13b
+  0x00007303fbfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007303fbfff13b:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff145:   mov    0x90(%rax),%edi
+  0x00007303fbfff14b:   add    $0x2,%edi
+  0x00007303fbfff14e:   mov    %edi,0x90(%rax)
+  0x00007303fbfff154:   and    $0x7fe,%edi
+  0x00007303fbfff15a:   test   %edi,%edi
+  0x00007303fbfff15c:   je     0x00007303fbfff472           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@0 (line 281)
+  0x00007303fbfff162:   mov    0x30(%rsi),%edi
+  0x00007303fbfff165:   shl    $0x3,%rdi                    ;*getfield zsRef {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@1 (line 281)
+  0x00007303fbfff169:   lea    0x30(%rsp),%rbx
+  0x00007303fbfff16e:   mov    %rdi,0x8(%rbx)
+  0x00007303fbfff172:   mov    (%rdi),%rax                  ; implicit exception: dispatches to 0x00007303fbfff493
+  0x00007303fbfff175:   mov    0x7c0(%r15),%edx
+  0x00007303fbfff17c:   cmp    $0x810,%edx
+  0x00007303fbfff182:   jge    0x00007303fbfff498
+  0x00007303fbfff188:   cmp    -0x8(%r15,%rdx,1),%rdi
+  0x00007303fbfff18d:   je     0x00007303fbfff1b8
+  0x00007303fbfff193:   test   $0x2,%al
+  0x00007303fbfff195:   jne    0x00007303fbfff498
+  0x00007303fbfff19b:   mov    %rax,%rdx
+  0x00007303fbfff19e:   and    $0xfffffffffffffffe,%rdx
+  0x00007303fbfff1a2:   or     $0x1,%rax
+  0x00007303fbfff1a6:   lock cmpxchg %rdx,(%rdi)
+  0x00007303fbfff1ab:   jne    0x00007303fbfff498
+  0x00007303fbfff1b1:   mov    0x7c0(%r15),%edx
+  0x00007303fbfff1b8:   mov    %rdi,(%r15,%rdx,1)
+  0x00007303fbfff1bc:   add    $0x8,%edx
+  0x00007303fbfff1bf:   mov    %edx,0x7c0(%r15)             ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@6 (line 281)
+  0x00007303fbfff1c6:   mov    0x34(%rsi),%eax
+  0x00007303fbfff1c9:   shl    $0x3,%rax                    ;*getfield input {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@8 (line 282)
+  0x00007303fbfff1cd:   test   %rax,%rax
+  0x00007303fbfff1d0:   movabs $0x7303b013bb48,%rbx         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff1da:   mov    $0xd8,%edx
+  0x00007303fbfff1df:   jne    0x00007303fbfff1e6
+  0x00007303fbfff1e1:   mov    $0xe8,%edx
+  0x00007303fbfff1e6:   mov    (%rbx,%rdx,1),%rcx
+  0x00007303fbfff1ea:   lea    0x1(%rcx),%rcx
+  0x00007303fbfff1ee:   mov    %rcx,(%rbx,%rdx,1)
+  0x00007303fbfff1f2:   jne    0x00007303fbfff25c           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@13 (line 283)
+  0x00007303fbfff1f8:   mov    0x20(%rsi),%eax              ;*getfield inputLim {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@17 (line 283)
+  0x00007303fbfff1fb:   mov    0xc(%rsi),%esi               ;*getfield inputPos {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@21 (line 283)
+  0x00007303fbfff1fe:   cmp    %esi,%eax
+  0x00007303fbfff200:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff20a:   mov    $0xf8,%esi
+  0x00007303fbfff20f:   jne    0x00007303fbfff216
+  0x00007303fbfff211:   mov    $0x108,%esi
+  0x00007303fbfff216:   mov    (%rax,%rsi,1),%rdi
+  0x00007303fbfff21a:   lea    0x1(%rdi),%rdi
+  0x00007303fbfff21e:   mov    %rdi,(%rax,%rsi,1)
+  0x00007303fbfff222:   jne    0x00007303fbfff242           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@24 (line 283)
+  0x00007303fbfff228:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff232:   incl   0x118(%rax)
+  0x00007303fbfff238:   mov    $0x1,%esi
+  0x00007303fbfff23d:   jmp    0x00007303fbfff386           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@28 (line 283)
+  0x00007303fbfff242:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff24c:   incl   0x130(%rax)
+  0x00007303fbfff252:   mov    $0x0,%esi
+  0x00007303fbfff257:   jmp    0x00007303fbfff386           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@32 (line 283)
+  0x00007303fbfff25c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x00007303fbfff4ab
+                                                            ;*invokevirtual hasRemaining {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff25f:   mov    %rax,%rsi
+  0x00007303fbfff262:   movabs $0x7303b013bb48,%rbx         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff26c:   mov    0x8(%rsi),%esi
+  0x00007303fbfff26f:   mov    $0x7b000000,%r10d
+  0x00007303fbfff275:   add    %r10,%rsi
+  0x00007303fbfff278:   mov    $0x2a,%r10d
+  0x00007303fbfff27e:   cmp    (%rbx,%r10,8),%rsi
+  0x00007303fbfff282:   je     0x00007303fbfff2bb
+  0x00007303fbfff284:   add    $0x2,%r10
+  0x00007303fbfff288:   cmp    $0x2e,%r10
+  0x00007303fbfff28c:   jne    0x00007303fbfff27e
+  0x00007303fbfff28e:   mov    $0x2a,%r10d
+  0x00007303fbfff294:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007303fbfff299:   je     0x00007303fbfff2a7
+  0x00007303fbfff29b:   add    $0x2,%r10
+  0x00007303fbfff29f:   cmp    $0x2e,%r10
+  0x00007303fbfff2a3:   jne    0x00007303fbfff294
+  0x00007303fbfff2a5:   jmp    0x00007303fbfff2b3
+  0x00007303fbfff2a7:   push   %rax
+  0x00007303fbfff2a8:   xor    %rax,%rax
+  0x00007303fbfff2ab:   cmpxchg %rsi,(%rbx,%r10,8)
+  0x00007303fbfff2b0:   pop    %rax
+  0x00007303fbfff2b1:   jmp    0x00007303fbfff278
+  0x00007303fbfff2b3:   mov    $0x29,%r10d
+  0x00007303fbfff2b9:   jmp    0x00007303fbfff2bf
+  0x00007303fbfff2bb:   add    $0x1,%r10
+  0x00007303fbfff2bf:   addq   $0x1,(%rbx,%r10,8)
+  0x00007303fbfff2c4:   movabs $0x7303b013bd48,%rsi         ;   {metadata(method data for {method} {0x000000007b1c1198} &apos;hasRemaining&apos; &apos;()Z&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007303fbfff2ce:   mov    0x90(%rsi),%ebx
+  0x00007303fbfff2d4:   add    $0x2,%ebx
+  0x00007303fbfff2d7:   mov    %ebx,0x90(%rsi)
+  0x00007303fbfff2dd:   and    $0x1ffffe,%ebx
+  0x00007303fbfff2e3:   test   %ebx,%ebx
+  0x00007303fbfff2e5:   je     0x00007303fbfff4b0
+  0x00007303fbfff2eb:   mov    0x18(%rax),%esi              ;*getfield position {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::hasRemaining@1 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff2ee:   mov    0x1c(%rax),%eax              ;*getfield limit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::hasRemaining@5 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff2f1:   cmp    %eax,%esi
+  0x00007303fbfff2f3:   movabs $0x7303b013bd48,%rax         ;   {metadata(method data for {method} {0x000000007b1c1198} &apos;hasRemaining&apos; &apos;()Z&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007303fbfff2fd:   mov    $0xd8,%esi
+  0x00007303fbfff302:   jge    0x00007303fbfff309
+  0x00007303fbfff304:   mov    $0xe8,%esi
+  0x00007303fbfff309:   mov    (%rax,%rsi,1),%rdi
+  0x00007303fbfff30d:   lea    0x1(%rdi),%rdi
+  0x00007303fbfff311:   mov    %rdi,(%rax,%rsi,1)
+  0x00007303fbfff315:   jge    0x00007303fbfff335           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::hasRemaining@8 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff31b:   movabs $0x7303b013bd48,%rax         ;   {metadata(method data for {method} {0x000000007b1c1198} &apos;hasRemaining&apos; &apos;()Z&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007303fbfff325:   incl   0xf8(%rax)
+  0x00007303fbfff32b:   mov    $0x1,%eax
+  0x00007303fbfff330:   jmp    0x00007303fbfff33a           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::hasRemaining@12 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff335:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::hasRemaining@16 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+  0x00007303fbfff33a:   and    $0x1,%eax
+  0x00007303fbfff33d:   test   %eax,%eax
+  0x00007303fbfff33f:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff349:   mov    $0x178,%esi
+  0x00007303fbfff34e:   jne    0x00007303fbfff355
+  0x00007303fbfff350:   mov    $0x188,%esi
+  0x00007303fbfff355:   mov    (%rax,%rsi,1),%rdi
+  0x00007303fbfff359:   lea    0x1(%rdi),%rdi
+  0x00007303fbfff35d:   mov    %rdi,(%rax,%rsi,1)
+  0x00007303fbfff361:   jne    0x00007303fbfff381           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@39 (line 283)
+  0x00007303fbfff367:   movabs $0x7303b013bb48,%rax         ;   {metadata(method data for {method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff371:   incl   0x198(%rax)
+  0x00007303fbfff377:   mov    $0x1,%esi
+  0x00007303fbfff37c:   jmp    0x00007303fbfff386           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@43 (line 283)
+  0x00007303fbfff381:   mov    $0x0,%esi                    ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@47 (line 283)
+  0x00007303fbfff386:   lea    0x30(%rsp),%rax
+  0x00007303fbfff38b:   mov    0x8(%rax),%rbx
+  0x00007303fbfff38f:   mov    0x7c0(%r15),%edi
+  0x00007303fbfff396:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x00007303fbfff39b:   jne    0x00007303fbfff4d1
+  0x00007303fbfff3a1:   subl   $0x8,0x7c0(%r15)
+  0x00007303fbfff3a9:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x00007303fbfff3ae:   je     0x00007303fbfff3de
+  0x00007303fbfff3b4:   mov    (%rbx),%rax
+  0x00007303fbfff3b7:   test   $0x2,%al
+  0x00007303fbfff3b9:   jne    0x00007303fbfff3d1
+  0x00007303fbfff3bf:   mov    %rax,%rdi
+  0x00007303fbfff3c2:   or     $0x1,%rdi
+  0x00007303fbfff3c6:   lock cmpxchg %rdi,(%rbx)
+  0x00007303fbfff3cb:   je     0x00007303fbfff3de
+  0x00007303fbfff3d1:   addl   $0x8,0x7c0(%r15)
+  0x00007303fbfff3d9:   jmp    0x00007303fbfff4d1           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@48 (line 283)
+  0x00007303fbfff3de:   and    $0x1,%esi
+  0x00007303fbfff3e1:   mov    %rsi,%rax
+  0x00007303fbfff3e4:   add    $0x50,%rsp
+  0x00007303fbfff3e8:   pop    %rbp
+  0x00007303fbfff3e9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007303fbfff3ed:   ja     0x00007303fbfff4e4
+  0x00007303fbfff3f3:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@49 (line 283)
+  0x00007303fbfff3f4:   mov    0x5c0(%r15),%rax
+  0x00007303fbfff3fb:   xor    %r10,%r10
+  0x00007303fbfff3fe:   mov    %r10,0x5c0(%r15)
+  0x00007303fbfff405:   xor    %r10,%r10
+  0x00007303fbfff408:   mov    %r10,0x5c8(%r15)
+  0x00007303fbfff40f:   mov    %rax,%rsi
+  0x00007303fbfff412:   lea    0x30(%rsp),%rax
+  0x00007303fbfff417:   mov    0x8(%rax),%rbx
+  0x00007303fbfff41b:   mov    0x7c0(%r15),%edi
+  0x00007303fbfff422:   cmp    -0x8(%r15,%rdi,1),%rbx
+  0x00007303fbfff427:   jne    0x00007303fbfff4fa
+  0x00007303fbfff42d:   subl   $0x8,0x7c0(%r15)
+  0x00007303fbfff435:   cmp    -0x10(%r15,%rdi,1),%rbx
+  0x00007303fbfff43a:   je     0x00007303fbfff46a
+  0x00007303fbfff440:   mov    (%rbx),%rax
+  0x00007303fbfff443:   test   $0x2,%al
+  0x00007303fbfff445:   jne    0x00007303fbfff45d
+  0x00007303fbfff44b:   mov    %rax,%rdi
+  0x00007303fbfff44e:   or     $0x1,%rdi
+  0x00007303fbfff452:   lock cmpxchg %rdi,(%rbx)
+  0x00007303fbfff457:   je     0x00007303fbfff46a
+  0x00007303fbfff45d:   addl   $0x8,0x7c0(%r15)
+  0x00007303fbfff465:   jmp    0x00007303fbfff4fa           ;*monitorexit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@52 (line 284)
+  0x00007303fbfff46a:   mov    %rsi,%rax
+  0x00007303fbfff46d:   jmp    0x00007303fbfff52a
+  0x00007303fbfff472:   movabs $0x7b41c520,%r10             ;   {metadata({method} {0x000000007b41c520} &apos;needsInput&apos; &apos;()Z&apos; in &apos;java/util/zip/Inflater&apos;)}
+  0x00007303fbfff47c:   mov    %r10,0x8(%rsp)
+  0x00007303fbfff481:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007303fbfff489:   call   0x00007304035826e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.zip.Inflater::needsInput@-1 (line 281)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007303fbfff48e:   jmp    0x00007303fbfff162
+  0x00007303fbfff493:   call   0x000073040357bd60           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@6 (line 281)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007303fbfff498:   mov    %rdi,0x8(%rsp)
+  0x00007303fbfff49d:   mov    %rbx,(%rsp)
+  0x00007303fbfff4a1:   call   0x000073040357fde0           ; ImmutableOopMap {rsi=Oop rdi=Oop [56]=Oop }
+                                                            ;*monitorenter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@6 (line 281)
+                                                            ;   {runtime_call monitorenter_nofpu_blob (C1 runtime)}
+  0x00007303fbfff4a6:   jmp    0x00007303fbfff1c6
+  0x00007303fbfff4ab:   call   0x000073040357bd60           ; ImmutableOopMap {rax=Oop rdi=Oop [56]=Oop }
+                                                            ;*invokevirtual hasRemaining {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007303fbfff4b0:   movabs $0x7b1c1198,%r10             ;   {metadata({method} {0x000000007b1c1198} &apos;hasRemaining&apos; &apos;()Z&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007303fbfff4ba:   mov    %r10,0x8(%rsp)
+  0x00007303fbfff4bf:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007303fbfff4c7:   call   0x00007304035826e0           ; ImmutableOopMap {rax=Oop rdi=Oop [56]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::hasRemaining@-1 (line 532)
+                                                            ; - java.util.zip.Inflater::needsInput@36 (line 283)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007303fbfff4cc:   jmp    0x00007303fbfff2eb
+  0x00007303fbfff4d1:   lea    0x30(%rsp),%rax
+  0x00007303fbfff4d6:   mov    %rax,(%rsp)
+  0x00007303fbfff4da:   call   0x00007304035803e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007303fbfff4df:   jmp    0x00007303fbfff3de
+  0x00007303fbfff4e4:   movabs $0x7303fbfff3e9,%r10         ;   {internal_word}
+  0x00007303fbfff4ee:   mov    %r10,0x510(%r15)
+  0x00007303fbfff4f5:   jmp    0x00007304034afb60           ;   {runtime_call SafepointBlob}
+  0x00007303fbfff4fa:   lea    0x30(%rsp),%rax
+  0x00007303fbfff4ff:   mov    %rax,(%rsp)
+  0x00007303fbfff503:   call   0x00007304035803e0           ;   {runtime_call monitorexit_nofpu_blob (C1 runtime)}
+  0x00007303fbfff508:   jmp    0x00007303fbfff46a
+  0x00007303fbfff50d:   mov    0x5c0(%r15),%rax
+  0x00007303fbfff514:   movq   $0x0,0x5c0(%r15)
+  0x00007303fbfff51f:   movq   $0x0,0x5c8(%r15)
+  0x00007303fbfff52a:   add    $0x50,%rsp
+  0x00007303fbfff52e:   pop    %rbp
+  0x00007303fbfff52f:   jmp    0x000073040357ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007303fbfff534:   hlt    
+  0x00007303fbfff535:   hlt    
+  0x00007303fbfff536:   hlt    
+  0x00007303fbfff537:   hlt    
+[Exception Handler]
+  0x00007303fbfff538:   call   0x000073040357e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007303fbfff53d:   movabs $0x73041d53aec4,%rdi         ;   {external_word}
+  0x00007303fbfff547:   and    $0xfffffffffffffff0,%rsp
+  0x00007303fbfff54b:   call   0x000073041cf91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007303fbfff550:   hlt    
+  0x00007303fbfff551:   call   0x00007304034afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007303fbfff556:   jmp    0x00007303fbfff551
+--------------------------------------------------------------------------------
+[/Disassembly]

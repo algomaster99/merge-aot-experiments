@@ -1,0 +1,105 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 4276  219       3       java.lang.invoke.MemberName::anyFlagSet (15 bytes)
+ total in heap  [0x000077b458026508,0x000077b458026740] = 568
+ main code      [0x000077b458026600,0x000077b458026720] = 288
+ stub code      [0x000077b458026720,0x000077b458026740] = 32
+ mutable data [0x000077b3e8019570,0x000077b3e80195a0] = 48
+ relocation     [0x000077b3e8019570,0x000077b3e8019598] = 40
+ metadata       [0x000077b3e8019598,0x000077b3e80195a0] = 8
+ immutable data [0x000077b3e801ade0,0x000077b3e801ae9c] = 188
+ dependencies   [0x000077b3e801ade0,0x000077b3e801ade8] = 8
+ scopes pcs     [0x000077b3e801ade8,0x000077b3e801ae68] = 128
+ scopes data    [0x000077b3e801ae68,0x000077b3e801ae98] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458026600:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45802660b:   data16 data16 xchg %ax,%ax
+  0x000077b45802660f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046205b48} &apos;anyFlagSet&apos; &apos;(I)Z&apos; in &apos;java/lang/invoke/MemberName&apos;
+  # this:     rsi:rsi   = &apos;java/lang/invoke/MemberName&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458026612:   mov    0x8(%rsi),%r10d
+  0x000077b458026616:   cmp    0x8(%rax),%r10d
+  0x000077b45802661a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b458026620:   mov    %eax,-0x14000(%rsp)
+  0x000077b458026627:   push   %rbp
+  0x000077b458026628:   sub    $0x20,%rsp
+  0x000077b45802662c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458026634:   je     0x000077b45802663b
+  0x000077b458026636:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45802663b:   movabs $0x77b4140a6ec0,%rax         ;   {metadata(method data for {method} {0x0000000046205b48} &apos;anyFlagSet&apos; &apos;(I)Z&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b458026645:   mov    0x90(%rax),%edi
+  0x000077b45802664b:   add    $0x2,%edi
+  0x000077b45802664e:   mov    %edi,0x90(%rax)
+  0x000077b458026654:   and    $0x7fe,%edi
+  0x000077b45802665a:   test   %edi,%edi
+  0x000077b45802665c:   je     0x000077b4580266c4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@0 (line 335)
+  0x000077b458026662:   mov    0xc(%rsi),%eax               ;*getfield flags {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@1 (line 335)
+  0x000077b458026665:   and    %rdx,%rax
+  0x000077b458026668:   test   %eax,%eax
+  0x000077b45802666a:   movabs $0x77b4140a6ec0,%rax         ;   {metadata(method data for {method} {0x0000000046205b48} &apos;anyFlagSet&apos; &apos;(I)Z&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b458026674:   mov    $0xd8,%esi
+  0x000077b458026679:   je     0x000077b458026680
+  0x000077b45802667b:   mov    $0xe8,%esi
+  0x000077b458026680:   mov    (%rax,%rsi,1),%rdi
+  0x000077b458026684:   lea    0x1(%rdi),%rdi
+  0x000077b458026688:   mov    %rdi,(%rax,%rsi,1)
+  0x000077b45802668c:   je     0x000077b4580266ac           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@6 (line 335)
+  0x000077b458026692:   movabs $0x77b4140a6ec0,%rax         ;   {metadata(method data for {method} {0x0000000046205b48} &apos;anyFlagSet&apos; &apos;(I)Z&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b45802669c:   incl   0xf8(%rax)
+  0x000077b4580266a2:   mov    $0x1,%eax
+  0x000077b4580266a7:   jmp    0x000077b4580266b1           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@10 (line 335)
+  0x000077b4580266ac:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@14 (line 335)
+  0x000077b4580266b1:   and    $0x1,%eax
+  0x000077b4580266b4:   add    $0x20,%rsp
+  0x000077b4580266b8:   pop    %rbp
+  0x000077b4580266b9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580266bd:   ja     0x000077b4580266e2
+  0x000077b4580266c3:   ret    
+  0x000077b4580266c4:   movabs $0x46205b48,%r10             ;   {metadata({method} {0x0000000046205b48} &apos;anyFlagSet&apos; &apos;(I)Z&apos; in &apos;java/lang/invoke/MemberName&apos;)}
+  0x000077b4580266ce:   mov    %r10,0x8(%rsp)
+  0x000077b4580266d3:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580266db:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.MemberName::anyFlagSet@-1 (line 335)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580266e0:   jmp    0x000077b458026662
+  0x000077b4580266e2:   movabs $0x77b4580266b9,%r10         ;   {internal_word}
+  0x000077b4580266ec:   mov    %r10,0x510(%r15)
+  0x000077b4580266f3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580266f8:   mov    0x5c0(%r15),%rax
+  0x000077b4580266ff:   movq   $0x0,0x5c0(%r15)
+  0x000077b45802670a:   movq   $0x0,0x5c8(%r15)
+  0x000077b458026715:   add    $0x20,%rsp
+  0x000077b458026719:   pop    %rbp
+  0x000077b45802671a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45802671f:   hlt    
+[Exception Handler]
+  0x000077b458026720:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458026725:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45802672f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458026733:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458026738:   hlt    
+  0x000077b458026739:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45802673e:   jmp    0x000077b458026739
+--------------------------------------------------------------------------------
+[/Disassembly]

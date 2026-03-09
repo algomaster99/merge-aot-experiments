@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3789  196       1       java.nio.Buffer::limit (5 bytes)
+ total in heap  [0x000077b45fbabe08,0x000077b45fbabfb0] = 424
+ main code      [0x000077b45fbabf00,0x000077b45fbabf90] = 144
+ stub code      [0x000077b45fbabf90,0x000077b45fbabfb0] = 32
+ mutable data [0x000077b3e801af70,0x000077b3e801af98] = 40
+ relocation     [0x000077b3e801af70,0x000077b3e801af90] = 32
+ metadata       [0x000077b3e801af90,0x000077b3e801af98] = 8
+ immutable data [0x000077b3e801aeb0,0x000077b3e801af0c] = 92
+ dependencies   [0x000077b3e801aeb0,0x000077b3e801aeb8] = 8
+ scopes pcs     [0x000077b3e801aeb8,0x000077b3e801aef8] = 64
+ scopes data    [0x000077b3e801aef8,0x000077b3e801af08] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbabf00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbabf0b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbabf0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461c0ed8} &apos;limit&apos; &apos;()I&apos; in &apos;java/nio/Buffer&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbabf12:   mov    0x8(%rsi),%r10d
+  0x000077b45fbabf16:   cmp    0x8(%rax),%r10d
+  0x000077b45fbabf1a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbabf20:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbabf27:   push   %rbp
+  0x000077b45fbabf28:   sub    $0x20,%rsp
+  0x000077b45fbabf2c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbabf34:   je     0x000077b45fbabf3b
+  0x000077b45fbabf36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::limit@0 (line 360)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbabf3b:   mov    0x1c(%rsi),%eax              ;*getfield limit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::limit@1 (line 360)
+  0x000077b45fbabf3e:   add    $0x20,%rsp
+  0x000077b45fbabf42:   pop    %rbp
+  0x000077b45fbabf43:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbabf47:   ja     0x000077b45fbabf4e
+  0x000077b45fbabf4d:   ret    
+  0x000077b45fbabf4e:   movabs $0x77b45fbabf43,%r10         ;   {internal_word}
+  0x000077b45fbabf58:   mov    %r10,0x510(%r15)
+  0x000077b45fbabf5f:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbabf64:   mov    0x5c0(%r15),%rax
+  0x000077b45fbabf6b:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbabf76:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbabf81:   add    $0x20,%rsp
+  0x000077b45fbabf85:   pop    %rbp
+  0x000077b45fbabf86:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbabf8b:   hlt    
+  0x000077b45fbabf8c:   hlt    
+  0x000077b45fbabf8d:   hlt    
+  0x000077b45fbabf8e:   hlt    
+  0x000077b45fbabf8f:   hlt    
+[Exception Handler]
+  0x000077b45fbabf90:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbabf95:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbabf9f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbabfa3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbabfa8:   hlt    
+  0x000077b45fbabfa9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbabfae:   jmp    0x000077b45fbabfa9
+--------------------------------------------------------------------------------
+[/Disassembly]

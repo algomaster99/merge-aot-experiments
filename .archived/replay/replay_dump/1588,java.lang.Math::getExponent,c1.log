@@ -1,0 +1,91 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 36218 1588       3       java.lang.Math::getExponent (17 bytes)
+ total in heap  [0x000077b458130e08,0x000077b458131010] = 520
+ main code      [0x000077b458130f00,0x000077b458130ff0] = 240
+ stub code      [0x000077b458130ff0,0x000077b458131010] = 32
+ mutable data [0x000077b3f01e5f20,0x000077b3f01e5f58] = 56
+ relocation     [0x000077b3f01e5f20,0x000077b3f01e5f48] = 40
+ metadata       [0x000077b3f01e5f48,0x000077b3f01e5f58] = 16
+ immutable data [0x000077b3f01e5e90,0x000077b3f01e5f0c] = 124
+ dependencies   [0x000077b3f01e5e90,0x000077b3f01e5e98] = 8
+ scopes pcs     [0x000077b3f01e5e98,0x000077b3f01e5ee8] = 80
+ scopes data    [0x000077b3f01e5ee8,0x000077b3f01e5f08] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004648fbc0} &apos;getExponent&apos; &apos;(D)I&apos; in &apos;java/lang/Math&apos;
+  # parm0:    xmm0:xmm0   = double
+  #           [sp+0x50]  (sp of caller)
+  0x000077b458130f00:   mov    %eax,-0x14000(%rsp)
+  0x000077b458130f07:   push   %rbp
+  0x000077b458130f08:   sub    $0x40,%rsp
+  0x000077b458130f0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458130f14:   je     0x000077b458130f1b
+  0x000077b458130f16:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b458130f1b:   movabs $0x77b4146c33f0,%rcx         ;   {metadata(method data for {method} {0x000000004648fbc0} &apos;getExponent&apos; &apos;(D)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b458130f25:   mov    0x90(%rcx),%eax
+  0x000077b458130f2b:   add    $0x2,%eax
+  0x000077b458130f2e:   mov    %eax,0x90(%rcx)
+  0x000077b458130f34:   and    $0x7fe,%eax
+  0x000077b458130f39:   test   %eax,%eax
+  0x000077b458130f3b:   je     0x000077b458130f91           ;*dload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::getExponent@0 (line 2974)
+  0x000077b458130f41:   movabs $0x77b4146c33f0,%rcx         ;   {metadata(method data for {method} {0x000000004648fbc0} &apos;getExponent&apos; &apos;(D)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b458130f4b:   addq   $0x1,0xd8(%rcx)
+  0x000077b458130f53:   vmovsd %xmm0,0x28(%rsp)
+  0x000077b458130f59:   mov    0x28(%rsp),%rcx              ;*invokestatic doubleToRawLongBits {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::getExponent@1 (line 2974)
+  0x000077b458130f5e:   mov    %rcx,%rax
+  0x000077b458130f61:   movabs $0x7ff0000000000000,%r10
+  0x000077b458130f6b:   and    %r10,%rax
+  0x000077b458130f6e:   mov    $0x34,%ecx
+  0x000077b458130f73:   sar    %cl,%rax
+  0x000077b458130f76:   mov    $0x3ff,%r10d
+  0x000077b458130f7c:   sub    %r10,%rax
+  0x000077b458130f7f:   mov    %eax,%eax
+  0x000077b458130f81:   add    $0x40,%rsp
+  0x000077b458130f85:   pop    %rbp
+  0x000077b458130f86:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458130f8a:   ja     0x000077b458130faf
+  0x000077b458130f90:   ret    
+  0x000077b458130f91:   movabs $0x4648fbc0,%r10             ;   {metadata({method} {0x000000004648fbc0} &apos;getExponent&apos; &apos;(D)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b458130f9b:   mov    %r10,0x8(%rsp)
+  0x000077b458130fa0:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458130fa8:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Math::getExponent@-1 (line 2974)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458130fad:   jmp    0x000077b458130f41
+  0x000077b458130faf:   movabs $0x77b458130f86,%r10         ;   {internal_word}
+  0x000077b458130fb9:   mov    %r10,0x510(%r15)
+  0x000077b458130fc0:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458130fc5:   mov    0x5c0(%r15),%rax
+  0x000077b458130fcc:   movq   $0x0,0x5c0(%r15)
+  0x000077b458130fd7:   movq   $0x0,0x5c8(%r15)
+  0x000077b458130fe2:   add    $0x40,%rsp
+  0x000077b458130fe6:   pop    %rbp
+  0x000077b458130fe7:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b458130fec:   hlt    
+  0x000077b458130fed:   hlt    
+  0x000077b458130fee:   hlt    
+  0x000077b458130fef:   hlt    
+[Exception Handler]
+  0x000077b458130ff0:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458130ff5:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458130fff:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458131003:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458131008:   hlt    
+  0x000077b458131009:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45813100e:   jmp    0x000077b458131009
+--------------------------------------------------------------------------------
+[/Disassembly]

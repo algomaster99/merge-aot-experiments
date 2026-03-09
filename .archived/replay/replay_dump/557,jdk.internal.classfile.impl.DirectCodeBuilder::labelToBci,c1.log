@@ -1,0 +1,235 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 9914  557       3       jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci (27 bytes)
+ total in heap  [0x000077b458058208,0x000077b458058600] = 1016
+ main code      [0x000077b458058300,0x000077b4580585d0] = 720
+ stub code      [0x000077b4580585d0,0x000077b458058600] = 48
+ mutable data [0x000077b3ec03adb0,0x000077b3ec03ae18] = 104
+ relocation     [0x000077b3ec03adb0,0x000077b3ec03ae00] = 80
+ metadata       [0x000077b3ec03ae00,0x000077b3ec03ae18] = 24
+ immutable data [0x000077b3ec039280,0x000077b3ec0393e4] = 356
+ dependencies   [0x000077b3ec039280,0x000077b3ec039288] = 8
+ nul chk table  [0x000077b3ec039288,0x000077b3ec039298] = 16
+ scopes pcs     [0x000077b3ec039298,0x000077b3ec039378] = 224
+ scopes data    [0x000077b3ec039378,0x000077b3ec0393e0] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458058300:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45805830b:   data16 data16 xchg %ax,%ax
+  0x000077b45805830f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/classfile/Label&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x000077b458058312:   mov    0x8(%rsi),%r10d
+  0x000077b458058316:   cmp    0x8(%rax),%r10d
+  0x000077b45805831a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b458058320:   mov    %eax,-0x14000(%rsp)
+  0x000077b458058327:   push   %rbp
+  0x000077b458058328:   sub    $0x40,%rsp
+  0x000077b45805832c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458058334:   je     0x000077b45805833b
+  0x000077b458058336:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45805833b:   movabs $0x77b414117558,%rax         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b458058345:   mov    0x90(%rax),%ecx
+  0x000077b45805834b:   add    $0x2,%ecx
+  0x000077b45805834e:   mov    %ecx,0x90(%rax)
+  0x000077b458058354:   and    $0x7fe,%ecx
+  0x000077b45805835a:   test   %ecx,%ecx
+  0x000077b45805835c:   je     0x000077b45805854c           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@0 (line 745)
+  0x000077b458058362:   test   %rdx,%rdx
+  0x000077b458058365:   movabs $0x77b414117558,%rcx         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b45805836f:   jne    0x000077b45805837d
+  0x000077b458058371:   orb    $0x1,0xd1(%rcx)
+  0x000077b458058378:   jmp    0x000077b4580583f9
+  0x000077b45805837d:   mov    0x8(%rdx),%edi
+  0x000077b458058380:   mov    $0x46000000,%r10d
+  0x000077b458058386:   add    %r10,%rdi
+  0x000077b458058389:   mov    $0x1c,%r10d
+  0x000077b45805838f:   cmp    (%rcx,%r10,8),%rdi
+  0x000077b458058393:   je     0x000077b4580583cc
+  0x000077b458058395:   add    $0x2,%r10
+  0x000077b458058399:   cmp    $0x20,%r10
+  0x000077b45805839d:   jne    0x000077b45805838f
+  0x000077b45805839f:   mov    $0x1c,%r10d
+  0x000077b4580583a5:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000077b4580583aa:   je     0x000077b4580583b8
+  0x000077b4580583ac:   add    $0x2,%r10
+  0x000077b4580583b0:   cmp    $0x20,%r10
+  0x000077b4580583b4:   jne    0x000077b4580583a5
+  0x000077b4580583b6:   jmp    0x000077b4580583c4
+  0x000077b4580583b8:   push   %rax
+  0x000077b4580583b9:   xor    %rax,%rax
+  0x000077b4580583bc:   cmpxchg %rdi,(%rcx,%r10,8)
+  0x000077b4580583c1:   pop    %rax
+  0x000077b4580583c2:   jmp    0x000077b458058389
+  0x000077b4580583c4:   mov    $0x1b,%r10d
+  0x000077b4580583ca:   jmp    0x000077b4580583d0
+  0x000077b4580583cc:   add    $0x1,%r10
+  0x000077b4580583d0:   addq   $0x1,(%rcx,%r10,8)
+  0x000077b4580583d5:   movabs $0x46362d48,%rdi             ;   {metadata(&apos;jdk/internal/classfile/impl/LabelImpl&apos;)}
+  0x000077b4580583df:   mov    0x8(%rdx),%eax
+  0x000077b4580583e2:   mov    $0x46000000,%r10d
+  0x000077b4580583e8:   add    %r10,%rax
+  0x000077b4580583eb:   cmp    %rax,%rdi
+  0x000077b4580583ee:   jne    0x000077b45805856d
+  0x000077b4580583f4:   jmp    0x000077b4580583f9
+  0x000077b4580583f9:   mov    %rdx,%rcx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@1 (line 745)
+  0x000077b4580583fc:   cmp    (%rcx),%rax                  ; implicit exception: dispatches to 0x000077b458058576
+                                                            ;*invokevirtual labelContext {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@6 (line 746)
+  0x000077b4580583ff:   mov    %rcx,%rax
+  0x000077b458058402:   movabs $0x77b414117558,%rdx         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b45805840c:   mov    0x8(%rax),%eax
+  0x000077b45805840f:   mov    $0x46000000,%r10d
+  0x000077b458058415:   add    %r10,%rax
+  0x000077b458058418:   mov    $0x22,%r10d
+  0x000077b45805841e:   cmp    (%rdx,%r10,8),%rax
+  0x000077b458058422:   je     0x000077b458058461
+  0x000077b458058424:   add    $0x2,%r10
+  0x000077b458058428:   cmp    $0x26,%r10
+  0x000077b45805842c:   jne    0x000077b45805841e
+  0x000077b45805842e:   mov    $0x22,%r10d
+  0x000077b458058434:   cmpq   $0x0,(%rdx,%r10,8)
+  0x000077b458058439:   je     0x000077b458058447
+  0x000077b45805843b:   add    $0x2,%r10
+  0x000077b45805843f:   cmp    $0x26,%r10
+  0x000077b458058443:   jne    0x000077b458058434
+  0x000077b458058445:   jmp    0x000077b458058459
+  0x000077b458058447:   push   %rbx
+  0x000077b458058448:   mov    %rax,%rbx
+  0x000077b45805844b:   xor    %rax,%rax
+  0x000077b45805844e:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x000077b458058453:   mov    %rbx,%rax
+  0x000077b458058456:   pop    %rbx
+  0x000077b458058457:   jmp    0x000077b458058418
+  0x000077b458058459:   mov    $0x21,%r10d
+  0x000077b45805845f:   jmp    0x000077b458058465
+  0x000077b458058461:   add    $0x1,%r10
+  0x000077b458058465:   addq   $0x1,(%rdx,%r10,8)
+  0x000077b45805846a:   mov    0x10(%rcx),%edx
+  0x000077b45805846d:   shl    $0x3,%rdx                    ;*getfield labelContext {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.LabelImpl::labelContext@1 (line 58)
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@6 (line 746)
+  0x000077b458058471:   cmp    %rsi,%rdx
+  0x000077b458058474:   movabs $0x77b414117558,%rax         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b45805847e:   mov    $0x138,%edi
+  0x000077b458058483:   jne    0x000077b45805848a
+  0x000077b458058485:   mov    $0x148,%edi
+  0x000077b45805848a:   mov    (%rax,%rdi,1),%rbx
+  0x000077b45805848e:   lea    0x1(%rbx),%rbx
+  0x000077b458058492:   mov    %rbx,(%rax,%rdi,1)
+  0x000077b458058496:   jne    0x000077b45805851a           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@12 (line 747)
+  0x000077b45805849c:   mov    %rcx,%rax
+  0x000077b45805849f:   movabs $0x77b414117558,%rdx         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b4580584a9:   mov    0x8(%rax),%eax
+  0x000077b4580584ac:   mov    $0x46000000,%r10d
+  0x000077b4580584b2:   add    %r10,%rax
+  0x000077b4580584b5:   mov    $0x2c,%r10d
+  0x000077b4580584bb:   cmp    (%rdx,%r10,8),%rax
+  0x000077b4580584bf:   je     0x000077b4580584fe
+  0x000077b4580584c1:   add    $0x2,%r10
+  0x000077b4580584c5:   cmp    $0x30,%r10
+  0x000077b4580584c9:   jne    0x000077b4580584bb
+  0x000077b4580584cb:   mov    $0x2c,%r10d
+  0x000077b4580584d1:   cmpq   $0x0,(%rdx,%r10,8)
+  0x000077b4580584d6:   je     0x000077b4580584e4
+  0x000077b4580584d8:   add    $0x2,%r10
+  0x000077b4580584dc:   cmp    $0x30,%r10
+  0x000077b4580584e0:   jne    0x000077b4580584d1
+  0x000077b4580584e2:   jmp    0x000077b4580584f6
+  0x000077b4580584e4:   push   %rbx
+  0x000077b4580584e5:   mov    %rax,%rbx
+  0x000077b4580584e8:   xor    %rax,%rax
+  0x000077b4580584eb:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x000077b4580584f0:   mov    %rbx,%rax
+  0x000077b4580584f3:   pop    %rbx
+  0x000077b4580584f4:   jmp    0x000077b4580584b5
+  0x000077b4580584f6:   mov    $0x2b,%r10d
+  0x000077b4580584fc:   jmp    0x000077b458058502
+  0x000077b4580584fe:   add    $0x1,%r10
+  0x000077b458058502:   addq   $0x1,(%rdx,%r10,8)
+  0x000077b458058507:   mov    0xc(%rcx),%eax               ;*getfield bci {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.LabelImpl::getBCI@1 (line 62)
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@16 (line 748)
+  0x000077b45805850a:   add    $0x40,%rsp
+  0x000077b45805850e:   pop    %rbp
+  0x000077b45805850f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458058513:   ja     0x000077b45805857b
+  0x000077b458058519:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@19 (line 748)
+  0x000077b45805851a:   mov    %rsi,%rdi
+  0x000077b45805851d:   movabs $0x77b414117558,%rbx         ;   {metadata(method data for {method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b458058527:   addq   $0x1,0x188(%rbx)
+  0x000077b45805852f:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual labelToBci {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@23 (line 750)
+                                                            ;   {optimized virtual_call}
+  0x000077b458058534:   nopl   0x32c(%rax,%rax,1)           ;*invokevirtual labelToBci {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@23 (line 750)
+                                                            ;   {post_call_nop}
+  0x000077b45805853c:   add    $0x40,%rsp
+  0x000077b458058540:   pop    %rbp
+  0x000077b458058541:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458058545:   ja     0x000077b458058591
+  0x000077b45805854b:   ret    
+  0x000077b45805854c:   movabs $0x46352a08,%r10             ;   {metadata({method} {0x0000000046352a08} &apos;labelToBci&apos; &apos;(Ljava/lang/classfile/Label;)I&apos; in &apos;jdk/internal/classfile/impl/DirectCodeBuilder&apos;)}
+  0x000077b458058556:   mov    %r10,0x8(%rsp)
+  0x000077b45805855b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458058563:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@-1 (line 745)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458058568:   jmp    0x000077b458058362
+  0x000077b45805856d:   mov    %rdx,(%rsp)
+  0x000077b458058571:   call   0x000077b45f57f3e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@1 (line 745)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x000077b458058576:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rcx=Oop }
+                                                            ;*invokevirtual labelContext {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.DirectCodeBuilder::labelToBci@6 (line 746)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45805857b:   movabs $0x77b45805850f,%r10         ;   {internal_word}
+  0x000077b458058585:   mov    %r10,0x510(%r15)
+  0x000077b45805858c:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458058591:   movabs $0x77b458058541,%r10         ;   {internal_word}
+  0x000077b45805859b:   mov    %r10,0x510(%r15)
+  0x000077b4580585a2:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580585a7:   mov    0x5c0(%r15),%rax
+  0x000077b4580585ae:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580585b9:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580585c4:   add    $0x40,%rsp
+  0x000077b4580585c8:   pop    %rbp
+  0x000077b4580585c9:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580585ce:   hlt    
+  0x000077b4580585cf:   hlt    
+[Stub Code]
+  0x000077b4580585d0:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4580585da:   jmp    0x000077b4580585da           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b4580585df:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580585e4:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580585ee:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580585f2:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580585f7:   hlt    
+  0x000077b4580585f8:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580585fd:   jmp    0x000077b4580585f8
+  0x000077b4580585ff:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

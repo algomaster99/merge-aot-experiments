@@ -1,0 +1,94 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 30350 1379       3       java.util.regex.Pattern$TreeInfo::reset (21 bytes)
+ total in heap  [0x000077b4580fef08,0x000077b4580ff108] = 512
+ main code      [0x000077b4580ff000,0x000077b4580ff0e8] = 232
+ stub code      [0x000077b4580ff0e8,0x000077b4580ff108] = 32
+ mutable data [0x000077b3e855bbd0,0x000077b3e855bc00] = 48
+ relocation     [0x000077b3e855bbd0,0x000077b3e855bbf8] = 40
+ metadata       [0x000077b3e855bbf8,0x000077b3e855bc00] = 8
+ immutable data [0x000077b3e8560ec0,0x000077b3e8560f7c] = 188
+ dependencies   [0x000077b3e8560ec0,0x000077b3e8560ec8] = 8
+ scopes pcs     [0x000077b3e8560ec8,0x000077b3e8560f48] = 128
+ scopes data    [0x000077b3e8560f48,0x000077b3e8560f78] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b4580ff000:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b4580ff00b:   data16 data16 xchg %ax,%ax
+  0x000077b4580ff00f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046410d18} &apos;reset&apos; &apos;()V&apos; in &apos;java/util/regex/Pattern$TreeInfo&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b4580ff012:   mov    0x8(%rsi),%r10d
+  0x000077b4580ff016:   cmp    0x8(%rax),%r10d
+  0x000077b4580ff01a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580ff020:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580ff027:   push   %rbp
+  0x000077b4580ff028:   sub    $0x20,%rsp
+  0x000077b4580ff02c:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580ff034:   je     0x000077b4580ff03b
+  0x000077b4580ff036:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580ff03b:   movabs $0x77b4146acc18,%rdi         ;   {metadata(method data for {method} {0x0000000046410d18} &apos;reset&apos; &apos;()V&apos; in &apos;java/util/regex/Pattern$TreeInfo&apos;)}
+  0x000077b4580ff045:   mov    0x90(%rdi),%ebx
+  0x000077b4580ff04b:   add    $0x2,%ebx
+  0x000077b4580ff04e:   mov    %ebx,0x90(%rdi)
+  0x000077b4580ff054:   and    $0x7fe,%ebx
+  0x000077b4580ff05a:   test   %ebx,%ebx
+  0x000077b4580ff05c:   je     0x000077b4580ff088           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@0 (line 2028)
+  0x000077b4580ff062:   movl   $0x0,0xc(%rsi)               ;*putfield minLength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@2 (line 2028)
+  0x000077b4580ff069:   movl   $0x0,0x10(%rsi)              ;*putfield maxLength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@7 (line 2029)
+  0x000077b4580ff070:   movb   $0x1,0x14(%rsi)              ;*putfield maxValid {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@12 (line 2030)
+  0x000077b4580ff074:   movb   $0x1,0x15(%rsi)              ;*putfield deterministic {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@17 (line 2031)
+  0x000077b4580ff078:   add    $0x20,%rsp
+  0x000077b4580ff07c:   pop    %rbp
+  0x000077b4580ff07d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580ff081:   ja     0x000077b4580ff0a6
+  0x000077b4580ff087:   ret    
+  0x000077b4580ff088:   movabs $0x46410d18,%r10             ;   {metadata({method} {0x0000000046410d18} &apos;reset&apos; &apos;()V&apos; in &apos;java/util/regex/Pattern$TreeInfo&apos;)}
+  0x000077b4580ff092:   mov    %r10,0x8(%rsp)
+  0x000077b4580ff097:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580ff09f:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.regex.Pattern$TreeInfo::reset@-1 (line 2028)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580ff0a4:   jmp    0x000077b4580ff062
+  0x000077b4580ff0a6:   movabs $0x77b4580ff07d,%r10         ;   {internal_word}
+  0x000077b4580ff0b0:   mov    %r10,0x510(%r15)
+  0x000077b4580ff0b7:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580ff0bc:   mov    0x5c0(%r15),%rax
+  0x000077b4580ff0c3:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580ff0ce:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580ff0d9:   add    $0x20,%rsp
+  0x000077b4580ff0dd:   pop    %rbp
+  0x000077b4580ff0de:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580ff0e3:   hlt    
+  0x000077b4580ff0e4:   hlt    
+  0x000077b4580ff0e5:   hlt    
+  0x000077b4580ff0e6:   hlt    
+  0x000077b4580ff0e7:   hlt    
+[Exception Handler]
+  0x000077b4580ff0e8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580ff0ed:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580ff0f7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580ff0fb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580ff100:   hlt    
+  0x000077b4580ff101:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580ff106:   jmp    0x000077b4580ff101
+--------------------------------------------------------------------------------
+[/Disassembly]

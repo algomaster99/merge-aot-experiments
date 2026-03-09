@@ -1,0 +1,69 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 297    3       4       java.lang.String::length (11 bytes)
+ total in heap  [0x00007b0cffba0608,0x00007b0cffba0788] = 384
+ main code      [0x00007b0cffba0700,0x00007b0cffba0780] = 128
+ stub code      [0x00007b0cffba0780,0x00007b0cffba0788] = 8
+ mutable data [0x00007b0c9c071cc0,0x00007b0c9c071ce8] = 40
+ relocation     [0x00007b0c9c071cc0,0x00007b0c9c071cd8] = 24
+ metadata       [0x00007b0c9c071cd8,0x00007b0c9c071ce8] = 16
+ immutable data [0x00007b0c9c071c00,0x00007b0c9c071cb4] = 180
+ dependencies   [0x00007b0c9c071c00,0x00007b0c9c071c08] = 8
+ nul chk table  [0x00007b0c9c071c08,0x00007b0c9c071c18] = 16
+ scopes pcs     [0x00007b0c9c071c18,0x00007b0c9c071c88] = 112
+ scopes data    [0x00007b0c9c071c88,0x00007b0c9c071cb0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007b0cffba0700:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000631797e8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/String&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x00007b0cffba0702:   mov    0x8(%rsi),%r10d
+  0x00007b0cffba0706:   cmp    0x8(%rax),%r10d
+  0x00007b0cffba070a:   jne    0x00007b0cff4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007b0cffba0710:   mov    %eax,-0x14000(%rsp)
+  0x00007b0cffba0717:   push   %rbp
+  0x00007b0cffba0718:   sub    $0x10,%rsp
+  0x00007b0cffba071c:   cmpl   $0x1,0x20(%r15)
+  0x00007b0cffba0724:   jne    0x00007b0cffba0776           ;*synchronization entry
+                                                            ; - java.lang.String::length@-1 (line 1744)
+  0x00007b0cffba072a:   mov    0x14(%rsi),%r11d             ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@1 (line 1744)
+  0x00007b0cffba072e:   mov    0xc(%r12,%r11,8),%r10d       ; implicit exception: dispatches to 0x00007b0cffba074d
+  0x00007b0cffba0733:   movsbl 0x10(%rsi),%r8d
+  0x00007b0cffba0738:   sarx   %r8d,%r10d,%eax              ;*ishr {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@9 (line 1744)
+  0x00007b0cffba073d:   add    $0x10,%rsp
+  0x00007b0cffba0741:   pop    %rbp
+  0x00007b0cffba0742:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007b0cffba0746:   ja     0x00007b0cffba0760
+  0x00007b0cffba074c:   ret    
+  0x00007b0cffba074d:   mov    $0xfffffff6,%esi
+  0x00007b0cffba0752:   nop
+  0x00007b0cffba0753:   call   0x00007b0cff585ce0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x00007b0cffba0758:   nopl   0x150(%rax,%rax,1)           ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::length@4 (line 1744)
+                                                            ;   {post_call_nop}
+  0x00007b0cffba0760:   movabs $0x7b0cffba0742,%r10         ;   {internal_word}
+  0x00007b0cffba076a:   mov    %r10,0x510(%r15)
+  0x00007b0cffba0771:   jmp    0x00007b0cff4afb60           ;   {runtime_call SafepointBlob}
+  0x00007b0cffba0776:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007b0cffba077b:   jmp    0x00007b0cffba072a
+[Stub Code]
+  0x00007b0cffba0780:   call   0x00007b0cff4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007b0cffba0785:   jmp    0x00007b0cffba0780
+  0x00007b0cffba0787:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

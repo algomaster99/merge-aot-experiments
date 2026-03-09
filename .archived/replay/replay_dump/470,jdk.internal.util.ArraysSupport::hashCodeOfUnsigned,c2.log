@@ -1,0 +1,170 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 9417  470       4       jdk.internal.util.ArraysSupport::hashCodeOfUnsigned (55 bytes)
+ total in heap  [0x000077b45fbbb688,0x000077b45fbbb9e0] = 856
+ main code      [0x000077b45fbbb780,0x000077b45fbbb9d8] = 600
+ stub code      [0x000077b45fbbb9d8,0x000077b45fbbb9e0] = 8
+ mutable data [0x000077b40807f760,0x000077b40807f7a8] = 72
+ relocation     [0x000077b40807f760,0x000077b40807f7a0] = 64
+ metadata       [0x000077b40807f7a0,0x000077b40807f7a8] = 8
+ immutable data [0x000077b40807f6b0,0x000077b40807f754] = 164
+ dependencies   [0x000077b40807f6b0,0x000077b40807f6b8] = 8
+ scopes pcs     [0x000077b40807f6b8,0x000077b40807f728] = 112
+ scopes data    [0x000077b40807f728,0x000077b40807f750] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004648ddd8} &apos;hashCodeOfUnsigned&apos; &apos;([BIII)I&apos; in &apos;jdk/internal/util/ArraysSupport&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = int
+  # parm2:    rcx       = int
+  # parm3:    r8        = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbbb780:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbbb787:   push   %rbp
+  0x000077b45fbbb788:   sub    $0x20,%rsp
+  0x000077b45fbbb78c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbb794:   jne    0x000077b45fbbb9ce           ;*synchronization entry
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@-1 (line 273)
+  0x000077b45fbbb79a:   cmp    $0x2,%ecx
+  0x000077b45fbbb79d:   jb     0x000077b45fbbb991           ;*lookupswitch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@1 (line 273)
+  0x000077b45fbbb7a3:   lea    0x10(%rsi,%rdx,1),%rdi
+  0x000077b45fbbb7a8:   mov    %ecx,%edx
+  0x000077b45fbbb7aa:   mov    %r8d,%ebx
+  0x000077b45fbbb7ad:   cmp    $0x20,%edx
+  0x000077b45fbbb7b0:   jl     0x000077b45fbbb92b
+  0x000077b45fbbb7b6:   xor    %r10d,%r10d
+  0x000077b45fbbb7b9:   vpxor  %ymm5,%ymm5,%ymm5
+  0x000077b45fbbb7bd:   vpxor  %ymm6,%ymm6,%ymm6
+  0x000077b45fbbb7c1:   vpxor  %ymm7,%ymm7,%ymm7
+  0x000077b45fbbb7c5:   vpxor  %ymm8,%ymm8,%ymm8
+  0x000077b45fbbb7ca:   movabs $0x77b478e173c0,%r9          ;   {external_word}
+  0x000077b45fbbb7d4:   mov    (%r9),%r11d
+  0x000077b45fbbb7d7:   vmovd  %r11d,%xmm0
+  0x000077b45fbbb7dc:   vpbroadcastd %xmm0,%ymm0
+  0x000077b45fbbb7e1:   mov    %edx,%r9d
+  0x000077b45fbbb7e4:   and    $0xffffffe0,%r9d
+  0x000077b45fbbb7e8:   imul   %r11d,%ebx
+  0x000077b45fbbb7ec:   vmovq  (%rdi,%r10,1),%xmm9
+  0x000077b45fbbb7f2:   vmovq  0x8(%rdi,%r10,1),%xmm10
+  0x000077b45fbbb7f9:   vmovq  0x10(%rdi,%r10,1),%xmm11
+  0x000077b45fbbb800:   vmovq  0x18(%rdi,%r10,1),%xmm12
+  0x000077b45fbbb807:   vpmulld %ymm0,%ymm5,%ymm5
+  0x000077b45fbbb80c:   vpmovzxbd %xmm9,%ymm9
+  0x000077b45fbbb811:   vpaddd %ymm9,%ymm5,%ymm5
+  0x000077b45fbbb816:   vpmulld %ymm0,%ymm6,%ymm6
+  0x000077b45fbbb81b:   vpmovzxbd %xmm10,%ymm10
+  0x000077b45fbbb820:   vpaddd %ymm10,%ymm6,%ymm6
+  0x000077b45fbbb825:   vpmulld %ymm0,%ymm7,%ymm7
+  0x000077b45fbbb82a:   vpmovzxbd %xmm11,%ymm11
+  0x000077b45fbbb82f:   vpaddd %ymm11,%ymm7,%ymm7
+  0x000077b45fbbb834:   vpmulld %ymm0,%ymm8,%ymm8
+  0x000077b45fbbb839:   vpmovzxbd %xmm12,%ymm12
+  0x000077b45fbbb83e:   vpaddd %ymm12,%ymm8,%ymm8
+  0x000077b45fbbb843:   add    $0x20,%r10d
+  0x000077b45fbbb847:   cmp    %r9d,%r10d
+  0x000077b45fbbb84a:   jl     0x000077b45fbbb7e8
+  0x000077b45fbbb84c:   lea    (%rdi,%r9,1),%rdi
+  0x000077b45fbbb850:   sub    %r9d,%edx
+  0x000077b45fbbb853:   movabs $0x77b478e173c4,%r9          ;   {external_word}
+  0x000077b45fbbb85d:   vmovdqu (%r9),%ymm1
+  0x000077b45fbbb862:   vpmulld %ymm1,%ymm5,%ymm5
+  0x000077b45fbbb867:   movabs $0x77b478e173e4,%r9          ;   {external_word}
+  0x000077b45fbbb871:   vmovdqu (%r9),%ymm2
+  0x000077b45fbbb876:   vpmulld %ymm2,%ymm6,%ymm6
+  0x000077b45fbbb87b:   movabs $0x77b478e17404,%r9          ;   {external_word}
+  0x000077b45fbbb885:   vmovdqu (%r9),%ymm3
+  0x000077b45fbbb88a:   vpmulld %ymm3,%ymm7,%ymm7
+  0x000077b45fbbb88f:   movabs $0x77b478e17424,%r9          ;   {external_word}
+  0x000077b45fbbb899:   vmovdqu (%r9),%ymm4
+  0x000077b45fbbb89e:   vpmulld %ymm4,%ymm8,%ymm8
+  0x000077b45fbbb8a3:   vphaddd %ymm5,%ymm5,%ymm9
+  0x000077b45fbbb8a8:   vextracti128 $0x1,%ymm9,%xmm10
+  0x000077b45fbbb8ae:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbbb8b3:   vphaddd %xmm9,%xmm9,%xmm9
+  0x000077b45fbbb8b8:   vmovd  %ebx,%xmm10
+  0x000077b45fbbb8bc:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbbb8c1:   vmovd  %xmm9,%ebx
+  0x000077b45fbbb8c5:   vphaddd %ymm6,%ymm6,%ymm11
+  0x000077b45fbbb8ca:   vextracti128 $0x1,%ymm11,%xmm12
+  0x000077b45fbbb8d0:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbbb8d5:   vphaddd %xmm11,%xmm11,%xmm11
+  0x000077b45fbbb8da:   vmovd  %ebx,%xmm12
+  0x000077b45fbbb8de:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbbb8e3:   vmovd  %xmm11,%ebx
+  0x000077b45fbbb8e7:   vphaddd %ymm7,%ymm7,%ymm9
+  0x000077b45fbbb8ec:   vextracti128 $0x1,%ymm9,%xmm10
+  0x000077b45fbbb8f2:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbbb8f7:   vphaddd %xmm9,%xmm9,%xmm9
+  0x000077b45fbbb8fc:   vmovd  %ebx,%xmm10
+  0x000077b45fbbb900:   vpaddd %xmm10,%xmm9,%xmm9
+  0x000077b45fbbb905:   vmovd  %xmm9,%ebx
+  0x000077b45fbbb909:   vphaddd %ymm8,%ymm8,%ymm11
+  0x000077b45fbbb90e:   vextracti128 $0x1,%ymm11,%xmm12
+  0x000077b45fbbb914:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbbb919:   vphaddd %xmm11,%xmm11,%xmm11
+  0x000077b45fbbb91e:   vmovd  %ebx,%xmm12
+  0x000077b45fbbb922:   vpaddd %xmm12,%xmm11,%xmm11
+  0x000077b45fbbb927:   vmovd  %xmm11,%ebx
+  0x000077b45fbbb92b:   mov    $0x1,%r10d
+  0x000077b45fbbb931:   cmp    %edx,%r10d
+  0x000077b45fbbb934:   jge    0x000077b45fbbb968
+  0x000077b45fbbb93a:   mov    $0x3c1,%r11d
+  0x000077b45fbbb940:   imul   %r11d,%ebx
+  0x000077b45fbbb944:   movzbl -0x1(%rdi,%r10,1),%r9d
+  0x000077b45fbbb94a:   mov    %r9d,%r11d
+  0x000077b45fbbb94d:   shl    $0x5,%r11d
+  0x000077b45fbbb951:   sub    %r9d,%r11d
+  0x000077b45fbbb954:   add    %r11d,%ebx
+  0x000077b45fbbb957:   movzbl (%rdi,%r10,1),%r11d
+  0x000077b45fbbb95c:   add    %r11d,%ebx
+  0x000077b45fbbb95f:   add    $0x2,%r10d
+  0x000077b45fbbb963:   cmp    %edx,%r10d
+  0x000077b45fbbb966:   jl     0x000077b45fbbb93a
+  0x000077b45fbbb968:   jg     0x000077b45fbbb97c
+  0x000077b45fbbb96a:   mov    %ebx,%r9d
+  0x000077b45fbbb96d:   shl    $0x5,%ebx
+  0x000077b45fbbb970:   sub    %r9d,%ebx
+  0x000077b45fbbb973:   movzbl -0x1(%rdi,%r10,1),%r11d
+  0x000077b45fbbb979:   add    %r11d,%ebx                   ;*invokestatic vectorizedHashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@51 (line 276)
+  0x000077b45fbbb97c:   mov    %ebx,%eax
+  0x000077b45fbbb97e:   vzeroupper 
+  0x000077b45fbbb981:   add    $0x20,%rsp
+  0x000077b45fbbb985:   pop    %rbp
+  0x000077b45fbbb986:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbb98a:   ja     0x000077b45fbbb9b8
+  0x000077b45fbbb990:   ret    
+  0x000077b45fbbb991:   mov    %rsi,%rbp
+  0x000077b45fbbb994:   mov    %edx,(%rsp)
+  0x000077b45fbbb997:   mov    %r8d,0x8(%rsp)
+  0x000077b45fbbb99c:   mov    %ecx,0xc(%rsp)
+  0x000077b45fbbb9a0:   mov    $0xffffff45,%esi
+  0x000077b45fbbb9a5:   data16 xchg %ax,%ax
+  0x000077b45fbbb9a8:   vzeroupper 
+  0x000077b45fbbb9ab:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop }
+                                                            ;*lookupswitch {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@1 (line 273)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbbb9b0:   nopl   0x328(%rax,%rax,1)           ;*lookupswitch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ArraysSupport::hashCodeOfUnsigned@1 (line 273)
+                                                            ;   {post_call_nop}
+  0x000077b45fbbb9b8:   movabs $0x77b45fbbb986,%r10         ;   {internal_word}
+  0x000077b45fbbb9c2:   mov    %r10,0x510(%r15)
+  0x000077b45fbbb9c9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbb9ce:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbb9d3:   jmp    0x000077b45fbbb79a
+[Stub Code]
+  0x000077b45fbbb9d8:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbb9dd:   jmp    0x000077b45fbbb9d8
+  0x000077b45fbbb9df:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

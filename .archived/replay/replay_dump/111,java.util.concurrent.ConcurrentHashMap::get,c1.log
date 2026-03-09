@@ -1,0 +1,660 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 1881  111       3       java.util.concurrent.ConcurrentHashMap::get (162 bytes)
+ total in heap  [0x000077b458011608,0x000077b458012058] = 2640
+ main code      [0x000077b458011700,0x000077b458011fe0] = 2272
+ stub code      [0x000077b458011fe0,0x000077b458012058] = 120
+ mutable data [0x000077b3ec0176b0,0x000077b3ec0177b0] = 256
+ relocation     [0x000077b3ec0176b0,0x000077b3ec0177a0] = 240
+ metadata       [0x000077b3ec0177a0,0x000077b3ec0177b0] = 16
+ immutable data [0x000077b3ec016ff0,0x000077b3ec01769c] = 1708
+ dependencies   [0x000077b3ec016ff0,0x000077b3ec016ff8] = 8
+ nul chk table  [0x000077b3ec016ff8,0x000077b3ec017030] = 56
+ scopes pcs     [0x000077b3ec017030,0x000077b3ec017490] = 1120
+ scopes data    [0x000077b3ec017490,0x000077b3ec017698] = 520
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458011700:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45801170b:   data16 data16 xchg %ax,%ax
+  0x000077b45801170f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/concurrent/ConcurrentHashMap&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x80]  (sp of caller)
+  0x000077b458011712:   mov    0x8(%rsi),%r10d
+  0x000077b458011716:   cmp    0x8(%rax),%r10d
+  0x000077b45801171a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b458011720:   mov    %eax,-0x14000(%rsp)
+  0x000077b458011727:   push   %rbp
+  0x000077b458011728:   sub    $0x70,%rsp
+  0x000077b45801172c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458011734:   je     0x000077b45801173b
+  0x000077b458011736:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45801173b:   mov    %rdx,0x48(%rsp)
+  0x000077b458011740:   movabs $0x77b4140296a0,%rdi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b45801174a:   mov    0x90(%rdi),%ebx
+  0x000077b458011750:   add    $0x2,%ebx
+  0x000077b458011753:   mov    %ebx,0x90(%rdi)
+  0x000077b458011759:   and    $0x7fe,%ebx
+  0x000077b45801175f:   test   %ebx,%ebx
+  0x000077b458011761:   je     0x000077b458011e88           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@0 (line 951)
+  0x000077b458011767:   mov    %rsi,0x40(%rsp)
+  0x000077b45801176c:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x000077b458011ea9
+  0x000077b45801176f:   mov    %rdx,%rdi
+  0x000077b458011772:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b45801177c:   mov    0x8(%rdi),%edi
+  0x000077b45801177f:   mov    $0x46000000,%r10d
+  0x000077b458011785:   add    %r10,%rdi
+  0x000077b458011788:   mov    $0x1c,%r10d
+  0x000077b45801178e:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458011792:   je     0x000077b4580117cb
+  0x000077b458011794:   add    $0x2,%r10
+  0x000077b458011798:   cmp    $0x20,%r10
+  0x000077b45801179c:   jne    0x000077b45801178e
+  0x000077b45801179e:   mov    $0x1c,%r10d
+  0x000077b4580117a4:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580117a9:   je     0x000077b4580117b7
+  0x000077b4580117ab:   add    $0x2,%r10
+  0x000077b4580117af:   cmp    $0x20,%r10
+  0x000077b4580117b3:   jne    0x000077b4580117a4
+  0x000077b4580117b5:   jmp    0x000077b4580117c3
+  0x000077b4580117b7:   push   %rax
+  0x000077b4580117b8:   xor    %rax,%rax
+  0x000077b4580117bb:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b4580117c0:   pop    %rax
+  0x000077b4580117c1:   jmp    0x000077b458011788
+  0x000077b4580117c3:   mov    $0x1b,%r10d
+  0x000077b4580117c9:   jmp    0x000077b4580117cf
+  0x000077b4580117cb:   add    $0x1,%r10
+  0x000077b4580117cf:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4580117d4:   mov    %rdx,%rsi                    ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@1 (line 951)
+  0x000077b4580117d7:   nopw   0x0(%rax,%rax,1)
+  0x000077b4580117dd:   movabs $0x77b3ec017980,%rax
+  0x000077b4580117e7:   call   0x000077b45f4adce0           ; ImmutableOopMap {[64]=Oop [72]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@1 (line 951)
+                                                            ;   {virtual_call}
+  0x000077b4580117ec:   nopl   0x1e4(%rax,%rax,1)           ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@1 (line 951)
+                                                            ;   {post_call_nop}
+  0x000077b4580117f4:   movabs $0x77b4140296a0,%rsi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b4580117fe:   addq   $0x1,0x108(%rsi)
+  0x000077b458011806:   movabs $0x77b414024a50,%rsi         ;   {metadata(method data for {method} {0x0000000046484e90} &apos;spread&apos; &apos;(I)I&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011810:   mov    0x90(%rsi),%edx
+  0x000077b458011816:   add    $0x2,%edx
+  0x000077b458011819:   mov    %edx,0x90(%rsi)
+  0x000077b45801181f:   and    $0x1ffffe,%edx
+  0x000077b458011825:   test   %edx,%edx
+  0x000077b458011827:   je     0x000077b458011eae
+  0x000077b45801182d:   mov    %rax,%rsi
+  0x000077b458011830:   shr    $0x10,%esi
+  0x000077b458011833:   xor    %rax,%rsi
+  0x000077b458011836:   and    $0x7fffffff,%esi
+  0x000077b45801183c:   mov    %esi,0x50(%rsp)
+  0x000077b458011840:   mov    0x40(%rsp),%rdx
+  0x000077b458011845:   mov    0x14(%rdx),%edx
+  0x000077b458011848:   shl    $0x3,%rdx                    ;*getfield table {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@10 (line 952)
+  0x000077b45801184c:   test   %rdx,%rdx
+  0x000077b45801184f:   movabs $0x77b4140296a0,%rdi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011859:   mov    $0x118,%ebx
+  0x000077b45801185e:   je     0x000077b458011865
+  0x000077b458011860:   mov    $0x128,%ebx
+  0x000077b458011865:   mov    (%rdi,%rbx,1),%rax
+  0x000077b458011869:   lea    0x1(%rax),%rax
+  0x000077b45801186d:   mov    %rax,(%rdi,%rbx,1)
+  0x000077b458011871:   je     0x000077b458011e40           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@15 (line 952)
+  0x000077b458011877:   mov    0xc(%rdx),%edi               ; implicit exception: dispatches to 0x000077b458011ecf
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@19 (line 952)
+  0x000077b45801187a:   test   %edi,%edi
+  0x000077b45801187c:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011886:   mov    $0x138,%eax
+  0x000077b45801188b:   jle    0x000077b458011892
+  0x000077b45801188d:   mov    $0x148,%eax
+  0x000077b458011892:   mov    (%rbx,%rax,1),%rcx
+  0x000077b458011896:   lea    0x1(%rcx),%rcx
+  0x000077b45801189a:   mov    %rcx,(%rbx,%rax,1)
+  0x000077b45801189e:   jle    0x000077b458011e40           ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@23 (line 952)
+  0x000077b4580118a4:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b4580118ae:   addq   $0x1,0x158(%rbx)
+  0x000077b4580118b6:   dec    %edi
+  0x000077b4580118b8:   and    %rsi,%rdi
+  0x000077b4580118bb:   mov    %rdx,%rsi
+  0x000077b4580118be:   mov    %rdi,%rdx                    ;*invokestatic tabAt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@34 (line 953)
+  0x000077b4580118c1:   nopw   0x0(%rax,%rax,1)
+  0x000077b4580118c7:   call   0x000077b45f4adfe0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokestatic tabAt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@34 (line 953)
+                                                            ;   {static_call}
+  0x000077b4580118cc:   nopl   0x10002c4(%rax,%rax,1)       ;*invokestatic tabAt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@34 (line 953)
+                                                            ;   {post_call_nop}
+  0x000077b4580118d4:   test   %rax,%rax
+  0x000077b4580118d7:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b4580118e1:   mov    $0x168,%esi
+  0x000077b4580118e6:   je     0x000077b4580118ed
+  0x000077b4580118e8:   mov    $0x178,%esi
+  0x000077b4580118ed:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b4580118f1:   lea    0x1(%rdi),%rdi
+  0x000077b4580118f5:   mov    %rdi,(%rdx,%rsi,1)
+  0x000077b4580118f9:   je     0x000077b458011e40           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@39 (line 953)
+  0x000077b4580118ff:   mov    0xc(%rax),%esi               ; implicit exception: dispatches to 0x000077b458011ed4
+                                                            ;*getfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@43 (line 954)
+  0x000077b458011902:   cmp    0x50(%rsp),%esi
+  0x000077b458011906:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011910:   mov    $0x188,%edi
+  0x000077b458011915:   jne    0x000077b45801191c
+  0x000077b458011917:   mov    $0x198,%edi
+  0x000077b45801191c:   mov    (%rdx,%rdi,1),%rbx
+  0x000077b458011920:   lea    0x1(%rbx),%rbx
+  0x000077b458011924:   mov    %rbx,(%rdx,%rdi,1)
+  0x000077b458011928:   jne    0x000077b458011a61           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@51 (line 954)
+  0x000077b45801192e:   mov    0x48(%rsp),%rdx
+  0x000077b458011933:   mov    0x10(%rax),%esi
+  0x000077b458011936:   shl    $0x3,%rsi                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@55 (line 955)
+  0x000077b45801193a:   cmp    %rdx,%rsi
+  0x000077b45801193d:   movabs $0x77b4140296a0,%rdi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011947:   mov    $0x1a8,%ebx
+  0x000077b45801194c:   je     0x000077b458011953
+  0x000077b45801194e:   mov    $0x1b8,%ebx
+  0x000077b458011953:   mov    (%rdi,%rbx,1),%rcx
+  0x000077b458011957:   lea    0x1(%rcx),%rcx
+  0x000077b45801195b:   mov    %rcx,(%rdi,%rbx,1)
+  0x000077b45801195f:   je     0x000077b458011e71           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@62 (line 955)
+  0x000077b458011965:   test   %rsi,%rsi
+  0x000077b458011968:   movabs $0x77b4140296a0,%rdi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011972:   mov    $0x1d8,%ebx
+  0x000077b458011977:   jne    0x000077b45801197e
+  0x000077b458011979:   mov    $0x1c8,%ebx
+  0x000077b45801197e:   mov    (%rdi,%rbx,1),%rcx
+  0x000077b458011982:   lea    0x1(%rcx),%rcx
+  0x000077b458011986:   mov    %rcx,(%rdi,%rbx,1)
+  0x000077b45801198a:   jne    0x000077b458011999           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@67 (line 955)
+  0x000077b458011990:   mov    0x50(%rsp),%esi
+  0x000077b458011994:   jmp    0x000077b458011aa0           ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@112 (line 960)
+  0x000077b458011999:   mov    %rax,0x58(%rsp)
+  0x000077b45801199e:   mov    %rdx,%rdi
+  0x000077b4580119a1:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b4580119ab:   mov    0x8(%rdi),%edi
+  0x000077b4580119ae:   mov    $0x46000000,%r10d
+  0x000077b4580119b4:   add    %r10,%rdi
+  0x000077b4580119b7:   mov    $0x3e,%r10d
+  0x000077b4580119bd:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b4580119c1:   je     0x000077b4580119fa
+  0x000077b4580119c3:   add    $0x2,%r10
+  0x000077b4580119c7:   cmp    $0x42,%r10
+  0x000077b4580119cb:   jne    0x000077b4580119bd
+  0x000077b4580119cd:   mov    $0x3e,%r10d
+  0x000077b4580119d3:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4580119d8:   je     0x000077b4580119e6
+  0x000077b4580119da:   add    $0x2,%r10
+  0x000077b4580119de:   cmp    $0x42,%r10
+  0x000077b4580119e2:   jne    0x000077b4580119d3
+  0x000077b4580119e4:   jmp    0x000077b4580119f2
+  0x000077b4580119e6:   push   %rax
+  0x000077b4580119e7:   xor    %rax,%rax
+  0x000077b4580119ea:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b4580119ef:   pop    %rax
+  0x000077b4580119f0:   jmp    0x000077b4580119b7
+  0x000077b4580119f2:   mov    $0x3d,%r10d
+  0x000077b4580119f8:   jmp    0x000077b4580119fe
+  0x000077b4580119fa:   add    $0x1,%r10
+  0x000077b4580119fe:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458011a03:   mov    %rdx,%rdi
+  0x000077b458011a06:   mov    %rsi,%rdx
+  0x000077b458011a09:   mov    %rdi,%rsi                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@73 (line 955)
+  0x000077b458011a0c:   nop
+  0x000077b458011a0d:   movabs $0x77b3ec0179a8,%rax
+  0x000077b458011a17:   call   0x000077b45f4adce0           ; ImmutableOopMap {[72]=Oop [88]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@73 (line 955)
+                                                            ;   {virtual_call}
+  0x000077b458011a1c:   nopl   0x2000414(%rax,%rax,1)       ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@73 (line 955)
+                                                            ;   {post_call_nop}
+  0x000077b458011a24:   test   %eax,%eax
+  0x000077b458011a26:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011a30:   mov    $0x228,%esi
+  0x000077b458011a35:   jne    0x000077b458011a3c
+  0x000077b458011a37:   mov    $0x218,%esi
+  0x000077b458011a3c:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b458011a40:   lea    0x1(%rdi),%rdi
+  0x000077b458011a44:   mov    %rdi,(%rdx,%rsi,1)           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@76 (line 955)
+  0x000077b458011a48:   mov    0x58(%rsp),%rax              ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@112 (line 960)
+  0x000077b458011a4d:   jne    0x000077b458011e71           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@76 (line 955)
+  0x000077b458011a53:   mov    0x50(%rsp),%esi
+  0x000077b458011a57:   mov    0x48(%rsp),%rdx
+  0x000077b458011a5c:   jmp    0x000077b458011aa0           ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@112 (line 960)
+  0x000077b458011a61:   mov    %rax,0x58(%rsp)
+  0x000077b458011a66:   test   %esi,%esi
+  0x000077b458011a68:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011a72:   mov    $0x248,%esi
+  0x000077b458011a77:   jl     0x000077b458011a7e
+  0x000077b458011a79:   mov    $0x238,%esi
+  0x000077b458011a7e:   mov    (%rdx,%rsi,1),%rdi
+  0x000077b458011a82:   lea    0x1(%rdi),%rdi
+  0x000077b458011a86:   mov    %rdi,(%rdx,%rsi,1)
+  0x000077b458011a8a:   jl     0x000077b458011d3a           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@86 (line 958)
+  0x000077b458011a90:   mov    0x58(%rsp),%rax              ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@112 (line 960)
+  0x000077b458011a95:   mov    0x50(%rsp),%esi
+  0x000077b458011a99:   mov    0x48(%rsp),%rdx
+  0x000077b458011a9e:   xchg   %ax,%ax
+  0x000077b458011aa0:   mov    0x18(%rax),%edi              ; implicit exception: dispatches to 0x000077b458011ed9
+  0x000077b458011aa3:   shl    $0x3,%rdi                    ;*getfield next {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@113 (line 960)
+  0x000077b458011aa7:   test   %rdi,%rdi
+  0x000077b458011aaa:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011ab4:   mov    $0x2c0,%eax
+  0x000077b458011ab9:   je     0x000077b458011ac0
+  0x000077b458011abb:   mov    $0x2d0,%eax
+  0x000077b458011ac0:   mov    (%rbx,%rax,1),%rcx
+  0x000077b458011ac4:   lea    0x1(%rcx),%rcx
+  0x000077b458011ac8:   mov    %rcx,(%rbx,%rax,1)
+  0x000077b458011acc:   je     0x000077b458011e40           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@118 (line 960)
+  0x000077b458011ad2:   mov    0xc(%rdi),%ebx               ; implicit exception: dispatches to 0x000077b458011ede
+                                                            ;*getfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@122 (line 961)
+  0x000077b458011ad5:   cmp    %esi,%ebx
+  0x000077b458011ad7:   mov    $0x2,%eax
+  0x000077b458011adc:   jne    0x000077b458011ae3
+  0x000077b458011ade:   mov    $0x0,%eax
+  0x000077b458011ae3:   movabs $0x77b4140296a0,%rcx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011aed:   mov    0x94(%rcx),%r8d
+  0x000077b458011af4:   add    %eax,%r8d
+  0x000077b458011af7:   mov    %r8d,0x94(%rcx)
+  0x000077b458011afe:   test   %eax,%eax
+  0x000077b458011b00:   jne    0x000077b458011b08
+  0x000077b458011b02:   mov    $0x2,%r8d
+  0x000077b458011b08:   and    $0x3ffe,%r8d
+  0x000077b458011b0f:   test   %r8d,%r8d
+  0x000077b458011b12:   je     0x000077b458011ee3           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@127 (line 961)
+  0x000077b458011b18:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rdx=Oop rdi=Oop [72]=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@127 (line 961)
+  0x000077b458011b1c:   test   %eax,(%r10)                  ;   {poll}
+  0x000077b458011b1f:   cmp    %esi,%ebx
+  0x000077b458011b21:   movabs $0x77b4140296a0,%rbx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011b2b:   mov    $0x2e0,%eax
+  0x000077b458011b30:   jne    0x000077b458011b37
+  0x000077b458011b32:   mov    $0x2f0,%eax
+  0x000077b458011b37:   mov    (%rbx,%rax,1),%rcx
+  0x000077b458011b3b:   lea    0x1(%rcx),%rcx
+  0x000077b458011b3f:   mov    %rcx,(%rbx,%rax,1)
+  0x000077b458011b43:   jne    0x000077b458011d18           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@127 (line 961)
+  0x000077b458011b49:   mov    0x10(%rdi),%ebx
+  0x000077b458011b4c:   shl    $0x3,%rbx                    ;*getfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@131 (line 961)
+  0x000077b458011b50:   cmp    %rdx,%rbx
+  0x000077b458011b53:   movabs $0x77b4140296a0,%rax         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011b5d:   mov    $0x300,%ecx
+  0x000077b458011b62:   je     0x000077b458011b69
+  0x000077b458011b64:   mov    $0x310,%ecx
+  0x000077b458011b69:   mov    (%rax,%rcx,1),%r8
+  0x000077b458011b6d:   lea    0x1(%r8),%r8
+  0x000077b458011b71:   mov    %r8,(%rax,%rcx,1)
+  0x000077b458011b75:   je     0x000077b458011e5a           ;*if_acmpeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@138 (line 961)
+  0x000077b458011b7b:   test   %rbx,%rbx
+  0x000077b458011b7e:   mov    $0x2,%eax
+  0x000077b458011b83:   je     0x000077b458011b8a
+  0x000077b458011b85:   mov    $0x0,%eax
+  0x000077b458011b8a:   movabs $0x77b4140296a0,%rcx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011b94:   mov    0x94(%rcx),%r8d
+  0x000077b458011b9b:   add    %eax,%r8d
+  0x000077b458011b9e:   mov    %r8d,0x94(%rcx)
+  0x000077b458011ba5:   test   %eax,%eax
+  0x000077b458011ba7:   jne    0x000077b458011baf
+  0x000077b458011ba9:   mov    $0x2,%r8d
+  0x000077b458011baf:   and    $0x3ffe,%r8d
+  0x000077b458011bb6:   test   %r8d,%r8d
+  0x000077b458011bb9:   je     0x000077b458011f04           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@143 (line 961)
+  0x000077b458011bbf:   mov    0x30(%r15),%r10              ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop [72]=Oop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@143 (line 961)
+  0x000077b458011bc3:   test   %eax,(%r10)                  ;   {poll}
+  0x000077b458011bc6:   test   %rbx,%rbx
+  0x000077b458011bc9:   movabs $0x77b4140296a0,%rax         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011bd3:   mov    $0x320,%ecx
+  0x000077b458011bd8:   je     0x000077b458011bdf
+  0x000077b458011bda:   mov    $0x330,%ecx
+  0x000077b458011bdf:   mov    (%rax,%rcx,1),%r8
+  0x000077b458011be3:   lea    0x1(%r8),%r8
+  0x000077b458011be7:   mov    %r8,(%rax,%rcx,1)
+  0x000077b458011beb:   mov    %rdi,0x60(%rsp)
+  0x000077b458011bf0:   je     0x000077b458011d05           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@143 (line 961)
+  0x000077b458011bf6:   mov    %rdx,%rax
+  0x000077b458011bf9:   movabs $0x77b4140296a0,%rcx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011c03:   mov    0x8(%rax),%eax
+  0x000077b458011c06:   mov    $0x46000000,%r10d
+  0x000077b458011c0c:   add    %r10,%rax
+  0x000077b458011c0f:   mov    $0x69,%r10d
+  0x000077b458011c15:   cmp    (%rcx,%r10,8),%rax
+  0x000077b458011c19:   je     0x000077b458011c58
+  0x000077b458011c1b:   add    $0x2,%r10
+  0x000077b458011c1f:   cmp    $0x6d,%r10
+  0x000077b458011c23:   jne    0x000077b458011c15
+  0x000077b458011c25:   mov    $0x69,%r10d
+  0x000077b458011c2b:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000077b458011c30:   je     0x000077b458011c3e
+  0x000077b458011c32:   add    $0x2,%r10
+  0x000077b458011c36:   cmp    $0x6d,%r10
+  0x000077b458011c3a:   jne    0x000077b458011c2b
+  0x000077b458011c3c:   jmp    0x000077b458011c50
+  0x000077b458011c3e:   push   %rbx
+  0x000077b458011c3f:   mov    %rax,%rbx
+  0x000077b458011c42:   xor    %rax,%rax
+  0x000077b458011c45:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000077b458011c4a:   mov    %rbx,%rax
+  0x000077b458011c4d:   pop    %rbx
+  0x000077b458011c4e:   jmp    0x000077b458011c0f
+  0x000077b458011c50:   mov    $0x68,%r10d
+  0x000077b458011c56:   jmp    0x000077b458011c5c
+  0x000077b458011c58:   add    $0x1,%r10
+  0x000077b458011c5c:   addq   $0x1,(%rcx,%r10,8)
+  0x000077b458011c61:   mov    %rdx,%rax
+  0x000077b458011c64:   mov    %rbx,%rdx
+  0x000077b458011c67:   mov    %rax,%rsi                    ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@149 (line 962)
+  0x000077b458011c6a:   data16 xchg %ax,%ax
+  0x000077b458011c6d:   movabs $0x77b3ec0179d0,%rax
+  0x000077b458011c77:   call   0x000077b45f4adce0           ; ImmutableOopMap {[72]=Oop [96]=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@149 (line 962)
+                                                            ;   {virtual_call}
+  0x000077b458011c7c:   nopl   0x5000674(%rax,%rax,1)       ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@149 (line 962)
+                                                            ;   {post_call_nop}
+  0x000077b458011c84:   test   %eax,%eax
+  0x000077b458011c86:   mov    $0x2,%edx
+  0x000077b458011c8b:   je     0x000077b458011c92
+  0x000077b458011c8d:   mov    $0x0,%edx
+  0x000077b458011c92:   movabs $0x77b4140296a0,%rcx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011c9c:   mov    0x94(%rcx),%esi
+  0x000077b458011ca2:   add    %edx,%esi
+  0x000077b458011ca4:   mov    %esi,0x94(%rcx)
+  0x000077b458011caa:   test   %edx,%edx
+  0x000077b458011cac:   jne    0x000077b458011cb3
+  0x000077b458011cae:   mov    $0x2,%esi
+  0x000077b458011cb3:   and    $0x3ffe,%esi
+  0x000077b458011cb9:   test   %esi,%esi
+  0x000077b458011cbb:   je     0x000077b458011f25           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@152 (line 962)
+  0x000077b458011cc1:   mov    0x30(%r15),%r10              ; ImmutableOopMap {[72]=Oop [96]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@152 (line 962)
+  0x000077b458011cc5:   test   %eax,(%r10)                  ;   {poll}
+  0x000077b458011cc8:   test   %eax,%eax
+  0x000077b458011cca:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011cd4:   mov    $0x380,%ecx
+  0x000077b458011cd9:   jne    0x000077b458011ce0
+  0x000077b458011cdb:   mov    $0x370,%ecx
+  0x000077b458011ce0:   mov    (%rdx,%rcx,1),%rsi
+  0x000077b458011ce4:   lea    0x1(%rsi),%rsi
+  0x000077b458011ce8:   mov    %rsi,(%rdx,%rcx,1)
+  0x000077b458011cec:   jne    0x000077b458011d30           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@152 (line 962)
+  0x000077b458011cf2:   mov    0x60(%rsp),%rax
+  0x000077b458011cf7:   mov    0x50(%rsp),%esi
+  0x000077b458011cfb:   mov    0x48(%rsp),%rdx
+  0x000077b458011d00:   jmp    0x000077b458011aa0
+  0x000077b458011d05:   mov    0x60(%rsp),%rax
+  0x000077b458011d0a:   mov    0x50(%rsp),%esi
+  0x000077b458011d0e:   mov    0x48(%rsp),%rdx
+  0x000077b458011d13:   jmp    0x000077b458011aa0
+  0x000077b458011d18:   mov    %rdi,0x60(%rsp)
+  0x000077b458011d1d:   mov    0x60(%rsp),%rax
+  0x000077b458011d22:   mov    0x50(%rsp),%esi
+  0x000077b458011d26:   mov    0x48(%rsp),%rdx
+  0x000077b458011d2b:   jmp    0x000077b458011aa0           ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@112 (line 960)
+  0x000077b458011d30:   mov    0x60(%rsp),%rdi
+  0x000077b458011d35:   jmp    0x000077b458011e5a           ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@155 (line 963)
+  0x000077b458011d3a:   mov    0x50(%rsp),%esi
+  0x000077b458011d3e:   mov    0x48(%rsp),%rcx
+  0x000077b458011d43:   mov    0x58(%rsp),%rax
+  0x000077b458011d48:   movabs $0x77b4140296a0,%rdx         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011d52:   mov    0x8(%rax),%eax
+  0x000077b458011d55:   mov    $0x46000000,%r10d
+  0x000077b458011d5b:   add    %r10,%rax
+  0x000077b458011d5e:   mov    $0x4c,%r10d
+  0x000077b458011d64:   cmp    (%rdx,%r10,8),%rax
+  0x000077b458011d68:   je     0x000077b458011da7
+  0x000077b458011d6a:   add    $0x2,%r10
+  0x000077b458011d6e:   cmp    $0x50,%r10
+  0x000077b458011d72:   jne    0x000077b458011d64
+  0x000077b458011d74:   mov    $0x4c,%r10d
+  0x000077b458011d7a:   cmpq   $0x0,(%rdx,%r10,8)
+  0x000077b458011d7f:   je     0x000077b458011d8d
+  0x000077b458011d81:   add    $0x2,%r10
+  0x000077b458011d85:   cmp    $0x50,%r10
+  0x000077b458011d89:   jne    0x000077b458011d7a
+  0x000077b458011d8b:   jmp    0x000077b458011d9f
+  0x000077b458011d8d:   push   %rbx
+  0x000077b458011d8e:   mov    %rax,%rbx
+  0x000077b458011d91:   xor    %rax,%rax
+  0x000077b458011d94:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x000077b458011d99:   mov    %rbx,%rax
+  0x000077b458011d9c:   pop    %rbx
+  0x000077b458011d9d:   jmp    0x000077b458011d5e
+  0x000077b458011d9f:   mov    $0x4b,%r10d
+  0x000077b458011da5:   jmp    0x000077b458011dab
+  0x000077b458011da7:   add    $0x1,%r10
+  0x000077b458011dab:   addq   $0x1,(%rdx,%r10,8)
+  0x000077b458011db0:   mov    %rsi,%rdx
+  0x000077b458011db3:   mov    0x58(%rsp),%rsi              ;*invokevirtual find {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@93 (line 959)
+  0x000077b458011db8:   nopl   0x0(%rax,%rax,1)
+  0x000077b458011dbd:   movabs $0x77b3ec0179f8,%rax
+  0x000077b458011dc7:   call   0x000077b45f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual find {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@93 (line 959)
+                                                            ;   {virtual_call}
+  0x000077b458011dcc:   nopl   0x70007c4(%rax,%rax,1)       ;*invokevirtual find {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@93 (line 959)
+                                                            ;   {post_call_nop}
+  0x000077b458011dd4:   test   %rax,%rax
+  0x000077b458011dd7:   movabs $0x77b4140296a0,%rsi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011de1:   mov    $0x288,%edi
+  0x000077b458011de6:   je     0x000077b458011ded
+  0x000077b458011de8:   mov    $0x298,%edi
+  0x000077b458011ded:   mov    (%rsi,%rdi,1),%rbx
+  0x000077b458011df1:   lea    0x1(%rbx),%rbx
+  0x000077b458011df5:   mov    %rbx,(%rsi,%rdi,1)
+  0x000077b458011df9:   je     0x000077b458011e26           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@99 (line 959)
+  0x000077b458011dff:   mov    0x14(%rax),%eax              ; implicit exception: dispatches to 0x000077b458011f46
+  0x000077b458011e02:   shl    $0x3,%rax                    ;*getfield val {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@104 (line 959)
+  0x000077b458011e06:   movabs $0x77b4140296a0,%rsi         ;   {metadata(method data for {method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011e10:   incl   0x2a8(%rsi)                  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@107 (line 959)
+  0x000077b458011e16:   add    $0x70,%rsp
+  0x000077b458011e1a:   pop    %rbp
+  0x000077b458011e1b:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458011e1f:   ja     0x000077b458011f4b
+  0x000077b458011e25:   ret    
+  0x000077b458011e26:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x000077b458011e30:   add    $0x70,%rsp
+  0x000077b458011e34:   pop    %rbp
+  0x000077b458011e35:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458011e39:   ja     0x000077b458011f61
+  0x000077b458011e3f:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@111 (line 959)
+  0x000077b458011e40:   movabs $0x0,%rax                    ;   {oop(nullptr)}
+  0x000077b458011e4a:   add    $0x70,%rsp
+  0x000077b458011e4e:   pop    %rbp
+  0x000077b458011e4f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458011e53:   ja     0x000077b458011f77
+  0x000077b458011e59:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@161 (line 966)
+  0x000077b458011e5a:   mov    0x14(%rdi),%eax
+  0x000077b458011e5d:   shl    $0x3,%rax                    ;*getfield val {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@156 (line 963)
+  0x000077b458011e61:   add    $0x70,%rsp
+  0x000077b458011e65:   pop    %rbp
+  0x000077b458011e66:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458011e6a:   ja     0x000077b458011f8d
+  0x000077b458011e70:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@159 (line 963)
+  0x000077b458011e71:   mov    0x14(%rax),%eax
+  0x000077b458011e74:   shl    $0x3,%rax                    ;*getfield val {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@80 (line 956)
+  0x000077b458011e78:   add    $0x70,%rsp
+  0x000077b458011e7c:   pop    %rbp
+  0x000077b458011e7d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458011e81:   ja     0x000077b458011fa3
+  0x000077b458011e87:   ret    
+  0x000077b458011e88:   movabs $0x461c73c8,%r10             ;   {metadata({method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011e92:   mov    %r10,0x8(%rsp)
+  0x000077b458011e97:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458011e9f:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@-1 (line 951)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458011ea4:   jmp    0x000077b458011767
+  0x000077b458011ea9:   call   0x000077b45f57c660           ; ImmutableOopMap {rdx=Oop [64]=Oop [72]=Oop }
+                                                            ;*invokevirtual hashCode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@1 (line 951)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011eae:   movabs $0x46484e90,%r10             ;   {metadata({method} {0x0000000046484e90} &apos;spread&apos; &apos;(I)I&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011eb8:   mov    %r10,0x8(%rsp)
+  0x000077b458011ebd:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458011ec5:   call   0x000077b45f582fe0           ; ImmutableOopMap {[64]=Oop [72]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.concurrent.ConcurrentHashMap::spread@-1 (line 711)
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@4 (line 951)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458011eca:   jmp    0x000077b45801182d
+  0x000077b458011ecf:   call   0x000077b45f57c660           ; ImmutableOopMap {rdx=Oop [72]=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::get@19 (line 952)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011ed4:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop [72]=Oop }
+                                                            ;*getfield hash {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@43 (line 954)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011ed9:   call   0x000077b45f57c660           ; ImmutableOopMap {rdx=Oop [72]=Oop }
+                                                            ;*getfield next {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@113 (line 960)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011ede:   call   0x000077b45f57c660           ; ImmutableOopMap {rdx=Oop rdi=Oop [72]=Oop }
+                                                            ;*getfield hash {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@122 (line 961)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011ee3:   movabs $0x461c73c8,%r10             ;   {metadata({method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011eed:   mov    %r10,0x8(%rsp)
+  0x000077b458011ef2:   movq   $0x7f,(%rsp)
+  0x000077b458011efa:   call   0x000077b45f582fe0           ; ImmutableOopMap {rdx=Oop rdi=Oop [72]=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@127 (line 961)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458011eff:   jmp    0x000077b458011b18
+  0x000077b458011f04:   movabs $0x461c73c8,%r10             ;   {metadata({method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011f0e:   mov    %r10,0x8(%rsp)
+  0x000077b458011f13:   movq   $0x8f,(%rsp)
+  0x000077b458011f1b:   call   0x000077b45f582fe0           ; ImmutableOopMap {rdx=Oop rdi=Oop rbx=Oop [72]=Oop }
+                                                            ;*ifnull {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@143 (line 961)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458011f20:   jmp    0x000077b458011bbf
+  0x000077b458011f25:   movabs $0x461c73c8,%r10             ;   {metadata({method} {0x00000000461c73c8} &apos;get&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x000077b458011f2f:   mov    %r10,0x8(%rsp)
+  0x000077b458011f34:   movq   $0x98,(%rsp)
+  0x000077b458011f3c:   call   0x000077b45f582fe0           ; ImmutableOopMap {[72]=Oop [96]=Oop }
+                                                            ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@152 (line 962)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458011f41:   jmp    0x000077b458011cc1
+  0x000077b458011f46:   call   0x000077b45f57c660           ; ImmutableOopMap {}
+                                                            ;*getfield val {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.concurrent.ConcurrentHashMap::get@104 (line 959)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458011f4b:   movabs $0x77b458011e1b,%r10         ;   {internal_word}
+  0x000077b458011f55:   mov    %r10,0x510(%r15)
+  0x000077b458011f5c:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458011f61:   movabs $0x77b458011e35,%r10         ;   {internal_word}
+  0x000077b458011f6b:   mov    %r10,0x510(%r15)
+  0x000077b458011f72:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458011f77:   movabs $0x77b458011e4f,%r10         ;   {internal_word}
+  0x000077b458011f81:   mov    %r10,0x510(%r15)
+  0x000077b458011f88:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458011f8d:   movabs $0x77b458011e66,%r10         ;   {internal_word}
+  0x000077b458011f97:   mov    %r10,0x510(%r15)
+  0x000077b458011f9e:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458011fa3:   movabs $0x77b458011e7d,%r10         ;   {internal_word}
+  0x000077b458011fad:   mov    %r10,0x510(%r15)
+  0x000077b458011fb4:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458011fb9:   mov    0x5c0(%r15),%rax
+  0x000077b458011fc0:   movq   $0x0,0x5c0(%r15)
+  0x000077b458011fcb:   movq   $0x0,0x5c8(%r15)
+  0x000077b458011fd6:   add    $0x70,%rsp
+  0x000077b458011fda:   pop    %rbp
+  0x000077b458011fdb:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x000077b458011fe0:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b458011fe5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458011fef:   jmp    0x000077b458011fef           ;   {runtime_call nmethod}
+  0x000077b458011ff4:   nop
+  0x000077b458011ff5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b458011fff:   jmp    0x000077b458011fff           ;   {runtime_call nmethod}
+  0x000077b458012004:   nop
+  0x000077b458012005:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45801200f:   jmp    0x000077b45801200f           ;   {runtime_call nmethod}
+  0x000077b458012014:   nop
+  0x000077b458012015:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45801201f:   jmp    0x000077b45801201f           ;   {runtime_call nmethod}
+  0x000077b458012024:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45801202e:   jmp    0x000077b45801202e           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b458012033:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458012038:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458012042:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458012046:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45801204b:   hlt    
+  0x000077b45801204c:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458012051:   jmp    0x000077b45801204c
+  0x000077b458012053:   hlt    
+  0x000077b458012054:   hlt    
+  0x000077b458012055:   hlt    
+  0x000077b458012056:   hlt    
+  0x000077b458012057:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

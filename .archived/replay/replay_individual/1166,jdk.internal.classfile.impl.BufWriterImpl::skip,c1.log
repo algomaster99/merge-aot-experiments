@@ -1,0 +1,195 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 587   47       3       jdk.internal.classfile.impl.BufWriterImpl::skip (22 bytes)
+ total in heap  [0x00007c4cfffff008,0x00007c4cfffff350] = 840
+ main code      [0x00007c4cfffff100,0x00007c4cfffff320] = 544
+ stub code      [0x00007c4cfffff320,0x00007c4cfffff350] = 48
+ mutable data [0x00007c4ca002cf40,0x00007c4ca002cf90] = 80
+ relocation     [0x00007c4ca002cf40,0x00007c4ca002cf80] = 64
+ metadata       [0x00007c4ca002cf80,0x00007c4ca002cf90] = 16
+ immutable data [0x00007c4ca002cd90,0x00007c4ca002cf34] = 420
+ dependencies   [0x00007c4ca002cd90,0x00007c4ca002cd98] = 8
+ nul chk table  [0x00007c4ca002cd98,0x00007c4ca002cda8] = 16
+ scopes pcs     [0x00007c4ca002cda8,0x00007c4ca002cea8] = 256
+ scopes data    [0x00007c4ca002cea8,0x00007c4ca002cf30] = 136
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007c4cfffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007c4cfffff10b:   data16 data16 xchg %ax,%ax
+  0x00007c4cfffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000006645ddc0} &apos;skip&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x60]  (sp of caller)
+  0x00007c4cfffff112:   mov    0x8(%rsi),%r10d
+  0x00007c4cfffff116:   cmp    0x8(%rax),%r10d
+  0x00007c4cfffff11a:   jne    0x00007c4d074ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007c4cfffff120:   mov    %eax,-0x14000(%rsp)
+  0x00007c4cfffff127:   push   %rbp
+  0x00007c4cfffff128:   sub    $0x50,%rsp
+  0x00007c4cfffff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007c4cfffff134:   je     0x00007c4cfffff13b
+  0x00007c4cfffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007c4cfffff13b:   movabs $0x7c4cb8287e48,%rdi         ;   {metadata(method data for {method} {0x000000006645ddc0} &apos;skip&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff145:   mov    0x90(%rdi),%ebx
+  0x00007c4cfffff14b:   add    $0x2,%ebx
+  0x00007c4cfffff14e:   mov    %ebx,0x90(%rdi)
+  0x00007c4cfffff154:   and    $0x7fe,%ebx
+  0x00007c4cfffff15a:   test   %ebx,%ebx
+  0x00007c4cfffff15c:   je     0x00007c4cfffff29c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@0 (line 346)
+  0x00007c4cfffff162:   mov    0x10(%rsi),%edi              ;*getfield offset {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@1 (line 346)
+  0x00007c4cfffff165:   mov    %rsi,%rbx
+  0x00007c4cfffff168:   movabs $0x7c4cb8287e48,%rax         ;   {metadata(method data for {method} {0x000000006645ddc0} &apos;skip&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff172:   mov    0x8(%rbx),%ebx
+  0x00007c4cfffff175:   mov    $0x66000000,%r10d
+  0x00007c4cfffff17b:   add    %r10,%rbx
+  0x00007c4cfffff17e:   mov    $0x1c,%r10d
+  0x00007c4cfffff184:   cmp    (%rax,%r10,8),%rbx
+  0x00007c4cfffff188:   je     0x00007c4cfffff1c7
+  0x00007c4cfffff18a:   add    $0x2,%r10
+  0x00007c4cfffff18e:   cmp    $0x20,%r10
+  0x00007c4cfffff192:   jne    0x00007c4cfffff184
+  0x00007c4cfffff194:   mov    $0x1c,%r10d
+  0x00007c4cfffff19a:   cmpq   $0x0,(%rax,%r10,8)
+  0x00007c4cfffff19f:   je     0x00007c4cfffff1ad
+  0x00007c4cfffff1a1:   add    $0x2,%r10
+  0x00007c4cfffff1a5:   cmp    $0x20,%r10
+  0x00007c4cfffff1a9:   jne    0x00007c4cfffff19a
+  0x00007c4cfffff1ab:   jmp    0x00007c4cfffff1bf
+  0x00007c4cfffff1ad:   push   %rcx
+  0x00007c4cfffff1ae:   mov    %rax,%rcx
+  0x00007c4cfffff1b1:   xor    %rax,%rax
+  0x00007c4cfffff1b4:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x00007c4cfffff1b9:   mov    %rcx,%rax
+  0x00007c4cfffff1bc:   pop    %rcx
+  0x00007c4cfffff1bd:   jmp    0x00007c4cfffff17e
+  0x00007c4cfffff1bf:   mov    $0x1b,%r10d
+  0x00007c4cfffff1c5:   jmp    0x00007c4cfffff1cb
+  0x00007c4cfffff1c7:   add    $0x1,%r10
+  0x00007c4cfffff1cb:   addq   $0x1,(%rax,%r10,8)
+  0x00007c4cfffff1d0:   movabs $0x7c4cb8287b70,%rbx         ;   {metadata(method data for {method} {0x0000000066347728} &apos;reserveSpace&apos; &apos;(I)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff1da:   mov    0x90(%rbx),%eax
+  0x00007c4cfffff1e0:   add    $0x2,%eax
+  0x00007c4cfffff1e3:   mov    %eax,0x90(%rbx)
+  0x00007c4cfffff1e9:   and    $0x1ffffe,%eax
+  0x00007c4cfffff1ee:   test   %eax,%eax
+  0x00007c4cfffff1f0:   je     0x00007c4cfffff2bd
+  0x00007c4cfffff1f6:   mov    %rdi,%rbx
+  0x00007c4cfffff1f9:   add    %edx,%ebx
+  0x00007c4cfffff1fb:   mov    0x28(%rsi),%eax
+  0x00007c4cfffff1fe:   shl    $0x3,%rax                    ;*getfield elems {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@9 (line 355)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+  0x00007c4cfffff202:   mov    0xc(%rax),%eax               ; implicit exception: dispatches to 0x00007c4cfffff2de
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@12 (line 355)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+  0x00007c4cfffff205:   cmp    %eax,%ebx
+  0x00007c4cfffff207:   movabs $0x7c4cb8287b70,%rax         ;   {metadata(method data for {method} {0x0000000066347728} &apos;reserveSpace&apos; &apos;(I)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff211:   mov    $0xe8,%ecx
+  0x00007c4cfffff216:   jg     0x00007c4cfffff21d
+  0x00007c4cfffff218:   mov    $0xd8,%ecx
+  0x00007c4cfffff21d:   mov    (%rax,%rcx,1),%r8
+  0x00007c4cfffff221:   lea    0x1(%r8),%r8
+  0x00007c4cfffff225:   mov    %r8,(%rax,%rcx,1)
+  0x00007c4cfffff229:   mov    %edi,0x44(%rsp)
+  0x00007c4cfffff22d:   mov    %edx,0x40(%rsp)
+  0x00007c4cfffff231:   jg     0x00007c4cfffff241           ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@13 (line 355)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+  0x00007c4cfffff237:   mov    %rsi,0x38(%rsp)
+  0x00007c4cfffff23c:   jmp    0x00007c4cfffff274           ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@21 (line 358)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+  0x00007c4cfffff241:   mov    %rsi,%rax
+  0x00007c4cfffff244:   movabs $0x7c4cb8287b70,%rcx         ;   {metadata(method data for {method} {0x0000000066347728} &apos;reserveSpace&apos; &apos;(I)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff24e:   addq   $0x1,0xf8(%rcx)
+  0x00007c4cfffff256:   mov    %rbx,%rdx
+  0x00007c4cfffff259:   mov    %rsi,%rbx
+  0x00007c4cfffff25c:   mov    %rbx,%rsi                    ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@18 (line 356)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+  0x00007c4cfffff25f:   mov    %rbx,0x38(%rsp)
+  0x00007c4cfffff264:   data16 xchg %ax,%ax
+  0x00007c4cfffff267:   call   0x00007c4d074ad9e0           ; ImmutableOopMap {[56]=Oop }
+                                                            ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@18 (line 356)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+                                                            ;   {optimized virtual_call}
+  0x00007c4cfffff26c:   nopl   0x264(%rax,%rax,1)           ;*invokevirtual grow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@18 (line 356)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+                                                            ;   {post_call_nop}
+  0x00007c4cfffff274:   mov    0x44(%rsp),%edi
+  0x00007c4cfffff278:   mov    0x40(%rsp),%edx
+  0x00007c4cfffff27c:   mov    0x38(%rsp),%rsi
+  0x00007c4cfffff281:   mov    0x10(%rsi),%eax              ;*getfield offset {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@12 (line 348)
+  0x00007c4cfffff284:   add    %edx,%eax
+  0x00007c4cfffff286:   mov    %eax,0x10(%rsi)              ;*putfield offset {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@17 (line 348)
+  0x00007c4cfffff289:   mov    %rdi,%rax
+  0x00007c4cfffff28c:   add    $0x50,%rsp
+  0x00007c4cfffff290:   pop    %rbp
+  0x00007c4cfffff291:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007c4cfffff295:   ja     0x00007c4cfffff2e3
+  0x00007c4cfffff29b:   ret    
+  0x00007c4cfffff29c:   movabs $0x6645ddc0,%r10             ;   {metadata({method} {0x000000006645ddc0} &apos;skip&apos; &apos;(I)I&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff2a6:   mov    %r10,0x8(%rsp)
+  0x00007c4cfffff2ab:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c4cfffff2b3:   call   0x00007c4d07581860           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@-1 (line 346)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c4cfffff2b8:   jmp    0x00007c4cfffff162
+  0x00007c4cfffff2bd:   movabs $0x66347728,%r10             ;   {metadata({method} {0x0000000066347728} &apos;reserveSpace&apos; &apos;(I)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007c4cfffff2c7:   mov    %r10,0x8(%rsp)
+  0x00007c4cfffff2cc:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007c4cfffff2d4:   call   0x00007c4d07581860           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@-1 (line 354)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007c4cfffff2d9:   jmp    0x00007c4cfffff1f6
+  0x00007c4cfffff2de:   call   0x00007c4d0757bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::reserveSpace@12 (line 355)
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::skip@7 (line 347)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007c4cfffff2e3:   movabs $0x7c4cfffff291,%r10         ;   {internal_word}
+  0x00007c4cfffff2ed:   mov    %r10,0x510(%r15)
+  0x00007c4cfffff2f4:   jmp    0x00007c4d074afb60           ;   {runtime_call SafepointBlob}
+  0x00007c4cfffff2f9:   mov    0x5c0(%r15),%rax
+  0x00007c4cfffff300:   movq   $0x0,0x5c0(%r15)
+  0x00007c4cfffff30b:   movq   $0x0,0x5c8(%r15)
+  0x00007c4cfffff316:   add    $0x50,%rsp
+  0x00007c4cfffff31a:   pop    %rbp
+  0x00007c4cfffff31b:   jmp    0x00007c4d0757a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x00007c4cfffff320:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007c4cfffff32a:   jmp    0x00007c4cfffff32a           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007c4cfffff32f:   call   0x00007c4d0757db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007c4cfffff334:   movabs $0x7c4d1ed3aec4,%rdi         ;   {external_word}
+  0x00007c4cfffff33e:   and    $0xfffffffffffffff0,%rsp
+  0x00007c4cfffff342:   call   0x00007c4d1e791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007c4cfffff347:   hlt    
+  0x00007c4cfffff348:   call   0x00007c4d074afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007c4cfffff34d:   jmp    0x00007c4cfffff348
+  0x00007c4cfffff34f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

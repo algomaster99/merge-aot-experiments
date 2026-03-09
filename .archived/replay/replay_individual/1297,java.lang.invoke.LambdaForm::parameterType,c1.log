@@ -1,0 +1,134 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 727   50       3       java.lang.invoke.LambdaForm::parameterType (9 bytes)
+ total in heap  [0x0000733d0bfff008,0x0000733d0bfff288] = 640
+ main code      [0x0000733d0bfff100,0x0000733d0bfff250] = 336
+ stub code      [0x0000733d0bfff250,0x0000733d0bfff288] = 56
+ mutable data [0x0000733cac024e20,0x0000733cac024e70] = 80
+ relocation     [0x0000733cac024e20,0x0000733cac024e58] = 56
+ metadata       [0x0000733cac024e58,0x0000733cac024e70] = 24
+ immutable data [0x0000733cac024d40,0x0000733cac024e14] = 212
+ dependencies   [0x0000733cac024d40,0x0000733cac024d50] = 16
+ nul chk table  [0x0000733cac024d50,0x0000733cac024d60] = 16
+ scopes pcs     [0x0000733cac024d60,0x0000733cac024de0] = 128
+ scopes data    [0x0000733cac024de0,0x0000733cac024e10] = 48
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000733d0bfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000733d0bfff10b:   data16 data16 xchg %ax,%ax
+  0x0000733d0bfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000411f7168} &apos;parameterType&apos; &apos;(I)Ljava/lang/invoke/LambdaForm$BasicType;&apos; in &apos;java/lang/invoke/LambdaForm&apos;
+  # this:     rsi:rsi   = &apos;java/lang/invoke/LambdaForm&apos;
+  # parm0:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x0000733d0bfff112:   mov    0x8(%rsi),%r10d
+  0x0000733d0bfff116:   cmp    0x8(%rax),%r10d
+  0x0000733d0bfff11a:   jne    0x0000733d134ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000733d0bfff120:   mov    %eax,-0x14000(%rsp)
+  0x0000733d0bfff127:   push   %rbp
+  0x0000733d0bfff128:   sub    $0x20,%rsp
+  0x0000733d0bfff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000733d0bfff134:   je     0x0000733d0bfff13b
+  0x0000733d0bfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000733d0bfff13b:   movabs $0x733cc42c0628,%rdi         ;   {metadata(method data for {method} {0x00000000411f7168} &apos;parameterType&apos; &apos;(I)Ljava/lang/invoke/LambdaForm$BasicType;&apos; in &apos;java/lang/invoke/LambdaForm&apos;)}
+  0x0000733d0bfff145:   mov    0x90(%rdi),%ebx
+  0x0000733d0bfff14b:   add    $0x2,%ebx
+  0x0000733d0bfff14e:   mov    %ebx,0x90(%rdi)
+  0x0000733d0bfff154:   and    $0x7fe,%ebx
+  0x0000733d0bfff15a:   test   %ebx,%ebx
+  0x0000733d0bfff15c:   je     0x0000733d0bfff1eb           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.LambdaForm::parameterType@0 (line 548)
+  0x0000733d0bfff162:   mov    %rsi,%rdi
+  0x0000733d0bfff165:   movabs $0x733cc42c0628,%rbx         ;   {metadata(method data for {method} {0x00000000411f7168} &apos;parameterType&apos; &apos;(I)Ljava/lang/invoke/LambdaForm$BasicType;&apos; in &apos;java/lang/invoke/LambdaForm&apos;)}
+  0x0000733d0bfff16f:   movabs $0x411f6c68,%rdi             ;   {metadata(&apos;java/lang/invoke/LambdaForm&apos;)}
+  0x0000733d0bfff179:   mov    $0x1c,%r10d
+  0x0000733d0bfff17f:   cmp    (%rbx,%r10,8),%rdi
+  0x0000733d0bfff183:   je     0x0000733d0bfff1bc
+  0x0000733d0bfff185:   add    $0x2,%r10
+  0x0000733d0bfff189:   cmp    $0x20,%r10
+  0x0000733d0bfff18d:   jne    0x0000733d0bfff17f
+  0x0000733d0bfff18f:   mov    $0x1c,%r10d
+  0x0000733d0bfff195:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000733d0bfff19a:   je     0x0000733d0bfff1a8
+  0x0000733d0bfff19c:   add    $0x2,%r10
+  0x0000733d0bfff1a0:   cmp    $0x20,%r10
+  0x0000733d0bfff1a4:   jne    0x0000733d0bfff195
+  0x0000733d0bfff1a6:   jmp    0x0000733d0bfff1b4
+  0x0000733d0bfff1a8:   push   %rax
+  0x0000733d0bfff1a9:   xor    %rax,%rax
+  0x0000733d0bfff1ac:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000733d0bfff1b1:   pop    %rax
+  0x0000733d0bfff1b2:   jmp    0x0000733d0bfff179
+  0x0000733d0bfff1b4:   mov    $0x1b,%r10d
+  0x0000733d0bfff1ba:   jmp    0x0000733d0bfff1c0
+  0x0000733d0bfff1bc:   add    $0x1,%r10
+  0x0000733d0bfff1c0:   addq   $0x1,(%rbx,%r10,8)
+  0x0000733d0bfff1c5:   xchg   %ax,%ax
+  0x0000733d0bfff1c7:   call   0x0000733d134ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual parameter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.LambdaForm::parameterType@2 (line 548)
+                                                            ;   {optimized virtual_call}
+  0x0000733d0bfff1cc:   nopl   0x1c4(%rax,%rax,1)           ;*invokevirtual parameter {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.LambdaForm::parameterType@2 (line 548)
+                                                            ;   {post_call_nop}
+  0x0000733d0bfff1d4:   mov    0x10(%rax),%eax              ; implicit exception: dispatches to 0x0000733d0bfff20c
+  0x0000733d0bfff1d7:   shl    $0x3,%rax                    ;*getfield type {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.LambdaForm::parameterType@5 (line 548)
+  0x0000733d0bfff1db:   add    $0x20,%rsp
+  0x0000733d0bfff1df:   pop    %rbp
+  0x0000733d0bfff1e0:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000733d0bfff1e4:   ja     0x0000733d0bfff211
+  0x0000733d0bfff1ea:   ret    
+  0x0000733d0bfff1eb:   movabs $0x411f7168,%r10             ;   {metadata({method} {0x00000000411f7168} &apos;parameterType&apos; &apos;(I)Ljava/lang/invoke/LambdaForm$BasicType;&apos; in &apos;java/lang/invoke/LambdaForm&apos;)}
+  0x0000733d0bfff1f5:   mov    %r10,0x8(%rsp)
+  0x0000733d0bfff1fa:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000733d0bfff202:   call   0x0000733d13580f60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.invoke.LambdaForm::parameterType@-1 (line 548)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000733d0bfff207:   jmp    0x0000733d0bfff162
+  0x0000733d0bfff20c:   call   0x0000733d1357b460           ; ImmutableOopMap {}
+                                                            ;*getfield type {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.invoke.LambdaForm::parameterType@5 (line 548)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000733d0bfff211:   movabs $0x733d0bfff1e0,%r10         ;   {internal_word}
+  0x0000733d0bfff21b:   mov    %r10,0x510(%r15)
+  0x0000733d0bfff222:   jmp    0x0000733d134afb60           ;   {runtime_call SafepointBlob}
+  0x0000733d0bfff227:   mov    0x5c0(%r15),%rax
+  0x0000733d0bfff22e:   movq   $0x0,0x5c0(%r15)
+  0x0000733d0bfff239:   movq   $0x0,0x5c8(%r15)
+  0x0000733d0bfff244:   add    $0x20,%rsp
+  0x0000733d0bfff248:   pop    %rbp
+  0x0000733d0bfff249:   jmp    0x0000733d1357a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000733d0bfff24e:   hlt    
+  0x0000733d0bfff24f:   hlt    
+[Stub Code]
+  0x0000733d0bfff250:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000733d0bfff255:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000733d0bfff25f:   jmp    0x0000733d0bfff25f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000733d0bfff264:   call   0x0000733d1357d6e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000733d0bfff269:   movabs $0x733d2993aec4,%rdi         ;   {external_word}
+  0x0000733d0bfff273:   and    $0xfffffffffffffff0,%rsp
+  0x0000733d0bfff277:   call   0x0000733d29391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000733d0bfff27c:   hlt    
+  0x0000733d0bfff27d:   call   0x0000733d134afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000733d0bfff282:   jmp    0x0000733d0bfff27d
+  0x0000733d0bfff284:   hlt    
+  0x0000733d0bfff285:   hlt    
+  0x0000733d0bfff286:   hlt    
+  0x0000733d0bfff287:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

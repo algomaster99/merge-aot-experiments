@@ -1,0 +1,98 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 1228   75       3       java.lang.Math::max (11 bytes)
+ total in heap  [0x000077b45800a608,0x000077b45800a818] = 528
+ main code      [0x000077b45800a700,0x000077b45800a7f8] = 248
+ stub code      [0x000077b45800a7f8,0x000077b45800a818] = 32
+ mutable data [0x000077b3ec0161d0,0x000077b3ec016200] = 48
+ relocation     [0x000077b3ec0161d0,0x000077b3ec0161f8] = 40
+ metadata       [0x000077b3ec0161f8,0x000077b3ec016200] = 8
+ immutable data [0x000077b3ec016120,0x000077b3ec0161c4] = 164
+ dependencies   [0x000077b3ec016120,0x000077b3ec016128] = 8
+ scopes pcs     [0x000077b3ec016128,0x000077b3ec016198] = 112
+ scopes data    [0x000077b3ec016198,0x000077b3ec0161c0] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000464908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45800a700:   mov    %eax,-0x14000(%rsp)
+  0x000077b45800a707:   push   %rbp
+  0x000077b45800a708:   sub    $0x20,%rsp
+  0x000077b45800a70c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45800a714:   je     0x000077b45800a71b
+  0x000077b45800a716:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45800a71b:   movabs $0x77b414021058,%rax         ;   {metadata(method data for {method} {0x00000000464908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b45800a725:   mov    0x90(%rax),%edi
+  0x000077b45800a72b:   add    $0x2,%edi
+  0x000077b45800a72e:   mov    %edi,0x90(%rax)
+  0x000077b45800a734:   and    $0x7fe,%edi
+  0x000077b45800a73a:   test   %edi,%edi
+  0x000077b45800a73c:   je     0x000077b45800a797           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@0 (line 2024)
+  0x000077b45800a742:   cmp    %edx,%esi
+  0x000077b45800a744:   movabs $0x77b414021058,%rax         ;   {metadata(method data for {method} {0x00000000464908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b45800a74e:   mov    $0xd8,%edi
+  0x000077b45800a753:   jl     0x000077b45800a75a
+  0x000077b45800a755:   mov    $0xe8,%edi
+  0x000077b45800a75a:   mov    (%rax,%rdi,1),%rbx
+  0x000077b45800a75e:   lea    0x1(%rbx),%rbx
+  0x000077b45800a762:   mov    %rbx,(%rax,%rdi,1)
+  0x000077b45800a766:   jl     0x000077b45800a781           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@2 (line 2024)
+  0x000077b45800a76c:   movabs $0x77b414021058,%rax         ;   {metadata(method data for {method} {0x00000000464908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b45800a776:   incl   0xf8(%rax)
+  0x000077b45800a77c:   jmp    0x000077b45800a784           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@6 (line 2024)
+  0x000077b45800a781:   mov    %rdx,%rsi                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@10 (line 2024)
+  0x000077b45800a784:   mov    %rsi,%rax
+  0x000077b45800a787:   add    $0x20,%rsp
+  0x000077b45800a78b:   pop    %rbp
+  0x000077b45800a78c:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45800a790:   ja     0x000077b45800a7b5
+  0x000077b45800a796:   ret    
+  0x000077b45800a797:   movabs $0x464908d0,%r10             ;   {metadata({method} {0x00000000464908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;)}
+  0x000077b45800a7a1:   mov    %r10,0x8(%rsp)
+  0x000077b45800a7a6:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45800a7ae:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Math::max@-1 (line 2024)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45800a7b3:   jmp    0x000077b45800a742
+  0x000077b45800a7b5:   movabs $0x77b45800a78c,%r10         ;   {internal_word}
+  0x000077b45800a7bf:   mov    %r10,0x510(%r15)
+  0x000077b45800a7c6:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45800a7cb:   mov    0x5c0(%r15),%rax
+  0x000077b45800a7d2:   movq   $0x0,0x5c0(%r15)
+  0x000077b45800a7dd:   movq   $0x0,0x5c8(%r15)
+  0x000077b45800a7e8:   add    $0x20,%rsp
+  0x000077b45800a7ec:   pop    %rbp
+  0x000077b45800a7ed:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45800a7f2:   hlt    
+  0x000077b45800a7f3:   hlt    
+  0x000077b45800a7f4:   hlt    
+  0x000077b45800a7f5:   hlt    
+  0x000077b45800a7f6:   hlt    
+  0x000077b45800a7f7:   hlt    
+[Exception Handler]
+  0x000077b45800a7f8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45800a7fd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45800a807:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45800a80b:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45800a810:   hlt    
+  0x000077b45800a811:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45800a816:   jmp    0x000077b45800a811
+--------------------------------------------------------------------------------
+[/Disassembly]

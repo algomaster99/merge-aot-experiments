@@ -1,0 +1,62 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 648   53       4       java.lang.AbstractStringBuilder::isLatin1 (16 bytes)
+ total in heap  [0x0000708d43ba9c08,0x0000708d43ba9d70] = 360
+ main code      [0x0000708d43ba9d00,0x0000708d43ba9d68] = 104
+ stub code      [0x0000708d43ba9d68,0x0000708d43ba9d70] = 8
+ mutable data [0x0000708cec0a1f90,0x0000708cec0a1fb0] = 32
+ relocation     [0x0000708cec0a1f90,0x0000708cec0a1fa8] = 24
+ metadata       [0x0000708cec0a1fa8,0x0000708cec0a1fb0] = 8
+ immutable data [0x0000708cec000ba0,0x0000708cec000c2c] = 140
+ dependencies   [0x0000708cec000ba0,0x0000708cec000ba8] = 8
+ scopes pcs     [0x0000708cec000ba8,0x0000708cec000c08] = 96
+ scopes data    [0x0000708cec000c08,0x0000708cec000c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000a01b64d8} &apos;isLatin1&apos; &apos;(B)Z&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  # parm0:    rsi       = byte
+  #           [sp+0x20]  (sp of caller)
+  0x0000708d43ba9d00:   mov    %eax,-0x14000(%rsp)
+  0x0000708d43ba9d07:   push   %rbp
+  0x0000708d43ba9d08:   sub    $0x10,%rsp
+  0x0000708d43ba9d0c:   cmpl   $0x1,0x20(%r15)
+  0x0000708d43ba9d14:   jne    0x0000708d43ba9d5e           ;*synchronization entry
+                                                            ; - java.lang.AbstractStringBuilder::isLatin1@-1 (line 1839)
+  0x0000708d43ba9d1a:   test   %esi,%esi
+  0x0000708d43ba9d1c:   jne    0x0000708d43ba9d33           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::isLatin1@7 (line 1839)
+  0x0000708d43ba9d1e:   mov    $0x1,%eax
+  0x0000708d43ba9d23:   add    $0x10,%rsp
+  0x0000708d43ba9d27:   pop    %rbp
+  0x0000708d43ba9d28:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000708d43ba9d2c:   ja     0x0000708d43ba9d48
+  0x0000708d43ba9d32:   ret    
+  0x0000708d43ba9d33:   mov    %esi,%ebp
+  0x0000708d43ba9d35:   mov    $0xffffff45,%esi
+  0x0000708d43ba9d3a:   nop
+  0x0000708d43ba9d3b:   call   0x0000708d43584660           ; ImmutableOopMap {}
+                                                            ;*ifne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.AbstractStringBuilder::isLatin1@7 (line 1839)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x0000708d43ba9d40:   nopl   0x138(%rax,%rax,1)           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::isLatin1@7 (line 1839)
+                                                            ;   {post_call_nop}
+  0x0000708d43ba9d48:   movabs $0x708d43ba9d28,%r10         ;   {internal_word}
+  0x0000708d43ba9d52:   mov    %r10,0x510(%r15)
+  0x0000708d43ba9d59:   jmp    0x0000708d434afb60           ;   {runtime_call SafepointBlob}
+  0x0000708d43ba9d5e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000708d43ba9d63:   jmp    0x0000708d43ba9d1a
+[Stub Code]
+  0x0000708d43ba9d68:   call   0x0000708d434afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000708d43ba9d6d:   jmp    0x0000708d43ba9d68
+  0x0000708d43ba9d6f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

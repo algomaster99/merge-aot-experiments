@@ -1,0 +1,81 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 8384  394       3       java.util.BitSet::wordIndex (5 bytes)
+ total in heap  [0x000077b45804ca08,0x000077b45804cbd8] = 464
+ main code      [0x000077b45804cb00,0x000077b45804cbb8] = 184
+ stub code      [0x000077b45804cbb8,0x000077b45804cbd8] = 32
+ mutable data [0x000077b3e8083ee0,0x000077b3e8083f10] = 48
+ relocation     [0x000077b3e8083ee0,0x000077b3e8083f08] = 40
+ metadata       [0x000077b3e8083f08,0x000077b3e8083f10] = 8
+ immutable data [0x000077b3e8083e10,0x000077b3e8083e74] = 100
+ dependencies   [0x000077b3e8083e10,0x000077b3e8083e18] = 8
+ scopes pcs     [0x000077b3e8083e18,0x000077b3e8083e58] = 64
+ scopes data    [0x000077b3e8083e58,0x000077b3e8083e70] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000046303308} &apos;wordIndex&apos; &apos;(I)I&apos; in &apos;java/util/BitSet&apos;
+  # parm0:    rsi       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45804cb00:   mov    %eax,-0x14000(%rsp)
+  0x000077b45804cb07:   push   %rbp
+  0x000077b45804cb08:   sub    $0x20,%rsp
+  0x000077b45804cb0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45804cb14:   je     0x000077b45804cb1b
+  0x000077b45804cb16:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45804cb1b:   movabs $0x77b41410f828,%rax         ;   {metadata(method data for {method} {0x0000000046303308} &apos;wordIndex&apos; &apos;(I)I&apos; in &apos;java/util/BitSet&apos;)}
+  0x000077b45804cb25:   mov    0x90(%rax),%edi
+  0x000077b45804cb2b:   add    $0x2,%edi
+  0x000077b45804cb2e:   mov    %edi,0x90(%rax)
+  0x000077b45804cb34:   and    $0x7fe,%edi
+  0x000077b45804cb3a:   test   %edi,%edi
+  0x000077b45804cb3c:   je     0x000077b45804cb58           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::wordIndex@0 (line 117)
+  0x000077b45804cb42:   sar    $0x6,%esi
+  0x000077b45804cb45:   mov    %rsi,%rax
+  0x000077b45804cb48:   add    $0x20,%rsp
+  0x000077b45804cb4c:   pop    %rbp
+  0x000077b45804cb4d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45804cb51:   ja     0x000077b45804cb76
+  0x000077b45804cb57:   ret    
+  0x000077b45804cb58:   movabs $0x46303308,%r10             ;   {metadata({method} {0x0000000046303308} &apos;wordIndex&apos; &apos;(I)I&apos; in &apos;java/util/BitSet&apos;)}
+  0x000077b45804cb62:   mov    %r10,0x8(%rsp)
+  0x000077b45804cb67:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45804cb6f:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.util.BitSet::wordIndex@-1 (line 117)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45804cb74:   jmp    0x000077b45804cb42
+  0x000077b45804cb76:   movabs $0x77b45804cb4d,%r10         ;   {internal_word}
+  0x000077b45804cb80:   mov    %r10,0x510(%r15)
+  0x000077b45804cb87:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45804cb8c:   mov    0x5c0(%r15),%rax
+  0x000077b45804cb93:   movq   $0x0,0x5c0(%r15)
+  0x000077b45804cb9e:   movq   $0x0,0x5c8(%r15)
+  0x000077b45804cba9:   add    $0x20,%rsp
+  0x000077b45804cbad:   pop    %rbp
+  0x000077b45804cbae:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45804cbb3:   hlt    
+  0x000077b45804cbb4:   hlt    
+  0x000077b45804cbb5:   hlt    
+  0x000077b45804cbb6:   hlt    
+  0x000077b45804cbb7:   hlt    
+[Exception Handler]
+  0x000077b45804cbb8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45804cbbd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45804cbc7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45804cbcb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45804cbd0:   hlt    
+  0x000077b45804cbd1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45804cbd6:   jmp    0x000077b45804cbd1
+--------------------------------------------------------------------------------
+[/Disassembly]

@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3075  167       1       java.lang.Class::getClassLoader (5 bytes)
+ total in heap  [0x000077b45fbaa188,0x000077b45fbaa330] = 424
+ main code      [0x000077b45fbaa280,0x000077b45fbaa310] = 144
+ stub code      [0x000077b45fbaa310,0x000077b45fbaa330] = 32
+ mutable data [0x000077b3fc0567e0,0x000077b3fc056808] = 40
+ relocation     [0x000077b3fc0567e0,0x000077b3fc056800] = 32
+ metadata       [0x000077b3fc056800,0x000077b3fc056808] = 8
+ immutable data [0x000077b3fc056770,0x000077b3fc0567cc] = 92
+ dependencies   [0x000077b3fc056770,0x000077b3fc056778] = 8
+ scopes pcs     [0x000077b3fc056778,0x000077b3fc0567b8] = 64
+ scopes data    [0x000077b3fc0567b8,0x000077b3fc0567c8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbaa280:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbaa28b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbaa28f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046189350} &apos;getClassLoader&apos; &apos;()Ljava/lang/ClassLoader;&apos; in &apos;java/lang/Class&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbaa292:   mov    0x8(%rsi),%r10d
+  0x000077b45fbaa296:   cmp    0x8(%rax),%r10d
+  0x000077b45fbaa29a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbaa2a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbaa2a7:   push   %rbp
+  0x000077b45fbaa2a8:   sub    $0x20,%rsp
+  0x000077b45fbaa2ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbaa2b4:   je     0x000077b45fbaa2bb
+  0x000077b45fbaa2b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getClassLoader@0 (line 982)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbaa2bb:   mov    0x3c(%rsi),%eax
+  0x000077b45fbaa2be:   shl    $0x3,%rax                    ;*getfield classLoader {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::getClassLoader@1 (line 982)
+  0x000077b45fbaa2c2:   add    $0x20,%rsp
+  0x000077b45fbaa2c6:   pop    %rbp
+  0x000077b45fbaa2c7:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbaa2cb:   ja     0x000077b45fbaa2d2
+  0x000077b45fbaa2d1:   ret    
+  0x000077b45fbaa2d2:   movabs $0x77b45fbaa2c7,%r10         ;   {internal_word}
+  0x000077b45fbaa2dc:   mov    %r10,0x510(%r15)
+  0x000077b45fbaa2e3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbaa2e8:   mov    0x5c0(%r15),%rax
+  0x000077b45fbaa2ef:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbaa2fa:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbaa305:   add    $0x20,%rsp
+  0x000077b45fbaa309:   pop    %rbp
+  0x000077b45fbaa30a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbaa30f:   hlt    
+[Exception Handler]
+  0x000077b45fbaa310:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbaa315:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbaa31f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbaa323:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbaa328:   hlt    
+  0x000077b45fbaa329:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbaa32e:   jmp    0x000077b45fbaa329
+--------------------------------------------------------------------------------
+[/Disassembly]

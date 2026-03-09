@@ -1,0 +1,93 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3630  191       3       java.util.WeakHashMap::maskNull (12 bytes)
+ total in heap  [0x000077b458021c08,0x000077b458021e18] = 528
+ main code      [0x000077b458021d00,0x000077b458021df8] = 248
+ stub code      [0x000077b458021df8,0x000077b458021e18] = 32
+ mutable data [0x000077b3fc0571f0,0x000077b3fc057220] = 48
+ relocation     [0x000077b3fc0571f0,0x000077b3fc057218] = 40
+ metadata       [0x000077b3fc057218,0x000077b3fc057220] = 8
+ immutable data [0x000077b4701304c0,0x000077b47013054c] = 140
+ dependencies   [0x000077b4701304c0,0x000077b4701304c8] = 8
+ scopes pcs     [0x000077b4701304c8,0x000077b470130528] = 96
+ scopes data    [0x000077b470130528,0x000077b470130548] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004646b290} &apos;maskNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/WeakHashMap&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458021d00:   mov    %eax,-0x14000(%rsp)
+  0x000077b458021d07:   push   %rbp
+  0x000077b458021d08:   sub    $0x20,%rsp
+  0x000077b458021d0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458021d14:   je     0x000077b458021d1b
+  0x000077b458021d16:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b458021d1b:   movabs $0x77b414074710,%rax         ;   {metadata(method data for {method} {0x000000004646b290} &apos;maskNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458021d25:   mov    0x90(%rax),%edi
+  0x000077b458021d2b:   add    $0x2,%edi
+  0x000077b458021d2e:   mov    %edi,0x90(%rax)
+  0x000077b458021d34:   and    $0x7fe,%edi
+  0x000077b458021d3a:   test   %edi,%edi
+  0x000077b458021d3c:   je     0x000077b458021d9a           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::maskNull@0 (line 278)
+  0x000077b458021d42:   test   %rsi,%rsi
+  0x000077b458021d45:   movabs $0x77b414074710,%rax         ;   {metadata(method data for {method} {0x000000004646b290} &apos;maskNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458021d4f:   mov    $0xd8,%edi
+  0x000077b458021d54:   jne    0x000077b458021d5b
+  0x000077b458021d56:   mov    $0xe8,%edi
+  0x000077b458021d5b:   mov    (%rax,%rdi,1),%rbx
+  0x000077b458021d5f:   lea    0x1(%rbx),%rbx
+  0x000077b458021d63:   mov    %rbx,(%rax,%rdi,1)
+  0x000077b458021d67:   jne    0x000077b458021d87           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::maskNull@1 (line 278)
+  0x000077b458021d6d:   movabs $0x77b414074710,%rax         ;   {metadata(method data for {method} {0x000000004646b290} &apos;maskNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458021d77:   incl   0xf8(%rax)
+  0x000077b458021d7d:   movabs $0x41f80f300,%rsi            ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::maskNull@7 (line 278)
+                                                            ;   {oop(a &apos;java/lang/Object&apos;{0x000000041f80f300})}
+  0x000077b458021d87:   mov    %rsi,%rax
+  0x000077b458021d8a:   add    $0x20,%rsp
+  0x000077b458021d8e:   pop    %rbp
+  0x000077b458021d8f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458021d93:   ja     0x000077b458021db8
+  0x000077b458021d99:   ret    
+  0x000077b458021d9a:   movabs $0x4646b290,%r10             ;   {metadata({method} {0x000000004646b290} &apos;maskNull&apos; &apos;(Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458021da4:   mov    %r10,0x8(%rsp)
+  0x000077b458021da9:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458021db1:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.WeakHashMap::maskNull@-1 (line 278)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458021db6:   jmp    0x000077b458021d42
+  0x000077b458021db8:   movabs $0x77b458021d8f,%r10         ;   {internal_word}
+  0x000077b458021dc2:   mov    %r10,0x510(%r15)
+  0x000077b458021dc9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458021dce:   mov    0x5c0(%r15),%rax
+  0x000077b458021dd5:   movq   $0x0,0x5c0(%r15)
+  0x000077b458021de0:   movq   $0x0,0x5c8(%r15)
+  0x000077b458021deb:   add    $0x20,%rsp
+  0x000077b458021def:   pop    %rbp
+  0x000077b458021df0:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b458021df5:   hlt    
+  0x000077b458021df6:   hlt    
+  0x000077b458021df7:   hlt    
+[Exception Handler]
+  0x000077b458021df8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458021dfd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458021e07:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458021e0b:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458021e10:   hlt    
+  0x000077b458021e11:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458021e16:   jmp    0x000077b458021e11
+--------------------------------------------------------------------------------
+[/Disassembly]

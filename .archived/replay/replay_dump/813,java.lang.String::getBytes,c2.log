@@ -1,0 +1,141 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 13777  813       4       java.lang.String::getBytes (44 bytes)
+ total in heap  [0x000077b45fbc2f88,0x000077b45fbc31c8] = 576
+ main code      [0x000077b45fbc3080,0x000077b45fbc31c0] = 320
+ stub code      [0x000077b45fbc31c0,0x000077b45fbc31c8] = 8
+ mutable data [0x000077b40806efc0,0x000077b40806eff8] = 56
+ relocation     [0x000077b40806efc0,0x000077b40806efe8] = 40
+ metadata       [0x000077b40806efe8,0x000077b40806eff8] = 16
+ immutable data [0x000077b40807cab0,0x000077b40807cc5c] = 428
+ dependencies   [0x000077b40807cab0,0x000077b40807cab8] = 8
+ nul chk table  [0x000077b40807cab8,0x000077b40807cad0] = 24
+ scopes pcs     [0x000077b40807cad0,0x000077b40807cbd0] = 256
+ scopes data    [0x000077b40807cbd0,0x000077b40807cc58] = 136
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbc3080:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000464a0340} &apos;getBytes&apos; &apos;([BIB)V&apos; in &apos;java/lang/String&apos;
+  # this:     rsi:rsi   = &apos;java/lang/String&apos;
+  # parm0:    rdx:rdx   = &apos;[B&apos;
+  # parm1:    rcx       = int
+  # parm2:    r8        = byte
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45fbc3082:   mov    0x8(%rsi),%r10d
+  0x000077b45fbc3086:   cmp    0x8(%rax),%r10d
+  0x000077b45fbc308a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbc3090:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbc3097:   push   %rbp
+  0x000077b45fbc3098:   sub    $0x30,%rsp
+  0x000077b45fbc309c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbc30a4:   jne    0x000077b45fbc31b2           ;*synchronization entry
+                                                            ; - java.lang.String::getBytes@-1 (line 5090)
+  0x000077b45fbc30aa:   movsbl 0x10(%rsi),%r10d             ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::coder@7 (line 5179)
+                                                            ; - java.lang.String::getBytes@1 (line 5090)
+  0x000077b45fbc30af:   cmp    %r8d,%r10d
+  0x000077b45fbc30b2:   jne    0x000077b45fbc3138           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@5 (line 5090)
+  0x000077b45fbc30b8:   mov    0x14(%rsi),%edi              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@9 (line 5091)
+  0x000077b45fbc30bb:   mov    0xc(%r12,%rdi,8),%r9d        ; implicit exception: dispatches to 0x000077b45fbc3164
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@21 (line 5091)
+  0x000077b45fbc30c0:   shlx   %r8d,%ecx,%ebp               ;*ishl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@16 (line 5091)
+  0x000077b45fbc30c5:   mov    0xc(%rdx),%r10d              ; implicit exception: dispatches to 0x000077b45fbc317c
+  0x000077b45fbc30c9:   test   %ebp,%ebp
+  0x000077b45fbc30cb:   jl     0x000077b45fbc3113
+  0x000077b45fbc30cd:   lea    (%r9,%rbp,1),%r11d
+  0x000077b45fbc30d1:   cmp    %r11d,%r10d
+  0x000077b45fbc30d4:   jb     0x000077b45fbc3113
+  0x000077b45fbc30d6:   test   %r9d,%r9d
+  0x000077b45fbc30d9:   jbe    0x000077b45fbc3100
+  0x000077b45fbc30db:   lea    0x10(%rdx,%rbp,1),%rsi
+  0x000077b45fbc30e0:   lea    0x10(%r12,%rdi,8),%rdi
+  0x000077b45fbc30e5:   movslq %r9d,%rdx
+  0x000077b45fbc30e8:   vzeroupper 
+  0x000077b45fbc30eb:   movabs $0x77b45f4937a0,%r10         ;   {runtime_call Stub::jbyte_arraycopy_stub (stub gen)}
+  0x000077b45fbc30f5:   call   *%r10
+  0x000077b45fbc30f8:   nopl   0x0(%rax,%rax,1)             ;   {post_call_nop}
+  0x000077b45fbc3100:   vzeroupper 
+  0x000077b45fbc3103:   add    $0x30,%rsp
+  0x000077b45fbc3107:   pop    %rbp
+  0x000077b45fbc3108:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbc310c:   ja     0x000077b45fbc319c
+  0x000077b45fbc3112:   ret    
+  0x000077b45fbc3113:   mov    $0xffffffcc,%esi
+  0x000077b45fbc3118:   mov    %rdx,(%rsp)
+  0x000077b45fbc311c:   mov    %edi,0x8(%rsp)
+  0x000077b45fbc3120:   mov    %r9d,0xc(%rsp)
+  0x000077b45fbc3125:   data16 xchg %ax,%ax
+  0x000077b45fbc3128:   vzeroupper 
+  0x000077b45fbc312b:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=Oop [8]=NarrowOop }
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3130:   nopl   0x1a8(%rax,%rax,1)           ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3138:   mov    %rsi,%rbp
+  0x000077b45fbc313b:   mov    %rdx,(%rsp)
+  0x000077b45fbc313f:   mov    %ecx,0x8(%rsp)
+  0x000077b45fbc3143:   mov    %r10d,0xc(%rsp)
+  0x000077b45fbc3148:   mov    %r8d,0x10(%rsp)
+  0x000077b45fbc314d:   mov    $0xffffff45,%esi
+  0x000077b45fbc3152:   xchg   %ax,%ax
+  0x000077b45fbc3154:   vzeroupper 
+  0x000077b45fbc3157:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop [0]=Oop }
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::getBytes@5 (line 5090)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc315c:   nopl   0x10001d4(%rax,%rax,1)       ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@5 (line 5090)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc3164:   mov    $0xfffffff6,%esi
+  0x000077b45fbc3169:   data16 xchg %ax,%ax
+  0x000077b45fbc316c:   vzeroupper 
+  0x000077b45fbc316f:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@21 (line 5091)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3174:   nopl   0x20001ec(%rax,%rax,1)       ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@21 (line 5091)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc317c:   mov    $0xfffffff6,%esi
+  0x000077b45fbc3181:   mov    %edi,(%rsp)
+  0x000077b45fbc3184:   mov    %r9d,0x4(%rsp)
+  0x000077b45fbc3189:   data16 xchg %ax,%ax
+  0x000077b45fbc318c:   vzeroupper 
+  0x000077b45fbc318f:   call   0x000077b45f5865e0           ; ImmutableOopMap {[0]=NarrowOop }
+                                                            ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbc3194:   nopl   0x300020c(%rax,%rax,1)       ;*invokestatic arraycopy {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::getBytes@22 (line 5091)
+                                                            ;   {post_call_nop}
+  0x000077b45fbc319c:   movabs $0x77b45fbc3108,%r10         ;   {internal_word}
+  0x000077b45fbc31a6:   mov    %r10,0x510(%r15)
+  0x000077b45fbc31ad:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbc31b2:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbc31b7:   jmp    0x000077b45fbc30aa
+  0x000077b45fbc31bc:   hlt    
+  0x000077b45fbc31bd:   hlt    
+  0x000077b45fbc31be:   hlt    
+  0x000077b45fbc31bf:   hlt    
+[Stub Code]
+  0x000077b45fbc31c0:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbc31c5:   jmp    0x000077b45fbc31c0
+  0x000077b45fbc31c7:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

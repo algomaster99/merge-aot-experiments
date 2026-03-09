@@ -1,0 +1,74 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 6327  306       1       jdk.internal.classfile.impl.BufWriterImpl::size (5 bytes)
+ total in heap  [0x000077b45fbb2888,0x000077b45fbb2a30] = 424
+ main code      [0x000077b45fbb2980,0x000077b45fbb2a10] = 144
+ stub code      [0x000077b45fbb2a10,0x000077b45fbb2a30] = 32
+ mutable data [0x000077b3e80441e0,0x000077b3e8044208] = 40
+ relocation     [0x000077b3e80441e0,0x000077b3e8044200] = 32
+ metadata       [0x000077b3e8044200,0x000077b3e8044208] = 8
+ immutable data [0x000077b3e8044170,0x000077b3e80441cc] = 92
+ dependencies   [0x000077b3e8044170,0x000077b3e8044178] = 8
+ scopes pcs     [0x000077b3e8044178,0x000077b3e80441b8] = 64
+ scopes data    [0x000077b3e80441b8,0x000077b3e80441c8] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb2980:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb298b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb298f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000463472b0} &apos;size&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb2992:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb2996:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb299a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb29a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb29a7:   push   %rbp
+  0x000077b45fbb29a8:   sub    $0x20,%rsp
+  0x000077b45fbb29ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb29b4:   je     0x000077b45fbb29bb
+  0x000077b45fbb29b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::size@0 (line 370)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb29bb:   mov    0x10(%rsi),%eax              ;*getfield offset {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::size@1 (line 370)
+  0x000077b45fbb29be:   add    $0x20,%rsp
+  0x000077b45fbb29c2:   pop    %rbp
+  0x000077b45fbb29c3:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb29c7:   ja     0x000077b45fbb29ce
+  0x000077b45fbb29cd:   ret    
+  0x000077b45fbb29ce:   movabs $0x77b45fbb29c3,%r10         ;   {internal_word}
+  0x000077b45fbb29d8:   mov    %r10,0x510(%r15)
+  0x000077b45fbb29df:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb29e4:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb29eb:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb29f6:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb2a01:   add    $0x20,%rsp
+  0x000077b45fbb2a05:   pop    %rbp
+  0x000077b45fbb2a06:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb2a0b:   hlt    
+  0x000077b45fbb2a0c:   hlt    
+  0x000077b45fbb2a0d:   hlt    
+  0x000077b45fbb2a0e:   hlt    
+  0x000077b45fbb2a0f:   hlt    
+[Exception Handler]
+  0x000077b45fbb2a10:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb2a15:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb2a1f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb2a23:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb2a28:   hlt    
+  0x000077b45fbb2a29:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb2a2e:   jmp    0x000077b45fbb2a29
+--------------------------------------------------------------------------------
+[/Disassembly]

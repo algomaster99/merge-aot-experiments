@@ -1,0 +1,188 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 9689  529       4       java.lang.String::equals (56 bytes)
+ total in heap  [0x000077b45fbbc188,0x000077b45fbbc488] = 768
+ main code      [0x000077b45fbbc280,0x000077b45fbbc480] = 512
+ stub code      [0x000077b45fbbc480,0x000077b45fbbc488] = 8
+ mutable data [0x000077b4080804c0,0x000077b4080804f0] = 48
+ relocation     [0x000077b4080804c0,0x000077b4080804e0] = 32
+ metadata       [0x000077b4080804e0,0x000077b4080804f0] = 16
+ immutable data [0x000077b408081c50,0x000077b408081dec] = 412
+ dependencies   [0x000077b408081c50,0x000077b408081c58] = 8
+ scopes pcs     [0x000077b408081c58,0x000077b408081d78] = 288
+ scopes data    [0x000077b408081d78,0x000077b408081de8] = 112
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbc280:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046179068} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/String&apos;
+  # this:     rsi:rsi   = &apos;java/lang/String&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbbc282:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbc286:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbc28a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbc290:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbbc297:   push   %rbp
+  0x000077b45fbbc298:   sub    $0x20,%rsp
+  0x000077b45fbbc29c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbc2a4:   jne    0x000077b45fbbc472           ;*synchronization entry
+                                                            ; - java.lang.String::equals@-1 (line 2089)
+  0x000077b45fbbc2aa:   cmp    %rdx,%rsi
+  0x000077b45fbbc2ad:   je     0x000077b45fbbc419           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@2 (line 2089)
+  0x000077b45fbbc2b3:   test   %rdx,%rdx
+  0x000077b45fbbc2b6:   je     0x000077b45fbbc404
+  0x000077b45fbbc2bc:   mov    0x8(%rdx),%r11d
+  0x000077b45fbbc2c0:   cmp    $0x178db8,%r11d              ;   {metadata(&apos;java/lang/String&apos;)}
+  0x000077b45fbbc2c7:   jne    0x000077b45fbbc43c           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@15 (line 2092)
+  0x000077b45fbbc2cd:   movsbl 0x10(%rsi),%r10d             ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@26 (line 2092)
+  0x000077b45fbbc2d2:   movsbl 0x10(%rdx),%ebp              ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@30 (line 2092)
+  0x000077b45fbbc2d6:   cmp    %ebp,%r10d
+  0x000077b45fbbc2d9:   jne    0x000077b45fbbc420           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@33 (line 2092)
+  0x000077b45fbbc2df:   mov    0x14(%rdx),%r10d             ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@41 (line 2092)
+  0x000077b45fbbc2e3:   mov    0x14(%rsi),%r8d              ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@37 (line 2092)
+  0x000077b45fbbc2e7:   mov    0xc(%r12,%r10,8),%r11d
+  0x000077b45fbbc2ec:   mov    0xc(%r12,%r8,8),%ecx
+  0x000077b45fbbc2f1:   cmp    %r11d,%ecx
+  0x000077b45fbbc2f4:   jne    0x000077b45fbbc404
+  0x000077b45fbbc2fa:   lea    0x10(%r12,%r10,8),%rsi
+  0x000077b45fbbc2ff:   lea    0x10(%r12,%r8,8),%rdi
+  0x000077b45fbbc304:   test   %ecx,%ecx
+  0x000077b45fbbc306:   je     0x000077b45fbbc3e8
+  0x000077b45fbbc30c:   mov    %ecx,%eax
+  0x000077b45fbbc30e:   and    $0x1f,%eax
+  0x000077b45fbbc311:   and    $0xffffffe0,%ecx
+  0x000077b45fbbc314:   je     0x000077b45fbbc36c
+  0x000077b45fbbc31a:   lea    (%rdi,%rcx,1),%rdi
+  0x000077b45fbbc31e:   lea    (%rsi,%rcx,1),%rsi
+  0x000077b45fbbc322:   neg    %rcx
+  0x000077b45fbbc325:   vmovdqu (%rdi,%rcx,1),%ymm1
+  0x000077b45fbbc32a:   vmovdqu (%rsi,%rcx,1),%ymm0
+  0x000077b45fbbc32f:   vpxor  %ymm0,%ymm1,%ymm1
+  0x000077b45fbbc333:   vptest %ymm1,%ymm1
+  0x000077b45fbbc338:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc33e:   add    $0x20,%rcx
+  0x000077b45fbbc342:   jne    0x000077b45fbbc325
+  0x000077b45fbbc344:   test   %eax,%eax
+  0x000077b45fbbc346:   je     0x000077b45fbbc3e8
+  0x000077b45fbbc34c:   vmovdqu -0x20(%rdi,%rax,1),%ymm1
+  0x000077b45fbbc352:   vmovdqu -0x20(%rsi,%rax,1),%ymm0
+  0x000077b45fbbc358:   vpxor  %ymm0,%ymm1,%ymm1
+  0x000077b45fbbc35c:   vptest %ymm1,%ymm1
+  0x000077b45fbbc361:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc367:   jmp    0x000077b45fbbc3e8
+  0x000077b45fbbc36c:   mov    %eax,%ecx
+  0x000077b45fbbc36e:   and    $0xf,%eax
+  0x000077b45fbbc371:   and    $0xfffffff0,%ecx
+  0x000077b45fbbc374:   je     0x000077b45fbbc3a4
+  0x000077b45fbbc37a:   lea    (%rdi,%rcx,1),%rdi
+  0x000077b45fbbc37e:   lea    (%rsi,%rcx,1),%rsi
+  0x000077b45fbbc382:   neg    %rcx
+  0x000077b45fbbc385:   vmovdqu (%rdi,%rcx,1),%xmm1
+  0x000077b45fbbc38a:   vmovdqu (%rsi,%rcx,1),%xmm0
+  0x000077b45fbbc38f:   vpxor  %xmm0,%xmm1,%xmm1
+  0x000077b45fbbc393:   vptest %xmm1,%xmm1
+  0x000077b45fbbc398:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc39e:   add    $0x10,%rcx
+  0x000077b45fbbc3a2:   jne    0x000077b45fbbc385
+  0x000077b45fbbc3a4:   mov    %eax,%ecx
+  0x000077b45fbbc3a6:   and    $0xfffffffc,%ecx
+  0x000077b45fbbc3a9:   je     0x000077b45fbbc3c4
+  0x000077b45fbbc3ab:   lea    (%rdi,%rcx,1),%rdi
+  0x000077b45fbbc3af:   lea    (%rsi,%rcx,1),%rsi
+  0x000077b45fbbc3b3:   neg    %rcx
+  0x000077b45fbbc3b6:   mov    (%rdi,%rcx,1),%ebx
+  0x000077b45fbbc3b9:   cmp    (%rsi,%rcx,1),%ebx
+  0x000077b45fbbc3bc:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc3be:   add    $0x4,%rcx                    ;   {other}
+  0x000077b45fbbc3c2:   jne    0x000077b45fbbc3b6
+  0x000077b45fbbc3c4:   test   $0x2,%al
+  0x000077b45fbbc3c6:   je     0x000077b45fbbc3da
+  0x000077b45fbbc3c8:   movzwl (%rdi),%ebx
+  0x000077b45fbbc3cb:   movzwl (%rsi),%ecx
+  0x000077b45fbbc3ce:   cmp    %ecx,%ebx
+  0x000077b45fbbc3d0:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc3d2:   lea    0x2(%rdi),%rdi
+  0x000077b45fbbc3d6:   lea    0x2(%rsi),%rsi
+  0x000077b45fbbc3da:   test   $0x1,%al
+  0x000077b45fbbc3dc:   je     0x000077b45fbbc3e8
+  0x000077b45fbbc3de:   movzbl (%rdi),%ebx
+  0x000077b45fbbc3e1:   movzbl (%rsi),%ecx
+  0x000077b45fbbc3e4:   cmp    %ecx,%ebx
+  0x000077b45fbbc3e6:   jne    0x000077b45fbbc3ef
+  0x000077b45fbbc3e8:   mov    $0x1,%eax
+  0x000077b45fbbc3ed:   jmp    0x000077b45fbbc3f1
+  0x000077b45fbbc3ef:   xor    %eax,%eax
+  0x000077b45fbbc3f1:   vpxor  %ymm1,%ymm1,%ymm1
+  0x000077b45fbbc3f5:   vpxor  %ymm0,%ymm0,%ymm0            ;*invokestatic equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@44 (line 2094)
+  0x000077b45fbbc3f9:   test   %eax,%eax
+  0x000077b45fbbc3fb:   je     0x000077b45fbbc404           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@47 (line 2094)
+  0x000077b45fbbc3fd:   mov    $0x1,%eax
+  0x000077b45fbbc402:   jmp    0x000077b45fbbc406           ;*iconst_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@54 (line 2094)
+  0x000077b45fbbc404:   xor    %eax,%eax                    ;*synchronization entry
+                                                            ; - java.lang.String::equals@-1 (line 2089)
+  0x000077b45fbbc406:   vzeroupper 
+  0x000077b45fbbc409:   add    $0x20,%rsp
+  0x000077b45fbbc40d:   pop    %rbp
+  0x000077b45fbbc40e:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbc412:   ja     0x000077b45fbbc45c
+  0x000077b45fbbc418:   ret    
+  0x000077b45fbbc419:   mov    $0x1,%eax
+  0x000077b45fbbc41e:   jmp    0x000077b45fbbc406
+  0x000077b45fbbc420:   mov    $0xffffff45,%esi
+  0x000077b45fbbc425:   mov    %r10d,(%rsp)
+  0x000077b45fbbc429:   data16 xchg %ax,%ax
+  0x000077b45fbbc42c:   vzeroupper 
+  0x000077b45fbbc42f:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.String::equals@33 (line 2092)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbbc434:   nopl   0x2ac(%rax,%rax,1)           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@33 (line 2092)
+                                                            ;   {post_call_nop}
+  0x000077b45fbbc43c:   mov    %rsi,%rbp
+  0x000077b45fbbc43f:   mov    %rdx,0x8(%rsp)
+  0x000077b45fbbc444:   mov    $0xffffffde,%esi
+  0x000077b45fbbc449:   data16 xchg %ax,%ax
+  0x000077b45fbbc44c:   vzeroupper 
+  0x000077b45fbbc44f:   call   0x000077b45f5865e0           ; ImmutableOopMap {rbp=Oop [8]=Oop }
+                                                            ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@8 (line 2094)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbbc454:   nopl   0x10002cc(%rax,%rax,1)       ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.String::equals@55 (line 2092)
+                                                            ;   {post_call_nop}
+  0x000077b45fbbc45c:   movabs $0x77b45fbbc40e,%r10         ;   {internal_word}
+  0x000077b45fbbc466:   mov    %r10,0x510(%r15)
+  0x000077b45fbbc46d:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbc472:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbc477:   jmp    0x000077b45fbbc2aa
+  0x000077b45fbbc47c:   hlt    
+  0x000077b45fbbc47d:   hlt    
+  0x000077b45fbbc47e:   hlt    
+  0x000077b45fbbc47f:   hlt    
+[Stub Code]
+  0x000077b45fbbc480:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbc485:   jmp    0x000077b45fbbc480
+  0x000077b45fbbc487:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

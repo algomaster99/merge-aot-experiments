@@ -1,0 +1,73 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 10197  577       1       java.lang.invoke.MethodTypeForm::parameterSlotCount (5 bytes)
+ total in heap  [0x000077b45fbbd708,0x000077b45fbbd8b0] = 424
+ main code      [0x000077b45fbbd800,0x000077b45fbbd890] = 144
+ stub code      [0x000077b45fbbd890,0x000077b45fbbd8b0] = 32
+ mutable data [0x000077b3f0014dd0,0x000077b3f0014df8] = 40
+ relocation     [0x000077b3f0014dd0,0x000077b3f0014df0] = 32
+ metadata       [0x000077b3f0014df0,0x000077b3f0014df8] = 8
+ immutable data [0x000077b3f0016930,0x000077b3f001698c] = 92
+ dependencies   [0x000077b3f0016930,0x000077b3f0016938] = 8
+ scopes pcs     [0x000077b3f0016938,0x000077b3f0016978] = 64
+ scopes data    [0x000077b3f0016978,0x000077b3f0016988] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbbd800:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbbd80b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbbd80f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046281a40} &apos;parameterSlotCount&apos; &apos;()I&apos; in &apos;java/lang/invoke/MethodTypeForm&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbbd812:   mov    0x8(%rsi),%r10d
+  0x000077b45fbbd816:   cmp    0x8(%rax),%r10d
+  0x000077b45fbbd81a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbbd820:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbbd827:   push   %rbp
+  0x000077b45fbbd828:   sub    $0x20,%rsp
+  0x000077b45fbbd82c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbbd834:   je     0x000077b45fbbd83b
+  0x000077b45fbbd836:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::parameterSlotCount@0 (line 221)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbbd83b:   movswl 0xc(%rsi),%eax               ;*getfield parameterSlotCount {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodTypeForm::parameterSlotCount@1 (line 221)
+  0x000077b45fbbd83f:   add    $0x20,%rsp
+  0x000077b45fbbd843:   pop    %rbp
+  0x000077b45fbbd844:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbbd848:   ja     0x000077b45fbbd84f
+  0x000077b45fbbd84e:   ret    
+  0x000077b45fbbd84f:   movabs $0x77b45fbbd844,%r10         ;   {internal_word}
+  0x000077b45fbbd859:   mov    %r10,0x510(%r15)
+  0x000077b45fbbd860:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbbd865:   mov    0x5c0(%r15),%rax
+  0x000077b45fbbd86c:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbbd877:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbbd882:   add    $0x20,%rsp
+  0x000077b45fbbd886:   pop    %rbp
+  0x000077b45fbbd887:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbbd88c:   hlt    
+  0x000077b45fbbd88d:   hlt    
+  0x000077b45fbbd88e:   hlt    
+  0x000077b45fbbd88f:   hlt    
+[Exception Handler]
+  0x000077b45fbbd890:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbbd895:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbbd89f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbbd8a3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbbd8a8:   hlt    
+  0x000077b45fbbd8a9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbbd8ae:   jmp    0x000077b45fbbd8a9
+--------------------------------------------------------------------------------
+[/Disassembly]

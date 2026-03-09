@@ -1,0 +1,342 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 659   52       3       java.lang.reflect.Field::copy (88 bytes)
+ total in heap  [0x00007fd123fff008,0x00007fd123fff578] = 1392
+ main code      [0x00007fd123fff100,0x00007fd123fff538] = 1080
+ stub code      [0x00007fd123fff538,0x00007fd123fff578] = 64
+ mutable data [0x00007fd0c402d0b0,0x00007fd0c402d118] = 104
+ relocation     [0x00007fd0c402d0b0,0x00007fd0c402d110] = 96
+ metadata       [0x00007fd0c402d110,0x00007fd0c402d118] = 8
+ immutable data [0x00007fd0c402cdc0,0x00007fd0c402d0a4] = 740
+ dependencies   [0x00007fd0c402cdc0,0x00007fd0c402cdc8] = 8
+ scopes pcs     [0x00007fd0c402cdc8,0x00007fd0c402cfd8] = 528
+ scopes data    [0x00007fd0c402cfd8,0x00007fd0c402d0a0] = 200
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007fd123fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007fd123fff10b:   data16 data16 xchg %ax,%ax
+  0x00007fd123fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;
+  #           [sp+0x90]  (sp of caller)
+  0x00007fd123fff112:   mov    0x8(%rsi),%r10d
+  0x00007fd123fff116:   cmp    0x8(%rax),%r10d
+  0x00007fd123fff11a:   jne    0x00007fd12b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007fd123fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007fd123fff127:   push   %rbp
+  0x00007fd123fff128:   sub    $0x80,%rsp
+  0x00007fd123fff12f:   nop
+  0x00007fd123fff130:   cmpl   $0x1,0x20(%r15)
+  0x00007fd123fff138:   je     0x00007fd123fff13f
+  0x00007fd123fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007fd123fff13f:   mov    %rsi,0x58(%rsp)
+  0x00007fd123fff144:   movabs $0x7fd0dc3065a8,%rdx         ;   {metadata(method data for {method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff14e:   mov    0x90(%rdx),%edi
+  0x00007fd123fff154:   add    $0x2,%edi
+  0x00007fd123fff157:   mov    %edi,0x90(%rdx)
+  0x00007fd123fff15d:   and    $0x7fe,%edi
+  0x00007fd123fff163:   test   %edi,%edi
+  0x00007fd123fff165:   je     0x00007fd123fff426           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@0 (line 161)
+  0x00007fd123fff16b:   mov    0x28(%rsi),%edx
+  0x00007fd123fff16e:   shl    $0x3,%rdx                    ;*getfield root {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@1 (line 161)
+  0x00007fd123fff172:   test   %rdx,%rdx
+  0x00007fd123fff175:   movabs $0x7fd0dc3065a8,%rdx         ;   {metadata(method data for {method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff17f:   mov    $0xe8,%edi
+  0x00007fd123fff184:   jne    0x00007fd123fff18b
+  0x00007fd123fff186:   mov    $0xd8,%edi
+  0x00007fd123fff18b:   mov    (%rdx,%rdi,1),%rax
+  0x00007fd123fff18f:   lea    0x1(%rax),%rax
+  0x00007fd123fff193:   mov    %rax,(%rdx,%rdi,1)
+  0x00007fd123fff197:   jne    0x00007fd123fff38c           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@4 (line 161)
+  0x00007fd123fff19d:   movabs $0x5d1b07f8,%rdx             ;   {metadata(&apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff1a7:   mov    %rsi,%rbx
+  0x00007fd123fff1aa:   mov    0x1b0(%r15),%rax
+  0x00007fd123fff1b1:   lea    0x48(%rax),%rdi
+  0x00007fd123fff1b5:   cmp    0x1c0(%r15),%rdi
+  0x00007fd123fff1bc:   ja     0x00007fd123fff447
+  0x00007fd123fff1c2:   mov    %rdi,0x1b0(%r15)
+  0x00007fd123fff1c9:   movq   $0x1,(%rax)
+  0x00007fd123fff1d0:   mov    %rdx,%rcx
+  0x00007fd123fff1d3:   mov    $0x5d000000,%r10d
+  0x00007fd123fff1d9:   sub    %r10,%rcx
+  0x00007fd123fff1dc:   mov    %ecx,0x8(%rax)
+  0x00007fd123fff1df:   xor    %rcx,%rcx
+  0x00007fd123fff1e2:   mov    %ecx,0xc(%rax)
+  0x00007fd123fff1e5:   xor    %rcx,%rcx
+  0x00007fd123fff1e8:   mov    $0x7,%edi
+  0x00007fd123fff1ed:   mov    %rcx,0x8(%rax,%rdi,8)
+  0x00007fd123fff1f2:   dec    %rdi
+  0x00007fd123fff1f5:   jne    0x00007fd123fff1ed           ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@17 (line 164)
+  0x00007fd123fff1f7:   mov    %rax,0x60(%rsp)
+  0x00007fd123fff1fc:   mov    0x14(%rbx),%edx
+  0x00007fd123fff1ff:   shl    $0x3,%rdx                    ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@22 (line 164)
+  0x00007fd123fff203:   mov    0x18(%rbx),%ecx
+  0x00007fd123fff206:   shl    $0x3,%rcx                    ;*getfield name {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@26 (line 164)
+  0x00007fd123fff20a:   mov    0x1c(%rbx),%r8d
+  0x00007fd123fff20e:   shl    $0x3,%r8                     ;*getfield type {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@30 (line 164)
+  0x00007fd123fff212:   mov    0x40(%rbx),%r9d              ;*getfield modifiers {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@34 (line 164)
+  0x00007fd123fff216:   movsbl 0xd(%rbx),%edi               ;*getfield trustedFinal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@38 (line 164)
+  0x00007fd123fff21a:   mov    0x3c(%rbx),%esi              ;*getfield slot {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@42 (line 164)
+  0x00007fd123fff21d:   mov    0x20(%rbx),%r11d
+  0x00007fd123fff221:   shl    $0x3,%r11                    ;*getfield signature {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@46 (line 164)
+  0x00007fd123fff225:   mov    0x24(%rbx),%r13d
+  0x00007fd123fff229:   shl    $0x3,%r13                    ;*getfield annotations {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@50 (line 164)
+  0x00007fd123fff22d:   mov    %rax,%r14
+  0x00007fd123fff230:   movabs $0x7fd0dc3065a8,%rbx         ;   {metadata(method data for {method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff23a:   addq   $0x1,0x108(%rbx)
+  0x00007fd123fff242:   mov    %esi,(%rsp)
+  0x00007fd123fff245:   mov    %r11,0x8(%rsp)
+  0x00007fd123fff24a:   mov    %r13,0x10(%rsp)
+  0x00007fd123fff24f:   mov    0x60(%rsp),%rsi              ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@53 (line 164)
+  0x00007fd123fff254:   data16 xchg %ax,%ax
+  0x00007fd123fff257:   call   0x00007fd12b4ad9e0           ; ImmutableOopMap {[88]=Oop [96]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@53 (line 164)
+                                                            ;   {optimized virtual_call}
+  0x00007fd123fff25c:   nopl   0x254(%rax,%rax,1)           ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@53 (line 164)
+                                                            ;   {post_call_nop}
+  0x00007fd123fff264:   movsbl 0x48(%r15),%eax
+  0x00007fd123fff269:   test   %eax,%eax
+  0x00007fd123fff26b:   mov    0x60(%rsp),%rax
+  0x00007fd123fff270:   jne    0x00007fd123fff454
+  0x00007fd123fff276:   mov    0x58(%rsp),%rsi
+  0x00007fd123fff27b:   mov    %rsi,%r10
+  0x00007fd123fff27e:   shr    $0x3,%r10
+  0x00007fd123fff282:   mov    %r10d,0x28(%rax)
+  0x00007fd123fff286:   mov    %rax,%rdi
+  0x00007fd123fff289:   xor    %rsi,%rdi
+  0x00007fd123fff28c:   shr    $0x17,%rdi
+  0x00007fd123fff290:   je     0x00007fd123fff2aa
+  0x00007fd123fff292:   test   %rsi,%rsi
+  0x00007fd123fff295:   je     0x00007fd123fff2aa
+  0x00007fd123fff297:   mov    %rax,%rdi
+  0x00007fd123fff29a:   shr    $0x9,%rdi
+  0x00007fd123fff29e:   add    0x50(%r15),%rdi
+  0x00007fd123fff2a2:   cmpb   $0xff,(%rdi)
+  0x00007fd123fff2a5:   jne    0x00007fd123fff2aa
+  0x00007fd123fff2a7:   movb   $0x0,(%rdi)                  ;*putfield root {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@59 (line 165)
+  0x00007fd123fff2aa:   mov    0x30(%rsi),%edx
+  0x00007fd123fff2ad:   shl    $0x3,%rdx                    ;*getfield fieldAccessor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@64 (line 167)
+  0x00007fd123fff2b1:   movsbl 0x48(%r15),%edi
+  0x00007fd123fff2b6:   test   %edi,%edi
+  0x00007fd123fff2b8:   jne    0x00007fd123fff472
+  0x00007fd123fff2be:   mov    %rdx,%r10
+  0x00007fd123fff2c1:   shr    $0x3,%r10
+  0x00007fd123fff2c5:   mov    %r10d,0x30(%rax)
+  0x00007fd123fff2c9:   mov    %rax,%rcx
+  0x00007fd123fff2cc:   xor    %rdx,%rcx
+  0x00007fd123fff2cf:   shr    $0x17,%rcx
+  0x00007fd123fff2d3:   je     0x00007fd123fff2ed
+  0x00007fd123fff2d5:   test   %rdx,%rdx
+  0x00007fd123fff2d8:   je     0x00007fd123fff2ed
+  0x00007fd123fff2da:   mov    %rax,%rcx
+  0x00007fd123fff2dd:   shr    $0x9,%rcx
+  0x00007fd123fff2e1:   add    0x50(%r15),%rcx
+  0x00007fd123fff2e5:   cmpb   $0xff,(%rcx)
+  0x00007fd123fff2e8:   jne    0x00007fd123fff2ed
+  0x00007fd123fff2ea:   movb   $0x0,(%rcx)                  ;*putfield fieldAccessor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@67 (line 167)
+  0x00007fd123fff2ed:   mov    0x34(%rsi),%edx
+  0x00007fd123fff2f0:   shl    $0x3,%rdx                    ;*getfield overrideFieldAccessor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@72 (line 168)
+  0x00007fd123fff2f4:   movsbl 0x48(%r15),%edi
+  0x00007fd123fff2f9:   test   %edi,%edi
+  0x00007fd123fff2fb:   jne    0x00007fd123fff490
+  0x00007fd123fff301:   mov    %rdx,%r10
+  0x00007fd123fff304:   shr    $0x3,%r10
+  0x00007fd123fff308:   mov    %r10d,0x34(%rax)
+  0x00007fd123fff30c:   mov    %rax,%rcx
+  0x00007fd123fff30f:   xor    %rdx,%rcx
+  0x00007fd123fff312:   shr    $0x17,%rcx
+  0x00007fd123fff316:   je     0x00007fd123fff330
+  0x00007fd123fff318:   test   %rdx,%rdx
+  0x00007fd123fff31b:   je     0x00007fd123fff330
+  0x00007fd123fff31d:   mov    %rax,%rcx
+  0x00007fd123fff320:   shr    $0x9,%rcx
+  0x00007fd123fff324:   add    0x50(%r15),%rcx
+  0x00007fd123fff328:   cmpb   $0xff,(%rcx)
+  0x00007fd123fff32b:   jne    0x00007fd123fff330
+  0x00007fd123fff32d:   movb   $0x0,(%rcx)                  ;*putfield overrideFieldAccessor {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@75 (line 168)
+  0x00007fd123fff330:   mov    0x2c(%rsi),%edx
+  0x00007fd123fff333:   shl    $0x3,%rdx                    ;*getfield genericInfo {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@80 (line 169)
+  0x00007fd123fff337:   movsbl 0x48(%r15),%esi
+  0x00007fd123fff33c:   test   %esi,%esi
+  0x00007fd123fff33e:   jne    0x00007fd123fff4ae
+  0x00007fd123fff344:   mov    %rdx,%r10
+  0x00007fd123fff347:   shr    $0x3,%r10
+  0x00007fd123fff34b:   mov    %r10d,0x2c(%rax)
+  0x00007fd123fff34f:   lock addl $0x0,-0x40(%rsp)
+  0x00007fd123fff355:   mov    %rax,%rdi
+  0x00007fd123fff358:   xor    %rdx,%rdi
+  0x00007fd123fff35b:   shr    $0x17,%rdi                   ;   {other}
+  0x00007fd123fff35f:   je     0x00007fd123fff379
+  0x00007fd123fff361:   test   %rdx,%rdx
+  0x00007fd123fff364:   je     0x00007fd123fff379
+  0x00007fd123fff366:   mov    %rax,%rdi
+  0x00007fd123fff369:   shr    $0x9,%rdi
+  0x00007fd123fff36d:   add    0x50(%r15),%rdi
+  0x00007fd123fff371:   cmpb   $0xff,(%rdi)
+  0x00007fd123fff374:   jne    0x00007fd123fff379
+  0x00007fd123fff376:   movb   $0x0,(%rdi)                  ;*putfield genericInfo {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@83 (line 169)
+  0x00007fd123fff379:   add    $0x80,%rsp
+  0x00007fd123fff380:   pop    %rbp
+  0x00007fd123fff381:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007fd123fff385:   ja     0x00007fd123fff4cc
+  0x00007fd123fff38b:   ret                                 ;*areturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@87 (line 171)
+  0x00007fd123fff38c:   nopl   0x0(%rax)
+  0x00007fd123fff390:   jmp    0x00007fd123fff4f1           ;   {other}
+  0x00007fd123fff395:   add    %al,(%rax)
+  0x00007fd123fff397:   add    %al,(%rax)
+  0x00007fd123fff399:   add    %cl,-0x75(%rcx)
+  0x00007fd123fff39c:   xchg   %esi,0x48000001(%rax)
+  0x00007fd123fff3a2:   lea    0x28(%rax),%edi
+  0x00007fd123fff3a5:   cmp    0x1c0(%r15),%rdi
+  0x00007fd123fff3ac:   ja     0x00007fd123fff4fb
+  0x00007fd123fff3b2:   mov    %rdi,0x1b0(%r15)
+  0x00007fd123fff3b9:   movq   $0x1,(%rax)
+  0x00007fd123fff3c0:   mov    %rdx,%rcx
+  0x00007fd123fff3c3:   mov    $0x5d000000,%r10d
+  0x00007fd123fff3c9:   sub    %r10,%rcx
+  0x00007fd123fff3cc:   mov    %ecx,0x8(%rax)
+  0x00007fd123fff3cf:   xor    %rcx,%rcx
+  0x00007fd123fff3d2:   mov    %ecx,0xc(%rax)
+  0x00007fd123fff3d5:   xor    %rcx,%rcx
+  0x00007fd123fff3d8:   mov    %rcx,0x10(%rax)
+  0x00007fd123fff3dc:   mov    %rcx,0x18(%rax)
+  0x00007fd123fff3e0:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@7 (line 162)
+  0x00007fd123fff3e4:   mov    %rax,%rdx
+  0x00007fd123fff3e7:   movabs $0x7fd0dc3065a8,%rsi         ;   {metadata(method data for {method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff3f1:   addq   $0x1,0xf8(%rsi)
+  0x00007fd123fff3f9:   movabs $0x7ff842028,%rdx            ;   {oop(&quot;Can not copy a non-root Field&quot;{0x00000007ff842028})}
+  0x00007fd123fff403:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@13 (line 162)
+  0x00007fd123fff406:   mov    %rax,0x68(%rsp)
+  0x00007fd123fff40b:   nopl   0x0(%rax)
+  0x00007fd123fff40f:   call   0x00007fd12b4ad9e0           ; ImmutableOopMap {[104]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@13 (line 162)
+                                                            ;   {optimized virtual_call}
+  0x00007fd123fff414:   nopl   0x100040c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@13 (line 162)
+                                                            ;   {post_call_nop}
+  0x00007fd123fff41c:   mov    0x68(%rsp),%rax
+  0x00007fd123fff421:   jmp    0x00007fd123fff525
+  0x00007fd123fff426:   movabs $0x5d1b1270,%r10             ;   {metadata({method} {0x000000005d1b1270} &apos;copy&apos; &apos;()Ljava/lang/reflect/Field;&apos; in &apos;java/lang/reflect/Field&apos;)}
+  0x00007fd123fff430:   mov    %r10,0x8(%rsp)
+  0x00007fd123fff435:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007fd123fff43d:   call   0x00007fd12b5826e0           ; ImmutableOopMap {rsi=Oop [88]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.Field::copy@-1 (line 161)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007fd123fff442:   jmp    0x00007fd123fff16b
+  0x00007fd123fff447:   mov    %rdx,%rdx
+  0x00007fd123fff44a:   call   0x00007fd12b57cf60           ; ImmutableOopMap {rbx=Oop [88]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@17 (line 164)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007fd123fff44f:   jmp    0x00007fd123fff1f7
+  0x00007fd123fff454:   mov    0x28(%rax),%edx
+  0x00007fd123fff457:   shl    $0x3,%rdx
+  0x00007fd123fff45b:   test   %rdx,%rdx
+  0x00007fd123fff45e:   je     0x00007fd123fff276
+  0x00007fd123fff464:   mov    %rdx,(%rsp)
+  0x00007fd123fff468:   call   0x00007fd12b582ce0           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007fd123fff46d:   jmp    0x00007fd123fff276
+  0x00007fd123fff472:   mov    0x30(%rax),%edi
+  0x00007fd123fff475:   shl    $0x3,%rdi
+  0x00007fd123fff479:   test   %rdi,%rdi
+  0x00007fd123fff47c:   je     0x00007fd123fff2be
+  0x00007fd123fff482:   mov    %rdi,(%rsp)
+  0x00007fd123fff486:   call   0x00007fd12b582ce0           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007fd123fff48b:   jmp    0x00007fd123fff2be
+  0x00007fd123fff490:   mov    0x34(%rax),%edi
+  0x00007fd123fff493:   shl    $0x3,%rdi
+  0x00007fd123fff497:   test   %rdi,%rdi
+  0x00007fd123fff49a:   je     0x00007fd123fff301
+  0x00007fd123fff4a0:   mov    %rdi,(%rsp)
+  0x00007fd123fff4a4:   call   0x00007fd12b582ce0           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007fd123fff4a9:   jmp    0x00007fd123fff301
+  0x00007fd123fff4ae:   mov    0x2c(%rax),%esi
+  0x00007fd123fff4b1:   shl    $0x3,%rsi
+  0x00007fd123fff4b5:   test   %rsi,%rsi
+  0x00007fd123fff4b8:   je     0x00007fd123fff344
+  0x00007fd123fff4be:   mov    %rsi,(%rsp)
+  0x00007fd123fff4c2:   call   0x00007fd12b582ce0           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007fd123fff4c7:   jmp    0x00007fd123fff344
+  0x00007fd123fff4cc:   movabs $0x7fd123fff381,%r10         ;   {internal_word}
+  0x00007fd123fff4d6:   mov    %r10,0x510(%r15)
+  0x00007fd123fff4dd:   jmp    0x00007fd12b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007fd123fff4e2:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007fd123fff4ec:   mov    $0xa050f00,%eax
+  0x00007fd123fff4f1:   call   0x00007fd12b5817e0           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.lang.reflect.Field::copy@7 (line 162)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007fd123fff4f6:   jmp    0x00007fd123fff390
+  0x00007fd123fff4fb:   mov    %rdx,%rdx
+  0x00007fd123fff4fe:   call   0x00007fd12b57cf60           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Field::copy@7 (line 162)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007fd123fff503:   jmp    0x00007fd123fff3e4
+  0x00007fd123fff508:   mov    0x5c0(%r15),%rax
+  0x00007fd123fff50f:   movq   $0x0,0x5c0(%r15)
+  0x00007fd123fff51a:   movq   $0x0,0x5c8(%r15)
+  0x00007fd123fff525:   add    $0x80,%rsp
+  0x00007fd123fff52c:   pop    %rbp
+  0x00007fd123fff52d:   jmp    0x00007fd12b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007fd123fff532:   hlt    
+  0x00007fd123fff533:   hlt    
+  0x00007fd123fff534:   hlt    
+  0x00007fd123fff535:   hlt    
+  0x00007fd123fff536:   hlt    
+  0x00007fd123fff537:   hlt    
+[Stub Code]
+  0x00007fd123fff538:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007fd123fff542:   jmp    0x00007fd123fff542           ;   {runtime_call nmethod}
+  0x00007fd123fff547:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007fd123fff551:   jmp    0x00007fd123fff551           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007fd123fff556:   call   0x00007fd12b57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007fd123fff55b:   movabs $0x7fd142b3aec4,%rdi         ;   {external_word}
+  0x00007fd123fff565:   and    $0xfffffffffffffff0,%rsp
+  0x00007fd123fff569:   call   0x00007fd142591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007fd123fff56e:   hlt    
+  0x00007fd123fff56f:   call   0x00007fd12b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007fd123fff574:   jmp    0x00007fd123fff56f
+  0x00007fd123fff576:   hlt    
+  0x00007fd123fff577:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

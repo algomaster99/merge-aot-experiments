@@ -1,0 +1,60 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 431   37       4       java.lang.Math::max (11 bytes)
+ total in heap  [0x00007f9a2bba6c08,0x00007f9a2bba6d60] = 344
+ main code      [0x00007f9a2bba6d00,0x00007f9a2bba6d58] = 88
+ stub code      [0x00007f9a2bba6d58,0x00007f9a2bba6d60] = 8
+ mutable data [0x00007f99d0071770,0x00007f99d0071788] = 24
+ relocation     [0x00007f99d0071770,0x00007f99d0071780] = 16
+ metadata       [0x00007f99d0071780,0x00007f99d0071788] = 8
+ immutable data [0x00007f99d0071b90,0x00007f99d0071c04] = 116
+ dependencies   [0x00007f99d0071b90,0x00007f99d0071b98] = 8
+ scopes pcs     [0x00007f99d0071b98,0x00007f99d0071be8] = 80
+ scopes data    [0x00007f99d0071be8,0x00007f99d0071c00] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000001e4908d0} &apos;max&apos; &apos;(II)I&apos; in &apos;java/lang/Math&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x20]  (sp of caller)
+  0x00007f9a2bba6d00:   sub    $0x18,%rsp
+  0x00007f9a2bba6d04:   mov    %rbp,0x10(%rsp)
+  0x00007f9a2bba6d09:   data16 xchg %ax,%ax
+  0x00007f9a2bba6d0c:   cmpl   $0x1,0x20(%r15)
+  0x00007f9a2bba6d14:   jne    0x00007f9a2bba6d4a           ;*synchronization entry
+                                                            ; - java.lang.Math::max@-1 (line 2024)
+  0x00007f9a2bba6d1a:   cmp    %edx,%esi
+  0x00007f9a2bba6d1c:   jl     0x00007f9a2bba6d30           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@2 (line 2024)
+  0x00007f9a2bba6d1e:   mov    %esi,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Math::max@10 (line 2024)
+  0x00007f9a2bba6d20:   add    $0x10,%rsp
+  0x00007f9a2bba6d24:   pop    %rbp
+  0x00007f9a2bba6d25:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007f9a2bba6d29:   ja     0x00007f9a2bba6d34
+  0x00007f9a2bba6d2f:   ret    
+  0x00007f9a2bba6d30:   mov    %edx,%eax
+  0x00007f9a2bba6d32:   jmp    0x00007f9a2bba6d20
+  0x00007f9a2bba6d34:   movabs $0x7f9a2bba6d25,%r10         ;   {internal_word}
+  0x00007f9a2bba6d3e:   mov    %r10,0x510(%r15)
+  0x00007f9a2bba6d45:   jmp    0x00007f9a2b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007f9a2bba6d4a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007f9a2bba6d4f:   jmp    0x00007f9a2bba6d1a
+  0x00007f9a2bba6d54:   hlt    
+  0x00007f9a2bba6d55:   hlt    
+  0x00007f9a2bba6d56:   hlt    
+  0x00007f9a2bba6d57:   hlt    
+[Stub Code]
+  0x00007f9a2bba6d58:   call   0x00007f9a2b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007f9a2bba6d5d:   jmp    0x00007f9a2bba6d58
+  0x00007f9a2bba6d5f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

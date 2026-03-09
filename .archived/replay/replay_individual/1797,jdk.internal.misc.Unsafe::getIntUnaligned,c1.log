@@ -1,0 +1,164 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 645   53       3       jdk.internal.misc.Unsafe::getIntUnaligned (12 bytes)
+ total in heap  [0x0000726d13fff008,0x0000726d13fff338] = 816
+ main code      [0x0000726d13fff100,0x0000726d13fff318] = 536
+ stub code      [0x0000726d13fff318,0x0000726d13fff338] = 32
+ mutable data [0x0000726cbc02ceb0,0x0000726cbc02cf10] = 96
+ relocation     [0x0000726cbc02ceb0,0x0000726cbc02cef0] = 64
+ metadata       [0x0000726cbc02cef0,0x0000726cbc02cf10] = 32
+ immutable data [0x0000726cbc02cd90,0x0000726cbc02ce9c] = 268
+ dependencies   [0x0000726cbc02cd90,0x0000726cbc02cda0] = 16
+ scopes pcs     [0x0000726cbc02cda0,0x0000726cbc02ce30] = 144
+ scopes data    [0x0000726cbc02ce30,0x0000726cbc02ce98] = 104
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000726d13fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000726d13fff10b:   data16 data16 xchg %ax,%ax
+  0x0000726d13fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000007b1e1b68} &apos;getIntUnaligned&apos; &apos;(Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  # parm1:    rcx:rcx   = long
+  # parm2:    r8        = boolean
+  #           [sp+0x80]  (sp of caller)
+  0x0000726d13fff112:   mov    0x8(%rsi),%r10d
+  0x0000726d13fff116:   cmp    0x8(%rax),%r10d
+  0x0000726d13fff11a:   jne    0x0000726d1b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000726d13fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000726d13fff127:   push   %rbp
+  0x0000726d13fff128:   sub    $0x70,%rsp
+  0x0000726d13fff12c:   cmpl   $0x1,0x20(%r15)
+  0x0000726d13fff134:   je     0x0000726d13fff13b
+  0x0000726d13fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000726d13fff13b:   movabs $0x726ccc32cb30,%rax         ;   {metadata(method data for {method} {0x000000007b1e1b68} &apos;getIntUnaligned&apos; &apos;(Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff145:   mov    0x90(%rax),%edi
+  0x0000726d13fff14b:   add    $0x2,%edi
+  0x0000726d13fff14e:   mov    %edi,0x90(%rax)
+  0x0000726d13fff154:   and    $0x7fe,%edi
+  0x0000726d13fff15a:   test   %edi,%edi
+  0x0000726d13fff15c:   je     0x0000726d13fff25f           ;*iload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@0 (line 3617)
+  0x0000726d13fff162:   mov    (%rdx,%rcx,1),%eax
+  0x0000726d13fff165:   movabs $0x726ccc32cb30,%rsi         ;   {metadata(method data for {method} {0x000000007b1e1b68} &apos;getIntUnaligned&apos; &apos;(Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff16f:   addq   $0x1,0x120(%rsi)
+  0x0000726d13fff177:   movabs $0x726ccc32ccc0,%rsi         ;   {metadata(method data for {method} {0x000000007b1e52e0} &apos;convEndian&apos; &apos;(ZI)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff181:   mov    0x90(%rsi),%edi
+  0x0000726d13fff187:   add    $0x2,%edi
+  0x0000726d13fff18a:   mov    %edi,0x90(%rsi)
+  0x0000726d13fff190:   and    $0x1ffffe,%edi
+  0x0000726d13fff196:   test   %edi,%edi
+  0x0000726d13fff198:   je     0x0000726d13fff280
+  0x0000726d13fff19e:   test   %r8d,%r8d
+  0x0000726d13fff1a1:   movabs $0x726ccc32ccc0,%rsi         ;   {metadata(method data for {method} {0x000000007b1e52e0} &apos;convEndian&apos; &apos;(ZI)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff1ab:   mov    $0xd8,%edi
+  0x0000726d13fff1b0:   jne    0x0000726d13fff1b7
+  0x0000726d13fff1b2:   mov    $0xe8,%edi
+  0x0000726d13fff1b7:   mov    (%rsi,%rdi,1),%rbx
+  0x0000726d13fff1bb:   lea    0x1(%rbx),%rbx
+  0x0000726d13fff1bf:   mov    %rbx,(%rsi,%rdi,1)
+  0x0000726d13fff1c3:   jne    0x0000726d13fff1e9           ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::convEndian@4 (line 3860)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@8 (line 3617)
+  0x0000726d13fff1c9:   movabs $0x726ccc32ccc0,%rsi         ;   {metadata(method data for {method} {0x000000007b1e52e0} &apos;convEndian&apos; &apos;(ZI)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff1d3:   incl   0xf8(%rsi)                   ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::convEndian@8 (line 3860)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@8 (line 3617)
+  0x0000726d13fff1d9:   add    $0x70,%rsp
+  0x0000726d13fff1dd:   pop    %rbp
+  0x0000726d13fff1de:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000726d13fff1e2:   ja     0x0000726d13fff2a1
+  0x0000726d13fff1e8:   ret    
+  0x0000726d13fff1e9:   movabs $0x726ccc32ccc0,%rsi         ;   {metadata(method data for {method} {0x000000007b1e52e0} &apos;convEndian&apos; &apos;(ZI)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff1f3:   addq   $0x1,0x110(%rsi)
+  0x0000726d13fff1fb:   movabs $0x726ccc32ce28,%rsi         ;   {metadata(method data for {method} {0x000000007b1a2488} &apos;reverseBytes&apos; &apos;(I)I&apos; in &apos;java/lang/Integer&apos;)}
+  0x0000726d13fff205:   mov    0x90(%rsi),%edi
+  0x0000726d13fff20b:   add    $0x2,%edi
+  0x0000726d13fff20e:   mov    %edi,0x90(%rsi)
+  0x0000726d13fff214:   and    $0x1ffffe,%edi
+  0x0000726d13fff21a:   test   %edi,%edi
+  0x0000726d13fff21c:   je     0x0000726d13fff2b7
+  0x0000726d13fff222:   mov    %rax,%rsi
+  0x0000726d13fff225:   shl    $0x18,%esi
+  0x0000726d13fff228:   mov    %rax,%rdi
+  0x0000726d13fff22b:   and    $0xff00,%edi
+  0x0000726d13fff231:   shl    $0x8,%edi
+  0x0000726d13fff234:   or     %rdi,%rsi
+  0x0000726d13fff237:   mov    %rax,%rdi
+  0x0000726d13fff23a:   shr    $0x8,%edi
+  0x0000726d13fff23d:   and    $0xff00,%edi
+  0x0000726d13fff243:   or     %rdi,%rsi
+  0x0000726d13fff246:   shr    $0x18,%eax
+  0x0000726d13fff249:   or     %rax,%rsi
+  0x0000726d13fff24c:   mov    %rsi,%rax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.Unsafe::convEndian@15 (line 3860)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@8 (line 3617)
+  0x0000726d13fff24f:   add    $0x70,%rsp
+  0x0000726d13fff253:   pop    %rbp
+  0x0000726d13fff254:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000726d13fff258:   ja     0x0000726d13fff2d8
+  0x0000726d13fff25e:   ret    
+  0x0000726d13fff25f:   movabs $0x7b1e1b68,%r10             ;   {metadata({method} {0x000000007b1e1b68} &apos;getIntUnaligned&apos; &apos;(Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff269:   mov    %r10,0x8(%rsp)
+  0x0000726d13fff26e:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000726d13fff276:   call   0x0000726d1b582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@-1 (line 3617)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000726d13fff27b:   jmp    0x0000726d13fff162
+  0x0000726d13fff280:   movabs $0x7b1e52e0,%r10             ;   {metadata({method} {0x000000007b1e52e0} &apos;convEndian&apos; &apos;(ZI)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;)}
+  0x0000726d13fff28a:   mov    %r10,0x8(%rsp)
+  0x0000726d13fff28f:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000726d13fff297:   call   0x0000726d1b582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::convEndian@-1 (line 3860)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@8 (line 3617)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000726d13fff29c:   jmp    0x0000726d13fff19e
+  0x0000726d13fff2a1:   movabs $0x726d13fff1de,%r10         ;   {internal_word}
+  0x0000726d13fff2ab:   mov    %r10,0x510(%r15)
+  0x0000726d13fff2b2:   jmp    0x0000726d1b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000726d13fff2b7:   movabs $0x7b1a2488,%r10             ;   {metadata({method} {0x000000007b1a2488} &apos;reverseBytes&apos; &apos;(I)I&apos; in &apos;java/lang/Integer&apos;)}
+  0x0000726d13fff2c1:   mov    %r10,0x8(%rsp)
+  0x0000726d13fff2c6:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000726d13fff2ce:   call   0x0000726d1b582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Integer::reverseBytes@-1 (line 1929)
+                                                            ; - jdk.internal.misc.Unsafe::convEndian@12 (line 3860)
+                                                            ; - jdk.internal.misc.Unsafe::getIntUnaligned@8 (line 3617)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000726d13fff2d3:   jmp    0x0000726d13fff222
+  0x0000726d13fff2d8:   movabs $0x726d13fff254,%r10         ;   {internal_word}
+  0x0000726d13fff2e2:   mov    %r10,0x510(%r15)
+  0x0000726d13fff2e9:   jmp    0x0000726d1b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000726d13fff2ee:   mov    0x5c0(%r15),%rax
+  0x0000726d13fff2f5:   movq   $0x0,0x5c0(%r15)
+  0x0000726d13fff300:   movq   $0x0,0x5c8(%r15)
+  0x0000726d13fff30b:   add    $0x70,%rsp
+  0x0000726d13fff30f:   pop    %rbp
+  0x0000726d13fff310:   jmp    0x0000726d1b57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000726d13fff315:   hlt    
+  0x0000726d13fff316:   hlt    
+  0x0000726d13fff317:   hlt    
+[Exception Handler]
+  0x0000726d13fff318:   call   0x0000726d1b57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000726d13fff31d:   movabs $0x726d33f3aec4,%rdi         ;   {external_word}
+  0x0000726d13fff327:   and    $0xfffffffffffffff0,%rsp
+  0x0000726d13fff32b:   call   0x0000726d33991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000726d13fff330:   hlt    
+  0x0000726d13fff331:   call   0x0000726d1b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000726d13fff336:   jmp    0x0000726d13fff331
+--------------------------------------------------------------------------------
+[/Disassembly]

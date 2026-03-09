@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 460   46       1       jdk.internal.classfile.impl.AbstractPoolEntry$MethodRefEntryImpl::tag (3 bytes)
+ total in heap  [0x0000711533ba8708,0x0000711533ba88b0] = 424
+ main code      [0x0000711533ba8800,0x0000711533ba8890] = 144
+ stub code      [0x0000711533ba8890,0x0000711533ba88b0] = 32
+ mutable data [0x00007114d001cc50,0x00007114d001cc78] = 40
+ relocation     [0x00007114d001cc50,0x00007114d001cc70] = 32
+ metadata       [0x00007114d001cc70,0x00007114d001cc78] = 8
+ immutable data [0x00007114d001cc00,0x00007114d001cc44] = 68
+ dependencies   [0x00007114d001cc00,0x00007114d001cc08] = 8
+ scopes pcs     [0x00007114d001cc08,0x00007114d001cc38] = 48
+ scopes data    [0x00007114d001cc38,0x00007114d001cc40] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000711533ba8800:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000711533ba880b:   data16 data16 xchg %ax,%ax
+  0x0000711533ba880f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000283445c0} &apos;tag&apos; &apos;()I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry$MethodRefEntryImpl&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000711533ba8812:   mov    0x8(%rsi),%r10d
+  0x0000711533ba8816:   cmp    0x8(%rax),%r10d
+  0x0000711533ba881a:   jne    0x00007115334ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000711533ba8820:   mov    %eax,-0x14000(%rsp)
+  0x0000711533ba8827:   push   %rbp
+  0x0000711533ba8828:   sub    $0x20,%rsp
+  0x0000711533ba882c:   cmpl   $0x1,0x20(%r15)
+  0x0000711533ba8834:   je     0x0000711533ba883b
+  0x0000711533ba8836:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*bipush {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry$MethodRefEntryImpl::tag@0 (line 852)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000711533ba883b:   mov    $0xa,%eax
+  0x0000711533ba8840:   add    $0x20,%rsp
+  0x0000711533ba8844:   pop    %rbp
+  0x0000711533ba8845:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000711533ba8849:   ja     0x0000711533ba8850
+  0x0000711533ba884f:   ret    
+  0x0000711533ba8850:   movabs $0x711533ba8845,%r10         ;   {internal_word}
+  0x0000711533ba885a:   mov    %r10,0x510(%r15)
+  0x0000711533ba8861:   jmp    0x00007115334afb60           ;   {runtime_call SafepointBlob}
+  0x0000711533ba8866:   mov    0x5c0(%r15),%rax
+  0x0000711533ba886d:   movq   $0x0,0x5c0(%r15)
+  0x0000711533ba8878:   movq   $0x0,0x5c8(%r15)
+  0x0000711533ba8883:   add    $0x20,%rsp
+  0x0000711533ba8887:   pop    %rbp
+  0x0000711533ba8888:   jmp    0x000071153357bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000711533ba888d:   hlt    
+  0x0000711533ba888e:   hlt    
+  0x0000711533ba888f:   hlt    
+[Exception Handler]
+  0x0000711533ba8890:   call   0x000071153357fbe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000711533ba8895:   movabs $0x71154cf3aec4,%rdi         ;   {external_word}
+  0x0000711533ba889f:   and    $0xfffffffffffffff0,%rsp
+  0x0000711533ba88a3:   call   0x000071154c991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000711533ba88a8:   hlt    
+  0x0000711533ba88a9:   call   0x00007115334afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000711533ba88ae:   jmp    0x0000711533ba88a9
+--------------------------------------------------------------------------------
+[/Disassembly]

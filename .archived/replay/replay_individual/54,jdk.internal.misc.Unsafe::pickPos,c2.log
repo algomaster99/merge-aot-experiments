@@ -1,0 +1,54 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 66    3       4       jdk.internal.misc.Unsafe::pickPos (14 bytes)
+ total in heap  [0x00007ef41fba0608,0x00007ef41fba0758] = 336
+ main code      [0x00007ef41fba0700,0x00007ef41fba0750] = 80
+ stub code      [0x00007ef41fba0750,0x00007ef41fba0758] = 8
+ mutable data [0x00007ef3c4071370,0x00007ef3c4071388] = 24
+ relocation     [0x00007ef3c4071370,0x00007ef3c4071380] = 16
+ metadata       [0x00007ef3c4071380,0x00007ef3c4071388] = 8
+ immutable data [0x00007ef3c4071790,0x00007ef3c40717d4] = 68
+ dependencies   [0x00007ef3c4071790,0x00007ef3c4071798] = 8
+ scopes pcs     [0x00007ef3c4071798,0x00007ef3c40717c8] = 48
+ scopes data    [0x00007ef3c40717c8,0x00007ef3c40717d0] = 8
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004b1e56a8} &apos;pickPos&apos; &apos;(II)I&apos; in &apos;jdk/internal/misc/Unsafe&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x20]  (sp of caller)
+  0x00007ef41fba0700:   sub    $0x18,%rsp
+  0x00007ef41fba0704:   mov    %rbp,0x10(%rsp)
+  0x00007ef41fba0709:   data16 xchg %ax,%ax
+  0x00007ef41fba070c:   cmpl   $0x1,0x20(%r15)
+  0x00007ef41fba0714:   jne    0x00007ef41fba0742           ;*synchronization entry
+                                                            ; - jdk.internal.misc.Unsafe::pickPos@-1 (line 3769)
+  0x00007ef41fba071a:   mov    %edx,%eax
+  0x00007ef41fba071c:   add    $0x10,%rsp
+  0x00007ef41fba0720:   pop    %rbp
+  0x00007ef41fba0721:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ef41fba0725:   ja     0x00007ef41fba072c
+  0x00007ef41fba072b:   ret    
+  0x00007ef41fba072c:   movabs $0x7ef41fba0721,%r10         ;   {internal_word}
+  0x00007ef41fba0736:   mov    %r10,0x510(%r15)
+  0x00007ef41fba073d:   jmp    0x00007ef41f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ef41fba0742:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ef41fba0747:   jmp    0x00007ef41fba071a
+  0x00007ef41fba074c:   hlt    
+  0x00007ef41fba074d:   hlt    
+  0x00007ef41fba074e:   hlt    
+  0x00007ef41fba074f:   hlt    
+[Stub Code]
+  0x00007ef41fba0750:   call   0x00007ef41f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ef41fba0755:   jmp    0x00007ef41fba0750
+  0x00007ef41fba0757:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

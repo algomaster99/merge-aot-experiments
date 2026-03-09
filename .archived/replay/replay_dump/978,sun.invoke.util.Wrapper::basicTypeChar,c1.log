@@ -1,0 +1,188 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 15936  978       3       sun.invoke.util.Wrapper::basicTypeChar (18 bytes)
+ total in heap  [0x000077b45808aa08,0x000077b45808ad50] = 840
+ main code      [0x000077b45808ab00,0x000077b45808ad20] = 544
+ stub code      [0x000077b45808ad20,0x000077b45808ad50] = 48
+ mutable data [0x000077b3ec027230,0x000077b3ec027290] = 96
+ relocation     [0x000077b3ec027230,0x000077b3ec027278] = 72
+ metadata       [0x000077b3ec027278,0x000077b3ec027290] = 24
+ immutable data [0x000077b3ec027490,0x000077b3ec0275e4] = 340
+ dependencies   [0x000077b3ec027490,0x000077b3ec027498] = 8
+ nul chk table  [0x000077b3ec027498,0x000077b3ec0274b0] = 24
+ scopes pcs     [0x000077b3ec0274b0,0x000077b3ec027590] = 224
+ scopes data    [0x000077b3ec027590,0x000077b3ec0275e0] = 80
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Class&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x000077b45808ab00:   mov    %eax,-0x14000(%rsp)
+  0x000077b45808ab07:   push   %rbp
+  0x000077b45808ab08:   sub    $0x30,%rsp
+  0x000077b45808ab0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45808ab14:   je     0x000077b45808ab1b
+  0x000077b45808ab16:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45808ab1b:   movabs $0x77b4142a7e18,%rax         ;   {metadata(method data for {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808ab25:   mov    0x90(%rax),%edi
+  0x000077b45808ab2b:   add    $0x2,%edi
+  0x000077b45808ab2e:   mov    %edi,0x90(%rax)
+  0x000077b45808ab34:   and    $0x7fe,%edi
+  0x000077b45808ab3a:   test   %edi,%edi
+  0x000077b45808ab3c:   je     0x000077b45808aca2           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@0 (line 465)
+  0x000077b45808ab42:   cmp    (%rsi),%rax                  ; implicit exception: dispatches to 0x000077b45808acc3
+                                                            ;*invokevirtual isPrimitive {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@1 (line 465)
+  0x000077b45808ab45:   mov    %rsi,%rax
+  0x000077b45808ab48:   movabs $0x77b4142a7e18,%rdi         ;   {metadata(method data for {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808ab52:   mov    0x8(%rax),%eax
+  0x000077b45808ab55:   mov    $0x46000000,%r10d
+  0x000077b45808ab5b:   add    %r10,%rax
+  0x000077b45808ab5e:   mov    $0x1c,%r10d
+  0x000077b45808ab64:   cmp    (%rdi,%r10,8),%rax
+  0x000077b45808ab68:   je     0x000077b45808aba7
+  0x000077b45808ab6a:   add    $0x2,%r10
+  0x000077b45808ab6e:   cmp    $0x20,%r10
+  0x000077b45808ab72:   jne    0x000077b45808ab64
+  0x000077b45808ab74:   mov    $0x1c,%r10d
+  0x000077b45808ab7a:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b45808ab7f:   je     0x000077b45808ab8d
+  0x000077b45808ab81:   add    $0x2,%r10
+  0x000077b45808ab85:   cmp    $0x20,%r10
+  0x000077b45808ab89:   jne    0x000077b45808ab7a
+  0x000077b45808ab8b:   jmp    0x000077b45808ab9f
+  0x000077b45808ab8d:   push   %rbx
+  0x000077b45808ab8e:   mov    %rax,%rbx
+  0x000077b45808ab91:   xor    %rax,%rax
+  0x000077b45808ab94:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x000077b45808ab99:   mov    %rbx,%rax
+  0x000077b45808ab9c:   pop    %rbx
+  0x000077b45808ab9d:   jmp    0x000077b45808ab5e
+  0x000077b45808ab9f:   mov    $0x1b,%r10d
+  0x000077b45808aba5:   jmp    0x000077b45808abab
+  0x000077b45808aba7:   add    $0x1,%r10
+  0x000077b45808abab:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b45808abb0:   movsbl 0x2c(%rsi),%eax              ;*getfield primitive {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Class::isPrimitive@1 (line 860)
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@1 (line 465)
+  0x000077b45808abb4:   and    $0x1,%eax
+  0x000077b45808abb7:   test   %eax,%eax
+  0x000077b45808abb9:   movabs $0x77b4142a7e18,%rax         ;   {metadata(method data for {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808abc3:   mov    $0x108,%edi
+  0x000077b45808abc8:   jne    0x000077b45808abcf
+  0x000077b45808abca:   mov    $0x118,%edi
+  0x000077b45808abcf:   mov    (%rax,%rdi,1),%rbx
+  0x000077b45808abd3:   lea    0x1(%rbx),%rbx
+  0x000077b45808abd7:   mov    %rbx,(%rax,%rdi,1)
+  0x000077b45808abdb:   jne    0x000077b45808abf6           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@4 (line 465)
+  0x000077b45808abe1:   mov    $0x4c,%eax
+  0x000077b45808abe6:   add    $0x30,%rsp
+  0x000077b45808abea:   pop    %rbp
+  0x000077b45808abeb:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45808abef:   ja     0x000077b45808acc8
+  0x000077b45808abf5:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@9 (line 466)
+  0x000077b45808abf6:   movabs $0x77b4142a7e18,%rdi         ;   {metadata(method data for {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808ac00:   addq   $0x1,0x128(%rdi)
+  0x000077b45808ac08:   nopl   0x0(%rax)
+  0x000077b45808ac0f:   call   0x000077b45f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic forPrimitiveType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@11 (line 468)
+                                                            ;   {static_call}
+  0x000077b45808ac14:   nopl   0x20c(%rax,%rax,1)           ;*invokestatic forPrimitiveType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@11 (line 468)
+                                                            ;   {post_call_nop}
+  0x000077b45808ac1c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x000077b45808acde
+                                                            ;*invokevirtual basicTypeChar {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@14 (line 468)
+  0x000077b45808ac1f:   mov    %rax,%rsi
+  0x000077b45808ac22:   movabs $0x77b4142a7e18,%rdi         ;   {metadata(method data for {method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808ac2c:   mov    0x8(%rsi),%esi
+  0x000077b45808ac2f:   mov    $0x46000000,%r10d
+  0x000077b45808ac35:   add    %r10,%rsi
+  0x000077b45808ac38:   mov    $0x28,%r10d
+  0x000077b45808ac3e:   cmp    (%rdi,%r10,8),%rsi
+  0x000077b45808ac42:   je     0x000077b45808ac7b
+  0x000077b45808ac44:   add    $0x2,%r10
+  0x000077b45808ac48:   cmp    $0x2c,%r10
+  0x000077b45808ac4c:   jne    0x000077b45808ac3e
+  0x000077b45808ac4e:   mov    $0x28,%r10d
+  0x000077b45808ac54:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b45808ac59:   je     0x000077b45808ac67
+  0x000077b45808ac5b:   add    $0x2,%r10
+  0x000077b45808ac5f:   cmp    $0x2c,%r10
+  0x000077b45808ac63:   jne    0x000077b45808ac54
+  0x000077b45808ac65:   jmp    0x000077b45808ac73
+  0x000077b45808ac67:   push   %rax
+  0x000077b45808ac68:   xor    %rax,%rax
+  0x000077b45808ac6b:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000077b45808ac70:   pop    %rax
+  0x000077b45808ac71:   jmp    0x000077b45808ac38
+  0x000077b45808ac73:   mov    $0x27,%r10d
+  0x000077b45808ac79:   jmp    0x000077b45808ac7f
+  0x000077b45808ac7b:   add    $0x1,%r10
+  0x000077b45808ac7f:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b45808ac84:   movzwl 0x44(%rax),%eax              ;*getfield basicTypeChar {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@1 (line 474)
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@14 (line 468)
+  0x000077b45808ac88:   and    $0xffff,%eax
+  0x000077b45808ac8d:   and    $0xffff,%eax
+  0x000077b45808ac92:   add    $0x30,%rsp
+  0x000077b45808ac96:   pop    %rbp
+  0x000077b45808ac97:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45808ac9b:   ja     0x000077b45808ace3
+  0x000077b45808aca1:   ret    
+  0x000077b45808aca2:   movabs $0x4647ce00,%r10             ;   {metadata({method} {0x000000004647ce00} &apos;basicTypeChar&apos; &apos;(Ljava/lang/Class;)C&apos; in &apos;sun/invoke/util/Wrapper&apos;)}
+  0x000077b45808acac:   mov    %r10,0x8(%rsp)
+  0x000077b45808acb1:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45808acb9:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@-1 (line 465)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45808acbe:   jmp    0x000077b45808ab42
+  0x000077b45808acc3:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*invokevirtual isPrimitive {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@1 (line 465)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45808acc8:   movabs $0x77b45808abeb,%r10         ;   {internal_word}
+  0x000077b45808acd2:   mov    %r10,0x510(%r15)
+  0x000077b45808acd9:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45808acde:   call   0x000077b45f57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*invokevirtual basicTypeChar {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - sun.invoke.util.Wrapper::basicTypeChar@14 (line 468)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45808ace3:   movabs $0x77b45808ac97,%r10         ;   {internal_word}
+  0x000077b45808aced:   mov    %r10,0x510(%r15)
+  0x000077b45808acf4:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45808acf9:   mov    0x5c0(%r15),%rax
+  0x000077b45808ad00:   movq   $0x0,0x5c0(%r15)
+  0x000077b45808ad0b:   movq   $0x0,0x5c8(%r15)
+  0x000077b45808ad16:   add    $0x30,%rsp
+  0x000077b45808ad1a:   pop    %rbp
+  0x000077b45808ad1b:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Stub Code]
+  0x000077b45808ad20:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45808ad2a:   jmp    0x000077b45808ad2a           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b45808ad2f:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45808ad34:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45808ad3e:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45808ad42:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45808ad47:   hlt    
+  0x000077b45808ad48:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45808ad4d:   jmp    0x000077b45808ad48
+  0x000077b45808ad4f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

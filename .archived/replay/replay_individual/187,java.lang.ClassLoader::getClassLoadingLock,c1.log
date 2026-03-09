@@ -1,0 +1,255 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 269   13       3       java.lang.ClassLoader::getClassLoadingLock (35 bytes)
+ total in heap  [0x00007ac593fff008,0x00007ac593fff468] = 1120
+ main code      [0x00007ac593fff100,0x00007ac593fff438] = 824
+ stub code      [0x00007ac593fff438,0x00007ac593fff468] = 48
+ mutable data [0x00007ac534015040,0x00007ac5340150b0] = 112
+ relocation     [0x00007ac534015040,0x00007ac534015090] = 80
+ metadata       [0x00007ac534015090,0x00007ac5340150b0] = 32
+ immutable data [0x00007ac534014e50,0x00007ac53401502c] = 476
+ dependencies   [0x00007ac534014e50,0x00007ac534014e60] = 16
+ nul chk table  [0x00007ac534014e60,0x00007ac534014e70] = 16
+ scopes pcs     [0x00007ac534014e70,0x00007ac534014f80] = 272
+ scopes data    [0x00007ac534014f80,0x00007ac534015028] = 168
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007ac593fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007ac593fff10b:   data16 data16 xchg %ax,%ax
+  0x00007ac593fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;
+  # this:     rsi:rsi   = &apos;java/lang/ClassLoader&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/String&apos;
+  #           [sp+0x70]  (sp of caller)
+  0x00007ac593fff112:   mov    0x8(%rsi),%r10d
+  0x00007ac593fff116:   cmp    0x8(%rax),%r10d
+  0x00007ac593fff11a:   jne    0x00007ac59b4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007ac593fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007ac593fff127:   push   %rbp
+  0x00007ac593fff128:   sub    $0x60,%rsp
+  0x00007ac593fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007ac593fff134:   je     0x00007ac593fff13b
+  0x00007ac593fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ac593fff13b:   mov    %rsi,%r8
+  0x00007ac593fff13e:   mov    %rdx,%rbx
+  0x00007ac593fff141:   movabs $0x7ac54c055798,%rdx         ;   {metadata(method data for {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff14b:   mov    0x90(%rdx),%esi
+  0x00007ac593fff151:   add    $0x2,%esi
+  0x00007ac593fff154:   mov    %esi,0x90(%rdx)
+  0x00007ac593fff15a:   and    $0x7fe,%esi
+  0x00007ac593fff160:   test   %esi,%esi
+  0x00007ac593fff162:   je     0x00007ac593fff382           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@0 (line 654)
+  0x00007ac593fff168:   mov    0x28(%r8),%r9d
+  0x00007ac593fff16c:   shl    $0x3,%r9                     ;*getfield parallelLockMap {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@3 (line 655)
+  0x00007ac593fff170:   test   %r9,%r9
+  0x00007ac593fff173:   movabs $0x7ac54c055798,%rdx         ;   {metadata(method data for {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff17d:   mov    $0xd8,%esi
+  0x00007ac593fff182:   je     0x00007ac593fff189
+  0x00007ac593fff184:   mov    $0xe8,%esi
+  0x00007ac593fff189:   mov    (%rdx,%rsi,1),%rdi
+  0x00007ac593fff18d:   lea    0x1(%rdi),%rdi
+  0x00007ac593fff191:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007ac593fff195:   je     0x00007ac593fff36f           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@6 (line 655)
+  0x00007ac593fff19b:   movabs $0x2b174970,%rdx             ;   {metadata(&apos;java/lang/Object&apos;)}
+  0x00007ac593fff1a5:   mov    0x1b0(%r15),%rax
+  0x00007ac593fff1ac:   lea    0x10(%rax),%rdi
+  0x00007ac593fff1b0:   cmp    0x1c0(%r15),%rdi
+  0x00007ac593fff1b7:   ja     0x00007ac593fff3a3
+  0x00007ac593fff1bd:   mov    %rdi,0x1b0(%r15)
+  0x00007ac593fff1c4:   movq   $0x1,(%rax)
+  0x00007ac593fff1cb:   mov    %rdx,%rcx
+  0x00007ac593fff1ce:   mov    $0x2b000000,%r10d
+  0x00007ac593fff1d4:   sub    %r10,%rcx
+  0x00007ac593fff1d7:   mov    %ecx,0x8(%rax)
+  0x00007ac593fff1da:   xor    %rcx,%rcx
+  0x00007ac593fff1dd:   mov    %ecx,0xc(%rax)
+  0x00007ac593fff1e0:   xor    %rcx,%rcx                    ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@9 (line 656)
+  0x00007ac593fff1e3:   mov    %rax,%rdx
+  0x00007ac593fff1e6:   movabs $0x7ac54c055798,%rcx         ;   {metadata(method data for {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff1f0:   addq   $0x1,0xf8(%rcx)
+  0x00007ac593fff1f8:   movabs $0x7ac54c054cf8,%rdx         ;   {metadata(method data for {method} {0x000000002b4a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007ac593fff202:   mov    0x90(%rdx),%ecx
+  0x00007ac593fff208:   add    $0x2,%ecx
+  0x00007ac593fff20b:   mov    %ecx,0x90(%rdx)
+  0x00007ac593fff211:   and    $0x1ffffe,%ecx
+  0x00007ac593fff217:   test   %ecx,%ecx
+  0x00007ac593fff219:   je     0x00007ac593fff3b0
+  0x00007ac593fff21f:   cmp    (%r9),%rax                   ; implicit exception: dispatches to 0x00007ac593fff3d1
+                                                            ;*invokevirtual putIfAbsent {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+  0x00007ac593fff222:   mov    %r9,%rdx
+  0x00007ac593fff225:   movabs $0x7ac54c055798,%rcx         ;   {metadata(method data for {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff22f:   movabs $0x2b1c6700,%rdx             ;   {metadata(&apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x00007ac593fff239:   mov    $0x22,%r10d
+  0x00007ac593fff23f:   cmp    (%rcx,%r10,8),%rdx
+  0x00007ac593fff243:   je     0x00007ac593fff27c
+  0x00007ac593fff245:   add    $0x2,%r10
+  0x00007ac593fff249:   cmp    $0x26,%r10
+  0x00007ac593fff24d:   jne    0x00007ac593fff23f
+  0x00007ac593fff24f:   mov    $0x22,%r10d
+  0x00007ac593fff255:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007ac593fff25a:   je     0x00007ac593fff268
+  0x00007ac593fff25c:   add    $0x2,%r10
+  0x00007ac593fff260:   cmp    $0x26,%r10
+  0x00007ac593fff264:   jne    0x00007ac593fff255
+  0x00007ac593fff266:   jmp    0x00007ac593fff274
+  0x00007ac593fff268:   push   %rax
+  0x00007ac593fff269:   xor    %rax,%rax
+  0x00007ac593fff26c:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007ac593fff271:   pop    %rax
+  0x00007ac593fff272:   jmp    0x00007ac593fff239
+  0x00007ac593fff274:   mov    $0x21,%r10d
+  0x00007ac593fff27a:   jmp    0x00007ac593fff280
+  0x00007ac593fff27c:   add    $0x1,%r10
+  0x00007ac593fff280:   addq   $0x1,(%rcx,%r10,8)
+  0x00007ac593fff285:   movabs $0x7ac54c055640,%rdx         ;   {metadata(method data for {method} {0x000000002b1c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x00007ac593fff28f:   mov    0x90(%rdx),%ecx
+  0x00007ac593fff295:   add    $0x2,%ecx
+  0x00007ac593fff298:   mov    %ecx,0x90(%rdx)
+  0x00007ac593fff29e:   and    $0x1ffffe,%ecx
+  0x00007ac593fff2a4:   test   %ecx,%ecx
+  0x00007ac593fff2a6:   je     0x00007ac593fff3d6
+  0x00007ac593fff2ac:   mov    %r9,%rdx
+  0x00007ac593fff2af:   movabs $0x7ac54c055640,%rcx         ;   {metadata(method data for {method} {0x000000002b1c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x00007ac593fff2b9:   mov    0x8(%rdx),%edx
+  0x00007ac593fff2bc:   mov    $0x2b000000,%r10d
+  0x00007ac593fff2c2:   add    %r10,%rdx
+  0x00007ac593fff2c5:   mov    $0x1c,%r10d
+  0x00007ac593fff2cb:   cmp    (%rcx,%r10,8),%rdx
+  0x00007ac593fff2cf:   je     0x00007ac593fff308
+  0x00007ac593fff2d1:   add    $0x2,%r10
+  0x00007ac593fff2d5:   cmp    $0x20,%r10
+  0x00007ac593fff2d9:   jne    0x00007ac593fff2cb
+  0x00007ac593fff2db:   mov    $0x1c,%r10d
+  0x00007ac593fff2e1:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007ac593fff2e6:   je     0x00007ac593fff2f4
+  0x00007ac593fff2e8:   add    $0x2,%r10
+  0x00007ac593fff2ec:   cmp    $0x20,%r10
+  0x00007ac593fff2f0:   jne    0x00007ac593fff2e1
+  0x00007ac593fff2f2:   jmp    0x00007ac593fff300
+  0x00007ac593fff2f4:   push   %rax
+  0x00007ac593fff2f5:   xor    %rax,%rax
+  0x00007ac593fff2f8:   cmpxchg %rdx,(%rcx,%r10,8)
+  0x00007ac593fff2fd:   pop    %rax
+  0x00007ac593fff2fe:   jmp    0x00007ac593fff2c5
+  0x00007ac593fff300:   mov    $0x1b,%r10d
+  0x00007ac593fff306:   jmp    0x00007ac593fff30c
+  0x00007ac593fff308:   add    $0x1,%r10
+  0x00007ac593fff30c:   addq   $0x1,(%rcx,%r10,8)
+  0x00007ac593fff311:   mov    %rbx,%rdx
+  0x00007ac593fff314:   mov    %rax,%rcx
+  0x00007ac593fff317:   mov    $0x1,%r8d
+  0x00007ac593fff31d:   mov    %r9,%rsi                     ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+  0x00007ac593fff320:   mov    %rax,0x48(%rsp)
+  0x00007ac593fff325:   xchg   %ax,%ax
+  0x00007ac593fff327:   call   0x00007ac59b4ad9e0           ; ImmutableOopMap {[72]=Oop }
+                                                            ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+                                                            ;   {optimized virtual_call}
+  0x00007ac593fff32c:   nopl   0x324(%rax,%rax,1)           ;*invokevirtual putVal {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@4 (line 1566)
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+                                                            ;   {post_call_nop}
+  0x00007ac593fff334:   test   %rax,%rax
+  0x00007ac593fff337:   movabs $0x7ac54c055798,%rsi         ;   {metadata(method data for {method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff341:   mov    $0x148,%edi
+  0x00007ac593fff346:   je     0x00007ac593fff34d
+  0x00007ac593fff348:   mov    $0x138,%edi
+  0x00007ac593fff34d:   mov    (%rsi,%rdi,1),%rbx
+  0x00007ac593fff351:   lea    0x1(%rbx),%rbx
+  0x00007ac593fff355:   mov    %rbx,(%rsi,%rdi,1)
+  0x00007ac593fff359:   je     0x00007ac593fff367           ;*ifnonnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@28 (line 658)
+  0x00007ac593fff35f:   mov    %rax,%r8
+  0x00007ac593fff362:   jmp    0x00007ac593fff36f
+  0x00007ac593fff367:   mov    0x48(%rsp),%rax
+  0x00007ac593fff36c:   mov    %rax,%r8                     ;*aload_2 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@33 (line 662)
+  0x00007ac593fff36f:   mov    %r8,%rax
+  0x00007ac593fff372:   add    $0x60,%rsp
+  0x00007ac593fff376:   pop    %rbp
+  0x00007ac593fff377:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ac593fff37b:   ja     0x00007ac593fff3f7
+  0x00007ac593fff381:   ret    
+  0x00007ac593fff382:   movabs $0x2b180d98,%r10             ;   {metadata({method} {0x000000002b180d98} &apos;getClassLoadingLock&apos; &apos;(Ljava/lang/String;)Ljava/lang/Object;&apos; in &apos;java/lang/ClassLoader&apos;)}
+  0x00007ac593fff38c:   mov    %r10,0x8(%rsp)
+  0x00007ac593fff391:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ac593fff399:   call   0x00007ac59b5821e0           ; ImmutableOopMap {r8=Oop rbx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@-1 (line 654)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ac593fff39e:   jmp    0x00007ac593fff168
+  0x00007ac593fff3a3:   mov    %rdx,%rdx
+  0x00007ac593fff3a6:   call   0x00007ac59b57c660           ; ImmutableOopMap {r8=Oop rbx=Oop r9=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@9 (line 656)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007ac593fff3ab:   jmp    0x00007ac593fff1e3
+  0x00007ac593fff3b0:   movabs $0x2b4a6d78,%r10             ;   {metadata({method} {0x000000002b4a6d78} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/Object&apos;)}
+  0x00007ac593fff3ba:   mov    %r10,0x8(%rsp)
+  0x00007ac593fff3bf:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ac593fff3c7:   call   0x00007ac59b5821e0           ; ImmutableOopMap {r8=Oop rbx=Oop r9=Oop rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::&lt;init&gt;@-1 (line 46)
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@13 (line 656)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ac593fff3cc:   jmp    0x00007ac593fff21f
+  0x00007ac593fff3d1:   call   0x00007ac59b57bd60           ; ImmutableOopMap {rbx=Oop r9=Oop rax=Oop }
+                                                            ;*invokevirtual putIfAbsent {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ac593fff3d6:   movabs $0x2b1c7790,%r10             ;   {metadata({method} {0x000000002b1c7790} &apos;putIfAbsent&apos; &apos;(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;&apos; in &apos;java/util/concurrent/ConcurrentHashMap&apos;)}
+  0x00007ac593fff3e0:   mov    %r10,0x8(%rsp)
+  0x00007ac593fff3e5:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ac593fff3ed:   call   0x00007ac59b5821e0           ; ImmutableOopMap {rbx=Oop r9=Oop rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.concurrent.ConcurrentHashMap::putIfAbsent@-1 (line 1566)
+                                                            ; - java.lang.ClassLoader::getClassLoadingLock@23 (line 657)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ac593fff3f2:   jmp    0x00007ac593fff2ac
+  0x00007ac593fff3f7:   movabs $0x7ac593fff377,%r10         ;   {internal_word}
+  0x00007ac593fff401:   mov    %r10,0x510(%r15)
+  0x00007ac593fff408:   jmp    0x00007ac59b4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ac593fff40d:   mov    0x5c0(%r15),%rax
+  0x00007ac593fff414:   movq   $0x0,0x5c0(%r15)
+  0x00007ac593fff41f:   movq   $0x0,0x5c8(%r15)
+  0x00007ac593fff42a:   add    $0x60,%rsp
+  0x00007ac593fff42e:   pop    %rbp
+  0x00007ac593fff42f:   jmp    0x00007ac59b57ae60           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ac593fff434:   hlt    
+  0x00007ac593fff435:   hlt    
+  0x00007ac593fff436:   hlt    
+  0x00007ac593fff437:   hlt    
+[Stub Code]
+  0x00007ac593fff438:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ac593fff442:   jmp    0x00007ac593fff442           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ac593fff447:   call   0x00007ac59b57e460           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ac593fff44c:   movabs $0x7ac5b253aec4,%rdi         ;   {external_word}
+  0x00007ac593fff456:   and    $0xfffffffffffffff0,%rsp
+  0x00007ac593fff45a:   call   0x00007ac5b1f91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ac593fff45f:   hlt    
+  0x00007ac593fff460:   call   0x00007ac59b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ac593fff465:   jmp    0x00007ac593fff460
+  0x00007ac593fff467:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

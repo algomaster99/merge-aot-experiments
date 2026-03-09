@@ -1,0 +1,81 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3750  195       3       java.util.WeakHashMap::indexFor (6 bytes)
+ total in heap  [0x000077b458022508,0x000077b4580226d8] = 464
+ main code      [0x000077b458022600,0x000077b4580226b8] = 184
+ stub code      [0x000077b4580226b8,0x000077b4580226d8] = 32
+ mutable data [0x000077b3fc0573c0,0x000077b3fc0573f0] = 48
+ relocation     [0x000077b3fc0573c0,0x000077b3fc0573e8] = 40
+ metadata       [0x000077b3fc0573e8,0x000077b3fc0573f0] = 8
+ immutable data [0x000077b3fc057350,0x000077b3fc0573b4] = 100
+ dependencies   [0x000077b3fc057350,0x000077b3fc057358] = 8
+ scopes pcs     [0x000077b3fc057358,0x000077b3fc057398] = 64
+ scopes data    [0x000077b3fc057398,0x000077b3fc0573b0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004646b340} &apos;indexFor&apos; &apos;(II)I&apos; in &apos;java/util/WeakHashMap&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x40]  (sp of caller)
+  0x000077b458022600:   mov    %eax,-0x14000(%rsp)
+  0x000077b458022607:   push   %rbp
+  0x000077b458022608:   sub    $0x30,%rsp
+  0x000077b45802260c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458022614:   je     0x000077b45802261b
+  0x000077b458022616:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45802261b:   movabs $0x77b414074dc0,%rax         ;   {metadata(method data for {method} {0x000000004646b340} &apos;indexFor&apos; &apos;(II)I&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458022625:   mov    0x90(%rax),%edi
+  0x000077b45802262b:   add    $0x2,%edi
+  0x000077b45802262e:   mov    %edi,0x90(%rax)
+  0x000077b458022634:   and    $0x7fe,%edi
+  0x000077b45802263a:   test   %edi,%edi
+  0x000077b45802263c:   je     0x000077b45802265a           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.WeakHashMap::indexFor@0 (line 323)
+  0x000077b458022642:   dec    %edx
+  0x000077b458022644:   and    %rsi,%rdx
+  0x000077b458022647:   mov    %rdx,%rax
+  0x000077b45802264a:   add    $0x30,%rsp
+  0x000077b45802264e:   pop    %rbp
+  0x000077b45802264f:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458022653:   ja     0x000077b458022678
+  0x000077b458022659:   ret    
+  0x000077b45802265a:   movabs $0x4646b340,%r10             ;   {metadata({method} {0x000000004646b340} &apos;indexFor&apos; &apos;(II)I&apos; in &apos;java/util/WeakHashMap&apos;)}
+  0x000077b458022664:   mov    %r10,0x8(%rsp)
+  0x000077b458022669:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458022671:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.util.WeakHashMap::indexFor@-1 (line 323)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458022676:   jmp    0x000077b458022642
+  0x000077b458022678:   movabs $0x77b45802264f,%r10         ;   {internal_word}
+  0x000077b458022682:   mov    %r10,0x510(%r15)
+  0x000077b458022689:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45802268e:   mov    0x5c0(%r15),%rax
+  0x000077b458022695:   movq   $0x0,0x5c0(%r15)
+  0x000077b4580226a0:   movq   $0x0,0x5c8(%r15)
+  0x000077b4580226ab:   add    $0x30,%rsp
+  0x000077b4580226af:   pop    %rbp
+  0x000077b4580226b0:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4580226b5:   hlt    
+  0x000077b4580226b6:   hlt    
+  0x000077b4580226b7:   hlt    
+[Exception Handler]
+  0x000077b4580226b8:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4580226bd:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b4580226c7:   and    $0xfffffffffffffff0,%rsp
+  0x000077b4580226cb:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b4580226d0:   hlt    
+  0x000077b4580226d1:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b4580226d6:   jmp    0x000077b4580226d1
+--------------------------------------------------------------------------------
+[/Disassembly]

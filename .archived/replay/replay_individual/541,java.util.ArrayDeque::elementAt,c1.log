@@ -1,0 +1,103 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 372   27       3       java.util.ArrayDeque::elementAt (4 bytes)
+ total in heap  [0x000071a01bfff008,0x000071a01bfff200] = 504
+ main code      [0x000071a01bfff100,0x000071a01bfff1e0] = 224
+ stub code      [0x000071a01bfff1e0,0x000071a01bfff200] = 32
+ mutable data [0x0000719fbc0144f0,0x0000719fbc014520] = 48
+ relocation     [0x0000719fbc0144f0,0x0000719fbc014518] = 40
+ metadata       [0x0000719fbc014518,0x0000719fbc014520] = 8
+ immutable data [0x0000719fbc014cb0,0x0000719fbc014d7c] = 204
+ dependencies   [0x0000719fbc014cb0,0x0000719fbc014cb8] = 8
+ nul chk table  [0x0000719fbc014cb8,0x0000719fbc014cd0] = 24
+ scopes pcs     [0x0000719fbc014cd0,0x0000719fbc014d50] = 128
+ scopes data    [0x0000719fbc014d50,0x0000719fbc014d78] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000094313bd0} &apos;elementAt&apos; &apos;([Ljava/lang/Object;I)Ljava/lang/Object;&apos; in &apos;java/util/ArrayDeque&apos;
+  # parm0:    rsi:rsi   = &apos;[Ljava/lang/Object;&apos;
+  # parm1:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000071a01bfff100:   mov    %eax,-0x14000(%rsp)
+  0x000071a01bfff107:   push   %rbp
+  0x000071a01bfff108:   sub    $0x20,%rsp
+  0x000071a01bfff10c:   cmpl   $0x1,0x20(%r15)
+  0x000071a01bfff114:   je     0x000071a01bfff11b
+  0x000071a01bfff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000071a01bfff11b:   movabs $0x719fd40b96e0,%rax         ;   {metadata(method data for {method} {0x0000000094313bd0} &apos;elementAt&apos; &apos;([Ljava/lang/Object;I)Ljava/lang/Object;&apos; in &apos;java/util/ArrayDeque&apos;)}
+  0x000071a01bfff125:   mov    0x90(%rax),%edi
+  0x000071a01bfff12b:   add    $0x2,%edi
+  0x000071a01bfff12e:   mov    %edi,0x90(%rax)
+  0x000071a01bfff134:   and    $0x7fe,%edi
+  0x000071a01bfff13a:   test   %edi,%edi
+  0x000071a01bfff13c:   je     0x000071a01bfff166           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::elementAt@0 (line 257)
+  0x000071a01bfff142:   cmp    0xc(%rsi),%edx               ; implicit exception: dispatches to 0x000071a01bfff184
+  0x000071a01bfff145:   jae    0x000071a01bfff18e
+  0x000071a01bfff14b:   movslq %edx,%rdx
+  0x000071a01bfff14e:   mov    0x10(%rsi,%rdx,4),%eax
+  0x000071a01bfff152:   shl    $0x3,%rax                    ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::elementAt@2 (line 257)
+  0x000071a01bfff156:   add    $0x20,%rsp
+  0x000071a01bfff15a:   pop    %rbp
+  0x000071a01bfff15b:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000071a01bfff15f:   ja     0x000071a01bfff19c
+  0x000071a01bfff165:   ret    
+  0x000071a01bfff166:   movabs $0x94313bd0,%r10             ;   {metadata({method} {0x0000000094313bd0} &apos;elementAt&apos; &apos;([Ljava/lang/Object;I)Ljava/lang/Object;&apos; in &apos;java/util/ArrayDeque&apos;)}
+  0x000071a01bfff170:   mov    %r10,0x8(%rsp)
+  0x000071a01bfff175:   movq   $0xffffffffffffffff,(%rsp)
+  0x000071a01bfff17d:   call   0x000071a023583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayDeque::elementAt@-1 (line 257)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000071a01bfff182:   jmp    0x000071a01bfff142
+  0x000071a01bfff184:   call   0x000071a02357cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::elementAt@2 (line 257)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000071a01bfff189:   call   0x000071a02357cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::elementAt@2 (line 257)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000071a01bfff18e:   mov    %rdx,(%rsp)
+  0x000071a01bfff192:   mov    %rsi,0x8(%rsp)
+  0x000071a01bfff197:   call   0x000071a02357bd60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::elementAt@2 (line 257)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x000071a01bfff19c:   movabs $0x71a01bfff15b,%r10         ;   {internal_word}
+  0x000071a01bfff1a6:   mov    %r10,0x510(%r15)
+  0x000071a01bfff1ad:   jmp    0x000071a0234afb60           ;   {runtime_call SafepointBlob}
+  0x000071a01bfff1b2:   mov    0x5c0(%r15),%rax
+  0x000071a01bfff1b9:   movq   $0x0,0x5c0(%r15)
+  0x000071a01bfff1c4:   movq   $0x0,0x5c8(%r15)
+  0x000071a01bfff1cf:   add    $0x20,%rsp
+  0x000071a01bfff1d3:   pop    %rbp
+  0x000071a01bfff1d4:   jmp    0x000071a02357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000071a01bfff1d9:   hlt    
+  0x000071a01bfff1da:   hlt    
+  0x000071a01bfff1db:   hlt    
+  0x000071a01bfff1dc:   hlt    
+  0x000071a01bfff1dd:   hlt    
+  0x000071a01bfff1de:   hlt    
+  0x000071a01bfff1df:   hlt    
+[Exception Handler]
+  0x000071a01bfff1e0:   call   0x000071a02357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000071a01bfff1e5:   movabs $0x71a039b3aec4,%rdi         ;   {external_word}
+  0x000071a01bfff1ef:   and    $0xfffffffffffffff0,%rsp
+  0x000071a01bfff1f3:   call   0x000071a039591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000071a01bfff1f8:   hlt    
+  0x000071a01bfff1f9:   call   0x000071a0234afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000071a01bfff1fe:   jmp    0x000071a01bfff1f9
+--------------------------------------------------------------------------------
+[/Disassembly]

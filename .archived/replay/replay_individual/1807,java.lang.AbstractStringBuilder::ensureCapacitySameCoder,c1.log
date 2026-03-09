@@ -1,0 +1,145 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 737   53       3       java.lang.AbstractStringBuilder::ensureCapacitySameCoder (26 bytes)
+ total in heap  [0x00007ce017fff008,0x00007ce017fff2a0] = 664
+ main code      [0x00007ce017fff100,0x00007ce017fff260] = 352
+ stub code      [0x00007ce017fff260,0x00007ce017fff2a0] = 64
+ mutable data [0x00007cdfc002cf00,0x00007cdfc002cf50] = 80
+ relocation     [0x00007cdfc002cf00,0x00007cdfc002cf48] = 72
+ metadata       [0x00007cdfc002cf48,0x00007cdfc002cf50] = 8
+ immutable data [0x00007cdfc002cd90,0x00007cdfc002ceec] = 348
+ dependencies   [0x00007cdfc002cd90,0x00007cdfc002cd98] = 8
+ nul chk table  [0x00007cdfc002cd98,0x00007cdfc002cda8] = 16
+ scopes pcs     [0x00007cdfc002cda8,0x00007cdfc002ce88] = 224
+ scopes data    [0x00007cdfc002ce88,0x00007cdfc002cee8] = 96
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;
+  # parm0:    rsi:rsi   = &apos;[B&apos;
+  # parm1:    rdx       = byte
+  # parm2:    rcx       = int
+  #           [sp+0x50]  (sp of caller)
+  0x00007ce017fff100:   mov    %eax,-0x14000(%rsp)
+  0x00007ce017fff107:   push   %rbp
+  0x00007ce017fff108:   sub    $0x40,%rsp
+  0x00007ce017fff10c:   cmpl   $0x1,0x20(%r15)
+  0x00007ce017fff114:   je     0x00007ce017fff11b
+  0x00007ce017fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007ce017fff11b:   mov    %rcx,%rdi
+  0x00007ce017fff11e:   movabs $0x7cdfcc32f360,%rcx         ;   {metadata(method data for {method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;)}
+  0x00007ce017fff128:   mov    0x90(%rcx),%ebx
+  0x00007ce017fff12e:   add    $0x2,%ebx
+  0x00007ce017fff131:   mov    %ebx,0x90(%rcx)
+  0x00007ce017fff137:   and    $0x7fe,%ebx
+  0x00007ce017fff13d:   test   %ebx,%ebx
+  0x00007ce017fff13f:   je     0x00007ce017fff1fa           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@0 (line 307)
+  0x00007ce017fff145:   mov    0xc(%rsi),%ebx               ; implicit exception: dispatches to 0x00007ce017fff21b
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@1 (line 307)
+  0x00007ce017fff148:   mov    %rdx,%rcx
+  0x00007ce017fff14b:   sar    %cl,%ebx
+  0x00007ce017fff14d:   mov    %rdi,%rcx
+  0x00007ce017fff150:   sub    %ebx,%ecx
+  0x00007ce017fff152:   test   %ecx,%ecx
+  0x00007ce017fff154:   movabs $0x7cdfcc32f360,%rcx         ;   {metadata(method data for {method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;)}
+  0x00007ce017fff15e:   mov    $0xd8,%ebx
+  0x00007ce017fff163:   jle    0x00007ce017fff16a
+  0x00007ce017fff165:   mov    $0xe8,%ebx
+  0x00007ce017fff16a:   mov    (%rcx,%rbx,1),%rax
+  0x00007ce017fff16e:   lea    0x1(%rax),%rax
+  0x00007ce017fff172:   mov    %rax,(%rcx,%rbx,1)
+  0x00007ce017fff176:   jle    0x00007ce017fff1e7           ;*ifle {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@8 (line 308)
+  0x00007ce017fff17c:   movabs $0x7cdfcc32f360,%rcx         ;   {metadata(method data for {method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;)}
+  0x00007ce017fff186:   addq   $0x1,0xf8(%rcx)
+  0x00007ce017fff18e:   mov    %rsi,%rbx
+  0x00007ce017fff191:   mov    %rbx,%rsi
+  0x00007ce017fff194:   mov    %rdx,%rax
+  0x00007ce017fff197:   mov    %rax,%rdx
+  0x00007ce017fff19a:   mov    %rdi,%rcx                    ;*invokestatic newCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@15 (line 310)
+  0x00007ce017fff19d:   mov    %rbx,0x30(%rsp)
+  0x00007ce017fff1a2:   mov    %eax,0x28(%rsp)
+  0x00007ce017fff1a6:   nop
+  0x00007ce017fff1a7:   call   0x00007ce01f4adfe0           ; ImmutableOopMap {[48]=Oop }
+                                                            ;*invokestatic newCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@15 (line 310)
+                                                            ;   {static_call}
+  0x00007ce017fff1ac:   nopl   0x1a4(%rax,%rax,1)           ;*invokestatic newCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@15 (line 310)
+                                                            ;   {post_call_nop}
+  0x00007ce017fff1b4:   movabs $0x7cdfcc32f360,%rcx         ;   {metadata(method data for {method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;)}
+  0x00007ce017fff1be:   addq   $0x1,0x108(%rcx)
+  0x00007ce017fff1c6:   mov    0x28(%rsp),%ecx
+  0x00007ce017fff1ca:   shl    %cl,%eax
+  0x00007ce017fff1cc:   mov    0x30(%rsp),%rsi
+  0x00007ce017fff1d1:   mov    %rax,%rdx                    ;*invokestatic copyOf {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@20 (line 309)
+  0x00007ce017fff1d4:   data16 xchg %ax,%ax
+  0x00007ce017fff1d7:   call   0x00007ce01f4adfe0           ; ImmutableOopMap {}
+                                                            ;*invokestatic copyOf {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@20 (line 309)
+                                                            ;   {static_call}
+  0x00007ce017fff1dc:   nopl   0x10001d4(%rax,%rax,1)       ;*invokestatic copyOf {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@20 (line 309)
+                                                            ;   {post_call_nop}
+  0x00007ce017fff1e4:   mov    %rax,%rsi                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@24 (line 312)
+  0x00007ce017fff1e7:   mov    %rsi,%rax
+  0x00007ce017fff1ea:   add    $0x40,%rsp
+  0x00007ce017fff1ee:   pop    %rbp
+  0x00007ce017fff1ef:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007ce017fff1f3:   ja     0x00007ce017fff220
+  0x00007ce017fff1f9:   ret    
+  0x00007ce017fff1fa:   movabs $0x4e1b6798,%r10             ;   {metadata({method} {0x000000004e1b6798} &apos;ensureCapacitySameCoder&apos; &apos;([BBI)[B&apos; in &apos;java/lang/AbstractStringBuilder&apos;)}
+  0x00007ce017fff204:   mov    %r10,0x8(%rsp)
+  0x00007ce017fff209:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007ce017fff211:   call   0x00007ce01f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@-1 (line 307)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007ce017fff216:   jmp    0x00007ce017fff145
+  0x00007ce017fff21b:   call   0x00007ce01f57cae0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::ensureCapacitySameCoder@1 (line 307)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007ce017fff220:   movabs $0x7ce017fff1ef,%r10         ;   {internal_word}
+  0x00007ce017fff22a:   mov    %r10,0x510(%r15)
+  0x00007ce017fff231:   jmp    0x00007ce01f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007ce017fff236:   mov    0x5c0(%r15),%rax
+  0x00007ce017fff23d:   movq   $0x0,0x5c0(%r15)
+  0x00007ce017fff248:   movq   $0x0,0x5c8(%r15)
+  0x00007ce017fff253:   add    $0x40,%rsp
+  0x00007ce017fff257:   pop    %rbp
+  0x00007ce017fff258:   jmp    0x00007ce01f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007ce017fff25d:   hlt    
+  0x00007ce017fff25e:   hlt    
+  0x00007ce017fff25f:   hlt    
+[Stub Code]
+  0x00007ce017fff260:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ce017fff26a:   jmp    0x00007ce017fff26a           ;   {runtime_call nmethod}
+  0x00007ce017fff26f:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007ce017fff279:   jmp    0x00007ce017fff279           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007ce017fff27e:   call   0x00007ce01f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007ce017fff283:   movabs $0x7ce03893aec4,%rdi         ;   {external_word}
+  0x00007ce017fff28d:   and    $0xfffffffffffffff0,%rsp
+  0x00007ce017fff291:   call   0x00007ce038391cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007ce017fff296:   hlt    
+  0x00007ce017fff297:   call   0x00007ce01f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007ce017fff29c:   jmp    0x00007ce017fff297
+  0x00007ce017fff29e:   hlt    
+  0x00007ce017fff29f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

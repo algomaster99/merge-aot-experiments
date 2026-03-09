@@ -1,0 +1,77 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 3037  164       3       java.lang.ref.Reference::reachabilityFence (1 bytes)
+ total in heap  [0x000077b45801bc08,0x000077b45801bdd0] = 456
+ main code      [0x000077b45801bd00,0x000077b45801bdb0] = 176
+ stub code      [0x000077b45801bdb0,0x000077b45801bdd0] = 32
+ mutable data [0x000077b3fc0566d0,0x000077b3fc056700] = 48
+ relocation     [0x000077b3fc0566d0,0x000077b3fc0566f8] = 40
+ metadata       [0x000077b3fc0566f8,0x000077b3fc056700] = 8
+ immutable data [0x000077b3fc056660,0x000077b3fc0566c4] = 100
+ dependencies   [0x000077b3fc056660,0x000077b3fc056668] = 8
+ scopes pcs     [0x000077b3fc056668,0x000077b3fc0566a8] = 64
+ scopes data    [0x000077b3fc0566a8,0x000077b3fc0566c0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x00000000461a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;
+  # parm0:    rsi:rsi   = &apos;java/lang/Object&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45801bd00:   mov    %eax,-0x14000(%rsp)
+  0x000077b45801bd07:   push   %rbp
+  0x000077b45801bd08:   sub    $0x20,%rsp
+  0x000077b45801bd0c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45801bd14:   je     0x000077b45801bd1b
+  0x000077b45801bd16:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45801bd1b:   movabs $0x77b414066fc0,%rdi         ;   {metadata(method data for {method} {0x00000000461a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000077b45801bd25:   mov    0x90(%rdi),%ebx
+  0x000077b45801bd2b:   add    $0x2,%ebx
+  0x000077b45801bd2e:   mov    %ebx,0x90(%rdi)
+  0x000077b45801bd34:   and    $0x7fe,%ebx
+  0x000077b45801bd3a:   test   %ebx,%ebx
+  0x000077b45801bd3c:   je     0x000077b45801bd52           ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.ref.Reference::reachabilityFence@0 (line 654)
+  0x000077b45801bd42:   add    $0x20,%rsp
+  0x000077b45801bd46:   pop    %rbp
+  0x000077b45801bd47:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45801bd4b:   ja     0x000077b45801bd70
+  0x000077b45801bd51:   ret    
+  0x000077b45801bd52:   movabs $0x461a85e8,%r10             ;   {metadata({method} {0x00000000461a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x000077b45801bd5c:   mov    %r10,0x8(%rsp)
+  0x000077b45801bd61:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b45801bd69:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45801bd6e:   jmp    0x000077b45801bd42
+  0x000077b45801bd70:   movabs $0x77b45801bd47,%r10         ;   {internal_word}
+  0x000077b45801bd7a:   mov    %r10,0x510(%r15)
+  0x000077b45801bd81:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45801bd86:   mov    0x5c0(%r15),%rax
+  0x000077b45801bd8d:   movq   $0x0,0x5c0(%r15)
+  0x000077b45801bd98:   movq   $0x0,0x5c8(%r15)
+  0x000077b45801bda3:   add    $0x20,%rsp
+  0x000077b45801bda7:   pop    %rbp
+  0x000077b45801bda8:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45801bdad:   hlt    
+  0x000077b45801bdae:   hlt    
+  0x000077b45801bdaf:   hlt    
+[Exception Handler]
+  0x000077b45801bdb0:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45801bdb5:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45801bdbf:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45801bdc3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45801bdc8:   hlt    
+  0x000077b45801bdc9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45801bdce:   jmp    0x000077b45801bdc9
+--------------------------------------------------------------------------------
+[/Disassembly]

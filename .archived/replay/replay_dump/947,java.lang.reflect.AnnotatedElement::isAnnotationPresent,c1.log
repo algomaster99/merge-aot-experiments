@@ -1,0 +1,146 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 14737  947       3       java.lang.reflect.AnnotatedElement::isAnnotationPresent (16 bytes)
+ total in heap  [0x000077b458080088,0x000077b458080358] = 720
+ main code      [0x000077b458080180,0x000077b458080320] = 416
+ stub code      [0x000077b458080320,0x000077b458080358] = 56
+ mutable data [0x000077b3f00d6570,0x000077b3f00d65b8] = 72
+ relocation     [0x000077b3f00d6570,0x000077b3f00d65b0] = 64
+ metadata       [0x000077b3f00d65b0,0x000077b3f00d65b8] = 8
+ immutable data [0x000077b3f00d6620,0x000077b3f00d66f4] = 212
+ dependencies   [0x000077b3f00d6620,0x000077b3f00d6628] = 8
+ scopes pcs     [0x000077b3f00d6628,0x000077b3f00d66b8] = 144
+ scopes data    [0x000077b3f00d66b8,0x000077b3f00d66f0] = 56
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458080180:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45808018b:   data16 data16 xchg %ax,%ax
+  0x000077b45808018f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;
+  # this:     rsi:rsi   = &apos;java/lang/reflect/AnnotatedElement&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458080192:   mov    0x8(%rsi),%r10d
+  0x000077b458080196:   cmp    0x8(%rax),%r10d
+  0x000077b45808019a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b4580801a0:   mov    %eax,-0x14000(%rsp)
+  0x000077b4580801a7:   push   %rbp
+  0x000077b4580801a8:   sub    $0x20,%rsp
+  0x000077b4580801ac:   cmpl   $0x1,0x20(%r15)
+  0x000077b4580801b4:   je     0x000077b4580801bb
+  0x000077b4580801b6:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b4580801bb:   movabs $0x77b41417d630,%rdi         ;   {metadata(method data for {method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;)}
+  0x000077b4580801c5:   mov    0x90(%rdi),%ebx
+  0x000077b4580801cb:   add    $0x2,%ebx
+  0x000077b4580801ce:   mov    %ebx,0x90(%rdi)
+  0x000077b4580801d4:   and    $0x7fe,%ebx
+  0x000077b4580801da:   test   %ebx,%ebx
+  0x000077b4580801dc:   je     0x000077b4580802c1           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@0 (line 291)
+  0x000077b4580801e2:   mov    %rsi,%rdi
+  0x000077b4580801e5:   movabs $0x77b41417d630,%rbx         ;   {metadata(method data for {method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;)}
+  0x000077b4580801ef:   mov    0x8(%rdi),%edi
+  0x000077b4580801f2:   mov    $0x46000000,%r10d
+  0x000077b4580801f8:   add    %r10,%rdi
+  0x000077b4580801fb:   mov    $0x1c,%r10d
+  0x000077b458080201:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458080205:   je     0x000077b45808023e
+  0x000077b458080207:   add    $0x2,%r10
+  0x000077b45808020b:   cmp    $0x20,%r10
+  0x000077b45808020f:   jne    0x000077b458080201
+  0x000077b458080211:   mov    $0x1c,%r10d
+  0x000077b458080217:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b45808021c:   je     0x000077b45808022a
+  0x000077b45808021e:   add    $0x2,%r10
+  0x000077b458080222:   cmp    $0x20,%r10
+  0x000077b458080226:   jne    0x000077b458080217
+  0x000077b458080228:   jmp    0x000077b458080236
+  0x000077b45808022a:   push   %rax
+  0x000077b45808022b:   xor    %rax,%rax
+  0x000077b45808022e:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b458080233:   pop    %rax
+  0x000077b458080234:   jmp    0x000077b4580801fb
+  0x000077b458080236:   mov    $0x1b,%r10d
+  0x000077b45808023c:   jmp    0x000077b458080242
+  0x000077b45808023e:   add    $0x1,%r10
+  0x000077b458080242:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b458080247:   nopw   0x0(%rax,%rax,1)
+  0x000077b45808024d:   movabs $0x77b3f00d6730,%rax
+  0x000077b458080257:   call   0x000077b45f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ;   {virtual_call}
+  0x000077b45808025c:   nopl   0x1d4(%rax,%rax,1)           ;*invokeinterface getAnnotation {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@2 (line 291)
+                                                            ;   {post_call_nop}
+  0x000077b458080264:   test   %rax,%rax
+  0x000077b458080267:   movabs $0x77b41417d630,%rax         ;   {metadata(method data for {method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;)}
+  0x000077b458080271:   mov    $0x108,%esi
+  0x000077b458080276:   je     0x000077b45808027d
+  0x000077b458080278:   mov    $0x118,%esi
+  0x000077b45808027d:   mov    (%rax,%rsi,1),%rdi
+  0x000077b458080281:   lea    0x1(%rdi),%rdi
+  0x000077b458080285:   mov    %rdi,(%rax,%rsi,1)
+  0x000077b458080289:   je     0x000077b4580802a9           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@7 (line 291)
+  0x000077b45808028f:   movabs $0x77b41417d630,%rax         ;   {metadata(method data for {method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;)}
+  0x000077b458080299:   incl   0x128(%rax)
+  0x000077b45808029f:   mov    $0x1,%eax
+  0x000077b4580802a4:   jmp    0x000077b4580802ae           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@11 (line 291)
+  0x000077b4580802a9:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@15 (line 291)
+  0x000077b4580802ae:   and    $0x1,%eax
+  0x000077b4580802b1:   add    $0x20,%rsp
+  0x000077b4580802b5:   pop    %rbp
+  0x000077b4580802b6:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580802ba:   ja     0x000077b4580802e2
+  0x000077b4580802c0:   ret    
+  0x000077b4580802c1:   movabs $0x46186770,%r10             ;   {metadata({method} {0x0000000046186770} &apos;isAnnotationPresent&apos; &apos;(Ljava/lang/Class;)Z&apos; in &apos;java/lang/reflect/AnnotatedElement&apos;)}
+  0x000077b4580802cb:   mov    %r10,0x8(%rsp)
+  0x000077b4580802d0:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580802d8:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.AnnotatedElement::isAnnotationPresent@-1 (line 291)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b4580802dd:   jmp    0x000077b4580801e2
+  0x000077b4580802e2:   movabs $0x77b4580802b6,%r10         ;   {internal_word}
+  0x000077b4580802ec:   mov    %r10,0x510(%r15)
+  0x000077b4580802f3:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4580802f8:   mov    0x5c0(%r15),%rax
+  0x000077b4580802ff:   movq   $0x0,0x5c0(%r15)
+  0x000077b45808030a:   movq   $0x0,0x5c8(%r15)
+  0x000077b458080315:   add    $0x20,%rsp
+  0x000077b458080319:   pop    %rbp
+  0x000077b45808031a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45808031f:   hlt    
+[Stub Code]
+  0x000077b458080320:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b458080325:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b45808032f:   jmp    0x000077b45808032f           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b458080334:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458080339:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458080343:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458080347:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45808034c:   hlt    
+  0x000077b45808034d:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458080352:   jmp    0x000077b45808034d
+  0x000077b458080354:   hlt    
+  0x000077b458080355:   hlt    
+  0x000077b458080356:   hlt    
+  0x000077b458080357:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

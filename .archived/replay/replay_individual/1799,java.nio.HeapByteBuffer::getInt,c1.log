@@ -1,0 +1,753 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 640   53       3       java.nio.HeapByteBuffer::getInt (29 bytes)
+ total in heap  [0x00007870f3fff008,0x00007870f3fffb80] = 2936
+ main code      [0x00007870f3fff100,0x00007870f3fffb00] = 2560
+ stub code      [0x00007870f3fffb00,0x00007870f3fffb78] = 120
+ oops           [0x00007870f3fffb78,0x00007870f3fffb80] = 8
+ mutable data [0x000078709c04d6f0,0x000078709c04d828] = 312
+ relocation     [0x000078709c04d6f0,0x000078709c04d7e0] = 240
+ metadata       [0x000078709c04d7e0,0x000078709c04d828] = 72
+ immutable data [0x000078709c04d0c0,0x000078709c04d6dc] = 1564
+ dependencies   [0x000078709c04d0c0,0x000078709c04d0d8] = 24
+ nul chk table  [0x000078709c04d0d8,0x000078709c04d0f0] = 24
+ handler table  [0x000078709c04d0f0,0x000078709c04d150] = 96
+ scopes pcs     [0x000078709c04d150,0x000078709c04d470] = 800
+ scopes data    [0x000078709c04d470,0x000078709c04d6d8] = 616
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007870f3fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007870f3fff10b:   data16 data16 xchg %ax,%ax
+  0x00007870f3fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;
+  #           [sp+0xf0]  (sp of caller)
+  0x00007870f3fff112:   mov    0x8(%rsi),%r10d
+  0x00007870f3fff116:   cmp    0x8(%rax),%r10d
+  0x00007870f3fff11a:   jne    0x00007870fb4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007870f3fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007870f3fff127:   push   %rbp
+  0x00007870f3fff128:   sub    $0xe0,%rsp
+  0x00007870f3fff12f:   nop
+  0x00007870f3fff130:   cmpl   $0x1,0x20(%r15)
+  0x00007870f3fff138:   je     0x00007870f3fff13f
+  0x00007870f3fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007870f3fff13f:   mov    %rsi,0xa8(%rsp)
+  0x00007870f3fff147:   movabs $0x7870b032d810,%rdi         ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff151:   mov    0x90(%rdi),%ebx
+  0x00007870f3fff157:   add    $0x2,%ebx
+  0x00007870f3fff15a:   mov    %ebx,0x90(%rdi)
+  0x00007870f3fff160:   and    $0x7fe,%ebx
+  0x00007870f3fff166:   test   %ebx,%ebx
+  0x00007870f3fff168:   je     0x00007870f3fff964           ;*getstatic SCOPED_MEMORY_ACCESS {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getInt@0 (line 492)
+  0x00007870f3fff16e:   mov    %rsi,%rdi
+  0x00007870f3fff171:   movabs $0x7870b032d810,%rbx         ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff17b:   mov    0x8(%rdi),%edi
+  0x00007870f3fff17e:   mov    $0x9d000000,%r10d
+  0x00007870f3fff184:   add    %r10,%rdi
+  0x00007870f3fff187:   mov    $0x1c,%r10d
+  0x00007870f3fff18d:   cmp    (%rbx,%r10,8),%rdi
+  0x00007870f3fff191:   je     0x00007870f3fff1ca
+  0x00007870f3fff193:   add    $0x2,%r10
+  0x00007870f3fff197:   cmp    $0x20,%r10
+  0x00007870f3fff19b:   jne    0x00007870f3fff18d
+  0x00007870f3fff19d:   mov    $0x1c,%r10d
+  0x00007870f3fff1a3:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007870f3fff1a8:   je     0x00007870f3fff1b6
+  0x00007870f3fff1aa:   add    $0x2,%r10
+  0x00007870f3fff1ae:   cmp    $0x20,%r10
+  0x00007870f3fff1b2:   jne    0x00007870f3fff1a3
+  0x00007870f3fff1b4:   jmp    0x00007870f3fff1c2
+  0x00007870f3fff1b6:   push   %rax
+  0x00007870f3fff1b7:   xor    %rax,%rax
+  0x00007870f3fff1ba:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007870f3fff1bf:   pop    %rax
+  0x00007870f3fff1c0:   jmp    0x00007870f3fff187
+  0x00007870f3fff1c2:   mov    $0x1b,%r10d
+  0x00007870f3fff1c8:   jmp    0x00007870f3fff1ce
+  0x00007870f3fff1ca:   add    $0x1,%r10
+  0x00007870f3fff1ce:   addq   $0x1,(%rbx,%r10,8)
+  0x00007870f3fff1d3:   movabs $0x7870b032d428,%rdi         ;   {metadata(method data for {method} {0x000000009d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff1dd:   mov    0x90(%rdi),%ebx
+  0x00007870f3fff1e3:   add    $0x2,%ebx
+  0x00007870f3fff1e6:   mov    %ebx,0x90(%rdi)
+  0x00007870f3fff1ec:   and    $0x1ffffe,%ebx
+  0x00007870f3fff1f2:   test   %ebx,%ebx
+  0x00007870f3fff1f4:   je     0x00007870f3fff985
+  0x00007870f3fff1fa:   mov    0x24(%rsi),%edi
+  0x00007870f3fff1fd:   shl    $0x3,%rdi                    ;*getfield segment {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@1 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+  0x00007870f3fff201:   test   %rdi,%rdi
+  0x00007870f3fff204:   movabs $0x7870b032d428,%rbx         ;   {metadata(method data for {method} {0x000000009d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff20e:   mov    $0xd8,%eax
+  0x00007870f3fff213:   je     0x00007870f3fff21a
+  0x00007870f3fff215:   mov    $0xe8,%eax
+  0x00007870f3fff21a:   mov    (%rbx,%rax,1),%rdx
+  0x00007870f3fff21e:   lea    0x1(%rdx),%rdx
+  0x00007870f3fff222:   mov    %rdx,(%rbx,%rax,1)
+  0x00007870f3fff226:   je     0x00007870f3fff311           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@4 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+  0x00007870f3fff22c:   test   %rdi,%rdi
+  0x00007870f3fff22f:   movabs $0x7870b032d428,%rdx         ;   {metadata(method data for {method} {0x000000009d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff239:   jne    0x00007870f3fff247
+  0x00007870f3fff23b:   orb    $0x1,0xf1(%rdx)
+  0x00007870f3fff242:   jmp    0x00007870f3fff2eb
+  0x00007870f3fff247:   mov    0x8(%rdi),%ecx
+  0x00007870f3fff24a:   mov    $0x9d000000,%r10d
+  0x00007870f3fff250:   add    %r10,%rcx
+  0x00007870f3fff253:   mov    $0x20,%r10d
+  0x00007870f3fff259:   cmp    (%rdx,%r10,8),%rcx
+  0x00007870f3fff25d:   je     0x00007870f3fff296
+  0x00007870f3fff25f:   add    $0x2,%r10
+  0x00007870f3fff263:   cmp    $0x24,%r10
+  0x00007870f3fff267:   jne    0x00007870f3fff259
+  0x00007870f3fff269:   mov    $0x20,%r10d
+  0x00007870f3fff26f:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007870f3fff274:   je     0x00007870f3fff282
+  0x00007870f3fff276:   add    $0x2,%r10
+  0x00007870f3fff27a:   cmp    $0x24,%r10
+  0x00007870f3fff27e:   jne    0x00007870f3fff26f
+  0x00007870f3fff280:   jmp    0x00007870f3fff28e
+  0x00007870f3fff282:   push   %rax
+  0x00007870f3fff283:   xor    %rax,%rax
+  0x00007870f3fff286:   cmpxchg %rcx,(%rdx,%r10,8)
+  0x00007870f3fff28b:   pop    %rax
+  0x00007870f3fff28c:   jmp    0x00007870f3fff253
+  0x00007870f3fff28e:   mov    $0x1f,%r10d
+  0x00007870f3fff294:   jmp    0x00007870f3fff29a
+  0x00007870f3fff296:   add    $0x1,%r10
+  0x00007870f3fff29a:   addq   $0x1,(%rdx,%r10,8)
+  0x00007870f3fff29f:   nop
+  0x00007870f3fff2a0:   jmp    0x00007870f3fff9b5           ;   {other}
+  0x00007870f3fff2a5:   add    %al,(%rax)
+  0x00007870f3fff2a7:   add    %al,(%rax)
+  0x00007870f3fff2a9:   add    %cl,-0x45bef7a9(%rbx)
+  0x00007870f3fff2af:   add    %al,(%rax)
+  0x00007870f3fff2b1:   add    %bl,0x48d20349(%rbp)
+  0x00007870f3fff2b7:   cmp    %ecx,%edx
+  0x00007870f3fff2b9:   je     0x00007870f3fff2eb
+  0x00007870f3fff2bf:   mov    0x10(%rcx),%eax
+  0x00007870f3fff2c2:   cmp    (%rdx,%rax,1),%rcx
+  0x00007870f3fff2c6:   je     0x00007870f3fff2eb
+  0x00007870f3fff2cc:   cmp    $0x20,%eax
+  0x00007870f3fff2cf:   jne    0x00007870f3fff9bf
+  0x00007870f3fff2d5:   push   %rdx
+  0x00007870f3fff2d6:   push   %rcx
+  0x00007870f3fff2d7:   call   0x00007870fb5807e0           ;   {runtime_call slow_subtype_check_blob (C1 runtime)}
+  0x00007870f3fff2dc:   pop    %rdx
+  0x00007870f3fff2dd:   pop    %rcx
+  0x00007870f3fff2de:   test   %ecx,%ecx
+  0x00007870f3fff2e0:   je     0x00007870f3fff9bf
+  0x00007870f3fff2e6:   jmp    0x00007870f3fff2eb
+  0x00007870f3fff2eb:   mov    %rdi,%rbx                    ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+  0x00007870f3fff2ee:   mov    %rbx,%rsi                    ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+  0x00007870f3fff2f1:   nopl   0x0(%rax)
+  0x00007870f3fff2f5:   movabs $0x78709c04da30,%rax
+  0x00007870f3fff2ff:   call   0x00007870fb4adce0           ; ImmutableOopMap {[168]=Oop }
+                                                            ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+                                                            ;   {virtual_call}
+  0x00007870f3fff304:   nopl   0x2fc(%rax,%rax,1)           ;*invokevirtual sessionImpl {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@14 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007870f3fff30c:   jmp    0x00007870f3fff31b
+  0x00007870f3fff311:   movabs $0x0,%rax                    ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getInt@7 (line 492)
+                                                            ;   {oop(nullptr)}
+  0x00007870f3fff31b:   mov    0xa8(%rsp),%rsi
+  0x00007870f3fff323:   mov    0x28(%rsi),%edi
+  0x00007870f3fff326:   shl    $0x3,%rdi                    ;*getfield hb {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getInt@8 (line 492)
+  0x00007870f3fff32a:   mov    %rdi,0xb0(%rsp)
+  0x00007870f3fff332:   mov    %rsi,%rbx
+  0x00007870f3fff335:   movabs $0x7870b032d810,%rdx         ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff33f:   mov    0x8(%rbx),%ebx
+  0x00007870f3fff342:   mov    $0x9d000000,%r10d
+  0x00007870f3fff348:   add    %r10,%rbx
+  0x00007870f3fff34b:   mov    $0x22,%r10d
+  0x00007870f3fff351:   cmp    (%rdx,%r10,8),%rbx
+  0x00007870f3fff355:   je     0x00007870f3fff38e
+  0x00007870f3fff357:   add    $0x2,%r10
+  0x00007870f3fff35b:   cmp    $0x26,%r10
+  0x00007870f3fff35f:   jne    0x00007870f3fff351
+  0x00007870f3fff361:   mov    $0x22,%r10d
+  0x00007870f3fff367:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007870f3fff36c:   je     0x00007870f3fff37a
+  0x00007870f3fff36e:   add    $0x2,%r10
+  0x00007870f3fff372:   cmp    $0x26,%r10
+  0x00007870f3fff376:   jne    0x00007870f3fff367
+  0x00007870f3fff378:   jmp    0x00007870f3fff386
+  0x00007870f3fff37a:   push   %rax
+  0x00007870f3fff37b:   xor    %rax,%rax
+  0x00007870f3fff37e:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x00007870f3fff383:   pop    %rax
+  0x00007870f3fff384:   jmp    0x00007870f3fff34b
+  0x00007870f3fff386:   mov    $0x21,%r10d
+  0x00007870f3fff38c:   jmp    0x00007870f3fff392
+  0x00007870f3fff38e:   add    $0x1,%r10
+  0x00007870f3fff392:   addq   $0x1,(%rdx,%r10,8)
+  0x00007870f3fff397:   movabs $0x7870b032d6d0,%rbx         ;   {metadata(method data for {method} {0x000000009d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff3a1:   mov    0x90(%rbx),%edx
+  0x00007870f3fff3a7:   add    $0x2,%edx
+  0x00007870f3fff3aa:   mov    %edx,0x90(%rbx)
+  0x00007870f3fff3b0:   and    $0x1ffffe,%edx
+  0x00007870f3fff3b6:   test   %edx,%edx
+  0x00007870f3fff3b8:   je     0x00007870f3fff9c8
+  0x00007870f3fff3be:   mov    0x18(%rsi),%ebx              ;*getfield position {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@1 (line 718)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff3c1:   mov    0x1c(%rsi),%edx              ;*getfield limit {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@6 (line 719)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff3c4:   sub    %ebx,%edx
+  0x00007870f3fff3c6:   cmp    $0x4,%edx
+  0x00007870f3fff3c9:   movabs $0x7870b032d6d0,%rdx         ;   {metadata(method data for {method} {0x000000009d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff3d3:   mov    $0xe8,%ecx
+  0x00007870f3fff3d8:   jl     0x00007870f3fff3df
+  0x00007870f3fff3da:   mov    $0xd8,%ecx
+  0x00007870f3fff3df:   mov    (%rdx,%rcx,1),%r8
+  0x00007870f3fff3e3:   lea    0x1(%r8),%r8
+  0x00007870f3fff3e7:   mov    %r8,(%rdx,%rcx,1)
+  0x00007870f3fff3eb:   jl     0x00007870f3fff870           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@12 (line 719)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff3f1:   mov    %rbx,%rdx
+  0x00007870f3fff3f4:   add    $0x4,%edx
+  0x00007870f3fff3f7:   mov    %edx,0x18(%rsi)              ;*putfield position {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@27 (line 721)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff3fa:   mov    %rsi,%rdx
+  0x00007870f3fff3fd:   movabs $0x7870b032d810,%rcx         ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff407:   addq   $0x1,0x138(%rcx)
+  0x00007870f3fff40f:   movslq %ebx,%rbx
+  0x00007870f3fff412:   movabs $0x7870b032d5c0,%rdx         ;   {metadata(method data for {method} {0x000000009d2e8390} &apos;byteOffset&apos; &apos;(J)J&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff41c:   mov    0x90(%rdx),%ecx
+  0x00007870f3fff422:   add    $0x2,%ecx
+  0x00007870f3fff425:   mov    %ecx,0x90(%rdx)
+  0x00007870f3fff42b:   and    $0x1ffffe,%ecx
+  0x00007870f3fff431:   test   %ecx,%ecx
+  0x00007870f3fff433:   je     0x00007870f3fff9e9
+  0x00007870f3fff439:   mov    0x10(%rsi),%rdx              ;*getfield address {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::byteOffset@1 (line 171)
+                                                            ; - java.nio.HeapByteBuffer::getInt@18 (line 492)
+  0x00007870f3fff43d:   add    %rbx,%rdx
+  0x00007870f3fff440:   movsbl 0x31(%rsi),%ebx              ;*getfield bigEndian {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getInt@22 (line 492)
+  0x00007870f3fff444:   movabs $0x7870b032d810,%rsi         ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff44e:   lea    0x198(%rsi),%rsi
+  0x00007870f3fff455:   test   %rax,%rax
+  0x00007870f3fff458:   jne    0x00007870f3fff468
+  0x00007870f3fff45a:   testb  $0x1,0x8(%rsi)
+  0x00007870f3fff45e:   jne    0x00007870f3fff483
+  0x00007870f3fff460:   lock orq $0x1,0x8(%rsi)
+  0x00007870f3fff466:   jmp    0x00007870f3fff483
+  0x00007870f3fff468:   movabs $0x9e000c38,%rcx             ;   {metadata(&apos;jdk/internal/foreign/MemorySessionImpl&apos;)}
+  0x00007870f3fff472:   xor    0x8(%rsi),%rcx
+  0x00007870f3fff476:   test   $0xfffffffffffffffc,%rcx
+  0x00007870f3fff47d:   je     0x00007870f3fff483
+  0x00007870f3fff47f:   mov    %rcx,0x8(%rsi)
+  0x00007870f3fff483:   test   %rdi,%rdi
+  0x00007870f3fff486:   jne    0x00007870f3fff496
+  0x00007870f3fff488:   testb  $0x1,0x18(%rsi)
+  0x00007870f3fff48c:   jne    0x00007870f3fff4da
+  0x00007870f3fff48e:   lock orq $0x1,0x18(%rsi)
+  0x00007870f3fff494:   jmp    0x00007870f3fff4da
+  0x00007870f3fff496:   movabs $0x9d175de8,%rcx             ;   {metadata({type array byte})}
+  0x00007870f3fff4a0:   mov    %rcx,%r10
+  0x00007870f3fff4a3:   xor    0x18(%rsi),%rcx
+  0x00007870f3fff4a7:   test   $0xfffffffffffffffc,%rcx
+  0x00007870f3fff4ae:   je     0x00007870f3fff4da
+  0x00007870f3fff4b0:   test   $0x2,%cl
+  0x00007870f3fff4b3:   jne    0x00007870f3fff4da
+  0x00007870f3fff4b5:   testq  $0xfffffffffffffffe,0x18(%rsi)
+  0x00007870f3fff4bd:   je     0x00007870f3fff4d6
+  0x00007870f3fff4bf:   mov    %r10,%rcx
+  0x00007870f3fff4c2:   xor    0x18(%rsi),%rcx
+  0x00007870f3fff4c6:   test   $0xfffffffffffffffc,%rcx
+  0x00007870f3fff4cd:   je     0x00007870f3fff4da
+  0x00007870f3fff4cf:   orq    $0x2,0x18(%rsi)
+  0x00007870f3fff4d4:   jmp    0x00007870f3fff4da
+  0x00007870f3fff4d6:   mov    %rcx,0x18(%rsi)
+  0x00007870f3fff4da:   movabs $0x420035a98,%rsi            ;   {oop(a &apos;jdk/internal/misc/ScopedMemoryAccess&apos;{0x0000000420035a98})}
+  0x00007870f3fff4e4:   mov    %rsi,%rcx
+  0x00007870f3fff4e7:   movabs $0x7870b032d810,%r8          ;   {metadata(method data for {method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff4f1:   mov    0x8(%rcx),%ecx
+  0x00007870f3fff4f4:   mov    $0x9d000000,%r10d
+  0x00007870f3fff4fa:   add    %r10,%rcx
+  0x00007870f3fff4fd:   mov    $0x2e,%r10d
+  0x00007870f3fff503:   cmp    (%r8,%r10,8),%rcx
+  0x00007870f3fff507:   je     0x00007870f3fff540
+  0x00007870f3fff509:   add    $0x2,%r10
+  0x00007870f3fff50d:   cmp    $0x32,%r10
+  0x00007870f3fff511:   jne    0x00007870f3fff503
+  0x00007870f3fff513:   mov    $0x2e,%r10d
+  0x00007870f3fff519:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007870f3fff51e:   je     0x00007870f3fff52c
+  0x00007870f3fff520:   add    $0x2,%r10
+  0x00007870f3fff524:   cmp    $0x32,%r10
+  0x00007870f3fff528:   jne    0x00007870f3fff519
+  0x00007870f3fff52a:   jmp    0x00007870f3fff538
+  0x00007870f3fff52c:   push   %rax
+  0x00007870f3fff52d:   xor    %rax,%rax
+  0x00007870f3fff530:   cmpxchg %rcx,(%r8,%r10,8)
+  0x00007870f3fff535:   pop    %rax
+  0x00007870f3fff536:   jmp    0x00007870f3fff4fd
+  0x00007870f3fff538:   mov    $0x2d,%r10d
+  0x00007870f3fff53e:   jmp    0x00007870f3fff544
+  0x00007870f3fff540:   add    $0x1,%r10
+  0x00007870f3fff544:   addq   $0x1,(%r8,%r10,8)
+  0x00007870f3fff549:   movabs $0x7870b032da10,%rcx         ;   {metadata(method data for {method} {0x000000009d1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff553:   mov    0x90(%rcx),%r8d
+  0x00007870f3fff55a:   add    $0x2,%r8d
+  0x00007870f3fff55e:   mov    %r8d,0x90(%rcx)
+  0x00007870f3fff565:   and    $0x1ffffe,%r8d
+  0x00007870f3fff56c:   test   %r8d,%r8d
+  0x00007870f3fff56f:   je     0x00007870f3fffa0a
+  0x00007870f3fff575:   movabs $0x7870b032da10,%rcx         ;   {metadata(method data for {method} {0x000000009d1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff57f:   lea    0x108(%rcx),%rcx
+  0x00007870f3fff586:   test   %rax,%rax
+  0x00007870f3fff589:   jne    0x00007870f3fff599
+  0x00007870f3fff58b:   testb  $0x1,0x8(%rcx)
+  0x00007870f3fff58f:   jne    0x00007870f3fff5b4
+  0x00007870f3fff591:   lock orq $0x1,0x8(%rcx)
+  0x00007870f3fff597:   jmp    0x00007870f3fff5b4
+  0x00007870f3fff599:   movabs $0x9e000c38,%r8              ;   {metadata(&apos;jdk/internal/foreign/MemorySessionImpl&apos;)}
+  0x00007870f3fff5a3:   xor    0x8(%rcx),%r8
+  0x00007870f3fff5a7:   test   $0xfffffffffffffffc,%r8
+  0x00007870f3fff5ae:   je     0x00007870f3fff5b4
+  0x00007870f3fff5b0:   mov    %r8,0x8(%rcx)
+  0x00007870f3fff5b4:   test   %rdi,%rdi
+  0x00007870f3fff5b7:   jne    0x00007870f3fff5c7
+  0x00007870f3fff5b9:   testb  $0x1,0x18(%rcx)
+  0x00007870f3fff5bd:   jne    0x00007870f3fff60c
+  0x00007870f3fff5bf:   lock orq $0x1,0x18(%rcx)
+  0x00007870f3fff5c5:   jmp    0x00007870f3fff60c
+  0x00007870f3fff5c7:   movabs $0x9d175de8,%r8              ;   {metadata({type array byte})}
+  0x00007870f3fff5d1:   mov    %r8,%r10
+  0x00007870f3fff5d4:   xor    0x18(%rcx),%r8
+  0x00007870f3fff5d8:   test   $0xfffffffffffffffc,%r8
+  0x00007870f3fff5df:   je     0x00007870f3fff60c
+  0x00007870f3fff5e1:   test   $0x2,%r8b
+  0x00007870f3fff5e5:   jne    0x00007870f3fff60c
+  0x00007870f3fff5e7:   testq  $0xfffffffffffffffe,0x18(%rcx)
+  0x00007870f3fff5ef:   je     0x00007870f3fff608
+  0x00007870f3fff5f1:   mov    %r10,%r8
+  0x00007870f3fff5f4:   xor    0x18(%rcx),%r8
+  0x00007870f3fff5f8:   test   $0xfffffffffffffffc,%r8
+  0x00007870f3fff5ff:   je     0x00007870f3fff60c
+  0x00007870f3fff601:   orq    $0x2,0x18(%rcx)
+  0x00007870f3fff606:   jmp    0x00007870f3fff60c
+  0x00007870f3fff608:   mov    %r8,0x18(%rcx)
+  0x00007870f3fff60c:   movabs $0x7870b032da10,%rcx         ;   {metadata(method data for {method} {0x000000009d1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff616:   addq   $0x1,0xd8(%rcx)
+  0x00007870f3fff61e:   movabs $0x7870b032dbe0,%rsi         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff628:   mov    0x90(%rsi),%ecx
+  0x00007870f3fff62e:   add    $0x2,%ecx
+  0x00007870f3fff631:   mov    %ecx,0x90(%rsi)
+  0x00007870f3fff637:   and    $0x1ffffe,%ecx
+  0x00007870f3fff63d:   test   %ecx,%ecx
+  0x00007870f3fff63f:   je     0x00007870f3fffa2b
+  0x00007870f3fff645:   test   %rax,%rax
+  0x00007870f3fff648:   movabs $0x7870b032dbe0,%rsi         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff652:   mov    $0xe8,%ecx
+  0x00007870f3fff657:   jne    0x00007870f3fff65e
+  0x00007870f3fff659:   mov    $0xd8,%ecx
+  0x00007870f3fff65e:   mov    (%rsi,%rcx,1),%r8
+  0x00007870f3fff662:   lea    0x1(%r8),%r8
+  0x00007870f3fff666:   mov    %r8,(%rsi,%rcx,1)
+  0x00007870f3fff66a:   jne    0x00007870f3fff680           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@1 (line 3168)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff670:   mov    %rdx,%rcx
+  0x00007870f3fff673:   mov    %rax,0xc8(%rsp)
+  0x00007870f3fff67b:   jmp    0x00007870f3fff733           ;*getstatic UNSAFE {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@8 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff680:   mov    %ebx,0xc0(%rsp)
+  0x00007870f3fff687:   mov    %rdx,0xb8(%rsp)
+  0x00007870f3fff68f:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x00007870f3fffa4c
+  0x00007870f3fff692:   mov    %rax,%rsi
+  0x00007870f3fff695:   movabs $0x7870b032dbe0,%rcx         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff69f:   mov    0x8(%rsi),%esi
+  0x00007870f3fff6a2:   mov    $0x9d000000,%r10d
+  0x00007870f3fff6a8:   add    %r10,%rsi
+  0x00007870f3fff6ab:   mov    $0x20,%r10d
+  0x00007870f3fff6b1:   cmp    (%rcx,%r10,8),%rsi
+  0x00007870f3fff6b5:   je     0x00007870f3fff6ee
+  0x00007870f3fff6b7:   add    $0x2,%r10
+  0x00007870f3fff6bb:   cmp    $0x24,%r10
+  0x00007870f3fff6bf:   jne    0x00007870f3fff6b1
+  0x00007870f3fff6c1:   mov    $0x20,%r10d
+  0x00007870f3fff6c7:   cmpq   $0x0,(%rcx,%r10,8)
+  0x00007870f3fff6cc:   je     0x00007870f3fff6da
+  0x00007870f3fff6ce:   add    $0x2,%r10
+  0x00007870f3fff6d2:   cmp    $0x24,%r10
+  0x00007870f3fff6d6:   jne    0x00007870f3fff6c7
+  0x00007870f3fff6d8:   jmp    0x00007870f3fff6e6
+  0x00007870f3fff6da:   push   %rax
+  0x00007870f3fff6db:   xor    %rax,%rax
+  0x00007870f3fff6de:   cmpxchg %rsi,(%rcx,%r10,8)
+  0x00007870f3fff6e3:   pop    %rax
+  0x00007870f3fff6e4:   jmp    0x00007870f3fff6ab
+  0x00007870f3fff6e6:   mov    $0x1f,%r10d
+  0x00007870f3fff6ec:   jmp    0x00007870f3fff6f2
+  0x00007870f3fff6ee:   add    $0x1,%r10
+  0x00007870f3fff6f2:   addq   $0x1,(%rcx,%r10,8)
+  0x00007870f3fff6f7:   mov    %rax,%rsi                    ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff6fa:   mov    %rax,0xc8(%rsp)
+  0x00007870f3fff702:   data16 xchg %ax,%ax
+  0x00007870f3fff705:   movabs $0x78709c04da58,%rax
+  0x00007870f3fff70f:   call   0x00007870fb4adce0           ; ImmutableOopMap {[176]=Oop [200]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {virtual_call}
+  0x00007870f3fff714:   nopl   0x100070c(%rax,%rax,1)       ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007870f3fff71c:   mov    0xc0(%rsp),%ebx
+  0x00007870f3fff723:   mov    0xb8(%rsp),%rcx
+  0x00007870f3fff72b:   mov    0xb0(%rsp),%rdi
+  0x00007870f3fff733:   movabs $0x7870b032dbe0,%rdx         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff73d:   lea    0x158(%rdx),%rdx
+  0x00007870f3fff744:   test   %rdi,%rdi
+  0x00007870f3fff747:   jne    0x00007870f3fff757
+  0x00007870f3fff749:   testb  $0x1,0x8(%rdx)
+  0x00007870f3fff74d:   jne    0x00007870f3fff79c
+  0x00007870f3fff74f:   lock orq $0x1,0x8(%rdx)
+  0x00007870f3fff755:   jmp    0x00007870f3fff79c
+  0x00007870f3fff757:   movabs $0x9d175de8,%r8              ;   {metadata({type array byte})}
+  0x00007870f3fff761:   mov    %r8,%r10
+  0x00007870f3fff764:   xor    0x8(%rdx),%r8
+  0x00007870f3fff768:   test   $0xfffffffffffffffc,%r8
+  0x00007870f3fff76f:   je     0x00007870f3fff79c
+  0x00007870f3fff771:   test   $0x2,%r8b
+  0x00007870f3fff775:   jne    0x00007870f3fff79c
+  0x00007870f3fff777:   testq  $0xfffffffffffffffe,0x8(%rdx)
+  0x00007870f3fff77f:   je     0x00007870f3fff798
+  0x00007870f3fff781:   mov    %r10,%r8
+  0x00007870f3fff784:   xor    0x8(%rdx),%r8
+  0x00007870f3fff788:   test   $0xfffffffffffffffc,%r8
+  0x00007870f3fff78f:   je     0x00007870f3fff79c
+  0x00007870f3fff791:   orq    $0x2,0x8(%rdx)
+  0x00007870f3fff796:   jmp    0x00007870f3fff79c
+  0x00007870f3fff798:   mov    %r8,0x8(%rdx)
+  0x00007870f3fff79c:   movabs $0x42002a158,%rsi            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000042002a158})}
+  0x00007870f3fff7a6:   mov    %rsi,%rdx
+  0x00007870f3fff7a9:   movabs $0x7870b032dbe0,%r8          ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff7b3:   mov    0x8(%rdx),%edx
+  0x00007870f3fff7b6:   mov    $0x9d000000,%r10d
+  0x00007870f3fff7bc:   add    %r10,%rdx
+  0x00007870f3fff7bf:   mov    $0x26,%r10d
+  0x00007870f3fff7c5:   cmp    (%r8,%r10,8),%rdx
+  0x00007870f3fff7c9:   je     0x00007870f3fff802
+  0x00007870f3fff7cb:   add    $0x2,%r10
+  0x00007870f3fff7cf:   cmp    $0x2a,%r10
+  0x00007870f3fff7d3:   jne    0x00007870f3fff7c5
+  0x00007870f3fff7d5:   mov    $0x26,%r10d
+  0x00007870f3fff7db:   cmpq   $0x0,(%r8,%r10,8)
+  0x00007870f3fff7e0:   je     0x00007870f3fff7ee
+  0x00007870f3fff7e2:   add    $0x2,%r10
+  0x00007870f3fff7e6:   cmp    $0x2a,%r10
+  0x00007870f3fff7ea:   jne    0x00007870f3fff7db
+  0x00007870f3fff7ec:   jmp    0x00007870f3fff7fa
+  0x00007870f3fff7ee:   push   %rax
+  0x00007870f3fff7ef:   xor    %rax,%rax
+  0x00007870f3fff7f2:   cmpxchg %rdx,(%r8,%r10,8)
+  0x00007870f3fff7f7:   pop    %rax
+  0x00007870f3fff7f8:   jmp    0x00007870f3fff7bf
+  0x00007870f3fff7fa:   mov    $0x25,%r10d
+  0x00007870f3fff800:   jmp    0x00007870f3fff806
+  0x00007870f3fff802:   add    $0x1,%r10
+  0x00007870f3fff806:   addq   $0x1,(%r8,%r10,8)
+  0x00007870f3fff80b:   mov    %rdi,%rdx
+  0x00007870f3fff80e:   mov    %rbx,%r8                     ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff811:   nopw   0x0(%rax,%rax,1)
+  0x00007870f3fff817:   call   0x00007870fb4ad9e0           ; ImmutableOopMap {[200]=Oop }
+                                                            ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {optimized virtual_call}
+  0x00007870f3fff81c:   nopl   0x2000814(%rax,%rax,1)       ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007870f3fff824:   movabs $0x7870b032dbe0,%rdx         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff82e:   addq   $0x1,0x170(%rdx)
+  0x00007870f3fff836:   movabs $0x7870b032d338,%rdx         ;   {metadata(method data for {method} {0x000000009d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x00007870f3fff840:   mov    0x90(%rdx),%esi
+  0x00007870f3fff846:   add    $0x2,%esi
+  0x00007870f3fff849:   mov    %esi,0x90(%rdx)
+  0x00007870f3fff84f:   and    $0x1ffffe,%esi
+  0x00007870f3fff855:   test   %esi,%esi
+  0x00007870f3fff857:   je     0x00007870f3fffa51
+  0x00007870f3fff85d:   add    $0xe0,%rsp
+  0x00007870f3fff864:   pop    %rbp
+  0x00007870f3fff865:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007870f3fff869:   ja     0x00007870f3fffa72
+  0x00007870f3fff86f:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.HeapByteBuffer::getInt@28 (line 492)
+  0x00007870f3fff870:   mov    %rax,0xc8(%rsp)
+  0x00007870f3fff878:   jmp    0x00007870f3fffa97           ;   {other}
+  0x00007870f3fff87d:   add    %al,(%rax)
+  0x00007870f3fff87f:   add    %al,(%rax)
+  0x00007870f3fff881:   add    %ch,%cl
+  0x00007870f3fff883:   sbb    (%rdx),%al
+  0x00007870f3fff885:   add    %al,(%rax)                   ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff887:   mov    %rax,%rdx
+  0x00007870f3fff88a:   movabs $0x7870b032d6d0,%rcx         ;   {metadata(method data for {method} {0x000000009d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff894:   addq   $0x1,0xf8(%rcx)
+  0x00007870f3fff89c:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff89f:   mov    %rax,0xd0(%rsp)
+  0x00007870f3fff8a7:   call   0x00007870fb4ad9e0           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop [208]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+                                                            ;   {optimized virtual_call}
+  0x00007870f3fff8ac:   nopl   0x30008a4(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@19 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007870f3fff8b4:   mov    0xd0(%rsp),%rax
+  0x00007870f3fff8bc:   jmp    0x00007870f3fffaf1           ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@22 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+  0x00007870f3fff8c1:   mov    0x5c0(%r15),%rax
+  0x00007870f3fff8c8:   xor    %r10,%r10
+  0x00007870f3fff8cb:   mov    %r10,0x5c0(%r15)
+  0x00007870f3fff8d2:   xor    %r10,%r10
+  0x00007870f3fff8d5:   mov    %r10,0x5c8(%r15)
+  0x00007870f3fff8dc:   movabs $0x7870b032dbe0,%rdx         ;   {metadata(method data for {method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fff8e6:   addq   $0x1,0x180(%rdx)
+  0x00007870f3fff8ee:   movabs $0x7870b032d338,%rdx         ;   {metadata(method data for {method} {0x000000009d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x00007870f3fff8f8:   mov    0x90(%rdx),%esi
+  0x00007870f3fff8fe:   add    $0x2,%esi
+  0x00007870f3fff901:   mov    %esi,0x90(%rdx)
+  0x00007870f3fff907:   and    $0x1ffffe,%esi
+  0x00007870f3fff90d:   test   %esi,%esi
+  0x00007870f3fff90f:   je     0x00007870f3fffaae           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@35 (line 3174)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff915:   movabs $0x7870f3fff915,%rdx         ;   {section_word}
+  0x00007870f3fff91f:   call   0x00007870fb57ece0           ;   {runtime_call handle_exception_nofpu_blob (C1 runtime)}
+  0x00007870f3fff924:   nop                                 ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@35 (line 3174)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff925:   mov    0x5c0(%r15),%rax
+  0x00007870f3fff92c:   xor    %r10,%r10
+  0x00007870f3fff92f:   mov    %r10,0x5c0(%r15)
+  0x00007870f3fff936:   xor    %r10,%r10
+  0x00007870f3fff939:   mov    %r10,0x5c8(%r15)
+  0x00007870f3fff940:   mov    %rax,%rsi                    ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+  0x00007870f3fff943:   xchg   %ax,%ax
+  0x00007870f3fff945:   movabs $0x78709c04da80,%rax
+  0x00007870f3fff94f:   call   0x00007870fb4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {virtual_call}
+  0x00007870f3fff954:   nopl   0x500094c(%rax,%rax,1)       ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {post_call_nop}
+  0x00007870f3fff95c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x00007870f3fffacf
+  0x00007870f3fff95f:   jmp    0x00007870f3fffaf1
+  0x00007870f3fff964:   movabs $0x9d2e7680,%r10             ;   {metadata({method} {0x000000009d2e7680} &apos;getInt&apos; &apos;()I&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff96e:   mov    %r10,0x8(%rsp)
+  0x00007870f3fff973:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fff97b:   call   0x00007870fb583460           ; ImmutableOopMap {rsi=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.HeapByteBuffer::getInt@-1 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fff980:   jmp    0x00007870f3fff16e
+  0x00007870f3fff985:   movabs $0x9d1c10e8,%r10             ;   {metadata({method} {0x000000009d1c10e8} &apos;session&apos; &apos;()Ljdk/internal/foreign/MemorySessionImpl;&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff98f:   mov    %r10,0x8(%rsp)
+  0x00007870f3fff994:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fff99c:   call   0x00007870fb583460           ; ImmutableOopMap {rsi=Oop [168]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::session@-1 (line 808)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fff9a1:   jmp    0x00007870f3fff1fa
+  0x00007870f3fff9a6:   movabs $0x0,%rcx                    ;   {metadata(nullptr)}
+  0x00007870f3fff9b0:   mov    $0xa050f00,%eax
+  0x00007870f3fff9b5:   call   0x00007870fb582560           ; ImmutableOopMap {rdi=Oop [168]=Oop }
+                                                            ;*checkcast {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007870f3fff9ba:   jmp    0x00007870f3fff2a0
+  0x00007870f3fff9bf:   mov    %rdi,(%rsp)
+  0x00007870f3fff9c3:   call   0x00007870fb57f8e0           ; ImmutableOopMap {rdi=Oop [168]=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::session@11 (line 809)
+                                                            ; - java.nio.HeapByteBuffer::getInt@4 (line 492)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x00007870f3fff9c8:   movabs $0x9d1c11f0,%r10             ;   {metadata({method} {0x000000009d1c11f0} &apos;nextGetIndex&apos; &apos;(I)I&apos; in &apos;java/nio/Buffer&apos;)}
+  0x00007870f3fff9d2:   mov    %r10,0x8(%rsp)
+  0x00007870f3fff9d7:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fff9df:   call   0x00007870fb583460           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [168]=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.Buffer::nextGetIndex@-1 (line 718)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fff9e4:   jmp    0x00007870f3fff3be
+  0x00007870f3fff9e9:   movabs $0x9d2e8390,%r10             ;   {metadata({method} {0x000000009d2e8390} &apos;byteOffset&apos; &apos;(J)J&apos; in &apos;java/nio/HeapByteBuffer&apos;)}
+  0x00007870f3fff9f3:   mov    %r10,0x8(%rsp)
+  0x00007870f3fff9f8:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fffa00:   call   0x00007870fb583460           ; ImmutableOopMap {rax=Oop rsi=Oop rdi=Oop [168]=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.nio.HeapByteBuffer::byteOffset@-1 (line 171)
+                                                            ; - java.nio.HeapByteBuffer::getInt@18 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fffa05:   jmp    0x00007870f3fff439
+  0x00007870f3fffa0a:   movabs $0x9d1e9a00,%r10             ;   {metadata({method} {0x000000009d1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fffa14:   mov    %r10,0x8(%rsp)
+  0x00007870f3fffa19:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fffa21:   call   0x00007870fb583460           ; ImmutableOopMap {rax=Oop rdi=Oop rsi=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@-1 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fffa26:   jmp    0x00007870f3fff575
+  0x00007870f3fffa2b:   movabs $0x9d1f06c0,%r10             ;   {metadata({method} {0x000000009d1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x00007870f3fffa35:   mov    %r10,0x8(%rsp)
+  0x00007870f3fffa3a:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fffa42:   call   0x00007870fb583460           ; ImmutableOopMap {rax=Oop rdi=Oop [176]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@-1 (line 3168)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fffa47:   jmp    0x00007870f3fff645
+  0x00007870f3fffa4c:   call   0x00007870fb57cae0           ; ImmutableOopMap {rax=Oop [176]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007870f3fffa51:   movabs $0x9d1a85e8,%r10             ;   {metadata({method} {0x000000009d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x00007870f3fffa5b:   mov    %r10,0x8(%rsp)
+  0x00007870f3fffa60:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fffa68:   call   0x00007870fb583460           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@21 (line 3173)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fffa6d:   jmp    0x00007870f3fff85d
+  0x00007870f3fffa72:   movabs $0x7870f3fff865,%r10         ;   {internal_word}
+  0x00007870f3fffa7c:   mov    %r10,0x510(%r15)
+  0x00007870f3fffa83:   jmp    0x00007870fb4afb60           ;   {runtime_call SafepointBlob}
+  0x00007870f3fffa88:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007870f3fffa92:   mov    $0xa050f00,%eax
+  0x00007870f3fffa97:   call   0x00007870fb582560           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007870f3fffa9c:   jmp    0x00007870f3fff878
+  0x00007870f3fffaa1:   mov    %rdx,%rdx
+  0x00007870f3fffaa4:   call   0x00007870fb57d0e0           ; ImmutableOopMap {[168]=Oop [176]=Oop [200]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.nio.Buffer::nextGetIndex@15 (line 720)
+                                                            ; - java.nio.HeapByteBuffer::getInt@14 (line 492)
+                                                            ;   {runtime_call new_instance_blob (C1 runtime)}
+  0x00007870f3fffaa9:   jmp    0x00007870f3fff887
+  0x00007870f3fffaae:   movabs $0x9d1a85e8,%r10             ;   {metadata({method} {0x000000009d1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x00007870f3fffab8:   mov    %r10,0x8(%rsp)
+  0x00007870f3fffabd:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007870f3fffac5:   call   0x00007870fb583460           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@30 (line 3173)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007870f3fffaca:   jmp    0x00007870f3fff915
+  0x00007870f3fffacf:   call   0x00007870fb57cae0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@17 (line 3161)
+                                                            ; - java.nio.HeapByteBuffer::getInt@25 (line 492)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007870f3fffad4:   mov    0x5c0(%r15),%rax
+  0x00007870f3fffadb:   movq   $0x0,0x5c0(%r15)
+  0x00007870f3fffae6:   movq   $0x0,0x5c8(%r15)
+  0x00007870f3fffaf1:   add    $0xe0,%rsp
+  0x00007870f3fffaf8:   pop    %rbp
+  0x00007870f3fffaf9:   jmp    0x00007870fb57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007870f3fffafe:   hlt    
+  0x00007870f3fffaff:   hlt    
+[Stub Code]
+  0x00007870f3fffb00:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007870f3fffb05:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007870f3fffb0f:   jmp    0x00007870f3fffb0f           ;   {runtime_call nmethod}
+  0x00007870f3fffb14:   nop
+  0x00007870f3fffb15:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007870f3fffb1f:   jmp    0x00007870f3fffb1f           ;   {runtime_call nmethod}
+  0x00007870f3fffb24:   nop
+  0x00007870f3fffb25:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007870f3fffb2f:   jmp    0x00007870f3fffb2f           ;   {runtime_call nmethod}
+  0x00007870f3fffb34:   nop
+  0x00007870f3fffb35:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007870f3fffb3f:   jmp    0x00007870f3fffb3f           ;   {runtime_call nmethod}
+  0x00007870f3fffb44:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007870f3fffb4e:   jmp    0x00007870f3fffb4e           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007870f3fffb53:   call   0x00007870fb57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007870f3fffb58:   movabs $0x787113b3aec4,%rdi         ;   {external_word}
+  0x00007870f3fffb62:   and    $0xfffffffffffffff0,%rsp
+  0x00007870f3fffb66:   call   0x0000787113591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007870f3fffb6b:   hlt    
+  0x00007870f3fffb6c:   call   0x00007870fb4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007870f3fffb71:   jmp    0x00007870f3fffb6c
+  0x00007870f3fffb73:   hlt    
+  0x00007870f3fffb74:   hlt    
+  0x00007870f3fffb75:   hlt    
+  0x00007870f3fffb76:   hlt    
+  0x00007870f3fffb77:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

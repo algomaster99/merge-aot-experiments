@@ -1,0 +1,115 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 499   46       3       jdk.internal.classfile.impl.BufWriterImpl::setLabelContext (11 bytes)
+ total in heap  [0x00007d5487fff008,0x00007d5487fff248] = 576
+ main code      [0x00007d5487fff100,0x00007d5487fff228] = 296
+ stub code      [0x00007d5487fff228,0x00007d5487fff248] = 32
+ mutable data [0x00007d54280144f0,0x00007d5428014520] = 48
+ relocation     [0x00007d54280144f0,0x00007d5428014518] = 40
+ metadata       [0x00007d5428014518,0x00007d5428014520] = 8
+ immutable data [0x00007d5428000ba0,0x00007d5428000c34] = 148
+ dependencies   [0x00007d5428000ba0,0x00007d5428000ba8] = 8
+ scopes pcs     [0x00007d5428000ba8,0x00007d5428000c08] = 96
+ scopes data    [0x00007d5428000c08,0x00007d5428000c30] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007d5487fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007d5487fff10b:   data16 data16 xchg %ax,%ax
+  0x00007d5487fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000003645d5d8} &apos;setLabelContext&apos; &apos;(Ljdk/internal/classfile/impl/LabelContext;Z)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;
+  # parm0:    rdx:rdx   = &apos;jdk/internal/classfile/impl/LabelContext&apos;
+  # parm1:    rcx       = boolean
+  #           [sp+0x30]  (sp of caller)
+  0x00007d5487fff112:   mov    0x8(%rsi),%r10d
+  0x00007d5487fff116:   cmp    0x8(%rax),%r10d
+  0x00007d5487fff11a:   jne    0x00007d548f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007d5487fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007d5487fff127:   push   %rbp
+  0x00007d5487fff128:   sub    $0x20,%rsp
+  0x00007d5487fff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007d5487fff134:   je     0x00007d5487fff13b
+  0x00007d5487fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d5487fff13b:   movabs $0x7d5440285690,%rdi         ;   {metadata(method data for {method} {0x000000003645d5d8} &apos;setLabelContext&apos; &apos;(Ljdk/internal/classfile/impl/LabelContext;Z)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007d5487fff145:   mov    0x90(%rdi),%ebx
+  0x00007d5487fff14b:   add    $0x2,%ebx
+  0x00007d5487fff14e:   mov    %ebx,0x90(%rdi)
+  0x00007d5487fff154:   and    $0x7fe,%ebx
+  0x00007d5487fff15a:   test   %ebx,%ebx
+  0x00007d5487fff15c:   je     0x00007d5487fff1b4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::setLabelContext@0 (line 82)
+  0x00007d5487fff162:   movsbl 0x48(%r15),%edi
+  0x00007d5487fff167:   test   %edi,%edi
+  0x00007d5487fff169:   jne    0x00007d5487fff1d2
+  0x00007d5487fff16f:   mov    %rdx,%r10
+  0x00007d5487fff172:   shr    $0x3,%r10
+  0x00007d5487fff176:   mov    %r10d,0x20(%rsi)
+  0x00007d5487fff17a:   mov    %rsi,%rbx
+  0x00007d5487fff17d:   xor    %rdx,%rbx
+  0x00007d5487fff180:   shr    $0x17,%rbx
+  0x00007d5487fff184:   je     0x00007d5487fff19e
+  0x00007d5487fff186:   test   %rdx,%rdx
+  0x00007d5487fff189:   je     0x00007d5487fff19e
+  0x00007d5487fff18b:   mov    %rsi,%rbx
+  0x00007d5487fff18e:   shr    $0x9,%rbx
+  0x00007d5487fff192:   add    0x50(%r15),%rbx
+  0x00007d5487fff196:   cmpb   $0xff,(%rbx)
+  0x00007d5487fff199:   jne    0x00007d5487fff19e
+  0x00007d5487fff19b:   movb   $0x0,(%rbx)                  ;*putfield labelContext {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::setLabelContext@2 (line 82)
+  0x00007d5487fff19e:   and    $0x1,%ecx
+  0x00007d5487fff1a1:   mov    %cl,0x14(%rsi)               ;*putfield labelsMatch {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::setLabelContext@7 (line 83)
+  0x00007d5487fff1a4:   add    $0x20,%rsp
+  0x00007d5487fff1a8:   pop    %rbp
+  0x00007d5487fff1a9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d5487fff1ad:   ja     0x00007d5487fff1e9
+  0x00007d5487fff1b3:   ret    
+  0x00007d5487fff1b4:   movabs $0x3645d5d8,%r10             ;   {metadata({method} {0x000000003645d5d8} &apos;setLabelContext&apos; &apos;(Ljdk/internal/classfile/impl/LabelContext;Z)V&apos; in &apos;jdk/internal/classfile/impl/BufWriterImpl&apos;)}
+  0x00007d5487fff1be:   mov    %r10,0x8(%rsp)
+  0x00007d5487fff1c3:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007d5487fff1cb:   call   0x00007d548f583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.BufWriterImpl::setLabelContext@-1 (line 82)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007d5487fff1d0:   jmp    0x00007d5487fff162
+  0x00007d5487fff1d2:   mov    0x20(%rsi),%edi
+  0x00007d5487fff1d5:   shl    $0x3,%rdi
+  0x00007d5487fff1d9:   test   %rdi,%rdi
+  0x00007d5487fff1dc:   je     0x00007d5487fff16f
+  0x00007d5487fff1de:   mov    %rdi,(%rsp)
+  0x00007d5487fff1e2:   call   0x00007d548f583a60           ;   {runtime_call g1_pre_barrier_slow}
+  0x00007d5487fff1e7:   jmp    0x00007d5487fff16f
+  0x00007d5487fff1e9:   movabs $0x7d5487fff1a9,%r10         ;   {internal_word}
+  0x00007d5487fff1f3:   mov    %r10,0x510(%r15)
+  0x00007d5487fff1fa:   jmp    0x00007d548f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007d5487fff1ff:   mov    0x5c0(%r15),%rax
+  0x00007d5487fff206:   movq   $0x0,0x5c0(%r15)
+  0x00007d5487fff211:   movq   $0x0,0x5c8(%r15)
+  0x00007d5487fff21c:   add    $0x20,%rsp
+  0x00007d5487fff220:   pop    %rbp
+  0x00007d5487fff221:   jmp    0x00007d548f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007d5487fff226:   hlt    
+  0x00007d5487fff227:   hlt    
+[Exception Handler]
+  0x00007d5487fff228:   call   0x00007d548f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007d5487fff22d:   movabs $0x7d54a673aec4,%rdi         ;   {external_word}
+  0x00007d5487fff237:   and    $0xfffffffffffffff0,%rsp
+  0x00007d5487fff23b:   call   0x00007d54a6191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007d5487fff240:   hlt    
+  0x00007d5487fff241:   call   0x00007d548f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d5487fff246:   jmp    0x00007d5487fff241
+--------------------------------------------------------------------------------
+[/Disassembly]

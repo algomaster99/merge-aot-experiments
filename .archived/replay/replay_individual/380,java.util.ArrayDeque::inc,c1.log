@@ -1,0 +1,96 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 366   24       3       java.util.ArrayDeque::inc (12 bytes)
+ total in heap  [0x0000757373fff008,0x0000757373fff208] = 512
+ main code      [0x0000757373fff100,0x0000757373fff1e8] = 232
+ stub code      [0x0000757373fff1e8,0x0000757373fff208] = 32
+ mutable data [0x0000757314014c70,0x0000757314014ca0] = 48
+ relocation     [0x0000757314014c70,0x0000757314014c98] = 40
+ metadata       [0x0000757314014c98,0x0000757314014ca0] = 8
+ immutable data [0x0000757314000ba0,0x0000757314000c2c] = 140
+ dependencies   [0x0000757314000ba0,0x0000757314000ba8] = 8
+ scopes pcs     [0x0000757314000ba8,0x0000757314000c08] = 96
+ scopes data    [0x0000757314000c08,0x0000757314000c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x0000000033313e38} &apos;inc&apos; &apos;(II)I&apos; in &apos;java/util/ArrayDeque&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x0000757373fff100:   mov    %eax,-0x14000(%rsp)
+  0x0000757373fff107:   push   %rbp
+  0x0000757373fff108:   sub    $0x20,%rsp
+  0x0000757373fff10c:   cmpl   $0x1,0x20(%r15)
+  0x0000757373fff114:   je     0x0000757373fff11b
+  0x0000757373fff116:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000757373fff11b:   movabs $0x75732c0b7cc8,%rax         ;   {metadata(method data for {method} {0x0000000033313e38} &apos;inc&apos; &apos;(II)I&apos; in &apos;java/util/ArrayDeque&apos;)}
+  0x0000757373fff125:   mov    0x90(%rax),%edi
+  0x0000757373fff12b:   add    $0x2,%edi
+  0x0000757373fff12e:   mov    %edi,0x90(%rax)
+  0x0000757373fff134:   and    $0x7fe,%edi
+  0x0000757373fff13a:   test   %edi,%edi
+  0x0000757373fff13c:   je     0x0000757373fff186           ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::inc@0 (line 216)
+  0x0000757373fff142:   inc    %esi
+  0x0000757373fff144:   cmp    %edx,%esi
+  0x0000757373fff146:   movabs $0x75732c0b7cc8,%rax         ;   {metadata(method data for {method} {0x0000000033313e38} &apos;inc&apos; &apos;(II)I&apos; in &apos;java/util/ArrayDeque&apos;)}
+  0x0000757373fff150:   mov    $0xd8,%edi
+  0x0000757373fff155:   jl     0x0000757373fff15c
+  0x0000757373fff157:   mov    $0xe8,%edi
+  0x0000757373fff15c:   mov    (%rax,%rdi,1),%rbx
+  0x0000757373fff160:   lea    0x1(%rbx),%rbx
+  0x0000757373fff164:   mov    %rbx,(%rax,%rdi,1)
+  0x0000757373fff168:   jl     0x0000757373fff173           ;*if_icmplt {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::inc@5 (line 216)
+  0x0000757373fff16e:   mov    $0x0,%esi                    ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.ArrayDeque::inc@10 (line 217)
+  0x0000757373fff173:   mov    %rsi,%rax
+  0x0000757373fff176:   add    $0x20,%rsp
+  0x0000757373fff17a:   pop    %rbp
+  0x0000757373fff17b:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000757373fff17f:   ja     0x0000757373fff1a4
+  0x0000757373fff185:   ret    
+  0x0000757373fff186:   movabs $0x33313e38,%r10             ;   {metadata({method} {0x0000000033313e38} &apos;inc&apos; &apos;(II)I&apos; in &apos;java/util/ArrayDeque&apos;)}
+  0x0000757373fff190:   mov    %r10,0x8(%rsp)
+  0x0000757373fff195:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000757373fff19d:   call   0x000075737b583460           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.util.ArrayDeque::inc@-1 (line 216)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000757373fff1a2:   jmp    0x0000757373fff142
+  0x0000757373fff1a4:   movabs $0x757373fff17b,%r10         ;   {internal_word}
+  0x0000757373fff1ae:   mov    %r10,0x510(%r15)
+  0x0000757373fff1b5:   jmp    0x000075737b4afb60           ;   {runtime_call SafepointBlob}
+  0x0000757373fff1ba:   mov    0x5c0(%r15),%rax
+  0x0000757373fff1c1:   movq   $0x0,0x5c0(%r15)
+  0x0000757373fff1cc:   movq   $0x0,0x5c8(%r15)
+  0x0000757373fff1d7:   add    $0x20,%rsp
+  0x0000757373fff1db:   pop    %rbp
+  0x0000757373fff1dc:   jmp    0x000075737b57bbe0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000757373fff1e1:   hlt    
+  0x0000757373fff1e2:   hlt    
+  0x0000757373fff1e3:   hlt    
+  0x0000757373fff1e4:   hlt    
+  0x0000757373fff1e5:   hlt    
+  0x0000757373fff1e6:   hlt    
+  0x0000757373fff1e7:   hlt    
+[Exception Handler]
+  0x0000757373fff1e8:   call   0x000075737b57fbe0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000757373fff1ed:   movabs $0x757392f3aec4,%rdi         ;   {external_word}
+  0x0000757373fff1f7:   and    $0xfffffffffffffff0,%rsp
+  0x0000757373fff1fb:   call   0x0000757392991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000757373fff200:   hlt    
+  0x0000757373fff201:   call   0x000075737b4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000757373fff206:   jmp    0x0000757373fff201
+--------------------------------------------------------------------------------
+[/Disassembly]

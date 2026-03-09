@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 511   47       1       jdk.internal.util.ClassFileDumper::isEnabled (5 bytes)
+ total in heap  [0x00007abdbfba8a08,0x00007abdbfba8bb0] = 424
+ main code      [0x00007abdbfba8b00,0x00007abdbfba8b90] = 144
+ stub code      [0x00007abdbfba8b90,0x00007abdbfba8bb0] = 32
+ mutable data [0x00007abd5c01cc70,0x00007abd5c01cc98] = 40
+ relocation     [0x00007abd5c01cc70,0x00007abd5c01cc90] = 32
+ metadata       [0x00007abd5c01cc90,0x00007abd5c01cc98] = 8
+ immutable data [0x00007abd5c01cc00,0x00007abd5c01cc5c] = 92
+ dependencies   [0x00007abd5c01cc00,0x00007abd5c01cc08] = 8
+ scopes pcs     [0x00007abd5c01cc08,0x00007abd5c01cc48] = 64
+ scopes data    [0x00007abd5c01cc48,0x00007abd5c01cc58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007abdbfba8b00:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007abdbfba8b0b:   data16 data16 xchg %ax,%ax
+  0x00007abdbfba8b0f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000282f57c0} &apos;isEnabled&apos; &apos;()Z&apos; in &apos;jdk/internal/util/ClassFileDumper&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007abdbfba8b12:   mov    0x8(%rsi),%r10d
+  0x00007abdbfba8b16:   cmp    0x8(%rax),%r10d
+  0x00007abdbfba8b1a:   jne    0x00007abdbf4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007abdbfba8b20:   mov    %eax,-0x14000(%rsp)
+  0x00007abdbfba8b27:   push   %rbp
+  0x00007abdbfba8b28:   sub    $0x20,%rsp
+  0x00007abdbfba8b2c:   cmpl   $0x1,0x20(%r15)
+  0x00007abdbfba8b34:   je     0x00007abdbfba8b3b
+  0x00007abdbfba8b36:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ClassFileDumper::isEnabled@0 (line 94)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007abdbfba8b3b:   movsbl 0xc(%rsi),%eax               ;*getfield enabled {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.util.ClassFileDumper::isEnabled@1 (line 94)
+  0x00007abdbfba8b3f:   and    $0x1,%eax
+  0x00007abdbfba8b42:   add    $0x20,%rsp
+  0x00007abdbfba8b46:   pop    %rbp
+  0x00007abdbfba8b47:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007abdbfba8b4b:   ja     0x00007abdbfba8b52
+  0x00007abdbfba8b51:   ret    
+  0x00007abdbfba8b52:   movabs $0x7abdbfba8b47,%r10         ;   {internal_word}
+  0x00007abdbfba8b5c:   mov    %r10,0x510(%r15)
+  0x00007abdbfba8b63:   jmp    0x00007abdbf4afb60           ;   {runtime_call SafepointBlob}
+  0x00007abdbfba8b68:   mov    0x5c0(%r15),%rax
+  0x00007abdbfba8b6f:   movq   $0x0,0x5c0(%r15)
+  0x00007abdbfba8b7a:   movq   $0x0,0x5c8(%r15)
+  0x00007abdbfba8b85:   add    $0x20,%rsp
+  0x00007abdbfba8b89:   pop    %rbp
+  0x00007abdbfba8b8a:   jmp    0x00007abdbf57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007abdbfba8b8f:   hlt    
+[Exception Handler]
+  0x00007abdbfba8b90:   call   0x00007abdbf57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007abdbfba8b95:   movabs $0x7abdd873aec4,%rdi         ;   {external_word}
+  0x00007abdbfba8b9f:   and    $0xfffffffffffffff0,%rsp
+  0x00007abdbfba8ba3:   call   0x00007abdd8191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007abdbfba8ba8:   hlt    
+  0x00007abdbfba8ba9:   call   0x00007abdbf4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007abdbfba8bae:   jmp    0x00007abdbfba8ba9
+--------------------------------------------------------------------------------
+[/Disassembly]

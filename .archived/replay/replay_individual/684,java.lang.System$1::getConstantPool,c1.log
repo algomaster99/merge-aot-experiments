@@ -1,0 +1,131 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 388   29       3       java.lang.System$1::getConstantPool (5 bytes)
+ total in heap  [0x000075a8a7fff008,0x000075a8a7fff280] = 632
+ main code      [0x000075a8a7fff100,0x000075a8a7fff250] = 336
+ stub code      [0x000075a8a7fff250,0x000075a8a7fff280] = 48
+ mutable data [0x000075a848014da0,0x000075a848014de0] = 64
+ relocation     [0x000075a848014da0,0x000075a848014dd8] = 56
+ metadata       [0x000075a848014dd8,0x000075a848014de0] = 8
+ immutable data [0x000075a848014cd0,0x000075a848014d94] = 196
+ dependencies   [0x000075a848014cd0,0x000075a848014cd8] = 8
+ nul chk table  [0x000075a848014cd8,0x000075a848014ce8] = 16
+ scopes pcs     [0x000075a848014ce8,0x000075a848014d68] = 128
+ scopes data    [0x000075a848014d68,0x000075a848014d90] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000075a8a7fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000075a8a7fff10b:   data16 data16 xchg %ax,%ax
+  0x000075a8a7fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000004a183608} &apos;getConstantPool&apos; &apos;(Ljava/lang/Class;)Ljdk/internal/reflect/ConstantPool;&apos; in &apos;java/lang/System$1&apos;
+  # this:     rsi:rsi   = &apos;java/lang/System$1&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Class&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000075a8a7fff112:   mov    0x8(%rsi),%r10d
+  0x000075a8a7fff116:   cmp    0x8(%rax),%r10d
+  0x000075a8a7fff11a:   jne    0x000075a8af4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000075a8a7fff120:   mov    %eax,-0x14000(%rsp)
+  0x000075a8a7fff127:   push   %rbp
+  0x000075a8a7fff128:   sub    $0x20,%rsp
+  0x000075a8a7fff12c:   cmpl   $0x1,0x20(%r15)
+  0x000075a8a7fff134:   je     0x000075a8a7fff13b
+  0x000075a8a7fff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000075a8a7fff13b:   movabs $0x75a8601293c8,%rdi         ;   {metadata(method data for {method} {0x000000004a183608} &apos;getConstantPool&apos; &apos;(Ljava/lang/Class;)Ljdk/internal/reflect/ConstantPool;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075a8a7fff145:   mov    0x90(%rdi),%ebx
+  0x000075a8a7fff14b:   add    $0x2,%ebx
+  0x000075a8a7fff14e:   mov    %ebx,0x90(%rdi)
+  0x000075a8a7fff154:   and    $0x7fe,%ebx
+  0x000075a8a7fff15a:   test   %ebx,%ebx
+  0x000075a8a7fff15c:   je     0x000075a8a7fff1ec           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@0 (line 2006)
+  0x000075a8a7fff162:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x000075a8a7fff20d
+  0x000075a8a7fff165:   mov    %rdx,%rsi
+  0x000075a8a7fff168:   movabs $0x75a8601293c8,%rdi         ;   {metadata(method data for {method} {0x000000004a183608} &apos;getConstantPool&apos; &apos;(Ljava/lang/Class;)Ljdk/internal/reflect/ConstantPool;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075a8a7fff172:   mov    0x8(%rsi),%esi
+  0x000075a8a7fff175:   mov    $0x4a000000,%r10d
+  0x000075a8a7fff17b:   add    %r10,%rsi
+  0x000075a8a7fff17e:   mov    $0x1c,%r10d
+  0x000075a8a7fff184:   cmp    (%rdi,%r10,8),%rsi
+  0x000075a8a7fff188:   je     0x000075a8a7fff1c1
+  0x000075a8a7fff18a:   add    $0x2,%r10
+  0x000075a8a7fff18e:   cmp    $0x20,%r10
+  0x000075a8a7fff192:   jne    0x000075a8a7fff184
+  0x000075a8a7fff194:   mov    $0x1c,%r10d
+  0x000075a8a7fff19a:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000075a8a7fff19f:   je     0x000075a8a7fff1ad
+  0x000075a8a7fff1a1:   add    $0x2,%r10
+  0x000075a8a7fff1a5:   cmp    $0x20,%r10
+  0x000075a8a7fff1a9:   jne    0x000075a8a7fff19a
+  0x000075a8a7fff1ab:   jmp    0x000075a8a7fff1b9
+  0x000075a8a7fff1ad:   push   %rax
+  0x000075a8a7fff1ae:   xor    %rax,%rax
+  0x000075a8a7fff1b1:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x000075a8a7fff1b6:   pop    %rax
+  0x000075a8a7fff1b7:   jmp    0x000075a8a7fff17e
+  0x000075a8a7fff1b9:   mov    $0x1b,%r10d
+  0x000075a8a7fff1bf:   jmp    0x000075a8a7fff1c5
+  0x000075a8a7fff1c1:   add    $0x1,%r10
+  0x000075a8a7fff1c5:   addq   $0x1,(%rdi,%r10,8)
+  0x000075a8a7fff1ca:   mov    %rdx,%rsi                    ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+  0x000075a8a7fff1cd:   xchg   %ax,%ax
+  0x000075a8a7fff1cf:   call   0x000075a8af4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ;   {optimized virtual_call}
+  0x000075a8a7fff1d4:   nopl   0x1cc(%rax,%rax,1)           ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ;   {post_call_nop}
+  0x000075a8a7fff1dc:   add    $0x20,%rsp
+  0x000075a8a7fff1e0:   pop    %rbp
+  0x000075a8a7fff1e1:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000075a8a7fff1e5:   ja     0x000075a8a7fff212
+  0x000075a8a7fff1eb:   ret    
+  0x000075a8a7fff1ec:   movabs $0x4a183608,%r10             ;   {metadata({method} {0x000000004a183608} &apos;getConstantPool&apos; &apos;(Ljava/lang/Class;)Ljdk/internal/reflect/ConstantPool;&apos; in &apos;java/lang/System$1&apos;)}
+  0x000075a8a7fff1f6:   mov    %r10,0x8(%rsp)
+  0x000075a8a7fff1fb:   movq   $0xffffffffffffffff,(%rsp)
+  0x000075a8a7fff203:   call   0x000075a8af583460           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.System$1::getConstantPool@-1 (line 2006)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000075a8a7fff208:   jmp    0x000075a8a7fff162
+  0x000075a8a7fff20d:   call   0x000075a8af57cae0           ; ImmutableOopMap {rdx=Oop }
+                                                            ;*invokevirtual getConstantPool {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.System$1::getConstantPool@1 (line 2006)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000075a8a7fff212:   movabs $0x75a8a7fff1e1,%r10         ;   {internal_word}
+  0x000075a8a7fff21c:   mov    %r10,0x510(%r15)
+  0x000075a8a7fff223:   jmp    0x000075a8af4afb60           ;   {runtime_call SafepointBlob}
+  0x000075a8a7fff228:   mov    0x5c0(%r15),%rax
+  0x000075a8a7fff22f:   movq   $0x0,0x5c0(%r15)
+  0x000075a8a7fff23a:   movq   $0x0,0x5c8(%r15)
+  0x000075a8a7fff245:   add    $0x20,%rsp
+  0x000075a8a7fff249:   pop    %rbp
+  0x000075a8a7fff24a:   jmp    0x000075a8af57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000075a8a7fff24f:   hlt    
+[Stub Code]
+  0x000075a8a7fff250:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000075a8a7fff25a:   jmp    0x000075a8a7fff25a           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000075a8a7fff25f:   call   0x000075a8af57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000075a8a7fff264:   movabs $0x75a8c5d3aec4,%rdi         ;   {external_word}
+  0x000075a8a7fff26e:   and    $0xfffffffffffffff0,%rsp
+  0x000075a8a7fff272:   call   0x000075a8c5791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000075a8a7fff277:   hlt    
+  0x000075a8a7fff278:   call   0x000075a8af4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000075a8a7fff27d:   jmp    0x000075a8a7fff278
+  0x000075a8a7fff27f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

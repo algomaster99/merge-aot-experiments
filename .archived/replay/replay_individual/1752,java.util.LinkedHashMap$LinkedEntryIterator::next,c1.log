@@ -1,0 +1,125 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 624   53       3       java.util.LinkedHashMap$LinkedEntryIterator::next (5 bytes)
+ total in heap  [0x00007374fbfff008,0x00007374fbfff278] = 624
+ main code      [0x00007374fbfff100,0x00007374fbfff248] = 328
+ stub code      [0x00007374fbfff248,0x00007374fbfff278] = 48
+ mutable data [0x00007374a4024d00,0x00007374a4024d40] = 64
+ relocation     [0x00007374a4024d00,0x00007374a4024d38] = 56
+ metadata       [0x00007374a4024d38,0x00007374a4024d40] = 8
+ immutable data [0x00007374a4000ba0,0x00007374a4000c2c] = 140
+ dependencies   [0x00007374a4000ba0,0x00007374a4000ba8] = 8
+ scopes pcs     [0x00007374a4000ba8,0x00007374a4000c08] = 96
+ scopes data    [0x00007374a4000c08,0x00007374a4000c28] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007374fbfff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007374fbfff10b:   data16 data16 xchg %ax,%ax
+  0x00007374fbfff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000103e35a0} &apos;next&apos; &apos;()Ljava/util/Map$Entry;&apos; in &apos;java/util/LinkedHashMap$LinkedEntryIterator&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007374fbfff112:   mov    0x8(%rsi),%r10d
+  0x00007374fbfff116:   cmp    0x8(%rax),%r10d
+  0x00007374fbfff11a:   jne    0x00007375034ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007374fbfff120:   mov    %eax,-0x14000(%rsp)
+  0x00007374fbfff127:   push   %rbp
+  0x00007374fbfff128:   sub    $0x20,%rsp
+  0x00007374fbfff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007374fbfff134:   je     0x00007374fbfff13b
+  0x00007374fbfff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007374fbfff13b:   movabs $0x7374b43197e0,%rdi         ;   {metadata(method data for {method} {0x00000000103e35a0} &apos;next&apos; &apos;()Ljava/util/Map$Entry;&apos; in &apos;java/util/LinkedHashMap$LinkedEntryIterator&apos;)}
+  0x00007374fbfff145:   mov    0x90(%rdi),%ebx
+  0x00007374fbfff14b:   add    $0x2,%ebx
+  0x00007374fbfff14e:   mov    %ebx,0x90(%rdi)
+  0x00007374fbfff154:   and    $0x7fe,%ebx
+  0x00007374fbfff15a:   test   %ebx,%ebx
+  0x00007374fbfff15c:   je     0x00007374fbfff1e4           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap$LinkedEntryIterator::next@0 (line 1059)
+  0x00007374fbfff162:   mov    %rsi,%rdi
+  0x00007374fbfff165:   movabs $0x7374b43197e0,%rbx         ;   {metadata(method data for {method} {0x00000000103e35a0} &apos;next&apos; &apos;()Ljava/util/Map$Entry;&apos; in &apos;java/util/LinkedHashMap$LinkedEntryIterator&apos;)}
+  0x00007374fbfff16f:   mov    0x8(%rdi),%edi
+  0x00007374fbfff172:   mov    $0x10000000,%r10d
+  0x00007374fbfff178:   add    %r10,%rdi
+  0x00007374fbfff17b:   mov    $0x1c,%r10d
+  0x00007374fbfff181:   cmp    (%rbx,%r10,8),%rdi
+  0x00007374fbfff185:   je     0x00007374fbfff1be
+  0x00007374fbfff187:   add    $0x2,%r10
+  0x00007374fbfff18b:   cmp    $0x20,%r10
+  0x00007374fbfff18f:   jne    0x00007374fbfff181
+  0x00007374fbfff191:   mov    $0x1c,%r10d
+  0x00007374fbfff197:   cmpq   $0x0,(%rbx,%r10,8)
+  0x00007374fbfff19c:   je     0x00007374fbfff1aa
+  0x00007374fbfff19e:   add    $0x2,%r10
+  0x00007374fbfff1a2:   cmp    $0x20,%r10
+  0x00007374fbfff1a6:   jne    0x00007374fbfff197
+  0x00007374fbfff1a8:   jmp    0x00007374fbfff1b6
+  0x00007374fbfff1aa:   push   %rax
+  0x00007374fbfff1ab:   xor    %rax,%rax
+  0x00007374fbfff1ae:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x00007374fbfff1b3:   pop    %rax
+  0x00007374fbfff1b4:   jmp    0x00007374fbfff17b
+  0x00007374fbfff1b6:   mov    $0x1b,%r10d
+  0x00007374fbfff1bc:   jmp    0x00007374fbfff1c2
+  0x00007374fbfff1be:   add    $0x1,%r10
+  0x00007374fbfff1c2:   addq   $0x1,(%rbx,%r10,8)
+  0x00007374fbfff1c7:   call   0x00007375034ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual nextNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap$LinkedEntryIterator::next@1 (line 1059)
+                                                            ;   {optimized virtual_call}
+  0x00007374fbfff1cc:   nopl   0x1c4(%rax,%rax,1)           ;*invokevirtual nextNode {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.LinkedHashMap$LinkedEntryIterator::next@1 (line 1059)
+                                                            ;   {post_call_nop}
+  0x00007374fbfff1d4:   add    $0x20,%rsp
+  0x00007374fbfff1d8:   pop    %rbp
+  0x00007374fbfff1d9:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007374fbfff1dd:   ja     0x00007374fbfff205
+  0x00007374fbfff1e3:   ret    
+  0x00007374fbfff1e4:   movabs $0x103e35a0,%r10             ;   {metadata({method} {0x00000000103e35a0} &apos;next&apos; &apos;()Ljava/util/Map$Entry;&apos; in &apos;java/util/LinkedHashMap$LinkedEntryIterator&apos;)}
+  0x00007374fbfff1ee:   mov    %r10,0x8(%rsp)
+  0x00007374fbfff1f3:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007374fbfff1fb:   call   0x0000737503580f60           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.LinkedHashMap$LinkedEntryIterator::next@-1 (line 1059)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007374fbfff200:   jmp    0x00007374fbfff162
+  0x00007374fbfff205:   movabs $0x7374fbfff1d9,%r10         ;   {internal_word}
+  0x00007374fbfff20f:   mov    %r10,0x510(%r15)
+  0x00007374fbfff216:   jmp    0x00007375034afb60           ;   {runtime_call SafepointBlob}
+  0x00007374fbfff21b:   mov    0x5c0(%r15),%rax
+  0x00007374fbfff222:   movq   $0x0,0x5c0(%r15)
+  0x00007374fbfff22d:   movq   $0x0,0x5c8(%r15)
+  0x00007374fbfff238:   add    $0x20,%rsp
+  0x00007374fbfff23c:   pop    %rbp
+  0x00007374fbfff23d:   jmp    0x000073750357a0e0           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007374fbfff242:   hlt    
+  0x00007374fbfff243:   hlt    
+  0x00007374fbfff244:   hlt    
+  0x00007374fbfff245:   hlt    
+  0x00007374fbfff246:   hlt    
+  0x00007374fbfff247:   hlt    
+[Stub Code]
+  0x00007374fbfff248:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007374fbfff252:   jmp    0x00007374fbfff252           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007374fbfff257:   call   0x000073750357d260           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007374fbfff25c:   movabs $0x73751c13aec4,%rdi         ;   {external_word}
+  0x00007374fbfff266:   and    $0xfffffffffffffff0,%rsp
+  0x00007374fbfff26a:   call   0x000073751bb91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007374fbfff26f:   hlt    
+  0x00007374fbfff270:   call   0x00007375034afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007374fbfff275:   jmp    0x00007374fbfff270
+  0x00007374fbfff277:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

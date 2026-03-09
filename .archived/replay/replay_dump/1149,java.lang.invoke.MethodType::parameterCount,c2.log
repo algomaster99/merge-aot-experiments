@@ -1,0 +1,66 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 21843 1149       4       java.lang.invoke.MethodType::parameterCount (6 bytes)
+ total in heap  [0x000077b45fbcce08,0x000077b45fbccf80] = 376
+ main code      [0x000077b45fbccf00,0x000077b45fbccf78] = 120
+ stub code      [0x000077b45fbccf78,0x000077b45fbccf80] = 8
+ mutable data [0x000077b408071dc0,0x000077b408071de0] = 32
+ relocation     [0x000077b408071dc0,0x000077b408071dd8] = 24
+ metadata       [0x000077b408071dd8,0x000077b408071de0] = 8
+ immutable data [0x000077b408071d10,0x000077b408071dac] = 156
+ dependencies   [0x000077b408071d10,0x000077b408071d18] = 8
+ nul chk table  [0x000077b408071d18,0x000077b408071d28] = 16
+ scopes pcs     [0x000077b408071d28,0x000077b408071d88] = 96
+ scopes data    [0x000077b408071d88,0x000077b408071da8] = 32
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbccf00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461f51b0} &apos;parameterCount&apos; &apos;()I&apos; in &apos;java/lang/invoke/MethodType&apos;
+  #           [sp+0x20]  (sp of caller)
+  0x000077b45fbccf02:   mov    0x8(%rsi),%r10d
+  0x000077b45fbccf06:   cmp    0x8(%rax),%r10d
+  0x000077b45fbccf0a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbccf10:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbccf17:   push   %rbp
+  0x000077b45fbccf18:   sub    $0x10,%rsp
+  0x000077b45fbccf1c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbccf24:   jne    0x000077b45fbccf6e           ;*synchronization entry
+                                                            ; - java.lang.invoke.MethodType::parameterCount@-1 (line 833)
+  0x000077b45fbccf2a:   mov    0x10(%rsi),%r11d             ;*getfield ptypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterCount@1 (line 833)
+  0x000077b45fbccf2e:   mov    0xc(%r12,%r11,8),%eax        ; implicit exception: dispatches to 0x000077b45fbccf43
+  0x000077b45fbccf33:   add    $0x10,%rsp
+  0x000077b45fbccf37:   pop    %rbp
+  0x000077b45fbccf38:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbccf3c:   ja     0x000077b45fbccf58
+  0x000077b45fbccf42:   ret    
+  0x000077b45fbccf43:   mov    $0xfffffff6,%esi
+  0x000077b45fbccf48:   data16 xchg %ax,%ax
+  0x000077b45fbccf4b:   call   0x000077b45f5865e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterCount@4 (line 833)
+                                                            ;   {runtime_call UncommonTrapBlob}
+  0x000077b45fbccf50:   nopl   0x148(%rax,%rax,1)           ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodType::parameterCount@4 (line 833)
+                                                            ;   {post_call_nop}
+  0x000077b45fbccf58:   movabs $0x77b45fbccf38,%r10         ;   {internal_word}
+  0x000077b45fbccf62:   mov    %r10,0x510(%r15)
+  0x000077b45fbccf69:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbccf6e:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbccf73:   jmp    0x000077b45fbccf2a
+[Stub Code]
+  0x000077b45fbccf78:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbccf7d:   jmp    0x000077b45fbccf78
+  0x000077b45fbccf7f:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

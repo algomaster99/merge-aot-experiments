@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 476   46       1       java.lang.invoke.MethodHandles$Lookup::lookupClass (5 bytes)
+ total in heap  [0x00007d0de3ba8708,0x00007d0de3ba88b0] = 424
+ main code      [0x00007d0de3ba8800,0x00007d0de3ba8890] = 144
+ stub code      [0x00007d0de3ba8890,0x00007d0de3ba88b0] = 32
+ mutable data [0x00007d0d8001cc70,0x00007d0d8001cc98] = 40
+ relocation     [0x00007d0d8001cc70,0x00007d0d8001cc90] = 32
+ metadata       [0x00007d0d8001cc90,0x00007d0d8001cc98] = 8
+ immutable data [0x00007d0d8001cc00,0x00007d0d8001cc5c] = 92
+ dependencies   [0x00007d0d8001cc00,0x00007d0d8001cc08] = 8
+ scopes pcs     [0x00007d0d8001cc08,0x00007d0d8001cc48] = 64
+ scopes data    [0x00007d0d8001cc48,0x00007d0d8001cc58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007d0de3ba8800:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007d0de3ba880b:   data16 data16 xchg %ax,%ax
+  0x00007d0de3ba880f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x0000000097477c98} &apos;lookupClass&apos; &apos;()Ljava/lang/Class;&apos; in &apos;java/lang/invoke/MethodHandles$Lookup&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007d0de3ba8812:   mov    0x8(%rsi),%r10d
+  0x00007d0de3ba8816:   cmp    0x8(%rax),%r10d
+  0x00007d0de3ba881a:   jne    0x00007d0de34ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007d0de3ba8820:   mov    %eax,-0x14000(%rsp)
+  0x00007d0de3ba8827:   push   %rbp
+  0x00007d0de3ba8828:   sub    $0x20,%rsp
+  0x00007d0de3ba882c:   cmpl   $0x1,0x20(%r15)
+  0x00007d0de3ba8834:   je     0x00007d0de3ba883b
+  0x00007d0de3ba8836:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::lookupClass@0 (line 1470)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007d0de3ba883b:   mov    0x10(%rsi),%eax
+  0x00007d0de3ba883e:   shl    $0x3,%rax                    ;*getfield lookupClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.invoke.MethodHandles$Lookup::lookupClass@1 (line 1470)
+  0x00007d0de3ba8842:   add    $0x20,%rsp
+  0x00007d0de3ba8846:   pop    %rbp
+  0x00007d0de3ba8847:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007d0de3ba884b:   ja     0x00007d0de3ba8852
+  0x00007d0de3ba8851:   ret    
+  0x00007d0de3ba8852:   movabs $0x7d0de3ba8847,%r10         ;   {internal_word}
+  0x00007d0de3ba885c:   mov    %r10,0x510(%r15)
+  0x00007d0de3ba8863:   jmp    0x00007d0de34afb60           ;   {runtime_call SafepointBlob}
+  0x00007d0de3ba8868:   mov    0x5c0(%r15),%rax
+  0x00007d0de3ba886f:   movq   $0x0,0x5c0(%r15)
+  0x00007d0de3ba887a:   movq   $0x0,0x5c8(%r15)
+  0x00007d0de3ba8885:   add    $0x20,%rsp
+  0x00007d0de3ba8889:   pop    %rbp
+  0x00007d0de3ba888a:   jmp    0x00007d0de357b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007d0de3ba888f:   hlt    
+[Exception Handler]
+  0x00007d0de3ba8890:   call   0x00007d0de357f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007d0de3ba8895:   movabs $0x7d0dfcf3aec4,%rdi         ;   {external_word}
+  0x00007d0de3ba889f:   and    $0xfffffffffffffff0,%rsp
+  0x00007d0de3ba88a3:   call   0x00007d0dfc991cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007d0de3ba88a8:   hlt    
+  0x00007d0de3ba88a9:   call   0x00007d0de34afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007d0de3ba88ae:   jmp    0x00007d0de3ba88a9
+--------------------------------------------------------------------------------
+[/Disassembly]

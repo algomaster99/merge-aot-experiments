@@ -1,0 +1,113 @@
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 645   53       4       java.util.HashMap::newNode (13 bytes)
+ total in heap  [0x00007fc503ba9c08,0x00007fc503ba9e08] = 512
+ main code      [0x00007fc503ba9d00,0x00007fc503ba9e00] = 256
+ stub code      [0x00007fc503ba9e00,0x00007fc503ba9e08] = 8
+ mutable data [0x00007fc4ac0b2200,0x00007fc4ac0b2240] = 64
+ relocation     [0x00007fc4ac0b2200,0x00007fc4ac0b2220] = 32
+ metadata       [0x00007fc4ac0b2220,0x00007fc4ac0b2240] = 32
+ immutable data [0x00007fc4ac0b20f0,0x00007fc4ac0b21f4] = 260
+ dependencies   [0x00007fc4ac0b20f0,0x00007fc4ac0b20f8] = 8
+ handler table  [0x00007fc4ac0b20f8,0x00007fc4ac0b2110] = 24
+ scopes pcs     [0x00007fc4ac0b2110,0x00007fc4ac0b21b0] = 160
+ scopes data    [0x00007fc4ac0b21b0,0x00007fc4ac0b21f0] = 64
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007fc503ba9d00:   xchg   %ax,%ax
+[Entry Point]
+  # {method} {0x00000000101fd478} &apos;newNode&apos; &apos;(ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)Ljava/util/HashMap$Node;&apos; in &apos;java/util/HashMap&apos;
+  # this:     rsi:rsi   = &apos;java/util/HashMap&apos;
+  # parm0:    rdx       = int
+  # parm1:    rcx:rcx   = &apos;java/lang/Object&apos;
+  # parm2:    r8:r8     = &apos;java/lang/Object&apos;
+  # parm3:    r9:r9     = &apos;java/util/HashMap$Node&apos;
+  #           [sp+0x40]  (sp of caller)
+  0x00007fc503ba9d02:   mov    0x8(%rsi),%r10d
+  0x00007fc503ba9d06:   cmp    0x8(%rax),%r10d
+  0x00007fc503ba9d0a:   jne    0x00007fc5034ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007fc503ba9d10:   mov    %eax,-0x14000(%rsp)
+  0x00007fc503ba9d17:   push   %rbp
+  0x00007fc503ba9d18:   sub    $0x30,%rsp
+  0x00007fc503ba9d1c:   cmpl   $0x1,0x20(%r15)
+  0x00007fc503ba9d24:   jne    0x00007fc503ba9df1           ;*synchronization entry
+                                                            ; - java.util.HashMap::newNode@-1 (line 1910)
+  0x00007fc503ba9d2a:   mov    %r9,0x10(%rsp)
+  0x00007fc503ba9d2f:   mov    %r8,0x8(%rsp)
+  0x00007fc503ba9d34:   mov    %rcx,(%rsp)
+  0x00007fc503ba9d38:   mov    %edx,%ebp
+  0x00007fc503ba9d3a:   mov    0x1b0(%r15),%rax
+  0x00007fc503ba9d41:   mov    %rax,%r10
+  0x00007fc503ba9d44:   add    $0x20,%r10
+  0x00007fc503ba9d48:   cmp    0x1c0(%r15),%r10
+  0x00007fc503ba9d4f:   jae    0x00007fc503ba9db3
+  0x00007fc503ba9d51:   mov    %r10,0x1b0(%r15)
+  0x00007fc503ba9d58:   prefetchw 0xe0(%rax)
+  0x00007fc503ba9d5f:   movq   $0x1,(%rax)
+  0x00007fc503ba9d66:   movl   $0x2d31b0,0x8(%rax)          ;   {metadata(&apos;java/util/HashMap$Node&apos;)}
+  0x00007fc503ba9d6d:   mov    %r12d,0x1c(%rax)             ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::newNode@0 (line 1910)
+  0x00007fc503ba9d71:   mov    %ebp,0xc(%rax)               ;*putfield hash {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap$Node::&lt;init&gt;@6 (line 288)
+                                                            ; - java.util.HashMap::newNode@9 (line 1910)
+  0x00007fc503ba9d74:   mov    0x8(%rsp),%r10
+  0x00007fc503ba9d79:   mov    %r10,%r11
+  0x00007fc503ba9d7c:   shr    $0x3,%r11
+  0x00007fc503ba9d80:   mov    0x10(%rsp),%r10
+  0x00007fc503ba9d85:   mov    %r10,%r8
+  0x00007fc503ba9d88:   shr    $0x3,%r8
+  0x00007fc503ba9d8c:   mov    (%rsp),%r10
+  0x00007fc503ba9d90:   mov    %r10,%r9
+  0x00007fc503ba9d93:   shr    $0x3,%r9
+  0x00007fc503ba9d97:   mov    %r9d,0x10(%rax)              ;*putfield key {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap$Node::&lt;init&gt;@11 (line 289)
+                                                            ; - java.util.HashMap::newNode@9 (line 1910)
+  0x00007fc503ba9d9b:   mov    %r11d,0x14(%rax)             ;*putfield value {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap$Node::&lt;init&gt;@16 (line 290)
+                                                            ; - java.util.HashMap::newNode@9 (line 1910)
+  0x00007fc503ba9d9f:   mov    %r8d,0x18(%rax)              ;*synchronization entry
+                                                            ; - java.util.HashMap$Node::&lt;init&gt;@-1 (line 287)
+                                                            ; - java.util.HashMap::newNode@9 (line 1910)
+  0x00007fc503ba9da3:   add    $0x30,%rsp
+  0x00007fc503ba9da7:   pop    %rbp
+  0x00007fc503ba9da8:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007fc503ba9dac:   ja     0x00007fc503ba9ddb
+  0x00007fc503ba9db2:   ret    
+  0x00007fc503ba9db3:   movabs $0x102d31b0,%rsi             ;   {metadata(&apos;java/util/HashMap$Node&apos;)}
+  0x00007fc503ba9dbd:   xchg   %ax,%ax
+  0x00007fc503ba9dbf:   call   0x00007fc503588ee0           ; ImmutableOopMap {[0]=Oop [8]=Oop [16]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=1}
+                                                            ; - java.util.HashMap::newNode@0 (line 1910)
+                                                            ;   {runtime_call new_instance_blob (C2 runtime)}
+  0x00007fc503ba9dc4:   nopl   0x1bc(%rax,%rax,1)           ;   {post_call_nop}
+  0x00007fc503ba9dcc:   jmp    0x00007fc503ba9d71           ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.HashMap::newNode@0 (line 1910)
+  0x00007fc503ba9dce:   mov    %rax,%rsi
+  0x00007fc503ba9dd1:   add    $0x30,%rsp
+  0x00007fc503ba9dd5:   pop    %rbp
+  0x00007fc503ba9dd6:   jmp    0x00007fc50358d2e0           ;   {runtime_call rethrow_blob (C2 runtime)}
+  0x00007fc503ba9ddb:   movabs $0x7fc503ba9da8,%r10         ;   {internal_word}
+  0x00007fc503ba9de5:   mov    %r10,0x510(%r15)
+  0x00007fc503ba9dec:   jmp    0x00007fc5034afb60           ;   {runtime_call SafepointBlob}
+  0x00007fc503ba9df1:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007fc503ba9df6:   jmp    0x00007fc503ba9d2a
+  0x00007fc503ba9dfb:   hlt    
+  0x00007fc503ba9dfc:   hlt    
+  0x00007fc503ba9dfd:   hlt    
+  0x00007fc503ba9dfe:   hlt    
+  0x00007fc503ba9dff:   hlt    
+[Stub Code]
+  0x00007fc503ba9e00:   call   0x00007fc5034afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007fc503ba9e05:   jmp    0x00007fc503ba9e00
+  0x00007fc503ba9e07:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

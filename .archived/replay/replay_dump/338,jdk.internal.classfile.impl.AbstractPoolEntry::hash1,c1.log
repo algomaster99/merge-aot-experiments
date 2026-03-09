@@ -1,0 +1,80 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 7377  338       3       jdk.internal.classfile.impl.AbstractPoolEntry::hash1 (10 bytes)
+ total in heap  [0x000077b458044688,0x000077b458044860] = 472
+ main code      [0x000077b458044780,0x000077b458044840] = 192
+ stub code      [0x000077b458044840,0x000077b458044860] = 32
+ mutable data [0x000077b3e807c0c0,0x000077b3e807c0f0] = 48
+ relocation     [0x000077b3e807c0c0,0x000077b3e807c0e8] = 40
+ metadata       [0x000077b3e807c0e8,0x000077b3e807c0f0] = 8
+ immutable data [0x000077b3e807c050,0x000077b3e807c0b4] = 100
+ dependencies   [0x000077b3e807c050,0x000077b3e807c058] = 8
+ scopes pcs     [0x000077b3e807c058,0x000077b3e807c098] = 64
+ scopes data    [0x000077b3e807c098,0x000077b3e807c0b0] = 24
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Verified Entry Point]
+  # {method} {0x000000004633fbd0} &apos;hash1&apos; &apos;(II)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;
+  # parm0:    rsi       = int
+  # parm1:    rdx       = int
+  #           [sp+0x30]  (sp of caller)
+  0x000077b458044780:   mov    %eax,-0x14000(%rsp)
+  0x000077b458044787:   push   %rbp
+  0x000077b458044788:   sub    $0x20,%rsp
+  0x000077b45804478c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458044794:   je     0x000077b45804479b
+  0x000077b458044796:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45804479b:   movabs $0x77b4141020e8,%rax         ;   {metadata(method data for {method} {0x000000004633fbd0} &apos;hash1&apos; &apos;(II)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x000077b4580447a5:   mov    0x90(%rax),%edi
+  0x000077b4580447ab:   add    $0x2,%edi
+  0x000077b4580447ae:   mov    %edi,0x90(%rax)
+  0x000077b4580447b4:   and    $0x7fe,%edi
+  0x000077b4580447ba:   test   %edi,%edi
+  0x000077b4580447bc:   je     0x000077b4580447e5           ;*iload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry::hash1@0 (line 58)
+  0x000077b4580447c2:   mov    $0x13c4b2d1,%eax
+  0x000077b4580447c7:   imul   %eax,%esi
+  0x000077b4580447ca:   add    %edx,%esi
+  0x000077b4580447cc:   or     $0x40000000,%esi
+  0x000077b4580447d2:   mov    %rsi,%rax
+  0x000077b4580447d5:   add    $0x20,%rsp
+  0x000077b4580447d9:   pop    %rbp
+  0x000077b4580447da:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b4580447de:   ja     0x000077b458044803
+  0x000077b4580447e4:   ret    
+  0x000077b4580447e5:   movabs $0x4633fbd0,%r10             ;   {metadata({method} {0x000000004633fbd0} &apos;hash1&apos; &apos;(II)I&apos; in &apos;jdk/internal/classfile/impl/AbstractPoolEntry&apos;)}
+  0x000077b4580447ef:   mov    %r10,0x8(%rsp)
+  0x000077b4580447f4:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b4580447fc:   call   0x000077b45f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.classfile.impl.AbstractPoolEntry::hash1@-1 (line 58)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458044801:   jmp    0x000077b4580447c2
+  0x000077b458044803:   movabs $0x77b4580447da,%r10         ;   {internal_word}
+  0x000077b45804480d:   mov    %r10,0x510(%r15)
+  0x000077b458044814:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458044819:   mov    0x5c0(%r15),%rax
+  0x000077b458044820:   movq   $0x0,0x5c0(%r15)
+  0x000077b45804482b:   movq   $0x0,0x5c8(%r15)
+  0x000077b458044836:   add    $0x20,%rsp
+  0x000077b45804483a:   pop    %rbp
+  0x000077b45804483b:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+[Exception Handler]
+  0x000077b458044840:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b458044845:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45804484f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458044853:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b458044858:   hlt    
+  0x000077b458044859:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45804485e:   jmp    0x000077b458044859
+--------------------------------------------------------------------------------
+[/Disassembly]

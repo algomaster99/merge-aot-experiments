@@ -1,0 +1,527 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 38663 1710       3       java.lang.reflect.Method::equals (65 bytes)
+ total in heap  [0x000077b458142f08,0x000077b458143718] = 2064
+ main code      [0x000077b458143000,0x000077b4581436e0] = 1760
+ stub code      [0x000077b4581436e0,0x000077b458143718] = 56
+ mutable data [0x000077b3e80fda60,0x000077b3e80fdaf8] = 152
+ relocation     [0x000077b3e80fda60,0x000077b3e80fdad0] = 112
+ metadata       [0x000077b3e80fdad0,0x000077b3e80fdaf8] = 40
+ immutable data [0x000077b3e80fd730,0x000077b3e80fda4c] = 796
+ dependencies   [0x000077b3e80fd730,0x000077b3e80fd740] = 16
+ nul chk table  [0x000077b3e80fd740,0x000077b3e80fd758] = 24
+ scopes pcs     [0x000077b3e80fd758,0x000077b3e80fd958] = 512
+ scopes data    [0x000077b3e80fd958,0x000077b3e80fda48] = 240
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b458143000:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45814300b:   data16 data16 xchg %ax,%ax
+  0x000077b45814300f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;
+  # this:     rsi:rsi   = &apos;java/lang/reflect/Method&apos;
+  # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+  #           [sp+0x50]  (sp of caller)
+  0x000077b458143012:   mov    0x8(%rsi),%r10d
+  0x000077b458143016:   cmp    0x8(%rax),%r10d
+  0x000077b45814301a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b458143020:   mov    %eax,-0x14000(%rsp)
+  0x000077b458143027:   push   %rbp
+  0x000077b458143028:   sub    $0x40,%rsp
+  0x000077b45814302c:   cmpl   $0x1,0x20(%r15)
+  0x000077b458143034:   je     0x000077b45814303b
+  0x000077b458143036:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45814303b:   movabs $0x77b4146cf748,%rax         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b458143045:   mov    0x90(%rax),%ecx
+  0x000077b45814304b:   add    $0x2,%ecx
+  0x000077b45814304e:   mov    %ecx,0x90(%rax)
+  0x000077b458143054:   and    $0x7fe,%ecx
+  0x000077b45814305a:   test   %ecx,%ecx
+  0x000077b45814305c:   je     0x000077b45814361c           ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@0 (line 346)
+  0x000077b458143062:   test   %rdx,%rdx
+  0x000077b458143065:   movabs $0x77b4146cf748,%rdi         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45814306f:   jne    0x000077b45814307d
+  0x000077b458143071:   orb    $0x1,0xd1(%rdi)
+  0x000077b458143078:   jmp    0x000077b4581430f9
+  0x000077b45814307d:   mov    0x8(%rdx),%ebx
+  0x000077b458143080:   mov    $0x46000000,%r10d
+  0x000077b458143086:   add    %r10,%rbx
+  0x000077b458143089:   mov    $0x1c,%r10d
+  0x000077b45814308f:   cmp    (%rdi,%r10,8),%rbx
+  0x000077b458143093:   je     0x000077b4581430cc
+  0x000077b458143095:   add    $0x2,%r10
+  0x000077b458143099:   cmp    $0x20,%r10
+  0x000077b45814309d:   jne    0x000077b45814308f
+  0x000077b45814309f:   mov    $0x1c,%r10d
+  0x000077b4581430a5:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b4581430aa:   je     0x000077b4581430b8
+  0x000077b4581430ac:   add    $0x2,%r10
+  0x000077b4581430b0:   cmp    $0x20,%r10
+  0x000077b4581430b4:   jne    0x000077b4581430a5
+  0x000077b4581430b6:   jmp    0x000077b4581430c4
+  0x000077b4581430b8:   push   %rax
+  0x000077b4581430b9:   xor    %rax,%rax
+  0x000077b4581430bc:   cmpxchg %rbx,(%rdi,%r10,8)
+  0x000077b4581430c1:   pop    %rax
+  0x000077b4581430c2:   jmp    0x000077b458143089
+  0x000077b4581430c4:   mov    $0x1b,%r10d
+  0x000077b4581430ca:   jmp    0x000077b4581430d0
+  0x000077b4581430cc:   add    $0x1,%r10
+  0x000077b4581430d0:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b4581430d5:   movabs $0x461aba90,%rbx             ;   {metadata(&apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581430df:   mov    0x8(%rdx),%ecx
+  0x000077b4581430e2:   mov    $0x46000000,%r10d
+  0x000077b4581430e8:   add    %r10,%rcx
+  0x000077b4581430eb:   cmp    %rcx,%rbx
+  0x000077b4581430ee:   jne    0x000077b4581430f9
+  0x000077b4581430f4:   jmp    0x000077b4581430fe
+  0x000077b4581430f9:   xor    %rax,%rax
+  0x000077b4581430fc:   jmp    0x000077b458143103
+  0x000077b4581430fe:   mov    $0x1,%eax                    ;*instanceof {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@1 (line 346)
+  0x000077b458143103:   test   %eax,%eax
+  0x000077b458143105:   movabs $0x77b4146cf748,%rax         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45814310f:   mov    $0x108,%ecx
+  0x000077b458143114:   je     0x000077b45814311b
+  0x000077b458143116:   mov    $0x118,%ecx
+  0x000077b45814311b:   mov    (%rax,%rcx,1),%rdi
+  0x000077b45814311f:   lea    0x1(%rdi),%rdi
+  0x000077b458143123:   mov    %rdi,(%rax,%rcx,1)
+  0x000077b458143127:   je     0x000077b458143607           ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@4 (line 346)
+  0x000077b45814312d:   test   %rdx,%rdx
+  0x000077b458143130:   movabs $0x77b4146cf748,%rcx         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45814313a:   jne    0x000077b458143148
+  0x000077b45814313c:   orb    $0x1,0x121(%rcx)
+  0x000077b458143143:   jmp    0x000077b4581431c4
+  0x000077b458143148:   mov    0x8(%rdx),%edi
+  0x000077b45814314b:   mov    $0x46000000,%r10d
+  0x000077b458143151:   add    %r10,%rdi
+  0x000077b458143154:   mov    $0x26,%r10d
+  0x000077b45814315a:   cmp    (%rcx,%r10,8),%rdi
+  0x000077b45814315e:   je     0x000077b458143197
+  0x000077b458143160:   add    $0x2,%r10
+  0x000077b458143164:   cmp    $0x2a,%r10
+  0x000077b458143168:   jne    0x000077b45814315a
+  0x000077b45814316a:   mov    $0x26,%r10d
+  0x000077b458143170:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000077b458143175:   je     0x000077b458143183
+  0x000077b458143177:   add    $0x2,%r10
+  0x000077b45814317b:   cmp    $0x2a,%r10
+  0x000077b45814317f:   jne    0x000077b458143170
+  0x000077b458143181:   jmp    0x000077b45814318f
+  0x000077b458143183:   push   %rax
+  0x000077b458143184:   xor    %rax,%rax
+  0x000077b458143187:   cmpxchg %rdi,(%rcx,%r10,8)
+  0x000077b45814318c:   pop    %rax
+  0x000077b45814318d:   jmp    0x000077b458143154
+  0x000077b45814318f:   mov    $0x25,%r10d
+  0x000077b458143195:   jmp    0x000077b45814319b
+  0x000077b458143197:   add    $0x1,%r10
+  0x000077b45814319b:   addq   $0x1,(%rcx,%r10,8)
+  0x000077b4581431a0:   movabs $0x461aba90,%rdi             ;   {metadata(&apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581431aa:   mov    0x8(%rdx),%eax
+  0x000077b4581431ad:   mov    $0x46000000,%r10d
+  0x000077b4581431b3:   add    %r10,%rax
+  0x000077b4581431b6:   cmp    %rax,%rdi
+  0x000077b4581431b9:   jne    0x000077b45814363d
+  0x000077b4581431bf:   jmp    0x000077b4581431c4           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@8 (line 346)
+  0x000077b4581431c4:   mov    %rsi,%rax
+  0x000077b4581431c7:   movabs $0x77b4146cf748,%rcx         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581431d1:   mov    0x8(%rax),%eax
+  0x000077b4581431d4:   mov    $0x46000000,%r10d
+  0x000077b4581431da:   add    %r10,%rax
+  0x000077b4581431dd:   mov    $0x2c,%r10d
+  0x000077b4581431e3:   cmp    (%rcx,%r10,8),%rax
+  0x000077b4581431e7:   je     0x000077b458143226
+  0x000077b4581431e9:   add    $0x2,%r10
+  0x000077b4581431ed:   cmp    $0x30,%r10
+  0x000077b4581431f1:   jne    0x000077b4581431e3
+  0x000077b4581431f3:   mov    $0x2c,%r10d
+  0x000077b4581431f9:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000077b4581431fe:   je     0x000077b45814320c
+  0x000077b458143200:   add    $0x2,%r10
+  0x000077b458143204:   cmp    $0x30,%r10
+  0x000077b458143208:   jne    0x000077b4581431f9
+  0x000077b45814320a:   jmp    0x000077b45814321e
+  0x000077b45814320c:   push   %rbx
+  0x000077b45814320d:   mov    %rax,%rbx
+  0x000077b458143210:   xor    %rax,%rax
+  0x000077b458143213:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000077b458143218:   mov    %rbx,%rax
+  0x000077b45814321b:   pop    %rbx
+  0x000077b45814321c:   jmp    0x000077b4581431dd
+  0x000077b45814321e:   mov    $0x2b,%r10d
+  0x000077b458143224:   jmp    0x000077b45814322a
+  0x000077b458143226:   add    $0x1,%r10
+  0x000077b45814322a:   addq   $0x1,(%rcx,%r10,8)
+  0x000077b45814322f:   mov    0x1c(%rsi),%eax
+  0x000077b458143232:   shl    $0x3,%rax                    ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getDeclaringClass@1 (line 206)
+                                                            ; - java.lang.reflect.Method::equals@13 (line 347)
+  0x000077b458143236:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x000077b458143646
+                                                            ;*invokevirtual getDeclaringClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@17 (line 347)
+  0x000077b458143239:   mov    %rdx,%rcx
+  0x000077b45814323c:   movabs $0x77b4146cf748,%rdi         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b458143246:   mov    0x8(%rcx),%ecx
+  0x000077b458143249:   mov    $0x46000000,%r10d
+  0x000077b45814324f:   add    %r10,%rcx
+  0x000077b458143252:   mov    $0x32,%r10d
+  0x000077b458143258:   cmp    (%rdi,%r10,8),%rcx
+  0x000077b45814325c:   je     0x000077b458143295
+  0x000077b45814325e:   add    $0x2,%r10
+  0x000077b458143262:   cmp    $0x36,%r10
+  0x000077b458143266:   jne    0x000077b458143258
+  0x000077b458143268:   mov    $0x32,%r10d
+  0x000077b45814326e:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b458143273:   je     0x000077b458143281
+  0x000077b458143275:   add    $0x2,%r10
+  0x000077b458143279:   cmp    $0x36,%r10
+  0x000077b45814327d:   jne    0x000077b45814326e
+  0x000077b45814327f:   jmp    0x000077b45814328d
+  0x000077b458143281:   push   %rax
+  0x000077b458143282:   xor    %rax,%rax
+  0x000077b458143285:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x000077b45814328a:   pop    %rax
+  0x000077b45814328b:   jmp    0x000077b458143252
+  0x000077b45814328d:   mov    $0x31,%r10d
+  0x000077b458143293:   jmp    0x000077b458143299
+  0x000077b458143295:   add    $0x1,%r10
+  0x000077b458143299:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b45814329e:   mov    0x1c(%rdx),%ecx
+  0x000077b4581432a1:   shl    $0x3,%rcx                    ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getDeclaringClass@1 (line 206)
+                                                            ; - java.lang.reflect.Method::equals@17 (line 347)
+  0x000077b4581432a5:   cmp    %rcx,%rax
+  0x000077b4581432a8:   movabs $0x77b4146cf748,%rax         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581432b2:   mov    $0x1b8,%ecx
+  0x000077b4581432b7:   jne    0x000077b4581432be
+  0x000077b4581432b9:   mov    $0x1c8,%ecx
+  0x000077b4581432be:   mov    (%rax,%rcx,1),%rdi
+  0x000077b4581432c2:   lea    0x1(%rdi),%rdi
+  0x000077b4581432c6:   mov    %rdi,(%rax,%rcx,1)
+  0x000077b4581432ca:   jne    0x000077b458143607           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@20 (line 347)
+  0x000077b4581432d0:   mov    %rsi,%rax
+  0x000077b4581432d3:   movabs $0x77b4146cf748,%rcx         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581432dd:   mov    0x8(%rax),%eax
+  0x000077b4581432e0:   mov    $0x46000000,%r10d
+  0x000077b4581432e6:   add    %r10,%rax
+  0x000077b4581432e9:   mov    $0x3c,%r10d
+  0x000077b4581432ef:   cmp    (%rcx,%r10,8),%rax
+  0x000077b4581432f3:   je     0x000077b458143332
+  0x000077b4581432f5:   add    $0x2,%r10
+  0x000077b4581432f9:   cmp    $0x40,%r10
+  0x000077b4581432fd:   jne    0x000077b4581432ef
+  0x000077b4581432ff:   mov    $0x3c,%r10d
+  0x000077b458143305:   cmpq   $0x0,(%rcx,%r10,8)
+  0x000077b45814330a:   je     0x000077b458143318
+  0x000077b45814330c:   add    $0x2,%r10
+  0x000077b458143310:   cmp    $0x40,%r10
+  0x000077b458143314:   jne    0x000077b458143305
+  0x000077b458143316:   jmp    0x000077b45814332a
+  0x000077b458143318:   push   %rbx
+  0x000077b458143319:   mov    %rax,%rbx
+  0x000077b45814331c:   xor    %rax,%rax
+  0x000077b45814331f:   cmpxchg %rbx,(%rcx,%r10,8)
+  0x000077b458143324:   mov    %rbx,%rax
+  0x000077b458143327:   pop    %rbx
+  0x000077b458143328:   jmp    0x000077b4581432e9
+  0x000077b45814332a:   mov    $0x3b,%r10d
+  0x000077b458143330:   jmp    0x000077b458143336
+  0x000077b458143332:   add    $0x1,%r10
+  0x000077b458143336:   addq   $0x1,(%rcx,%r10,8)
+  0x000077b45814333b:   mov    0x20(%rsi),%eax
+  0x000077b45814333e:   shl    $0x3,%rax                    ;*getfield name {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getName@1 (line 215)
+                                                            ; - java.lang.reflect.Method::equals@24 (line 348)
+  0x000077b458143342:   mov    %rdx,%rcx
+  0x000077b458143345:   movabs $0x77b4146cf748,%rdi         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45814334f:   mov    0x8(%rcx),%ecx
+  0x000077b458143352:   mov    $0x46000000,%r10d
+  0x000077b458143358:   add    %r10,%rcx
+  0x000077b45814335b:   mov    $0x42,%r10d
+  0x000077b458143361:   cmp    (%rdi,%r10,8),%rcx
+  0x000077b458143365:   je     0x000077b45814339e
+  0x000077b458143367:   add    $0x2,%r10
+  0x000077b45814336b:   cmp    $0x46,%r10
+  0x000077b45814336f:   jne    0x000077b458143361
+  0x000077b458143371:   mov    $0x42,%r10d
+  0x000077b458143377:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b45814337c:   je     0x000077b45814338a
+  0x000077b45814337e:   add    $0x2,%r10
+  0x000077b458143382:   cmp    $0x46,%r10
+  0x000077b458143386:   jne    0x000077b458143377
+  0x000077b458143388:   jmp    0x000077b458143396
+  0x000077b45814338a:   push   %rax
+  0x000077b45814338b:   xor    %rax,%rax
+  0x000077b45814338e:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x000077b458143393:   pop    %rax
+  0x000077b458143394:   jmp    0x000077b45814335b
+  0x000077b458143396:   mov    $0x41,%r10d
+  0x000077b45814339c:   jmp    0x000077b4581433a2
+  0x000077b45814339e:   add    $0x1,%r10
+  0x000077b4581433a2:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b4581433a7:   mov    0x20(%rdx),%ecx
+  0x000077b4581433aa:   shl    $0x3,%rcx                    ;*getfield name {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getName@1 (line 215)
+                                                            ; - java.lang.reflect.Method::equals@28 (line 348)
+  0x000077b4581433ae:   cmp    %rcx,%rax
+  0x000077b4581433b1:   movabs $0x77b4146cf748,%rax         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581433bb:   mov    $0x238,%ecx
+  0x000077b4581433c0:   jne    0x000077b4581433c7
+  0x000077b4581433c2:   mov    $0x248,%ecx
+  0x000077b4581433c7:   mov    (%rax,%rcx,1),%rdi
+  0x000077b4581433cb:   lea    0x1(%rdi),%rdi
+  0x000077b4581433cf:   mov    %rdi,(%rax,%rcx,1)
+  0x000077b4581433d3:   jne    0x000077b458143607           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@31 (line 348)
+  0x000077b4581433d9:   mov    0x24(%rsi),%eax
+  0x000077b4581433dc:   shl    $0x3,%rax                    ;*getfield returnType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@35 (line 349)
+  0x000077b4581433e0:   mov    %rdx,%rcx
+  0x000077b4581433e3:   movabs $0x77b4146cf748,%rdi         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b4581433ed:   mov    0x8(%rcx),%ecx
+  0x000077b4581433f0:   mov    $0x46000000,%r10d
+  0x000077b4581433f6:   add    %r10,%rcx
+  0x000077b4581433f9:   mov    $0x4c,%r10d
+  0x000077b4581433ff:   cmp    (%rdi,%r10,8),%rcx
+  0x000077b458143403:   je     0x000077b45814343c
+  0x000077b458143405:   add    $0x2,%r10
+  0x000077b458143409:   cmp    $0x50,%r10
+  0x000077b45814340d:   jne    0x000077b4581433ff
+  0x000077b45814340f:   mov    $0x4c,%r10d
+  0x000077b458143415:   cmpq   $0x0,(%rdi,%r10,8)
+  0x000077b45814341a:   je     0x000077b458143428
+  0x000077b45814341c:   add    $0x2,%r10
+  0x000077b458143420:   cmp    $0x50,%r10
+  0x000077b458143424:   jne    0x000077b458143415
+  0x000077b458143426:   jmp    0x000077b458143434
+  0x000077b458143428:   push   %rax
+  0x000077b458143429:   xor    %rax,%rax
+  0x000077b45814342c:   cmpxchg %rcx,(%rdi,%r10,8)
+  0x000077b458143431:   pop    %rax
+  0x000077b458143432:   jmp    0x000077b4581433f9
+  0x000077b458143434:   mov    $0x4b,%r10d
+  0x000077b45814343a:   jmp    0x000077b458143440
+  0x000077b45814343c:   add    $0x1,%r10
+  0x000077b458143440:   addq   $0x1,(%rdi,%r10,8)
+  0x000077b458143445:   mov    0x24(%rdx),%ecx
+  0x000077b458143448:   shl    $0x3,%rcx                    ;*getfield returnType {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::getReturnType@1 (line 249)
+                                                            ; - java.lang.reflect.Method::equals@39 (line 349)
+  0x000077b45814344c:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x000077b45814364b
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+  0x000077b45814344f:   mov    %rax,%rdi
+  0x000077b458143452:   movabs $0x77b4146cf748,%rbx         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b45814345c:   mov    0x8(%rdi),%edi
+  0x000077b45814345f:   mov    $0x46000000,%r10d
+  0x000077b458143465:   add    %r10,%rdi
+  0x000077b458143468:   mov    $0x52,%r10d
+  0x000077b45814346e:   cmp    (%rbx,%r10,8),%rdi
+  0x000077b458143472:   je     0x000077b4581434ab
+  0x000077b458143474:   add    $0x2,%r10
+  0x000077b458143478:   cmp    $0x56,%r10
+  0x000077b45814347c:   jne    0x000077b45814346e
+  0x000077b45814347e:   mov    $0x52,%r10d
+  0x000077b458143484:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b458143489:   je     0x000077b458143497
+  0x000077b45814348b:   add    $0x2,%r10
+  0x000077b45814348f:   cmp    $0x56,%r10
+  0x000077b458143493:   jne    0x000077b458143484
+  0x000077b458143495:   jmp    0x000077b4581434a3
+  0x000077b458143497:   push   %rax
+  0x000077b458143498:   xor    %rax,%rax
+  0x000077b45814349b:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x000077b4581434a0:   pop    %rax
+  0x000077b4581434a1:   jmp    0x000077b458143468
+  0x000077b4581434a3:   mov    $0x51,%r10d
+  0x000077b4581434a9:   jmp    0x000077b4581434af
+  0x000077b4581434ab:   add    $0x1,%r10
+  0x000077b4581434af:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4581434b4:   movabs $0x77b4141e28d8,%rdi         ;   {metadata(method data for {method} {0x0000000046174bd8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4581434be:   mov    0x90(%rdi),%ebx
+  0x000077b4581434c4:   add    $0x2,%ebx
+  0x000077b4581434c7:   mov    %ebx,0x90(%rdi)
+  0x000077b4581434cd:   and    $0x1ffffe,%ebx
+  0x000077b4581434d3:   test   %ebx,%ebx
+  0x000077b4581434d5:   je     0x000077b458143650
+  0x000077b4581434db:   cmp    %rcx,%rax
+  0x000077b4581434de:   movabs $0x77b4141e28d8,%rax         ;   {metadata(method data for {method} {0x0000000046174bd8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b4581434e8:   mov    $0xd8,%ecx
+  0x000077b4581434ed:   jne    0x000077b4581434f4
+  0x000077b4581434ef:   mov    $0xe8,%ecx
+  0x000077b4581434f4:   mov    (%rax,%rcx,1),%rdi
+  0x000077b4581434f8:   lea    0x1(%rdi),%rdi
+  0x000077b4581434fc:   mov    %rdi,(%rax,%rcx,1)
+  0x000077b458143500:   jne    0x000077b458143520           ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Object::equals@2 (line 172)
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+  0x000077b458143506:   movabs $0x77b4141e28d8,%rax         ;   {metadata(method data for {method} {0x0000000046174bd8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b458143510:   incl   0xf8(%rax)
+  0x000077b458143516:   mov    $0x1,%eax
+  0x000077b45814351b:   jmp    0x000077b458143525           ;*goto {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Object::equals@6 (line 172)
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+  0x000077b458143520:   mov    $0x0,%eax                    ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.Object::equals@10 (line 172)
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+  0x000077b458143525:   and    $0x1,%eax
+  0x000077b458143528:   test   %eax,%eax
+  0x000077b45814352a:   movabs $0x77b4146cf748,%rax         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b458143534:   mov    $0x2b8,%ecx
+  0x000077b458143539:   jne    0x000077b458143540
+  0x000077b45814353b:   mov    $0x2c8,%ecx
+  0x000077b458143540:   mov    (%rax,%rcx,1),%rdi
+  0x000077b458143544:   lea    0x1(%rdi),%rdi
+  0x000077b458143548:   mov    %rdi,(%rax,%rcx,1)
+  0x000077b45814354c:   jne    0x000077b458143567           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@45 (line 349)
+  0x000077b458143552:   mov    $0x0,%eax
+  0x000077b458143557:   add    $0x40,%rsp
+  0x000077b45814355b:   pop    %rbp
+  0x000077b45814355c:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458143560:   ja     0x000077b458143671
+  0x000077b458143566:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@49 (line 350)
+  0x000077b458143567:   mov    0x28(%rsi),%ecx
+  0x000077b45814356a:   shl    $0x3,%rcx                    ;*getfield parameterTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@52 (line 351)
+  0x000077b45814356e:   mov    0x28(%rdx),%edi
+  0x000077b458143571:   shl    $0x3,%rdi                    ;*getfield parameterTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@56 (line 351)
+  0x000077b458143575:   mov    %rsi,%rdx
+  0x000077b458143578:   movabs $0x77b4146cf748,%rbx         ;   {metadata(method data for {method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b458143582:   mov    0x8(%rdx),%edx
+  0x000077b458143585:   mov    $0x46000000,%r10d
+  0x000077b45814358b:   add    %r10,%rdx
+  0x000077b45814358e:   mov    $0x5c,%r10d
+  0x000077b458143594:   cmp    (%rbx,%r10,8),%rdx
+  0x000077b458143598:   je     0x000077b4581435d1
+  0x000077b45814359a:   add    $0x2,%r10
+  0x000077b45814359e:   cmp    $0x60,%r10
+  0x000077b4581435a2:   jne    0x000077b458143594
+  0x000077b4581435a4:   mov    $0x5c,%r10d
+  0x000077b4581435aa:   cmpq   $0x0,(%rbx,%r10,8)
+  0x000077b4581435af:   je     0x000077b4581435bd
+  0x000077b4581435b1:   add    $0x2,%r10
+  0x000077b4581435b5:   cmp    $0x60,%r10
+  0x000077b4581435b9:   jne    0x000077b4581435aa
+  0x000077b4581435bb:   jmp    0x000077b4581435c9
+  0x000077b4581435bd:   push   %rax
+  0x000077b4581435be:   xor    %rax,%rax
+  0x000077b4581435c1:   cmpxchg %rdx,(%rbx,%r10,8)
+  0x000077b4581435c6:   pop    %rax
+  0x000077b4581435c7:   jmp    0x000077b45814358e
+  0x000077b4581435c9:   mov    $0x5b,%r10d
+  0x000077b4581435cf:   jmp    0x000077b4581435d5
+  0x000077b4581435d1:   add    $0x1,%r10
+  0x000077b4581435d5:   addq   $0x1,(%rbx,%r10,8)
+  0x000077b4581435da:   mov    %rcx,%rdx
+  0x000077b4581435dd:   mov    %rdi,%rcx                    ;*invokevirtual equalParamTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@59 (line 351)
+  0x000077b4581435e0:   nopl   0x0(%rax)
+  0x000077b4581435e7:   call   0x000077b45f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual equalParamTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@59 (line 351)
+                                                            ;   {optimized virtual_call}
+  0x000077b4581435ec:   nopl   0x6e4(%rax,%rax,1)           ;*invokevirtual equalParamTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@59 (line 351)
+                                                            ;   {post_call_nop}
+  0x000077b4581435f4:   and    $0x1,%eax
+  0x000077b4581435f7:   add    $0x40,%rsp
+  0x000077b4581435fb:   pop    %rbp
+  0x000077b4581435fc:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458143600:   ja     0x000077b458143687
+  0x000077b458143606:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@62 (line 351)
+  0x000077b458143607:   mov    $0x0,%eax
+  0x000077b45814360c:   add    $0x40,%rsp
+  0x000077b458143610:   pop    %rbp
+  0x000077b458143611:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b458143615:   ja     0x000077b45814369d
+  0x000077b45814361b:   ret    
+  0x000077b45814361c:   movabs $0x461adc68,%r10             ;   {metadata({method} {0x00000000461adc68} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/reflect/Method&apos;)}
+  0x000077b458143626:   mov    %r10,0x8(%rsp)
+  0x000077b45814362b:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458143633:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.reflect.Method::equals@-1 (line 346)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b458143638:   jmp    0x000077b458143062
+  0x000077b45814363d:   mov    %rdx,(%rsp)
+  0x000077b458143641:   call   0x000077b45f57f3e0           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@8 (line 346)
+                                                            ;   {runtime_call throw_class_cast_exception_blob (C1 runtime)}
+  0x000077b458143646:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop rax=Oop }
+                                                            ;*invokevirtual getDeclaringClass {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@17 (line 347)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b45814364b:   call   0x000077b45f57c660           ; ImmutableOopMap {rsi=Oop rdx=Oop rax=Oop rcx=Oop }
+                                                            ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x000077b458143650:   movabs $0x46174bd8,%r10             ;   {metadata({method} {0x0000000046174bd8} &apos;equals&apos; &apos;(Ljava/lang/Object;)Z&apos; in &apos;java/lang/Object&apos;)}
+  0x000077b45814365a:   mov    %r10,0x8(%rsp)
+  0x000077b45814365f:   movq   $0xffffffffffffffff,(%rsp)
+  0x000077b458143667:   call   0x000077b45f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop rax=Oop rcx=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.Object::equals@-1 (line 172)
+                                                            ; - java.lang.reflect.Method::equals@42 (line 349)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x000077b45814366c:   jmp    0x000077b4581434db
+  0x000077b458143671:   movabs $0x77b45814355c,%r10         ;   {internal_word}
+  0x000077b45814367b:   mov    %r10,0x510(%r15)
+  0x000077b458143682:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b458143687:   movabs $0x77b4581435fc,%r10         ;   {internal_word}
+  0x000077b458143691:   mov    %r10,0x510(%r15)
+  0x000077b458143698:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45814369d:   movabs $0x77b458143611,%r10         ;   {internal_word}
+  0x000077b4581436a7:   mov    %r10,0x510(%r15)
+  0x000077b4581436ae:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b4581436b3:   mov    0x5c0(%r15),%rax
+  0x000077b4581436ba:   movq   $0x0,0x5c0(%r15)
+  0x000077b4581436c5:   movq   $0x0,0x5c8(%r15)
+  0x000077b4581436d0:   add    $0x40,%rsp
+  0x000077b4581436d4:   pop    %rbp
+  0x000077b4581436d5:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b4581436da:   hlt    
+  0x000077b4581436db:   hlt    
+  0x000077b4581436dc:   hlt    
+  0x000077b4581436dd:   hlt    
+  0x000077b4581436de:   hlt    
+  0x000077b4581436df:   hlt    
+[Stub Code]
+  0x000077b4581436e0:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x000077b4581436e5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x000077b4581436ef:   jmp    0x000077b4581436ef           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x000077b4581436f4:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b4581436f9:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b458143703:   and    $0xfffffffffffffff0,%rsp
+  0x000077b458143707:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45814370c:   hlt    
+  0x000077b45814370d:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b458143712:   jmp    0x000077b45814370d
+  0x000077b458143714:   hlt    
+  0x000077b458143715:   hlt    
+  0x000077b458143716:   hlt    
+  0x000077b458143717:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

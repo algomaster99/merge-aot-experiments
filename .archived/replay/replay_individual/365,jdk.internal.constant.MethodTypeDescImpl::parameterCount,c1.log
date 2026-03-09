@@ -1,0 +1,96 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 373   24       3       jdk.internal.constant.MethodTypeDescImpl::parameterCount (6 bytes)
+ total in heap  [0x00007e9faffff008,0x00007e9faffff200] = 504
+ main code      [0x00007e9faffff100,0x00007e9faffff1e0] = 224
+ stub code      [0x00007e9faffff1e0,0x00007e9faffff200] = 32
+ mutable data [0x00007e9f54014d30,0x00007e9f54014d60] = 48
+ relocation     [0x00007e9f54014d30,0x00007e9f54014d58] = 40
+ metadata       [0x00007e9f54014d58,0x00007e9f54014d60] = 8
+ immutable data [0x00007e9f54014c70,0x00007e9f54014d24] = 180
+ dependencies   [0x00007e9f54014c70,0x00007e9f54014c78] = 8
+ nul chk table  [0x00007e9f54014c78,0x00007e9f54014c88] = 16
+ scopes pcs     [0x00007e9f54014c88,0x00007e9f54014cf8] = 112
+ scopes data    [0x00007e9f54014cf8,0x00007e9f54014d20] = 40
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007e9faffff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007e9faffff10b:   data16 data16 xchg %ax,%ax
+  0x00007e9faffff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000382b8c50} &apos;parameterCount&apos; &apos;()I&apos; in &apos;jdk/internal/constant/MethodTypeDescImpl&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x00007e9faffff112:   mov    0x8(%rsi),%r10d
+  0x00007e9faffff116:   cmp    0x8(%rax),%r10d
+  0x00007e9faffff11a:   jne    0x00007e9fb74ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007e9faffff120:   mov    %eax,-0x14000(%rsp)
+  0x00007e9faffff127:   push   %rbp
+  0x00007e9faffff128:   sub    $0x20,%rsp
+  0x00007e9faffff12c:   cmpl   $0x1,0x20(%r15)
+  0x00007e9faffff134:   je     0x00007e9faffff13b
+  0x00007e9faffff136:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007e9faffff13b:   movabs $0x7e9f600b7498,%rax         ;   {metadata(method data for {method} {0x00000000382b8c50} &apos;parameterCount&apos; &apos;()I&apos; in &apos;jdk/internal/constant/MethodTypeDescImpl&apos;)}
+  0x00007e9faffff145:   mov    0x90(%rax),%edi
+  0x00007e9faffff14b:   add    $0x2,%edi
+  0x00007e9faffff14e:   mov    %edi,0x90(%rax)
+  0x00007e9faffff154:   and    $0x7fe,%edi
+  0x00007e9faffff15a:   test   %edi,%edi
+  0x00007e9faffff15c:   je     0x00007e9faffff17c           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@0 (line 215)
+  0x00007e9faffff162:   mov    0x10(%rsi),%eax
+  0x00007e9faffff165:   shl    $0x3,%rax                    ;*getfield argTypes {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@1 (line 215)
+  0x00007e9faffff169:   mov    0xc(%rax),%eax               ; implicit exception: dispatches to 0x00007e9faffff19a
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@4 (line 215)
+  0x00007e9faffff16c:   add    $0x20,%rsp
+  0x00007e9faffff170:   pop    %rbp
+  0x00007e9faffff171:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e9faffff175:   ja     0x00007e9faffff19f
+  0x00007e9faffff17b:   ret    
+  0x00007e9faffff17c:   movabs $0x382b8c50,%r10             ;   {metadata({method} {0x00000000382b8c50} &apos;parameterCount&apos; &apos;()I&apos; in &apos;jdk/internal/constant/MethodTypeDescImpl&apos;)}
+  0x00007e9faffff186:   mov    %r10,0x8(%rsp)
+  0x00007e9faffff18b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e9faffff193:   call   0x00007e9fb7581860           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@-1 (line 215)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e9faffff198:   jmp    0x00007e9faffff162
+  0x00007e9faffff19a:   call   0x00007e9fb757b8e0           ; ImmutableOopMap {}
+                                                            ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.constant.MethodTypeDescImpl::parameterCount@4 (line 215)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e9faffff19f:   movabs $0x7e9faffff171,%r10         ;   {internal_word}
+  0x00007e9faffff1a9:   mov    %r10,0x510(%r15)
+  0x00007e9faffff1b0:   jmp    0x00007e9fb74afb60           ;   {runtime_call SafepointBlob}
+  0x00007e9faffff1b5:   mov    0x5c0(%r15),%rax
+  0x00007e9faffff1bc:   movq   $0x0,0x5c0(%r15)
+  0x00007e9faffff1c7:   movq   $0x0,0x5c8(%r15)
+  0x00007e9faffff1d2:   add    $0x20,%rsp
+  0x00007e9faffff1d6:   pop    %rbp
+  0x00007e9faffff1d7:   jmp    0x00007e9fb757a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007e9faffff1dc:   hlt    
+  0x00007e9faffff1dd:   hlt    
+  0x00007e9faffff1de:   hlt    
+  0x00007e9faffff1df:   hlt    
+[Exception Handler]
+  0x00007e9faffff1e0:   call   0x00007e9fb757db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007e9faffff1e5:   movabs $0x7e9fce33aec4,%rdi         ;   {external_word}
+  0x00007e9faffff1ef:   and    $0xfffffffffffffff0,%rsp
+  0x00007e9faffff1f3:   call   0x00007e9fcdd91cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007e9faffff1f8:   hlt    
+  0x00007e9faffff1f9:   call   0x00007e9fb74afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007e9faffff1fe:   jmp    0x00007e9faffff1f9
+--------------------------------------------------------------------------------
+[/Disassembly]

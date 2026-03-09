@@ -1,0 +1,647 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 352   24       3       java.util.BitSet::set (58 bytes)
+ total in heap  [0x00007e0a07fff008,0x00007e0a07fffa80] = 2680
+ main code      [0x00007e0a07fff100,0x00007e0a07fff9e8] = 2280
+ stub code      [0x00007e0a07fff9e8,0x00007e0a07fffa78] = 144
+ oops           [0x00007e0a07fffa78,0x00007e0a07fffa80] = 8
+ mutable data [0x00007e09a80159e0,0x00007e09a8015b28] = 328
+ relocation     [0x00007e09a80159e0,0x00007e09a8015ad8] = 248
+ metadata       [0x00007e09a8015ad8,0x00007e09a8015b28] = 80
+ immutable data [0x00007e09a8015450,0x00007e09a80159d4] = 1412
+ dependencies   [0x00007e09a8015450,0x00007e09a8015468] = 24
+ nul chk table  [0x00007e09a8015468,0x00007e09a8015480] = 24
+ scopes pcs     [0x00007e09a8015480,0x00007e09a80157d0] = 848
+ scopes data    [0x00007e09a80157d0,0x00007e09a80159d0] = 512
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x00007e0a07fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x00007e0a07fff10b:   data16 data16 xchg %ax,%ax
+  0x00007e0a07fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;
+  # this:     rsi:rsi   = &apos;java/util/BitSet&apos;
+  # parm0:    rdx       = int
+  #           [sp+0xd0]  (sp of caller)
+  0x00007e0a07fff112:   mov    0x8(%rsi),%r10d
+  0x00007e0a07fff116:   cmp    0x8(%rax),%r10d
+  0x00007e0a07fff11a:   jne    0x00007e0a0f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x00007e0a07fff120:   mov    %eax,-0x14000(%rsp)
+  0x00007e0a07fff127:   push   %rbp
+  0x00007e0a07fff128:   sub    $0xc0,%rsp
+  0x00007e0a07fff12f:   nop
+  0x00007e0a07fff130:   cmpl   $0x1,0x20(%r15)
+  0x00007e0a07fff138:   je     0x00007e0a07fff13f
+  0x00007e0a07fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x00007e0a07fff13f:   movabs $0x7e09c00b9490,%rdi         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff149:   mov    0x90(%rdi),%eax
+  0x00007e0a07fff14f:   add    $0x2,%eax
+  0x00007e0a07fff152:   mov    %eax,0x90(%rdi)
+  0x00007e0a07fff158:   and    $0x7fe,%eax
+  0x00007e0a07fff15d:   test   %eax,%eax
+  0x00007e0a07fff15f:   je     0x00007e0a07fff829           ;*iload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@0 (line 448)
+  0x00007e0a07fff165:   test   %edx,%edx
+  0x00007e0a07fff167:   movabs $0x7e09c00b9490,%rdi         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff171:   mov    $0xd8,%eax
+  0x00007e0a07fff176:   jge    0x00007e0a07fff17d
+  0x00007e0a07fff178:   mov    $0xe8,%eax
+  0x00007e0a07fff17d:   mov    (%rdi,%rax,1),%rcx
+  0x00007e0a07fff181:   lea    0x1(%rcx),%rcx
+  0x00007e0a07fff185:   mov    %rcx,(%rdi,%rax,1)
+  0x00007e0a07fff189:   mov    %edx,0x90(%rsp)
+  0x00007e0a07fff190:   jge    0x00007e0a07fff5d6           ;*ifge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@1 (line 448)
+  0x00007e0a07fff196:   xchg   %ax,%ax
+  0x00007e0a07fff198:   jmp    0x00007e0a07fff859           ;   {other}
+  0x00007e0a07fff19d:   add    %al,(%rax)
+  0x00007e0a07fff19f:   add    %al,(%rax)
+  0x00007e0a07fff1a1:   add    %cl,-0x75(%rcx)
+  0x00007e0a07fff1a4:   xchg   %esi,0x48000001(%rax)
+  0x00007e0a07fff1aa:   lea    0x28(%rax),%edi
+  0x00007e0a07fff1ad:   cmp    0x1c0(%r15),%rdi
+  0x00007e0a07fff1b4:   ja     0x00007e0a07fff863
+  0x00007e0a07fff1ba:   mov    %rdi,0x1b0(%r15)
+  0x00007e0a07fff1c1:   movq   $0x1,(%rax)
+  0x00007e0a07fff1c8:   mov    %rdx,%rcx
+  0x00007e0a07fff1cb:   mov    $0x92000000,%r10d
+  0x00007e0a07fff1d1:   sub    %r10,%rcx
+  0x00007e0a07fff1d4:   mov    %ecx,0x8(%rax)
+  0x00007e0a07fff1d7:   xor    %rcx,%rcx
+  0x00007e0a07fff1da:   mov    %ecx,0xc(%rax)
+  0x00007e0a07fff1dd:   xor    %rcx,%rcx
+  0x00007e0a07fff1e0:   mov    %rcx,0x10(%rax)
+  0x00007e0a07fff1e4:   mov    %rcx,0x18(%rax)
+  0x00007e0a07fff1e8:   mov    %rcx,0x20(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@4 (line 449)
+  0x00007e0a07fff1ec:   mov    %rax,0x98(%rsp)
+  0x00007e0a07fff1f4:   nopl   0x0(%rax)
+  0x00007e0a07fff1f8:   jmp    0x00007e0a07fff87f           ;   {other}
+  0x00007e0a07fff1fd:   add    %al,(%rax)
+  0x00007e0a07fff1ff:   add    %al,(%rax)
+  0x00007e0a07fff201:   add    %cl,-0x75(%rcx)
+  0x00007e0a07fff204:   xchg   %esi,0x48000001(%rax)
+  0x00007e0a07fff20a:   lea    0x18(%rax),%edi
+  0x00007e0a07fff20d:   cmp    0x1c0(%r15),%rdi
+  0x00007e0a07fff214:   ja     0x00007e0a07fff889
+  0x00007e0a07fff21a:   mov    %rdi,0x1b0(%r15)
+  0x00007e0a07fff221:   movq   $0x1,(%rax)
+  0x00007e0a07fff228:   mov    %rdx,%rcx
+  0x00007e0a07fff22b:   mov    $0x92000000,%r10d
+  0x00007e0a07fff231:   sub    %r10,%rcx
+  0x00007e0a07fff234:   mov    %ecx,0x8(%rax)
+  0x00007e0a07fff237:   xor    %rcx,%rcx
+  0x00007e0a07fff23a:   mov    %ecx,0xc(%rax)
+  0x00007e0a07fff23d:   xor    %rcx,%rcx
+  0x00007e0a07fff240:   mov    %rcx,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@8 (line 449)
+  0x00007e0a07fff244:   mov    %rax,%rdx
+  0x00007e0a07fff247:   movabs $0x7e09c00b9490,%rsi         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff251:   addq   $0x1,0xf8(%rsi)
+  0x00007e0a07fff259:   movabs $0x7e09c00b8380,%rdx         ;   {metadata(method data for {method} {0x00000000921ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff263:   mov    0x90(%rdx),%esi
+  0x00007e0a07fff269:   add    $0x2,%esi
+  0x00007e0a07fff26c:   mov    %esi,0x90(%rdx)
+  0x00007e0a07fff272:   and    $0x1ffffe,%esi
+  0x00007e0a07fff278:   test   %esi,%esi
+  0x00007e0a07fff27a:   je     0x00007e0a07fff896
+  0x00007e0a07fff280:   mov    %rax,%rdx
+  0x00007e0a07fff283:   movabs $0x7e09c00b8380,%rsi         ;   {metadata(method data for {method} {0x00000000921ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff28d:   addq   $0x1,0xd8(%rsi)
+  0x00007e0a07fff295:   mov    $0x10,%edx
+  0x00007e0a07fff29a:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+                                                            ; - java.util.BitSet::set@12 (line 449)
+  0x00007e0a07fff29d:   mov    %rax,0x88(%rsp)
+  0x00007e0a07fff2a5:   xchg   %ax,%ax
+  0x00007e0a07fff2a7:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+                                                            ; - java.util.BitSet::set@12 (line 449)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff2ac:   nopl   0x2a4(%rax,%rax,1)           ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@3 (line 106)
+                                                            ; - java.util.BitSet::set@12 (line 449)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff2b4:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff2bc:   movabs $0x7e09c00b9490,%rdx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff2c6:   mov    0x8(%rax),%eax
+  0x00007e0a07fff2c9:   mov    $0x92000000,%r10d
+  0x00007e0a07fff2cf:   add    %r10,%rax
+  0x00007e0a07fff2d2:   mov    $0x22,%r10d
+  0x00007e0a07fff2d8:   cmp    (%rdx,%r10,8),%rax
+  0x00007e0a07fff2dc:   je     0x00007e0a07fff31b
+  0x00007e0a07fff2de:   add    $0x2,%r10
+  0x00007e0a07fff2e2:   cmp    $0x26,%r10
+  0x00007e0a07fff2e6:   jne    0x00007e0a07fff2d8
+  0x00007e0a07fff2e8:   mov    $0x22,%r10d
+  0x00007e0a07fff2ee:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007e0a07fff2f3:   je     0x00007e0a07fff301
+  0x00007e0a07fff2f5:   add    $0x2,%r10
+  0x00007e0a07fff2f9:   cmp    $0x26,%r10
+  0x00007e0a07fff2fd:   jne    0x00007e0a07fff2ee
+  0x00007e0a07fff2ff:   jmp    0x00007e0a07fff313
+  0x00007e0a07fff301:   push   %rbx
+  0x00007e0a07fff302:   mov    %rax,%rbx
+  0x00007e0a07fff305:   xor    %rax,%rax
+  0x00007e0a07fff308:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x00007e0a07fff30d:   mov    %rbx,%rax
+  0x00007e0a07fff310:   pop    %rbx
+  0x00007e0a07fff311:   jmp    0x00007e0a07fff2d2
+  0x00007e0a07fff313:   mov    $0x21,%r10d
+  0x00007e0a07fff319:   jmp    0x00007e0a07fff31f
+  0x00007e0a07fff31b:   add    $0x1,%r10
+  0x00007e0a07fff31f:   addq   $0x1,(%rdx,%r10,8)
+  0x00007e0a07fff324:   movabs $0x7e09c00b8600,%rdx         ;   {metadata(method data for {method} {0x00000000921bab10} &apos;append&apos; &apos;(Ljava/lang/String;)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff32e:   mov    0x90(%rdx),%esi
+  0x00007e0a07fff334:   add    $0x2,%esi
+  0x00007e0a07fff337:   mov    %esi,0x90(%rdx)
+  0x00007e0a07fff33d:   and    $0x1ffffe,%esi
+  0x00007e0a07fff343:   test   %esi,%esi
+  0x00007e0a07fff345:   je     0x00007e0a07fff8b7
+  0x00007e0a07fff34b:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff353:   movabs $0x7e09c00b8600,%rdx         ;   {metadata(method data for {method} {0x00000000921bab10} &apos;append&apos; &apos;(Ljava/lang/String;)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff35d:   addq   $0x1,0xd8(%rdx)
+  0x00007e0a07fff365:   movabs $0x7ff858288,%rdx            ;   {oop(&quot;bitIndex &lt; 0: &quot;{0x00000007ff858288})}
+  0x00007e0a07fff36f:   mov    0x88(%rsp),%rsi              ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 179)
+                                                            ; - java.util.BitSet::set@17 (line 449)
+  0x00007e0a07fff377:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 179)
+                                                            ; - java.util.BitSet::set@17 (line 449)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff37c:   nopl   0x1000374(%rax,%rax,1)       ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 179)
+                                                            ; - java.util.BitSet::set@17 (line 449)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff384:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff38c:   movabs $0x7e09c00b9490,%rdx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff396:   mov    0x8(%rax),%eax
+  0x00007e0a07fff399:   mov    $0x92000000,%r10d
+  0x00007e0a07fff39f:   add    %r10,%rax
+  0x00007e0a07fff3a2:   mov    $0x28,%r10d
+  0x00007e0a07fff3a8:   cmp    (%rdx,%r10,8),%rax
+  0x00007e0a07fff3ac:   je     0x00007e0a07fff3eb
+  0x00007e0a07fff3ae:   add    $0x2,%r10
+  0x00007e0a07fff3b2:   cmp    $0x2c,%r10
+  0x00007e0a07fff3b6:   jne    0x00007e0a07fff3a8
+  0x00007e0a07fff3b8:   mov    $0x28,%r10d
+  0x00007e0a07fff3be:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007e0a07fff3c3:   je     0x00007e0a07fff3d1
+  0x00007e0a07fff3c5:   add    $0x2,%r10
+  0x00007e0a07fff3c9:   cmp    $0x2c,%r10
+  0x00007e0a07fff3cd:   jne    0x00007e0a07fff3be
+  0x00007e0a07fff3cf:   jmp    0x00007e0a07fff3e3
+  0x00007e0a07fff3d1:   push   %rbx
+  0x00007e0a07fff3d2:   mov    %rax,%rbx
+  0x00007e0a07fff3d5:   xor    %rax,%rax
+  0x00007e0a07fff3d8:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x00007e0a07fff3dd:   mov    %rbx,%rax
+  0x00007e0a07fff3e0:   pop    %rbx
+  0x00007e0a07fff3e1:   jmp    0x00007e0a07fff3a2
+  0x00007e0a07fff3e3:   mov    $0x27,%r10d
+  0x00007e0a07fff3e9:   jmp    0x00007e0a07fff3ef
+  0x00007e0a07fff3eb:   add    $0x1,%r10
+  0x00007e0a07fff3ef:   addq   $0x1,(%rdx,%r10,8)
+  0x00007e0a07fff3f4:   movabs $0x7e09c00b8958,%rdx         ;   {metadata(method data for {method} {0x00000000921bad78} &apos;append&apos; &apos;(I)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff3fe:   mov    0x90(%rdx),%esi
+  0x00007e0a07fff404:   add    $0x2,%esi
+  0x00007e0a07fff407:   mov    %esi,0x90(%rdx)
+  0x00007e0a07fff40d:   and    $0x1ffffe,%esi
+  0x00007e0a07fff413:   test   %esi,%esi
+  0x00007e0a07fff415:   je     0x00007e0a07fff8d8
+  0x00007e0a07fff41b:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff423:   movabs $0x7e09c00b8958,%rdx         ;   {metadata(method data for {method} {0x00000000921bad78} &apos;append&apos; &apos;(I)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff42d:   addq   $0x1,0xd8(%rdx)
+  0x00007e0a07fff435:   mov    0x90(%rsp),%edx
+  0x00007e0a07fff43c:   mov    0x88(%rsp),%rsi              ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 253)
+                                                            ; - java.util.BitSet::set@21 (line 449)
+  0x00007e0a07fff444:   data16 xchg %ax,%ax
+  0x00007e0a07fff447:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 253)
+                                                            ; - java.util.BitSet::set@21 (line 449)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff44c:   nopl   0x2000444(%rax,%rax,1)       ;*invokespecial append {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::append@2 (line 253)
+                                                            ; - java.util.BitSet::set@21 (line 449)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff454:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff45c:   movabs $0x7e09c00b9490,%rdx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff466:   mov    0x8(%rax),%eax
+  0x00007e0a07fff469:   mov    $0x92000000,%r10d
+  0x00007e0a07fff46f:   add    %r10,%rax
+  0x00007e0a07fff472:   mov    $0x2e,%r10d
+  0x00007e0a07fff478:   cmp    (%rdx,%r10,8),%rax
+  0x00007e0a07fff47c:   je     0x00007e0a07fff4bb
+  0x00007e0a07fff47e:   add    $0x2,%r10
+  0x00007e0a07fff482:   cmp    $0x32,%r10
+  0x00007e0a07fff486:   jne    0x00007e0a07fff478
+  0x00007e0a07fff488:   mov    $0x2e,%r10d
+  0x00007e0a07fff48e:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007e0a07fff493:   je     0x00007e0a07fff4a1
+  0x00007e0a07fff495:   add    $0x2,%r10
+  0x00007e0a07fff499:   cmp    $0x32,%r10
+  0x00007e0a07fff49d:   jne    0x00007e0a07fff48e
+  0x00007e0a07fff49f:   jmp    0x00007e0a07fff4b3
+  0x00007e0a07fff4a1:   push   %rbx
+  0x00007e0a07fff4a2:   mov    %rax,%rbx
+  0x00007e0a07fff4a5:   xor    %rax,%rax
+  0x00007e0a07fff4a8:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x00007e0a07fff4ad:   mov    %rbx,%rax
+  0x00007e0a07fff4b0:   pop    %rbx
+  0x00007e0a07fff4b1:   jmp    0x00007e0a07fff472
+  0x00007e0a07fff4b3:   mov    $0x2d,%r10d
+  0x00007e0a07fff4b9:   jmp    0x00007e0a07fff4bf
+  0x00007e0a07fff4bb:   add    $0x1,%r10
+  0x00007e0a07fff4bf:   addq   $0x1,(%rdx,%r10,8)
+  0x00007e0a07fff4c4:   movabs $0x7e09c00b8c18,%rdx         ;   {metadata(method data for {method} {0x00000000921b93a0} &apos;toString&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff4ce:   mov    0x90(%rdx),%esi
+  0x00007e0a07fff4d4:   add    $0x2,%esi
+  0x00007e0a07fff4d7:   mov    %esi,0x90(%rdx)
+  0x00007e0a07fff4dd:   and    $0x1ffffe,%esi
+  0x00007e0a07fff4e3:   test   %esi,%esi
+  0x00007e0a07fff4e5:   je     0x00007e0a07fff8f9
+  0x00007e0a07fff4eb:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff4f3:   movabs $0x7e09c00b8c18,%rdx         ;   {metadata(method data for {method} {0x00000000921b93a0} &apos;toString&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff4fd:   mov    0x8(%rax),%eax
+  0x00007e0a07fff500:   mov    $0x92000000,%r10d
+  0x00007e0a07fff506:   add    %r10,%rax
+  0x00007e0a07fff509:   mov    $0x1c,%r10d
+  0x00007e0a07fff50f:   cmp    (%rdx,%r10,8),%rax
+  0x00007e0a07fff513:   je     0x00007e0a07fff552
+  0x00007e0a07fff515:   add    $0x2,%r10
+  0x00007e0a07fff519:   cmp    $0x20,%r10
+  0x00007e0a07fff51d:   jne    0x00007e0a07fff50f
+  0x00007e0a07fff51f:   mov    $0x1c,%r10d
+  0x00007e0a07fff525:   cmpq   $0x0,(%rdx,%r10,8)
+  0x00007e0a07fff52a:   je     0x00007e0a07fff538
+  0x00007e0a07fff52c:   add    $0x2,%r10
+  0x00007e0a07fff530:   cmp    $0x20,%r10
+  0x00007e0a07fff534:   jne    0x00007e0a07fff525
+  0x00007e0a07fff536:   jmp    0x00007e0a07fff54a
+  0x00007e0a07fff538:   push   %rbx
+  0x00007e0a07fff539:   mov    %rax,%rbx
+  0x00007e0a07fff53c:   xor    %rax,%rax
+  0x00007e0a07fff53f:   cmpxchg %rbx,(%rdx,%r10,8)
+  0x00007e0a07fff544:   mov    %rbx,%rax
+  0x00007e0a07fff547:   pop    %rbx
+  0x00007e0a07fff548:   jmp    0x00007e0a07fff509
+  0x00007e0a07fff54a:   mov    $0x1b,%r10d
+  0x00007e0a07fff550:   jmp    0x00007e0a07fff556
+  0x00007e0a07fff552:   add    $0x1,%r10
+  0x00007e0a07fff556:   addq   $0x1,(%rdx,%r10,8)
+  0x00007e0a07fff55b:   movabs $0x7e09c00b8d90,%rdx         ;   {metadata(method data for {method} {0x00000000921b94b8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff565:   mov    0x90(%rdx),%esi
+  0x00007e0a07fff56b:   add    $0x2,%esi
+  0x00007e0a07fff56e:   mov    %esi,0x90(%rdx)
+  0x00007e0a07fff574:   and    $0x1ffffe,%esi
+  0x00007e0a07fff57a:   test   %esi,%esi
+  0x00007e0a07fff57c:   je     0x00007e0a07fff91a
+  0x00007e0a07fff582:   mov    0x88(%rsp),%rax
+  0x00007e0a07fff58a:   movabs $0x7e09c00b8d90,%rdx         ;   {metadata(method data for {method} {0x00000000921b94b8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff594:   addq   $0x1,0xd8(%rdx)
+  0x00007e0a07fff59c:   mov    0x88(%rsp),%rbx
+  0x00007e0a07fff5a4:   mov    0xc(%rbx),%edx               ;*getfield count {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.AbstractStringBuilder::length@1 (line 199)
+                                                            ; - java.lang.StringBuilder::length@1 (line 91)
+                                                            ; - java.lang.StringBuilder::toString@1 (line 474)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+  0x00007e0a07fff5a7:   test   %edx,%edx
+  0x00007e0a07fff5a9:   movabs $0x7e09c00b8c18,%rdx         ;   {metadata(method data for {method} {0x00000000921b93a0} &apos;toString&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff5b3:   mov    $0x108,%esi
+  0x00007e0a07fff5b8:   jne    0x00007e0a07fff5bf
+  0x00007e0a07fff5ba:   mov    $0x118,%esi
+  0x00007e0a07fff5bf:   mov    (%rdx,%rsi,1),%rdi
+  0x00007e0a07fff5c3:   lea    0x1(%rdi),%rdi
+  0x00007e0a07fff5c7:   mov    %rdi,(%rdx,%rsi,1)
+  0x00007e0a07fff5cb:   jne    0x00007e0a07fff75e
+  0x00007e0a07fff5d1:   jmp    0x00007e0a07fff74f           ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@4 (line 474)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+  0x00007e0a07fff5d6:   movabs $0x7e09c00b9490,%rdx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff5e0:   addq   $0x1,0x1a8(%rdx)
+  0x00007e0a07fff5e8:   movabs $0x7e09c00b9118,%rdx         ;   {metadata(method data for {method} {0x0000000092303308} &apos;wordIndex&apos; &apos;(I)I&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff5f2:   mov    0x90(%rdx),%edi
+  0x00007e0a07fff5f8:   add    $0x2,%edi
+  0x00007e0a07fff5fb:   mov    %edi,0x90(%rdx)
+  0x00007e0a07fff601:   and    $0x1ffffe,%edi
+  0x00007e0a07fff607:   test   %edi,%edi
+  0x00007e0a07fff609:   je     0x00007e0a07fff93b
+  0x00007e0a07fff60f:   mov    0x90(%rsp),%edx
+  0x00007e0a07fff616:   sar    $0x6,%edx
+  0x00007e0a07fff619:   mov    %rsi,%rdi
+  0x00007e0a07fff61c:   movabs $0x7e09c00b9490,%rbx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff626:   addq   $0x1,0x1b8(%rbx)
+  0x00007e0a07fff62e:   movabs $0x7e09c00b96f0,%rdi         ;   {metadata(method data for {method} {0x0000000092303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff638:   mov    0x90(%rdi),%ebx
+  0x00007e0a07fff63e:   add    $0x2,%ebx
+  0x00007e0a07fff641:   mov    %ebx,0x90(%rdi)
+  0x00007e0a07fff647:   and    $0x1ffffe,%ebx
+  0x00007e0a07fff64d:   test   %ebx,%ebx
+  0x00007e0a07fff64f:   je     0x00007e0a07fff95c
+  0x00007e0a07fff655:   mov    %rdx,%rdi
+  0x00007e0a07fff658:   inc    %edi
+  0x00007e0a07fff65a:   mov    0xc(%rsi),%ebx               ;*getfield wordsInUse {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@5 (line 356)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+  0x00007e0a07fff65d:   cmp    %edi,%ebx
+  0x00007e0a07fff65f:   movabs $0x7e09c00b96f0,%rbx         ;   {metadata(method data for {method} {0x0000000092303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff669:   mov    $0xd8,%eax
+  0x00007e0a07fff66e:   jge    0x00007e0a07fff675
+  0x00007e0a07fff670:   mov    $0xe8,%eax
+  0x00007e0a07fff675:   mov    (%rbx,%rax,1),%rcx
+  0x00007e0a07fff679:   lea    0x1(%rcx),%rcx
+  0x00007e0a07fff67d:   mov    %rcx,(%rbx,%rax,1)
+  0x00007e0a07fff681:   mov    %edx,0xa8(%rsp)
+  0x00007e0a07fff688:   jge    0x00007e0a07fff6de           ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@9 (line 356)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+  0x00007e0a07fff68e:   mov    %rsi,%rbx
+  0x00007e0a07fff691:   movabs $0x7e09c00b96f0,%rax         ;   {metadata(method data for {method} {0x0000000092303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff69b:   addq   $0x1,0xf8(%rax)
+  0x00007e0a07fff6a3:   mov    %rdi,%rdx
+  0x00007e0a07fff6a6:   mov    %rsi,%rax
+  0x00007e0a07fff6a9:   mov    %rax,%rsi                    ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+  0x00007e0a07fff6ac:   mov    %edi,0x94(%rsp)
+  0x00007e0a07fff6b3:   mov    %rax,0xa0(%rsp)
+  0x00007e0a07fff6bb:   nopl   0x0(%rax)
+  0x00007e0a07fff6bf:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[160]=Oop }
+                                                            ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff6c4:   nopl   0x30006bc(%rax,%rax,1)       ;*invokevirtual ensureCapacity {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@14 (line 357)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff6cc:   mov    0xa0(%rsp),%rsi
+  0x00007e0a07fff6d4:   mov    0x94(%rsp),%edi
+  0x00007e0a07fff6db:   mov    %edi,0xc(%rsi)               ;*putfield wordsInUse {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::expandTo@19 (line 358)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+  0x00007e0a07fff6de:   mov    0xa8(%rsp),%edx
+  0x00007e0a07fff6e5:   mov    0x90(%rsp),%ecx
+  0x00007e0a07fff6ec:   mov    0x14(%rsi),%edi
+  0x00007e0a07fff6ef:   shl    $0x3,%rdi                    ;*getfield words {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@42 (line 454)
+  0x00007e0a07fff6f3:   cmp    0xc(%rdi),%edx               ; implicit exception: dispatches to 0x00007e0a07fff97d
+  0x00007e0a07fff6f6:   jae    0x00007e0a07fff987
+  0x00007e0a07fff6fc:   movslq %edx,%rbx
+  0x00007e0a07fff6ff:   mov    0x10(%rdi,%rbx,8),%rax       ;*laload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@47 (line 454)
+  0x00007e0a07fff704:   mov    $0x1,%ebx
+  0x00007e0a07fff709:   shl    %cl,%rbx
+  0x00007e0a07fff70c:   or     %rbx,%rax
+  0x00007e0a07fff70f:   movslq %edx,%rdx
+  0x00007e0a07fff712:   mov    %rax,0x10(%rdi,%rdx,8)       ;*lastore {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@52 (line 454)
+  0x00007e0a07fff717:   mov    %rsi,%rdi
+  0x00007e0a07fff71a:   movabs $0x7e09c00b9490,%rbx         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff724:   addq   $0x1,0x1e8(%rbx)
+  0x00007e0a07fff72c:   data16 xchg %ax,%ax
+  0x00007e0a07fff72f:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual checkInvariants {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@54 (line 456)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff734:   nopl   0x400072c(%rax,%rax,1)       ;*invokevirtual checkInvariants {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@54 (line 456)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff73c:   add    $0xc0,%rsp
+  0x00007e0a07fff743:   pop    %rbp
+  0x00007e0a07fff744:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x00007e0a07fff748:   ja     0x00007e0a07fff995
+  0x00007e0a07fff74e:   ret                                 ;*return {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@57 (line 457)
+  0x00007e0a07fff74f:   movabs $0x7ff8044c8,%rsi            ;   {oop(&quot;&quot;{0x00000007ff8044c8})}
+  0x00007e0a07fff759:   jmp    0x00007e0a07fff7ec           ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@27 (line 449)
+  0x00007e0a07fff75e:   movabs $0x92178db8,%rdx             ;   {metadata(&apos;java/lang/String&apos;)}
+  0x00007e0a07fff768:   mov    0x1b0(%r15),%rax
+  0x00007e0a07fff76f:   lea    0x18(%rax),%rdi
+  0x00007e0a07fff773:   cmp    0x1c0(%r15),%rdi
+  0x00007e0a07fff77a:   ja     0x00007e0a07fff9ab
+  0x00007e0a07fff780:   mov    %rdi,0x1b0(%r15)
+  0x00007e0a07fff787:   movq   $0x1,(%rax)
+  0x00007e0a07fff78e:   mov    %rdx,%rcx
+  0x00007e0a07fff791:   mov    $0x92000000,%r10d
+  0x00007e0a07fff797:   sub    %r10,%rcx
+  0x00007e0a07fff79a:   mov    %ecx,0x8(%rax)
+  0x00007e0a07fff79d:   xor    %rcx,%rcx
+  0x00007e0a07fff7a0:   mov    %ecx,0xc(%rax)
+  0x00007e0a07fff7a3:   xor    %rcx,%rcx
+  0x00007e0a07fff7a6:   mov    %rcx,0x10(%rax)              ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@10 (line 478)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+  0x00007e0a07fff7aa:   mov    %rax,%rdx
+  0x00007e0a07fff7ad:   movabs $0x7e09c00b8c18,%rcx         ;   {metadata(method data for {method} {0x00000000921b93a0} &apos;toString&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff7b7:   addq   $0x1,0x128(%rcx)
+  0x00007e0a07fff7bf:   mov    %rbx,%rdx
+  0x00007e0a07fff7c2:   movabs $0x0,%rcx                    ;   {oop(nullptr)}
+  0x00007e0a07fff7cc:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@16 (line 478)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+  0x00007e0a07fff7cf:   mov    %rax,0xb0(%rsp)
+  0x00007e0a07fff7d7:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[152]=Oop [176]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@16 (line 478)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff7dc:   nopl   0x50007d4(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@16 (line 478)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff7e4:   mov    0xb0(%rsp),%rsi
+  0x00007e0a07fff7ec:   mov    0x98(%rsp),%rax
+  0x00007e0a07fff7f4:   mov    %rax,%rdx
+  0x00007e0a07fff7f7:   movabs $0x7e09c00b9490,%rdi         ;   {metadata(method data for {method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff801:   addq   $0x1,0x198(%rdi)
+  0x00007e0a07fff809:   mov    %rsi,%rdx
+  0x00007e0a07fff80c:   mov    %rax,%rsi                    ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@27 (line 449)
+  0x00007e0a07fff80f:   call   0x00007e0a0f4ad9e0           ; ImmutableOopMap {[152]=Oop }
+                                                            ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@27 (line 449)
+                                                            ;   {optimized virtual_call}
+  0x00007e0a07fff814:   nopl   0x600080c(%rax,%rax,1)       ;*invokespecial &lt;init&gt; {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@27 (line 449)
+                                                            ;   {post_call_nop}
+  0x00007e0a07fff81c:   mov    0x98(%rsp),%rax
+  0x00007e0a07fff824:   jmp    0x00007e0a07fff9d5
+  0x00007e0a07fff829:   movabs $0x923027b0,%r10             ;   {metadata({method} {0x00000000923027b0} &apos;set&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff833:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff838:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff840:   call   0x00007e0a0f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.BitSet::set@-1 (line 448)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff845:   jmp    0x00007e0a07fff165
+  0x00007e0a07fff84a:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007e0a07fff854:   mov    $0xa050f00,%eax
+  0x00007e0a07fff859:   call   0x00007e0a0f5820e0           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.BitSet::set@4 (line 449)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007e0a07fff85e:   jmp    0x00007e0a07fff198
+  0x00007e0a07fff863:   mov    %rdx,%rdx
+  0x00007e0a07fff866:   call   0x00007e0a0f57d3e0           ; ImmutableOopMap {}
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@4 (line 449)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e0a07fff86b:   jmp    0x00007e0a07fff1ec
+  0x00007e0a07fff870:   movabs $0x0,%rdx                    ;   {metadata(nullptr)}
+  0x00007e0a07fff87a:   mov    $0xa050f00,%eax
+  0x00007e0a07fff87f:   call   0x00007e0a0f5820e0           ; ImmutableOopMap {rax=Oop [152]=Oop }
+                                                            ;*new {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) java.util.BitSet::set@8 (line 449)
+                                                            ;   {runtime_call load_klass_patching_blob (C1 runtime)}
+  0x00007e0a07fff884:   jmp    0x00007e0a07fff1f8
+  0x00007e0a07fff889:   mov    %rdx,%rdx
+  0x00007e0a07fff88c:   call   0x00007e0a0f57d3e0           ; ImmutableOopMap {[152]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@8 (line 449)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e0a07fff891:   jmp    0x00007e0a07fff244
+  0x00007e0a07fff896:   movabs $0x921ba900,%r10             ;   {metadata({method} {0x00000000921ba900} &apos;&lt;init&gt;&apos; &apos;()V&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff8a0:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff8a5:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff8ad:   call   0x00007e0a0f583460           ; ImmutableOopMap {rax=Oop [152]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::&lt;init&gt;@-1 (line 106)
+                                                            ; - java.util.BitSet::set@12 (line 449)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff8b2:   jmp    0x00007e0a07fff280
+  0x00007e0a07fff8b7:   movabs $0x921bab10,%r10             ;   {metadata({method} {0x00000000921bab10} &apos;append&apos; &apos;(Ljava/lang/String;)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff8c1:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff8c6:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff8ce:   call   0x00007e0a0f583460           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::append@-1 (line 179)
+                                                            ; - java.util.BitSet::set@17 (line 449)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff8d3:   jmp    0x00007e0a07fff34b
+  0x00007e0a07fff8d8:   movabs $0x921bad78,%r10             ;   {metadata({method} {0x00000000921bad78} &apos;append&apos; &apos;(I)Ljava/lang/StringBuilder;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff8e2:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff8e7:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff8ef:   call   0x00007e0a0f583460           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::append@-1 (line 253)
+                                                            ; - java.util.BitSet::set@21 (line 449)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff8f4:   jmp    0x00007e0a07fff41b
+  0x00007e0a07fff8f9:   movabs $0x921b93a0,%r10             ;   {metadata({method} {0x00000000921b93a0} &apos;toString&apos; &apos;()Ljava/lang/String;&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff903:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff908:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff910:   call   0x00007e0a0f583460           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::toString@-1 (line 474)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff915:   jmp    0x00007e0a07fff4eb
+  0x00007e0a07fff91a:   movabs $0x921b94b8,%r10             ;   {metadata({method} {0x00000000921b94b8} &apos;length&apos; &apos;()I&apos; in &apos;java/lang/StringBuilder&apos;)}
+  0x00007e0a07fff924:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff929:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff931:   call   0x00007e0a0f583460           ; ImmutableOopMap {[136]=Oop [152]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.StringBuilder::length@-1 (line 91)
+                                                            ; - java.lang.StringBuilder::toString@1 (line 474)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff936:   jmp    0x00007e0a07fff582
+  0x00007e0a07fff93b:   movabs $0x92303308,%r10             ;   {metadata({method} {0x0000000092303308} &apos;wordIndex&apos; &apos;(I)I&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff945:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff94a:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff952:   call   0x00007e0a0f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.BitSet::wordIndex@-1 (line 117)
+                                                            ; - java.util.BitSet::set@32 (line 451)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff957:   jmp    0x00007e0a07fff60f
+  0x00007e0a07fff95c:   movabs $0x92303360,%r10             ;   {metadata({method} {0x0000000092303360} &apos;expandTo&apos; &apos;(I)V&apos; in &apos;java/util/BitSet&apos;)}
+  0x00007e0a07fff966:   mov    %r10,0x8(%rsp)
+  0x00007e0a07fff96b:   movq   $0xffffffffffffffff,(%rsp)
+  0x00007e0a07fff973:   call   0x00007e0a0f583460           ; ImmutableOopMap {rsi=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.util.BitSet::expandTo@-1 (line 355)
+                                                            ; - java.util.BitSet::set@38 (line 452)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x00007e0a07fff978:   jmp    0x00007e0a07fff655
+  0x00007e0a07fff97d:   call   0x00007e0a0f57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*laload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@47 (line 454)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e0a07fff982:   call   0x00007e0a0f57c660           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*laload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@47 (line 454)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x00007e0a07fff987:   mov    %rdx,(%rsp)
+  0x00007e0a07fff98b:   mov    %rdi,0x8(%rsp)
+  0x00007e0a07fff990:   call   0x00007e0a0f57bd60           ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                                                            ;*laload {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.BitSet::set@47 (line 454)
+                                                            ;   {runtime_call throw_range_check_failed_blob (C1 runtime)}
+  0x00007e0a07fff995:   movabs $0x7e0a07fff744,%r10         ;   {internal_word}
+  0x00007e0a07fff99f:   mov    %r10,0x510(%r15)
+  0x00007e0a07fff9a6:   jmp    0x00007e0a0f4afb60           ;   {runtime_call SafepointBlob}
+  0x00007e0a07fff9ab:   mov    %rdx,%rdx
+  0x00007e0a07fff9ae:   call   0x00007e0a0f57d3e0           ; ImmutableOopMap {rbx=Oop [152]=Oop }
+                                                            ;*new {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.lang.StringBuilder::toString@10 (line 478)
+                                                            ; - java.util.BitSet::set@24 (line 449)
+                                                            ;   {runtime_call fast_new_instance_blob (C1 runtime)}
+  0x00007e0a07fff9b3:   jmp    0x00007e0a07fff7aa
+  0x00007e0a07fff9b8:   mov    0x5c0(%r15),%rax
+  0x00007e0a07fff9bf:   movq   $0x0,0x5c0(%r15)
+  0x00007e0a07fff9ca:   movq   $0x0,0x5c8(%r15)
+  0x00007e0a07fff9d5:   add    $0xc0,%rsp
+  0x00007e0a07fff9dc:   pop    %rbp
+  0x00007e0a07fff9dd:   jmp    0x00007e0a0f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x00007e0a07fff9e2:   hlt    
+  0x00007e0a07fff9e3:   hlt    
+  0x00007e0a07fff9e4:   hlt    
+  0x00007e0a07fff9e5:   hlt    
+  0x00007e0a07fff9e6:   hlt    
+  0x00007e0a07fff9e7:   hlt    
+[Stub Code]
+  0x00007e0a07fff9e8:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x00007e0a07fff9ed:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fff9f7:   jmp    0x00007e0a07fff9f7           ;   {runtime_call nmethod}
+  0x00007e0a07fff9fc:   nop
+  0x00007e0a07fff9fd:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa07:   jmp    0x00007e0a07fffa07           ;   {runtime_call nmethod}
+  0x00007e0a07fffa0c:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa16:   jmp    0x00007e0a07fffa16           ;   {runtime_call nmethod}
+  0x00007e0a07fffa1b:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa25:   jmp    0x00007e0a07fffa25           ;   {runtime_call nmethod}
+  0x00007e0a07fffa2a:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa34:   jmp    0x00007e0a07fffa34           ;   {runtime_call nmethod}
+  0x00007e0a07fffa39:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa43:   jmp    0x00007e0a07fffa43           ;   {runtime_call nmethod}
+  0x00007e0a07fffa48:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x00007e0a07fffa52:   jmp    0x00007e0a07fffa52           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x00007e0a07fffa57:   call   0x00007e0a0f57f2e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x00007e0a07fffa5c:   movabs $0x7e0a2673aec4,%rdi         ;   {external_word}
+  0x00007e0a07fffa66:   and    $0xfffffffffffffff0,%rsp
+  0x00007e0a07fffa6a:   call   0x00007e0a26191cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x00007e0a07fffa6f:   hlt    
+  0x00007e0a07fffa70:   call   0x00007e0a0f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x00007e0a07fffa75:   jmp    0x00007e0a07fffa70
+  0x00007e0a07fffa77:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

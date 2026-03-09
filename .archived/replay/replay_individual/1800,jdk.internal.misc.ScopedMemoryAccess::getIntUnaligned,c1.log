@@ -1,0 +1,372 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 630   53   !   3       jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned (18 bytes)
+ total in heap  [0x0000701407fff008,0x0000701407fff628] = 1568
+ main code      [0x0000701407fff100,0x0000701407fff5d0] = 1232
+ stub code      [0x0000701407fff5d0,0x0000701407fff628] = 88
+ mutable data [0x00007013ac035200,0x00007013ac0352a8] = 168
+ relocation     [0x00007013ac035200,0x00007013ac035288] = 136
+ metadata       [0x00007013ac035288,0x00007013ac0352a8] = 32
+ immutable data [0x00007013ac034ed0,0x00007013ac0351ec] = 796
+ dependencies   [0x00007013ac034ed0,0x00007013ac034ee0] = 16
+ nul chk table  [0x00007013ac034ee0,0x00007013ac034ef8] = 24
+ handler table  [0x00007013ac034ef8,0x00007013ac034f58] = 96
+ scopes pcs     [0x00007013ac034f58,0x00007013ac0350b8] = 352
+ scopes data    [0x00007013ac0350b8,0x00007013ac0351e8] = 304
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000701407fff100:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000701407fff10b:   data16 data16 xchg %ax,%ax
+  0x0000701407fff10f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000000e1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;
+  # this:     rsi:rsi   = &apos;jdk/internal/misc/ScopedMemoryAccess&apos;
+  # parm0:    rdx:rdx   = &apos;jdk/internal/foreign/MemorySessionImpl&apos;
+  # parm1:    rcx:rcx   = &apos;java/lang/Object&apos;
+  # parm2:    r8:r8     = long
+  # parm3:    r9        = boolean
+  #           [sp+0xb0]  (sp of caller)
+  0x0000701407fff112:   mov    0x8(%rsi),%r10d
+  0x0000701407fff116:   cmp    0x8(%rax),%r10d
+  0x0000701407fff11a:   jne    0x000070140f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000701407fff120:   mov    %eax,-0x14000(%rsp)
+  0x0000701407fff127:   push   %rbp
+  0x0000701407fff128:   sub    $0xa0,%rsp
+  0x0000701407fff12f:   nop
+  0x0000701407fff130:   cmpl   $0x1,0x20(%r15)
+  0x0000701407fff138:   je     0x0000701407fff13f
+  0x0000701407fff13a:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000701407fff13f:   mov    %rdx,0x88(%rsp)
+  0x0000701407fff147:   movabs $0x7013c432d428,%rdi         ;   {metadata(method data for {method} {0x000000000e1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff151:   mov    0x90(%rdi),%ebx
+  0x0000701407fff157:   add    $0x2,%ebx
+  0x0000701407fff15a:   mov    %ebx,0x90(%rdi)
+  0x0000701407fff160:   and    $0x7fe,%ebx
+  0x0000701407fff166:   test   %ebx,%ebx
+  0x0000701407fff168:   je     0x0000701407fff4fc           ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@0 (line 3159)
+  0x0000701407fff16e:   movabs $0x7013c432d428,%rdi         ;   {metadata(method data for {method} {0x000000000e1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff178:   lea    0x108(%rdi),%rdi
+  0x0000701407fff17f:   test   %rdx,%rdx
+  0x0000701407fff182:   jne    0x0000701407fff192
+  0x0000701407fff184:   testb  $0x1,0x8(%rdi)
+  0x0000701407fff188:   jne    0x0000701407fff1ad
+  0x0000701407fff18a:   lock orq $0x1,0x8(%rdi)
+  0x0000701407fff190:   jmp    0x0000701407fff1ad
+  0x0000701407fff192:   movabs $0xf000c38,%rbx              ;   {metadata(&apos;jdk/internal/foreign/MemorySessionImpl&apos;)}
+  0x0000701407fff19c:   xor    0x8(%rdi),%rbx
+  0x0000701407fff1a0:   test   $0xfffffffffffffffc,%rbx
+  0x0000701407fff1a7:   je     0x0000701407fff1ad
+  0x0000701407fff1a9:   mov    %rbx,0x8(%rdi)
+  0x0000701407fff1ad:   test   %rcx,%rcx
+  0x0000701407fff1b0:   jne    0x0000701407fff1c0
+  0x0000701407fff1b2:   testb  $0x1,0x18(%rdi)
+  0x0000701407fff1b6:   jne    0x0000701407fff206
+  0x0000701407fff1b8:   lock orq $0x1,0x18(%rdi)
+  0x0000701407fff1be:   jmp    0x0000701407fff206
+  0x0000701407fff1c0:   mov    0x8(%rcx),%ebx
+  0x0000701407fff1c3:   mov    $0xe000000,%r10d
+  0x0000701407fff1c9:   add    %r10,%rbx
+  0x0000701407fff1cc:   mov    %rbx,%r10
+  0x0000701407fff1cf:   xor    0x18(%rdi),%rbx
+  0x0000701407fff1d3:   test   $0xfffffffffffffffc,%rbx
+  0x0000701407fff1da:   je     0x0000701407fff206
+  0x0000701407fff1dc:   test   $0x2,%bl
+  0x0000701407fff1df:   jne    0x0000701407fff206
+  0x0000701407fff1e1:   testq  $0xfffffffffffffffe,0x18(%rdi)
+  0x0000701407fff1e9:   je     0x0000701407fff202
+  0x0000701407fff1eb:   mov    %r10,%rbx
+  0x0000701407fff1ee:   xor    0x18(%rdi),%rbx
+  0x0000701407fff1f2:   test   $0xfffffffffffffffc,%rbx
+  0x0000701407fff1f9:   je     0x0000701407fff206
+  0x0000701407fff1fb:   orq    $0x2,0x18(%rdi)
+  0x0000701407fff200:   jmp    0x0000701407fff206
+  0x0000701407fff202:   mov    %rbx,0x18(%rdi)
+  0x0000701407fff206:   movabs $0x7013c432d428,%rdi         ;   {metadata(method data for {method} {0x000000000e1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff210:   addq   $0x1,0xd8(%rdi)
+  0x0000701407fff218:   movabs $0x7013c432d5f8,%rsi         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff222:   mov    0x90(%rsi),%edi
+  0x0000701407fff228:   add    $0x2,%edi
+  0x0000701407fff22b:   mov    %edi,0x90(%rsi)
+  0x0000701407fff231:   and    $0x1ffffe,%edi
+  0x0000701407fff237:   test   %edi,%edi
+  0x0000701407fff239:   je     0x0000701407fff51d
+  0x0000701407fff23f:   test   %rdx,%rdx
+  0x0000701407fff242:   movabs $0x7013c432d5f8,%rsi         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff24c:   mov    $0xd8,%edi
+  0x0000701407fff251:   je     0x0000701407fff258
+  0x0000701407fff253:   mov    $0xe8,%edi
+  0x0000701407fff258:   mov    (%rsi,%rdi,1),%rbx
+  0x0000701407fff25c:   lea    0x1(%rbx),%rbx
+  0x0000701407fff260:   mov    %rbx,(%rsi,%rdi,1)
+  0x0000701407fff264:   je     0x0000701407fff316           ;*ifnull {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@1 (line 3168)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+  0x0000701407fff26a:   mov    %r9d,0x80(%rsp)
+  0x0000701407fff272:   mov    %r8,0x78(%rsp)
+  0x0000701407fff277:   mov    %rcx,0x70(%rsp)
+  0x0000701407fff27c:   cmp    (%rdx),%rax                  ; implicit exception: dispatches to 0x0000701407fff53e
+  0x0000701407fff27f:   mov    %rdx,%rsi
+  0x0000701407fff282:   movabs $0x7013c432d5f8,%rdi         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff28c:   mov    0x8(%rsi),%esi
+  0x0000701407fff28f:   mov    $0xe000000,%r10d
+  0x0000701407fff295:   add    %r10,%rsi
+  0x0000701407fff298:   mov    $0x20,%r10d
+  0x0000701407fff29e:   cmp    (%rdi,%r10,8),%rsi
+  0x0000701407fff2a2:   je     0x0000701407fff2db
+  0x0000701407fff2a4:   add    $0x2,%r10
+  0x0000701407fff2a8:   cmp    $0x24,%r10
+  0x0000701407fff2ac:   jne    0x0000701407fff29e
+  0x0000701407fff2ae:   mov    $0x20,%r10d
+  0x0000701407fff2b4:   cmpq   $0x0,(%rdi,%r10,8)
+  0x0000701407fff2b9:   je     0x0000701407fff2c7
+  0x0000701407fff2bb:   add    $0x2,%r10
+  0x0000701407fff2bf:   cmp    $0x24,%r10
+  0x0000701407fff2c3:   jne    0x0000701407fff2b4
+  0x0000701407fff2c5:   jmp    0x0000701407fff2d3
+  0x0000701407fff2c7:   push   %rax
+  0x0000701407fff2c8:   xor    %rax,%rax
+  0x0000701407fff2cb:   cmpxchg %rsi,(%rdi,%r10,8)
+  0x0000701407fff2d0:   pop    %rax
+  0x0000701407fff2d1:   jmp    0x0000701407fff298
+  0x0000701407fff2d3:   mov    $0x1f,%r10d
+  0x0000701407fff2d9:   jmp    0x0000701407fff2df
+  0x0000701407fff2db:   add    $0x1,%r10
+  0x0000701407fff2df:   addq   $0x1,(%rdi,%r10,8)
+  0x0000701407fff2e4:   mov    %rdx,%rsi                    ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+  0x0000701407fff2e7:   nopw   0x0(%rax,%rax,1)
+  0x0000701407fff2ed:   movabs $0x7013ac0353d0,%rax
+  0x0000701407fff2f7:   call   0x000070140f4adce0           ; ImmutableOopMap {[112]=Oop [136]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {virtual_call}
+  0x0000701407fff2fc:   nopl   0x2f4(%rax,%rax,1)           ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {post_call_nop}
+  0x0000701407fff304:   mov    0x80(%rsp),%r9d
+  0x0000701407fff30c:   mov    0x78(%rsp),%r8
+  0x0000701407fff311:   mov    0x70(%rsp),%rcx
+  0x0000701407fff316:   movabs $0x7013c432d5f8,%rsi         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff320:   lea    0x158(%rsi),%rsi
+  0x0000701407fff327:   test   %rcx,%rcx
+  0x0000701407fff32a:   jne    0x0000701407fff33a
+  0x0000701407fff32c:   testb  $0x1,0x8(%rsi)
+  0x0000701407fff330:   jne    0x0000701407fff381
+  0x0000701407fff332:   lock orq $0x1,0x8(%rsi)
+  0x0000701407fff338:   jmp    0x0000701407fff381
+  0x0000701407fff33a:   mov    0x8(%rcx),%edi
+  0x0000701407fff33d:   mov    $0xe000000,%r10d
+  0x0000701407fff343:   add    %r10,%rdi
+  0x0000701407fff346:   mov    %rdi,%r10
+  0x0000701407fff349:   xor    0x8(%rsi),%rdi
+  0x0000701407fff34d:   test   $0xfffffffffffffffc,%rdi
+  0x0000701407fff354:   je     0x0000701407fff381
+  0x0000701407fff356:   test   $0x2,%dil
+  0x0000701407fff35a:   jne    0x0000701407fff381
+  0x0000701407fff35c:   testq  $0xfffffffffffffffe,0x8(%rsi)
+  0x0000701407fff364:   je     0x0000701407fff37d
+  0x0000701407fff366:   mov    %r10,%rdi
+  0x0000701407fff369:   xor    0x8(%rsi),%rdi
+  0x0000701407fff36d:   test   $0xfffffffffffffffc,%rdi
+  0x0000701407fff374:   je     0x0000701407fff381
+  0x0000701407fff376:   orq    $0x2,0x8(%rsi)
+  0x0000701407fff37b:   jmp    0x0000701407fff381
+  0x0000701407fff37d:   mov    %rdi,0x8(%rsi)
+  0x0000701407fff381:   movabs $0x42002a510,%rsi            ;   {oop(a &apos;jdk/internal/misc/Unsafe&apos;{0x000000042002a510})}
+  0x0000701407fff38b:   mov    %rsi,%rdi
+  0x0000701407fff38e:   movabs $0x7013c432d5f8,%rbx         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff398:   mov    0x8(%rdi),%edi
+  0x0000701407fff39b:   mov    $0xe000000,%r10d
+  0x0000701407fff3a1:   add    %r10,%rdi
+  0x0000701407fff3a4:   mov    $0x26,%r10d
+  0x0000701407fff3aa:   cmp    (%rbx,%r10,8),%rdi
+  0x0000701407fff3ae:   je     0x0000701407fff3e7
+  0x0000701407fff3b0:   add    $0x2,%r10
+  0x0000701407fff3b4:   cmp    $0x2a,%r10
+  0x0000701407fff3b8:   jne    0x0000701407fff3aa
+  0x0000701407fff3ba:   mov    $0x26,%r10d
+  0x0000701407fff3c0:   cmpq   $0x0,(%rbx,%r10,8)
+  0x0000701407fff3c5:   je     0x0000701407fff3d3
+  0x0000701407fff3c7:   add    $0x2,%r10
+  0x0000701407fff3cb:   cmp    $0x2a,%r10
+  0x0000701407fff3cf:   jne    0x0000701407fff3c0
+  0x0000701407fff3d1:   jmp    0x0000701407fff3df
+  0x0000701407fff3d3:   push   %rax
+  0x0000701407fff3d4:   xor    %rax,%rax
+  0x0000701407fff3d7:   cmpxchg %rdi,(%rbx,%r10,8)
+  0x0000701407fff3dc:   pop    %rax
+  0x0000701407fff3dd:   jmp    0x0000701407fff3a4
+  0x0000701407fff3df:   mov    $0x25,%r10d
+  0x0000701407fff3e5:   jmp    0x0000701407fff3eb
+  0x0000701407fff3e7:   add    $0x1,%r10
+  0x0000701407fff3eb:   addq   $0x1,(%rbx,%r10,8)
+  0x0000701407fff3f0:   mov    %rcx,%rdx
+  0x0000701407fff3f3:   mov    %r8,%rcx
+  0x0000701407fff3f6:   mov    %r9,%r8                      ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+  0x0000701407fff3f9:   nopw   0x0(%rax,%rax,1)
+  0x0000701407fff3ff:   call   0x000070140f4ad9e0           ; ImmutableOopMap {[136]=Oop }
+                                                            ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {optimized virtual_call}
+  0x0000701407fff404:   nopl   0x10003fc(%rax,%rax,1)       ;*invokevirtual getIntUnaligned {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@15 (line 3171)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {post_call_nop}
+  0x0000701407fff40c:   movabs $0x7013c432d5f8,%rdx         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff416:   addq   $0x1,0x170(%rdx)
+  0x0000701407fff41e:   movabs $0x7013c432d338,%rdx         ;   {metadata(method data for {method} {0x000000000e1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000701407fff428:   mov    0x90(%rdx),%esi
+  0x0000701407fff42e:   add    $0x2,%esi
+  0x0000701407fff431:   mov    %esi,0x90(%rdx)
+  0x0000701407fff437:   and    $0x1ffffe,%esi
+  0x0000701407fff43d:   test   %esi,%esi
+  0x0000701407fff43f:   je     0x0000701407fff543
+  0x0000701407fff445:   add    $0xa0,%rsp
+  0x0000701407fff44c:   pop    %rbp
+  0x0000701407fff44d:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000701407fff451:   ja     0x0000701407fff564
+  0x0000701407fff457:   ret                                 ;*ireturn {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@9 (line 3159)
+  0x0000701407fff458:   mov    0x5c0(%r15),%rax
+  0x0000701407fff45f:   xor    %r10,%r10
+  0x0000701407fff462:   mov    %r10,0x5c0(%r15)
+  0x0000701407fff469:   xor    %r10,%r10
+  0x0000701407fff46c:   mov    %r10,0x5c8(%r15)
+  0x0000701407fff473:   movabs $0x7013c432d5f8,%rdx         ;   {metadata(method data for {method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff47d:   addq   $0x1,0x180(%rdx)
+  0x0000701407fff485:   movabs $0x7013c432d338,%rdx         ;   {metadata(method data for {method} {0x000000000e1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000701407fff48f:   mov    0x90(%rdx),%esi
+  0x0000701407fff495:   add    $0x2,%esi
+  0x0000701407fff498:   mov    %esi,0x90(%rdx)
+  0x0000701407fff49e:   and    $0x1ffffe,%esi
+  0x0000701407fff4a4:   test   %esi,%esi
+  0x0000701407fff4a6:   je     0x0000701407fff57a           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@35 (line 3174)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+  0x0000701407fff4ac:   movabs $0x701407fff4ac,%rdx         ;   {section_word}
+  0x0000701407fff4b6:   call   0x000070140f57e2e0           ;   {runtime_call handle_exception_nofpu_blob (C1 runtime)}
+  0x0000701407fff4bb:   nop                                 ;*athrow {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@35 (line 3174)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+  0x0000701407fff4bc:   mov    0x5c0(%r15),%rax
+  0x0000701407fff4c3:   xor    %r10,%r10
+  0x0000701407fff4c6:   mov    %r10,0x5c0(%r15)
+  0x0000701407fff4cd:   xor    %r10,%r10
+  0x0000701407fff4d0:   mov    %r10,0x5c8(%r15)
+  0x0000701407fff4d7:   mov    %rax,%rsi                    ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+  0x0000701407fff4da:   data16 xchg %ax,%ax
+  0x0000701407fff4dd:   movabs $0x7013ac0353f8,%rax
+  0x0000701407fff4e7:   call   0x000070140f4adce0           ; ImmutableOopMap {}
+                                                            ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+                                                            ;   {virtual_call}
+  0x0000701407fff4ec:   nopl   0x30004e4(%rax,%rax,1)       ;*invokevirtual newRuntimeException {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@14 (line 3161)
+                                                            ;   {post_call_nop}
+  0x0000701407fff4f4:   cmp    (%rax),%rax                  ; implicit exception: dispatches to 0x0000701407fff59b
+  0x0000701407fff4f7:   jmp    0x0000701407fff5bd
+  0x0000701407fff4fc:   movabs $0xe1e9a00,%r10              ;   {metadata({method} {0x000000000e1e9a00} &apos;getIntUnaligned&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff506:   mov    %r10,0x8(%rsp)
+  0x0000701407fff50b:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000701407fff513:   call   0x000070140f582fe0           ; ImmutableOopMap {rsi=Oop rdx=Oop rcx=Oop [136]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@-1 (line 3159)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000701407fff518:   jmp    0x0000701407fff16e
+  0x0000701407fff51d:   movabs $0xe1f06c0,%r10              ;   {metadata({method} {0x000000000e1f06c0} &apos;getIntUnalignedInternal&apos; &apos;(Ljdk/internal/foreign/MemorySessionImpl;Ljava/lang/Object;JZ)I&apos; in &apos;jdk/internal/misc/ScopedMemoryAccess&apos;)}
+  0x0000701407fff527:   mov    %r10,0x8(%rsp)
+  0x0000701407fff52c:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000701407fff534:   call   0x000070140f582fe0           ; ImmutableOopMap {rdx=Oop rcx=Oop [136]=Oop }
+                                                            ;*synchronization entry
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@-1 (line 3168)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000701407fff539:   jmp    0x0000701407fff23f
+  0x0000701407fff53e:   call   0x000070140f57c660           ; ImmutableOopMap {rdx=Oop [112]=Oop [136]=Oop }
+                                                            ;*invokevirtual checkValidStateRaw {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@5 (line 3169)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000701407fff543:   movabs $0xe1a85e8,%r10              ;   {metadata({method} {0x000000000e1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000701407fff54d:   mov    %r10,0x8(%rsp)
+  0x0000701407fff552:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000701407fff55a:   call   0x000070140f582fe0           ; ImmutableOopMap {}
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@21 (line 3173)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000701407fff55f:   jmp    0x0000701407fff445
+  0x0000701407fff564:   movabs $0x701407fff44d,%r10         ;   {internal_word}
+  0x0000701407fff56e:   mov    %r10,0x510(%r15)
+  0x0000701407fff575:   jmp    0x000070140f4afb60           ;   {runtime_call SafepointBlob}
+  0x0000701407fff57a:   movabs $0xe1a85e8,%r10              ;   {metadata({method} {0x000000000e1a85e8} &apos;reachabilityFence&apos; &apos;(Ljava/lang/Object;)V&apos; in &apos;java/lang/ref/Reference&apos;)}
+  0x0000701407fff584:   mov    %r10,0x8(%rsp)
+  0x0000701407fff589:   movq   $0xffffffffffffffff,(%rsp)
+  0x0000701407fff591:   call   0x000070140f582fe0           ; ImmutableOopMap {rax=Oop }
+                                                            ;*synchronization entry
+                                                            ; - java.lang.ref.Reference::reachabilityFence@-1 (line 654)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnalignedInternal@30 (line 3173)
+                                                            ; - jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@6 (line 3159)
+                                                            ;   {runtime_call counter_overflow_blob (C1 runtime)}
+  0x0000701407fff596:   jmp    0x0000701407fff4ac
+  0x0000701407fff59b:   call   0x000070140f57c660           ; ImmutableOopMap {rax=Oop }
+                                                            ;*athrow {reexecute=1 rethrow=0 return_oop=0}
+                                                            ; - (reexecute) jdk.internal.misc.ScopedMemoryAccess::getIntUnaligned@17 (line 3161)
+                                                            ;   {runtime_call throw_null_pointer_exception_blob (C1 runtime)}
+  0x0000701407fff5a0:   mov    0x5c0(%r15),%rax
+  0x0000701407fff5a7:   movq   $0x0,0x5c0(%r15)
+  0x0000701407fff5b2:   movq   $0x0,0x5c8(%r15)
+  0x0000701407fff5bd:   add    $0xa0,%rsp
+  0x0000701407fff5c4:   pop    %rbp
+  0x0000701407fff5c5:   jmp    0x000070140f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000701407fff5ca:   hlt    
+  0x0000701407fff5cb:   hlt    
+  0x0000701407fff5cc:   hlt    
+  0x0000701407fff5cd:   hlt    
+  0x0000701407fff5ce:   hlt    
+  0x0000701407fff5cf:   hlt    
+[Stub Code]
+  0x0000701407fff5d0:   nopl   0x0(%rax,%rax,1)             ;   {other}
+  0x0000701407fff5d5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000701407fff5df:   jmp    0x0000701407fff5df           ;   {runtime_call nmethod}
+  0x0000701407fff5e4:   nop
+  0x0000701407fff5e5:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000701407fff5ef:   jmp    0x0000701407fff5ef           ;   {runtime_call nmethod}
+  0x0000701407fff5f4:   movabs $0x0,%rbx                    ;   {static_stub}
+  0x0000701407fff5fe:   jmp    0x0000701407fff5fe           ;   {runtime_call nmethod}
+[Exception Handler]
+  0x0000701407fff603:   call   0x000070140f57e8e0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000701407fff608:   movabs $0x701428b3aec4,%rdi         ;   {external_word}
+  0x0000701407fff612:   and    $0xfffffffffffffff0,%rsp
+  0x0000701407fff616:   call   0x0000701428591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000701407fff61b:   hlt    
+  0x0000701407fff61c:   call   0x000070140f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000701407fff621:   jmp    0x0000701407fff61c
+  0x0000701407fff623:   hlt    
+  0x0000701407fff624:   hlt    
+  0x0000701407fff625:   hlt    
+  0x0000701407fff626:   hlt    
+  0x0000701407fff627:   hlt    
+--------------------------------------------------------------------------------
+[/Disassembly]

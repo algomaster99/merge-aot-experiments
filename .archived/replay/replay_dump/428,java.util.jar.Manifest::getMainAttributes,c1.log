@@ -1,0 +1,71 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 8636  428       1       java.util.jar.Manifest::getMainAttributes (5 bytes)
+ total in heap  [0x000077b45fbb9408,0x000077b45fbb95b0] = 424
+ main code      [0x000077b45fbb9500,0x000077b45fbb9590] = 144
+ stub code      [0x000077b45fbb9590,0x000077b45fbb95b0] = 32
+ mutable data [0x000077b3fc08a320,0x000077b3fc08a348] = 40
+ relocation     [0x000077b3fc08a320,0x000077b3fc08a340] = 32
+ metadata       [0x000077b3fc08a340,0x000077b3fc08a348] = 8
+ immutable data [0x000077b3fc08d0d0,0x000077b3fc08d12c] = 92
+ dependencies   [0x000077b3fc08d0d0,0x000077b3fc08d0d8] = 8
+ scopes pcs     [0x000077b3fc08d0d8,0x000077b3fc08d118] = 64
+ scopes data    [0x000077b3fc08d118,0x000077b3fc08d128] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x000077b45fbb9500:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x000077b45fbb950b:   data16 data16 xchg %ax,%ax
+  0x000077b45fbb950f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x00000000461bf400} &apos;getMainAttributes&apos; &apos;()Ljava/util/jar/Attributes;&apos; in &apos;java/util/jar/Manifest&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x000077b45fbb9512:   mov    0x8(%rsi),%r10d
+  0x000077b45fbb9516:   cmp    0x8(%rax),%r10d
+  0x000077b45fbb951a:   jne    0x000077b45f4ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x000077b45fbb9520:   mov    %eax,-0x14000(%rsp)
+  0x000077b45fbb9527:   push   %rbp
+  0x000077b45fbb9528:   sub    $0x20,%rsp
+  0x000077b45fbb952c:   cmpl   $0x1,0x20(%r15)
+  0x000077b45fbb9534:   je     0x000077b45fbb953b
+  0x000077b45fbb9536:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.Manifest::getMainAttributes@0 (line 125)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x000077b45fbb953b:   mov    0xc(%rsi),%eax
+  0x000077b45fbb953e:   shl    $0x3,%rax                    ;*getfield attr {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.jar.Manifest::getMainAttributes@1 (line 125)
+  0x000077b45fbb9542:   add    $0x20,%rsp
+  0x000077b45fbb9546:   pop    %rbp
+  0x000077b45fbb9547:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x000077b45fbb954b:   ja     0x000077b45fbb9552
+  0x000077b45fbb9551:   ret    
+  0x000077b45fbb9552:   movabs $0x77b45fbb9547,%r10         ;   {internal_word}
+  0x000077b45fbb955c:   mov    %r10,0x510(%r15)
+  0x000077b45fbb9563:   jmp    0x000077b45f4afb60           ;   {runtime_call SafepointBlob}
+  0x000077b45fbb9568:   mov    0x5c0(%r15),%rax
+  0x000077b45fbb956f:   movq   $0x0,0x5c0(%r15)
+  0x000077b45fbb957a:   movq   $0x0,0x5c8(%r15)
+  0x000077b45fbb9585:   add    $0x20,%rsp
+  0x000077b45fbb9589:   pop    %rbp
+  0x000077b45fbb958a:   jmp    0x000077b45f57b760           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x000077b45fbb958f:   hlt    
+[Exception Handler]
+  0x000077b45fbb9590:   call   0x000077b45f57ede0           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x000077b45fbb9595:   movabs $0x77b478d3aec4,%rdi         ;   {external_word}
+  0x000077b45fbb959f:   and    $0xfffffffffffffff0,%rsp
+  0x000077b45fbb95a3:   call   0x000077b478791cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x000077b45fbb95a8:   hlt    
+  0x000077b45fbb95a9:   call   0x000077b45f4afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x000077b45fbb95ae:   jmp    0x000077b45fbb95a9
+--------------------------------------------------------------------------------
+[/Disassembly]

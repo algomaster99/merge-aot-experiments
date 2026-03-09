@@ -1,0 +1,73 @@
+
+============================= C1-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c1) 370   24       1       java.util.zip.ZipEntry::getSize (5 bytes)
+ total in heap  [0x0000792943ba4508,0x0000792943ba46b0] = 424
+ main code      [0x0000792943ba4600,0x0000792943ba4690] = 144
+ stub code      [0x0000792943ba4690,0x0000792943ba46b0] = 32
+ mutable data [0x00007928e0014c70,0x00007928e0014c98] = 40
+ relocation     [0x00007928e0014c70,0x00007928e0014c90] = 32
+ metadata       [0x00007928e0014c90,0x00007928e0014c98] = 8
+ immutable data [0x00007928e0014c00,0x00007928e0014c5c] = 92
+ dependencies   [0x00007928e0014c00,0x00007928e0014c08] = 8
+ scopes pcs     [0x00007928e0014c08,0x00007928e0014c48] = 64
+ scopes data    [0x00007928e0014c48,0x00007928e0014c58] = 16
+
+[Disassembly]
+--------------------------------------------------------------------------------
+[Constant Pool (empty)]
+
+--------------------------------------------------------------------------------
+
+[Instructions begin]
+  0x0000792943ba4600:   data16 data16 nopw 0x0(%rax,%rax,1)
+  0x0000792943ba460b:   data16 data16 xchg %ax,%ax
+  0x0000792943ba460f:   data16 xchg %ax,%ax
+[Entry Point]
+  # {method} {0x000000008d30aa18} &apos;getSize&apos; &apos;()J&apos; in &apos;java/util/zip/ZipEntry&apos;
+  #           [sp+0x30]  (sp of caller)
+  0x0000792943ba4612:   mov    0x8(%rsi),%r10d
+  0x0000792943ba4616:   cmp    0x8(%rax),%r10d
+  0x0000792943ba461a:   jne    0x00007929434ad6e0           ;   {runtime_call ic_miss_blob (shared runtime)}
+[Verified Entry Point]
+  0x0000792943ba4620:   mov    %eax,-0x14000(%rsp)
+  0x0000792943ba4627:   push   %rbp
+  0x0000792943ba4628:   sub    $0x20,%rsp
+  0x0000792943ba462c:   cmpl   $0x1,0x20(%r15)
+  0x0000792943ba4634:   je     0x0000792943ba463b
+  0x0000792943ba4636:   call   Stub::method_entry_barrier_stub (stub gen)
+                                                            ;*aload_0 {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipEntry::getSize@0 (line 435)
+                                                            ;   {runtime_call Stub::method_entry_barrier_stub (stub gen)}
+  0x0000792943ba463b:   mov    0x20(%rsi),%rax              ;*getfield size {reexecute=0 rethrow=0 return_oop=0}
+                                                            ; - java.util.zip.ZipEntry::getSize@1 (line 435)
+  0x0000792943ba463f:   add    $0x20,%rsp
+  0x0000792943ba4643:   pop    %rbp
+  0x0000792943ba4644:   cmp    0x28(%r15),%rsp              ;   {poll_return}
+  0x0000792943ba4648:   ja     0x0000792943ba464f
+  0x0000792943ba464e:   ret    
+  0x0000792943ba464f:   movabs $0x792943ba4644,%r10         ;   {internal_word}
+  0x0000792943ba4659:   mov    %r10,0x510(%r15)
+  0x0000792943ba4660:   jmp    0x00007929434afb60           ;   {runtime_call SafepointBlob}
+  0x0000792943ba4665:   mov    0x5c0(%r15),%rax
+  0x0000792943ba466c:   movq   $0x0,0x5c0(%r15)
+  0x0000792943ba4677:   movq   $0x0,0x5c8(%r15)
+  0x0000792943ba4682:   add    $0x20,%rsp
+  0x0000792943ba4686:   pop    %rbp
+  0x0000792943ba4687:   jmp    0x000079294357a560           ;   {runtime_call unwind_exception_blob (C1 runtime)}
+  0x0000792943ba468c:   hlt    
+  0x0000792943ba468d:   hlt    
+  0x0000792943ba468e:   hlt    
+  0x0000792943ba468f:   hlt    
+[Exception Handler]
+  0x0000792943ba4690:   call   0x000079294357db60           ;   {runtime_call handle_exception_from_callee_blob (C1 runtime)}
+  0x0000792943ba4695:   movabs $0x79295cb3aec4,%rdi         ;   {external_word}
+  0x0000792943ba469f:   and    $0xfffffffffffffff0,%rsp
+  0x0000792943ba46a3:   call   0x000079295c591cc0           ;   {runtime_call MacroAssembler::debug64(char*, long, long*)}
+  0x0000792943ba46a8:   hlt    
+  0x0000792943ba46a9:   call   0x00007929434afe60           ;   {runtime_call DeoptimizationBlob}
+[Deopt Handler Entry Point]
+  0x0000792943ba46ae:   jmp    0x0000792943ba46a9
+--------------------------------------------------------------------------------
+[/Disassembly]
