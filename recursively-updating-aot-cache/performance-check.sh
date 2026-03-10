@@ -21,23 +21,23 @@ echo
 
 log "sub"
 sep
-timed "default"    java -jar sub/target/sub-1.0-SNAPSHOT.jar
-timed "no CDS"     java -Xshare:off -jar sub/target/sub-1.0-SNAPSHOT.jar
-timed "AOT cache"  java -XX:AOTCache=sub/sub.aot -jar sub/target/sub-1.0-SNAPSHOT.jar
+timed "default"    java -jar math/target/math-1.0-SNAPSHOT.jar
+timed "no CDS"     java -Xshare:off -jar math/target/math-1.0-SNAPSHOT.jar
+timed "AOT cache"  java -XX:AOTCache=sub/sub.aot -jar math/target/math-1.0-SNAPSHOT.jar
 echo
 
 log "add"
 sep
-timed "default"    java -jar add/target/add-1.0-SNAPSHOT.jar
-timed "no CDS"     java -Xshare:off -jar add/target/add-1.0-SNAPSHOT.jar
-timed "AOT cache"  java -XX:AOTCache=add/add.aot -jar add/target/add-1.0-SNAPSHOT.jar
+timed "default"    java -jar math/target/math-1.0-SNAPSHOT.jar
+timed "no CDS"     java -Xshare:off -jar math/target/math-1.0-SNAPSHOT.jar
+timed "AOT cache"  java -XX:AOTCache=add/add.aot -jar math/target/math-1.0-SNAPSHOT.jar
 echo
 
 log "mul"
 sep
-timed "default"    java -jar mul/target/mul-1.0-SNAPSHOT.jar
-timed "no CDS"     java -Xshare:off -jar mul/target/mul-1.0-SNAPSHOT.jar
-timed "AOT cache"  java -XX:AOTCache=mul/mul.aot -jar mul/target/mul-1.0-SNAPSHOT.jar
+timed "default"    java -jar math/target/math-1.0-SNAPSHOT.jar
+timed "no CDS"     java -Xshare:off -jar math/target/math-1.0-SNAPSHOT.jar
+timed "AOT cache"  java -XX:AOTCache=mul/mul.aot -jar math/target/math-1.0-SNAPSHOT.jar
 echo
 
 log "math"
