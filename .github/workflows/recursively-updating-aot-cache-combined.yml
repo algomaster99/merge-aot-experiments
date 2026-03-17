@@ -1,4 +1,4 @@
-name: Recursively Updating AOT Cache (iterative)
+name: Recursively Updating AOT Cache (tree)
 
 on:
   push:
@@ -35,14 +35,14 @@ jobs:
         working-directory: recursively-updating-aot-cache
         run: mvn package -q
 
-      - name: Build AOT cache chain
+      - name: Build AOT cache (combined)
         working-directory: recursively-updating-aot-cache
-        run: ./orchestrate.sh
+        run: ./orchestrate-combine.sh
 
       - name: Check AOT cache
         working-directory: recursively-updating-aot-cache
         run: |
-          output=$(./check-aot.sh 2>&1)
+          output=$(./check-aot-combine.sh 2>&1)
           echo "$output"
           {
             echo "## AOT Cache Check"
@@ -54,7 +54,7 @@ jobs:
       - name: Performance check
         working-directory: recursively-updating-aot-cache
         run: |
-          output=$(./performance-check.sh 2>&1)
+          output=$(./performance-check-combine.sh 2>&1)
           echo "$output"
           {
             echo "## Performance Results"
@@ -62,3 +62,4 @@ jobs:
             echo "$output" | sed 's/\x1B\[[0-9;]*m//g'
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
