@@ -1,0 +1,119 @@
+name: PDFBox AOT Cache (tree merge combined)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  aot-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build PDFBox tools cache (clean)
+        working-directory: pdfbox
+        run: |
+          find . -name "*.aot" -type f -delete
+          mvn package -q -Ptree-merge
+          test -f tools/cache.aot
+
+      - name: Build JBIG2 cache (clean)
+        working-directory: pdfbox-deps/pdfbox-jbig2
+        run: |
+          rm -f cache.aot
+          mvn clean test -Ptree-merge
+          test -f cache.aot
+
+      - name: Merge caches (tools base) + performance
+        id: merge_tools_base
+        working-directory: pdfbox
+        run: |
+          chmod +x orchestrate-combine-1.sh performance-check-tree.sh check-aot-tree.sh
+          ./orchestrate-combine-1.sh
+
+          check_out=$(./check-aot-tree.sh 2>&1)
+          echo "$check_out"
+          {
+            echo "## AOT Cache Check (tree, base=tools/cache.aot)"
+            echo
+            echo '```'
+            echo "$check_out" | sed 's/\x1B\[[0-9;]*m//g'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          perf_out=$(./performance-check-tree.sh 2>&1)
+          echo "$perf_out"
+          {
+            echo "## Merge (base=tools/cache.aot)"
+            echo
+            echo '```'
+            echo "$perf_out" | sed 's/\x1B\[[0-9;]*m//g'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          {
+            echo "perf_tools_base<<'EOF'"
+            echo "$perf_out"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          rm -f tree.aot
+
+      - name: Merge caches (jbig2 base) + performance
+        id: merge_jbig2_base
+        working-directory: pdfbox
+        run: |
+          chmod +x orchestrate-combine-2.sh performance-check-tree.sh check-aot-tree.sh
+          ./orchestrate-combine-2.sh
+
+          check_out=$(./check-aot-tree.sh 2>&1)
+          echo "$check_out"
+          {
+            echo "## AOT Cache Check (tree, base=jbig2 cache)"
+            echo
+            echo '```'
+            echo "$check_out" | sed 's/\x1B\[[0-9;]*m//g'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          perf_out=$(./performance-check-tree.sh 2>&1)
+          echo "$perf_out"
+          {
+            echo "## Merge (base=jbig2 cache)"
+            echo
+            echo '```'
+            echo "$perf_out" | sed 's/\x1B\[[0-9;]*m//g'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          {
+            echo "perf_jbig2_base<<'EOF'"
+            echo "$perf_out"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          rm -f tree.aot
+
