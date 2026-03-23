@@ -64,13 +64,12 @@ measure_ms() {
   echo $(( $(ms) - start ))
 }
 
-declare -A sum sumsq minv maxv cnt
+declare -A minv maxv cnt samples
 
 update_stats() {
   local key="$1"; local sample_ms="$2"
   cnt[$key]=$(( ${cnt[$key]:-0} + 1 ))
-  sum[$key]=$(( ${sum[$key]:-0} + sample_ms ))
-  sumsq[$key]=$(( ${sumsq[$key]:-0} + sample_ms * sample_ms ))
+  samples[$key]="${samples[$key]:-} ${sample_ms}"
 
   if [ -z "${minv[$key]:-}" ] || (( sample_ms < minv[$key] )); then
     minv[$key]="$sample_ms"
@@ -78,6 +77,32 @@ update_stats() {
   if [ -z "${maxv[$key]:-}" ] || (( sample_ms > maxv[$key] )); then
     maxv[$key]="$sample_ms"
   fi
+}
+
+median_for_key() {
+  local key="$1"
+  local n="${cnt[$key]:-0}"
+  local values median
+
+  if [ "$n" -eq 0 ]; then
+    echo "n/a"
+    return
+  fi
+
+  values="${samples[$key]# }"
+  median="$(
+    printf "%s\n" $values | sort -n | awk '
+      { a[++n] = $1 }
+      END {
+        if (n % 2 == 1) {
+          printf "%.1f", a[(n + 1) / 2]
+        } else {
+          printf "%.1f", (a[n / 2] + a[(n / 2) + 1]) / 2
+        }
+      }
+    '
+  )"
+  echo "$median"
 }
 
 print_summary() {
@@ -91,10 +116,10 @@ print_summary() {
   sep
 
   printf "  %-16s | %10s %6s %6s | %10s %6s %6s | %10s %6s %6s\n" \
-    "Operation" "no-avg" "no-min" "no-max" "tree-avg" "tree-min" "tree-max" "single-avg" "single-min" "single-max"
+    "Operation" "no-med" "no-min" "no-max" "tree-med" "tree-min" "tree-max" "single-med" "single-min" "single-max"
 
   local op key n
-  local avg min max avg_tree min_tree max_tree avg_single min_single max_single
+  local med min max med_tree min_tree max_tree med_single min_single max_single
 
   for op in "${ops[@]}"; do
     key="${op}|no"
@@ -105,22 +130,22 @@ print_summary() {
       continue
     fi
 
-    avg="$(awk -v sum="${sum[$key]}" -v n="$n" 'BEGIN{printf "%.1f", sum/n}')"
+    med="$(median_for_key "$key")"
     min="${minv[$key]}"
     max="${maxv[$key]}"
 
     key="${op}|tree"
-    avg_tree="$(awk -v sum="${sum[$key]}" -v n="$n" 'BEGIN{printf "%.1f", sum/n}')"
+    med_tree="$(median_for_key "$key")"
     min_tree="${minv[$key]}"
     max_tree="${maxv[$key]}"
 
     key="${op}|single"
-    avg_single="$(awk -v sum="${sum[$key]}" -v n="$n" 'BEGIN{printf "%.1f", sum/n}')"
+    med_single="$(median_for_key "$key")"
     min_single="${minv[$key]}"
     max_single="${maxv[$key]}"
 
     printf "  %-16s | %10s %6s %6s | %10s %6s %6s | %10s %6s %6s\n" \
-      "$op" "${avg}" "${min}" "${max}" "${avg_tree}" "${min_tree}" "${max_tree}" "${avg_single}" "${min_single}" "${max_single}"
+      "$op" "${med}" "${min}" "${max}" "${med_tree}" "${min_tree}" "${max_tree}" "${med_single}" "${min_single}" "${max_single}"
   done
 }
 
