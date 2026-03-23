@@ -34,11 +34,11 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build PDFBox
-        working-directory: pdfbox
+        working-directory: pdfbox-experiment/pdfbox
         run: mvn package -q -Piterative-merge
 
       - name: Check AOT cache
-        working-directory: pdfbox
+        working-directory: pdfbox-experiment/pdfbox
         run: |
           output=$(./check-aot.sh 2>&1)
           echo "$output"
@@ -50,7 +50,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Performance check
-        working-directory: pdfbox
+        working-directory: pdfbox-experiment/pdfbox
         run: |
           output=$(./performance-check.sh 2>&1)
           echo "$output"
