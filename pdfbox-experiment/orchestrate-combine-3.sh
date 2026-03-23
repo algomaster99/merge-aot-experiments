@@ -31,7 +31,7 @@ java -Xlog:aot \
   -XX:AOTCache=pdfbox/tools/cache.aot \
   -XX:AOTMergeInputs="pdfbox-deps/pdfbox-jbig2/cache.aot:pdfbox-deps/apache-commons-io/cache.aot" \
   -XX:AOTCacheOutput=tree.aot \
-  -cp "pdfbox/tools/target/pdfbox-tools-3.0.7.jar:pdfbox-deps/pdfbox-jbig2/target/classes/:pdfbox-deps/apache-commons-io/target/classes/" \
+  -cp "pdfbox-deps/pdfbox-jbig2/target/classes/:pdfbox-deps/apache-commons-io/target/classes/" \
   -version
 
 test -f tree.aot
