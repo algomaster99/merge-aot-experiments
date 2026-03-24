@@ -159,6 +159,65 @@ print_summary() {
   done
 }
 
+print_class_load_row() {
+  local label="$1"; shift
+  local classload_log="$TMP/classload-${label//:/-}.log"
+  local file_count shared_count
+
+  "$JAVA_TREE_BIN" -Xlog:class+load -XX:AOTCache="$AOT" -cp "$CP" "$MAIN" "$@" >"$classload_log" 2>&1
+
+  file_count="$(
+    awk '/source: file:/{count++} END{print count+0}' "$classload_log"
+  )"
+  shared_count="$(
+    awk '/source: shared object[s]? file/{count++} END{print count+0}' "$classload_log"
+  )"
+
+  printf "  %-16s | %8s | %8s\n" "$label" "$file_count" "$shared_count"
+}
+
+print_class_load_summary() {
+  log "Class-load source summary per workload (captured once with tree.aot + -Xlog:class+load)"
+  sep
+  printf "  %-16s | %8s | %8s\n" "Operation" "file:" "shared"
+
+  print_class_load_row "encrypt" \
+    encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
+
+  print_class_load_row "decrypt" \
+    decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
+
+  print_class_load_row "export:text" \
+    export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
+
+  print_class_load_row "export:images" \
+    export:images --input "$PDF"
+
+  print_class_load_row "render" \
+    render --input "$PDF"
+
+  print_class_load_row "fromtext" \
+    fromtext --input "$TMP/$BASE-text.txt" \
+             --output "$TMP/$BASE-from-text.pdf" \
+             -standardFont Times-Roman
+
+  print_class_load_row "split" \
+    split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
+
+  print_class_load_row "merge" \
+    merge --input "$TMP/split-$BASE-1.pdf" \
+          --output "$TMP/merged-$BASE.pdf"
+
+  print_class_load_row "decode" \
+    decode "$PDF" "$TMP/$BASE-decoded.pdf"
+
+  print_class_load_row "overlay" \
+    overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
+
+  info "raw class-load logs: $TMP/classload-*.log"
+  echo
+}
+
 run_op() {
   # $1 = label, rest = java args (without -XX:AOTCache)
   local label="$1"; shift
@@ -203,6 +262,8 @@ if ! [[ "$RUNS" =~ ^[0-9]+$ ]] || [ "$RUNS" -lt 1 ]; then
   echo "RUNS must be an integer >= 1 (got: $RUNS)" >&2
   exit 1
 fi
+
+print_class_load_summary
 
 workload_once() {
   run_op "encrypt" \
