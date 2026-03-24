@@ -201,12 +201,16 @@ print_class_load_summary() {
   print_class_load_row "single" "encrypt" \
     encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
 
+  echo "--------------------------------"
+
   print_class_load_row "no" "decrypt" \
     decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
   print_class_load_row "tree" "decrypt" \
     decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
   print_class_load_row "single" "decrypt" \
     decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
+
+  echo "--------------------------------"
 
   print_class_load_row "no" "export:text" \
     export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
@@ -215,6 +219,8 @@ print_class_load_summary() {
   print_class_load_row "single" "export:text" \
     export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
 
+  echo "--------------------------------"
+
   print_class_load_row "no" "export:images" \
     export:images --input "$PDF"
   print_class_load_row "tree" "export:images" \
@@ -222,12 +228,16 @@ print_class_load_summary() {
   print_class_load_row "single" "export:images" \
     export:images --input "$PDF"
 
+  echo "--------------------------------"
+
   print_class_load_row "no" "render" \
     render --input "$PDF"
   print_class_load_row "tree" "render" \
     render --input "$PDF"
   print_class_load_row "single" "render" \
     render --input "$PDF"
+
+  echo "--------------------------------"
 
   print_class_load_row "no" "fromtext" \
     fromtext --input "$TMP/$BASE-text.txt" \
@@ -242,12 +252,16 @@ print_class_load_summary() {
              --output "$TMP/$BASE-from-text.pdf" \
              -standardFont Times-Roman
 
+  echo "--------------------------------"
+
   print_class_load_row "no" "split" \
     split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
   print_class_load_row "tree" "split" \
     split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
   print_class_load_row "single" "split" \
     split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
+
+  echo "--------------------------------"
 
   print_class_load_row "no" "merge" \
     merge --input "$TMP/split-$BASE-1.pdf" \
@@ -259,12 +273,16 @@ print_class_load_summary() {
     merge --input "$TMP/split-$BASE-1.pdf" \
           --output "$TMP/merged-$BASE.pdf"
 
+  echo "--------------------------------"
+
   print_class_load_row "no" "decode" \
     decode "$PDF" "$TMP/$BASE-decoded.pdf"
   print_class_load_row "tree" "decode" \
     decode "$PDF" "$TMP/$BASE-decoded.pdf"
   print_class_load_row "single" "decode" \
     decode "$PDF" "$TMP/$BASE-decoded.pdf"
+
+  echo "--------------------------------"
 
   print_class_load_row "no" "overlay" \
     overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
@@ -274,6 +292,17 @@ print_class_load_summary() {
     overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
 
   info "raw class-load logs: $TMP/classload-*-{no,tree,single}.log"
+  echo
+}
+
+package_workload_tmp() {
+  local archive="${TMP}.zip"
+
+  log "Packaging workload output"
+  sep
+  rm -f "$archive"
+  zip -qr "$archive" "$TMP"
+  info "archive written to: $archive"
   echo
 }
 
@@ -370,6 +399,7 @@ for i in $(seq 1 "$RUNS"); do
 done
 
 print_summary "$RUNS"
+package_workload_tmp
 
 echo
 log "Done."
