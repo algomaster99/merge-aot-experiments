@@ -295,17 +295,6 @@ print_class_load_summary() {
   echo
 }
 
-package_workload_tmp() {
-  local archive="${TMP}.zip"
-
-  log "Packaging workload output"
-  sep
-  rm -f "$archive"
-  zip -qr "$archive" "$TMP"
-  info "archive written to: $archive"
-  echo
-}
-
 run_op() {
   # $1 = label, rest = java args (without -XX:AOTCache)
   local label="$1"; shift
@@ -399,7 +388,6 @@ for i in $(seq 1 "$RUNS"); do
 done
 
 print_summary "$RUNS"
-package_workload_tmp
 
 echo
 log "Done."
