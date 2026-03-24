@@ -10,18 +10,8 @@ SINGLE_AOT="single.aot"
 SINGLE_JAR="pdfbox/app/target/pdfbox-app-3.0.7.jar"
 TEST_PDF="pdfbox/test.pdf"
 
-if [ ! -f "$SINGLE_AOT" ]; then
-  log "Creating single.aot (export:text)"
-  rm -f "$SINGLE_AOT"
-
-  test -f "$SINGLE_JAR" || { echo "Missing $SINGLE_JAR (build app first)" >&2; exit 1; }
-  test -f "$TEST_PDF" || { echo "Missing $TEST_PDF" >&2; exit 1; }
-
-  java -Xlog:aot -XX:AOTCacheOutput="$SINGLE_AOT" -jar "$SINGLE_JAR" export:text -i "$TEST_PDF"
-fi
-
-test -f "$SINGLE_AOT"
-log "single.aot ready."
+test -f "$SINGLE_AOT" || { echo "Missing $SINGLE_AOT (run create-single-aot.sh first)" >&2; exit 1; }
+log "single.aot found."
 
 log "Creating tree.aot (base=pdfbox/tools/cache.aot, inputs=jbig2 cache + commons-io cache)"
 rm -f tree.aot

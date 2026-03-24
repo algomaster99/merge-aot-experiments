@@ -18,6 +18,9 @@ CP="pdfbox/app/target/pdfbox-app-3.0.7.jar:pdfbox-deps/pdfbox-jbig2/target/class
 # If operations sometimes "hang", this prevents infinite waits and points at the op.
 # Set OP_TIMEOUT_SEC higher if your workload is slow.
 OP_TIMEOUT_SEC="${OP_TIMEOUT_SEC:-900}"
+JAVA_NO_BIN="${JAVA_NO_BIN:-java}"
+JAVA_SINGLE_BIN="${JAVA_SINGLE_BIN:-java}"
+JAVA_TREE_BIN="${JAVA_TREE_BIN:-java}"
 
 if [ ! -f "$AOT" ]; then
   echo "tree.aot not found — run orchestrate-combine-*.sh first" >&2
@@ -29,8 +32,15 @@ if [ ! -f "$SINGLE_AOT" ]; then
   exit 1
 fi
 
-log "Java version:"
-java -version
+log "Java version(s):"
+echo "no-AOT java:    $JAVA_NO_BIN"
+"$JAVA_NO_BIN" -version
+echo
+echo "single-AOT java: $JAVA_SINGLE_BIN"
+"$JAVA_SINGLE_BIN" -version
+echo
+echo "tree-AOT java:   $JAVA_TREE_BIN"
+"$JAVA_TREE_BIN" -version
 echo
 
 mkdir -p "$TMP"
@@ -155,9 +165,9 @@ run_op() {
   local -a cmd_no cmd_tree cmd_single
   local ms_no ms_tree ms_single
 
-  cmd_no=(java -cp "$CP" "$MAIN" "$@")
-  cmd_tree=(java -XX:AOTCache="$AOT" -cp "$CP" "$MAIN" "$@")
-  cmd_single=(java -XX:AOTCache="$SINGLE_AOT" -cp "$CP" "$MAIN" "$@")
+  cmd_no=("$JAVA_NO_BIN" -cp "$CP" "$MAIN" "$@")
+  cmd_tree=("$JAVA_TREE_BIN" -XX:AOTCache="$AOT" -cp "$CP" "$MAIN" "$@")
+  cmd_single=("$JAVA_SINGLE_BIN" -XX:AOTCache="$SINGLE_AOT" -cp "$CP" "$MAIN" "$@")
 
   ms_no="$(measure_ms "$label" "no" "${cmd_no[@]}")"
   update_stats "${label}|no" "$ms_no"
