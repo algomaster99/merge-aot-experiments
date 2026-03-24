@@ -109,7 +109,7 @@ print_summary() {
   local runs="$1"
 
   # Operation labels (must match the workload below).
-  local -a ops=("export:text" "export:images" "render" "fromtext" "split" "merge" "decode" "overlay")
+  local -a ops=("encrypt" "decrypt" "export:text" "export:images" "render" "fromtext" "split" "merge" "decode" "overlay")
 
   echo
   log "Aggregated timing over ${runs} runs (ms)"
@@ -195,6 +195,12 @@ if ! [[ "$RUNS" =~ ^[0-9]+$ ]] || [ "$RUNS" -lt 1 ]; then
 fi
 
 workload_once() {
+  run_op "encrypt" \
+    encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
+
+  run_op "decrypt" \
+    decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
+
   run_op "export:text" \
     export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
 
