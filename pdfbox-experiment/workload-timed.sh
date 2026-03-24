@@ -160,61 +160,120 @@ print_summary() {
 }
 
 print_class_load_row() {
-  local label="$1"; shift
-  local classload_log="$TMP/classload-${label//:/-}.log"
+  local mode="$1"; local label="$2"; shift 2
+  local classload_log="$TMP/classload-${label//:/-}-${mode}.log"
   local file_count shared_count
+  local -a cmd
 
-  "$JAVA_TREE_BIN" -Xlog:class+load -XX:AOTCache="$AOT" -cp "$CP" "$MAIN" "$@" >"$classload_log" 2>&1
+  case "$mode" in
+    no)
+      cmd=("$JAVA_NO_BIN" -Xlog:class+load -cp "$CP" "$MAIN" "$@")
+      ;;
+    tree)
+      cmd=("$JAVA_TREE_BIN" -Xlog:class+load -XX:AOTCache="$AOT" -cp "$CP" "$MAIN" "$@")
+      ;;
+    single)
+      cmd=("$JAVA_SINGLE_BIN" -Xlog:class+load -XX:AOTCache="$SINGLE_AOT" -cp "$CP" "$MAIN" "$@")
+      ;;
+    *)
+      echo "Unknown class-load mode: $mode" >&2
+      return 1
+      ;;
+  esac
 
-  file_count="$(
-    awk '/source: file:/{count++} END{print count+0}' "$classload_log"
-  )"
-  shared_count="$(
-    awk '/source: shared object[s]? file/{count++} END{print count+0}' "$classload_log"
-  )"
+  "${cmd[@]}" >"$classload_log" 2>&1
 
-  printf "  %-16s | %8s | %8s\n" "$label" "$file_count" "$shared_count"
+  file_count="$(awk '/source: file:/{count++} END{print count+0}' "$classload_log")"
+  shared_count="$(awk '/source: shared object[s]? file/{count++} END{print count+0}' "$classload_log")"
+
+  printf "  %-16s | %-6s | %8s | %8s\n" "$label" "$mode" "$file_count" "$shared_count"
 }
 
 print_class_load_summary() {
-  log "Class-load source summary per workload (captured once with tree.aot + -Xlog:class+load)"
+  log "Class-load source summary per workload (captured once per mode with -Xlog:class+load)"
   sep
-  printf "  %-16s | %8s | %8s\n" "Operation" "file:" "shared"
+  printf "  %-16s | %-6s | %8s | %8s\n" "Operation" "Mode" "file:" "shared"
 
-  print_class_load_row "encrypt" \
+  print_class_load_row "no" "encrypt" \
+    encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
+  print_class_load_row "tree" "encrypt" \
+    encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
+  print_class_load_row "single" "encrypt" \
     encrypt -O 123 -U 123 --input "$PDF" --output "$TMP/$BASE-locked.pdf"
 
-  print_class_load_row "decrypt" \
+  print_class_load_row "no" "decrypt" \
+    decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
+  print_class_load_row "tree" "decrypt" \
+    decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
+  print_class_load_row "single" "decrypt" \
     decrypt -password 123 --input "$TMP/$BASE-locked.pdf" --output "$TMP/$BASE-unlocked.pdf"
 
-  print_class_load_row "export:text" \
+  print_class_load_row "no" "export:text" \
+    export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
+  print_class_load_row "tree" "export:text" \
+    export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
+  print_class_load_row "single" "export:text" \
     export:text --input "$PDF" --output "$TMP/$BASE-text.txt"
 
-  print_class_load_row "export:images" \
+  print_class_load_row "no" "export:images" \
+    export:images --input "$PDF"
+  print_class_load_row "tree" "export:images" \
+    export:images --input "$PDF"
+  print_class_load_row "single" "export:images" \
     export:images --input "$PDF"
 
-  print_class_load_row "render" \
+  print_class_load_row "no" "render" \
+    render --input "$PDF"
+  print_class_load_row "tree" "render" \
+    render --input "$PDF"
+  print_class_load_row "single" "render" \
     render --input "$PDF"
 
-  print_class_load_row "fromtext" \
+  print_class_load_row "no" "fromtext" \
+    fromtext --input "$TMP/$BASE-text.txt" \
+             --output "$TMP/$BASE-from-text.pdf" \
+             -standardFont Times-Roman
+  print_class_load_row "tree" "fromtext" \
+    fromtext --input "$TMP/$BASE-text.txt" \
+             --output "$TMP/$BASE-from-text.pdf" \
+             -standardFont Times-Roman
+  print_class_load_row "single" "fromtext" \
     fromtext --input "$TMP/$BASE-text.txt" \
              --output "$TMP/$BASE-from-text.pdf" \
              -standardFont Times-Roman
 
-  print_class_load_row "split" \
+  print_class_load_row "no" "split" \
+    split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
+  print_class_load_row "tree" "split" \
+    split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
+  print_class_load_row "single" "split" \
     split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE"
 
-  print_class_load_row "merge" \
+  print_class_load_row "no" "merge" \
+    merge --input "$TMP/split-$BASE-1.pdf" \
+          --output "$TMP/merged-$BASE.pdf"
+  print_class_load_row "tree" "merge" \
+    merge --input "$TMP/split-$BASE-1.pdf" \
+          --output "$TMP/merged-$BASE.pdf"
+  print_class_load_row "single" "merge" \
     merge --input "$TMP/split-$BASE-1.pdf" \
           --output "$TMP/merged-$BASE.pdf"
 
-  print_class_load_row "decode" \
+  print_class_load_row "no" "decode" \
+    decode "$PDF" "$TMP/$BASE-decoded.pdf"
+  print_class_load_row "tree" "decode" \
+    decode "$PDF" "$TMP/$BASE-decoded.pdf"
+  print_class_load_row "single" "decode" \
     decode "$PDF" "$TMP/$BASE-decoded.pdf"
 
-  print_class_load_row "overlay" \
+  print_class_load_row "no" "overlay" \
+    overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
+  print_class_load_row "tree" "overlay" \
+    overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
+  print_class_load_row "single" "overlay" \
     overlay -default "$PDF" --input "$PDF" --output "$TMP/$BASE-overlay.pdf"
 
-  info "raw class-load logs: $TMP/classload-*.log"
+  info "raw class-load logs: $TMP/classload-*-{no,tree,single}.log"
   echo
 }
 
