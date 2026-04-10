@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 log "Java version:"
 java -version
 
-MCS_JAR="$SCRIPT_DIR/mcs/target/mcs-0.9.8-SNAPSHOT.jar"
+MCS_JAR="$SCRIPT_DIR/mcs/target/mcs-0.9.7.jar"
 
 CACHE_PATHS=(
   "$SCRIPT_DIR/mcs-deps/jackson-jr/jr-objects/cache.aot"
