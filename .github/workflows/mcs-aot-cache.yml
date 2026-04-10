@@ -1,0 +1,96 @@
+name: MCS AOT Cache (tree-merge)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tree-combine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Other dependencies are not working with tree-merge
+      # See mcs-experiment/README.md for more details
+
+      - name: Build jackson-jr (jr-objects) cache (tree-merge)
+        working-directory: mcs-experiment/mcs-deps/jackson-jr
+        run: |
+          set -euo pipefail
+          mvn test -Ptree-merge -q --projects jr-objects
+          test -f jr-objects/cache.aot
+
+      - name: Build mcs cache + uber-jar (tree-merge)
+        working-directory: mcs-experiment/mcs
+        run: |
+          set -euo pipefail
+          mvn package -Ptree-merge -q
+          test -f cache.aot
+          test -f target/mcs-0.9.8-SNAPSHOT.jar
+
+      - name: Create tree.aot
+        working-directory: mcs-experiment
+        run: |
+          set -euo pipefail
+          chmod +x orchestrate-combine.sh
+          tree_out=$(./orchestrate-combine.sh 2>&1)
+          echo "$tree_out"
+          tree_out_clean=$(echo "$tree_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## tree.aot creation"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$tree_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f tree.aot
+
+      - name: Run timed workload
+        working-directory: mcs-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed.sh
+          wl_out=$(./workload-timed.sh 2>&1)
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no-AOT vs tree)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
