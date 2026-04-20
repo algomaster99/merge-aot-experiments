@@ -1,0 +1,161 @@
+name: Commons Compress Distributed AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tree-combine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build commons-lang3 cache (tree-merge)
+        working-directory: commons-compress-experiment/commons-compress-deps/commons-lang
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build commons-codec cache (tree-merge)
+        working-directory: commons-compress-experiment/commons-compress-deps/commons-codec
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build commons-io cache (tree-merge)
+        working-directory: commons-compress-experiment/commons-compress-deps/apache-commons-io
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build commons-compress cache (tree-merge)
+        working-directory: commons-compress-experiment/commons-compress
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build benchmark fat jar
+        working-directory: commons-compress-experiment/benchmark
+        run: mvn package -DskipTests -q
+
+      - name: Set up default JDK 25 (no-AOT baseline)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Capture Temurin java path
+        run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Re-enable custom JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Create tree.aot (orchestrate-combine.sh)
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+          chmod +x orchestrate-combine.sh
+          combine_out=$(./orchestrate-combine.sh 2>&1)
+          echo "$combine_out"
+          combine_out_clean=$(echo "$combine_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## tree.aot creation (orchestrate-combine)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$combine_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f tree.aot
+
+      - name: Run timed workload
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed.sh
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_TREE_BIN="$JAVA_HOME/bin/java" ./workload-timed.sh 2>&1)
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no-AOT vs tree)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Write artifact summary
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+
+          {
+            echo "## Distributed AOT artifact summary"
+            echo
+            echo "| Artifact | Cache path | Size |"
+            echo "|---|---|---|"
+            echo "| commons-lang3 | \`commons-compress-deps/commons-lang/cache.aot\` | $(du -h commons-compress-deps/commons-lang/cache.aot | awk '{print $1}') |"
+            echo "| commons-codec | \`commons-compress-deps/commons-codec/cache.aot\` | $(du -h commons-compress-deps/commons-codec/cache.aot | awk '{print $1}') |"
+            echo "| commons-io | \`commons-compress-deps/apache-commons-io/cache.aot\` | $(du -h commons-compress-deps/apache-commons-io/cache.aot | awk '{print $1}') |"
+            echo "| commons-compress | \`commons-compress/cache.aot\` | $(du -h commons-compress/cache.aot | awk '{print $1}') |"
+            echo "| tree | \`tree.aot\` | $(du -h tree.aot | awk '{print $1}') |"
+            echo
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Commons Compress workload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: commons-compress-tree-artifacts
+          path: |
+            commons-compress-experiment/workload-tmp/
+            commons-compress-experiment/tree.aot
+            commons-compress-experiment/commons-compress/cache.aot
+            commons-compress-experiment/commons-compress-deps/commons-lang/cache.aot
+            commons-compress-experiment/commons-compress-deps/commons-codec/cache.aot
+            commons-compress-experiment/commons-compress-deps/apache-commons-io/cache.aot
+          if-no-files-found: error
