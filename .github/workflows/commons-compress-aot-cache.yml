@@ -113,7 +113,7 @@ jobs:
         run: |
           set -euo pipefail
           chmod +x workload-timed.sh
-          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_TREE_BIN="$JAVA_HOME/bin/java" ./workload-timed.sh 2>&1)
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_TREE_BIN="$JAVA_HOME/bin/java" ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
           echo "$wl_out"
           wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
 
