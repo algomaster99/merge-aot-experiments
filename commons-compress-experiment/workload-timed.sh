@@ -77,7 +77,15 @@ run_mode_op() {
   local op="$2"
   case "$mode" in
     no)
-      "$JAVA_NO_BIN" -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+      "$JAVA_NO_BIN" \
+        --add-modules java.instrument \
+        --add-opens java.base/java.io=ALL-UNNAMED \
+        --add-opens java.base/java.lang=ALL-UNNAMED \
+        --add-opens java.base/java.lang.reflect=ALL-UNNAMED \
+        --add-opens java.base/java.time=ALL-UNNAMED \
+        --add-opens java.base/java.time.chrono=ALL-UNNAMED \
+        --add-opens java.base/java.util=ALL-UNNAMED \
+        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
       ;;
     tree)
       "$JAVA_TREE_BIN" -XX:AOTCache="$AOT" \
@@ -135,7 +143,15 @@ print_class_load_row() {
 
   case "$mode" in
     no)
-      "$JAVA_NO_BIN" -Xlog:class+load -cp "$CP" "$MAIN" "$op" "$WORK_DIR" >"$classload_log" 2>&1
+      "$JAVA_NO_BIN" -Xlog:class+load \
+        --add-modules java.instrument \
+        --add-opens java.base/java.io=ALL-UNNAMED \
+        --add-opens java.base/java.lang=ALL-UNNAMED \
+        --add-opens java.base/java.lang.reflect=ALL-UNNAMED \
+        --add-opens java.base/java.time=ALL-UNNAMED \
+        --add-opens java.base/java.time.chrono=ALL-UNNAMED \
+        --add-opens java.base/java.util=ALL-UNNAMED \
+        -cp "$CP" "$MAIN" "$op" "$WORK_DIR" >"$classload_log" 2>&1
       ;;
     tree)
       "$JAVA_TREE_BIN" -Xlog:class+load -XX:AOTCache="$AOT" \
