@@ -140,7 +140,7 @@ jobs:
         run: |
           set -euo pipefail
           chmod +x workload-timed.sh
-          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_MONOLITHIC_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_MERGED_BIN="$JAVA_HOME/bin/java" ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_TREECACHE_BIN="$JAVA_HOME/bin/java" ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
           echo "$wl_out"
           wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
 
@@ -148,7 +148,7 @@ jobs:
           tree_size=$(du -h tree.aot | awk '{print $1}')
 
           {
-            echo "## Timed workload results (no-AOT vs monolithic vs merged)"
+            echo "## Timed workload results (no-AOT vs AOTCache vs TreeCache)"
             echo
             echo "- single-*.aot total: ${single_size}"
             echo "- tree.aot: ${tree_size}"
@@ -162,7 +162,7 @@ jobs:
         working-directory: commons-validator-experiment
         run: |
           {
-            echo "## LaTeX table rows (single=monolithic, tree=merged)"
+            echo "## LaTeX table rows (single=AOTCache, tree=TreeCache)"
             echo
             echo '```latex'
             cat workload-tmp/latex-rows.tex

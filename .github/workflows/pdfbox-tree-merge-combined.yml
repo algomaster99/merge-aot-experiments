@@ -90,7 +90,7 @@ jobs:
 
           test -f pdfbox-deps/commons-logging-workload/cache.aot
 
-      - name: Set up Temurin JDK ${{ inputs.baseline_jdk || '24' }} (no-AOT baseline + monolithic)
+      - name: Set up Temurin JDK ${{ inputs.baseline_jdk || '24' }} (no-AOT baseline + AOTCache)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -99,7 +99,7 @@ jobs:
       - name: Capture Temurin java path
         run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
 
-      - name: Create per-op monolithic AOT caches
+      - name: Create per-op AOTCache AOT caches
         working-directory: pdfbox-experiment
         run: |
           set -euo pipefail
@@ -139,7 +139,7 @@ jobs:
 
           test -f tree.aot
 
-      - name: Verify merged AOT cache coverage
+      - name: Verify TreeCache AOT cache coverage
         working-directory: pdfbox-experiment
         run: |
           set -euo pipefail
@@ -165,14 +165,14 @@ jobs:
         run: |
           set -euo pipefail
           chmod +x workload-timed.sh
-          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_MONOLITHIC_BIN="$TEMURIN_JAVA_HOME/bin/java" ./workload-timed.sh 2>&1)
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" ./workload-timed.sh 2>&1)
           echo "$wl_out"
           wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
 
           tree_size=$(du -h tree.aot | awk '{print $1}')
 
           {
-            echo "## Timed workload results (no-AOT vs monolithic vs tree)"
+            echo "## Timed workload results (no-AOT vs AOTCache vs tree)"
             echo
             echo "- tree.aot: ${tree_size}"
             echo
@@ -185,7 +185,7 @@ jobs:
         working-directory: pdfbox-experiment
         run: |
           {
-            echo "## LaTeX table rows (single=monolithic, tree=merged)"
+            echo "## LaTeX table rows (single=AOTCache, tree=TreeCache)"
             echo
             echo '```latex'
             cat workload-tmp/latex-rows.tex

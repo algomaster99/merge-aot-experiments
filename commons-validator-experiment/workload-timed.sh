@@ -17,7 +17,7 @@ commons-validator-deps/commons-logging/target/classes:\
 commons-validator-deps/commons-collections/target/classes"
 
 SINGLE_DEPS_DIR="single-aot-deps"
-MONOLITHIC_CP="$JAR:\
+AOTCACHE_CP="$JAR:\
 $SINGLE_DEPS_DIR/commons-validator-1.10.1.jar:\
 $SINGLE_DEPS_DIR/commons-beanutils-1.11.0.jar:\
 $SINGLE_DEPS_DIR/commons-digester-2.1.jar:\
@@ -26,27 +26,27 @@ $SINGLE_DEPS_DIR/commons-collections-3.2.2.jar"
 
 MAIN="dev.validatorexp.Main"
 WORK_DIR="workload-tmp"
-MERGED_AOT="tree.aot"
+TREECACHE_AOT="tree.aot"
 RUNS="${RUNS:-30}"
 JAVA_NO_BIN="${JAVA_NO_BIN:-java}"
-JAVA_MONOLITHIC_BIN="${JAVA_MONOLITHIC_BIN:-java}"
-JAVA_MERGED_BIN="${JAVA_MERGED_BIN:-java}"
+JAVA_AOTCACHE_BIN="${JAVA_AOTCACHE_BIN:-java}"
+JAVA_TREECACHE_BIN="${JAVA_TREECACHE_BIN:-java}"
 OPS=("validate-email" "validate-url" "validate-ip" "validate-credit-card")
 
 [[ -f "$JAR" ]] || fail "$JAR not found — run: cd benchmark && mvn package -DskipTests"
 for _op in "${OPS[@]}"; do
   [[ -f "single-${_op}.aot" ]] || fail "single-${_op}.aot not found — run create-single-aot.sh first"
 done
-[[ -f "$MERGED_AOT" ]] || fail "tree.aot not found — run orchestrate-combine.sh first"
+[[ -f "$TREECACHE_AOT" ]] || fail "tree.aot not found — run orchestrate-combine.sh first"
 
 mkdir -p "$WORK_DIR"
 
 log "Java version(s):"
 echo "no-AOT java:         $JAVA_NO_BIN";         "$JAVA_NO_BIN"         -version
 echo
-echo "monolithic-AOT java: $JAVA_MONOLITHIC_BIN"; "$JAVA_MONOLITHIC_BIN" -version
+echo "AOTCache-AOT java: $JAVA_AOTCACHE_BIN"; "$JAVA_AOTCACHE_BIN" -version
 echo
-echo "merged-AOT java:     $JAVA_MERGED_BIN";     "$JAVA_MERGED_BIN"     -version
+echo "TreeCache-AOT java:     $JAVA_TREECACHE_BIN";     "$JAVA_TREECACHE_BIN"     -version
 echo
 
 ms() { date +%s%N | awk '{printf "%.1f", $1/1000000}'; }
@@ -96,7 +96,7 @@ run_no() {
 
 run_mono_cross() {
   local train_op="$1" test_op="$2"
-  "$JAVA_MONOLITHIC_BIN" -XX:AOTCache="single-${train_op}.aot" \
+  "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${train_op}.aot" \
     -XX:+AOTClassLinking \
     --add-modules java.instrument \
     --add-opens java.base/java.io=ALL-UNNAMED \
@@ -105,12 +105,12 @@ run_mono_cross() {
     --add-opens java.base/java.time=ALL-UNNAMED \
     --add-opens java.base/java.time.chrono=ALL-UNNAMED \
     --add-opens java.base/java.util=ALL-UNNAMED \
-    -cp "$MONOLITHIC_CP" "$MAIN" "$test_op"
+    -cp "$AOTCACHE_CP" "$MAIN" "$test_op"
 }
 
-run_merged() {
+run_TreeCache() {
   local op="$1"
-  "$JAVA_MERGED_BIN" -XX:AOTCache="$MERGED_AOT" \
+  "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" \
     -XX:+AOTClassLinking \
     --add-modules java.instrument \
     --add-opens java.base/java.io=ALL-UNNAMED \
@@ -146,8 +146,8 @@ cross_mean() {
     [[ "$test_op" == "$train_op" ]] && continue
     case "$mode" in
       no)     key="${test_op}|no" ;;
-      mono)   key="${train_op}|${test_op}|mono" ;;
-      merged) key="${test_op}|merged" ;;
+      aotcache)   key="${train_op}|${test_op}|aotcache" ;;
+      TreeCache) key="${test_op}|TreeCache" ;;
     esac
     m=$(mean_for_key "$key")
     sum=$(awk "BEGIN{printf \"%.4f\", $sum + $m}")
@@ -163,13 +163,13 @@ for RUN_IDX in $(seq 1 "$RUNS"); do
   printf "  run %2d/%d\n" "$RUN_IDX" "$RUNS"
   for op in "${OPS[@]}"; do
     update_stats "${op}|no"     "$(measure_ms "$op" "no"     run_no     "$op")"
-    update_stats "${op}|merged" "$(measure_ms "$op" "merged" run_merged "$op")"
+    update_stats "${op}|TreeCache" "$(measure_ms "$op" "TreeCache" run_TreeCache "$op")"
   done
   for train_op in "${OPS[@]}"; do
     for test_op in "${OPS[@]}"; do
       [[ "$test_op" == "$train_op" ]] && continue
-      update_stats "${train_op}|${test_op}|mono" \
-        "$(measure_ms "${train_op}>${test_op}" "mono" run_mono_cross "$train_op" "$test_op")"
+      update_stats "${train_op}|${test_op}|aotcache" \
+        "$(measure_ms "${train_op}>${test_op}" "aotcache" run_mono_cross "$train_op" "$test_op")"
     done
   done
 done
@@ -181,18 +181,18 @@ print_summary() {
   log "Cross-workload timing over ${RUNS} runs (ms) — train on X, mean of other 3 ops"
   sep
   printf "  %-20s | %10s | %12s %8s | %12s %8s\n" \
-    "Trained on" "no-mean" "mono-mean" "su-mono" "merged-mean" "su-merged"
+    "Trained on" "no-mean" "aotcache-mean" "su-aotcache" "TreeCache-mean" "su-TreeCache"
   sep
   local train_op
   for train_op in "${OPS[@]}"; do
-    local m_no m_mono m_merged su_mono su_merged
+    local m_no m_mono m_TreeCache su_mono su_TreeCache
     m_no=$(cross_mean "$train_op" "no")
-    m_mono=$(cross_mean "$train_op" "mono")
-    m_merged=$(cross_mean "$train_op" "merged")
+    m_mono=$(cross_mean "$train_op" "aotcache")
+    m_TreeCache=$(cross_mean "$train_op" "TreeCache")
     su_mono=$(awk   -v b="$m_no" -v a="$m_mono"   'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2fx",b/a}}')
-    su_merged=$(awk -v b="$m_no" -v a="$m_merged" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2fx",b/a}}')
+    su_TreeCache=$(awk -v b="$m_no" -v a="$m_TreeCache" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2fx",b/a}}')
     printf "  %-20s | %10s | %12s %8s | %12s %8s\n" \
-      "$train_op" "$m_no" "$m_mono" "$su_mono" "$m_merged" "$su_merged"
+      "$train_op" "$m_no" "$m_mono" "$su_mono" "$m_TreeCache" "$su_TreeCache"
   done
 }
 
@@ -200,28 +200,28 @@ print_latex_rows() {
   local project="$1"
   local n="${#OPS[@]}"
   local tex_file="$WORK_DIR/latex-rows.tex"
-  local sum_su_mono=0 sum_su_merged=0
+  local sum_su_mono=0 sum_su_TreeCache=0
   echo "\\multirow{$(( n + 1 ))}{*}{${project}}" > "$tex_file"
   local train_op
   for train_op in "${OPS[@]}"; do
-    local m_no m_mono m_merged su_mono su_merged fmt_su_mono fmt_su_merged
+    local m_no m_mono m_TreeCache su_mono su_TreeCache fmt_su_mono fmt_su_TreeCache
     m_no=$(cross_mean "$train_op" "no")
-    m_mono=$(cross_mean "$train_op" "mono")
-    m_merged=$(cross_mean "$train_op" "merged")
+    m_mono=$(cross_mean "$train_op" "aotcache")
+    m_TreeCache=$(cross_mean "$train_op" "TreeCache")
     su_mono=$(awk   -v b="$m_no" -v a="$m_mono"   'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
-    su_merged=$(awk -v b="$m_no" -v a="$m_merged" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
+    su_TreeCache=$(awk -v b="$m_no" -v a="$m_TreeCache" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
     sum_su_mono=$(awk  "BEGIN{printf \"%.4f\", $sum_su_mono  + $su_mono}")
-    sum_su_merged=$(awk "BEGIN{printf \"%.4f\", $sum_su_merged + $su_merged}")
-    fmt_su_mono=$(awk   -v a="$su_mono" -v b="$su_merged" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
-    fmt_su_merged=$(awk -v a="$su_mono" -v b="$su_merged" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
-    echo "  & ${train_op} & \$${m_no}\$ & \$${m_mono}\$ & ${fmt_su_mono} & \$${m_merged}\$ & ${fmt_su_merged} \\\\" >> "$tex_file"
+    sum_su_TreeCache=$(awk "BEGIN{printf \"%.4f\", $sum_su_TreeCache + $su_TreeCache}")
+    fmt_su_mono=$(awk   -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
+    fmt_su_TreeCache=$(awk -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
+    echo "  & ${train_op} & \$${m_no}\$ & \$${m_mono}\$ & ${fmt_su_mono} & \$${m_TreeCache}\$ & ${fmt_su_TreeCache} \\\\" >> "$tex_file"
   done
-  local avg_mono avg_merged fmt_avg_mono fmt_avg_merged
+  local avg_mono avg_TreeCache fmt_avg_mono fmt_avg_TreeCache
   avg_mono=$(awk  -v s="$sum_su_mono"   -v n="$n" 'BEGIN{printf "%.2f", s/n}')
-  avg_merged=$(awk -v s="$sum_su_merged" -v n="$n" 'BEGIN{printf "%.2f", s/n}')
-  fmt_avg_mono=$(awk   -v a="$avg_mono" -v b="$avg_merged" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
-  fmt_avg_merged=$(awk -v a="$avg_mono" -v b="$avg_merged" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
-  echo "  & \\textit{Average} & & & ${fmt_avg_mono} & & ${fmt_avg_merged} \\\\" >> "$tex_file"
+  avg_TreeCache=$(awk -v s="$sum_su_TreeCache" -v n="$n" 'BEGIN{printf "%.2f", s/n}')
+  fmt_avg_mono=$(awk   -v a="$avg_mono" -v b="$avg_TreeCache" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
+  fmt_avg_TreeCache=$(awk -v a="$avg_mono" -v b="$avg_TreeCache" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
+  echo "  & \\textit{Average} & & & ${fmt_avg_mono} & & ${fmt_avg_TreeCache} \\\\" >> "$tex_file"
   echo "\\midrule" >> "$tex_file"
 }
 
@@ -245,8 +245,8 @@ print_class_load_row() {
         --add-opens java.base/java.util=ALL-UNNAMED \
         -cp "$CP" "$MAIN" "$op" >/dev/null
       ;;
-    monolithic)
-      "$JAVA_MONOLITHIC_BIN" -XX:AOTCache="single-${op}.aot" \
+    AOTCache)
+      "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${op}.aot" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
         --add-modules java.instrument \
@@ -256,10 +256,10 @@ print_class_load_row() {
         --add-opens java.base/java.time=ALL-UNNAMED \
         --add-opens java.base/java.time.chrono=ALL-UNNAMED \
         --add-opens java.base/java.util=ALL-UNNAMED \
-        -cp "$MONOLITHIC_CP" "$MAIN" "$op" >/dev/null
+        -cp "$AOTCACHE_CP" "$MAIN" "$op" >/dev/null
       ;;
-    merged)
-      "$JAVA_MERGED_BIN" -XX:AOTCache="$MERGED_AOT" \
+    TreeCache)
+      "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
         --add-modules java.instrument \
@@ -279,13 +279,13 @@ print_class_load_row() {
 }
 
 echo
-log "Class-load source summary per workload (monolithic uses same-workload cache)"
+log "Class-load source summary per workload (AOTCache uses same-workload cache)"
 sep
 printf "  %-24s | %-10s | %8s | %8s\n" "Operation" "Mode" "file:" "shared"
 sep
 for op in "${OPS[@]}"; do
   print_class_load_row "no" "$op"
-  print_class_load_row "monolithic" "$op"
-  print_class_load_row "merged" "$op"
+  print_class_load_row "AOTCache" "$op"
+  print_class_load_row "TreeCache" "$op"
   sep
 done
