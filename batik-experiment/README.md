@@ -19,7 +19,7 @@ workload only and represents the narrowest useful cache.
 | `commons-logging:commons-logging` | 1.3.0 | Logging façade used by xmlgraphics-commons | Custom workload — `batik-deps/commons-logging-workload/` |
 | `xml-apis:xml-apis` | 1.4.01 | W3C DOM / SAX / JAXP interface stubs | Custom workload — `batik-deps/xml-apis-workload/` |
 | `xml-apis:xml-apis-ext` | 1.3.04 | SVG DOM interface stubs (`org.w3c.dom.svg.*`) | Custom workload — `batik-deps/xml-apis-ext-workload/` |
-| `org.mozilla:rhino` | 1.7.7 | ECMAScript engine; loaded lazily when SVG `<script>` runs | Covered by batik test suite — already a transitive dep of `batik-script` and `batik-bridge` |
+
 
 ---
 
