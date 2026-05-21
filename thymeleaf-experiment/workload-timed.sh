@@ -36,7 +36,9 @@ echo
 # ─── run helpers ─────────────────────────────────────────────────────────────
 
 _run_no()     { "$JAVA_NO_BIN"     -jar "$FAT_JAR" "$1"; }
-_run_treecache() { "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" -XX:+AOTClassLinking -jar "$FAT_JAR" "$1"; }
+_run_treecache() { "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" -XX:+AOTClassLinking \
+  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED \
+  -jar "$FAT_JAR" "$1"; }
 
 # train_op determines which single-{op}.aot to load; test_op is the workload run.
 _run_aotcache_cross() {
@@ -225,6 +227,7 @@ _classload_row() {
     AOTCache) "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${op}.aot" -XX:+AOTClassLinking \
                   -Xlog:class+load:file="$logfile" -jar "$FAT_JAR" "$op" >/dev/null 2>&1 ;;
     TreeCache)     "$JAVA_TREECACHE_BIN"     -XX:AOTCache="$TREECACHE_AOT" -XX:+AOTClassLinking \
+                  --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED \
                   -Xlog:class+load:file="$logfile" -jar "$FAT_JAR" "$op" >/dev/null 2>&1 ;;
   esac
   printf "  %-16s | %-10s | %8s | %8s\n" "$op" "$mode" \
