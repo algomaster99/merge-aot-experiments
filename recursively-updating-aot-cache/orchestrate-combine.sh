@@ -27,8 +27,8 @@ log "math.aot created."
 
 # It should not matter which is the base cache
 log "Combining AOT caches..."
-java -Xlog:aot+merge=info -XX:AOTMode=merge -XX:AOTCache=sub/sub.aot \
-      -XX:AOTMergeInputs="add/add.aot:mul/mul.aot:math/math.aot" \
+java -Xlog:aot+merge=info -XX:AOTMode=merge \
+      -XX:AOTMergeInputs="sub/sub.aot:add/add.aot:mul/mul.aot:math/math.aot" \
       -XX:AOTCacheOutput=tree-combined.aot \
       -cp "add/target/add-1.0-SNAPSHOT.jar:mul/target/mul-1.0-SNAPSHOT.jar:math/target/math-1.0-SNAPSHOT.jar" \
       -version
