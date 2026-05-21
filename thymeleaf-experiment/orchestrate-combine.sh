@@ -17,7 +17,7 @@ java -version
 #   thymeleaf-deps/attoparser/               mvn test -Ptree-merge
 #   thymeleaf-deps/ognl/                     mvn test -Ptree-merge
 #   thymeleaf-deps/slf4j/                    mvn test -Ptree-merge -pl slf4j-api
-#   thymeleaf-deps/unbescape-workload/       mvn package && java -XX:AOTCacheOutput=cache.aot -jar target/unbescape-workload-fat.jar
+#   thymeleaf-deps/unbescape-workload/       mvn package && java --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED -XX:AOTCacheOutput=cache.aot -jar target/unbescape-workload-fat.jar
 CACHE_PATHS=(
   "thymeleaf/tests/thymeleaf-tests-core/cache.aot"
   "thymeleaf-deps/attoparser/cache.aot"
@@ -42,6 +42,8 @@ rm -f "$OUTPUT_AOT"
 log "Merging ${#CACHE_PATHS[@]} caches → $OUTPUT_AOT"
 java -Xlog:aot=info \
   -Xlog:aot+link:file="aotlink-tree-create.log" \
+  --add-opens java.base/java.lang=ALL-UNNAMED \
+  --add-opens java.base/java.util=ALL-UNNAMED \
   -XX:AOTMode=merge \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
