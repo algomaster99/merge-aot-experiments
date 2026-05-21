@@ -43,13 +43,14 @@ done
 [[ "$MISSING" -eq 0 ]] || exit 1
 log "All ${#CACHE_PATHS[@]} module caches found."
 
+BASE_AOT="commons-configuration/cache.aot"
 OUTPUT_AOT="tree.aot"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 CLASSPATH="$(IFS=:; echo "${CP_ENTRIES[*]}")"
 
 rm -f "$OUTPUT_AOT"
 
-log "Creating $OUTPUT_AOT (${#CACHE_PATHS[@]} inputs)"
+log "Creating $OUTPUT_AOT (base=$BASE_AOT, ${#CACHE_PATHS[@]} inputs)"
 java -Xlog:aot \
     -Xlog:aot=info \
     -Xlog:aot+link:file="aotlink-tree-create.log" \
@@ -60,6 +61,7 @@ java -Xlog:aot \
     --add-opens java.base/java.time=ALL-UNNAMED \
     --add-opens java.base/java.time.chrono=ALL-UNNAMED \
     --add-opens java.base/java.util=ALL-UNNAMED \
+    -XX:AOTCache="$BASE_AOT" \
     -XX:AOTMergeInputs="$MERGE_INPUTS" \
     -XX:AOTCacheOutput="$OUTPUT_AOT" \
     -cp "$CLASSPATH" \
