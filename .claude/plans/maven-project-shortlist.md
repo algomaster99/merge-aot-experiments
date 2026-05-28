@@ -108,3 +108,103 @@ Constraints: Maven only, JDK > 5, no `module-info.java` (source or MR-JAR) anywh
 - [ ] Investigate tika-core as secondary candidate if commons-validator has low AOT benefit
 - [ ] Check `xnio-api` for `module-info` if undertow is considered
 - [ ] Drop Velocity 2.3 if commons-validator clears verification (similar dep domain)
+
+---
+---
+
+## DaCapo Chopin (ASPLOS 2025) + sbom.exe rq3/rq4 audit
+
+Source projects from Blackburn et al., *Rethinking Java Performance Analysis*
+(DaCapo 23.11-chopin, ASPLOS 2025) and the audited application set in
+`chains-project/exploits-for-sbom.exe/rq3_rq4`. Each candidate was checked
+against the standard filters: **Maven** (no Gradle/Ant), **no `module-info.java`**
+in source or transitive deps, **no runtime instrumentation**, **hermetic**
+(no network/DB/server), and a **non-trivial but buildable dep tree**.
+
+### Full DaCapo Chopin verdict table (22 benchmarks)
+
+| Benchmark | Underlying lib/app | Build | Verdict |
+|---|---|---|---|
+| **batik** | Apache Batik (SVG) | Maven | ✅ **DONE** (existing experiment) |
+| **pdfbox** *(via fop/sbom)* | Apache PDFBox | Maven | ✅ **DONE** (existing experiment) |
+| **fop** | Apache FOP (XSL-FO → PDF/PS/PCL/RTF/TXT/PNG) | Maven | ✅ **IMPLEMENTED — see `fop-experiment/`** |
+| biojava | BioJava (bioinformatics) | Maven | ✅ **IMPLEMENTED — see `biojava-experiment/`** (log4j/jaxb excluded; mitigation applied) |
+| pmd | PMD (static analysis) | Maven | ⚠️ Candidate — Saxon-HE 12.9 ships a real `module-info` (blocker unless excluded) |
+| zxing | ZXing (barcodes) | Maven | ❌ `core` has **zero** compile deps → no dep tree to distribute (like jsoup/guava) |
+| xalan | Apache Xalan-J (XSLT) | Ant | ❌ Ant build (cf. Xerces2) |
+| sunflow | Sunflow (ray tracer) | Ant | ❌ Ant build; pulls `janino` (runtime compiler) |
+| h2 | H2 Database | Ant/custom | ❌ Self-contained DB, no compile-scope deps (already rejected) |
+| avrora | AVR simulator | binary/Ant | ❌ Binary only, pre-Maven, no source build |
+| eclipse | Eclipse JDT | (PDE/Tycho) | ❌ OSGi/Equinox + bundle module system |
+| graphchi | GraphChi-java | Maven+Scala | ❌ Scala compile failure (cf. JaCoP) |
+| jython | Jython | Ant/Gradle | ❌ Build system; generates bytecode at runtime (instrumentation) |
+| spring | Spring Boot petclinic | Gradle | ❌ Gradle; cglib/ByteBuddy runtime instrumentation |
+| tomcat | Apache Tomcat | Ant | ❌ Server app, Ant, needs network |
+| tradebeans/tradesoap | DayTrader on Geronimo | (app server) | ❌ Full Jakarta EE app server |
+| luindex/lusearch | Apache Lucene | Gradle | ❌ Gradle; Lucene ships `module-info` |
+| kafka | Apache Kafka | Gradle | ❌ Gradle; needs broker |
+| cassandra | Apache Cassandra | Ant | ❌ Ant; DB server |
+| h2o | H2O ML | Gradle | ❌ Gradle |
+| jme | jMonkeyEngine | Gradle | ❌ Gradle |
+
+### sbom.exe rq3/rq4 extras (not already covered above)
+
+| Project | Build | Verdict |
+|---|---|---|
+| graphhopper | Maven | ⏸️ Deferred — ~20 deps to fork manually; needs OSM data files at runtime |
+| ttorrent | Maven | ❌ BitTorrent — network/peers required, thin workload diversity |
+
+---
+
+## New verified candidate: Apache FOP — IMPLEMENTED
+
+**Status:** scaffolded in `fop-experiment/` (benchmark + scripts + README),
+benchmark compiled and all six workloads executed on JDK 21.
+
+- **Repo:** apache/xmlgraphics-fop (release `fop-2.10`)
+- **Build:** Maven (Ant deprecated since 2.2). **No `module-info.java`** in source.
+- **Runtime deps (compile scope of fop-core 2.10):** batik 1.18 (anim, awt-util,
+  bridge, extension, gvt, transcoder, codec), xmlgraphics-commons 2.10,
+  commons-io 2.11.0, commons-logging 1.3.0, fontbox, fop-events, fop-util.
+  `pdfbox`, `xalan`, `jai`, `bouncycastle`, `ant`, servlet-api are `provided`/`test`
+  → **not** on the runtime classpath.
+- **Fork reuse:** the dep tree is the union of the existing **batik** and **pdfbox**
+  experiments' forks (batik, xmlgraphics-commons, commons-io, commons-logging,
+  fontbox). Only fop-core/events/util are new — low setup cost.
+- **Workloads (6):** `fo-to-pdf`, `fo-to-ps`, `fo-to-pcl`, `fo-to-rtf`,
+  `fo-to-txt`, `fo-to-png` — same FO document, different renderer subtree.
+- **Why TreeCache should win (measured):** 808 classes shared by all six
+  workloads, **1612** in the union — ~50% of the loaded library surface is
+  workload-specific (~200 disjoint `render.*` classes per format). A monolithic
+  single-workload cache misses the other renderers; the merged `tree.aot` (from
+  dep test suites) covers the union. This is the same divergence that produced
+  TreeCache's biggest margin in batik (1.61x vs 1.23x).
+
+## Secondary candidates (need module-info mitigation)
+
+### biojava 7.2.5 — IMPLEMENTED (mitigation confirmed)
+- **Build:** Maven. No `module-info.java` in source.
+- **Diversity:** highest ratio of any candidate — only **18** classes shared by
+  all six workloads vs **139** in the union (~87% workload-specific), measured on
+  JDK 21. Absolute counts are small (lightweight library).
+- **Blocker → resolved:** `biojava-core`/`-alignment` declared `log4j-core`
+  (MR-JAR `module-info`) and `jaxb-runtime` (`module-info`). Confirmed via
+  `git grep` that BioJava logs **only** through `slf4j-api` and **never**
+  references JAXB in main source ⇒ both excluded; `slf4j-simple` provides the
+  binding. `forester 1.039` (alignment's phylo dep) has no `module-info`; its
+  dead `openchart` transitive dep is excluded (not on the pairwise path).
+  Remaining `module-info` JARs are slf4j-api/-simple, stripped by the existing
+  slf4j fork. **Benchmark compiles and all six workloads run on JDK 21.**
+- **Forks needed:** biojava (one fork → core + alignment modules), forester
+  (custom workload), commons-codec (reuse), slf4j (reuse). See
+  `biojava-experiment/README.md` and `.github/workflows/biojava-aot-cache.yml`.
+
+### pmd 7.x
+- **Build:** Maven. No real `module-info.java` (only a test fixture).
+- **Diversity:** different rulesets (best-practices/design/errorprone/performance)
+  and languages (Java/JS/XML) load distinct rule + parser subtrees.
+- **Dep tree:** slf4j-api, antlr4-runtime, commons-lang3, asm, gson, pcollections,
+  nice-xml-messages — a healthy distributable tree.
+- **Blocker:** `Saxon-HE 12.9` (used for XPath rules, core to PMD) ships a real
+  `module-info.class`. Unless Saxon can be excluded (it largely cannot for XPath
+  rules), pmd is blocked — same class of issue as Woodstox/Log4j2.
