@@ -139,6 +139,32 @@ _cross_stddev() {
     END{ if(n<2){print "n/a"} else{printf "%.1f",sqrt((sumsq-sum*sum/n)/(n-1))} }'
 }
 
+# Mean time of test_op when run with caches trained on each other op.
+_test_mean_aotcache() {
+  local test_op="$1" sum=0 n=0 train_op key m
+  for train_op in "${OPS[@]}"; do
+    [[ "$train_op" == "$test_op" ]] && continue
+    key="${train_op}|${test_op}|aotcache"
+    m=$(_mean "$key")
+    sum=$(awk "BEGIN{printf \"%.4f\", $sum + $m}")
+    n=$(( n + 1 ))
+  done
+  awk -v s="$sum" -v n="$n" 'BEGIN{printf "%.1f", s/n}'
+}
+
+# Pooled SD of test_op across all caches trained on other ops.
+_test_stddev_aotcache() {
+  local test_op="$1" all_samples="" train_op key
+  for train_op in "${OPS[@]}"; do
+    [[ "$train_op" == "$test_op" ]] && continue
+    key="${train_op}|${test_op}|aotcache"
+    all_samples="$all_samples ${_samples[$key]:-}"
+  done
+  printf "%s\n" $all_samples | awk '
+    {sum+=$1; sumsq+=$1*$1; n++}
+    END{ if(n<2){print "n/a"} else{printf "%.1f",sqrt((sumsq-sum*sum/n)/(n-1))} }'
+}
+
 # ─── main measurement loop ───────────────────────────────────────────────────
 
 log "Running $RUNS iterations × ${#OPS[@]} ops (cross-workload)"
@@ -163,22 +189,22 @@ done
 # ─── results ─────────────────────────────────────────────────────────────────
 
 echo
-log "Cross-workload timing over $RUNS runs (ms) — train on X, mean±SD of other 3 ops"
+log "Per-workload timing over $RUNS runs (ms) — AOTCache uses caches trained on other ops"
 sep
 printf "  %-16s | %18s | %20s %8s | %20s %8s\n" \
-  "Trained on" "no (mean±SD)" "aotcache (mean±SD)" "su-aotcache" "TreeCache (mean±SD)" "su-TreeCache"
+  "Workload" "no (mean±SD)" "aotcache (mean±SD)" "su-aotcache" "TreeCache (mean±SD)" "su-TreeCache"
 sep
-for train_op in "${OPS[@]}"; do
-  m_no=$(_cross_mean "$train_op" "no")
-  m_mono=$(_cross_mean "$train_op" "aotcache")
-  m_TreeCache=$(_cross_mean "$train_op" "TreeCache")
-  sd_no=$(_cross_stddev "$train_op" "no")
-  sd_mono=$(_cross_stddev "$train_op" "aotcache")
-  sd_TreeCache=$(_cross_stddev "$train_op" "TreeCache")
+for op in "${OPS[@]}"; do
+  m_no=$(_mean "${op}|no")
+  m_mono=$(_test_mean_aotcache "$op")
+  m_TreeCache=$(_mean "${op}|TreeCache")
+  sd_no=$(_stddev "${op}|no")
+  sd_mono=$(_test_stddev_aotcache "$op")
+  sd_TreeCache=$(_stddev "${op}|TreeCache")
   su_mono=$(awk   -v b="$m_no" -v a="$m_mono"   'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2fx",b/a}}')
   su_TreeCache=$(awk -v b="$m_no" -v a="$m_TreeCache" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2fx",b/a}}')
   printf "  %-16s | %18s | %20s %8s | %20s %8s\n" \
-    "$train_op" "${m_no}±${sd_no}" "${m_mono}±${sd_mono}" "$su_mono" "${m_TreeCache}±${sd_TreeCache}" "$su_TreeCache"
+    "$op" "${m_no}±${sd_no}" "${m_mono}±${sd_mono}" "$su_mono" "${m_TreeCache}±${sd_TreeCache}" "$su_TreeCache"
 done
 
 # ─── LaTeX rows ──────────────────────────────────────────────────────────────
@@ -189,22 +215,22 @@ _print_latex_rows() {
   local tex_file="$WORK_DIR/latex-rows.tex"
   local sum_su_mono=0 sum_su_TreeCache=0
   echo "\\multirow{$(( n + 1 ))}{*}{${project}}" > "$tex_file"
-  local train_op
-  for train_op in "${OPS[@]}"; do
+  local op
+  for op in "${OPS[@]}"; do
     local m_no m_mono m_TreeCache sd_no sd_mono sd_TreeCache su_mono su_TreeCache fmt_su_mono fmt_su_TreeCache
-    m_no=$(_cross_mean "$train_op" "no")
-    m_mono=$(_cross_mean "$train_op" "aotcache")
-    m_TreeCache=$(_cross_mean "$train_op" "TreeCache")
-    sd_no=$(_cross_stddev "$train_op" "no")
-    sd_mono=$(_cross_stddev "$train_op" "aotcache")
-    sd_TreeCache=$(_cross_stddev "$train_op" "TreeCache")
+    m_no=$(_mean "${op}|no")
+    m_mono=$(_test_mean_aotcache "$op")
+    m_TreeCache=$(_mean "${op}|TreeCache")
+    sd_no=$(_stddev "${op}|no")
+    sd_mono=$(_test_stddev_aotcache "$op")
+    sd_TreeCache=$(_stddev "${op}|TreeCache")
     su_mono=$(awk   -v b="$m_no" -v a="$m_mono"   'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
     su_TreeCache=$(awk -v b="$m_no" -v a="$m_TreeCache" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
     sum_su_mono=$(awk  "BEGIN{printf \"%.4f\", $sum_su_mono   + $su_mono}")
     sum_su_TreeCache=$(awk "BEGIN{printf \"%.4f\", $sum_su_TreeCache + $su_TreeCache}")
     fmt_su_mono=$(awk   -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
     fmt_su_TreeCache=$(awk -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
-    echo "  & ${train_op} & \$${m_no} \pm ${sd_no}\$ & \$${m_mono} \pm ${sd_mono}\$ & ${fmt_su_mono} & \$${m_TreeCache} \pm ${sd_TreeCache}\$ & ${fmt_su_TreeCache} \\\\" >> "$tex_file"
+    echo "  & ${op} & \$${m_no} \pm ${sd_no}\$ & \$${m_mono} \pm ${sd_mono}\$ & ${fmt_su_mono} & \$${m_TreeCache} \pm ${sd_TreeCache}\$ & ${fmt_su_TreeCache} \\\\" >> "$tex_file"
   done
   local avg_mono avg_TreeCache fmt_avg_mono fmt_avg_TreeCache
   avg_mono=$(awk   -v s="$sum_su_mono"   -v n="$n" 'BEGIN{printf "%.2f", s/n}')
