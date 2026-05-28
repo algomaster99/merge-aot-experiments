@@ -105,44 +105,6 @@ _measure_aotcache_cross() {
   _update "${train_op}|${test_op}|aotcache" "$(awk "BEGIN{printf \"%.1f\",$t1-$t0}")"
 }
 
-# Mean over all test ops ≠ train_op.
-# mode: "no" → ${test}|no   "aotcache" → ${train}|${test}|aotcache   "TreeCache" → ${test}|TreeCache
-_cross_mean() {
-  local train_op="$1" mode="$2"
-  local sum=0 n=0 test_op key m
-  for test_op in "${OPS[@]}"; do
-    [[ "$test_op" == "$train_op" ]] && continue
-    case "$mode" in
-      no)        key="${test_op}|no" ;;
-      aotcache)  key="${train_op}|${test_op}|aotcache" ;;
-      TreeCache) key="${test_op}|TreeCache" ;;
-    esac
-    m=$(_mean "$key")
-    sum=$(awk "BEGIN{printf \"%.4f\", $sum + $m}")
-    n=$(( n + 1 ))
-  done
-  awk -v s="$sum" -v n="$n" 'BEGIN{printf "%.1f", s/n}'
-}
-
-# Pool all cross-workload samples for a given train_op and mode, then compute SD.
-# no/TreeCache: 30 runs × (N-1) test ops; aotcache: same (30 × N-1 cross pairs).
-_cross_stddev() {
-  local train_op="$1" mode="$2"
-  local all_samples="" test_op key
-  for test_op in "${OPS[@]}"; do
-    [[ "$test_op" == "$train_op" ]] && continue
-    case "$mode" in
-      no)        key="${test_op}|no" ;;
-      aotcache)  key="${train_op}|${test_op}|aotcache" ;;
-      TreeCache) key="${test_op}|TreeCache" ;;
-    esac
-    all_samples="$all_samples ${_samples[$key]:-}"
-  done
-  printf "%s\n" $all_samples | awk '
-    {sum+=$1; sumsq+=$1*$1; n++}
-    END{ if(n<2){print "n/a"} else{printf "%.1f",sqrt((sumsq-sum*sum/n)/(n-1))} }'
-}
-
 # Mean time of test_op when run with caches trained on each other op.
 _test_mean_aotcache() {
   local test_op="$1" sum=0 n=0 train_op key m
