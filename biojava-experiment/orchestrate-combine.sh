@@ -22,14 +22,14 @@ java -version
 #   biojava/biojava-alignment/  mvn test -P tree-merge
 #   biojava-deps/forester/      custom workload (no usable test suite; no module-info)
 #   biojava-deps/commons-codec/ mvn test                 (forester's dep; reuse fork)
-#   biojava-deps/slf4j/         reuse slf4j fork (module-info stripped)
+#   biojava-deps/slf4j/slf4j-api/  reuse slf4j fork (module-info stripped)
 #
 CACHE_PATHS=(
   "biojava/biojava-core/cache.aot"
   "biojava/biojava-alignment/cache.aot"
   "biojava-deps/forester/cache.aot"
   "biojava-deps/commons-codec/cache.aot"
-  "biojava-deps/slf4j/cache.aot"
+  "biojava-deps/slf4j/slf4j-api/cache.aot"
 )
 
 FAT_JAR="benchmark/target/benchmark-fat.jar"
