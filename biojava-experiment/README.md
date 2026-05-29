@@ -10,29 +10,46 @@ BioJava comes from the DaCapo 2025 suite. It was previously deferred over a
 
 ---
 
-## The module-info mitigation
+## Dependencies and module-info mitigation
 
-`biojava-core` and `biojava-alignment` declare a **log4j** binding
-(`log4j-slf4j2-impl` + `log4j-api` + `log4j-core`) and `jakarta.xml.bind` /
-`jaxb-runtime` as compile-scope dependencies. Both `log4j-core` and
-`jaxb-runtime` ship `module-info` (the same blocker that rejected Log4j2), which
-breaks AOT cache creation when present on the classpath.
+### Full declared dependency tree
 
-Mitigation, applied in `benchmark/pom.xml`:
+```
+biojava-core:7.2.5
+├── slf4j-api:2.0.12                          ✔ kept
+├── log4j-slf4j2-impl:2.25.4 (runtime)        ✘ excluded
+├── log4j-api:2.25.4 (runtime)                ✘ excluded
+├── log4j-core:2.25.4 (runtime)               ✘ excluded  ← ships module-info.class
+├── jakarta.xml.bind-api:4.0.0                ✘ excluded
+│   └── jakarta.activation-api:2.1.0          ✘ excluded  (transitive)
+└── jaxb-runtime:4.0.3 (runtime)              ✘ excluded  ← ships module-info.class
+    └── jaxb-core / txw2 / istack / angus     ✘ excluded  (transitive)
 
-1. **BioJava logs only through `slf4j-api`** — no direct `org.apache.logging.log4j`
-   use exists in any BioJava module's main source (verified). The log4j binding
-   is therefore swappable: it is **excluded** and replaced with `slf4j-simple`.
-2. **JAXB is never referenced** in any BioJava module's main source (verified),
-   so `jakarta.xml.bind-api` and `jaxb-runtime` are **excluded** as unused.
-3. **`forester`** (pulled by `biojava-alignment` for phylogenetics) drags in
-   `openchart` from a dead JBoss repo; `openchart` is **excluded** (only the
-   phylo/MSA code paths use it — pairwise alignment does not). `forester 1.039`
-   itself has **no** `module-info` (verified).
+biojava-alignment:7.2.5
+├── biojava-core:7.2.5                         ✔ kept (see above)
+├── forester:1.039                             ✔ kept
+│   ├── commons-codec:1.5                      ✔ kept
+│   └── openchart:1.4.2                        ✘ excluded  (dead JBoss repo)
+├── slf4j-api:2.0.12                           ✔ kept
+├── log4j-slf4j2-impl / log4j-api / log4j-core ✘ excluded  (same as above)
+```
 
-After mitigation the only `module-info`-bearing JARs left are **slf4j-api** /
-**slf4j-simple**, which the existing **slf4j fork** (reused from the thymeleaf
-experiment) already strips. The BioJava library classes themselves are clean.
+### Why each dependency is excluded
+
+| Dependency | Reason |
+|---|---|
+| `log4j-core` | Ships `module-info.class` — breaks AOT cache creation. BioJava never calls log4j directly; it uses only the `slf4j-api` façade, so the binding is swappable. Replaced with `slf4j-simple` in the benchmark. |
+| `log4j-slf4j2-impl`, `log4j-api` | Co-removed with `log4j-core`; a slf4j binding requires all three together. |
+| `jaxb-runtime` | Ships `module-info.class` — breaks AOT cache creation. No BioJava main-source code references JAXB directly (verified). |
+| `jakarta.xml.bind-api` | Direct dependency of `jaxb-runtime`; removed together. Its transitive (`jaxb-core`, `txw2`, `istack-commons-runtime`, `angus-activation`) are also dropped. |
+| `openchart` | Hosted on a defunct JBoss repository (unresolvable at build time). Only used by the phylogenetics GUI path; the pairwise-alignment code path the benchmark exercises does not reference it. |
+
+### What remains on the runtime classpath
+
+After exclusions, the only `module-info`-bearing JARs left are **`slf4j-api`**
+and **`slf4j-simple`** — handled by the existing **slf4j fork** (reused from
+the thymeleaf experiment) which already strips `module-info`. The BioJava
+library classes themselves are clean.
 
 ---
 
@@ -63,13 +80,14 @@ a single-workload `single-{op}.aot` covers little of the others, while the merge
 
 ## Dependency Map
 
-| Artifact | Version | Role | Cache source |
-|---|---|---|---|
-| `org.biojava:biojava-core` | 7.2.5 | Sequences, compounds, FASTA/GenBank I/O, transcription | Test suite — `mvn test -P tree-merge` (log4j excluded) |
-| `org.biojava:biojava-alignment` | 7.2.5 | Pairwise dynamic-programming aligners + matrices | Test suite — `mvn test -P tree-merge` |
-| `org.biojava.thirdparty:forester` | 1.039 | Phylogenetics (pulled by alignment; not on the pairwise path) | Custom workload (no usable test suite; no module-info) |
-| `commons-codec:commons-codec` | 1.5 | forester utility dependency | Test suite — reuse commons-codec fork |
-| `org.slf4j:slf4j-api` | 2.x | Logging façade | Reuse slf4j fork (module-info stripped) |
+| Artifact | Version | Role | Cache source | Submodule path |
+|---|---|---|---|---|
+| `org.biojava:biojava-core` | 7.2.5 | Sequences, compounds, FASTA/GenBank I/O, transcription | `mvn test -P tree-merge` (log4j + JAXB excluded) | `biojava/` (`aotcache-setup-biojava`) |
+| `org.biojava:biojava-alignment` | 7.2.5 | Pairwise dynamic-programming aligners + matrices | `mvn test -P tree-merge` (log4j + openchart excluded) | `biojava/` (`aotcache-setup-biojava`) |
+| `org.biojava.thirdparty:forester` | 1.039 | Phylogenetics (pulled by alignment; not on the pairwise path) | Custom workload — `mvn test -P tree-merge` in `biojava-deps/forester/` | `biojava-deps/forester/` (local module, no fork — no test suite upstream) |
+| `commons-codec:commons-codec` | 1.5 | forester utility dependency | `mvn test -P tree-merge` | `biojava-deps/commons-codec/` (`aotcache-setup`) |
+| `org.slf4j:slf4j-api` | 2.x | Logging façade (module-info stripped) | `mvn test -P tree-merge` | `biojava-deps/slf4j/` (`aotcache-setup`, reused from thymeleaf) |
+
 
 ---
 
@@ -95,13 +113,40 @@ a single-workload `single-{op}.aot` covers little of the others, while the merge
 # 1. Build the fat-jar benchmark (log4j excluded, slf4j-simple bundled)
 cd benchmark && mvn package -DskipTests && cd ..
 
-# 2. AOTCache baseline: one single-{op}.aot per workload
+# 2. Record per-dependency cache.aot files (run each from the repo root)
+
+# biojava-core and biojava-alignment — single command, two modules, one fork each
+cd biojava/
+mvn test -P tree-merge -pl biojava-core,biojava-alignment
+cd ..
+# → biojava/biojava-core/cache.aot
+# → biojava/biojava-alignment/cache.aot
+
+# forester — custom workload (no upstream test suite)
+cd biojava-deps/forester/
+mvn package
+java -XX:AOTCacheOutput=cache.aot -jar target/forester-workload-fat.jar
+cd ../..
+# → biojava-deps/forester/cache.aot
+
+# commons-codec (forester's dep)
+cd biojava-deps/commons-codec/
+mvn test -P tree-merge
+cd ../..
+# → biojava-deps/commons-codec/cache.aot
+
+# slf4j (module-info stripped in the fork; only slf4j-api is needed)
+cd biojava-deps/slf4j/
+mvn test -P tree-merge -pl slf4j-api
+cd ../..
+# → biojava-deps/slf4j/slf4j-api/cache.aot
+
+# 3. AOTCache baseline: one single-{op}.aot per workload
 ./create-single-aot.sh
 
-# 3. TreeCache: merge the per-dependency cache.aot files into tree.aot
-#    (record the dependency caches first — see orchestrate-combine.sh)
+# 4. TreeCache: merge all cache.aot files into tree.aot
 ./orchestrate-combine.sh
 
-# 4. Timed comparison (no-AOT vs AOTCache cross-workload vs TreeCache)
+# 5. Timed comparison (no-AOT vs AOTCache cross-workload vs TreeCache)
 RUNS=30 ./workload-timed.sh
 ```
