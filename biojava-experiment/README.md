@@ -53,28 +53,30 @@ library classes themselves are clean.
 
 ---
 
-## Empirical workload diversity (measured on JDK 21, `-Xlog:class+load`)
+## Empirical workload diversity
 
-BioJava (`org.biojava.*`) classes loaded per workload over the shared inputs:
+> The class-load counts below were measured on the original 6-workload set.
+> They are kept for reference but do not reflect the current 7-workload set
+> (`genbank-parse` and `align-local` removed; `codon-usage`, `genbank-write`,
+> `msa` added). Re-measure with `-Xlog:class+load` after updating.
+
+BioJava (`org.biojava.*`) classes loaded per workload (old set, JDK 21, `-Xlog:class+load`):
 
 | Workload      | BioJava classes | Module |
 |---------------|-----------------|--------|
 | fasta-parse   | 35  | biojava-core (FASTA reader) |
-| genbank-parse | 57  | biojava-core (GenBank reader) |
+| genbank-parse | 57  | biojava-core (GenBank reader) — *removed* |
 | transcribe    | 72  | biojava-core (transcription engine) |
 | revcomp-gc    | 29  | biojava-core (compound stats) |
 | align-global  | 57  | biojava-alignment (Needleman–Wunsch) |
-| align-local   | 54  | biojava-alignment (Smith–Waterman) |
+| align-local   | 54  | biojava-alignment (Smith–Waterman) — *removed* |
 
-- **18** classes are loaded by **all six** workloads (shared sequence/compound core).
-- **139** classes in the **union**.
-- ⇒ ~**87%** of the loaded BioJava surface is workload-specific (e.g. 37 alignment
-  classes are loaded by `align-global` but never by `fasta-parse`).
+- **18** classes were loaded by all six workloads (shared sequence/compound core).
+- **139** classes in the union — ~**87%** workload-specific.
 
-BioJava is a lightweight library, so the absolute class count is small relative
-to FOP/batik; the *diversity ratio*, however, is the highest of any candidate —
-a single-workload `single-{op}.aot` covers little of the others, while the merged
-`tree.aot` (from the per-module test suites) covers the union.
+BioJava is a lightweight library so absolute counts are small, but the diversity
+ratio is the highest of any candidate — a single-workload `single-{op}.aot`
+covers little of the others, while the merged `tree.aot` covers the union.
 
 ---
 
@@ -93,14 +95,15 @@ a single-workload `single-{op}.aot` covers little of the others, while the merge
 
 ## Workloads
 
-| Workload      | What it does | Subtree exercised |
-|---------------|--------------|-------------------|
-| fasta-parse   | Parse a multi-record FASTA DNA file | `core.sequence.io` FASTA reader |
-| genbank-parse | Parse a GenBank record | `core.sequence.io` GenBank reader |
-| transcribe    | DNA → RNA → protein | `core.sequence.transcription` engine |
-| revcomp-gc    | Reverse complement + GC count over 20 kb | `core.sequence` compound views |
-| align-global  | Needleman–Wunsch global protein alignment | `alignment` + BLOSUM62 matrix |
-| align-local   | Smith–Waterman local protein alignment | `alignment` + BLOSUM62 matrix |
+| Workload | What it does | Class subtree |
+|---|---|---|
+| `fasta-parse` | Reads a multi-record FASTA file via `FastaReaderHelper`; sums total sequence length. FASTA is the simplest sequence format: `>header` lines followed by raw nucleotide strings. | `core.sequence.io` — FASTA reader + header parser |
+| `transcribe` | Builds a synthetic DNA string, converts it to RNA via `dna.getRNASequence()`, then translates to protein via `rna.getProteinSequence()`. | `core.sequence.transcription` — `DNAToRNATranslator`, `RNAToAminoAcidTranslator`, codon→amino-acid lookup |
+| `revcomp-gc` | Builds a 20,000-base random DNA sequence, computes its reverse complement, and counts GC bases. Computationally trivial; cost is almost entirely class loading. | `core.sequence` — sequence-view and complement-operation subtree |
+| `align-global` | Pairwise Needleman–Wunsch global alignment of two short protein sequences using the BLOSUM62 substitution matrix. | `alignment` — dynamic-programming aligner, gap-penalty, substitution-matrix |
+| `codon-usage` | Loads `IUPACParser`, which reads the IUPAC genetic code tables from an **XML resource file via SAX**. Enumerates all 64 codons of the standard genetic code and counts which amino acid each encodes. The SAX class tree, `IUPACParser`, `Table.Codon`, and `RNACompoundSet` are completely disjoint from the parser and alignment workloads. | `core.sequence.io.IUPACParser` — SAX parser, `Table.Codon`, `RNACompoundSet`, `AminoAcidCompoundSet` |
+| `genbank-write` | Reads the GenBank record from disk (reader path), then serialises the same sequences twice to `ByteArrayOutputStream`: once as FASTA via `FastaWriterHelper` and once as GenBank via `GenbankWriterHelper`. The **writer** class subtree (`FastaWriter`, `GenbankWriter`, `GenericFastaHeaderFormat`) is distinct from the reader side used in format-parsing workloads. | `core.sequence.io` — `FastaWriter`, `GenbankWriter`, `GenbankWriterHelper`, `GenericFastaHeaderFormat` |
+| `msa` | Progressive multiple sequence alignment of 4 protein sequences via `Alignments.getMultipleSequenceAlignment()`. BioJava builds a guide tree (UPGMA-style), then iteratively aligns profile pairs. Requires `ConcurrencyTools.shutdown()` to prevent JVM hang — BioJava's internal thread pool uses non-daemon threads that outlive the computation. | `alignment` — `GuideTree`, `SimpleProfileProfileAligner`, `FractionalIdentityInProfileScorer`, `AbstractProfileProfileAligner` |
 
 ---
 
