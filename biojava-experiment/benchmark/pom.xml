@@ -8,9 +8,9 @@
     module-info mitigation (see README): biojava-core/-alignment declare a log4j
     binding (log4j-core ships module-info) and jaxb-runtime (also module-info).
     BioJava logs only via slf4j-api and never references JAXB in main source, so
-    both are excluded; slf4j-simple provides the binding. forester's dead
-    openchart transitive dep is excluded too. The result has no module-info JAR
-    on the runtime path except slf4j, which the existing slf4j fork strips.
+    both are excluded. forester's dead openchart transitive dep is excluded too.
+    The result has no module-info JAR on the runtime path except slf4j-api,
+    which the existing slf4j fork strips.
   -->
   <groupId>dev.biojavaexp</groupId>
   <artifactId>benchmark</artifactId>
@@ -44,13 +44,6 @@
         <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-api</artifactId></exclusion>
         <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-core</artifactId></exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <!-- Must match slf4j-api 2.0.12 pulled by biojava (and the slf4j fork);
-           a mismatched binding version skews the bytecode vs the slf4j cache. -->
-      <version>2.0.12</version>
     </dependency>
   </dependencies>
 
