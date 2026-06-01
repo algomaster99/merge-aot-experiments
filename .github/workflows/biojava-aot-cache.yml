@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           submodules: true
 
@@ -28,14 +28,14 @@ jobs:
         uses: ./.github/actions/download-custom-jdk
 
       - name: Set up custom JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
         with:
           distribution: jdkfile
           java-version: '25'
           jdkFile: jdk-custom.tar.gz
 
       - name: Cache Maven dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-biojava-${{ hashFiles('biojava-experiment/**/pom.xml') }}
@@ -103,7 +103,7 @@ jobs:
       # ── single.aot (Temurin — standard JDK for the no-AOT baseline) ───────
 
       - name: Set up JDK ${{ inputs.single_aot_jdk || '24' }} (no-AOT baseline and single.aot)
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
         with:
           distribution: temurin
           java-version: ${{ inputs.single_aot_jdk || '24' }}
@@ -124,7 +124,7 @@ jobs:
       # ── tree.aot (custom JDK — has the AOT merge capability) ──────────────
 
       - name: Re-enable custom JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
         with:
           distribution: jdkfile
           java-version: '25'
@@ -216,7 +216,7 @@ jobs:
       # ── upload ─────────────────────────────────────────────────────────────
 
       - name: Upload BioJava workload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: biojava-tree-artifacts
           path: |
