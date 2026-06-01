@@ -53,13 +53,17 @@ _update() {
 }
 
 _mean() {
-  printf "%s\n" ${_samples[$1]:-} | awk '
+  local s="${_samples[$1]:-}"
+  [[ -z "$s" ]] && { echo "n/a"; return; }
+  printf "%s\n" $s | awk '
     {sum+=$1; n++}
     END{ if(!n){print "n/a"} else{printf "%.1f",sum/n} }'
 }
 
 _stddev() {
-  printf "%s\n" ${_samples[$1]:-} | awk '
+  local s="${_samples[$1]:-}"
+  [[ -z "$s" ]] && { echo "n/a"; return; }
+  printf "%s\n" $s | awk '
     {sum+=$1; sumsq+=$1*$1; n++}
     END{ if(n<2){print "n/a"} else{printf "%.1f",sqrt((sumsq-sum*sum/n)/(n-1))} }'
 }
