@@ -116,9 +116,11 @@ _test_mean_aotcache() {
     [[ "$train_op" == "$test_op" ]] && continue
     key="${train_op}|${test_op}|aotcache"
     m=$(_mean "$key")
+    [[ "$m" == "n/a" ]] && continue
     sum=$(awk "BEGIN{printf \"%.4f\", $sum + $m}")
     n=$(( n + 1 ))
   done
+  [[ $n -eq 0 ]] && { echo "n/a"; return; }
   awk -v s="$sum" -v n="$n" 'BEGIN{printf "%.1f", s/n}'
 }
 
@@ -183,7 +185,7 @@ _print_latex_rows() {
   local project="$1"
   local n="${#OPS[@]}"
   local tex_file="$WORK_DIR/latex-rows.tex"
-  local sum_su_mono=0 sum_su_TreeCache=0
+  local sum_su_mono=0 sum_su_TreeCache=0 cnt_su_mono=0 cnt_su_TreeCache=0
   echo "\\multirow{$(( n + 1 ))}{*}{${project}}" > "$tex_file"
   local op
   for op in "${OPS[@]}"; do
@@ -196,15 +198,21 @@ _print_latex_rows() {
     sd_TreeCache=$(_stddev "${op}|TreeCache")
     su_mono=$(awk   -v b="$m_no" -v a="$m_mono"   'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
     su_TreeCache=$(awk -v b="$m_no" -v a="$m_TreeCache" 'BEGIN{if(a+0==0){print "n/a"}else{printf "%.2f",b/a}}')
-    sum_su_mono=$(awk  "BEGIN{printf \"%.4f\", $sum_su_mono   + $su_mono}")
-    sum_su_TreeCache=$(awk "BEGIN{printf \"%.4f\", $sum_su_TreeCache + $su_TreeCache}")
+    if [[ "$su_mono" != "n/a" ]]; then
+      sum_su_mono=$(awk "BEGIN{printf \"%.4f\", $sum_su_mono + $su_mono}")
+      cnt_su_mono=$(( cnt_su_mono + 1 ))
+    fi
+    if [[ "$su_TreeCache" != "n/a" ]]; then
+      sum_su_TreeCache=$(awk "BEGIN{printf \"%.4f\", $sum_su_TreeCache + $su_TreeCache}")
+      cnt_su_TreeCache=$(( cnt_su_TreeCache + 1 ))
+    fi
     fmt_su_mono=$(awk   -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
     fmt_su_TreeCache=$(awk -v a="$su_mono" -v b="$su_TreeCache" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
     echo "  & ${op} & \$${m_no} \pm ${sd_no}\$ & \$${m_mono} \pm ${sd_mono}\$ & ${fmt_su_mono} & \$${m_TreeCache} \pm ${sd_TreeCache}\$ & ${fmt_su_TreeCache} \\\\" >> "$tex_file"
   done
   local avg_mono avg_TreeCache fmt_avg_mono fmt_avg_TreeCache
-  avg_mono=$(awk   -v s="$sum_su_mono"   -v n="$n" 'BEGIN{printf "%.2f", s/n}')
-  avg_TreeCache=$(awk -v s="$sum_su_TreeCache" -v n="$n" 'BEGIN{printf "%.2f", s/n}')
+  avg_mono=$(awk      -v s="$sum_su_mono"      -v c="$cnt_su_mono"      'BEGIN{if(c==0){print "n/a"}else{printf "%.2f",s/c}}')
+  avg_TreeCache=$(awk -v s="$sum_su_TreeCache" -v c="$cnt_su_TreeCache" 'BEGIN{if(c==0){print "n/a"}else{printf "%.2f",s/c}}')
   fmt_avg_mono=$(awk   -v a="$avg_mono" -v b="$avg_TreeCache" 'BEGIN{if(a+0>b+0) print "\\textbf{"a"x}" ; else print a"x"}')
   fmt_avg_TreeCache=$(awk -v a="$avg_mono" -v b="$avg_TreeCache" 'BEGIN{if(b+0>a+0) print "\\textbf{"b"x}" ; else print b"x"}')
   echo "  & \\textit{Average} & & & ${fmt_avg_mono} & & ${fmt_avg_TreeCache} \\\\" >> "$tex_file"
