@@ -29,8 +29,11 @@ CACHE_PATHS=(
   "fop-deps/batik/batik-test-old/cache.aot"
   "fop-deps/xmlgraphics-commons/cache.aot"
   "fop-deps/commons-io/cache.aot"
+  "fop-deps/qdox/cache.aot"
   "fop-deps/commons-logging-workload/cache.aot"
-  "fop-deps/fontbox/cache.aot"
+  "fop-deps/xml-apis-workload/cache.aot"
+  "fop-deps/xml-apis-ext-workload/cache.aot"
+  "fop-deps/fontbox/fontbox/cache.aot"
 )
 
 FAT_JAR="benchmark/target/benchmark-fat.jar"

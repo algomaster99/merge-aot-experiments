@@ -1,0 +1,290 @@
+name: Apache FOP Distributed AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      single_aot_jdk:
+        description: 'JDK version used for single.aot and the no-AOT baseline'
+        required: false
+        default: '24'
+        type: choice
+        options:
+          - '25'
+          - '24'
+
+jobs:
+  tree-combine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: true
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-fop-${{ hashFiles('fop-experiment/**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-fop-
+            ${{ runner.os }}-maven-
+
+      # Install dep forks into local Maven repo in dependency order so that
+      # each subsequent install can resolve its transitive requirements locally.
+      - name: Install xmlgraphics-commons into local Maven repo
+        working-directory: fop-experiment/fop-deps/xmlgraphics-commons
+        run: mvn install -DskipTests -q
+
+      - name: Install commons-io into local Maven repo
+        working-directory: fop-experiment/fop-deps/commons-io
+        run: mvn install -DskipTests -q
+
+      # Full batik reactor — batik-test-old depends on all batik-* sibling modules.
+      - name: Install batik into local Maven repo
+        working-directory: fop-experiment/fop-deps/batik
+        run: mvn install -DskipTests -q
+
+      - name: Install fontbox into local Maven repo
+        working-directory: fop-experiment/fop-deps/fontbox
+        run: mvn install -DskipTests -q -pl fontbox
+
+      # Install fop-core (and its internal fop-events/fop-util deps) so the
+      # benchmark fat jar can resolve it from the local repo without network access.
+      - name: Install fop-core into local Maven repo
+        working-directory: fop-experiment/fop
+        run: mvn install -DskipTests -q -pl fop-core --also-make
+
+      # ── test-suite caches ──────────────────────────────────────────────────
+
+      - name: Build fop-core cache (tree-merge)
+        working-directory: fop-experiment/fop
+        run: |
+          set -euo pipefail
+          find fop-core -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl fop-core -q
+          test -f fop-core/cache.aot
+
+      - name: Build batik cache (tree-merge)
+        working-directory: fop-experiment/fop-deps/batik/batik-test-old
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build xmlgraphics-commons cache (tree-merge)
+        working-directory: fop-experiment/fop-deps/xmlgraphics-commons
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build commons-io cache (mvn test)
+        working-directory: fop-experiment/fop-deps/commons-io
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -q
+          test -f cache.aot
+
+      - name: Build qdox cache (tree-merge)
+        working-directory: fop-experiment/fop-deps/qdox
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -q
+          test -f cache.aot
+
+      - name: Build fontbox cache (tree-merge)
+        working-directory: fop-experiment/fop-deps/fontbox
+        run: |
+          set -euo pipefail
+          find fontbox -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl fontbox -q
+          test -f fontbox/cache.aot
+
+      # ── workload caches (no usable test suite) ────────────────────────────
+
+      - name: Build and record commons-logging-workload cache
+        working-directory: fop-experiment/fop-deps/commons-logging-workload
+        run: |
+          set -euo pipefail
+          mvn package -DskipTests -q
+          java -XX:AOTCacheOutput=cache.aot -jar target/commons-logging-workload-fat.jar
+          test -f cache.aot
+
+      - name: Build and record xml-apis-workload cache
+        working-directory: fop-experiment/fop-deps/xml-apis-workload
+        run: |
+          set -euo pipefail
+          mvn package -DskipTests -q
+          java -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-workload-fat.jar
+          test -f cache.aot
+
+      - name: Build and record xml-apis-ext-workload cache
+        working-directory: fop-experiment/fop-deps/xml-apis-ext-workload
+        run: |
+          set -euo pipefail
+          mvn package -DskipTests -q
+          java -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-ext-workload-fat.jar
+          test -f cache.aot
+
+      # ── benchmark fat jar ──────────────────────────────────────────────────
+
+      - name: Build benchmark fat jar
+        working-directory: fop-experiment/benchmark
+        run: mvn package -DskipTests -q
+
+      # ── single.aot (Temurin — standard JDK for the no-AOT baseline) ───────
+
+      - name: Set up JDK ${{ inputs.single_aot_jdk || '24' }} (no-AOT baseline and single.aot)
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.single_aot_jdk || '24' }}
+
+      - name: Capture Temurin JDK path
+        run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Create single.aot (JDK ${{ inputs.single_aot_jdk || '24' }})
+        working-directory: fop-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-single-aot.sh
+          ./create-single-aot.sh
+          for op in fo-to-pdf fo-to-ps fo-to-pcl fo-to-rtf fo-to-txt fo-to-png; do
+            test -f "single-${op}.aot"
+          done
+
+      # ── tree.aot (custom JDK — has the AOT merge capability) ──────────────
+
+      - name: Re-enable custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Create tree.aot (orchestrate-combine.sh)
+        working-directory: fop-experiment
+        run: |
+          set -euo pipefail
+          chmod +x orchestrate-combine.sh
+          combine_out=$(./orchestrate-combine.sh 2>&1) || { echo "$combine_out"; exit 1; }
+          echo "$combine_out"
+          combine_out_clean=$(echo "$combine_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## tree.aot creation (orchestrate-combine)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$combine_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f tree.aot
+
+      # ── timed workload ─────────────────────────────────────────────────────
+
+      - name: Run timed workload
+        working-directory: fop-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed.sh
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_TREECACHE_BIN="$JAVA_HOME/bin/java" \
+                   ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          single_size=$(du -ch single-*.aot | tail -1 | awk '{print $1}')
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no-AOT vs AOTCache vs TreeCache)"
+            echo
+            echo "- single-*.aot total: ${single_size}"
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append LaTeX table rows to summary
+        working-directory: fop-experiment
+        run: |
+          {
+            echo "## LaTeX table rows (single=AOTCache, tree=TreeCache)"
+            echo
+            echo '```latex'
+            cat workload-tmp/latex-rows.tex
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ── artifact summary ───────────────────────────────────────────────────
+
+      - name: Write artifact summary
+        working-directory: fop-experiment
+        run: |
+          {
+            echo "## Distributed AOT artifact summary"
+            echo
+            echo "| Artifact | Cache path | Size |"
+            echo "|---|---|---|"
+            echo "| fop-core | \`fop/fop-core/cache.aot\` | $(du -h fop/fop-core/cache.aot | awk '{print $1}') |"
+            echo "| batik | \`fop-deps/batik/batik-test-old/cache.aot\` | $(du -h fop-deps/batik/batik-test-old/cache.aot | awk '{print $1}') |"
+            echo "| xmlgraphics-commons | \`fop-deps/xmlgraphics-commons/cache.aot\` | $(du -h fop-deps/xmlgraphics-commons/cache.aot | awk '{print $1}') |"
+            echo "| commons-io | \`fop-deps/commons-io/cache.aot\` | $(du -h fop-deps/commons-io/cache.aot | awk '{print $1}') |"
+            echo "| qdox | \`fop-deps/qdox/cache.aot\` | $(du -h fop-deps/qdox/cache.aot | awk '{print $1}') |"
+            echo "| commons-logging | \`fop-deps/commons-logging-workload/cache.aot\` | $(du -h fop-deps/commons-logging-workload/cache.aot | awk '{print $1}') |"
+            echo "| xml-apis | \`fop-deps/xml-apis-workload/cache.aot\` | $(du -h fop-deps/xml-apis-workload/cache.aot | awk '{print $1}') |"
+            echo "| xml-apis-ext | \`fop-deps/xml-apis-ext-workload/cache.aot\` | $(du -h fop-deps/xml-apis-ext-workload/cache.aot | awk '{print $1}') |"
+            echo "| fontbox | \`fop-deps/fontbox/fontbox/cache.aot\` | $(du -h fop-deps/fontbox/fontbox/cache.aot | awk '{print $1}') |"
+            for op in fo-to-pdf fo-to-ps fo-to-pcl fo-to-rtf fo-to-txt fo-to-png; do
+              echo "| single-${op} | \`single-${op}.aot\` | $(du -h "single-${op}.aot" | awk '{print $1}') |"
+            done
+            echo "| tree | \`tree.aot\` | $(du -h tree.aot | awk '{print $1}') |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ── upload ─────────────────────────────────────────────────────────────
+
+      - name: Upload FOP workload artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: fop-tree-artifacts
+          path: |
+            fop-experiment/workload-tmp/
+            fop-experiment/aotlink-tree-create.log
+            fop-experiment/single-*.aot
+            fop-experiment/tree.aot
+            fop-experiment/fop/fop-core/cache.aot
+            fop-experiment/fop-deps/batik/batik-test-old/cache.aot
+            fop-experiment/fop-deps/xmlgraphics-commons/cache.aot
+            fop-experiment/fop-deps/commons-io/cache.aot
+            fop-experiment/fop-deps/qdox/cache.aot
+            fop-experiment/fop-deps/commons-logging-workload/cache.aot
+            fop-experiment/fop-deps/xml-apis-workload/cache.aot
+            fop-experiment/fop-deps/xml-apis-ext-workload/cache.aot
+            fop-experiment/fop-deps/fontbox/fontbox/cache.aot
+          if-no-files-found: error
