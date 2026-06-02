@@ -90,7 +90,9 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -DskipTests -q
-          java --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED -XX:AOTCacheOutput=cache.aot -jar target/unbescape-workload-fat.jar
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+            --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED \
+            -XX:AOTCacheOutput=cache.aot -jar target/unbescape-workload-fat.jar
           test -f cache.aot
 
       # ── benchmark fat jar ──────────────────────────────────────────────────

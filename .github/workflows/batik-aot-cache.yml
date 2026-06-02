@@ -83,7 +83,8 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -DskipTests -q
-          java -XX:AOTCacheOutput=cache.aot -jar target/commons-logging-workload-fat.jar
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+            -XX:AOTCacheOutput=cache.aot -jar target/commons-logging-workload-fat.jar
           test -f cache.aot
 
       - name: Build and record xml-apis-workload cache
@@ -91,7 +92,8 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -DskipTests -q
-          java -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-workload-fat.jar
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+            -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-workload-fat.jar
           test -f cache.aot
 
       - name: Build and record xml-apis-ext-workload cache
@@ -99,7 +101,8 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -DskipTests -q
-          java -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-ext-workload-fat.jar
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+            -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-ext-workload-fat.jar
           test -f cache.aot
 
       # ── benchmark jar ──────────────────────────────────────────────────────

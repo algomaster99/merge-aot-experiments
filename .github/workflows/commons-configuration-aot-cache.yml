@@ -79,7 +79,8 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -q
-          java -XX:AOTCacheOutput=cache.aot \
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+            -XX:AOTCacheOutput=cache.aot \
             --add-opens java.base/java.io=ALL-UNNAMED \
             --add-opens java.base/java.lang=ALL-UNNAMED \
             --add-opens java.base/java.lang.reflect=ALL-UNNAMED \
