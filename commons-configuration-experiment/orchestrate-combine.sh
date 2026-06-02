@@ -53,7 +53,7 @@ rm -f "$OUTPUT_AOT"
 log "Creating $OUTPUT_AOT (base=$BASE_AOT, ${#CACHE_PATHS[@]} inputs)"
 java -Xlog:aot \
     -Xlog:aot=info \
-    -Xlog:aot+link:file="aotlink-tree-create.log" \
+    -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
     -XX:AOTMode=merge \
     --add-opens java.base/java.io=ALL-UNNAMED \
     --add-opens java.base/java.lang=ALL-UNNAMED \

@@ -43,7 +43,7 @@ rm -f "$OUTPUT_AOT"
 
 log "Merging ${#CACHE_PATHS[@]} caches → $OUTPUT_AOT"
 java -Xlog:aot=info \
-  -Xlog:aot+link:file="aotlink-tree-create.log" \
+  -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
   -XX:AOTMode=merge \
   -Djava.awt.headless=true \
   -XX:AOTCache="$BASE_AOT" \
