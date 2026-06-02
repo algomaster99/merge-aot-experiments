@@ -161,6 +161,17 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Append AOT cache composition table to summary
+        working-directory: commons-compress-experiment
+        run: |
+          {
+            echo "## AOT cache composition (Size / Classes / App%)"
+            echo
+            echo '```latex'
+            python3 generate-latex-table.py
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Write artifact summary
         working-directory: commons-compress-experiment
         run: |
