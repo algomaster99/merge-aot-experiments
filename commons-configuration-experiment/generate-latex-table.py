@@ -61,16 +61,19 @@ def analyze(cache_path, map_path, debug=False):
             app_cls += 1
             if debug:
                 print(f'  APP     {raw}')
-    total = jdk_cls + app_cls
-    app_pct = app_cls / total * 100 if total else 0
-    return size_mb, total, app_pct
+    return size_mb, jdk_cls, app_cls
 
 
-def fmt_row(label, size_mb, classes, app_pct, bold_size=False):
+def fmt_row(label, size_mb, jdk_cls, app_cls, bold_size=False):
     size_str = f'{size_mb:.0f}\\,MB'
     if bold_size:
         size_str = f'\\textbf{{{size_str}}}'
-    return f'{label:<26} & {size_str} & {classes:>6,} & {app_pct:>5.1f}\\% \\\\'
+    total = jdk_cls + app_cls
+    jdk_pct = jdk_cls / total * 100 if total else 0
+    app_pct = app_cls / total * 100 if total else 0
+    jdk_str = f'{jdk_cls:>6,} ({jdk_pct:>5.1f}\\%)'
+    app_str = f'{app_cls:>6,} ({app_pct:>5.1f}\\%)'
+    return f'{label:<26} & {size_str} & {jdk_str} & {app_str} \\\\'
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -92,8 +95,9 @@ if args.debug is not None:
     cache_path, map_path = match
     print(f'cache: {cache_path}')
     print(f'map:   {map_path}')
-    size_mb, total, app_pct = analyze(cache_path, map_path, debug=True)
-    print(f'\n=> {total} classes, {app_pct:.1f}% app, {size_mb:.2f} MB')
+    size_mb, jdk_cls, app_cls = analyze(cache_path, map_path, debug=True)
+    total = jdk_cls + app_cls
+    print(f'\n=> {total} classes: {jdk_cls} JDK ({jdk_cls/total*100:.1f}%), {app_cls} app ({app_cls/total*100:.1f}%), {size_mb:.2f} MB')
     sys.exit(0)
 
 missing = [p for _, c, m in ROWS + [('', *TREE)] for p in (c, m)
