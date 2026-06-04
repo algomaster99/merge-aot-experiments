@@ -214,6 +214,12 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Generate UpSet overlap plot
+        working-directory: batik-experiment
+        run: |
+          pip install --quiet upsetplot matplotlib pandas numpy
+          python3 plot-upset.py
+
       # ── artifact summary ───────────────────────────────────────────────────
 
       - name: Write artifact summary
@@ -259,4 +265,5 @@ jobs:
             batik-experiment/batik-deps/xml-apis-workload/aot.map
             batik-experiment/batik-deps/xml-apis-ext-workload/cache.aot
             batik-experiment/batik-deps/xml-apis-ext-workload/aot.map
+            batik-experiment/upset-tree-overlap.pdf
           if-no-files-found: error

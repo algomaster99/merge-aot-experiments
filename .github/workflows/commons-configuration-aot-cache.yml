@@ -207,6 +207,12 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Generate UpSet overlap plot
+        working-directory: commons-configuration-experiment
+        run: |
+          pip install --quiet upsetplot matplotlib pandas numpy
+          python3 plot-upset.py
+
       - name: Write artifact summary
         working-directory: commons-configuration-experiment
         run: |
@@ -251,4 +257,5 @@ jobs:
             commons-configuration-experiment/commons-configuration-deps/commons-collections/aot.map
             commons-configuration-experiment/commons-configuration-deps/commons-logging-workload/cache.aot
             commons-configuration-experiment/commons-configuration-deps/commons-logging-workload/aot.map
+            commons-configuration-experiment/upset-tree-overlap.pdf
           if-no-files-found: error

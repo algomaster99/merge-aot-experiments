@@ -204,6 +204,12 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Generate UpSet overlap plot
+        working-directory: thymeleaf-experiment
+        run: |
+          pip install --quiet upsetplot matplotlib pandas numpy
+          python3 plot-upset.py
+
       # ── artifact summary ───────────────────────────────────────────────────
 
       - name: Write artifact summary
@@ -246,4 +252,5 @@ jobs:
             thymeleaf-experiment/thymeleaf-deps/slf4j/slf4j-api/aot.map
             thymeleaf-experiment/thymeleaf-deps/unbescape-workload/cache.aot
             thymeleaf-experiment/thymeleaf-deps/unbescape-workload/aot.map
+            thymeleaf-experiment/upset-tree-overlap.pdf
           if-no-files-found: error
