@@ -196,6 +196,17 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Append class-load source table to summary
+        working-directory: commons-configuration-experiment
+        run: |
+          {
+            echo "## Class-load source breakdown (RQ1)"
+            echo
+            echo '```latex'
+            python3 table-classload.py
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Write artifact summary
         working-directory: commons-configuration-experiment
         run: |
