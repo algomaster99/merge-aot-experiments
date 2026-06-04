@@ -4,9 +4,10 @@
 App% = fraction of archived classes whose top-level package is not JDK-internal
 (i.e. not java/jdk/sun/javax).  Run from anywhere — paths are relative to this file.
 """
-import re, os, sys
+import re, os, sys, argparse
 
-JDK = {'java', 'jdk', 'sun', 'javax'}
+PRIMITIVES = frozenset('ZBCSIFJD')
+JDK = {'java', 'jdk', 'sun', 'javax', 'com.sun'} | PRIMITIVES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,12 +26,17 @@ def get_pkg(class_name):
         name = name[1:]
     if name.startswith('L') and name.endswith(';'):
         name = name[1:-1]
-    if not name or '.' not in name:
+    if not name:
         return None
-    return name.split('.')[0]
+    if '.' not in name:
+        return name if name in PRIMITIVES else None
+    parts = name.split('.')
+    if parts[0] == 'com' and len(parts) >= 2:
+        return parts[0] + '.' + parts[1]
+    return parts[0]
 
 
-def analyze(cache_path, map_path):
+def analyze(cache_path, map_path, debug=False):
     size_mb = os.path.getsize(os.path.join(HERE, cache_path)) / 1024 / 1024
     with open(os.path.join(HERE, map_path), 'rb') as f:
         data = f.read().decode('utf-8', errors='replace')
@@ -39,13 +45,20 @@ def analyze(cache_path, map_path):
         m = re.match(r'.*@@ Class\s+\d+\s+(\S+)', line)
         if not m:
             continue
-        pkg = get_pkg(m.group(1))
+        raw = m.group(1)
+        pkg = get_pkg(raw)
         if pkg is None:
+            if debug:
+                print(f'  SKIP    {raw}')
             continue
         if pkg in JDK:
             jdk_cls += 1
+            if debug:
+                print(f'  JDK     {raw}')
         else:
             app_cls += 1
+            if debug:
+                print(f'  APP     {raw}')
     total = jdk_cls + app_cls
     app_pct = app_cls / total * 100 if total else 0
     return size_mb, total, app_pct
@@ -58,6 +71,29 @@ def fmt_row(label, size_mb, classes, app_pct, bold_size=False):
     return f'{label:<24} & {size_str} & {classes:>6,} & {app_pct:>5.1f}\\% \\\\'
 
 
+parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+parser.add_argument('--debug', metavar='MAP_FILE', nargs='?', const='',
+                    help='dump every classified class; omit MAP_FILE to list known maps')
+args = parser.parse_args()
+
+if args.debug is not None:
+    all_rows = [(c, m) for _, c, m in ROWS + [('tree.aot', *TREE)]]
+    if args.debug == '':
+        print('Known map paths:')
+        for _, m in all_rows:
+            print(f'  {m}')
+        sys.exit(0)
+    match = next(((c, m) for c, m in all_rows if m == args.debug or m.endswith(args.debug)), None)
+    if match is None:
+        parser.error(f'no row with map path matching {args.debug!r}\nKnown:\n' +
+                     '\n'.join(f'  {m}' for _, m in all_rows))
+    cache_path, map_path = match
+    print(f'cache: {cache_path}')
+    print(f'map:   {map_path}')
+    size_mb, total, app_pct = analyze(cache_path, map_path, debug=True)
+    print(f'\n=> {total} classes, {app_pct:.1f}% app, {size_mb:.2f} MB')
+    sys.exit(0)
+
 missing = [p for _, c, m in ROWS + [('', *TREE)] for p in (c, m)
            if not os.path.exists(os.path.join(HERE, p))]
 if missing:
@@ -67,5 +103,5 @@ if missing:
 print(r'\multicolumn{4}{@{}l}{\textit{commons-compress}} \\')
 for label, cache, mapf in ROWS:
     print(fmt_row(label, *analyze(cache, mapf)))
-print(fmt_row(r'\textit{tree.aot}', *analyze(*TREE), bold_size=True))
+print(fmt_row(r'\toolname', *analyze(*TREE), bold_size=True))
 print(r'\midrule')
