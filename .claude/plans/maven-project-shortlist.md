@@ -295,3 +295,47 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
 | commonmark-java | Core has **zero external runtime deps**; extensions depend only on core — same self-contained pattern as jsoup/guava/zxing |
 | flexmark-java | Only its own `flexmark-util-*` modules + JetBrains `annotations` (annotation-only) → effectively zero external runtime deps |
 | Apache Santuario (xmlsec) | Ships its **own** `module-info` **and** depends on `woodstox-core` (also `module-info`) — double blocker (cf. Woodstox/Saxon) |
+
+### Runnable applications (CLI tools, not libraries)
+
+> All existing experiments (batik, pdfbox, fop, thymeleaf, biojava, commons-*) are
+> libraries driven by a benchmark harness. opencsv / commons-imaging above are also
+> libraries. This subsection collects genuine **end-user CLI applications** (the
+> category graphhopper belongs to). Apps tend to carry heavier dep trees, so the
+> "< 6 deps to fork manually" constraint bites harder — flagged per candidate.
+
+#### A. Google Closure Compiler ⭐ (best application fit)
+- **Repo:** google/closure-compiler. **App:** JavaScript optimizer/minifier CLI.
+- **Build:** Maven. **`module-info` window:** pre-`v20220803` jars have **no**
+  `module-info` (automatic module); `v20220803`+ erroneously bundle a
+  `module-info.class` (from jspecify) — **pin to a pre-2022 release** (e.g.
+  `v20211201`).
+- **Deps:** `guava`, `gson`, `args4j`, `protobuf-java`, `jspecify` — ~5, all
+  pre-JPMS at the pinned version (protobuf-java is chunky but a single clean jar).
+- **Diversity: good.** Optimization levels (`WHITESPACE_ONLY` / `SIMPLE` /
+  `ADVANCED`) and ES transpilation targets activate distinct compiler-pass subtrees
+  (`com.google.javascript.jscomp.*`). Hermetic (reads `.js` files).
+
+#### B. ANTLR4 tool
+- **Repo:** antlr/antlr4 (`tool/`). **App:** grammar → parser code generator CLI.
+- **Build:** Maven (needs Maven 3.8+).
+- **Deps:** `antlr4-runtime`, `antlr-runtime 3.5.3`, `ST4 4.3.4`,
+  `treelayout 1.0.3`, **`icu4j 72.1`** (⚠️ ~13 MB — heavy to fork manually; verify
+  it carries only Automatic-Module-Name, not `module-info`).
+- **Diversity: good.** Code-gen targets (Java / C# / Python / JS / Go / Swift) each
+  load distinct StringTemplate + target subtrees. Hermetic (reads `.g4` grammars).
+
+#### C. Spoon (INRIA) — research-relevant
+- **Repo:** INRIA/spoon (`spoon-core`). **App:** Java source analysis/transformation.
+- **Build:** Maven. **Blocker risk:** single dominant dep
+  `org.eclipse.jdt:org.eclipse.jdt.core` (~10 MB, OSGi bundle — verify no
+  `module-info`/JPMS surprises). Spoon itself special-cases module-info parsing.
+- **Diversity: moderate.** Different processors/transforms over the JDT AST.
+  Hermetic. Listed because it's adjacent to the chains-project/sbom domain.
+
+#### Rejected applications
+| App | Reason |
+|-----|--------|
+| graphhopper | (1) ~20 runtime deps — too many to fork manually; (2) **needs OpenStreetMap data files at runtime** → not hermetic. (per git history) |
+| Checkstyle | `Saxon-HE` (`module-info`) **and** `javassist` (runtime instrumentation) — double blocker (cf. PMD + Thymeleaf) |
+| PlantUML | Monolithic shaded jar → **no distributable external dep tree** (jsoup pattern); GPL |
