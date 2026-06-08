@@ -208,3 +208,90 @@ benchmark compiled and all six workloads executed on JDK 21.
 - **Blocker:** `Saxon-HE 12.9` (used for XPath rules, core to PMD) ships a real
   `module-info.class`. Unless Saxon can be excluded (it largely cannot for XPath
   rules), pmd is blocked — same class of issue as Woodstox/Log4j2.
+
+---
+---
+
+## GitHub "java application" sweep (2026-06-08) — candidates to vet
+
+Sourced by web-searching GitHub for Maven Java libraries/apps and filtering on
+the standard constraints (Maven, JDK > 5, no `module-info.java` in project or
+transitive deps incl. MR-JARs, no runtime instrumentation, hermetic, small but
+non-trivial dep tree, high workload diversity). Preliminary checks below; **all
+need final vetting** (build a fork, `aotp --list-classes` sanity check).
+
+### Strong candidates
+
+#### 1. Apache Commons Imaging ⭐ (top new pick)
+- **Repo:** apache/commons-imaging (latest `1.0.0-alpha6` / master)
+- **Build:** Maven, Java 8 source/target. **Verified clean:** only
+  `Automatic-Module-Name` (safe), no `module-info`.
+- **Deps (compile):** `commons-io 2.22.0`, `commons-lang3 3.20.0` — **both already
+  forked** in the fop/pdfbox experiments (neither ships `module-info`, only
+  Automatic-Module-Name). Near-zero new setup cost.
+- **Diversity: excellent.** Pure-Java codecs for PNG, GIF, BMP, TIFF, JPEG, ICO,
+  PCX, PNM, PSD, RGBE, WBMP, XBM, XPM, DCX — each format is a disjoint
+  reader/writer class subtree. This is the **image analogue of commons-compress**
+  (which already showed strong TreeCache margins on format divergence).
+- **Workloads (proposed):** decode + re-encode one image per format
+  (`png`, `gif`, `bmp`, `tiff`, `jpeg`, `pnm`, `psd`, …) → each loads a separate
+  `org.apache.commons.imaging.formats.*` tree; merged `tree.aot` covers the union.
+- **Caveat to vet:** dep tree is thin (2 deps, both already owned) — but format
+  diversity is the highest-value axis, so worth it. Confirm AOT benefit is
+  measurable with such a small distributable tree (cf. tika-core caveat).
+
+#### 2. JGraphT (jgrapht-core)
+- **Repo:** jgrapht/jgrapht (`jgrapht-core`, latest `1.5.x`)
+- **Build:** Maven, Java 8.
+- **Deps (compile):** `org.jheaps:jheaps` (verified clean — no deps,
+  Automatic-Module-Name only, Java 8) and **`org.apfloat:apfloat` (⚠️ BLOCKER RISK
+  — modern apfloat is modularized / likely ships `module-info`; needs verification
+  and possible exclusion).** apfloat is only used by a subset of algorithms, so an
+  exclusion may be viable.
+- **Diversity: good.** Distinct algorithm packages — shortest path
+  (Dijkstra/BellmanFord/A*/Johnson), max-flow, matching, graph coloring, spanning
+  tree, connectivity/cycle detection, clustering — each a separate `alg.*` subtree.
+- **Caveat to vet:** graph algorithms can become JIT-hot quickly (cf. JaCoP
+  rejection), but the cold class surface across distinct `alg.*` packages is large.
+  Resolve the apfloat `module-info` question first.
+
+#### 3. OpenCSV
+- **Repo:** opencsv (SourceForge/Bitbucket; published as `com.opencsv:opencsv`)
+- **Build:** Maven. Deps are all pre-JPMS Apache Commons → **no `module-info`
+  expected** (verify): `commons-lang3`, `commons-text`, `commons-beanutils`,
+  `commons-collections4` (+ transitive `commons-collections 3.2.2`,
+  `commons-logging`) — a healthy 4–6 dep distributable tree.
+- **Diversity: moderate.** CSV parse vs write, bean-binding (annotation-driven
+  `CsvToBean`/`StatefulBeanToCsv`), custom separators/quoting, MultiValuedMap
+  binding — partially overlapping infrastructure.
+- **Caveat:** same Apache-commons dep domain as commons-validator; if both are
+  taken, dep-tree overlap reduces marginal novelty.
+
+#### 4. Apache Commons VFS2
+- **Repo:** apache/commons-vfs (`commons-vfs2`)
+- **Build:** Maven. **Required** runtime deps only `commons-logging` +
+  `commons-lang3` (most providers — sftp/http/hdfs — are `optional`, off the
+  classpath). No `module-info` (pre-JPMS Apache commons).
+- **Diversity: moderate.** Hermetic providers each load a distinct
+  `provider.*` subtree: `local`, `ram`, `res`, `temp`, plus archive providers
+  `zip`/`jar`/`tar`/`gz`/`bz2` (the archive set pulls optional
+  `commons-compress` — itself already forked).
+- **Caveat:** thin required tree; archive diversity depends on opting commons-compress in.
+
+### Secondary candidate (needs mitigation)
+
+#### openhtmltopdf (Flying Saucer successor)
+- **Repo:** openhtmltopdf/openhtmltopdf, Java 8.
+- **Build:** Maven. Reuses **PDFBox (already forked)** + `de.rototor.pdfbox:graphics2d`;
+  SVG (Batik — also forked) and MathML are pluggable modules.
+- **Diversity:** XML/CSS layout → PDF, plus SVG/MathML plugin subtrees.
+- **Caveat:** overlaps the pdfbox/fop rendering domain; verify `graphics2d` and the
+  SVG plugin carry no `module-info`.
+
+### Rejected from this sweep
+
+| Project | Reason |
+|---------|--------|
+| commonmark-java | Core has **zero external runtime deps**; extensions depend only on core — same self-contained pattern as jsoup/guava/zxing |
+| flexmark-java | Only its own `flexmark-util-*` modules + JetBrains `annotations` (annotation-only) → effectively zero external runtime deps |
+| Apache Santuario (xmlsec) | Ships its **own** `module-info` **and** depends on `woodstox-core` (also `module-info`) — double blocker (cf. Woodstox/Saxon) |
