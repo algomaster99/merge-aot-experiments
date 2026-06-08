@@ -309,22 +309,11 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
 > ⚠️ **Tension:** "lean" fights the experiment's premise. The TreeCache value comes
 > from a *mergeable* dep tree with *divergent* class subtrees, so a 0–1-dep app
 > gives almost nothing to merge. The narrow intersection — a small *non-zero* dep
-> tree **plus** real workload divergence — is satisfied almost only by Closure
-> Compiler below. Most lean CLI apps fail on one axis (see rejected table).
+> tree **plus** real workload divergence — is **barely met by any lean app**. After
+> Closure Compiler turned out to be Bazel (see rejected table), the only remaining
+> Maven candidate is the ANTLR4 tool, and it's only lean if icu4j is tolerated.
 
-#### A. Google Closure Compiler ⭐ (best application fit)
-- **Repo:** google/closure-compiler. **App:** JavaScript optimizer/minifier CLI.
-- **Build:** Maven. **`module-info` window:** pre-`v20220803` jars have **no**
-  `module-info` (automatic module); `v20220803`+ erroneously bundle a
-  `module-info.class` (from jspecify) — **pin to a pre-2022 release** (e.g.
-  `v20211201`).
-- **Deps:** `guava`, `gson`, `args4j`, `protobuf-java`, `jspecify` — ~5, all
-  pre-JPMS at the pinned version (protobuf-java is chunky but a single clean jar).
-- **Diversity: good.** Optimization levels (`WHITESPACE_ONLY` / `SIMPLE` /
-  `ADVANCED`) and ES transpilation targets activate distinct compiler-pass subtrees
-  (`com.google.javascript.jscomp.*`). Hermetic (reads `.js` files).
-
-#### B. ANTLR4 tool — borderline-lean
+#### A. ANTLR4 tool — lead remaining candidate (borderline-lean)
 - **Repo:** antlr/antlr4 (`tool/`). **App:** grammar → parser code generator CLI.
 - **Build:** Maven (needs Maven 3.8+).
 - **Deps:** `antlr4-runtime`, `antlr-runtime 3.5.3`, `ST4 4.3.4`,
@@ -332,11 +321,13 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
   manually; verify it carries only Automatic-Module-Name, not `module-info`).
 - **Diversity: good.** Code-gen targets (Java / C# / Python / JS / Go / Swift) each
   load distinct StringTemplate + target subtrees. Hermetic (reads `.g4` grammars).
-- **Verdict:** keep only if the lean bar is relaxed for icu4j; otherwise defer.
+- **Verdict:** the only lean-ish Maven app left; viable only if the lean bar is
+  relaxed for the single heavy dep (icu4j).
 
 #### Evaluated and rejected for the lean bar
 | App | Reason |
 |-----|--------|
+| **Google Closure Compiler** | **Bazel build** (`BUILD.bazel` at repo root; no buildable `pom-main.xml` on master — the `maven/*.pom.xml` files are packaging templates Bazel publishes to Maven Central). Build-system blocker, same class as Gradle/Ant rejections. *(Originally listed as Maven in error — corrected after user flagged it.)* |
 | graphhopper | (1) ~20 runtime deps — too many to fork manually; (2) **needs OpenStreetMap data files at runtime** → not hermetic. (per git history) |
 | Checkstyle | `Saxon-HE` (`module-info`) **and** `javassist` (runtime instrumentation) — double blocker (cf. PMD + Thymeleaf) |
 | PlantUML | Monolithic shaded jar → **no distributable external dep tree** (jsoup pattern); GPL |
