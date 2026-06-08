@@ -296,13 +296,21 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
 | flexmark-java | Only its own `flexmark-util-*` modules + JetBrains `annotations` (annotation-only) → effectively zero external runtime deps |
 | Apache Santuario (xmlsec) | Ships its **own** `module-info` **and** depends on `woodstox-core` (also `module-info`) — double blocker (cf. Woodstox/Saxon) |
 
-### Runnable applications (CLI tools, not libraries)
+### Runnable applications (CLI tools, not libraries) — **lean only**
 
 > All existing experiments (batik, pdfbox, fop, thymeleaf, biojava, commons-*) are
 > libraries driven by a benchmark harness. opencsv / commons-imaging above are also
 > libraries. This subsection collects genuine **end-user CLI applications** (the
-> category graphhopper belongs to). Apps tend to carry heavier dep trees, so the
-> "< 6 deps to fork manually" constraint bites harder — flagged per candidate.
+> category graphhopper belongs to).
+>
+> **Decision (user, 2026-06-08): keep apps LEAN** — small forkable dep tree
+> (≲ 6 deps), fully hermetic, no `module-info`/instrumentation.
+>
+> ⚠️ **Tension:** "lean" fights the experiment's premise. The TreeCache value comes
+> from a *mergeable* dep tree with *divergent* class subtrees, so a 0–1-dep app
+> gives almost nothing to merge. The narrow intersection — a small *non-zero* dep
+> tree **plus** real workload divergence — is satisfied almost only by Closure
+> Compiler below. Most lean CLI apps fail on one axis (see rejected table).
 
 #### A. Google Closure Compiler ⭐ (best application fit)
 - **Repo:** google/closure-compiler. **App:** JavaScript optimizer/minifier CLI.
@@ -316,26 +324,24 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
   `ADVANCED`) and ES transpilation targets activate distinct compiler-pass subtrees
   (`com.google.javascript.jscomp.*`). Hermetic (reads `.js` files).
 
-#### B. ANTLR4 tool
+#### B. ANTLR4 tool — borderline-lean
 - **Repo:** antlr/antlr4 (`tool/`). **App:** grammar → parser code generator CLI.
 - **Build:** Maven (needs Maven 3.8+).
 - **Deps:** `antlr4-runtime`, `antlr-runtime 3.5.3`, `ST4 4.3.4`,
-  `treelayout 1.0.3`, **`icu4j 72.1`** (⚠️ ~13 MB — heavy to fork manually; verify
-  it carries only Automatic-Module-Name, not `module-info`).
+  `treelayout 1.0.3`, **`icu4j 72.1`** (⚠️ ~13 MB — **not lean**; heavy to fork
+  manually; verify it carries only Automatic-Module-Name, not `module-info`).
 - **Diversity: good.** Code-gen targets (Java / C# / Python / JS / Go / Swift) each
   load distinct StringTemplate + target subtrees. Hermetic (reads `.g4` grammars).
+- **Verdict:** keep only if the lean bar is relaxed for icu4j; otherwise defer.
 
-#### C. Spoon (INRIA) — research-relevant
-- **Repo:** INRIA/spoon (`spoon-core`). **App:** Java source analysis/transformation.
-- **Build:** Maven. **Blocker risk:** single dominant dep
-  `org.eclipse.jdt:org.eclipse.jdt.core` (~10 MB, OSGi bundle — verify no
-  `module-info`/JPMS surprises). Spoon itself special-cases module-info parsing.
-- **Diversity: moderate.** Different processors/transforms over the JDT AST.
-  Hermetic. Listed because it's adjacent to the chains-project/sbom domain.
-
-#### Rejected applications
+#### Evaluated and rejected for the lean bar
 | App | Reason |
 |-----|--------|
 | graphhopper | (1) ~20 runtime deps — too many to fork manually; (2) **needs OpenStreetMap data files at runtime** → not hermetic. (per git history) |
 | Checkstyle | `Saxon-HE` (`module-info`) **and** `javassist` (runtime instrumentation) — double blocker (cf. PMD + Thymeleaf) |
 | PlantUML | Monolithic shaded jar → **no distributable external dep tree** (jsoup pattern); GPL |
+| CFR / Procyon | Decompilers with **zero (CFR) / near-zero (Procyon) external deps** → nothing to merge (jsoup pattern) |
+| google-java-format | Lean deps (guava) but **low workload diversity** (formatting is one mode) **and** needs `--add-exports` for JDK-internal `com.sun.tools.javac` on JDK 16+ |
+| Eclipse JGit (pgm) | OSGi bundles + JPMS schemas (`module-info` risk) and `JSch` (network) — not clean-lean |
+| Spoon (INRIA) | Research-relevant, but dominated by `org.eclipse.jdt.core` (~10 MB OSGi bundle) — **not lean**; deferred unless the bar is relaxed |
+| Soot | Chains-project-relevant (Jimple/Baf/Grimp IR diversity) but ~6–8 deps (heros, jasmin, asm, axml…) — **over the lean budget**; deferred |
