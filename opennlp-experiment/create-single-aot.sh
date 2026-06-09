@@ -15,7 +15,7 @@ java -version
 FAT_JAR="benchmark/target/benchmark-1.0-SNAPSHOT.jar"
 MAIN="opennlp.bench.Main"
 WORK_DIR="workload-tmp"
-OPS=("train-sentdetect" "train-postag" "build-dict")
+OPS=("train-sentdetect" "train-postag" "load-and-lookup")
 
 [[ -f "$FAT_JAR" ]] || fail "$FAT_JAR not found — run: cd benchmark && mvn package -DskipTests"
 
