@@ -12,13 +12,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 
-import morfologik.fsa.FSA;
 import morfologik.stemming.Dictionary;
-import morfologik.stemming.DictionaryLookup;
-import morfologik.stemming.DictionaryMetadata;
 
 import opennlp.morfologik.builder.MorfologikDictionaryBuilder;
+import opennlp.morfologik.lemmatizer.MorfologikLemmatizer;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSSample;
 import opennlp.tools.postag.POSTaggerFactory;
@@ -43,6 +42,20 @@ public class Main {
         "/Sentences_PT.txt"
     };
 
+    // Fixed tokens for POS tagging (exercises MaxentBeamSearch + context generators).
+    private static final String[] TAG_TOKENS = {
+        "The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog",
+        "and", "ran", "across", "the", "green", "field", "very", "quickly"
+    };
+
+    // Fixed tokens for lemmatization — forms that exist in large_dict with tag NOUN.
+    private static final String[] LEMMA_TOKENS = {
+        "form000000", "form000050", "form000100", "form000500", "form001000",
+        "form005000", "form010000", "form020000", "form030000", "form040000"
+    };
+    private static final String[] LEMMA_TAGS = new String[LEMMA_TOKENS.length];
+    static { Arrays.fill(LEMMA_TAGS, "NOUN"); }
+
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.err.println("Usage: Main <op> <workdir>");
@@ -53,10 +66,10 @@ public class Main {
         Files.createDirectories(workDir);
 
         switch (op) {
-            case "prepare"          -> prepare(workDir);
-            case "train-sentdetect" -> trainSentdetect(workDir);
-            case "train-postag"     -> trainPostag(workDir);
-            case "load-and-lookup"  -> loadAndLookup(workDir);
+            case "prepare"           -> prepare(workDir);
+            case "train-sentdetect"  -> trainSentdetect(workDir);
+            case "train-postag"      -> trainPostag(workDir);
+            case "tag-and-lemmatize" -> tagAndLemmatize(workDir);
             default -> {
                 System.err.println("Unknown op: " + op);
                 System.exit(1);
@@ -65,7 +78,7 @@ public class Main {
     }
 
     private static void prepare(Path workDir) throws Exception {
-        // Concatenate all language sentence files into one training corpus.
+        // Sentence corpus for train-sentdetect.
         Path allSentences = workDir.resolve("all-sentences.txt");
         try (BufferedWriter w = Files.newBufferedWriter(allSentences, StandardCharsets.UTF_8)) {
             for (String res : SENTENCE_FILES) {
@@ -80,10 +93,10 @@ public class Main {
             }
         }
 
+        // POS training data for train-postag.
         copyResource("/AnnotatedSentences.txt", workDir.resolve("AnnotatedSentences.txt"));
 
-        // Generate 50k-entry dictionary and build its FSA so load-and-lookup can
-        // just load (not build) the automaton — making that workload startup-dominated.
+        // 50k-entry dictionary for tag-and-lemmatize; build the FSA here (not measured).
         Path largeDict = workDir.resolve("large_dict.txt");
         try (BufferedWriter w = Files.newBufferedWriter(largeDict, StandardCharsets.UTF_8)) {
             for (int i = 0; i < 50_000; i++) {
@@ -91,13 +104,15 @@ public class Main {
             }
         }
         copyResource("/dictionaryWithLemma.info", workDir.resolve("large_dict.info"));
-        // Build the FSA once here (not measured); load-and-lookup loads the result.
         new MorfologikDictionaryBuilder().build(largeDict);
+
+        // Pre-train POS model so tag-and-lemmatize can load it at measurement time.
+        trainPostagImpl(workDir);
     }
 
     // Trains a sentence boundary detector on 8 language corpora (~1100 sentences).
-    // Exercises: SentenceDetectorME, SentenceSampleStream, SentenceDetectorFactory,
-    //            MaxentTrainer, GIS, sentence feature generators, model serialization.
+    // Exercises: SentenceDetectorME, SentenceSampleStream, MaxentTrainer, GIS,
+    //            sentence feature generators, model serialization.
     private static void trainSentdetect(Path workDir) throws IOException {
         MarkableFileInputStreamFactory dataIn = new MarkableFileInputStreamFactory(
             workDir.resolve("all-sentences.txt").toFile());
@@ -113,11 +128,13 @@ public class Main {
     }
 
     // Trains a POS tagger (135 annotated sentences, ~100 iterations).
-    // Exercises: POSTaggerME, WordTagSampleStream, POSTaggerFactory,
-    //            MaxentTrainer, GIS, POS context generators, model serialization.
-    // Shares the opennlp ML backend with train-sentdetect → cross-workload
-    // caches transfer well between these two.
+    // Exercises: POSTaggerME, WordTagSampleStream, MaxentTrainer, GIS,
+    //            POS context generators, model serialization.
     private static void trainPostag(Path workDir) throws IOException {
+        trainPostagImpl(workDir);
+    }
+
+    private static void trainPostagImpl(Path workDir) throws IOException {
         MarkableFileInputStreamFactory dataIn = new MarkableFileInputStreamFactory(
             workDir.resolve("AnnotatedSentences.txt").toFile());
         try (ObjectStream<String> lineStream = new PlainTextByLineStream(dataIn, StandardCharsets.UTF_8);
@@ -130,29 +147,24 @@ public class Main {
         }
     }
 
-    // Loads a pre-built 50k-entry morfologik FSA from disk, then runs 100k lookups.
-    // Exercises: FSA.read (deserialization), DictionaryLookup, morfologik-fsa classes —
-    // completely different class tree from the opennlp training workloads.
-    // Startup/class-loading is the dominant cost, making it responsive to AOT.
-    private static void loadAndLookup(Path workDir) throws IOException {
-        Path dictFile = workDir.resolve("large_dict.dict");
-        Path infoFile = workDir.resolve("large_dict.info");
-        DictionaryMetadata metadata;
-        try (InputStream is = new BufferedInputStream(Files.newInputStream(infoFile))) {
-            metadata = DictionaryMetadata.read(is);
+    // Loads the pre-trained POS model and morfologik dictionary, then runs
+    // 10k rounds of POS tagging + lemmatization.
+    // Exercises: POSModel/POSTaggerME (opennlp-tools model loading + MaxentBeamSearch),
+    //            Dictionary/MorfologikLemmatizer (morfologik-stemming + opennlp-morfologik-addon).
+    // Uses both halves of tree.aot so bulk class loading is well-utilized.
+    private static void tagAndLemmatize(Path workDir) throws IOException {
+        POSModel posModel;
+        try (InputStream is = new BufferedInputStream(Files.newInputStream(workDir.resolve("postag.bin")))) {
+            posModel = new POSModel(is);
         }
-        FSA fsa;
-        try (InputStream is = new BufferedInputStream(Files.newInputStream(dictFile))) {
-            fsa = FSA.read(is);
-        }
-        DictionaryLookup lookup = new DictionaryLookup(new Dictionary(fsa, metadata));
-        // Cycle through 1000 evenly-spaced forms to avoid branch prediction bias.
-        String[] forms = new String[1000];
-        for (int i = 0; i < forms.length; i++) {
-            forms[i] = String.format("form%06d", i * 50);
-        }
-        for (int i = 0; i < 100_000; i++) {
-            lookup.lookup(forms[i % forms.length]);
+        POSTaggerME tagger = new POSTaggerME(posModel);
+
+        Dictionary dict = Dictionary.read(workDir.resolve("large_dict.dict"));
+        MorfologikLemmatizer lemmatizer = new MorfologikLemmatizer(dict);
+
+        for (int i = 0; i < 10_000; i++) {
+            tagger.tag(TAG_TOKENS);
+            lemmatizer.lemmatize(LEMMA_TOKENS, LEMMA_TAGS);
         }
     }
 
