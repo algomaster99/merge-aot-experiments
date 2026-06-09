@@ -46,7 +46,7 @@ RUNS="${RUNS:-30}"
 JAVA_NO_BIN="${JAVA_NO_BIN:-java}"
 JAVA_AOTCACHE_BIN="${JAVA_AOTCACHE_BIN:-java}"
 JAVA_TREECACHE_BIN="${JAVA_TREECACHE_BIN:-java}"
-OPS=("lemmatize" "build-dict" "tag")
+OPS=("train-sentdetect" "train-postag" "build-dict")
 
 [[ -f "$ORIG_JAR" ]] || fail "$ORIG_JAR not found — run: cd benchmark && mvn package -DskipTests"
 [[ -f "$FAT_JAR"  ]] || fail "$FAT_JAR not found — run: cd benchmark && mvn package -DskipTests"

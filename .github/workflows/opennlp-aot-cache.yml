@@ -140,7 +140,7 @@ jobs:
         run: |
           set -euo pipefail
           ./create-single-aot.sh
-          for op in lemmatize build-dict tag; do
+          for op in train-sentdetect train-postag build-dict; do
             test -f "single-${op}.aot"
           done
 
@@ -228,7 +228,7 @@ jobs:
             echo "| morfologik-fsa-builders | \`opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot | awk '{print $1}') |"
             echo "| morfologik-stemming | \`opennlp-deps/morfologik/morfologik-stemming/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-stemming/cache.aot | awk '{print $1}') |"
             echo "| morfologik-tools | \`opennlp-deps/morfologik/morfologik-tools/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-tools/cache.aot | awk '{print $1}') |"
-            for op in lemmatize build-dict tag; do
+            for op in train-sentdetect train-postag build-dict; do
               echo "| single-${op} | \`single-${op}.aot\` | $(du -h "single-${op}.aot" | awk '{print $1}') |"
             done
             echo "| tree | \`tree.aot\` | $(du -h tree.aot | awk '{print $1}') |"
@@ -240,7 +240,9 @@ jobs:
           name: opennlp-morfologik-tree-artifacts
           path: |
             opennlp-experiment/workload-tmp/
-            opennlp-experiment/single-*.aot
+            opennlp-experiment/single-train-sentdetect.aot
+            opennlp-experiment/single-train-postag.aot
+            opennlp-experiment/single-build-dict.aot
             opennlp-experiment/tree.aot
             opennlp-experiment/opennlp/opennlp-tools/cache.aot
             opennlp-experiment/opennlp/opennlp-tools/aot.map
