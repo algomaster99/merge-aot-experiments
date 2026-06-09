@@ -16,8 +16,6 @@ DEPS_DIR="${SCRIPT_DIR}/combine-deps"
 
 OPENNLP_MODULES=(
   "opennlp-tools"
-  "opennlp-tools-models"
-  "opennlp-uima"
   "opennlp-morfologik-addon"
 )
 

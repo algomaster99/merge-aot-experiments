@@ -17,8 +17,6 @@ FAT_JAR="benchmark/target/benchmark-1.0-SNAPSHOT.jar"
 
 OPENNLP_MODULES=(
   "opennlp/opennlp-tools"
-  "opennlp/opennlp-tools-models"
-  "opennlp/opennlp-uima"
   "opennlp/opennlp-morfologik-addon"
 )
 MORFOLOGIK_MODULES=(

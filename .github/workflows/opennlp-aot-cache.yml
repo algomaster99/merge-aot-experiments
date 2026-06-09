@@ -64,22 +64,6 @@ jobs:
           mvn clean test -Ptree-merge -q
           test -f cache.aot
 
-      - name: Build opennlp-tools-models cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp/opennlp-tools-models
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build opennlp-uima cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp/opennlp-uima
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
       - name: Build opennlp-morfologik-addon cache (tree-merge)
         working-directory: opennlp-experiment/opennlp/opennlp-morfologik-addon
         run: |
@@ -222,8 +206,6 @@ jobs:
             echo "| Artifact | Cache path | Size |"
             echo "|---|---|---|"
             echo "| opennlp-tools | \`opennlp/opennlp-tools/cache.aot\` | $(du -h opennlp/opennlp-tools/cache.aot | awk '{print $1}') |"
-            echo "| opennlp-tools-models | \`opennlp/opennlp-tools-models/cache.aot\` | $(du -h opennlp/opennlp-tools-models/cache.aot | awk '{print $1}') |"
-            echo "| opennlp-uima | \`opennlp/opennlp-uima/cache.aot\` | $(du -h opennlp/opennlp-uima/cache.aot | awk '{print $1}') |"
             echo "| opennlp-morfologik-addon | \`opennlp/opennlp-morfologik-addon/cache.aot\` | $(du -h opennlp/opennlp-morfologik-addon/cache.aot | awk '{print $1}') |"
             echo "| morfologik-fsa-builders | \`opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot | awk '{print $1}') |"
             echo "| morfologik-stemming | \`opennlp-deps/morfologik/morfologik-stemming/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-stemming/cache.aot | awk '{print $1}') |"
@@ -246,10 +228,6 @@ jobs:
             opennlp-experiment/tree.aot
             opennlp-experiment/opennlp/opennlp-tools/cache.aot
             opennlp-experiment/opennlp/opennlp-tools/aot.map
-            opennlp-experiment/opennlp/opennlp-tools-models/cache.aot
-            opennlp-experiment/opennlp/opennlp-tools-models/aot.map
-            opennlp-experiment/opennlp/opennlp-uima/cache.aot
-            opennlp-experiment/opennlp/opennlp-uima/aot.map
             opennlp-experiment/opennlp/opennlp-morfologik-addon/cache.aot
             opennlp-experiment/opennlp/opennlp-morfologik-addon/aot.map
             opennlp-experiment/opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot
