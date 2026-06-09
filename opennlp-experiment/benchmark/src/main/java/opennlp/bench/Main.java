@@ -1,6 +1,5 @@
 package opennlp.bench;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,16 +11,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-
-import morfologik.stemming.Dictionary;
 
 import opennlp.morfologik.builder.MorfologikDictionaryBuilder;
-import opennlp.morfologik.lemmatizer.MorfologikLemmatizer;
+import opennlp.morfologik.tagdict.MorfologikPOSTaggerFactory;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSSample;
 import opennlp.tools.postag.POSTaggerFactory;
 import opennlp.tools.postag.POSTaggerME;
+import opennlp.tools.postag.TagDictionary;
 import opennlp.tools.postag.WordTagSampleStream;
 import opennlp.tools.sentdetect.SentenceDetectorFactory;
 import opennlp.tools.sentdetect.SentenceDetectorME;
@@ -42,20 +39,6 @@ public class Main {
         "/Sentences_PT.txt"
     };
 
-    // Fixed tokens for POS tagging (exercises MaxentBeamSearch + context generators).
-    private static final String[] TAG_TOKENS = {
-        "The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog",
-        "and", "ran", "across", "the", "green", "field", "very", "quickly"
-    };
-
-    // Fixed tokens for lemmatization — forms that exist in large_dict with tag NOUN.
-    private static final String[] LEMMA_TOKENS = {
-        "form000000", "form000050", "form000100", "form000500", "form001000",
-        "form005000", "form010000", "form020000", "form030000", "form040000"
-    };
-    private static final String[] LEMMA_TAGS = new String[LEMMA_TOKENS.length];
-    static { Arrays.fill(LEMMA_TAGS, "NOUN"); }
-
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
             System.err.println("Usage: Main <op> <workdir>");
@@ -66,10 +49,10 @@ public class Main {
         Files.createDirectories(workDir);
 
         switch (op) {
-            case "prepare"           -> prepare(workDir);
-            case "train-sentdetect"  -> trainSentdetect(workDir);
-            case "train-postag"      -> trainPostag(workDir);
-            case "tag-and-lemmatize" -> tagAndLemmatize(workDir);
+            case "prepare"                -> prepare(workDir);
+            case "train-sentdetect"       -> trainSentdetect(workDir);
+            case "train-postag"           -> trainPostag(workDir);
+            case "train-postag-morfologik"-> trainPostagMorfologik(workDir);
             default -> {
                 System.err.println("Unknown op: " + op);
                 System.exit(1);
@@ -93,10 +76,10 @@ public class Main {
             }
         }
 
-        // POS training data for train-postag.
+        // POS training data for train-postag and train-postag-morfologik.
         copyResource("/AnnotatedSentences.txt", workDir.resolve("AnnotatedSentences.txt"));
 
-        // 50k-entry dictionary for tag-and-lemmatize; build the FSA here (not measured).
+        // Build 50k-entry morfologik FSA for train-postag-morfologik tag dictionary.
         Path largeDict = workDir.resolve("large_dict.txt");
         try (BufferedWriter w = Files.newBufferedWriter(largeDict, StandardCharsets.UTF_8)) {
             for (int i = 0; i < 50_000; i++) {
@@ -105,9 +88,6 @@ public class Main {
         }
         copyResource("/dictionaryWithLemma.info", workDir.resolve("large_dict.info"));
         new MorfologikDictionaryBuilder().build(largeDict);
-
-        // Pre-train POS model so tag-and-lemmatize can load it at measurement time.
-        trainPostagImpl(workDir);
     }
 
     // Trains a sentence boundary detector on 8 language corpora (~1100 sentences).
@@ -131,10 +111,6 @@ public class Main {
     // Exercises: POSTaggerME, WordTagSampleStream, MaxentTrainer, GIS,
     //            POS context generators, model serialization.
     private static void trainPostag(Path workDir) throws IOException {
-        trainPostagImpl(workDir);
-    }
-
-    private static void trainPostagImpl(Path workDir) throws IOException {
         MarkableFileInputStreamFactory dataIn = new MarkableFileInputStreamFactory(
             workDir.resolve("AnnotatedSentences.txt").toFile());
         try (ObjectStream<String> lineStream = new PlainTextByLineStream(dataIn, StandardCharsets.UTF_8);
@@ -147,24 +123,26 @@ public class Main {
         }
     }
 
-    // Loads the pre-trained POS model and morfologik dictionary, then runs
-    // 10k rounds of POS tagging + lemmatization.
-    // Exercises: POSModel/POSTaggerME (opennlp-tools model loading + MaxentBeamSearch),
-    //            Dictionary/MorfologikLemmatizer (morfologik-stemming + opennlp-morfologik-addon).
-    // Uses both halves of tree.aot so bulk class loading is well-utilized.
-    private static void tagAndLemmatize(Path workDir) throws IOException {
-        POSModel posModel;
-        try (InputStream is = new BufferedInputStream(Files.newInputStream(workDir.resolve("postag.bin")))) {
-            posModel = new POSModel(is);
-        }
-        POSTaggerME tagger = new POSTaggerME(posModel);
+    // Trains a POS tagger with a MorfologikPOSTaggerFactory backed by a 50k-entry
+    // morfologik tag dictionary.
+    // Exercises the same opennlp ML training stack as train-postag PLUS
+    // MorfologikPOSTaggerFactory, MorfologikTagDictionary, and morfologik-stemming/fsa
+    // for dictionary loading — fully utilising tree.aot's combined class set.
+    private static void trainPostagMorfologik(Path workDir) throws IOException {
+        MorfologikPOSTaggerFactory factory = new MorfologikPOSTaggerFactory();
+        TagDictionary tagDict = factory.createTagDictionary(
+            workDir.resolve("large_dict.dict").toFile());
+        factory.setTagDictionary(tagDict);
 
-        Dictionary dict = Dictionary.read(workDir.resolve("large_dict.dict"));
-        MorfologikLemmatizer lemmatizer = new MorfologikLemmatizer(dict);
-
-        for (int i = 0; i < 10_000; i++) {
-            tagger.tag(TAG_TOKENS);
-            lemmatizer.lemmatize(LEMMA_TOKENS, LEMMA_TAGS);
+        MarkableFileInputStreamFactory dataIn = new MarkableFileInputStreamFactory(
+            workDir.resolve("AnnotatedSentences.txt").toFile());
+        try (ObjectStream<String> lineStream = new PlainTextByLineStream(dataIn, StandardCharsets.UTF_8);
+             ObjectStream<POSSample> sampleStream = new WordTagSampleStream(lineStream)) {
+            POSModel model = POSTaggerME.train("eng", sampleStream,
+                TrainingParameters.defaultParams(), factory);
+            try (OutputStream out = Files.newOutputStream(workDir.resolve("postag-morfologik.bin"))) {
+                model.serialize(out);
+            }
         }
     }
 
