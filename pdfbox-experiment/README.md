@@ -5,6 +5,12 @@ All commands run from **`pdfbox-experiment/`**.
 
 ---
 
+## Excluded dependencies
+
+**picocli** is a direct dependency of `pdfbox-tools` but is excluded from the AOT cache experiment. Its classes are compiled to bytecode version 49 (Java 5), which the AOT cache mechanism automatically skips — there is nothing to include.
+
+---
+
 ## Prerequisites
 
 - Java 24+ with AOT cache support
