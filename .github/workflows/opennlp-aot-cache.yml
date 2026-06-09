@@ -56,21 +56,14 @@ jobs:
         working-directory: opennlp-experiment/opennlp
         run: mvn install -DskipTests -q
 
-      - name: Build opennlp-tools cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp/opennlp-tools
+      - name: Build opennlp cache files (tree-merge)
+        working-directory: opennlp-experiment/opennlp
         run: |
           set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build opennlp-morfologik-addon cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp/opennlp-morfologik-addon
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
+          find opennlp-tools opennlp-morfologik-addon -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl opennlp-tools,opennlp-morfologik-addon -q
+          test -f opennlp-tools/cache.aot
+          test -f opennlp-morfologik-addon/cache.aot
 
       # ── morfologik dep modules ───────────────────────────────────────────────
 
@@ -78,29 +71,15 @@ jobs:
         working-directory: opennlp-experiment/opennlp-deps/morfologik
         run: mvn install -DskipTests -q
 
-      - name: Build morfologik-fsa-builders cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp-deps/morfologik/morfologik-fsa-builders
+      - name: Build morfologik cache files (tree-merge)
+        working-directory: opennlp-experiment/opennlp-deps/morfologik
         run: |
           set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build morfologik-stemming cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp-deps/morfologik/morfologik-stemming
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build morfologik-tools cache (tree-merge)
-        working-directory: opennlp-experiment/opennlp-deps/morfologik/morfologik-tools
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
+          find morfologik-fsa-builders morfologik-stemming morfologik-tools -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl morfologik-fsa-builders,morfologik-stemming,morfologik-tools -q
+          test -f morfologik-fsa-builders/cache.aot
+          test -f morfologik-stemming/cache.aot
+          test -f morfologik-tools/cache.aot
 
       # ── benchmark ────────────────────────────────────────────────────────────
 
