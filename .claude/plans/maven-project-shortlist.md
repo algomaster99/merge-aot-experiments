@@ -336,3 +336,10 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
 | Eclipse JGit (pgm) | OSGi bundles + JPMS schemas (`module-info` risk) and `JSch` (network) — not clean-lean |
 | Spoon (INRIA) | Research-relevant, but dominated by `org.eclipse.jdt.core` (~10 MB OSGi bundle) — **not lean**; deferred unless the bar is relaxed |
 | Soot | Chains-project-relevant (Jimple/Baf/Grimp IR diversity) but ~6–8 deps (heros, jasmin, asm, axml…) — **over the lean budget**; deferred |
+
+#### User-suggested projects (2026-06-09) — all rejected
+| Project | Build | Verdict |
+|---|---|---|
+| BuildCLI/BuildCLI | Maven, Java 21 | ❌ **Not hermetic.** Lean deps (slf4j/logback/picocli), but it's an orchestrator — each command shells out to external `mvn`/`docker`/`git` (and AI/network for doc-gen). The in-JVM surface per command is thin (picocli dispatch + file templating + `ProcessBuilder`); the real work runs in external processes AOT can't capture → almost no cold class divergence. |
+| scouter-project/scouter | Gradle | ❌ **Triple blocker.** (1) Gradle build; (2) it's an APM **Java agent doing bytecode instrumentation** via ASM/BCI — the exact thing the no-instrumentation rule forbids; (3) agent + collector-server + RCP viewer → network/server, not hermetic. |
+| TomerAberbach/mano-simulator | Maven, Java 18 | ❌ **JavaFX app.** All deps are `org.openjfx:javafx-*` 19.0.2.1 — genuine JPMS modules that **ship `module-info`** (hard blocker); GUI-only entry point (`SuperMain`, no headless CLI) → not hermetic/headless; and the simulator is a toy (two-pass assembler + ~25-instruction interpreter loop) → tiny class surface, JIT-hot, no diversity. |
