@@ -41,7 +41,6 @@ for path in "${CACHE_PATHS[@]}"; do
   [[ -f "$path" ]] || fail "Missing cache: $path"
 done
 
-BASE_AOT="${CACHE_PATHS[0]}"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 
 rm -f "$OUTPUT_AOT"
@@ -50,7 +49,6 @@ log "Merging ${#CACHE_PATHS[@]} caches → $OUTPUT_AOT"
 java -Xlog:aot=info \
   -Xlog:aot+link:file="aotlink-tree-create.log" \
   -XX:AOTMode=merge \
-  -XX:AOTCache="$BASE_AOT" \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
   -cp "$FAT_JAR" \

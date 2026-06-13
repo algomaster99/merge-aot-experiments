@@ -74,7 +74,6 @@ DEP_CP="$(find "$DEPS_DIR" -name '*.jar' | sort | tr '\n' ':' | sed 's/:$//')"
 CLASSES_CP="$(IFS=:; echo "${CLASSES_PATHS[*]}")"
 CLASSPATH="${CLASSES_CP}:${DEP_CP}"
 
-BASE_AOT="${CACHE_PATHS[0]}"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 OUTPUT_AOT="tree.aot"
 
@@ -90,7 +89,6 @@ java \
   --add-opens java.base/java.util=ALL-UNNAMED \
   --add-opens java.base/jdk.internal.loader=ALL-UNNAMED \
   -XX:AOTMode=merge \
-  -XX:AOTCache="$BASE_AOT" \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
   -cp "$CLASSPATH" \
