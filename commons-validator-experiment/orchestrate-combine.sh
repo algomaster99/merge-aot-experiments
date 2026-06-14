@@ -33,19 +33,17 @@ for path in "${JAR_PATHS[@]}"; do
   [[ -d "$path" ]] || fail "Missing required input: $path"
 done
 
-BASE_AOT="commons-validator-deps/commons-beanutils/cache.aot"
 OUTPUT_AOT="tree.aot"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 CLASSPATH="$(IFS=:; echo "${JAR_PATHS[*]}")"
 
 rm -f "$OUTPUT_AOT"
 
-log "Merging ${#CACHE_PATHS[@]} caches into $OUTPUT_AOT (base=$BASE_AOT)"
+log "Merging ${#CACHE_PATHS[@]} caches into $OUTPUT_AOT"
 java -Xlog:aot \
   -Xlog:aot=info \
   -Xlog:aot+link:file="aotlink-tree-create.log" \
   -XX:AOTMode=merge \
-  -XX:AOTCache="$BASE_AOT" \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
   --add-modules java.instrument \

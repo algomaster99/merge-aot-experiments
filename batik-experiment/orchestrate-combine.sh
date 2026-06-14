@@ -36,17 +36,15 @@ for path in "${CACHE_PATHS[@]}"; do
   [[ -f "$path" ]] || fail "Missing cache: $path"
 done
 
-BASE_AOT="batik-deps/xmlgraphics-commons/cache.aot"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 
 rm -f "$OUTPUT_AOT"
 
-log "Merging ${#CACHE_PATHS[@]} caches → $OUTPUT_AOT (base=$BASE_AOT)"
+log "Merging ${#CACHE_PATHS[@]} caches → $OUTPUT_AOT"
 java -Xlog:aot=info \
   -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
   -XX:AOTMode=merge \
   -Djava.awt.headless=true \
-  -XX:AOTCache="$BASE_AOT" \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
   -cp "$FAT_JAR" \
