@@ -31,13 +31,14 @@ for path in "${JAR_PATHS[@]}"; do
   [[ -d "$path" ]] || fail "Missing required input: $path"
 done
 
+BASE_AOT="commons-compress-deps/commons-lang/cache.aot"
 OUTPUT_AOT="tree.aot"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 CLASSPATH="$(IFS=:; echo "${JAR_PATHS[*]}")"
 
 rm -f "$OUTPUT_AOT"
 
-log "Merging ${#CACHE_PATHS[@]} caches into $OUTPUT_AOT"
+log "Merging ${#CACHE_PATHS[@]} caches into $OUTPUT_AOT (base=$BASE_AOT)"
 java -Xlog:aot \
   -Xlog:aot=info \
   -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
@@ -49,6 +50,7 @@ java -Xlog:aot \
   --add-opens java.base/java.time=ALL-UNNAMED \
   --add-opens java.base/java.time.chrono=ALL-UNNAMED \
   --add-opens java.base/java.util=ALL-UNNAMED \
+  -XX:AOTCache="$BASE_AOT" \
   -XX:AOTMergeInputs="$MERGE_INPUTS" \
   -XX:AOTCacheOutput="$OUTPUT_AOT" \
   -cp "$CLASSPATH" \

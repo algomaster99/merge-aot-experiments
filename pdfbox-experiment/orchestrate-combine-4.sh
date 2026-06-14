@@ -58,12 +58,12 @@ CP_ENTRIES=(
 )
 
 # ── Merge ─────────────────────────────────────────────────────────────────────
-BASE_AOT="pdfbox/pdfbox/cache.aot"
+BASE_AOT="pdfbox-deps/apache-commons-io/cache.aot"
 OUTPUT_AOT="tree.aot"
 MERGE_INPUTS="$(IFS=:; echo "${CACHE_PATHS[*]}")"
 CLASSPATH="$(IFS=:; echo "${CP_ENTRIES[*]}")"
 
-log "Creating $OUTPUT_AOT (base=pdfbox/pdfbox/cache.aot, ${#CACHE_PATHS[@]} inputs)"
+log "Creating $OUTPUT_AOT (base=$BASE_AOT, ${#CACHE_PATHS[@]} inputs)"
 rm -f "$OUTPUT_AOT"
 
 java -Xlog:aot \
