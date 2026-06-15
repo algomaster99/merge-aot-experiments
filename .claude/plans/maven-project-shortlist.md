@@ -351,3 +351,49 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
   toy/student/training repos (KBC, Bank-Demo, Quiz, TicTacToe, core-java-training…).
   Zero hermetic, dep-bearing, divergent candidates. The topic is loosely applied —
   better mined via specific format/parser libraries than the generic topic tag.
+
+---
+---
+
+## Format-divergence library sweep (2026-06-15)
+
+Pivoted back to the pattern that actually wins (format/codec/parser divergence with
+a real mergeable tree), since every "application" lead failed structurally.
+
+### Strong new candidates
+
+#### TwelveMonkeys ImageIO ⭐⭐ (best new find)
+- **Repo:** haraldk/TwelveMonkeys. **Build:** Maven, Java 8. **Verified clean:**
+  `Automatic-Module-Name` only (`${project.jpms.module.name}` via maven-jar-plugin),
+  **no `module-info.java`**; parent POM declares **no third-party runtime deps**.
+- **Structure = the mergeable tree:** a multi-module suite — `common-lang`,
+  `common-io`, `common-image`, `imageio-core`, `imageio-metadata`, plus **one Maven
+  module per image format** (`imageio-jpeg`, `imageio-tiff`, `imageio-psd`,
+  `imageio-bmp`, `imageio-pnm`, `imageio-pict`, `imageio-icns`, `imageio-pcx`,
+  `imageio-sgi`, `imageio-iff`, `imageio-tga`, `imageio-thumbsdb`, `imageio-hdr`,
+  `imageio-webp`, …). Same one-fork-many-modules shape as biojava, each plugin with
+  its own test suite to feed `tree.aot`.
+- **Diversity: excellent.** Decoding JPEG vs TIFF vs PSD vs WebP vs PICT loads
+  **completely disjoint** `com.twelvemonkeys.imageio.plugins.*` subtrees — the image
+  analogue of commons-compress, but with the formats already split into separate
+  modules. Hermetic (reads image files).
+- **Verdict:** top priority to vet — arguably stronger than commons-imaging
+  (richer per-format module tree, more formats).
+
+#### metadata-extractor
+- **Repo:** drewnoakes/metadata-extractor. **Build:** Maven (has `pom.xml`; also a
+  `build.gradle`). Java 8.
+- **Deps:** one external — `com.adobe.xmp:xmpcore:6.1.11` (verify it + the lib carry
+  only Automatic-Module-Name, not `module-info` — low risk).
+- **Diversity: good.** Reads Exif/IPTC/XMP/ICC from JPEG, TIFF, PNG, WebP, HEIF,
+  PSD, BMP, GIF, ICO, PCX, and camera-RAW — each format has its own
+  `com.drew.metadata.*` / `com.drew.imaging.*` reader subtree. Hermetic.
+- **Caveat:** thin external tree (1 dep, like commons-imaging) — but per-format
+  reader divergence is the value.
+
+### Rejected / deferred from this sweep
+| Project | Verdict |
+|---|---|
+| JFreeChart 1.5.x | Automatic-Module (safe), but **zero external deps** since JCommon was removed — self-contained → nothing to merge (jsoup/guava pattern). Chart-type diversity wasted. |
+| dom4j / JDOM2 | Real but **heavy/ancient** tree (`jaxen` → `xalan`, plus `xerces`); only moderate DOM/SAX/XPath/XSLT diversity — deferred below the image candidates. |
+| Apache OpenNLP | ⏸️ Candidate worth a look: multi-module (`opennlp-tools`/`-runtime`/`-ml-maxent`) + per-task **model** artifacts; task diversity (tokenize / sentence / POS / NER / chunk / lemmatize / parse). Needs `module-info` check and confirmation that required models ship as bundlable Maven artifacts (data files, not network). |
