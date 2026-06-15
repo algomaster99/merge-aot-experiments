@@ -343,3 +343,11 @@ need final vetting** (build a fork, `aotp --list-classes` sanity check).
 | BuildCLI/BuildCLI | Maven, Java 21 | ❌ **Not hermetic.** Lean deps (slf4j/logback/picocli), but it's an orchestrator — each command shells out to external `mvn`/`docker`/`git` (and AI/network for doc-gen). The in-JVM surface per command is thin (picocli dispatch + file templating + `ProcessBuilder`); the real work runs in external processes AOT can't capture → almost no cold class divergence. |
 | scouter-project/scouter | Gradle | ❌ **Triple blocker.** (1) Gradle build; (2) it's an APM **Java agent doing bytecode instrumentation** via ASM/BCI — the exact thing the no-instrumentation rule forbids; (3) agent + collector-server + RCP viewer → network/server, not hermetic. |
 | TomerAberbach/mano-simulator | Maven, Java 18 | ❌ **JavaFX app.** All deps are `org.openjfx:javafx-*` 19.0.2.1 — genuine JPMS modules that **ship `module-info`** (hard blocker); GUI-only entry point (`SuperMain`, no headless CLI) → not hermetic/headless; and the simulator is a toy (two-pass assembler + ~25-instruction interpreter loop) → tiny class surface, JIT-hot, no diversity. |
+
+#### Swept sources that yielded nothing (don't re-tread)
+- **`github.com/topics/java-applications` (top by forks, 2026-06-15):** all 14 top
+  results are awesome-lists (useful-java-links), build/packaging plugins
+  (JavaPackager, easypack, HaikuVMPlugin), Swing GUI educational viz (CADApps), or
+  toy/student/training repos (KBC, Bank-Demo, Quiz, TicTacToe, core-java-training…).
+  Zero hermetic, dep-bearing, divergent candidates. The topic is loosely applied —
+  better mined via specific format/parser libraries than the generic topic tag.
