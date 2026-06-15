@@ -397,3 +397,40 @@ a real mergeable tree), since every "application" lead failed structurally.
 | JFreeChart 1.5.x | Automatic-Module (safe), but **zero external deps** since JCommon was removed — self-contained → nothing to merge (jsoup/guava pattern). Chart-type diversity wasted. |
 | dom4j / JDOM2 | Real but **heavy/ancient** tree (`jaxen` → `xalan`, plus `xerces`); only moderate DOM/SAX/XPath/XSLT diversity — deferred below the image candidates. |
 | Apache OpenNLP | ⏸️ Candidate worth a look: multi-module (`opennlp-tools`/`-runtime`/`-ml-maxent`) + per-task **model** artifacts; task diversity (tokenize / sentence / POS / NER / chunk / lemmatize / parse). Needs `module-info` check and confirmation that required models ship as bundlable Maven artifacts (data files, not network). |
+
+### Second sweep (2026-06-15) — crypto / JOSE / office / AST / serialization
+
+#### Bouncy Castle (bc-java) — strong divergence, but recording-host caveat
+- **Modules (the mergeable tree):** `bcprov` (crypto/JCE), `bcutil` (ASN.1),
+  `bcpkix` (X.509/CMS/PKIX/OCSP/CMP), `bcpg` (OpenPGP), `bctls` (TLS 1.0–1.3),
+  `bcmail` (S/MIME) — `-jdk18on`, Java 8, **Automatic-Module-Name** (no `module-info`).
+  Inter-module deps only (biojava/TwelveMonkeys shape).
+- **Diversity: excellent.** crypto vs PKIX/certs vs OpenPGP vs TLS vs S/MIME are
+  largely disjoint `org.bouncycastle.*` subtrees.
+- **⚠️ Recording-host blocker (already proven in this repo):** bc-java's upstream
+  build is **Gradle with `test { forkEvery = 1 }`**; HotSpot's AOT recorder can't
+  archive classes loaded by Gradle's test-worker **child** classloader, so the dep
+  test-suite path yields a `cache.aot` with **zero** `org/bouncycastle/*` classes
+  (see `pdfbox-experiment/pdfbox-deps/bc-java-prov-workload/README.md`). The
+  workaround is a **hand-written synthetic fat-jar workload per module** that drives
+  the published jar's public API under `-XX:AOTCacheOutput`.
+- **Status / cost:** `bcprov`, `bcpkix`, `bcutil` workloads **already exist** under
+  `pdfbox-deps`. A standalone crypto-divergence experiment would hand-author
+  `bcpg`/`bctls`/`bcmail` workloads (bctls needs a loopback/test-vector peer).
+  Feasible but manual — does **not** get the automatic "merge the deps' test suites"
+  benefit. (This is also the general reason Gradle projects are blocked.)
+
+#### Nimbus JOSE+JWT — lean, algorithm divergence
+- **Repo:** `com.nimbusds:nimbus-jose-jwt`. Maven, Java 7+.
+- **Diversity: good.** JWS/JWE algorithm families (RSASSA, ECDSA, HMAC, AES-GCM,
+  AES-CBC-HMAC, ECDH-ES, PBES2) map to distinct handler/provider classes.
+- **⚠️ Dep caveat:** `json-smart` → `accessors-smart` → **ASM** (runtime bytecode
+  generation for bean accessors) — an instrumentation flag to verify (may not be
+  triggered for JOSE parsing, or excludable). Otherwise a lean (~2-dep) hermetic tree.
+
+#### Rejected from second sweep
+| Project | Verdict |
+|---|---|
+| JavaParser | `javaparser-core` is **zero-dep** (jsoup pattern); `javaparser-symbol-solver-core` pulls **`javassist`** (runtime instrumentation — the exact dep excluded in Thymeleaf) + guava → blocked either way. |
+| Apache Avro | Depends on **Jackson** (`module-info` in fasterxml ≥ 2.12) + commons-compress + slf4j — same `module-info` blocker as the rejected jackson family. |
+| jOpenDocument | ⏸️ ODF doc-type diversity (text/spreadsheet + PDF export), but old SourceForge project — Maven-**published** yet source build/deps unverified. If pursuing ODF, prefer **`odftoolkit/odfdom`** (Apache, Maven). Deferred pending build + `module-info` check. |
