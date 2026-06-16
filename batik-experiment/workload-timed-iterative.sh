@@ -5,7 +5,7 @@
 #               other three ops, run on this one) — same shape as the
 #               original cross-workload test, rebuilt for this JDK build
 #   iterative — iterative.aot, built incrementally by create-iterative-aot.sh
-#               (gzip -> zip -> tar -> list-archives, each step folded into the next)
+#               (svg-parse -> svg-to-png -> svg-to-jpeg -> svg-generate)
 #
 # Point JAVA_BIN at the JDK build under test, e.g.:
 #   JAVA_BIN=~/Desktop/tools/jdk/build/linux-x86_64-server-release-aot-re-training/images/jdk/bin/java \
@@ -20,23 +20,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 JAVA_BIN="${JAVA_BIN:-java}"
-JAR="benchmark/target/original-benchmark-1.0-SNAPSHOT.jar"
-DEPS_DIR="single-aot-deps"
-# single-iterjdk-{op}.aot and iterative.aot are both recorded against JARs
-# (CDS dump rejects non-empty directory classpath entries) — use the
-# matching JAR-based classpath for all run modes here.
-CP="$JAR:\
-$DEPS_DIR/commons-compress-1.28.0.jar:\
-$DEPS_DIR/commons-lang3-3.20.0.jar:\
-$DEPS_DIR/commons-codec-1.21.0.jar:\
-$DEPS_DIR/commons-io-2.20.0.jar"
-MAIN="dev.compressexp.Main"
+FAT_JAR="benchmark/target/benchmark-fat.jar"
+MAIN="dev.batikexp.Main"
 WORK_DIR="workload-tmp"
 ITERATIVE_AOT="iterative.aot"
 RUNS="${RUNS:-30}"
-OPS=("gzip-roundtrip" "zip-roundtrip" "tar-roundtrip" "list-archives")
+OPS=(svg-parse svg-to-png svg-to-jpeg svg-generate)
+JAVA_ARGS=(-Djava.awt.headless=true -cp "$FAT_JAR")
 
-[[ -f "$JAR" ]] || fail "$JAR not found — run: cd benchmark && mvn package -DskipTests"
+[[ -f "$FAT_JAR" ]] || fail "$FAT_JAR not found — run: cd benchmark && mvn package -DskipTests"
 [[ -f "$ITERATIVE_AOT" ]] || fail "$ITERATIVE_AOT not found — run create-iterative-aot.sh first"
 for _op in "${OPS[@]}"; do
   [[ -f "single-iterjdk-${_op}.aot" ]] || fail "single-iterjdk-${_op}.aot not found — run create-single-aot-iterjdk.sh first"
@@ -47,7 +39,7 @@ mkdir -p "$WORK_DIR"
 log "Java binary under test: $JAVA_BIN"
 "$JAVA_BIN" -version
 
-"$JAVA_BIN" -cp "$CP" "$MAIN" prepare "$WORK_DIR" >/dev/null
+"$JAVA_BIN" "${JAVA_ARGS[@]}" "$MAIN" prepare "$WORK_DIR" >/dev/null
 
 ms() { date +%s%N | awk '{printf "%.1f", $1/1000000}'; }
 
@@ -74,20 +66,20 @@ stddev_for_key() {
 
 run_no() {
   local op="$1"
-  "$JAVA_BIN" -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+  "$JAVA_BIN" "${JAVA_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR"
 }
 
 # train_op determines which single-iterjdk-{op}.aot to load; test_op is the workload run.
 run_aotcache_cross() {
   local train_op="$1" test_op="$2"
   "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${train_op}.aot" -XX:+AOTClassLinking \
-    -cp "$CP" "$MAIN" "$test_op" "$WORK_DIR"
+    "${JAVA_ARGS[@]}" "$MAIN" "$test_op" "$WORK_DIR"
 }
 
 run_iterative() {
   local op="$1"
   "$JAVA_BIN" -XX:AOTCache="$ITERATIVE_AOT" -XX:+AOTClassLinking \
-    -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+    "${JAVA_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR"
 }
 
 measure_ms() {
@@ -133,7 +125,7 @@ test_stddev_aotcache() {
     END { if (n < 2) { print "n/a" } else { printf "%.1f", sqrt((sumsq - sum*sum/n) / (n-1)) } }'
 }
 
-log "Running Commons Compress iterative-AOT workload RUNS=$RUNS"
+log "Running Batik iterative-AOT workload RUNS=$RUNS"
 for RUN_IDX in $(seq 1 "$RUNS"); do
   printf "  run %2d/%d\n" "$RUN_IDX" "$RUNS"
   # no and iterative: one pass over all ops
@@ -178,19 +170,19 @@ print_class_load_row() {
   case "$mode" in
     no)
       "$JAVA_BIN" -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        "${JAVA_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR"
       ;;
     aotcache)
       "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${op}.aot" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        "${JAVA_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR"
       ;;
     iterative)
       "$JAVA_BIN" -XX:AOTCache="$ITERATIVE_AOT" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        "${JAVA_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR"
       ;;
   esac
   printf "  %-16s | %-9s | %8s | %8s\n" \

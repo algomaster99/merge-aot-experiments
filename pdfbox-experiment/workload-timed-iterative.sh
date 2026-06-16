@@ -2,10 +2,9 @@
 # Timing comparison for the iterative-AOT JDK build (PR 31344). Three modes:
 #   no        — no AOT cache
 #   aotcache  — single-iterjdk-{op}.aot cross-workload (cache trained on the
-#               other three ops, run on this one) — same shape as the
-#               original cross-workload test, rebuilt for this JDK build
+#               other ops, run on this one) — same shape as the original
+#               cross-workload test, rebuilt for this JDK build
 #   iterative — iterative.aot, built incrementally by create-iterative-aot.sh
-#               (gzip -> zip -> tar -> list-archives, each step folded into the next)
 #
 # Point JAVA_BIN at the JDK build under test, e.g.:
 #   JAVA_BIN=~/Desktop/tools/jdk/build/linux-x86_64-server-release-aot-re-training/images/jdk/bin/java \
@@ -20,34 +19,50 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 JAVA_BIN="${JAVA_BIN:-java}"
-JAR="benchmark/target/original-benchmark-1.0-SNAPSHOT.jar"
-DEPS_DIR="single-aot-deps"
-# single-iterjdk-{op}.aot and iterative.aot are both recorded against JARs
-# (CDS dump rejects non-empty directory classpath entries) — use the
-# matching JAR-based classpath for all run modes here.
-CP="$JAR:\
-$DEPS_DIR/commons-compress-1.28.0.jar:\
-$DEPS_DIR/commons-lang3-3.20.0.jar:\
-$DEPS_DIR/commons-codec-1.21.0.jar:\
-$DEPS_DIR/commons-io-2.20.0.jar"
-MAIN="dev.compressexp.Main"
-WORK_DIR="workload-tmp"
+JAR="pdfbox/app/target/pdfbox-app-3.0.7.jar"
+MAIN="org.apache.pdfbox.tools.PDFBox"
+PDF="pdfbox/test.pdf"
+BASE="iterjdk"
+TMP="workload-tmp"
 ITERATIVE_AOT="iterative.aot"
 RUNS="${RUNS:-30}"
-OPS=("gzip-roundtrip" "zip-roundtrip" "tar-roundtrip" "list-archives")
+OPS=(export:text export:images render fromtext split merge decode overlay)
 
-[[ -f "$JAR" ]] || fail "$JAR not found — run: cd benchmark && mvn package -DskipTests"
+[[ -f "$JAR" ]] || fail "$JAR not found — build pdfbox first"
+[[ -f "$PDF" ]] || fail "$PDF not found"
 [[ -f "$ITERATIVE_AOT" ]] || fail "$ITERATIVE_AOT not found — run create-iterative-aot.sh first"
 for _op in "${OPS[@]}"; do
-  [[ -f "single-iterjdk-${_op}.aot" ]] || fail "single-iterjdk-${_op}.aot not found — run create-single-aot-iterjdk.sh first"
+  [[ -f "single-iterjdk-${_op//:/-}.aot" ]] || fail "single-iterjdk-${_op//:/-}.aot not found — run create-single-aot-iterjdk.sh first"
 done
 
-mkdir -p "$WORK_DIR"
+mkdir -p "$TMP"
 
 log "Java binary under test: $JAVA_BIN"
 "$JAVA_BIN" -version
 
-"$JAVA_BIN" -cp "$CP" "$MAIN" prepare "$WORK_DIR" >/dev/null
+op_args() {
+  local op="$1"
+  local -n _arr="$2"
+  case "$op" in
+    export:text)   _arr=(export:text   --input "$PDF" --output "$TMP/$BASE-text.txt") ;;
+    export:images) _arr=(export:images --input "$PDF") ;;
+    render)        _arr=(render        --input "$PDF") ;;
+    fromtext)      _arr=(fromtext      --input "$TMP/$BASE-text.txt"
+                           --output "$TMP/$BASE-from-text.pdf"
+                           -standardFont Times-Roman) ;;
+    split)         _arr=(split         --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE") ;;
+    merge)         _arr=(merge         --input "$TMP/split-$BASE-1.pdf"
+                           --output "$TMP/merged-$BASE.pdf") ;;
+    decode)        _arr=(decode "$PDF" "$TMP/$BASE-decoded.pdf") ;;
+    overlay)       _arr=(overlay       -default "$PDF" --input "$PDF"
+                           --output "$TMP/$BASE-overlay.pdf") ;;
+    *) fail "Unknown op: $op" ;;
+  esac
+}
+
+log "Preparing prerequisite files for workload…"
+"$JAVA_BIN" -cp "$JAR" "$MAIN" export:text --input "$PDF" --output "$TMP/$BASE-text.txt" >/dev/null 2>&1
+"$JAVA_BIN" -cp "$JAR" "$MAIN" split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE" >/dev/null 2>&1
 
 ms() { date +%s%N | awk '{printf "%.1f", $1/1000000}'; }
 
@@ -74,27 +89,31 @@ stddev_for_key() {
 
 run_no() {
   local op="$1"
-  "$JAVA_BIN" -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+  local -a args; op_args "$op" args
+  "$JAVA_BIN" -cp "$JAR" "$MAIN" "${args[@]}"
 }
 
 # train_op determines which single-iterjdk-{op}.aot to load; test_op is the workload run.
 run_aotcache_cross() {
   local train_op="$1" test_op="$2"
-  "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${train_op}.aot" -XX:+AOTClassLinking \
-    -cp "$CP" "$MAIN" "$test_op" "$WORK_DIR"
+  local -a args; op_args "$test_op" args
+  "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${train_op//:/-}.aot" -XX:+AOTClassLinking \
+    -cp "$JAR" "$MAIN" "${args[@]}"
 }
 
 run_iterative() {
   local op="$1"
+  local -a args; op_args "$op" args
   "$JAVA_BIN" -XX:AOTCache="$ITERATIVE_AOT" -XX:+AOTClassLinking \
-    -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+    -cp "$JAR" "$MAIN" "${args[@]}"
 }
 
 measure_ms() {
   local label_op="$1" label_mode="$2"
   shift 2
   local file_label_op="${label_op//>/-to-}"
-  local err_file="$WORK_DIR/${RUN_IDX:-0}-${file_label_op}-${label_mode}.stderr.log"
+  file_label_op="${file_label_op//:/-}"
+  local err_file="$TMP/${RUN_IDX:-0}-${file_label_op}-${label_mode}.stderr.log"
   local start end rc
   start=$(ms)
   "$@" >/dev/null 2>"$err_file"
@@ -133,7 +152,7 @@ test_stddev_aotcache() {
     END { if (n < 2) { print "n/a" } else { printf "%.1f", sqrt((sumsq - sum*sum/n) / (n-1)) } }'
 }
 
-log "Running Commons Compress iterative-AOT workload RUNS=$RUNS"
+log "Running PDFBox iterative-AOT workload RUNS=$RUNS"
 for RUN_IDX in $(seq 1 "$RUNS"); do
   printf "  run %2d/%d\n" "$RUN_IDX" "$RUNS"
   # no and iterative: one pass over all ops
@@ -174,23 +193,25 @@ done
 
 print_class_load_row() {
   local mode="$1" op="$2"
-  local classload_log="$WORK_DIR/classload-${op}-${mode}.log"
+  local safe="${op//:/-}"
+  local classload_log="$TMP/classload-${safe}-${mode}.log"
+  local -a args; op_args "$op" args
   case "$mode" in
     no)
       "$JAVA_BIN" -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        -cp "$JAR" "$MAIN" "${args[@]}" >/dev/null 2>&1
       ;;
     aotcache)
-      "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${op}.aot" \
+      "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${safe}.aot" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        -cp "$JAR" "$MAIN" "${args[@]}" >/dev/null 2>&1
       ;;
     iterative)
       "$JAVA_BIN" -XX:AOTCache="$ITERATIVE_AOT" \
         -XX:+AOTClassLinking \
         -Xlog:class+load:file="$classload_log" \
-        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+        -cp "$JAR" "$MAIN" "${args[@]}" >/dev/null 2>&1
       ;;
   esac
   printf "  %-16s | %-9s | %8s | %8s\n" \
@@ -218,7 +239,8 @@ sep
 printf "  %-40s | %10s\n" "Cache" "Size"
 sep
 for op in "${OPS[@]}"; do
-  printf "  %-40s | %10s\n" "single-iterjdk-${op}.aot" "$(du -h "single-iterjdk-${op}.aot" | awk '{print $1}')"
+  safe="${op//:/-}"
+  printf "  %-40s | %10s\n" "single-iterjdk-${safe}.aot" "$(du -h "single-iterjdk-${safe}.aot" | awk '{print $1}')"
 done
 for f in iterative-step*.aot; do
   [[ -f "$f" ]] || continue
