@@ -1,0 +1,107 @@
+name: Commons Compress Iterative AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  iterative-aot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: true
+
+      - name: Download iterative-AOT JDK
+        run: |
+          curl -L -o jdk-iterative.tar.gz \
+            "https://github.com/algomaster99/jdk/releases/download/jdk-supply-chain-aotcache-8279d488549/jdk-supply-chain-aotcache-8279d488549.tar.gz"
+
+      - name: Set up iterative-AOT JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-iterative.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build benchmark jar
+        working-directory: commons-compress-experiment/benchmark
+        run: mvn package -DskipTests -q
+
+      - name: Create cross-workload single-iterjdk.aot caches
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-single-aot-iterjdk.sh
+          JAVA_BIN="$JAVA_HOME/bin/java" ./create-single-aot-iterjdk.sh
+          for op in gzip-roundtrip zip-roundtrip tar-roundtrip list-archives; do
+            test -f "single-iterjdk-${op}.aot"
+          done
+
+      - name: Create iterative.aot (create-iterative-aot.sh)
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-iterative-aot.sh
+          iter_out=$(JAVA_BIN="$JAVA_HOME/bin/java" ./create-iterative-aot.sh 2>&1) || { echo "$iter_out"; exit 1; }
+          echo "$iter_out"
+          iter_out_clean=$(echo "$iter_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          iter_size=$(du -h iterative.aot | awk '{print $1}')
+
+          {
+            echo "## iterative.aot creation"
+            echo
+            echo "- iterative.aot: ${iter_size}"
+            echo
+            echo '```'
+            echo "$iter_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f iterative.aot
+
+      - name: Run timed workload (no vs aotcache vs iterative)
+        working-directory: commons-compress-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed-iterative.sh
+          wl_out=$(JAVA_BIN="$JAVA_HOME/bin/java" ./workload-timed-iterative.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          single_size=$(du -ch single-iterjdk-*.aot | tail -1 | awk '{print $1}')
+          iter_size=$(du -h iterative.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no vs cross-workload aotcache vs iterative)"
+            echo
+            echo "- single-iterjdk-*.aot total: ${single_size}"
+            echo "- iterative.aot: ${iter_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Commons Compress iterative-AOT artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: commons-compress-iterative-artifacts
+          path: |
+            commons-compress-experiment/workload-tmp/
+            commons-compress-experiment/single-iterjdk-*.aot
+            commons-compress-experiment/iterative-step*.aot
+            commons-compress-experiment/iterative.aot
+          if-no-files-found: error
