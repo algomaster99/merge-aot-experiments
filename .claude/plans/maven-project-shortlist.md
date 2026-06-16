@@ -434,3 +434,42 @@ a real mergeable tree), since every "application" lead failed structurally.
 | JavaParser | `javaparser-core` is **zero-dep** (jsoup pattern); `javaparser-symbol-solver-core` pulls **`javassist`** (runtime instrumentation — the exact dep excluded in Thymeleaf) + guava → blocked either way. |
 | Apache Avro | Depends on **Jackson** (`module-info` in fasterxml ≥ 2.12) + commons-compress + slf4j — same `module-info` blocker as the rejected jackson family. |
 | jOpenDocument | ⏸️ ODF doc-type diversity (text/spreadsheet + PDF export), but old SourceForge project — Maven-**published** yet source build/deps unverified. If pursuing ODF, prefer **`odftoolkit/odfdom`** (Apache, Maven). Deferred pending build + `module-info` check. |
+
+---
+
+## Third sweep — APPLICATION-focused (2026-06-16)
+
+> User re-emphasised **applications, not libraries.** Hard reality reconfirmed:
+> almost every real app fails on the same axes — non-Maven build (Ant/Gradle/Bazel),
+> runtime instrumentation, `module-info` deps, zero dep tree, or non-hermetic. Net
+> result: the **only two surviving Maven application candidates are Apache OpenNLP
+> CLI and the ANTLR4 tool.**
+
+#### Apache OpenNLP (opennlp-cli) ⭐ — best surviving application
+- **Repo:** apache/opennlp. **Build:** **Maven**, multi-module (main branch: JDK 21 +
+  Maven 3.9). The `opennlp-cli` module is the runnable CLI app (train / evaluate /
+  run); `opennlp-tools` is the engine; `opennlp-model-resolver` fetches models.
+- **Diversity: excellent (app-level).** Distinct NLP tasks — tokenize, sentence
+  detect, POS, lemmatize, chunk, **NER**, parse — each load disjoint
+  `opennlp.tools.{tokenize,postag,namefind,parser,…}` subtrees. App-level analogue of
+  FOP renderers / Tika parsers.
+- **Mergeable tree:** its own multi-module set (opennlp-tools/-cli/-formats/-model-resolver)
+  + per-task **model** artifacts shipped as Maven jars (data, **bundlable → hermetic**,
+  no network at runtime).
+- **Verify before building:** (1) `module-info` status on opennlp-tools/-cli (newer
+  Apache projects sometimes add one — historically only Automatic-Module-Name);
+  (2) the external dep tree of opennlp-tools (slf4j + ?); (3) which models are
+  mandatory vs trainable from bundled sample data.
+
+#### ANTLR4 tool — second surviving application
+- See "Runnable applications" above. Maven, codegen-target + grammar-feature
+  diversity; only blemish is the heavy `icu4j` fork. Recommend a quick
+  intersection/union probe before committing (its class-level divergence is modest).
+
+#### Rejected from this app sweep
+| App | Verdict |
+|-----|---------|
+| Stanford CoreNLP | **Ant + Ivy build** (`cd CoreNLP; ant`) — Maven jar is only a published output. Build-system blocker (cf. Xalan/Xerces). *Painful loss:* its annotator diversity (tokenize/POS/NER/parse/coref/sentiment) is the best of any app. |
+| Soot | Carries **`javassist` at runtime scope** (bytecode instrumentation blocker) on top of a heavy ~8-dep tree (asm*, dexlib2, heros, jasmin, axml, commons-io, slf4j). |
+| Apache Tika (tika-app) | Best format diversity of any app, but the runnable app bundles **POI (MR-JAR `module-info`)** + dozens of parser deps → `module-info` blocker + huge tree. A curated subset collapses back to the existing **tika-core** library candidate. |
+| JavaCC | A parser-generator app, but generates **zero-runtime-dep** code and is itself **self-contained** → nothing to merge (jsoup pattern). |
