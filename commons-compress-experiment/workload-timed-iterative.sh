@@ -169,3 +169,43 @@ for op in "${OPS[@]}"; do
   printf "  %-16s | %18s | %20s %8s | %20s %8s\n" \
     "$op" "${m_no}±${sd_no}" "${m_ac}±${sd_ac}" "$su_ac" "${m_it}±${sd_it}" "$su_it"
 done
+
+# ─── class-load summary (same-workload aotcache for each op) ───────────────
+
+print_class_load_row() {
+  local mode="$1" op="$2"
+  local classload_log="$WORK_DIR/classload-${op}-${mode}.log"
+  case "$mode" in
+    no)
+      "$JAVA_BIN" -Xlog:class+load:file="$classload_log" \
+        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+      ;;
+    aotcache)
+      "$JAVA_BIN" -XX:AOTCache="single-iterjdk-${op}.aot" \
+        -XX:+AOTClassLinking \
+        -Xlog:class+load:file="$classload_log" \
+        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+      ;;
+    iterative)
+      "$JAVA_BIN" -XX:AOTCache="$ITERATIVE_AOT" \
+        -XX:+AOTClassLinking \
+        -Xlog:class+load:file="$classload_log" \
+        -cp "$CP" "$MAIN" "$op" "$WORK_DIR"
+      ;;
+  esac
+  printf "  %-16s | %-9s | %8s | %8s\n" \
+    "$op" "$mode" \
+    "$(awk '/source: file:/{count++} END{print count+0}' "$classload_log")" \
+    "$(awk '/source: shared object[s]? file/{count++} END{print count+0}' "$classload_log")"
+}
+
+echo
+log "Class-load source summary per workload (aotcache uses same-workload cache)"
+sep
+printf "  %-16s | %-9s | %8s | %8s\n" "Operation" "Mode" "file:" "shared"
+for op in "${OPS[@]}"; do
+  print_class_load_row "no" "$op"
+  print_class_load_row "aotcache" "$op"
+  print_class_load_row "iterative" "$op"
+  echo "--------------------------------"
+done
