@@ -13,20 +13,24 @@ java -version
 # Per-dependency cache.aot files merged into tree.aot.
 #
 # biojava's distributable artifacts are its own sibling modules plus a thin
-# tail of third-party libs. The log4j binding is excluded (see benchmark/pom.xml)
-# so no module-info-bearing JAR is on the runtime path; slf4j is handled by the
-# existing slf4j fork (its MR-JAR module-info is stripped, same as thymeleaf).
+# tail of third-party libs. The log4j binding is excluded (see benchmark/pom.xml).
+# jaxb-runtime (glassfish) and jakarta.xml.bind-api are now included to support the
+# aa-prop workload; module-info.class is stripped by the shade plugin at fat-jar time.
 # Record each cache before running this script:
 #
-#   biojava/biojava-core/       mvn test -P tree-merge   (biojava fork, log4j excluded)
-#   biojava/biojava-alignment/  mvn test -P tree-merge
-#   biojava-deps/forester/      custom workload (no usable test suite; no module-info)
-#   biojava-deps/commons-codec/ mvn test                 (forester's dep; reuse fork)
+#   biojava/biojava-core/          mvn test -P tree-merge   (biojava fork, log4j excluded)
+#   biojava/biojava-alignment/     mvn test -P tree-merge
+#   biojava/biojava-aa-prop/       mvn test -P tree-merge   (log4j excluded)
+#   biojava/biojava-structure/     mvn test -P tree-merge   (pdb-parse workload)
+#   biojava-deps/forester/         custom workload (no usable test suite; no module-info)
+#   biojava-deps/commons-codec/    mvn test                 (forester's dep; reuse fork)
 #   biojava-deps/slf4j/slf4j-api/  reuse slf4j fork (module-info stripped)
 #
 CACHE_PATHS=(
   "biojava/biojava-core/cache.aot"
   "biojava/biojava-alignment/cache.aot"
+  "biojava/biojava-aa-prop/cache.aot"
+  "biojava/biojava-structure/cache.aot"
   "biojava-deps/forester/cache.aot"
   "biojava-deps/commons-codec/cache.aot"
   "biojava-deps/slf4j/slf4j-api/cache.aot"
