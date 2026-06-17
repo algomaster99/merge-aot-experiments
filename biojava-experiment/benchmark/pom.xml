@@ -5,12 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-    module-info mitigation (see README): biojava-core/-alignment declare a log4j
-    binding (log4j-core ships module-info) and jaxb-runtime (also module-info).
-    BioJava logs only via slf4j-api and never references JAXB in main source, so
-    both are excluded. forester's dead openchart transitive dep is excluded too.
-    The result has no module-info JAR on the runtime path except slf4j-api,
-    which the existing slf4j fork strips.
+    module-info mitigation: log4j-core and jaxb-runtime both carry module-info.
+    The shade plugin strips all module-info.class files from the fat JAR (see
+    filter below), so both can be included safely in classpath mode.
+    log4j is still excluded from biojava-core/-alignment (unused there).
+    jaxb-runtime is allowed in transitively via biojava-aa-prop, which needs it
+    for the JAXB unmarshal path in PeptideProperties.
+    forester's dead openchart transitive dep is excluded too.
   -->
   <groupId>dev.biojavaexp</groupId>
   <artifactId>benchmark</artifactId>
@@ -40,6 +41,16 @@
       <version>${biojava.version}</version>
       <exclusions>
         <exclusion><groupId>openchart</groupId><artifactId>openchart</artifactId></exclusion>
+        <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-slf4j2-impl</artifactId></exclusion>
+        <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-api</artifactId></exclusion>
+        <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-core</artifactId></exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.biojava</groupId>
+      <artifactId>biojava-aa-prop</artifactId>
+      <version>${biojava.version}</version>
+      <exclusions>
         <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-slf4j2-impl</artifactId></exclusion>
         <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-api</artifactId></exclusion>
         <exclusion><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-core</artifactId></exclusion>

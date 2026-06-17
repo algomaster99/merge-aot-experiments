@@ -14,7 +14,7 @@ java -version
 FAT_JAR="benchmark/target/benchmark-fat.jar"
 MAIN="dev.biojavaexp.Main"
 WORK_DIR="workload-tmp"
-OPS=(fasta-parse transcribe revcomp-gc align-global codon-usage genbank-write msa)
+OPS=(transcribe genbank-write align-global msa aa-prop)
 
 JAVA_ARGS=(-cp "$FAT_JAR")
 

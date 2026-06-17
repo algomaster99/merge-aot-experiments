@@ -18,7 +18,7 @@ JAVA_NO_BIN="${JAVA_NO_BIN:-java}"
 JAVA_AOTCACHE_BIN="${JAVA_AOTCACHE_BIN:-java}"
 JAVA_TREECACHE_BIN="${JAVA_TREECACHE_BIN:-java}"
 
-OPS=(fasta-parse transcribe revcomp-gc align-global codon-usage genbank-write msa)
+OPS=(transcribe genbank-write align-global msa aa-prop)
 
 [[ -f "$FAT_JAR" ]]    || fail "$FAT_JAR not found — run: cd benchmark && mvn package -DskipTests"
 for _op in "${OPS[@]}"; do
