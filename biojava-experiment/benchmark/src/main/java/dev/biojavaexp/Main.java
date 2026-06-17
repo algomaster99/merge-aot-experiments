@@ -1,8 +1,6 @@
 package dev.biojavaexp;
 
-import org.biojava.nbio.core.sequence.DNASequence;
 import org.biojava.nbio.core.sequence.ProteinSequence;
-import org.biojava.nbio.core.sequence.RNASequence;
 import org.biojava.nbio.core.sequence.compound.AminoAcidCompound;
 import org.biojava.nbio.core.sequence.io.FastaWriterHelper;
 import org.biojava.nbio.core.sequence.io.GenbankReaderHelper;
@@ -39,7 +37,6 @@ import java.util.List;
  * codon-usage — were dropped because a random other single.aot already covers nearly
  * all of their class set, leaving no headroom for tree.aot.
  *
- *   biojava-core/transcription  — transcribe (DNASequence → RNA → ProteinSequence)
  *   biojava-core/io-write       — genbank-write (GenbankReader + Fasta/GenbankWriter)
  *   biojava-alignment/pairwise  — align-global (Needleman–Wunsch DP)
  *   biojava-alignment/msa       — msa (GuideTree, profile–profile)
@@ -65,7 +62,6 @@ public class Main {
         Path workDir = Paths.get(args[1]);
         switch (cmd) {
             case "prepare"        -> prepare(workDir);
-            case "transcribe"     -> transcribe(workDir);
             case "genbank-write"  -> genbankWrite(workDir);
             case "align-global"   -> align(PairwiseSequenceAlignerType.GLOBAL);
             case "msa"            -> msa();
@@ -85,14 +81,6 @@ public class Main {
                 Files.copy(is, workDir.resolve(res), StandardCopyOption.REPLACE_EXISTING);
             }
         }
-    }
-
-    // biojava-core: transcription engine + translation subtree
-    static void transcribe(Path workDir) throws Exception {
-        DNASequence dna = new DNASequence(repeat("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG", 30));
-        RNASequence rna = dna.getRNASequence();
-        ProteinSequence protein = rna.getProteinSequence();
-        if (protein.getLength() == 0) throw new IllegalStateException("no protein");
     }
 
     // biojava-core: sequence serialisation — writer class subtree (FastaWriter,
@@ -151,12 +139,6 @@ public class Main {
     }
 
     // -------------------------------------------------------------------------
-
-    static String repeat(String s, int n) {
-        StringBuilder sb = new StringBuilder(s.length() * n);
-        for (int i = 0; i < n; i++) sb.append(s);
-        return sb.toString();
-    }
 
     // A minimal but well-formed GenBank record.
     static final String GENBANK = """
