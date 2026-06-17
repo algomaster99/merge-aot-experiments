@@ -107,7 +107,8 @@ jobs:
         run: |
           set -euo pipefail
           mvn package -DskipTests -q
-          java -XX:AOTCacheOutput=cache.aot -jar target/forester-workload-fat.jar
+          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
+               -XX:AOTCacheOutput=cache.aot -jar target/forester-workload-fat.jar
           test -f cache.aot
 
       # ── benchmark fat jar ──────────────────────────────────────────────────
@@ -197,6 +198,17 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Append AOT cache composition table to summary
+        working-directory: biojava-experiment
+        run: |
+          {
+            echo "## AOT cache composition (Size / Classes / App%)"
+            echo
+            echo '```latex'
+            python3 generate-latex-table.py
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Append LaTeX table rows to summary
         working-directory: biojava-experiment
         run: |
@@ -240,13 +252,21 @@ jobs:
           path: |
             biojava-experiment/workload-tmp/
             biojava-experiment/aotlink-tree-create.log
+            biojava-experiment/aot.map
             biojava-experiment/single-*.aot
             biojava-experiment/tree.aot
             biojava-experiment/biojava/biojava-core/cache.aot
+            biojava-experiment/biojava/biojava-core/aot.map
             biojava-experiment/biojava/biojava-alignment/cache.aot
+            biojava-experiment/biojava/biojava-alignment/aot.map
             biojava-experiment/biojava/biojava-aa-prop/cache.aot
+            biojava-experiment/biojava/biojava-aa-prop/aot.map
             biojava-experiment/biojava/biojava-structure/cache.aot
+            biojava-experiment/biojava/biojava-structure/aot.map
             biojava-experiment/biojava-deps/forester/cache.aot
+            biojava-experiment/biojava-deps/forester/aot.map
             biojava-experiment/biojava-deps/commons-codec/cache.aot
+            biojava-experiment/biojava-deps/commons-codec/aot.map
             biojava-experiment/biojava-deps/slf4j/slf4j-api/cache.aot
+            biojava-experiment/biojava-deps/slf4j/slf4j-api/aot.map
           if-no-files-found: error
