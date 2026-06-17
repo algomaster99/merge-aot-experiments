@@ -43,12 +43,12 @@ jobs:
             ${{ runner.os }}-maven-biojava-
             ${{ runner.os }}-maven-
 
-      # Install biojava-core, biojava-alignment, and biojava-aa-prop into the
-      # local Maven repo. The benchmark depends on all three; the other biojava
-      # modules are not needed.
+      # Install biojava-core, biojava-alignment, biojava-aa-prop, and biojava-structure
+      # into the local Maven repo. biojava-aa-prop depends on biojava-structure, and
+      # biojava-structure is also a direct benchmark dependency for the pdb-parse workload.
       - name: Install biojava modules into local Maven repo
         working-directory: biojava-experiment/biojava
-        run: mvn install -DskipTests -q -pl biojava-core,biojava-alignment,biojava-aa-prop --also-make
+        run: mvn install -DskipTests -q -pl biojava-core,biojava-alignment,biojava-aa-prop,biojava-structure --also-make
 
       # ── test-suite caches ──────────────────────────────────────────────────
 
@@ -75,6 +75,14 @@ jobs:
           find biojava-aa-prop -name "*.aot" -type f -delete
           mvn clean test -Ptree-merge -pl biojava-aa-prop -q
           test -f biojava-aa-prop/cache.aot
+
+      - name: Build biojava-structure cache (tree-merge)
+        working-directory: biojava-experiment/biojava
+        run: |
+          set -euo pipefail
+          find biojava-structure -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl biojava-structure -q
+          test -f biojava-structure/cache.aot
 
       - name: Build commons-codec cache (tree-merge)
         working-directory: biojava-experiment/biojava-deps/commons-codec
@@ -125,7 +133,7 @@ jobs:
           set -euo pipefail
           chmod +x create-single-aot.sh
           ./create-single-aot.sh
-          for op in genbank-write align-global msa aa-prop; do
+          for op in genbank-write msa aa-prop pdb-parse; do
             test -f "single-${op}.aot"
           done
 
@@ -213,10 +221,11 @@ jobs:
             echo "| biojava-core | \`biojava/biojava-core/cache.aot\` | $(du -h biojava/biojava-core/cache.aot | awk '{print $1}') |"
             echo "| biojava-alignment | \`biojava/biojava-alignment/cache.aot\` | $(du -h biojava/biojava-alignment/cache.aot | awk '{print $1}') |"
             echo "| biojava-aa-prop | \`biojava/biojava-aa-prop/cache.aot\` | $(du -h biojava/biojava-aa-prop/cache.aot | awk '{print $1}') |"
+            echo "| biojava-structure | \`biojava/biojava-structure/cache.aot\` | $(du -h biojava/biojava-structure/cache.aot | awk '{print $1}') |"
             echo "| forester | \`biojava-deps/forester/cache.aot\` | $(du -h biojava-deps/forester/cache.aot | awk '{print $1}') |"
             echo "| commons-codec | \`biojava-deps/commons-codec/cache.aot\` | $(du -h biojava-deps/commons-codec/cache.aot | awk '{print $1}') |"
             echo "| slf4j-api | \`biojava-deps/slf4j/slf4j-api/cache.aot\` | $(du -h biojava-deps/slf4j/slf4j-api/cache.aot | awk '{print $1}') |"
-            for op in genbank-write align-global msa aa-prop; do
+            for op in genbank-write msa aa-prop pdb-parse; do
               echo "| single-${op} | \`single-${op}.aot\` | $(du -h "single-${op}.aot" | awk '{print $1}') |"
             done
             echo "| tree | \`tree.aot\` | $(du -h tree.aot | awk '{print $1}') |"
@@ -236,6 +245,7 @@ jobs:
             biojava-experiment/biojava/biojava-core/cache.aot
             biojava-experiment/biojava/biojava-alignment/cache.aot
             biojava-experiment/biojava/biojava-aa-prop/cache.aot
+            biojava-experiment/biojava/biojava-structure/cache.aot
             biojava-experiment/biojava-deps/forester/cache.aot
             biojava-experiment/biojava-deps/commons-codec/cache.aot
             biojava-experiment/biojava-deps/slf4j/slf4j-api/cache.aot
