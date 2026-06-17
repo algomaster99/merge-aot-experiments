@@ -93,6 +93,8 @@ public class Main {
         ByteArrayOutputStream gbOut = new ByteArrayOutputStream();
         GenbankWriterHelper.writeNucleotideSequence(gbOut, seqs.values());
         if (fastaOut.size() == 0 || gbOut.size() == 0) throw new IllegalStateException("empty write output");
+        System.out.println("=== FASTA output ===");
+        System.out.println(fastaOut);
     }
 
     // biojava-alignment: progressive multiple sequence alignment subtree.
@@ -110,6 +112,8 @@ public class Main {
             Alignments.getMultipleSequenceAlignment(seqs);
         ConcurrencyTools.shutdown();
         if (profile.getSize() == 0) throw new IllegalStateException("empty MSA");
+        System.out.println("=== MSA output ===");
+        System.out.println(profile);
     }
 
     // biojava-alignment: pairwise dynamic-programming aligner subtree
@@ -121,6 +125,8 @@ public class Main {
         PairwiseSequenceAligner<ProteinSequence, AminoAcidCompound> aligner =
             Alignments.getPairwiseAligner(query, target, type, gap, matrix);
         aligner.getScore();
+        System.out.println("=== Global alignment ===");
+        System.out.println(aligner.getPair());
     }
 
     // biojava-aa-prop: JAXB-based molecular-weight path.
@@ -136,6 +142,7 @@ public class Main {
             "MTADGPRELLQLRAAVRHRGLLAELLRDR", table);
         double pi = PeptideProperties.getIsoelectricPoint("MTADGPRELLQLRAAVRHRGLLAELLRDR");
         if (mw <= 0 || pi <= 0) throw new IllegalStateException("bad aa-prop result");
+        System.out.printf("=== aa-prop ===%nmolecular weight: %.2f Da%nisoelectric point: pH %.2f%n", mw, pi);
     }
 
     // -------------------------------------------------------------------------
