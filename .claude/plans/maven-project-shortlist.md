@@ -473,3 +473,25 @@ a real mergeable tree), since every "application" lead failed structurally.
 | Soot | Carries **`javassist` at runtime scope** (bytecode instrumentation blocker) on top of a heavy ~8-dep tree (asm*, dexlib2, heros, jasmin, axml, commons-io, slf4j). |
 | Apache Tika (tika-app) | Best format diversity of any app, but the runnable app bundles **POI (MR-JAR `module-info`)** + dozens of parser deps → `module-info` blocker + huge tree. A curated subset collapses back to the existing **tika-core** library candidate. |
 | JavaCC | A parser-generator app, but generates **zero-runtime-dep** code and is itself **self-contained** → nothing to merge (jsoup pattern). |
+
+#### User-suggested (2026-06-16): tinystruct/tinystruct — rejected
+**What it is:** a lightweight modular Java web/CLI framework (Maven, Java 17, no own
+`module-info`, no direct instrumentation). The shell looks fine; the **mandatory
+dep tree sinks it.** All 12 non-test deps are compile-scope (none `optional`/`provided`):
+
+| Dep | Problem |
+|---|---|
+| `jakarta.activation-api:2.1.4`, `com.sun.mail:jakarta.mail:2.0.2` | Jakarta API jars **ship real `module-info`** → hard blocker (cf. jetty/POI); mail also needs an SMTP/IMAP server |
+| `org.apache.kafka:kafka-clients:4.3.0` | Needs a **Kafka broker** → not hermetic (kafka already rejected) |
+| `io.lettuce:lettuce-core:7.6.0` | Redis client → needs **Redis server**; pulls Netty + Reactor (heavy) (lettuce already rejected: "44 deps; needs Redis") |
+| `com.h2database:h2:2.4.240`, `org.xerial:sqlite-jdbc` | **Databases**; H2 already rejected; sqlite-jdbc bundles **native JNI** libs |
+| `net.java.dev.jna:jna:5.18.1` | **Native/JNI** code |
+| `org.openjdk.nashorn:nashorn-core:15.7` | JS engine that **generates JVM bytecode at runtime** (pulls ASM) — instrumentation-class concern |
+| `com.google.zxing:core`, `io.jsonwebtoken:jjwt-*`, `org.brotli:dec` | The only benign ones |
+
+**Verdict:** ❌ multiple independent hard blockers — `module-info` deps (jakarta.*),
+**non-hermetic** core deps (Kafka/Redis/mail/DB), native JNI (jna/sqlite), and
+runtime bytecode gen (nashorn). It also re-pulls three already-rejected projects
+(kafka, lettuce, h2) as *mandatory* deps. A gutted "core-only" fork (drop everything
+but zxing/jjwt/brotli) could compile, but that discards the app's real surface and
+leaves little diversity — not worth it.
