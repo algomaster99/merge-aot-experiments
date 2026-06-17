@@ -495,3 +495,25 @@ runtime bytecode gen (nashorn). It also re-pulls three already-rejected projects
 (kafka, lettuce, h2) as *mandatory* deps. A gutted "core-only" fork (drop everything
 but zxing/jjwt/brotli) could compile, but that discards the app's real surface and
 leaves little diversity — not worth it.
+
+#### User-suggested (2026-06-16): Konloch/bytecode-viewer — rejected (best diversity, unbuildable tree)
+**What it is:** a Swing-GUI Java/Android reverse-engineering suite. **Maven**, Java 8,
+maven-shade fat jar — the build shell is fine.
+- **Diversity: the best we've seen.** Same input class, **6 independent decompiler
+  engines** (CFR, Procyon, Fernflower, Krakatau, JADX, JD) + disassemblers/assemblers
+  — each a **completely disjoint** engine subtree. The ultimate "same input, different
+  backend" shape (stronger than FOP renderers).
+- **Why it still fails:**
+  1. **50+ compile dependencies** — far beyond hand-forkable (graphhopper died at ~20).
+     The experiment forks each dep and merges its *test suite*; you cannot fork/run 50.
+  2. **Swing GUI app** (darklaf, jgraphx, rsyntaxtextarea, bined-swing). A headless
+     `-i/-o/-t` decompile CLI exists, but most deps are GUI-only and never exercised
+     headlessly.
+  3. **Non-hermetic / non-Java engines:** Krakatau is **Python** (invoked externally);
+     the Android path pulls apktool/smali/dex2jar/JADX (heavy, partly Gradle upstream).
+  4. **The diversity doesn't convert:** the engines are individually **zero-/near-zero-dep**
+     (CFR, Procyon, Fernflower — already rejected on the jsoup pattern), so there are no
+     dep test suites to merge; BCV only *aggregates* them via an unforkable 50-dep jar.
+- **Verdict:** ❌ on dep-count + GUI + external engines. Noted as the most compelling
+  *divergence* story — but it's exactly the case where great workload diversity can't
+  be realised because the backends have no mergeable dependency tree.
