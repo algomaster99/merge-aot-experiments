@@ -517,3 +517,49 @@ maven-shade fat jar — the build shell is fine.
 - **Verdict:** ❌ on dep-count + GUI + external engines. Noted as the most compelling
   *divergence* story — but it's exactly the case where great workload diversity can't
   be realised because the backends have no mergeable dependency tree.
+
+---
+---
+
+## "Like pdfbox" sweep (2026-06-16)
+
+Goal: another **document/format toolkit** with pdfbox's good properties — Maven,
+modest forkable tree, **operation-level diversity** (extract vs render vs forms vs
+sign → disjoint subtrees), hermetic, no `module-info`.
+
+### Candidates
+- **iText 5 — `com.itextpdf:itextpdf` 5.5.13.x ⭐ (closest analogue, low setup)**
+  - PDF toolkit, Maven, Java 5–8, maintenance mode. **No `module-info`** (old).
+  - **Diversity (pdfbox-like):** PDF generation, content/text extraction (`parser`),
+    AcroForms, **digital signatures** (`security` → bouncycastle), stamping/overlay,
+    PDF/A.
+  - **Deps:** bouncycastle (`bcprov`+`bcpkix`, `jdk15on`/`jdk15to18`) for crypto —
+    **already forked in this repo** (bc-java). Verify required-vs-optional scope.
+  - **License: AGPL** (acceptable for research; note it). Low setup since BC forks exist.
+- **icepdf — `com.github.pcorless.icepdf:core` 7.2.5**
+  - Actively-maintained fork of ICEpdf, **Apache 2.0** (cleaner license than iText),
+    Maven, AWT rendering. Diversity: render pages, extract text/images, annotations.
+  - Verify: dep tree (may be thin/self-contained) + `module-info`.
+- **Sejda SAMBox — `org.sejda:sambox` (defer, redundant)**
+  - Literally a **PDFBox 2.0 fork** (deps: slf4j-api, jcl-over-slf4j, sejda-io,
+    sejda-commons, fontbox). ⚠️ Same codebase/diversity as the **existing pdfbox
+    experiment** → low marginal value; only novelty is sejda-io (nio FileChannel/
+    MappedByteBuffer) + slf4j logging.
+
+### Rejected
+- **Apache POI** (office analogue) — stays rejected: messy MR-JAR `module-info` history
+  across 5.x + **xmlbeans** (poi-ooxml) JPMS descriptors + heavy tree.
+
+## mybatis/mybatis-3 (user-suggested 2026-06-16) — rejected (reconciles earlier notes)
+The plan previously listed mybatis twice with differing reasons ("self-contained /
+low benefit" vs "~8 deps, needs DB"). Verified and consolidated:
+- **Build:** Maven.
+- **❌ Instrumentation, shaded & non-excludable:** compile-scope **`javassist` 3.30.2-GA**
+  + **`cglib` 3.3.0** (proxy / lazy-loading bytecode generation) + **`ognl`** (itself
+  uses javassist). MyBatis **shades ognl + javassist into its own jar**, so — unlike
+  Thymeleaf, which simply excluded Javassist from the classpath — they're embedded and
+  cannot be removed. Runtime bytecode-instrumentation blocker.
+- **❌ Non-hermetic:** it's a SQL mapper — meaningless without a **database** (its own
+  tests run on HSQLDB/Derby); the DB category is excluded.
+- **Verdict:** ❌ (instrumentation + DB). Supersedes the older "self-contained" note,
+  which predated the ognl/javassist/cglib compile-scope deps.
