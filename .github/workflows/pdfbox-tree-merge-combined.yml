@@ -1,6 +1,9 @@
 name: PDFBox Distributed AOT Cache
 
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
     inputs:
       baseline_jdk:
@@ -49,6 +52,14 @@ jobs:
           test -f io/cache.aot
           test -f fontbox/cache.aot
           test -f pdfbox/cache.aot
+
+      - name: Build picocli cache (tree-merge)
+        working-directory: pdfbox-experiment/pdfbox-deps/picocli
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -type f -delete
+          ./gradlew test -Ptree-merge -q
+          test -f cache.aot
 
       - name: Build JBIG2 cache (tree-merge)
         working-directory: pdfbox-experiment/pdfbox-deps/pdfbox-jbig2
@@ -206,6 +217,7 @@ jobs:
             echo "| fontbox | \`pdfbox/fontbox/cache.aot\` | $(du -h pdfbox/fontbox/cache.aot | awk '{print $1}') |"
             echo "| pdfbox | \`pdfbox/pdfbox/cache.aot\` | $(du -h pdfbox/pdfbox/cache.aot | awk '{print $1}') |"
             echo "| tools | \`pdfbox/tools/cache.aot\` | $(du -h pdfbox/tools/cache.aot | awk '{print $1}') |"
+            echo "| picocli | \`pdfbox-deps/picocli/cache.aot\` | $(du -h pdfbox-deps/picocli/cache.aot | awk '{print $1}') |"
             echo "| pdfbox-jbig2 | \`pdfbox-deps/pdfbox-jbig2/cache.aot\` | $(du -h pdfbox-deps/pdfbox-jbig2/cache.aot | awk '{print $1}') |"
             echo "| apache-commons-io | \`pdfbox-deps/apache-commons-io/cache.aot\` | $(du -h pdfbox-deps/apache-commons-io/cache.aot | awk '{print $1}') |"
             echo "| commons-logging-workload | \`pdfbox-deps/commons-logging-workload/cache.aot\` | $(du -h pdfbox-deps/commons-logging-workload/cache.aot | awk '{print $1}') |"
@@ -229,6 +241,7 @@ jobs:
             pdfbox-experiment/pdfbox/fontbox/cache.aot
             pdfbox-experiment/pdfbox/pdfbox/cache.aot
             pdfbox-experiment/pdfbox/tools/cache.aot
+            pdfbox-experiment/pdfbox-deps/picocli/cache.aot
             pdfbox-experiment/pdfbox-deps/pdfbox-jbig2/cache.aot
             pdfbox-experiment/pdfbox-deps/apache-commons-io/cache.aot
             pdfbox-experiment/pdfbox-deps/commons-logging-workload/cache.aot
