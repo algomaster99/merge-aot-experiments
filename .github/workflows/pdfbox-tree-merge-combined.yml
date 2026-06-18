@@ -34,6 +34,9 @@ jobs:
           java-version: '25'
           jdkFile: jdk-custom.tar.gz
 
+      - name: Capture custom JDK path
+        run: echo "CUSTOM_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
       - name: Cache Maven dependencies
         uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
@@ -53,8 +56,16 @@ jobs:
           test -f fontbox/cache.aot
           test -f pdfbox/cache.aot
 
+      - name: Set up Temurin JDK 21 (Gradle 8.x daemon, incompatible with Java 25)
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+
       - name: Build picocli cache (tree-merge)
         working-directory: pdfbox-experiment/pdfbox-deps/picocli
+        env:
+          AOT_JAVA_EXECUTABLE: ${{ env.CUSTOM_JAVA_HOME }}/bin/java
         run: |
           set -euo pipefail
           find . -name "*.aot" -type f -delete
@@ -66,6 +77,13 @@ jobs:
             --tests "picocli.CommandLineModelTest" \
             --tests "picocli.AnnotatedCommandSourceTest"
           test -f cache.aot
+
+      - name: Re-enable custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
 
       - name: Build JBIG2 cache (tree-merge)
         working-directory: pdfbox-experiment/pdfbox-deps/pdfbox-jbig2
