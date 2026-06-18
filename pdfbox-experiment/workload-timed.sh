@@ -23,7 +23,7 @@ JAVA_AOTCACHE_BIN="${JAVA_AOTCACHE_BIN:-java}"
 JAVA_TREECACHE_BIN="${JAVA_TREECACHE_BIN:-java}"
 RUNS="${RUNS:-30}"
 
-OPS=(export:text export:images render fromtext split merge decode overlay)
+OPS=(render export:text fromtext split)
 
 [[ -f "$JAR" ]] || fail "$JAR not found — build pdfbox first"
 [[ -f "$PDF" ]] || fail "$PDF not found"
@@ -47,18 +47,12 @@ op_args() {
   local op="$1"
   local -n _arr="$2"
   case "$op" in
-    export:text)   _arr=(export:text   --input "$PDF" --output "$TMP/$BASE-text.txt") ;;
-    export:images) _arr=(export:images --input "$PDF") ;;
-    render)        _arr=(render        --input "$PDF") ;;
-    fromtext)      _arr=(fromtext      --input "$TMP/$BASE-text.txt"
-                           --output "$TMP/$BASE-from-text.pdf"
-                           -standardFont Times-Roman) ;;
-    split)         _arr=(split         --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE") ;;
-    merge)         _arr=(merge         --input "$TMP/split-$BASE-1.pdf"
-                           --output "$TMP/merged-$BASE.pdf") ;;
-    decode)        _arr=(decode "$PDF" "$TMP/$BASE-decoded.pdf") ;;
-    overlay)       _arr=(overlay       -default "$PDF" --input "$PDF"
-                           --output "$TMP/$BASE-overlay.pdf") ;;
+    render)    _arr=(render    --input "$PDF") ;;
+    export:text) _arr=(export:text --input "$PDF" --output "$TMP/$BASE-text.txt") ;;
+    fromtext)  _arr=(fromtext  --input "$TMP/$BASE-text.txt"
+                         --output "$TMP/$BASE-from-text.pdf"
+                         -standardFont Times-Roman) ;;
+    split)     _arr=(split     --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE") ;;
     *) fail "Unknown op: $op" ;;
   esac
 }
@@ -67,7 +61,6 @@ op_args() {
 
 log "Preparing prerequisite files for workload…"
 "$JAVA_NO_BIN" -cp "$CP" "$MAIN" export:text --input "$PDF" --output "$TMP/$BASE-text.txt" >/dev/null 2>&1
-"$JAVA_NO_BIN" -cp "$CP" "$MAIN" split --input "$PDF" -split 3 -outputPrefix "$TMP/split-$BASE" >/dev/null 2>&1
 
 # ─── run helpers ──────────────────────────────────────────────────────────────
 
@@ -206,7 +199,7 @@ done
 # ─── results ─────────────────────────────────────────────────────────────────
 
 echo
-log "Cross-workload timing over $RUNS runs (ms) — train on X, mean±SD of other 7 ops"
+log "Cross-workload timing over $RUNS runs (ms) — train on X, mean±SD of other 3 ops"
 sep
 printf "  %-16s | %18s | %20s %8s | %20s %8s\n" \
   "Trained on" "no (mean±SD)" "aotcache (mean±SD)" "su-aotcache" "TreeCache (mean±SD)" "su-TreeCache"
