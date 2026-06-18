@@ -605,3 +605,37 @@ front-runners. Scala/Kotlin apps cluster into (a) linters/formatters with the PM
 gen (Rhino). Net standing recommendation unchanged: **Commons Imaging / iText 5 /
 OpenNLP CLI** remain the cleanest build-ready picks; **scalafix** is the best Scala
 app if a JVM-language data point is specifically wanted.
+
+---
+---
+
+## Re-examined on request (2026-06-16)
+
+### Checkstyle — re-verified current tree; still rejected, mitigation possible
+Re-checked `checkstyle/checkstyle@master` pom (Java **21** now required). It **is** a
+genuine Maven CLI **application** with a healthy tree — `picocli 4.7.7`,
+`antlr4-runtime 4.13.2`, `guava 33.6.0-jre`, `commons-beanutils 1.11.0`,
+`slf4j-api/-simple` — and good rule-category breadth (whitespace / naming / imports /
+coding / design / metrics / javadoc). Blockers:
+- **`net.sf.saxon:Saxon-HE 12.9` ships a real `module-info`** → primary blocker,
+  **identical to the PMD rejection.** Saxon backs only the XPath features
+  (`SuppressionXpathFilter`, `SuppressionXpathSingleFilter`, `MatchXpath`, xpath query) —
+  a subset.
+- **`org.reflections:reflections 0.10.2` → `javassist`** still in the transitive tree
+  (used for package-scanning check discovery, not runtime self-instrumentation).
+- **Mitigation (biojava-style surgery):** exclude Saxon by running only AST-visitor
+  checks (no XPath) and loading checks by explicit name (drop Reflections→javassist).
+  Feasible but invasive, and you lose XPath checks.
+- **Divergence caveat:** even mitigated, it's the **PMD/ANTLR-axis-B trap** — all checks
+  share the one antlr4 Java-grammar front-end (huge intersection), so per-check class
+  divergence is thin. Net: **stays rejected**; only worth it if a static-analyzer app
+  is specifically wanted and the Saxon/Reflections surgery is acceptable.
+
+### Spotless (diffplug/spotless) — rejected
+- **Not a standalone app — a build-system *plugin*.** It runs as `mvn spotless:apply` /
+  a Gradle task (same category as the already-rejected JavaPackager/easypack plugins).
+- **Aggregator of external formatters**, each a `Function<String,String>`: many are
+  **zero-dep** (google-java-format, ktlint → nothing to merge, BCV pattern) and several
+  are **npm/Node-based** (prettier, tsfmt) → **non-hermetic** (needs a Node runtime).
+- **Spotless itself is Gradle-built.**
+- **Verdict:** ❌ build plugin + zero-dep/Node backends + Gradle — fails on three axes.
