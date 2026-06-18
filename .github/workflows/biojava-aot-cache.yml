@@ -220,6 +220,12 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Generate UpSet overlap plot
+        working-directory: biojava-experiment
+        run: |
+          pip install --quiet upsetplot matplotlib "pandas<2.2" numpy
+          python3 plot-upset.py
+
       # ── artifact summary ───────────────────────────────────────────────────
 
       - name: Write artifact summary
@@ -269,4 +275,5 @@ jobs:
             biojava-experiment/biojava-deps/commons-codec/aot.map
             biojava-experiment/biojava-deps/slf4j/slf4j-api/cache.aot
             biojava-experiment/biojava-deps/slf4j/slf4j-api/aot.map
+            biojava-experiment/upset-tree-overlap.pdf
           if-no-files-found: error
