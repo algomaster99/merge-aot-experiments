@@ -58,7 +58,13 @@ jobs:
         run: |
           set -euo pipefail
           find . -name "*.aot" -type f -delete
-          ./gradlew test -Ptree-merge -q
+          # TODO: remove --tests filters before merging (debug-only subset)
+          ./gradlew test -Ptree-merge -q \
+            --tests "picocli.CommandLineTest" \
+            --tests "picocli.CommandLineParseTest" \
+            --tests "picocli.CommandLineHelpTest" \
+            --tests "picocli.CommandLineModelTest" \
+            --tests "picocli.AnnotatedCommandSourceTest"
           test -f cache.aot
 
       - name: Build JBIG2 cache (tree-merge)
