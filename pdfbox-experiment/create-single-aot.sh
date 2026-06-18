@@ -16,7 +16,7 @@ MAIN="org.apache.pdfbox.tools.PDFBox"
 CP="$JAR:pdfbox-deps/pdfbox-jbig2/target/classes/:pdfbox-deps/apache-commons-io/target/classes/"
 PDF="pdfbox/test.pdf"
 TMP="workload-tmp"
-OPS=(export:text export:images render fromtext split merge decode overlay)
+OPS=(render export:text fromtext split)
 
 [[ -f "$JAR" ]] || fail "$JAR not found — build pdfbox app first"
 [[ -f "$PDF" ]] || fail "$PDF not found"
@@ -26,7 +26,6 @@ mkdir -p "$TMP"
 # Prepare prerequisite files needed by some ops during recording.
 log "Preparing prerequisite files…"
 java -cp "$CP" "$MAIN" export:text --input "$PDF" --output "$TMP/create-aot-text.txt" >/dev/null 2>&1
-java -cp "$CP" "$MAIN" split --input "$PDF" -split 3 -outputPrefix "$TMP/create-aot-split" >/dev/null 2>&1
 
 for op in "${OPS[@]}"; do
   safe="${op//:/-}"
@@ -40,17 +39,13 @@ for op in "${OPS[@]}"; do
   rm -f "$conf"
 
   case "$op" in
-    export:text)
-      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
-        -cp "$CP" "$MAIN" export:text --input "$PDF" --output "$TMP/create-aot-text.txt"
-      ;;
-    export:images)
-      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
-        -cp "$CP" "$MAIN" export:images --input "$PDF"
-      ;;
     render)
       java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
         -cp "$CP" "$MAIN" render --input "$PDF"
+      ;;
+    export:text)
+      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
+        -cp "$CP" "$MAIN" export:text --input "$PDF" --output "$TMP/create-aot-text.txt"
       ;;
     fromtext)
       java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
@@ -60,20 +55,6 @@ for op in "${OPS[@]}"; do
     split)
       java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
         -cp "$CP" "$MAIN" split --input "$PDF" -split 3 -outputPrefix "$TMP/create-aot-split"
-      ;;
-    merge)
-      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
-        -cp "$CP" "$MAIN" merge --input "$TMP/create-aot-split-1.pdf" \
-          --output "$TMP/create-aot-merged.pdf"
-      ;;
-    decode)
-      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
-        -cp "$CP" "$MAIN" decode "$PDF" "$TMP/create-aot-decoded.pdf"
-      ;;
-    overlay)
-      java -XX:AOTMode=record -XX:AOTConfiguration="$conf" -XX:+AOTClassLinking \
-        -cp "$CP" "$MAIN" overlay -default "$PDF" --input "$PDF" \
-          --output "$TMP/create-aot-overlay.pdf"
       ;;
   esac
 

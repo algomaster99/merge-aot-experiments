@@ -20,6 +20,7 @@ CACHE_PATHS=(
     "pdfbox/pdfbox/cache.aot"
     "pdfbox/tools/cache.aot"
     # third-party deps (pdfbox-deps/)
+    "pdfbox-deps/picocli/cache.aot"
     "pdfbox-deps/pdfbox-jbig2/cache.aot"
     "pdfbox-deps/apache-commons-io/cache.aot"
     "pdfbox-deps/commons-logging-workload/cache.aot"
@@ -50,6 +51,8 @@ CP_ENTRIES=(
     "pdfbox/pdfbox/target/classes"
     "pdfbox/tools/target/classes"
     # third-party deps
+    ## mvn clean test -Ptree-merge
+    "pdfbox-deps/picocli/target/classes"
     ## mvn clean test -Ptree-merge
     "pdfbox-deps/pdfbox-jbig2/target/classes"
     ## mvn clean package -Ptree-merge
