@@ -563,3 +563,45 @@ low benefit" vs "~8 deps, needs DB"). Verified and consolidated:
   tests run on HSQLDB/Derby); the DB category is excluded.
 - **Verdict:** ❌ (instrumentation + DB). Supersedes the older "self-contained" note,
   which predated the ognl/javassist/cglib compile-scope deps.
+
+---
+---
+
+## Scala / Kotlin + build-tool conversion (2026-06-16)
+
+User opened the search to **Scala/Kotlin** apps and is willing to **rewrite the build
+to Maven** (so Gradle/sbt is no longer an auto-blocker — via scala-maven-plugin /
+kotlin-maven-plugin, when the build is a plain compile).
+
+### Gating facts (verified)
+- **scala-library: clean** — no `module-info`, at most Automatic-Module-Name. Scala
+  apps are safe on the module axis. (Scala 3's `_3` artifact suffix only causes an
+  *Automatic-Module-Name* derivation warning, not a `module-info`.)
+- **kotlin-stdlib: MR-JAR `module-info`** (`libraries/stdlib/jvm/java9/module-info.java`
+  → `module kotlin.stdlib` under `META-INF/versions/9`). **Strippable, same as slf4j**
+  (already handled in this repo) — friction, not a blocker. Every Kotlin app inherits it.
+- ⚠️ **Mavenization caveat:** plain Scala/Kotlin compiles convert cleanly; builds that
+  rely on macros, codegen, KSP/kapt, multiplatform, or native-image do **not**.
+
+### Candidates
+- **scalafix (scalacenter/scalafix)** — Scala refactor/lint **app** (a Scala PMD).
+  Rule + rewrite diversity over scalameta; scala-library is clean. **Caveats:** (1)
+  PMD/checkstyle trap — rules share a huge scalameta front-end, so per-rule class
+  divergence is thin (cf. ANTLR axis-B, google-java-format); (2) deeply sbt-integrated
+  — `scalafix-cli` exists but Scala+scalameta is non-trivial to Mavenize.
+- **kotlinx.serialization (Kotlin)** — multi-module **format** divergence
+  (JSON / CBOR / Protobuf / HOCON / Properties), the codec-divergence pattern we like.
+  **Caveats:** it's a *library* not an app; needs the kotlin-stdlib strip; serialization
+  paths may go JIT-hot fast (small per-format surface).
+- **ktlint / detekt (Kotlin)** — linters; both lean on **kotlin-compiler-embeddable**
+  (huge single dep) and have the same thin per-rule divergence. Weak — deprioritise.
+
+### Honest assessment
+The language relaxation broadens options but does **not** clearly beat the Java
+front-runners. Scala/Kotlin apps cluster into (a) linters/formatters with the PMD trap
+(thin divergence + heavy compiler/parser dep) or (b) libraries. And reopening
+**Java** projects previously rejected *only* for Gradle (FreeMarker, Rhino) doesn't help
+— those are **zero-runtime-dep** engines (nothing to merge) and/or do runtime bytecode
+gen (Rhino). Net standing recommendation unchanged: **Commons Imaging / iText 5 /
+OpenNLP CLI** remain the cleanest build-ready picks; **scalafix** is the best Scala
+app if a JVM-language data point is specifically wanted.
