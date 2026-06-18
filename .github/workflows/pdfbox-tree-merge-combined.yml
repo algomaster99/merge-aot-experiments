@@ -42,6 +42,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Install picocli (4.7.7) from source into local Maven repo
+        working-directory: pdfbox-experiment/pdfbox-deps/picocli
+        run: mvn install -DskipTests -q
+
       - name: Build PDFBox tools cache (tree-merge)
         working-directory: pdfbox-experiment/pdfbox
         run: |

@@ -51,8 +51,8 @@ CP_ENTRIES=(
     "pdfbox/pdfbox/target/classes"
     "pdfbox/tools/target/classes"
     # third-party deps
-    ## ./gradlew test -Ptree-merge
-    "pdfbox-deps/picocli/build/classes/java/main"
+    ## mvn clean test -Ptree-merge
+    "pdfbox-deps/picocli/target/classes"
     ## mvn clean test -Ptree-merge
     "pdfbox-deps/pdfbox-jbig2/target/classes"
     ## mvn clean package -Ptree-merge
