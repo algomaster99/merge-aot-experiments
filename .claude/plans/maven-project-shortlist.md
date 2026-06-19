@@ -683,5 +683,49 @@ User refocus: find **apps whose workloads load genuinely disjoint, large subtree
 ### Principle
 For "really diverse workloads," target **format/backend fan-out** apps and **curate the
 format set to exclude POI/module-info modules.** Tika (parse-side) and JasperReports
-(export-side) are the two that fit and reuse existing pdfbox/batik forks. Tika is the
-recommended next build — it's the canonical diverse-workload application.
+(export-side) are the two that fit and reuse existing pdfbox/batik forks.
+
+> **User clarification:** Tika/JasperReports read as **libraries**. We want genuine
+> **applications** — a CLI you execute (subcommands/operations) or a UI — with that
+> same fan-out diversity (the existing **pdfbox tools** are exactly this shape:
+> `extracttext` / `render` / `encrypt` / `overlay` …, each a disjoint operation).
+
+## Genuine diverse-workload *applications* (2026-06-16)
+
+### Apache Jena — `riot` / `arq` CLI ⭐ (best genuine app found)
+- **What:** Apache's RDF/SPARQL toolkit with real **command-line apps** — `riot`
+  (parse/convert RDF), `arq`/`sparql` (run SPARQL), `qparse`, plus per-format
+  `turtle`/`ntriples`/`rdfxml`/`trig`/`nquads`.
+- **Build:** **Maven**, multi-module (`jena-core`, `jena-arq`, `jena-iri`,
+  `jena-shaded-guava`). Own jars carry **Automatic-Module-Name** (no real `module-info`).
+- **Diversity: excellent & genuinely app-level.** Workloads = convert
+  Turtle→RDF/XML, →N-Triples, →TriG/N-Quads (disjoint parser/writer subtrees, the
+  commons-compress pattern **for RDF**) **plus** `arq` SPARQL SELECT/CONSTRUCT/ASK
+  (a whole query-algebra engine subtree) **plus** inference/reasoners. Far past the
+  PMD trap — these are independent engines, not branches off one parser.
+- **Hermetic:** operates on **local** RDF files/datasets; the server (Fuseki) and
+  remote/HTTP bits are separate modules to leave out.
+- **Curate the one blocker:** **JSON-LD** support pulls `jackson`/`titanium-json-ld`
+  (`module-info`). Drop JSON-LD → the core formats (Turtle/NT/RDF-XML/TriG/NQ) +
+  SPARQL need no jackson. Real multi-module mergeable tree (jena-core/arq/iri + commons).
+- **Verdict:** ⭐ top genuine-application candidate — CLI, diverse engines, Maven,
+  hermetic, clean module status. Vet: confirm `jena-arq` doesn't hard-require jackson
+  once JSON-LD is excluded.
+
+### pdftk-java — PDF-operations CLI
+- **What:** a Java port of `pdftk` — CLI with many operations (merge / split / rotate /
+  `fill_form` / stamp / background / encrypt / decrypt / burst / attach). Each
+  operation = disjoint subtree (pdfbox-tools shape).
+- **Build:** **Gradle** → would need Maven conversion (simple structure; user OK with it).
+- **Deps:** lean external tree — **bcprov (already forked)** + commons-lang3; **iText 5
+  is vendored** into the source.
+- **Caveat:** operation diversity lives in the *app* (+vendored iText), so the external
+  dep tree to merge is thin, and it overlaps the existing pdfbox PDF domain. Decent, but
+  below Jena/OpenNLP.
+
+### Apache OpenNLP — `opennlp` CLI (still a top pick)
+- Already covered above: Maven, multi-module, real **task** subcommands
+  (tokenize/POS/NER/parse/…) = disjoint subtrees, models as bundlable data. Genuine CLI app.
+
+**Recommendation:** **Apache Jena (`riot`+`arq`)** is the strongest genuine diverse-workload
+application — build it next; **OpenNLP CLI** is the safe second.
