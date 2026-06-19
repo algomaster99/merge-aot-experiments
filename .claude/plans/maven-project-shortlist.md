@@ -639,3 +639,49 @@ coding / design / metrics / javadoc). Blockers:
   are **npm/Node-based** (prettier, tsfmt) → **non-hermetic** (needs a Node runtime).
 - **Spotless itself is Gradle-built.**
 - **Verdict:** ❌ build plugin + zero-dep/Node backends + Gradle — fails on three axes.
+
+---
+---
+
+## Applications with *really diverse* workloads (2026-06-16) — the key target
+
+User refocus: find **apps whose workloads load genuinely disjoint, large subtrees**
+(the FOP/commons-compress/biojava property that makes TreeCache win), not the PMD trap
+(shared front-end + thin per-mode branches). The pattern that delivers this is
+**multi-format parsers** and **multi-backend exporters** — and the recurring blocker
+(POI's MR-JAR `module-info`) is **avoidable by curating the format/backend set.**
+
+### Apache Tika (curated parser modules) ⭐⭐ — best diverse-workload app
+- **Repo:** apache/tika. **Build:** Maven (Java 11+ for 3.x). **Fully modular in 3.x:**
+  `tika-core` + one artifact **per format** (`tika-parser-pdf-module`,
+  `-html-module`, `-text-module`, `-xml-module`, `-image-module`, `-microsoft-module`…).
+- **Diversity: the best of any candidate (already rated "Excellent" for tika-core).**
+  Parsing PDF vs HTML vs XML vs RTF vs EPUB vs image feeds **completely independent
+  parser class hierarchies**; a single-format cache is essentially useless on the
+  others. Workloads = feed one file per format; shared intersection is just
+  tika-core (detection/SAX/metadata).
+- **Dodging the blocker:** only the **microsoft/ooxml** module pulls **POI/xmlbeans**
+  (`module-info`). **Curate to PDF + HTML + XML + text + image + RTF + EPUB** → no POI,
+  no `module-info`, all hermetic (the "standard" parsers need no native bins/network).
+- **Fork reuse:** `tika-parser-pdf-module` → **PDFBox (already forked)** + fontbox;
+  image → metadata-extractor/commons-imaging (candidates above); html → tagsoup (old,
+  no `module-info`). Multi-module mergeable tree like biojava/TwelveMonkeys.
+- **Vet:** confirm each chosen parser module's transitive tree is `module-info`-free
+  (esp. xml-module — avoid woodstox; prefer the SAX/commons path).
+
+### JasperReports — export-backend diversity (FOP-shaped)
+- **Repo:** Jaspersoft/jasperreports. **Build:** **Maven** (Ant removed), only
+  Automatic-Module-Name on its own jars.
+- **Diversity: excellent (FOP-like).** One filled report → **PDF / HTML / XML / CSV /
+  RTF / XLSX / DOCX / PPTX** exporters, each a disjoint `engine.export.*` subtree.
+- **Dodging the blocker:** XLSX/DOCX/PPTX exporters need **POI**; **PDF (OpenPDF) +
+  HTML + XML + CSV + RTF** do not → curate to those for a POI-free, `module-info`-free
+  set. PDF reuses bouncycastle; SVG uses **Batik (already forked)**.
+- **Caveat:** heavier base library than Tika and more POI-entangled; curation is more
+  work. Second choice after Tika.
+
+### Principle
+For "really diverse workloads," target **format/backend fan-out** apps and **curate the
+format set to exclude POI/module-info modules.** Tika (parse-side) and JasperReports
+(export-side) are the two that fit and reuse existing pdfbox/batik forks. Tika is the
+recommended next build — it's the canonical diverse-workload application.
