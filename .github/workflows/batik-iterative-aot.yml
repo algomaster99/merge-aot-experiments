@@ -41,11 +41,11 @@ jobs:
       # can resolve their deps from the local Maven repo without network access.
       - name: Install batik modules into local Maven repo
         working-directory: batik-experiment/batik
-        run: mvn install -DskipTests -q
+        run: mvn install -DskipTests -Drat.skip -q
 
       - name: Build benchmark fat jar
         working-directory: batik-experiment/benchmark
-        run: mvn package -DskipTests -q
+        run: mvn package -DskipTests -Drat.skip -q
 
       - name: Create cross-workload single-iterjdk.aot caches
         working-directory: batik-experiment
