@@ -729,3 +729,9 @@ format set to exclude POI/module-info modules.** Tika (parse-side) and JasperRep
 
 **Recommendation:** **Apache Jena (`riot`+`arq`)** is the strongest genuine diverse-workload
 application — build it next; **OpenNLP CLI** is the safe second.
+
+> **Decision (user, 2026-06-16):** Jena reads as a framework — **dropped**. **OpenNLP
+> CLI chosen.** Deep vet passed (only external dep is slf4j; Automatic-Module-Name, no
+> `module-info`; CLI `opennlp.tools.cmdline.CLI`; models bundlable as Maven artifacts →
+> hermetic; biojava-shaped multi-module fork). Full build plan →
+> `.claude/plans/opennlp-cli-experiment.md`.
