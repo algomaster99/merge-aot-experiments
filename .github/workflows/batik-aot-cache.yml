@@ -50,66 +50,98 @@ jobs:
         working-directory: batik-experiment/batik
         run: mvn install -DskipTests -q
 
-      # ── test-suite caches ──────────────────────────────────────────────────
-
-      - name: Build batik cache (tree-merge)
-        working-directory: batik-experiment/batik/batik-test-old
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build xmlgraphics-commons cache (tree-merge)
-        working-directory: batik-experiment/batik-deps/xmlgraphics-commons
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -q
-          test -f cache.aot
-
-      - name: Build commons-io cache (tree-merge)
-        working-directory: batik-experiment/batik-deps/commons-io
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -type f -delete
-          mvn clean test -Ptree-merge -Drat.skip -q
-          test -f cache.aot
-
-      # ── workload caches ────────────────────────────────────────────────────
-
-      - name: Build and record commons-logging-workload cache
-        working-directory: batik-experiment/batik-deps/commons-logging-workload
-        run: |
-          set -euo pipefail
-          mvn package -DskipTests -q
-          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
-            -XX:AOTCacheOutput=cache.aot -jar target/commons-logging-workload-fat.jar
-          test -f cache.aot
-
-      - name: Build and record xml-apis-workload cache
-        working-directory: batik-experiment/batik-deps/xml-apis-workload
-        run: |
-          set -euo pipefail
-          mvn package -DskipTests -q
-          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
-            -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-workload-fat.jar
-          test -f cache.aot
-
-      - name: Build and record xml-apis-ext-workload cache
-        working-directory: batik-experiment/batik-deps/xml-apis-ext-workload
-        run: |
-          set -euo pipefail
-          mvn package -DskipTests -q
-          java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
-            -XX:AOTCacheOutput=cache.aot -jar target/xml-apis-ext-workload-fat.jar
-          test -f cache.aot
-
-      # ── benchmark jar ──────────────────────────────────────────────────────
+      # ── AOT cache creation + build overhead measurement ────────────────────
+      # measure-build-overhead.sh runs each module twice (baseline then with
+      # cache generation) to compute the overhead delta, then runs
+      # orchestrate-combine.sh to produce tree.aot.  All .aot files needed by
+      # subsequent steps are a side-effect of the script.
 
       - name: Build benchmark fat jar
         working-directory: batik-experiment/benchmark
         run: mvn package -DskipTests -q
+
+      - name: Measure build overhead and create tree.aot
+        working-directory: batik-experiment
+        run: |
+          set -euo pipefail
+          chmod +x measure-build-overhead.sh
+          overhead_out=$(./measure-build-overhead.sh 2>&1) \
+            || { echo "$overhead_out"; exit 1; }
+          echo "$overhead_out"
+          overhead_out_clean=$(echo "$overhead_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Build overhead (baseline vs with AOT cache generation)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$overhead_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          # Append the Markdown + LaTeX table produced by the script
+          python3 - <<'EOF'
+          import os, subprocess, sys
+
+          tsv_path = "build-overhead.tsv"
+          summary_path = os.environ["GITHUB_STEP_SUMMARY"]
+
+          rows = []
+          with open(tsv_path) as f:
+              for line in f:
+                  parts = line.rstrip("\n").split("\t")
+                  module, ctype = parts[0], parts[1]
+                  baseline_ms, cache_ms, overhead_ms = int(parts[2]), int(parts[3]), int(parts[4])
+                  rows.append((module, ctype, baseline_ms, cache_ms, overhead_ms))
+
+          total_b = sum(r[2] for r in rows)
+          total_c = sum(r[3] for r in rows)
+          total_o = sum(r[4] for r in rows)
+
+          md_rows = "\n".join(
+              f"| {m} | {ct} | {'—' if b == 0 else f'{b/1000:.1f}'} | {c/1000:.1f} | {o/1000:.1f} |"
+              for m, ct, b, c, o in rows
+          )
+
+          latex_lines = [
+              r"\begin{tabular}{llrrr}",
+              r"\toprule",
+              r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) \\",
+              r"\midrule",
+          ]
+          for m, ct, b, c, o in rows:
+              b_s = r"\textemdash" if b == 0 else f"{b/1000:.1f}"
+              latex_lines.append(f"{m} & {ct} & {b_s} & {c/1000:.1f} & {o/1000:.1f} \\\\")
+          latex_lines += [
+              r"\midrule",
+              f"\\textbf{{Total}} & & {total_b/1000:.1f} & {total_c/1000:.1f} & {total_o/1000:.1f} \\\\",
+              r"\bottomrule",
+              r"\end{tabular}",
+          ]
+
+          with open(summary_path, "a") as out:
+              out.write("## Build overhead of AOT cache creation\n\n")
+              out.write("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) |\n")
+              out.write("|---|---|---:|---:|---:|\n")
+              out.write(md_rows + "\n")
+              out.write(f"| **Total** | | **{total_b/1000:.1f}** | **{total_c/1000:.1f}** | **{total_o/1000:.1f}** |\n\n")
+              out.write("```latex\n")
+              out.write("\n".join(latex_lines) + "\n")
+              out.write("```\n")
+          EOF
+
+          for p in batik/batik-test-old/cache.aot \
+                    batik-deps/xmlgraphics-commons/cache.aot \
+                    batik-deps/commons-io/cache.aot \
+                    batik-deps/commons-logging-workload/cache.aot \
+                    batik-deps/xml-apis-workload/cache.aot \
+                    batik-deps/xml-apis-ext-workload/cache.aot \
+                    tree.aot; do
+            test -f "$p" || { echo "Missing: $p"; exit 1; }
+          done
 
       # ── single.aot (Temurin — standard JDK for the no-AOT baseline) ───────
 
@@ -132,7 +164,7 @@ jobs:
             test -f "single-${op}.aot"
           done
 
-      # ── tree.aot (custom JDK — has the AOT merge capability) ──────────────
+      # ── Re-enable custom JDK for timed workload (needs merge capability) ──
 
       - name: Re-enable custom JDK
         uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
@@ -140,29 +172,6 @@ jobs:
           distribution: jdkfile
           java-version: '25'
           jdkFile: jdk-custom.tar.gz
-
-      - name: Create tree.aot (orchestrate-combine.sh)
-        working-directory: batik-experiment
-        run: |
-          set -euo pipefail
-          chmod +x orchestrate-combine.sh
-          combine_out=$(./orchestrate-combine.sh 2>&1) || { echo "$combine_out"; exit 1; }
-          echo "$combine_out"
-          combine_out_clean=$(echo "$combine_out" | sed 's/\x1B\[[0-9;]*m//g')
-
-          tree_size=$(du -h tree.aot | awk '{print $1}')
-
-          {
-            echo "## tree.aot creation (orchestrate-combine)"
-            echo
-            echo "- tree.aot: ${tree_size}"
-            echo
-            echo '```'
-            echo "$combine_out_clean"
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-
-          test -f tree.aot
 
       # ── timed workload ─────────────────────────────────────────────────────
 
@@ -250,6 +259,7 @@ jobs:
           name: batik-tree-artifacts
           path: |
             batik-experiment/workload-tmp/
+            batik-experiment/build-overhead.tsv
             batik-experiment/aot.map
             batik-experiment/single-*.aot
             batik-experiment/tree.aot
