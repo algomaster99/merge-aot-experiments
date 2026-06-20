@@ -141,48 +141,4 @@ log "tree-merge: ${combine_ms}ms"
 # ---------------------------------------------------------------------------
 
 sep
-python3 - <<'PYEOF'
-import os, sys
-
-tsv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build-overhead.tsv")
-
-rows = []
-with open(tsv_path) as f:
-    for line in f:
-        parts = line.rstrip("\n").split("\t")
-        module, ctype, baseline_ms, cache_ms, overhead_ms = \
-            parts[0], parts[1], int(parts[2]), int(parts[3]), int(parts[4])
-        rows.append((module, ctype, baseline_ms, cache_ms, overhead_ms))
-
-total_baseline = sum(r[2] for r in rows)
-total_cache    = sum(r[3] for r in rows)
-total_overhead = sum(r[4] for r in rows)
-
-# Markdown
-print("\n## Build overhead of AOT cache creation\n")
-print("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) | % Increase |")
-print("|---|---|---:|---:|---:|---:|")
-for module, ctype, b, c, o in rows:
-    b_s = f"{b/1000:.1f}" if b else "—"
-    pct_s = f"{o/b*100:+.1f}%" if b else "—"
-    print(f"| {module} | {ctype} | {b_s} | {c/1000:.1f} | {o/1000:.1f} | {pct_s} |")
-total_pct = f"{total_overhead/total_baseline*100:+.1f}%" if total_baseline else "—"
-print(f"| **Total** | | **{total_baseline/1000:.1f}** | **{total_cache/1000:.1f}** | **{total_overhead/1000:.1f}** | **{total_pct}** |")
-
-# LaTeX
-print("\n```latex")
-print(r"\begin{tabular}{llrrrr}")
-print(r"\toprule")
-print(r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) & \% Increase \\")
-print(r"\midrule")
-for module, ctype, b, c, o in rows:
-    b_s = r"\textemdash" if b == 0 else f"{b/1000:.1f}"
-    pct_s = r"\textemdash" if b == 0 else f"{o/b*100:+.1f}\\%"
-    print(f"{module} & {ctype} & {b_s} & {c/1000:.1f} & {o/1000:.1f} & {pct_s} \\\\")
-print(r"\midrule")
-total_pct_latex = r"\textemdash" if total_baseline == 0 else f"{total_overhead/total_baseline*100:+.1f}\\%"
-print(f"\\textbf{{Total}} & & {total_baseline/1000:.1f} & {total_cache/1000:.1f} & {total_overhead/1000:.1f} & {total_pct_latex} \\\\")
-print(r"\bottomrule")
-print(r"\end{tabular}")
-print("```")
-PYEOF
+python3 "$SCRIPT_DIR/generate-build-overhead-table.py"
