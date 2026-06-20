@@ -17,11 +17,6 @@ with open(tsv_path) as f:
         baseline_ms, cache_ms, overhead_ms = int(parts[2]), int(parts[3]), int(parts[4])
         rows.append((module, ctype, baseline_ms, cache_ms, overhead_ms))
 
-total_b = sum(r[2] for r in rows)
-total_c = sum(r[3] for r in rows)
-total_o = sum(r[4] for r in rows)
-
-
 def pct(o, b):
     return f"{o/b*100:+.1f}%" if b else "—"
 
@@ -36,10 +31,6 @@ md_lines = [
 for m, ct, b, c, o in rows:
     b_s = f"{b/1000:.1f}" if b else "—"
     md_lines.append(f"| {m} | {ct} | {b_s} | {c/1000:.1f} | {o/1000:.1f} | {pct(o, b)} |")
-total_pct = pct(total_o, total_b)
-md_lines.append(
-    f"| **Total** | | **{total_b/1000:.1f}** | **{total_c/1000:.1f}** | **{total_o/1000:.1f}** | **{total_pct}** |"
-)
 md_table = "\n".join(md_lines)
 
 print(md_table)
@@ -61,10 +52,7 @@ for m, ct, b, c, o in rows:
     b_s = r"\textemdash" if b == 0 else f"{b/1000:.1f}"
     pct_s = r"\textemdash" if b == 0 else f"{o/b*100:+.1f}\\%"
     latex_lines.append(f"{m} & {ct} & {b_s} & {c/1000:.1f} & {o/1000:.1f} & {pct_s} \\\\")
-total_pct_latex = r"\textemdash" if total_b == 0 else f"{total_o/total_b*100:+.1f}\\%"
 latex_lines += [
-    r"\midrule",
-    f"\\textbf{{Total}} & & {total_b/1000:.1f} & {total_c/1000:.1f} & {total_o/1000:.1f} & {total_pct_latex} \\\\",
     r"\bottomrule",
     r"\end{tabular}",
 ]
