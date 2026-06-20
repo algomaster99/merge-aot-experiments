@@ -735,3 +735,54 @@ application — build it next; **OpenNLP CLI** is the safe second.
 > `module-info`; CLI `opennlp.tools.cmdline.CLI`; models bundlable as Maven artifacts →
 > hermetic; biojava-shaped multi-module fork). Full build plan →
 > `.claude/plans/opennlp-cli-experiment.md`.
+
+---
+---
+
+## RQ1 timing analysis — what actually predicts a TreeCache win / 2x (2026-06-16)
+
+Methodology (confirmed from `create-single-aot.sh` / `orchestrate-combine.sh`):
+- **AOTCache** baseline = a **single-workload-trained** cache (`single-{op}.aot`).
+- **TreeCache** = `tree.aot` merged from the **dependency/module test suites** (union coverage).
+- ⇒ TreeCache only beats AOTCache when a single-workload cache **fails to transfer**
+  across workloads — i.e., when workloads are genuinely **divergent**.
+
+### Why PDFBox shows no benefit (TreeCache 1.26x < AOTCache 1.32x)
+- **Low cross-workload divergence.** Every op (export:text, render, split, merge,
+  decode, overlay) pivots on the **same PDF-parser core** (load → COSDocument /
+  parser / font / cmap). That shared core is the bulk of loaded classes; the per-op
+  delta is small. So a single-workload cache already transfers to the others →
+  baseline is near-optimal and `tree.aot`'s extra classes are **pure mapping
+  overhead** → TreeCache *loses*. This is the **shared-front-end trap** (cf. PMD /
+  ANTLR axis-B) showing up in timing rather than class counts.
+- **Compute/IO-bound startup.** 522–638 ms with ±130–280 ms variance ⇒ real PDF work
+  dominates, so the class-loading fraction AOT can remove is small → low ceiling.
+
+### The two conditions for a big TreeCache win (→ 2x)
+1. **High cross-workload divergence** (union ≫ intersection) → single-workload caches
+   don't transfer → TreeCache beats AOTCache. *(PDFBox fails; batik/thymeleaf/biojava pass.)*
+2. **Class-load-bound startup** (low variance; time dominated by loading/verifying/
+   linking a large class graph, not I/O or computation) → covered misses become big
+   time savings → approaches 2x. *(thymeleaf 1.90x, batik svg-to-jpeg 1.82x pass;
+   PDFBox fails.)*
+
+Winners have **both**. The selection criterion must therefore add condition (2)
+("class-load-bound, compute-light, low-variance startup") to the diversity test —
+we had been selecting mostly on diversity alone.
+
+### Implications for the pipeline
+- **OpenNLP** is structurally the *opposite* of PDFBox on (1): tasks load **disjoint**
+  subtrees (a tokenize-trained cache misses the entire ner/parse/postag machinery), so
+  TreeCache should clearly beat AOTCache. **Risk on (2):** model **deserialization** is
+  runtime data work AOT can't cache and may cap absolute speedup like PDFBox. → measure
+  the class-load fraction **early** (`-Xlog:class+load` count; compare model-load vs
+  class-load time) before committing. Likely a clear TreeCache win, ~1.4–1.7x, 2x not
+  guaranteed.
+- **For reliable 2x, prioritise the thymeleaf/batik family** (high divergence +
+  class-load-bound, light compute):
+  - **Apache Velocity (already verified candidate)** — template engine, thymeleaf-shaped
+    → highest-probability quick 2x. **Elevate.**
+  - **JasperReports** — export-backend pipeline (batik-shaped), diverse exporters.
+  - More template/expression engines (Pebble, JTwig) fit the profile.
+- **Drop or keep-as-negative-example: PDFBox** — its operations are not class-level
+  divergent; it's the canonical "looks diverse, isn't" case.
