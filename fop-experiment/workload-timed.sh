@@ -226,13 +226,18 @@ _print_latex_rows "fop"
 _classload_row() {
   local op="$1" mode="$2"
   local logfile="$WORK_DIR/cl-${op}-${mode}.log"
+  local rc=0
   case "$mode" in
-    no)         "$JAVA_NO_BIN"         -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
+    no)         "$JAVA_NO_BIN"         -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 || rc=$? ;;
     AOTCache) "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${op}.aot" -XX:+AOTClassLinking \
-                  -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
+                  -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 || rc=$? ;;
     TreeCache)     "$JAVA_TREECACHE_BIN"     -XX:AOTCache="$TREECACHE_AOT" \
-                  -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
+                  -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 || rc=$? ;;
   esac
+  if (( rc != 0 )); then
+    printf "  %-14s | %-6s | %8s | %8s\n" "$op" "$mode" "n/a" "n/a"
+    return
+  fi
   printf "  %-14s | %-6s | %8s | %8s\n" "$op" "$mode" \
     "$(awk '/source: file:/{c++} END{print c+0}' "$logfile")" \
     "$(awk '/source: shared object/{c++} END{print c+0}' "$logfile")"
