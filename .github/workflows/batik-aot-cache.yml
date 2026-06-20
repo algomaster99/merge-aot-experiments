@@ -68,12 +68,12 @@ jobs:
           mvn clean test -Ptree-merge -q
           test -f cache.aot
 
-      - name: Build commons-io cache (mvn test)
+      - name: Build commons-io cache (tree-merge)
         working-directory: batik-experiment/batik-deps/commons-io
         run: |
           set -euo pipefail
           find . -name "*.aot" -type f -delete
-          mvn clean test -q
+          mvn clean test -Ptree-merge -Drat.skip -q
           test -f cache.aot
 
       # ── workload caches ────────────────────────────────────────────────────
