@@ -17,6 +17,10 @@ install() {
   mvn install -DskipTests -f "$DETEKT/$mod/pom.xml" -q
 }
 
+# Install parent POM first so all child modules can resolve it from local .m2
+log "Installing parent POM"
+mvn install -N -f "$DETEKT/pom.xml" -q
+
 # Layer 0 — no detekt deps
 install detekt-utils
 install detekt-tooling
