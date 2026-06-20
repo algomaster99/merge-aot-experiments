@@ -52,6 +52,14 @@ public class Main {
             case "fo-to-rtf" -> render(workDir, MimeConstants.MIME_RTF);
             case "fo-to-txt" -> render(workDir, MimeConstants.MIME_PLAIN_TEXT);
             case "fo-to-png" -> render(workDir, MimeConstants.MIME_PNG);
+            case "record-all" -> {
+                render(workDir, MimeConstants.MIME_PDF);
+                render(workDir, MimeConstants.MIME_POSTSCRIPT);
+                render(workDir, MimeConstants.MIME_PCL);
+                render(workDir, MimeConstants.MIME_RTF);
+                render(workDir, MimeConstants.MIME_PLAIN_TEXT);
+                render(workDir, MimeConstants.MIME_PNG);
+            }
             default -> { System.err.println("Unknown command: " + cmd); System.exit(1); }
         }
     }

@@ -26,6 +26,7 @@ java -version
 #
 CACHE_PATHS=(
   "fop/fop-core/cache.aot"
+  "fop-workload.aot"
   "fop-deps/batik/batik-test-old/cache.aot"
   "fop-deps/xmlgraphics-commons/cache.aot"
   "fop-deps/commons-io/cache.aot"

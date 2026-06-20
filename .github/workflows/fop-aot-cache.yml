@@ -150,6 +150,18 @@ jobs:
         working-directory: fop-experiment/benchmark
         run: mvn package -DskipTests -q
 
+      # ── fop all-renderer workload cache (class-linking data for all 6 outputs)
+      - name: Record fop-workload cache (all renderers, AOTClassLinking)
+        working-directory: fop-experiment
+        run: |
+          set -euo pipefail
+          mkdir -p workload-tmp
+          java -Djava.awt.headless=true -cp benchmark/target/benchmark-fat.jar dev.fopexp.Main prepare workload-tmp
+          java -XX:AOTCacheOutput=fop-workload.aot -XX:+AOTClassLinking \
+            -Djava.awt.headless=true -cp benchmark/target/benchmark-fat.jar \
+            dev.fopexp.Main record-all workload-tmp
+          test -f fop-workload.aot
+
       # ── single.aot (Temurin — standard JDK for the no-AOT baseline) ───────
 
       - name: Set up JDK ${{ inputs.single_aot_jdk || '24' }} (no-AOT baseline and single.aot)
@@ -253,6 +265,7 @@ jobs:
             echo "| Artifact | Cache path | Size |"
             echo "|---|---|---|"
             echo "| fop-core | \`fop/fop-core/cache.aot\` | $(du -h fop/fop-core/cache.aot | awk '{print $1}') |"
+            echo "| fop-workload | \`fop-workload.aot\` | $(du -h fop-workload.aot | awk '{print $1}') |"
             echo "| batik | \`fop-deps/batik/batik-test-old/cache.aot\` | $(du -h fop-deps/batik/batik-test-old/cache.aot | awk '{print $1}') |"
             echo "| xmlgraphics-commons | \`fop-deps/xmlgraphics-commons/cache.aot\` | $(du -h fop-deps/xmlgraphics-commons/cache.aot | awk '{print $1}') |"
             echo "| commons-io | \`fop-deps/commons-io/cache.aot\` | $(du -h fop-deps/commons-io/cache.aot | awk '{print $1}') |"
@@ -276,6 +289,7 @@ jobs:
           path: |
             fop-experiment/workload-tmp/
             fop-experiment/aotlink-tree-create.log
+            fop-experiment/fop-workload.aot
             fop-experiment/single-*.aot
             fop-experiment/tree.aot
             fop-experiment/fop/fop-core/cache.aot
