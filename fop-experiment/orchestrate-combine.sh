@@ -26,7 +26,12 @@ java -version
 #
 CACHE_PATHS=(
   "fop/fop-core/cache.aot"
-  "fop-workload.aot"
+  "fop-workload-fo-to-pdf.aot"
+  "fop-workload-fo-to-ps.aot"
+  "fop-workload-fo-to-pcl.aot"
+  "fop-workload-fo-to-rtf.aot"
+  "fop-workload-fo-to-txt.aot"
+  "fop-workload-fo-to-png.aot"
   "fop-deps/batik/batik-test-old/cache.aot"
   "fop-deps/xmlgraphics-commons/cache.aot"
   "fop-deps/commons-io/cache.aot"
