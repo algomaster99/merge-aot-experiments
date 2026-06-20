@@ -31,6 +31,14 @@ jobs:
             opennlp-experiment/opennlp \
             opennlp-experiment/opennlp-deps/morfologik
 
+      - name: Apply AOT profile patches to upstream sources
+        run: |
+          git -C opennlp-experiment/opennlp apply \
+            opennlp-experiment/patches/opennlp-aot-profiles.patch
+          git -C opennlp-experiment/opennlp-deps/morfologik apply \
+            --whitespace=fix \
+            opennlp-experiment/patches/morfologik-aot-profiles.patch
+
       - name: Download custom JDK
         uses: ./.github/actions/download-custom-jdk
 
@@ -45,7 +53,7 @@ jobs:
         uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-opennlp-${{ hashFiles('opennlp-experiment/**/pom.xml') }}
+          key: ${{ runner.os }}-maven-opennlp-${{ hashFiles('opennlp-experiment/**/pom.xml', 'opennlp-experiment/patches/**') }}
           restore-keys: |
             ${{ runner.os }}-maven-opennlp-
             ${{ runner.os }}-maven-
