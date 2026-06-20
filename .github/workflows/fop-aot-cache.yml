@@ -150,19 +150,7 @@ jobs:
         working-directory: fop-experiment/benchmark
         run: mvn package -DskipTests -q
 
-      # ── fop per-renderer workload caches (class-linking data for each output)
-      - name: Record per-renderer workload caches (AOTClassLinking)
-        working-directory: fop-experiment
-        run: |
-          set -euo pipefail
-          mkdir -p workload-tmp
-          java -Djava.awt.headless=true -cp benchmark/target/benchmark-fat.jar dev.fopexp.Main prepare workload-tmp
-          for op in fo-to-pdf fo-to-ps fo-to-pcl fo-to-rtf fo-to-txt fo-to-png; do
-            java -XX:AOTCacheOutput="fop-workload-${op}.aot" -XX:+AOTClassLinking \
-              -Djava.awt.headless=true -cp benchmark/target/benchmark-fat.jar \
-              dev.fopexp.Main "$op" workload-tmp
-            test -f "fop-workload-${op}.aot"
-          done
+
 
       # ── single.aot (Temurin — standard JDK for the no-AOT baseline) ───────
 
@@ -267,9 +255,6 @@ jobs:
             echo "| Artifact | Cache path | Size |"
             echo "|---|---|---|"
             echo "| fop-core | \`fop/fop-core/cache.aot\` | $(du -h fop/fop-core/cache.aot | awk '{print $1}') |"
-            for op in fo-to-pdf fo-to-ps fo-to-pcl fo-to-rtf fo-to-txt fo-to-png; do
-              echo "| fop-workload-${op} | \`fop-workload-${op}.aot\` | $(du -h "fop-workload-${op}.aot" | awk '{print $1}') |"
-            done
             echo "| batik | \`fop-deps/batik/batik-test-old/cache.aot\` | $(du -h fop-deps/batik/batik-test-old/cache.aot | awk '{print $1}') |"
             echo "| xmlgraphics-commons | \`fop-deps/xmlgraphics-commons/cache.aot\` | $(du -h fop-deps/xmlgraphics-commons/cache.aot | awk '{print $1}') |"
             echo "| commons-io | \`fop-deps/commons-io/cache.aot\` | $(du -h fop-deps/commons-io/cache.aot | awk '{print $1}') |"
@@ -293,7 +278,6 @@ jobs:
           path: |
             fop-experiment/workload-tmp/
             fop-experiment/aotlink-tree-create.log
-            fop-experiment/fop-workload-*.aot
             fop-experiment/single-*.aot
             fop-experiment/tree.aot
             fop-experiment/fop/fop-core/cache.aot

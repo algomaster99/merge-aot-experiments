@@ -71,7 +71,7 @@ _stddev() {
 # ─── run helpers ─────────────────────────────────────────────────────────────
 
 _run_no()     { "$JAVA_NO_BIN"     "${BASE_ARGS[@]}" "$MAIN" "$1" "$WORK_DIR"; }
-_run_treecache() { "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" -XX:+AOTClassLinking "${BASE_ARGS[@]}" "$MAIN" "$1" "$WORK_DIR"; }
+_run_treecache() { "$JAVA_TREECACHE_BIN" -XX:AOTCache="$TREECACHE_AOT" "${BASE_ARGS[@]}" "$MAIN" "$1" "$WORK_DIR"; }
 
 # train_op determines which single-{op}.aot to load; test_op is the workload run.
 _run_aotcache_cross() {
@@ -230,7 +230,7 @@ _classload_row() {
     no)         "$JAVA_NO_BIN"         -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
     AOTCache) "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${op}.aot" -XX:+AOTClassLinking \
                   -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
-    TreeCache)     "$JAVA_TREECACHE_BIN"     -XX:AOTCache="$TREECACHE_AOT" -XX:+AOTClassLinking \
+    TreeCache)     "$JAVA_TREECACHE_BIN"     -XX:AOTCache="$TREECACHE_AOT" \
                   -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
   esac
   printf "  %-14s | %-6s | %8s | %8s\n" "$op" "$mode" \
