@@ -58,27 +58,9 @@ jobs:
             test -f "${mod}/cache.aot" || { echo "Missing cache.aot for ${mod}"; exit 1; }
           done
 
-      - name: Build benchmark thin JAR
+      - name: Build benchmark fat JAR
         working-directory: detekt-experiment/benchmark
         run: mvn package -DskipTests -q
-
-      - name: Generate external deps classpath
-        working-directory: detekt-experiment
-        run: |
-          mvn dependency:build-classpath \
-            -f benchmark/pom.xml \
-            -DincludeScope=runtime \
-            -Dmdep.outputFile=ext-deps-cp.txt \
-            -q
-          python3 - ext-deps-cp.txt <<'PYEOF'
-          import sys
-          path = sys.argv[1]
-          with open(path) as f:
-              entries = f.read().strip().split(':')
-          filtered = [e for e in entries if '/io/gitlab/arturbosch/detekt/' not in e]
-          with open(path, 'w') as f:
-              f.write(':'.join(filtered))
-          PYEOF
 
       # ── single.aot (Temurin — standard JDK for no-AOT baseline) ──────────
 

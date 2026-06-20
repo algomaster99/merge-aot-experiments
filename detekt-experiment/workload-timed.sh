@@ -10,7 +10,6 @@ cd "$SCRIPT_DIR"
 
 DETEKT="$SCRIPT_DIR/detekt"
 BENCH_JAR="benchmark/target/benchmark-1.0-SNAPSHOT.jar"
-EXT_DEPS_CP_FILE="$SCRIPT_DIR/ext-deps-cp.txt"
 MAIN="dev.detektexp.MainKt"
 WORK_DIR="workload-tmp"
 TREE_AOT="tree.aot"
@@ -20,14 +19,11 @@ JAVA_SINGLE_BIN="${JAVA_SINGLE_BIN:-java}"
 JAVA_TREE_BIN="${JAVA_TREE_BIN:-java}"
 OPS=("analyze-complexity" "analyze-style" "analyze-naming" "analyze-bugs" "analyze-coroutines")
 
-[[ -f "$BENCH_JAR" ]]       || fail "$BENCH_JAR not found — run install-all.sh first"
-[[ -f "$EXT_DEPS_CP_FILE" ]] || fail "ext-deps-cp.txt not found — run install-all.sh first"
+[[ -f "$BENCH_JAR" ]] || fail "$BENCH_JAR not found — run: cd benchmark && mvn package -DskipTests"
 for op in "${OPS[@]}"; do
   [[ -f "single-${op}.aot" ]] || fail "single-${op}.aot not found — run: ./create-single-aot.sh $op"
 done
 [[ -f "$TREE_AOT" ]] || fail "tree.aot not found — run ./orchestrate-combine.sh first"
-
-EXT_DEPS_CP="$(cat "$EXT_DEPS_CP_FILE")"
 
 # Detekt modules from source tree (same classpath used by mvn test -P tree-merge)
 DETEKT_CP="\
@@ -43,7 +39,8 @@ $DETEKT/detekt-rules-naming/target/classes:\
 $DETEKT/detekt-rules-errorprone/target/classes:\
 $DETEKT/detekt-rules-coroutines/target/classes"
 
-CP="$BENCH_JAR:$DETEKT_CP:$EXT_DEPS_CP"
+# Fat JAR provides all external deps; detekt modules come from target/classes
+CP="$BENCH_JAR:$DETEKT_CP"
 
 JAVA_ARGS=(
   --add-opens java.base/java.lang=ALL-UNNAMED
