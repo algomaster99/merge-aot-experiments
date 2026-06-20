@@ -101,33 +101,39 @@ jobs:
           total_c = sum(r[3] for r in rows)
           total_o = sum(r[4] for r in rows)
 
+          def pct(o, b):
+              return f"{o/b*100:+.1f}%" if b else "—"
+
           md_rows = "\n".join(
-              f"| {m} | {ct} | {'—' if b == 0 else f'{b/1000:.1f}'} | {c/1000:.1f} | {o/1000:.1f} |"
+              f"| {m} | {ct} | {'—' if b == 0 else f'{b/1000:.1f}'} | {c/1000:.1f} | {o/1000:.1f} | {pct(o, b)} |"
               for m, ct, b, c, o in rows
           )
+          total_pct = pct(total_o, total_b)
 
           latex_lines = [
-              r"\begin{tabular}{llrrr}",
+              r"\begin{tabular}{llrrrr}",
               r"\toprule",
-              r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) \\",
+              r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) & \% Increase \\",
               r"\midrule",
           ]
           for m, ct, b, c, o in rows:
               b_s = r"\textemdash" if b == 0 else f"{b/1000:.1f}"
-              latex_lines.append(f"{m} & {ct} & {b_s} & {c/1000:.1f} & {o/1000:.1f} \\\\")
+              pct_s = r"\textemdash" if b == 0 else f"{o/b*100:+.1f}\\%"
+              latex_lines.append(f"{m} & {ct} & {b_s} & {c/1000:.1f} & {o/1000:.1f} & {pct_s} \\\\")
+          total_pct_latex = r"\textemdash" if total_b == 0 else f"{total_o/total_b*100:+.1f}\\%"
           latex_lines += [
               r"\midrule",
-              f"\\textbf{{Total}} & & {total_b/1000:.1f} & {total_c/1000:.1f} & {total_o/1000:.1f} \\\\",
+              f"\\textbf{{Total}} & & {total_b/1000:.1f} & {total_c/1000:.1f} & {total_o/1000:.1f} & {total_pct_latex} \\\\",
               r"\bottomrule",
               r"\end{tabular}",
           ]
 
           with open(summary_path, "a") as out:
               out.write("## Build overhead of AOT cache creation\n\n")
-              out.write("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) |\n")
-              out.write("|---|---|---:|---:|---:|\n")
+              out.write("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) | % Increase |\n")
+              out.write("|---|---|---:|---:|---:|---:|\n")
               out.write(md_rows + "\n")
-              out.write(f"| **Total** | | **{total_b/1000:.1f}** | **{total_c/1000:.1f}** | **{total_o/1000:.1f}** |\n\n")
+              out.write(f"| **Total** | | **{total_b/1000:.1f}** | **{total_c/1000:.1f}** | **{total_o/1000:.1f}** | **{total_pct}** |\n\n")
               out.write("```latex\n")
               out.write("\n".join(latex_lines) + "\n")
               out.write("```\n")

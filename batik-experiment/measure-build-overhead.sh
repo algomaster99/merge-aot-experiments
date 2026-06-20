@@ -55,6 +55,9 @@ time_cmd() {
 measure_test_suite() {
   local module="$1" dir="$2" mvn_args="${3:--pl .}"
   sep
+  log "[$module] warmup run (discarded)"
+  (cd "$dir" && mvn clean test $mvn_args -Drat.skip -q)
+
   log "[$module] baseline (mvn clean test)"
   time_cmd "$module baseline" "$dir" mvn clean test $mvn_args -Drat.skip -q
   local baseline_ms=$ELAPSED_MS
@@ -74,6 +77,8 @@ measure_test_suite "batik-test-old"        "batik/batik-test-old"
 measure_test_suite "xmlgraphics-commons"   "batik-deps/xmlgraphics-commons"
 
 sep
+log "[commons-io] warmup run (discarded)"
+(cd batik-deps/commons-io && mvn clean test -Drat.skip -q)
 log "[commons-io] baseline (mvn clean test)"
 time_cmd "commons-io baseline" "batik-deps/commons-io" mvn clean test -Drat.skip -q
 baseline_ms=$ELAPSED_MS
@@ -93,13 +98,15 @@ log "commons-io: baseline=${baseline_ms}ms  cache=${cache_ms}ms  overhead=${over
 measure_workload() {
   local module="$1" dir="$2" jar="$3" extra_java_args="${4:-}"
   sep
-  log "[$module] baseline (mvn package -DskipTests)"
-  time_cmd "$module baseline" "$dir" mvn package -DskipTests -q
+  log "[$module] warmup run (discarded)"
+  (cd "$dir" && mvn clean package -DskipTests -q)
+  log "[$module] baseline (mvn clean package -DskipTests)"
+  time_cmd "$module baseline" "$dir" mvn clean package -DskipTests -q
   local baseline_ms=$ELAPSED_MS
 
-  log "[$module] with AOT recording (mvn package + java -XX:AOTCacheOutput)"
+  log "[$module] with AOT recording (mvn clean package + java -XX:AOTCacheOutput)"
   time_cmd "$module record" "$dir" bash -c "
-    mvn package -DskipTests -q
+    mvn clean package -DskipTests -q
     java -Xlog:aot+map=trace,aot+map+oops=trace,aot=warning:file=aot.map:none:filesize=0 \
       $extra_java_args -XX:AOTCacheOutput=cache.aot -jar $jar
   "
@@ -153,24 +160,28 @@ total_overhead = sum(r[4] for r in rows)
 
 # Markdown
 print("\n## Build overhead of AOT cache creation\n")
-print("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) |")
-print("|---|---|---:|---:|---:|")
+print("| Module | Cache Type | Baseline (s) | With Cache (s) | Overhead (s) | % Increase |")
+print("|---|---|---:|---:|---:|---:|")
 for module, ctype, b, c, o in rows:
     b_s = f"{b/1000:.1f}" if b else "—"
-    print(f"| {module} | {ctype} | {b_s} | {c/1000:.1f} | {o/1000:.1f} |")
-print(f"| **Total** | | **{total_baseline/1000:.1f}** | **{total_cache/1000:.1f}** | **{total_overhead/1000:.1f}** |")
+    pct_s = f"{o/b*100:+.1f}%" if b else "—"
+    print(f"| {module} | {ctype} | {b_s} | {c/1000:.1f} | {o/1000:.1f} | {pct_s} |")
+total_pct = f"{total_overhead/total_baseline*100:+.1f}%" if total_baseline else "—"
+print(f"| **Total** | | **{total_baseline/1000:.1f}** | **{total_cache/1000:.1f}** | **{total_overhead/1000:.1f}** | **{total_pct}** |")
 
 # LaTeX
 print("\n```latex")
-print(r"\begin{tabular}{llrrr}")
+print(r"\begin{tabular}{llrrrr}")
 print(r"\toprule")
-print(r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) \\")
+print(r"Module & Cache Type & Baseline (s) & With Cache (s) & Overhead (s) & \% Increase \\")
 print(r"\midrule")
 for module, ctype, b, c, o in rows:
     b_s = r"\textemdash" if b == 0 else f"{b/1000:.1f}"
-    print(f"{module} & {ctype} & {b_s} & {c/1000:.1f} & {o/1000:.1f} \\\\")
+    pct_s = r"\textemdash" if b == 0 else f"{o/b*100:+.1f}\\%"
+    print(f"{module} & {ctype} & {b_s} & {c/1000:.1f} & {o/1000:.1f} & {pct_s} \\\\")
 print(r"\midrule")
-print(f"\\textbf{{Total}} & & {total_baseline/1000:.1f} & {total_cache/1000:.1f} & {total_overhead/1000:.1f} \\\\")
+total_pct_latex = r"\textemdash" if total_baseline == 0 else f"{total_overhead/total_baseline*100:+.1f}\\%"
+print(f"\\textbf{{Total}} & & {total_baseline/1000:.1f} & {total_cache/1000:.1f} & {total_overhead/1000:.1f} & {total_pct_latex} \\\\")
 print(r"\bottomrule")
 print(r"\end{tabular}")
 print("```")
