@@ -46,101 +46,45 @@ jobs:
       # ── install detekt modules into local Maven repo ───────────────────────
 
       - name: Install detekt modules (skip tests)
+        working-directory: detekt-experiment/detekt
+        run: mvn install -DskipTests -q
+
+      - name: Build benchmark thin JAR
+        working-directory: detekt-experiment/benchmark
+        run: mvn package -DskipTests -q
+
+      - name: Generate external deps classpath
         working-directory: detekt-experiment
         run: |
-          set -euo pipefail
-          chmod +x install-all.sh
-          ./install-all.sh
+          mvn dependency:build-classpath \
+            -f benchmark/pom.xml \
+            -DincludeScope=runtime \
+            -Dmdep.outputFile=ext-deps-cp.txt \
+            -q
+          python3 - ext-deps-cp.txt <<'PYEOF'
+          import sys
+          path = sys.argv[1]
+          with open(path) as f:
+              entries = f.read().strip().split(':')
+          filtered = [e for e in entries if '/io/gitlab/arturbosch/detekt/' not in e]
+          with open(path, 'w') as f:
+              f.write(':'.join(filtered))
+          PYEOF
 
       # ── build module caches (tree-merge) ──────────────────────────────────
 
-      - name: Build detekt-parser cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-parser
+      - name: Build all module caches (tree-merge, reactor)
+        working-directory: detekt-experiment/detekt
         run: |
           set -euo pipefail
           find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
           mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-complexity cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-complexity
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-style cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-style
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-naming cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-naming
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-errorprone cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-errorprone
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-coroutines cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-coroutines
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-exceptions cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-exceptions
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-empty cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-empty
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-performance cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-performance
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-rules-documentation cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-rules-documentation
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
-
-      - name: Build detekt-core cache (tree-merge)
-        working-directory: detekt-experiment/detekt/detekt-core
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          test -f cache.aot
+          for mod in detekt-rules-complexity detekt-rules-style detekt-rules-naming \
+                     detekt-rules-errorprone detekt-rules-coroutines detekt-rules-exceptions \
+                     detekt-rules-empty detekt-rules-performance detekt-rules-documentation \
+                     detekt-core detekt-parser; do
+            test -f "${mod}/cache.aot" || { echo "Missing cache.aot for ${mod}"; exit 1; }
+          done
 
       # ── single.aot (Temurin — standard JDK for no-AOT baseline) ──────────
 
