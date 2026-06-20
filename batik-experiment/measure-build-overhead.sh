@@ -56,12 +56,12 @@ measure_test_suite() {
   local module="$1" dir="$2" mvn_args="${3:--pl .}"
   sep
   log "[$module] baseline (mvn clean test)"
-  time_cmd "$module baseline" "$dir" mvn clean test $mvn_args -q
+  time_cmd "$module baseline" "$dir" mvn clean test $mvn_args -Drat.skip -q
   local baseline_ms=$ELAPSED_MS
 
   log "[$module] with tree-merge cache (mvn clean test -Ptree-merge)"
   find "$dir" -name "*.aot" -type f -delete
-  time_cmd "$module tree-merge" "$dir" mvn clean test -Ptree-merge $mvn_args -q
+  time_cmd "$module tree-merge" "$dir" mvn clean test -Ptree-merge $mvn_args -Drat.skip -q
   local cache_ms=$ELAPSED_MS
 
   local overhead_ms=$(( cache_ms - baseline_ms ))
@@ -75,11 +75,11 @@ measure_test_suite "xmlgraphics-commons"   "batik-deps/xmlgraphics-commons"
 
 sep
 log "[commons-io] baseline (mvn clean test)"
-time_cmd "commons-io baseline" "batik-deps/commons-io" mvn clean test -q
+time_cmd "commons-io baseline" "batik-deps/commons-io" mvn clean test -Drat.skip -q
 baseline_ms=$ELAPSED_MS
 log "[commons-io] with tree-merge cache (mvn clean test -Ptree-merge)"
 find batik-deps/commons-io -name "*.aot" -type f -delete
-time_cmd "commons-io cache" "batik-deps/commons-io" mvn clean test -Ptree-merge -q
+time_cmd "commons-io cache" "batik-deps/commons-io" mvn clean test -Ptree-merge -Drat.skip -q
 cache_ms=$ELAPSED_MS
 overhead_ms=$(( cache_ms - baseline_ms ))
 printf 'commons-io\ttest-suite (mvn test)\t%d\t%d\t%d\n' \
