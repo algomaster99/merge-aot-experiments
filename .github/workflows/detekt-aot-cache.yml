@@ -43,11 +43,20 @@ jobs:
             ${{ runner.os }}-maven-detekt-
             ${{ runner.os }}-maven-
 
-      # ── install detekt modules into local Maven repo ───────────────────────
+      # ── build module caches (tree-merge) + install to .m2 ────────────────
 
-      - name: Install detekt modules (skip tests)
+      - name: Build all module caches (tree-merge, reactor)
         working-directory: detekt-experiment/detekt
-        run: mvn install -DskipTests -q
+        run: |
+          set -euo pipefail
+          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
+          mvn clean install -P tree-merge -q
+          for mod in detekt-rules-complexity detekt-rules-style detekt-rules-naming \
+                     detekt-rules-errorprone detekt-rules-coroutines detekt-rules-exceptions \
+                     detekt-rules-empty detekt-rules-performance detekt-rules-documentation \
+                     detekt-core detekt-parser; do
+            test -f "${mod}/cache.aot" || { echo "Missing cache.aot for ${mod}"; exit 1; }
+          done
 
       - name: Build benchmark thin JAR
         working-directory: detekt-experiment/benchmark
@@ -70,21 +79,6 @@ jobs:
           with open(path, 'w') as f:
               f.write(':'.join(filtered))
           PYEOF
-
-      # ── build module caches (tree-merge) ──────────────────────────────────
-
-      - name: Build all module caches (tree-merge, reactor)
-        working-directory: detekt-experiment/detekt
-        run: |
-          set -euo pipefail
-          find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean test -P tree-merge -q
-          for mod in detekt-rules-complexity detekt-rules-style detekt-rules-naming \
-                     detekt-rules-errorprone detekt-rules-coroutines detekt-rules-exceptions \
-                     detekt-rules-empty detekt-rules-performance detekt-rules-documentation \
-                     detekt-core detekt-parser; do
-            test -f "${mod}/cache.aot" || { echo "Missing cache.aot for ${mod}"; exit 1; }
-          done
 
       # ── single.aot (Temurin — standard JDK for no-AOT baseline) ──────────
 
