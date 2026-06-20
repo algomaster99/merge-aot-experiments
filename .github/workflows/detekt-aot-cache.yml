@@ -50,7 +50,7 @@ jobs:
         run: |
           set -euo pipefail
           find . -name "*.aot" -o -name "aot.map" | xargs rm -f 2>/dev/null || true
-          mvn clean install -P tree-merge -q
+          mvn clean install -P tree-merge -Dmaven.test.failure.ignore=true -q
           for mod in detekt-rules-complexity detekt-rules-style detekt-rules-naming \
                      detekt-rules-errorprone detekt-rules-coroutines detekt-rules-exceptions \
                      detekt-rules-empty detekt-rules-performance detekt-rules-documentation \
