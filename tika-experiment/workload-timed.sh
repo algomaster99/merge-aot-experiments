@@ -18,7 +18,7 @@ JAVA_NO_BIN="${JAVA_NO_BIN:-java}"
 JAVA_AOTCACHE_BIN="${JAVA_AOTCACHE_BIN:-java}"
 JAVA_TREECACHE_BIN="${JAVA_TREECACHE_BIN:-java}"
 
-OPS=(text-pdf text-docx text-html)
+OPS=(text-pdf text-docx text-numbers)
 
 mkdir -p "$WORK_DIR"
 
@@ -30,9 +30,9 @@ done
 
 _tika_args() {
   case "$1" in
-    text-pdf)  echo "--text ${DOCS_DIR}/testPDF_childAttachments.pdf" ;;
-    text-docx) echo "--text ${DOCS_DIR}/test_recursive_embedded.docx" ;;
-    text-html) echo "--text ${DOCS_DIR}/testJsonMultipleInts.html" ;;
+    text-pdf)     echo "--text ${DOCS_DIR}/testPDF_childAttachments.pdf" ;;
+    text-docx)    echo "--text ${DOCS_DIR}/test_recursive_embedded.docx" ;;
+    text-numbers) echo "--text ${DOCS_DIR}/testMultipleSheets.numbers" ;;
   esac
 }
 
@@ -174,7 +174,7 @@ _print_latex_rows() {
   echo "\\midrule" >> "$tex_file"
 }
 
-_print_latex_rows "Apache Tika"
+_print_latex_rows "Apache Tika (PDF / DOCX / Numbers)"
 
 # ── class-load breakdown ──────────────────────────────────────────────────────
 

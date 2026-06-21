@@ -15,13 +15,13 @@ JAR="tika/tika-app/target/tika-app-3.3.1.jar"
 
 DOCS_DIR="tika/tika-app/src/test/resources/test-data"
 
-OPS=(text-pdf text-docx text-html)
+OPS=(text-pdf text-docx text-numbers)
 
 _tika_args() {
   case "$1" in
-    text-pdf)  echo "--text ${DOCS_DIR}/testPDF_childAttachments.pdf" ;;
-    text-docx) echo "--text ${DOCS_DIR}/test_recursive_embedded.docx" ;;
-    text-html) echo "--text ${DOCS_DIR}/testJsonMultipleInts.html" ;;
+    text-pdf)     echo "--text ${DOCS_DIR}/testPDF_childAttachments.pdf" ;;
+    text-docx)    echo "--text ${DOCS_DIR}/test_recursive_embedded.docx" ;;
+    text-numbers) echo "--text ${DOCS_DIR}/testMultipleSheets.numbers" ;;
   esac
 }
 
