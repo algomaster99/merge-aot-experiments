@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Generate LaTeX table of class-load source counts for commons-configuration RQ1.
+"""Generate LaTeX table of class-load source counts for pdfbox RQ1.
 
-Parses classload-{workload}-{scenario}.log files.
+Parses cl-{workload}-{scenario}.log files produced by workload-timed.sh.
+Workload names containing ':' are mapped to '-' in filenames (e.g. export:text
+→ cl-export-text-{scenario}.log), matching workload-timed.sh's safe_op logic.
 
 Source categories:
   'shared objects file'           → archived (JDK + APP combined)
@@ -19,11 +21,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 parser = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument('--logs-dir', default=os.path.join(HERE, 'workload-tmp'),
-                    help='directory containing classload-*.log files (default: workload-tmp/ next to this script)')
+                    help='directory containing cl-*.log files (default: workload-tmp/ next to this script)')
 args = parser.parse_args()
 LOGS_DIR = args.logs_dir
 
-WORKLOADS = ['properties-read', 'xml-read', 'composite-read', 'interpolation']
+WORKLOADS = ['export:text', 'export:images', 'render', 'fromtext',
+             'split', 'merge', 'decode', 'overlay']
 SCENARIOS = [
     ('no',        'No cache'),
     ('AOTCache',  'AOTCache'),
@@ -66,8 +69,9 @@ def parse(log_path):
 data = {}
 for wl in WORKLOADS:
     data[wl] = {}
+    safe_wl = wl.replace(':', '-')
     for sc_key, _ in SCENARIOS:
-        path = os.path.join(LOGS_DIR, f'classload-{wl}-{sc_key}.log')
+        path = os.path.join(LOGS_DIR, f'cl-{safe_wl}-{sc_key}.log')
         if not os.path.exists(path):
             print(f'MISSING: {path}', file=sys.stderr)
             continue

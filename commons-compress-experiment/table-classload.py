@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Generate LaTeX table of class-load source counts for commons-configuration RQ1.
+"""Generate LaTeX table of class-load source counts for commons-compress RQ1.
 
-Parses classload-{workload}-{scenario}.log files.
+Parses classload-{workload}-{scenario}.log files produced by workload-timed.sh.
 
 Source categories:
   'shared objects file'           → archived (JDK + APP combined)
@@ -23,7 +23,7 @@ parser.add_argument('--logs-dir', default=os.path.join(HERE, 'workload-tmp'),
 args = parser.parse_args()
 LOGS_DIR = args.logs_dir
 
-WORKLOADS = ['properties-read', 'xml-read', 'composite-read', 'interpolation']
+WORKLOADS = ['gzip-roundtrip', 'zip-roundtrip', 'tar-roundtrip', 'list-archives']
 SCENARIOS = [
     ('no',        'No cache'),
     ('AOTCache',  'AOTCache'),
