@@ -81,11 +81,25 @@ jobs:
           test -f morfologik-stemming/cache.aot
           test -f morfologik-tools/cache.aot
 
-      # ── benchmark ────────────────────────────────────────────────────────────
+      # ── CLI lib and models ────────────────────────────────────────────────────
 
-      - name: Build benchmark JAR
-        working-directory: opennlp-experiment/benchmark
-        run: mvn package -DskipTests -q
+      - name: Collect OpenNLP CLI runtime JARs
+        working-directory: opennlp-experiment
+        run: |
+          mvn dependency:copy-dependencies \
+            -f opennlp/opennlp-distr/pom.xml \
+            -DoutputDirectory=opennlp-cli-lib \
+            -Dscope=runtime -DincludeScope=runtime \
+            -q
+
+      - name: Extract pre-trained model files
+        working-directory: opennlp-experiment
+        run: |
+          mkdir -p models
+          for jar in ~/.m2/repository/org/apache/opennlp/opennlp-models-*/1.3.0/*.jar; do
+            unzip -o "$jar" "*.bin" -d models/ -q
+          done
+          ls models/
 
       # ── single.aot (Temurin — no-AOT baseline JDK) ──────────────────────────
 
@@ -102,8 +116,9 @@ jobs:
         working-directory: opennlp-experiment
         run: |
           set -euo pipefail
+          chmod +x create-single-aot.sh
           ./create-single-aot.sh
-          for op in train-sentdetect train-postag train-postag-morfologik; do
+          for op in sentdetect tokenize postag; do
             test -f "single-${op}.aot"
           done
 
@@ -189,21 +204,21 @@ jobs:
             echo "| morfologik-fsa-builders | \`opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-fsa-builders/cache.aot | awk '{print $1}') |"
             echo "| morfologik-stemming | \`opennlp-deps/morfologik/morfologik-stemming/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-stemming/cache.aot | awk '{print $1}') |"
             echo "| morfologik-tools | \`opennlp-deps/morfologik/morfologik-tools/cache.aot\` | $(du -h opennlp-deps/morfologik/morfologik-tools/cache.aot | awk '{print $1}') |"
-            for op in train-sentdetect train-postag train-postag-morfologik; do
+            for op in sentdetect tokenize postag; do
               echo "| single-${op} | \`single-${op}.aot\` | $(du -h "single-${op}.aot" | awk '{print $1}') |"
             done
             echo "| tree | \`tree.aot\` | $(du -h tree.aot | awk '{print $1}') |"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload OpenNLP Morfologik workload artifacts
+      - name: Upload OpenNLP workload artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
-          name: opennlp-morfologik-tree-artifacts
+          name: opennlp-tree-artifacts
           path: |
             opennlp-experiment/workload-tmp/
-            opennlp-experiment/single-train-sentdetect.aot
-            opennlp-experiment/single-train-postag.aot
-            opennlp-experiment/single-train-postag-morfologik.aot
+            opennlp-experiment/single-sentdetect.aot
+            opennlp-experiment/single-tokenize.aot
+            opennlp-experiment/single-postag.aot
             opennlp-experiment/tree.aot
             opennlp-experiment/opennlp/opennlp-tools/cache.aot
             opennlp-experiment/opennlp/opennlp-tools/aot.map
