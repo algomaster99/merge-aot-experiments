@@ -86,9 +86,10 @@ jobs:
       - name: Collect OpenNLP CLI runtime JARs
         working-directory: opennlp-experiment
         run: |
+          OUTPUT_DIR="$(pwd)/opennlp-cli-lib"
           mvn dependency:copy-dependencies \
             -f opennlp/opennlp-distr/pom.xml \
-            -DoutputDirectory=opennlp-cli-lib \
+            -DoutputDirectory="$OUTPUT_DIR" \
             -Dscope=runtime -DincludeScope=runtime \
             -q
 
