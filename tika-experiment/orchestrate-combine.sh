@@ -29,6 +29,11 @@ CACHE_PATHS=(
   "${TIKA_PARSERS}/tika-parser-miscoffice-module/cache.aot"
   "${TIKA_PARSERS}/tika-parser-apple-module/cache.aot"
   "${TIKA_PARSERS}/tika-parser-webarchive-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-crypto-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-cad-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-font-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-news-module/cache.aot"
+  "tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-package/cache.aot"
 )
 
 for path in "${CACHE_PATHS[@]}"; do
