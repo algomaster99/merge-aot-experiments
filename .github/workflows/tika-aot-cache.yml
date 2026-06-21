@@ -49,9 +49,11 @@ jobs:
             ${{ runner.os }}-maven-tika-
             ${{ runner.os }}-maven-
 
-      - name: Build tika fat jar (skip tests)
+      - name: Install tika (skip tests)
         working-directory: tika-experiment/tika
         run: mvn install -DskipTests -q --no-transfer-progress
+
+      # ── component test-suite caches ──────────────────────────────────────────
 
       - name: Build tika-core cache (tree-merge)
         working-directory: tika-experiment/tika
@@ -180,9 +182,6 @@ jobs:
             tika-experiment/single-text-pdf.aot
             tika-experiment/single-text-docx.aot
             tika-experiment/single-text-html.aot
-            tika-experiment/cli-text-pdf.aot
-            tika-experiment/cli-text-docx.aot
-            tika-experiment/cli-text-html.aot
             tika-experiment/tree.aot
             tika-experiment/tika/tika-core/cache.aot
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/cache.aot
