@@ -1,0 +1,318 @@
+name: Apache Tika AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      single_aot_jdk:
+        description: 'JDK version used for single.aot and no-AOT baseline'
+        required: false
+        default: '24'
+        type: choice
+        options:
+          - '25'
+          - '24'
+
+jobs:
+  tree-combine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: false
+
+      - name: Init tika submodule
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git submodule update --init -- \
+            tika-experiment/tika
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-tika-${{ hashFiles('tika-experiment/tika/**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-tika-
+            ${{ runner.os }}-maven-
+
+      - name: Install tika (skip tests)
+        working-directory: tika-experiment/tika
+        run: mvn install -DskipTests -q --no-transfer-progress
+
+      # ── component test-suite caches ──────────────────────────────────────────
+
+      - name: Build tika-core cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          find tika-core -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl tika-core -q --no-transfer-progress
+          test -f tika-core/cache.aot
+
+      - name: Build tika-parser-pdf-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          PDF_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module"
+          find "$PDF_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$PDF_MODULE" -q --no-transfer-progress
+          test -f "$PDF_MODULE/cache.aot"
+
+      - name: Build tika-parser-microsoft-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          MSFT_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module"
+          find "$MSFT_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$MSFT_MODULE" -q --no-transfer-progress
+          test -f "$MSFT_MODULE/cache.aot"
+
+      - name: Build tika-serialization cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          find tika-serialization -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl tika-serialization -q --no-transfer-progress
+          test -f tika-serialization/cache.aot
+
+      - name: Build tika-parser-image-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          IMG_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module"
+          find "$IMG_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$IMG_MODULE" -q --no-transfer-progress
+          test -f "$IMG_MODULE/cache.aot"
+
+      - name: Build tika-parser-pkg-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          PKG_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module"
+          find "$PKG_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$PKG_MODULE" -q --no-transfer-progress
+          test -f "$PKG_MODULE/cache.aot"
+
+      - name: Build tika-parser-code-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          CODE_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module"
+          find "$CODE_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$CODE_MODULE" -q --no-transfer-progress
+          test -f "$CODE_MODULE/cache.aot"
+
+      - name: Build tika-parser-audiovideo-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          AV_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module"
+          find "$AV_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$AV_MODULE" -q --no-transfer-progress
+          test -f "$AV_MODULE/cache.aot"
+
+      - name: Build tika-parser-miscoffice-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          MISC_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module"
+          find "$MISC_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$MISC_MODULE" -q --no-transfer-progress
+          test -f "$MISC_MODULE/cache.aot"
+
+      - name: Build tika-parser-apple-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          APPLE_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module"
+          find "$APPLE_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$APPLE_MODULE" -q --no-transfer-progress
+          test -f "$APPLE_MODULE/cache.aot"
+
+      - name: Build tika-parser-webarchive-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          WEB_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module"
+          find "$WEB_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$WEB_MODULE" -q --no-transfer-progress
+          test -f "$WEB_MODULE/cache.aot"
+
+      - name: Build tika-parser-crypto-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          CRYPTO_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-crypto-module"
+          find "$CRYPTO_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$CRYPTO_MODULE" -q --no-transfer-progress
+          test -f "$CRYPTO_MODULE/cache.aot"
+
+      - name: Build tika-parser-cad-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          CAD_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-cad-module"
+          find "$CAD_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$CAD_MODULE" -q --no-transfer-progress
+          test -f "$CAD_MODULE/cache.aot"
+
+      - name: Build tika-parser-font-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          FONT_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-font-module"
+          find "$FONT_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$FONT_MODULE" -q --no-transfer-progress
+          test -f "$FONT_MODULE/cache.aot"
+
+      - name: Build tika-parser-news-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          NEWS_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-news-module"
+          find "$NEWS_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$NEWS_MODULE" -q --no-transfer-progress
+          test -f "$NEWS_MODULE/cache.aot"
+
+      - name: Build tika-parsers-standard-package cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          PKG="tika-parsers/tika-parsers-standard/tika-parsers-standard-package"
+          find "$PKG" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$PKG" -q --no-transfer-progress
+          test -f "$PKG/cache.aot"
+
+      # ── single.aot (Temurin — no-AOT baseline JDK) ──────────────────────────
+
+      - name: Set up JDK ${{ inputs.single_aot_jdk || '24' }} (no-AOT baseline and single.aot)
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.single_aot_jdk || '24' }}
+
+      - name: Capture Temurin JDK path
+        run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Create single.aot (JDK ${{ inputs.single_aot_jdk || '24' }})
+        working-directory: tika-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-single-aot.sh
+          ./create-single-aot.sh
+          for op in text-pdf text-docx text-archive; do
+            test -f "single-${op}.aot"
+          done
+
+      # ── tree.aot (custom JDK) ─────────────────────────────────────────────
+
+      - name: Re-enable custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Create tree.aot (orchestrate-combine.sh)
+        working-directory: tika-experiment
+        run: |
+          set -euo pipefail
+          chmod +x orchestrate-combine.sh
+          combine_out=$(./orchestrate-combine.sh 2>&1) || { echo "$combine_out"; exit 1; }
+          echo "$combine_out"
+          combine_out_clean=$(echo "$combine_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## tree.aot creation (orchestrate-combine)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$combine_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f tree.aot
+
+      # ── timed workload ───────────────────────────────────────────────────────
+
+      - name: Run timed workload
+        working-directory: tika-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed.sh
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_TREECACHE_BIN="$JAVA_HOME/bin/java" \
+                   ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          single_size=$(du -ch single-*.aot | tail -1 | awk '{print $1}')
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no-AOT vs AOTCache vs TreeCache)"
+            echo
+            echo "- single-*.aot total: ${single_size}"
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append LaTeX table rows to summary
+        working-directory: tika-experiment
+        run: |
+          {
+            echo "## LaTeX table rows (single=AOTCache, tree=TreeCache)"
+            echo
+            echo '```latex'
+            cat workload-tmp/latex-rows.tex
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: tika-tree-artifacts
+          path: |
+            tika-experiment/workload-tmp/
+            tika-experiment/single-text-pdf.aot
+            tika-experiment/single-text-docx.aot
+            tika-experiment/single-text-archive.aot
+            tika-experiment/tree.aot
+            tika-experiment/tika/tika-core/cache.aot
+            tika-experiment/tika/tika-serialization/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-crypto-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-cad-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-font-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-news-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-package/cache.aot
+          if-no-files-found: error
