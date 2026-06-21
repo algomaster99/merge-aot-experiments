@@ -1,0 +1,161 @@
+name: Certificate Ripper AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tree-combine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: false
+
+      - name: Init certificate-ripper submodule
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git submodule update --init -- \
+            certificate-ripper-experiment/certificate-ripper
+
+      - name: Download custom JDK
+        uses: ./.github/actions/download-custom-jdk
+
+      - name: Set up custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-crip-${{ hashFiles('certificate-ripper-experiment/**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-crip-
+            ${{ runner.os }}-maven-
+
+      - name: Build fat jar and run tree-merge tests
+        working-directory: certificate-ripper-experiment/certificate-ripper
+        run: |
+          set -euo pipefail
+          rm -f cache.aot
+          # maven.test.failure.ignore: Netty disables sun.misc.Unsafe on JDK 25+ which
+          # crashes the embedded ssl-server @BeforeAll, but the JVM still loads classes
+          # and writes cache.aot on shutdown — so we get useful cache coverage despite errors.
+          mvn package -Ptree-merge -Dmaven.test.failure.ignore=true -q
+          test -f cache.aot
+          test -f target/crip.jar
+
+      # ── single.aot (Temurin — no-AOT baseline JDK) ──────────────────────────
+
+      - name: Set up JDK 24 (no-AOT baseline and single.aot)
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: '24'
+
+      - name: Capture Temurin JDK path
+        run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Create single.aot (JDK 24)
+        working-directory: certificate-ripper-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-single-aot.sh
+          ./create-single-aot.sh
+          for op in print-https export-pem-https print-smtps; do
+            test -f "single-${op}.aot"
+          done
+
+      # ── tree.aot (custom JDK) ─────────────────────────────────────────────
+
+      - name: Re-enable custom JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-custom.tar.gz
+
+      - name: Create tree.aot (orchestrate-combine.sh)
+        working-directory: certificate-ripper-experiment
+        run: |
+          set -euo pipefail
+          chmod +x orchestrate-combine.sh
+          combine_out=$(./orchestrate-combine.sh 2>&1) || { echo "$combine_out"; exit 1; }
+          echo "$combine_out"
+          combine_out_clean=$(echo "$combine_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## tree.aot creation (orchestrate-combine)"
+            echo
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$combine_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          test -f tree.aot
+
+      # ── timed workload ───────────────────────────────────────────────────────
+
+      - name: Run timed workload
+        working-directory: certificate-ripper-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed.sh
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_TREECACHE_BIN="$JAVA_HOME/bin/java" \
+                   ./workload-timed.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          single_size=$(du -ch single-*.aot | tail -1 | awk '{print $1}')
+          tree_size=$(du -h tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no-AOT vs AOTCache vs TreeCache)"
+            echo
+            echo "- single-*.aot total: ${single_size}"
+            echo "- tree.aot: ${tree_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append LaTeX table rows to summary
+        working-directory: certificate-ripper-experiment
+        run: |
+          {
+            echo "## LaTeX table rows (single=AOTCache, tree=TreeCache)"
+            echo
+            echo '```latex'
+            cat workload-tmp/latex-rows.tex
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: certificate-ripper-tree-artifacts
+          path: |
+            certificate-ripper-experiment/workload-tmp/
+            certificate-ripper-experiment/single-print-https.aot
+            certificate-ripper-experiment/single-export-pem-https.aot
+            certificate-ripper-experiment/single-print-smtps.aot
+            certificate-ripper-experiment/cli-print-https.aot
+            certificate-ripper-experiment/cli-export-pem-https.aot
+            certificate-ripper-experiment/cli-print-smtps.aot
+            certificate-ripper-experiment/tree.aot
+            certificate-ripper-experiment/certificate-ripper/cache.aot
+          if-no-files-found: error
