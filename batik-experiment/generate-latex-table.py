@@ -71,12 +71,9 @@ def fmt_row(label, size_mb, jdk_cls, app_cls, bold_size=False):
     size_str = f'{size_mb:.0f}\\,MB'
     if bold_size:
         size_str = f'\\textbf{{{size_str}}}'
-    total = jdk_cls + app_cls
-    jdk_pct = jdk_cls / total * 100 if total else 0
-    app_pct = app_cls / total * 100 if total else 0
-    jdk_str = f'{jdk_cls:>6,} ({jdk_pct:>5.1f}\\%)'
-    app_str = f'{app_cls:>6,} ({app_pct:>5.1f}\\%)'
-    return f'{label:<24} & {size_str} & {jdk_str} & {app_str} \\\\'
+    jdk_str = f'{jdk_cls:>6,}'
+    app_str = f'{app_cls:>6,}'
+    return f'{label:<28} & --- & {size_str} & {jdk_str} & {app_str} \\\\'
 
 
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -109,8 +106,9 @@ if missing:
     print('ERROR: missing files:\n  ' + '\n  '.join(missing), file=sys.stderr)
     sys.exit(1)
 
-print(r'\multicolumn{4}{@{}l}{\textit{batik}} \\')
-for label, cache, mapf in ROWS:
-    print(fmt_row(label, *analyze(cache, mapf)))
-print(fmt_row(r'\toolname', *analyze(*TREE), bold_size=True))
+print(r'\multicolumn{5}{@{}l}{\textit{batik}} \\')
+for i, (label, cache, mapf) in enumerate(ROWS):
+    prefix = 'App:' if i == 0 else 'Dep:'
+    print(fmt_row(f'{prefix} {label}', *analyze(cache, mapf)))
+print(fmt_row(r'\toolname   batik', *analyze(*TREE), bold_size=True))
 print(r'\midrule')
