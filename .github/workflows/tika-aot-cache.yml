@@ -289,6 +289,18 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: AOT cache composition (sizes + class counts)
+        working-directory: tika-experiment
+        run: |
+          latex_out=$(python3 generate-latex-table.py)
+          {
+            echo "## AOT cache composition (size, JDK classes, app classes)"
+            echo
+            echo '```latex'
+            echo "$latex_out"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
@@ -299,20 +311,37 @@ jobs:
             tika-experiment/single-text-docx.aot
             tika-experiment/single-text-archive.aot
             tika-experiment/tree.aot
+            tika-experiment/aot.map
             tika-experiment/tika/tika-core/cache.aot
+            tika-experiment/tika/tika-core/aot.map
             tika-experiment/tika/tika-serialization/cache.aot
+            tika-experiment/tika/tika-serialization/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-crypto-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-crypto-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-cad-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-cad-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-font-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-font-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-news-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-news-module/aot.map
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-package/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-package/aot.map
           if-no-files-found: error
