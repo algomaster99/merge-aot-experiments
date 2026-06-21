@@ -14,15 +14,21 @@ java -version
 JAR="tika/tika-app/target/tika-app-3.3.1.jar"
 [[ -f "$JAR" ]] || fail "$JAR not found"
 
-# Component test-suite caches (produced by mvn test -Ptree-merge in each module).
-TIKA_CORE_CACHE="tika/tika-core/cache.aot"
-TIKA_PDF_CACHE="tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/cache.aot"
-TIKA_MSFT_CACHE="tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/cache.aot"
+TIKA_PARSERS="tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules"
 
+# Component test-suite caches (produced by mvn test -Ptree-merge in each module).
 CACHE_PATHS=(
-  "$TIKA_CORE_CACHE"
-  "$TIKA_PDF_CACHE"
-  "$TIKA_MSFT_CACHE"
+  "tika/tika-core/cache.aot"
+  "tika/tika-serialization/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-pdf-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-microsoft-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-image-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-pkg-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-code-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-audiovideo-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-miscoffice-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-apple-module/cache.aot"
+  "${TIKA_PARSERS}/tika-parser-webarchive-module/cache.aot"
 )
 
 for path in "${CACHE_PATHS[@]}"; do

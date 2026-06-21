@@ -81,6 +81,77 @@ jobs:
           mvn clean test -Ptree-merge -pl "$MSFT_MODULE" -q --no-transfer-progress
           test -f "$MSFT_MODULE/cache.aot"
 
+      - name: Build tika-serialization cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          find tika-serialization -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl tika-serialization -q --no-transfer-progress
+          test -f tika-serialization/cache.aot
+
+      - name: Build tika-parser-image-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          IMG_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module"
+          find "$IMG_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$IMG_MODULE" -q --no-transfer-progress
+          test -f "$IMG_MODULE/cache.aot"
+
+      - name: Build tika-parser-pkg-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          PKG_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module"
+          find "$PKG_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$PKG_MODULE" -q --no-transfer-progress
+          test -f "$PKG_MODULE/cache.aot"
+
+      - name: Build tika-parser-code-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          CODE_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module"
+          find "$CODE_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$CODE_MODULE" -q --no-transfer-progress
+          test -f "$CODE_MODULE/cache.aot"
+
+      - name: Build tika-parser-audiovideo-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          AV_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module"
+          find "$AV_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$AV_MODULE" -q --no-transfer-progress
+          test -f "$AV_MODULE/cache.aot"
+
+      - name: Build tika-parser-miscoffice-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          MISC_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module"
+          find "$MISC_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$MISC_MODULE" -q --no-transfer-progress
+          test -f "$MISC_MODULE/cache.aot"
+
+      - name: Build tika-parser-apple-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          APPLE_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module"
+          find "$APPLE_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$APPLE_MODULE" -q --no-transfer-progress
+          test -f "$APPLE_MODULE/cache.aot"
+
+      - name: Build tika-parser-webarchive-module cache (tree-merge)
+        working-directory: tika-experiment/tika
+        run: |
+          set -euo pipefail
+          WEB_MODULE="tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module"
+          find "$WEB_MODULE" -name "*.aot" -type f -delete
+          mvn clean test -Ptree-merge -pl "$WEB_MODULE" -q --no-transfer-progress
+          test -f "$WEB_MODULE/cache.aot"
+
       # ── single.aot (Temurin — no-AOT baseline JDK) ──────────────────────────
 
       - name: Set up JDK ${{ inputs.single_aot_jdk || '24' }} (no-AOT baseline and single.aot)
@@ -184,6 +255,14 @@ jobs:
             tika-experiment/single-text-html.aot
             tika-experiment/tree.aot
             tika-experiment/tika/tika-core/cache.aot
+            tika-experiment/tika/tika-serialization/cache.aot
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pdf-module/cache.aot
             tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-code-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-audiovideo-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-miscoffice-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-apple-module/cache.aot
+            tika-experiment/tika/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-webarchive-module/cache.aot
           if-no-files-found: error
