@@ -220,6 +220,17 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Append class-load breakdown table to summary
+        working-directory: biojava-experiment
+        run: |
+          {
+            echo "## Class-load breakdown (Arch-JDK / Arch-APP / Classpath / Gen.)"
+            echo
+            echo '```latex'
+            python3 table-classload.py
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       # ── artifact summary ───────────────────────────────────────────────────
 
       - name: Write artifact summary
