@@ -45,7 +45,10 @@ jobs:
         run: |
           set -euo pipefail
           rm -f cache.aot
-          mvn package -Ptree-merge -q
+          # maven.test.failure.ignore: Netty disables sun.misc.Unsafe on JDK 25+ which
+          # crashes the embedded ssl-server @BeforeAll, but the JVM still loads classes
+          # and writes cache.aot on shutdown — so we get useful cache coverage despite errors.
+          mvn package -Ptree-merge -Dmaven.test.failure.ignore=true -q
           test -f cache.aot
           test -f target/crip.jar
 
