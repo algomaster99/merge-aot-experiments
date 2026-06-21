@@ -4,15 +4,13 @@
 Parses classload-{workload}-{scenario}.log files.
 
 Source categories:
-  'shared objects file'           → archive
+  'shared objects file'           → archived (JDK + APP combined)
   'file://'  /  'jrt://'          → classpath
   '__JVM_LookupDefineClass__'     → generated
   '__dynamic_proxy__'             → generated
   anything else                   → custom classloader (WARNING printed)
 
-Archive classes are further split into JDK / APP by package name.
-
-Output: printed LaTeX table rows (biojava only).
+Output: printed LaTeX table rows.
 """
 import re, os, sys, argparse
 
@@ -32,29 +30,7 @@ SCENARIOS = [
     ('TreeCache', r'\toolname{}'),
 ]
 
-PRIMITIVES = frozenset('ZBCSIFJD')
-JDK_PKGS   = {'java', 'jdk', 'sun', 'javax', 'com.sun'} | PRIMITIVES
-GENERATED  = frozenset({'__JVM_LookupDefineClass__', '__dynamic_proxy__'})
-
-
-def get_pkg(name):
-    while name.startswith('['):
-        name = name[1:]
-    if name.startswith('L') and name.endswith(';'):
-        name = name[1:-1]
-    if not name:
-        return None
-    if '.' not in name:
-        return name if name in PRIMITIVES else None
-    parts = name.split('.')
-    if parts[0] == 'com' and len(parts) >= 2:
-        return parts[0] + '.' + parts[1]
-    return parts[0]
-
-
-def is_jdk(name):
-    pkg = get_pkg(name)
-    return (pkg in JDK_PKGS) if pkg else True
+GENERATED = frozenset({'__JVM_LookupDefineClass__', '__dynamic_proxy__'})
 
 
 def is_classloader_source(src):
@@ -65,8 +41,8 @@ def is_classloader_source(src):
 
 
 def parse(log_path):
-    """Return dict with keys: arch_jdk, arch_app, classpath, generated."""
-    arch_jdk = arch_app = classpath = generated = 0
+    """Return dict with keys: archived, classpath, generated."""
+    archived = classpath = generated = 0
     with open(log_path) as f:
         for line in f:
             m = re.match(r'.*\[class,load\] (\S+) source: (.+)', line.strip())
@@ -74,10 +50,7 @@ def parse(log_path):
                 continue
             cls, src = m.group(1), m.group(2).strip()
             if src == 'shared objects file':
-                if is_jdk(cls):
-                    arch_jdk += 1
-                else:
-                    arch_app += 1
+                archived += 1
             elif src in GENERATED or is_classloader_source(src):
                 generated += 1
             elif src.startswith('file:') or src.startswith('jrt:/'):
@@ -86,8 +59,7 @@ def parse(log_path):
                 print(f'WARNING unknown source: class={cls!r}  source={src!r}',
                       file=sys.stderr)
                 classpath += 1
-    return dict(arch_jdk=arch_jdk, arch_app=arch_app,
-                classpath=classpath, generated=generated)
+    return dict(archived=archived, classpath=classpath, generated=generated)
 
 
 # ── collect numbers ───────────────────────────────────────────────────────────
@@ -102,10 +74,10 @@ for wl in WORKLOADS:
         data[wl][sc_key] = parse(path)
 
 # ── emit LaTeX ────────────────────────────────────────────────────────────────
-print(r'\begin{tabular}{@{}ll rrrr r@{}}')
+print(r'\begin{tabular}{@{}ll rrr r@{}}')
 print(r'\toprule')
 print(r'\textbf{Workload} & \textbf{Scenario}'
-      r' & \textbf{Arch-JDK} & \textbf{Arch-APP}'
+      r' & \textbf{Archived}'
       r' & \textbf{Classpath} & \textbf{Gen.}'
       r' & \textbf{Total} \\')
 print(r'\midrule')
@@ -116,15 +88,14 @@ for wl in WORKLOADS:
         if sc_key not in data[wl]:
             continue
         s = data[wl][sc_key]
-        total = s['arch_jdk'] + s['arch_app'] + s['classpath'] + s['generated']
+        total = s['archived'] + s['classpath'] + s['generated']
         wl_cell = f'\\texttt{{{wl}}}' if first else ''
         first = False
         bold = sc_key == 'TreeCache'
         def fmt(n, _bold=bold):
             return f'\\textbf{{{n:,}}}' if _bold else f'{n:,}'
         print(f'{wl_cell} & {sc_label}'
-              f' & {fmt(s["arch_jdk"])}'
-              f' & {fmt(s["arch_app"])}'
+              f' & {fmt(s["archived"])}'
               f' & {fmt(s["classpath"])}'
               f' & {fmt(s["generated"])}'
               f' & {fmt(total)} \\\\')
