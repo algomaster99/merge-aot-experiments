@@ -213,7 +213,7 @@ _print_latex_rows "biojava"
 
 _classload_row() {
   local op="$1" mode="$2"
-  local logfile="$WORK_DIR/cl-${op}-${mode}.log"
+  local logfile="$WORK_DIR/classload-${op}-${mode}.log"
   case "$mode" in
     no)         "$JAVA_NO_BIN"         -Xlog:class+load:file="$logfile" "${BASE_ARGS[@]}" "$MAIN" "$op" "$WORK_DIR" >/dev/null 2>&1 ;;
     AOTCache) "$JAVA_AOTCACHE_BIN" -XX:AOTCache="single-${op}.aot" -XX:+AOTClassLinking \
