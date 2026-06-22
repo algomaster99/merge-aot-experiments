@@ -36,6 +36,9 @@ measure_mvn() {
     local label="$1" dir="$2"; shift 2
     local t_base t_cache ovhd
 
+    info "[$label] warmup (populate Maven local repo)"
+    sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -P '!tree-merge' $* || true"
+
     info "[$label] baseline"
     rm -f "$dir/cache.aot"
     timed sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -P '!tree-merge' $* || true"
@@ -56,6 +59,9 @@ measure_workload() {
     local t_base t_cache ovhd
 
     [[ -f "$fat_jar" ]] || { log "SKIP $label — fat jar not found: $fat_jar"; return; }
+
+    info "[$label] warmup (populate filesystem cache)"
+    java "$@" -jar "$fat_jar" || true
 
     info "[$label] baseline"
     timed java "$@" -jar "$fat_jar" || true
