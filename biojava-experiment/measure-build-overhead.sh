@@ -31,11 +31,11 @@ measure_mvn() {
     local t_base t_cache ovhd
 
     info "[$label] warmup (populate Maven local repo)"
-    sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -P '!tree-merge' $* || true"
+    sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' $* || true"
 
     info "[$label] baseline"
     rm -f "$dir/cache.aot"
-    timed sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -P '!tree-merge' $* || true"
+    timed sh -c "cd '$dir' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' $* || true"
     t_base=$LAST_MS
 
     info "[$label] cache production"
@@ -90,7 +90,9 @@ measure_mvn "commons-codec" "biojava-deps/commons-codec"
 # slf4j-api: multi-module repo, only slf4j-api needed
 # Note: slf4j-api's tree-merge profile has <activation><jdk>[17,)</jdk></activation>
 # so '-P !tree-merge' is required to suppress auto-activation in baseline.
-timed sh -c "cd 'biojava-deps/slf4j' && mvn clean test -B -Drat.skip=true -P '!tree-merge' -pl slf4j-api || true"
+info "[slf4j-api] warmup (populate Maven local repo)"
+sh -c "cd 'biojava-deps/slf4j' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' -pl slf4j-api || true"
+timed sh -c "cd 'biojava-deps/slf4j' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' -pl slf4j-api || true"
 t_base_slf4j=$LAST_MS
 rm -f "biojava-deps/slf4j/slf4j-api/cache.aot"
 timed sh -c "cd 'biojava-deps/slf4j' && mvn clean test -B -Drat.skip=true -Ptree-merge -pl slf4j-api || true"

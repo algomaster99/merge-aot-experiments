@@ -80,7 +80,10 @@ measure_mvn "ognl"        "thymeleaf-deps/ognl"
 # slf4j: multi-module repo, only slf4j-api is needed
 # Note: slf4j-api's tree-merge profile has <activation><jdk>[17,)</jdk></activation>
 # so '-P !tree-merge' is required for the baseline to suppress auto-activation.
-timed sh -c "cd 'thymeleaf-deps/slf4j' && mvn clean test -B -Drat.skip=true -P '!tree-merge' -pl slf4j-api || true"
+# slf4j parent POM defaults reuseForks=false; match tree-merge behaviour with -DreuseForks=true.
+info "[slf4j-api] warmup (populate Maven local repo)"
+sh -c "cd 'thymeleaf-deps/slf4j' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' -pl slf4j-api || true"
+timed sh -c "cd 'thymeleaf-deps/slf4j' && mvn clean test -B -Drat.skip=true -DforkCount=1 -DreuseForks=true -P '!tree-merge' -pl slf4j-api || true"
 t_base_slf4j=$LAST_MS
 rm -f "thymeleaf-deps/slf4j/slf4j-api/cache.aot"
 timed sh -c "cd 'thymeleaf-deps/slf4j' && mvn clean test -B -Drat.skip=true -Ptree-merge -pl slf4j-api || true"
