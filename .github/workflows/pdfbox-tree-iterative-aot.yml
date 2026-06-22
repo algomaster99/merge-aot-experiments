@@ -1,0 +1,179 @@
+name: PDFBox Tree-Iterative AOT Cache
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tree-iterative-aot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: true
+
+      # ── JDK setup ─────────────────────────────────────────────────────────
+
+      - name: Download tree-iterative JDK
+        run: |
+          curl -L -o jdk-tree-iter.tar.gz \
+            "https://github.com/algomaster99/jdk/releases/download/jdk-supply-chain-aotcache-2d171b420a0/jdk-supply-chain-aotcache-2d171b420a0.tar.gz"
+
+      - name: Set up tree-iterative JDK
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-tree-iter.tar.gz
+
+      - name: Capture tree-iterative JDK path
+        run: echo "TREE_ITER_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      - name: Set up JDK 25 (no-AOT baseline and single.aot)
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Capture Temurin JDK path
+        run: echo "TEMURIN_JAVA_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+
+      # ── Maven cache ────────────────────────────────────────────────────────
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-pdfbox-tree-iter-${{ hashFiles('pdfbox-experiment/**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-pdfbox-tree-iter-
+            ${{ runner.os }}-maven-
+
+      # ── build pdfbox ───────────────────────────────────────────────────────
+
+      - name: Re-enable tree-iterative JDK for Maven build
+        uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
+        with:
+          distribution: jdkfile
+          java-version: '25'
+          jdkFile: jdk-tree-iter.tar.gz
+
+      - name: Build pdfbox app jar
+        working-directory: pdfbox-experiment/pdfbox
+        run: mvn package -DskipTests -q
+
+      # ── single-iterjdk-*.aot (cross-workload, tree-iterative JDK) ─────────
+
+      - name: Create single-iterjdk-*.aot caches
+        working-directory: pdfbox-experiment
+        run: |
+          set -euo pipefail
+          chmod +x create-single-aot-iterjdk.sh
+          JAVA_BIN="$TEMURIN_JAVA_HOME/bin/java" ./create-single-aot-iterjdk.sh
+          for op in export-text export-images render fromtext split merge decode overlay; do
+            test -f "single-iterjdk-${op}.aot"
+          done
+
+      # ── iterative-tree.aot (pdfbox reactor only: io → fontbox → pdfbox → tools) ──
+
+      - name: Build pdfbox reactor iterative chain
+        working-directory: pdfbox-experiment/pdfbox
+        run: |
+          set -euo pipefail
+          find . -name "iter.aot" -delete
+          mvn clean test -Piterative-merge -pl io,fontbox,pdfbox,tools -q
+          test -f tools/iter.aot
+
+      - name: Finalise iterative-tree.aot
+        working-directory: pdfbox-experiment
+        run: |
+          cp pdfbox/tools/iter.aot iterative-tree.aot
+          echo "iterative-tree.aot: $(du -h iterative-tree.aot | awk '{print $1}')"
+
+      # ── timed workload ─────────────────────────────────────────────────────
+
+      - name: Run timed workload (no vs aotcache vs tree-iter)
+        working-directory: pdfbox-experiment
+        run: |
+          set -euo pipefail
+          chmod +x workload-timed-tree-iterative.sh
+          wl_out=$(JAVA_NO_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_AOTCACHE_BIN="$TEMURIN_JAVA_HOME/bin/java" \
+                   JAVA_TREE_ITER_BIN="$TREE_ITER_JAVA_HOME/bin/java" \
+                   ./workload-timed-tree-iterative.sh 2>&1) || { echo "$wl_out"; exit 1; }
+          echo "$wl_out"
+          wl_out_clean=$(echo "$wl_out" | sed 's/\x1B\[[0-9;]*m//g')
+
+          single_size=$(du -ch single-iterjdk-*.aot | tail -1 | awk '{print $1}')
+          tree_iter_size=$(du -h iterative-tree.aot | awk '{print $1}')
+
+          {
+            echo "## Timed workload results (no vs cross-workload aotcache vs tree-iter)"
+            echo
+            echo "- single-iterjdk-*.aot total: ${single_size}"
+            echo "- iterative-tree.aot: ${tree_iter_size}"
+            echo
+            echo '```'
+            echo "$wl_out_clean"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append LaTeX table rows to summary
+        working-directory: pdfbox-experiment
+        run: |
+          {
+            echo "## LaTeX table rows"
+            echo
+            echo '```latex'
+            cat workload-tmp/latex-rows-tree-iter.tex
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append class-load breakdown to summary
+        working-directory: pdfbox-experiment
+        run: |
+          {
+            echo "## Class-load breakdown (file: vs shared object)"
+            echo
+            echo '```'
+            grep -E "Operation|file:|shared|────" workload-tmp/latex-rows-tree-iter.tex || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ── artifact summary ───────────────────────────────────────────────────
+
+      - name: Write artifact summary
+        working-directory: pdfbox-experiment
+        run: |
+          {
+            echo "## AOT cache sizes"
+            echo
+            echo "| Cache | Size |"
+            echo "|---|---|"
+            for op in export-text export-images render fromtext split merge decode overlay; do
+              echo "| \`single-iterjdk-${op}.aot\` | $(du -h "single-iterjdk-${op}.aot" | awk '{print $1}') |"
+            done
+            for f in pdfbox/io/iter.aot pdfbox/fontbox/iter.aot pdfbox/pdfbox/iter.aot pdfbox/tools/iter.aot; do
+              echo "| \`${f}\` | $(du -h "$f" | awk '{print $1}') |"
+            done
+            echo "| \`iterative-tree.aot\` | $(du -h iterative-tree.aot | awk '{print $1}') |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # ── upload ─────────────────────────────────────────────────────────────
+
+      - name: Upload PDFBox tree-iterative artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: pdfbox-tree-iterative-artifacts
+          path: |
+            pdfbox-experiment/workload-tmp/
+            pdfbox-experiment/single-iterjdk-*.aot
+            pdfbox-experiment/pdfbox/io/iter.aot
+            pdfbox-experiment/pdfbox/fontbox/iter.aot
+            pdfbox-experiment/pdfbox/pdfbox/iter.aot
+            pdfbox-experiment/pdfbox/tools/iter.aot
+            pdfbox-experiment/iterative-tree.aot
+          if-no-files-found: error
