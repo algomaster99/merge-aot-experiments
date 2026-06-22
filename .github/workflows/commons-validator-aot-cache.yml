@@ -188,6 +188,23 @@ jobs:
             echo
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Measure build overhead
+        working-directory: commons-validator-experiment
+        run: |
+          chmod +x measure-build-overhead.sh
+          ./measure-build-overhead.sh
+
+      - name: Append build overhead table to summary
+        working-directory: commons-validator-experiment
+        run: |
+          {
+            echo "## Build overhead (baseline vs. cache production)"
+            echo
+            echo '```latex'
+            python3 ../report-build-overhead.py --latex build-overhead.csv
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload Commons Validator workload artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
