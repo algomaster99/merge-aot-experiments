@@ -244,6 +244,23 @@ jobs:
 
       # ── upload ─────────────────────────────────────────────────────────────
 
+      - name: Measure build overhead
+        working-directory: thymeleaf-experiment
+        run: |
+          chmod +x measure-build-overhead.sh
+          ./measure-build-overhead.sh
+
+      - name: Append build overhead table to summary
+        working-directory: thymeleaf-experiment
+        run: |
+          {
+            echo "## Build overhead (baseline vs. cache production)"
+            echo
+            echo '```latex'
+            python3 ../report-build-overhead.py --latex build-overhead.csv
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload Thymeleaf workload artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
